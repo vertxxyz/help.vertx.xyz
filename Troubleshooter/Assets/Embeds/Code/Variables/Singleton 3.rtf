@@ -1,0 +1,194 @@
+{\rtf1\ansi\deff0{\colortbl;\red208\green208\blue208;\red38\green38\blue38;\red108\green149\blue235;\red189\green189\blue189;\red193\green145\blue255;\red19\green63\blue47;\red240\green240\blue240;\red102\green195\blue204;\red57\green204\blue143;\red133\green196\blue108;}
+{\fonttbl{\f1\fmodern JetBrains Mono;}}
+
+\s0\box\cbpat2\cb2\cf1\fs20
+\cf3
+\f1
+\i0\b0
+
+public abstract class \cf1
+\i0\b
+
+Singleton\cf4
+\i0\b0
+
+<\cf5
+
+T\cf4
+
+> \cf1
+
+: \cf5
+
+MonoBehaviour\line
+
+\tab
+\cf3
+
+where \cf5
+
+T \cf1
+
+: \cf5
+
+Singleton\cf4
+
+<\cf5
+
+T\cf4
+
+>\line
+\chcbpat6\cb6
+\cf7
+
+\{\plain\fs20\f1
+\cf7
+\i0\b0
+\cb2
+
+\line
+
+\tab
+\cf3
+
+public static \cf5
+
+T \cf8
+
+Instance \cf4
+
+\{ \cf9
+
+get\cf4
+
+; \cf3
+
+private \cf9
+
+set\cf4
+
+; \}\line
+
+\line
+
+\tab
+\cf3
+
+void \cf1
+\i0\b
+
+Awake \cf4
+\i0\b0
+
+() \{\line
+
+\tab
+\tab
+\cf10
+\i\b0
+
+//Destroy this object if we already have a Singleton defined\line
+
+\tab
+\tab
+\cf3
+\i0\b0
+
+if\cf4
+
+(\cf8
+
+Instance \cf9
+
+!= \cf3
+
+null\cf4
+
+) \{\line
+
+\tab
+\tab
+\tab
+\cf9
+
+Destroy\cf4
+
+(\cf8
+
+gameObject\cf4
+
+);\line
+
+\tab
+\tab
+\tab
+\cf3
+
+return\cf4
+
+;\line
+
+\tab
+\tab
+\}\line
+
+\tab
+\tab
+\cf9
+
+DontDestroyOnLoad\cf4
+
+(\cf8
+
+gameObject\cf4
+
+);\line
+
+\tab
+\tab
+\cf8
+
+Instance \cf4
+
+= (\cf5
+
+T\cf4
+
+) \cf3
+
+this\cf4
+
+;\line
+
+\tab
+\tab
+\cf9
+
+DoAwake\cf4
+
+();\line
+
+\tab
+\}\line
+
+\line
+
+\tab
+\cf10
+\i\b0
+
+//Virtual method to allow implementations to use Awake\line
+
+\tab
+\cf3
+\i0\b0
+
+protected virtual void \cf9
+
+DoAwake \cf4
+
+() \{ \}\line
+\chcbpat6\cb6
+\cf7
+
+\}\par}

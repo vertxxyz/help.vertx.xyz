@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Troubleshooter", "Troubleshooter\Troubleshooter.csproj", "{B2D5FD94-CF35-46FC-B044-FE96F14CDB90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Troubleshooter.Tests", "Troubleshooter.Tests\Troubleshooter.Tests.csproj", "{F74FD5D0-BE1F-4050-98FC-B54A9AE17E3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2D5FD94-CF35-46FC-B044-FE96F14CDB90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2D5FD94-CF35-46FC-B044-FE96F14CDB90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F74FD5D0-BE1F-4050-98FC-B54A9AE17E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F74FD5D0-BE1F-4050-98FC-B54A9AE17E3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
