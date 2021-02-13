@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>netcoreapp3.0</TargetFramework>
+		<RootNamespace>help.vertx.xyz</RootNamespace>
+		<Configurations>Release</Configurations>
+		<Platforms>AnyCPU</Platforms>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Markdig" Version="0.23.0" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1-beta1" />
+	  <PackageReference Include="RtfPipe" Version="2.0.7677.4303" />
+	  <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0-preview.1.21102.12" />
+	  <PackageReference Include="WebStoating.Markdig.Prism" Version="1.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Assets" />
+	</ItemGroup>
+
+</Project>

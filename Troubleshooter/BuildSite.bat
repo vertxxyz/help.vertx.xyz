@@ -1,0 +1,1 @@
+bin\Release\netcoreapp3.1\Troubleshooter.exe --path "D:\Program Files\XAMPP\htdocs\Troubleshooter" --logging verbose
