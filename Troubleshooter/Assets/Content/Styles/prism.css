@@ -1,0 +1,143 @@
+/* PrismJS 1.23.0 */
+
+/* textColor ----   //#BDBDBD #D0D0D0
+ * delimiterColor ----   //#BDBDBD
+ * backgroundColor ----   //#262626
+ * commentColor ----   //#85C46C
+ * classColor ----   //#C191FF
+ * stringColor ----   //#C9A26D
+ * keywordColor ----   //#6C95EB
+ * numberColor ----   //#ED94C0
+ * stringEscapeColor ----   //#66C3CC
+ * stringEscapeColor2 ----   //#D688D4
+ * operatorColor ----   //#BDBDBD
+ * tagColor ----   //#C191FF
+ * entityColor ----   //#FFD49E
+ * injectedBackgroundColor ----   //#303030
+ * attributeValueColor ----   //#F0F0F0
+ * structColor ----   //#E1BFFF
+ * functionColor ----   //#39CC8F
+ * regex ----   //#FF9259
+*/
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #D0D0D0;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 0.9em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	padding: 0;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #262626;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #85C46C;
+}
+
+.token.punctuation {
+	color: #BDBDBD;
+}
+
+.token.namespace {
+	color: #C191FF;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #D0D0D0;
+}
+
+.token.boolean,
+.token.number {
+	color: #ED94C0;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #C9A26D;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #BDBDBD;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #C191FF;
+}
+
+.token.keyword {
+	color: #6C95EB;
+}
+
+.token.regex,
+.token.important {
+	color: #FF9259;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
