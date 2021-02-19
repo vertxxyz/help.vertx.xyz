@@ -11,5 +11,4 @@ See **Edit/Project Settings/Physics 2D**, and the **Layer Collision Matrix** at 
 See [Layer-based collision detection](https://docs.unity3d.com/Manual/LayerBasedCollision.html) for more information.  
 
 ---
-
 [I am still not getting a message](6%202D%20Other.md)
