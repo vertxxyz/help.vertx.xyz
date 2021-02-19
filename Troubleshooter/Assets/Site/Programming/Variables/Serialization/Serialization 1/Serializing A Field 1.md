@@ -6,7 +6,9 @@ Ensure your declared variable is either marked with a `[SerializeField]` attribu
 or is `public`:  
 <<Code/Serialization/Public.rtf>>  
 
+:::warning
 Unity will not serialize properties, so make sure your variable is a field type.
+:::
 
 A `static`, `const`, or `readonly` field **cannot** be serialized.
 
