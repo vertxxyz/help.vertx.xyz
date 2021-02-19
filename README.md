@@ -6,7 +6,7 @@ A simple troubleshooting website for unity.
 
 It is important to note that this is a personal project, and so it been built from the ground up to give me a maintainable resource to help people on the [Unity Discord](https://discord.gg/SZy459n7).
 
-Please [create an issue](https://github.com/vertxxyz/help.vertx.xyz/issues) before contributing.
+Please [create an issue](https://github.com/vertxxyz/help.vertx.xyz/issues) before contributing. Contributions must adhere to the [style guide](STYLEGUIDE.md).
 
 Note that this is not intended to document Unity features, but instead describe how to problem solve and fix specific problems within Unity.
 If your contribution does not fall within that, it's unlikely to have a place on the site.
