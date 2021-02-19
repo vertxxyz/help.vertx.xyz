@@ -25,6 +25,7 @@
 [Parsing Input Strings](Programming/Parsing.md)  
 #### Editor  
 [Property Drawers](Programming/Editor%20Issues/Property%20Drawers.md)  
+[Property Decorators](Programming/Editor%20Issues/Property%20Decorators.md)  
 [Custom Inspectors](Programming/Editor%20Issues/Custom%20Inspectors.md)  
 [Editor Windows](Programming/Editor%20Issues/Editor%20Windows.md)  
 
