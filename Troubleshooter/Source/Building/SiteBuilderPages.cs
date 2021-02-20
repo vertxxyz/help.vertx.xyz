@@ -11,10 +11,15 @@ namespace Troubleshooter
 	{
 		private static Dictionary<string, PageResource> BuildPages(Arguments arguments, Site site, MarkdownPipeline pipeline)
 		{
+			Links builtLinks = GetBuiltLinks(arguments);
+			int siteRootIndex = GetSiteRootIndex(site);
+			
 			var allResources = CollectPages(site);
 			var allBuiltResources = new HashSet<string>();
 
-			arguments.VerboseLog($"{allResources.Count} total un-built pages");
+			arguments.VerboseLog($"{allResources.Count} total un-processed pages");
+
+			int builtPages = 0, skippedPages = 0, ignoredPages = 0;
 
 			while (allBuiltResources.Count != allResources.Count)
 			{
@@ -40,12 +45,25 @@ namespace Troubleshooter
 
 					resource.BuildText(site, allResources, pipeline);
 					allBuiltResources.Add(path);
-					resource.WriteToDisk(arguments);
+					switch (resource.WriteToDisk(arguments, builtLinks, siteRootIndex))
+					{
+						case PageResource.WriteStatus.Ignored:
+							ignoredPages++;
+							break;
+						case PageResource.WriteStatus.Skipped:
+							skippedPages++;
+							break;
+						case PageResource.WriteStatus.Written:
+							builtPages++;
+							break;
+					}
 				}
 
 				if (prevBuilt == allBuiltResources.Count)
 					throw new BuildException("Build has soft-locked - infinite loop due to recursive embedding?");
 			}
+			
+			arguments.VerboseLog($"{builtPages} pages written to disk. {skippedPages} were skipped as identical, and {ignoredPages} skipped as embeds.");
 
 			return allResources;
 		}
