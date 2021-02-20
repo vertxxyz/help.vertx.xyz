@@ -15,8 +15,14 @@ namespace Troubleshooter
 
 			Site site = new Site(arguments.TroubleshooterRoot);
 
-			var allPages = BuildPages(arguments, site, pipeline);
-			BuildLinksJson(arguments, site, allPages);
+			BuildPages(arguments, site, pipeline);
+			BuildContent(arguments, site);
+		}
+		
+		public static void ContentBuild(Arguments arguments)
+		{
+			Site site = new Site(arguments.TroubleshooterRoot);
+
 			BuildContent(arguments, site);
 		}
 	}

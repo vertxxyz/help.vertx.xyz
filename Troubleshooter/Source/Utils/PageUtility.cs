@@ -53,6 +53,16 @@ namespace Troubleshooter
 				yield return (group.Value.ToConsistentPath().ToUnTokenized(), group);
 			}
 		}
+		
+		public static IEnumerable<(string localPath, Group group)> ImagesAsRootPaths(string text)
+		{
+			MatchCollection matches = Regex.Matches(text, @"!\[[^\]]*\]\((.*?)\s*(""(?:.*[^""])"")?\s*\)");
+			for (int i = 0; i < matches.Count; i++)
+			{
+				Group group = matches[i].Groups[1];
+				yield return (group.Value.ToConsistentPath().ToUnTokenized(), group);
+			}
+		}
 
 		public static string LocalEmbedToFullPath(string embedPath, Site site)
 			=> Path.GetFullPath(Path.Combine(site.EmbedsDirectory, embedPath));

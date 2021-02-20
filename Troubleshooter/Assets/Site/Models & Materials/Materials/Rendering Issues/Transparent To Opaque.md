@@ -11,7 +11,7 @@ Custom shaders should render to depth, ie. `ZWrite On` (default), and ideally be
 
 #### URP / HDRP
 For default render pipeline materials the Surface Type defined in the Surface Options dropdown for a material must be set to Opaque.  
-![Opaque Material](https://help.vertx.xyz/Images/urp-opaque-mat.png)  
+![Opaque Material](urp-opaque-mat.png)  
 Shaders created in Shadergraph should also be set to Opaque (default).
 
 --- 

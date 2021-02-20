@@ -16,9 +16,9 @@ Surface shaders must provide `alphatest:VariableName`. See [optional parameters]
 
 #### URP / HDRP
 For default render pipeline materials the Surface Type defined in the Surface Options dropdown for a material must be set to **Opaque**, and the Alpha Clipping checkbox must be enabled.  
-![Opaque Material](https://help.vertx.xyz/Images/urp-opaque-mat.png)  
+![Opaque Material](urp-opaque-mat.png)  
 Shaders created in Shadergraph should also be set to Opaque (default). In some versions of Shadergraph it is important to pass an input into the Alpha Clip Threshold variable, or else the clipping will not function. The input to Alpha is what drives the query against the clipping threshold.  
-![Shadergraph Alpha Clip](https://help.vertx.xyz/Images/shadergraph-alpha-clip.png)
+![Shadergraph Alpha Clip](shadergraph-alpha-clip.png)
 
 --- 
 

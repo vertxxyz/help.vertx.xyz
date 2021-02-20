@@ -15,7 +15,7 @@ namespace Troubleshooter
 		public readonly string TroubleshooterRoot;
 		public readonly LoggingLevel LoggingLevel;
 		public readonly string HtmlOutputDirectory;
-		public readonly string JsonOutputDirectory;
+		public const string HtmlOutputDirectoryName = "HTML";
 
 		public Arguments(string[] args)
 		{
@@ -23,7 +23,6 @@ namespace Troubleshooter
 			LoggingLevel = LoggingLevel.Default;
 			TroubleshooterRoot = null;
 			HtmlOutputDirectory = null;
-			JsonOutputDirectory = null;
 
 			for (var i = 0; i < args.Length; i++)
 			{
@@ -51,10 +50,8 @@ namespace Troubleshooter
 							throw new ArgumentException($"\"{param}\" is not a valid path.");
 
 						Path = param;
-						HtmlOutputDirectory = System.IO.Path.Combine(Path, "HTML");
+						HtmlOutputDirectory = System.IO.Path.Combine(Path, HtmlOutputDirectoryName);
 						Directory.CreateDirectory(HtmlOutputDirectory);
-						JsonOutputDirectory = System.IO.Path.Combine(Path, "JSON");
-						Directory.CreateDirectory(JsonOutputDirectory);
 						break;
 					}
 					case "logging":

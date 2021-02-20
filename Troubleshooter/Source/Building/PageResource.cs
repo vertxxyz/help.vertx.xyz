@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 using Markdig;
 using Troubleshooter.Constants;
 
@@ -29,11 +30,6 @@ namespace Troubleshooter
 
 	public class PageResource
 	{
-		/// <summary>
-		/// GUID used in the final output to remove paths from the html files
-		/// </summary>
-		public string Guid { get; private set; }
-		
 		/// <summary>
 		/// Full path to the source file
 		/// </summary>
@@ -79,7 +75,6 @@ namespace Troubleshooter
 			Type = type;
 			Location = location;
 			FullPath = fullPath;
-			Guid = System.Guid.NewGuid().ToString();
 		}
 
 		public void AddEmbeddedInto(string page)
@@ -94,7 +89,7 @@ namespace Troubleshooter
 			embedded.Add(page);
 		}
 
-		public void BuildText(Site site, Dictionary<string, PageResource> allResources, MarkdownPipeline markdownPipeline)
+		public void BuildText(Site site, Dictionary<string, PageResource> allResources, MarkdownPipeline markdownPipeline, int siteRootIndex, int embedRootIndex)
 		{
 			switch (Type)
 			{
@@ -102,7 +97,7 @@ namespace Troubleshooter
 					SetHtmlTextAsEmpty();
 					return;
 				case ResourceType.Markdown:
-					BuildMarkdown(site, allResources, markdownPipeline);
+					BuildMarkdown(site, allResources, markdownPipeline, siteRootIndex, embedRootIndex);
 					break;
 				case ResourceType.RichText:
 					try
@@ -126,7 +121,7 @@ namespace Troubleshooter
 		/// <summary>
 		/// Builds page to <see cref="HtmlText"/> to be embedded in other content or written to disk
 		/// </summary>
-		private void BuildMarkdown(Site site, Dictionary<string, PageResource> allResources, MarkdownPipeline markdownPipeline)
+		private void BuildMarkdown(Site site, Dictionary<string, PageResource> allResources, MarkdownPipeline markdownPipeline, int siteRootIndex, int embedRootIndex)
 		{
 			string allText = File.ReadAllText(FullPath);
 			StringBuilder stringBuilder = new StringBuilder();
@@ -149,39 +144,63 @@ namespace Troubleshooter
 
 				stringBuilder.Append(allText[last..]);
 			}
-
-			//
-			var markdownWithEmbeds = stringBuilder.ToString();
-			stringBuilder.Clear();
-			//
 			
-			// Find and replace local links with jquery guid loading
+			// Find and replace image links with root-based links
 			{
-				var links = PageUtility.LinksAsFullPaths(markdownWithEmbeds, FullPath);
+				allText = stringBuilder.ToString();
+				stringBuilder.Clear();
+
+				int rootIndex;
+				string directoryRoot;
+				string embedsDirectory = Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds");
+				switch (Location)
+				{
+					case ResourceLocation.Embed:
+						rootIndex = embedRootIndex;
+						directoryRoot = embedsDirectory;
+						break;
+					case ResourceLocation.Site:
+						rootIndex = siteRootIndex;
+						directoryRoot = Arguments.HtmlOutputDirectoryName;
+						break;
+					default:
+						throw new ArgumentOutOfRangeException();
+				}
+				
+				string directory = Path.GetDirectoryName(SiteBuilder.ConvertFullPathToLocalPath(FullPath, rootIndex));
 
 				int last = 0;
-				foreach ((string fullPath, Group group) in links)
+				foreach ((string image, Group group) in PageUtility.ImagesAsRootPaths(allText))
 				{
-					if (!allResources.TryGetValue(fullPath, out var linkedPage))
-						throw new LogicException($"\"{fullPath}\" is missing from {nameof(allResources)} while processing \"{FullPath}\".{nameof(links)}");
+					if(group.Value.StartsWith(embedsDirectory))
+						continue;
 					
-					stringBuilder.Append(markdownWithEmbeds[last..group.Index]);
-					stringBuilder.Append(linkedPage.Guid);
+					stringBuilder.Append(allText[last..group.Index]);
+					stringBuilder.Append(HttpUtility.UrlPathEncode(Path.Combine(directoryRoot, directory, image).Replace('\\', '/')));
 					last = group.Index + group.Length;
 				}
-
-				stringBuilder.Append(markdownWithEmbeds[last..]);
+				stringBuilder.Append(allText[last..]);
 			}
 
-
-
-			HtmlText =
-				HtmlPostProcessors.Process(
-					Markdown.ToHtml(
-						stringBuilder.ToString(), // markdown
-						markdownPipeline
-					)
-				);
+			switch (Location)
+			{
+				case ResourceLocation.Embed:
+					// Embeds are not fully processed into HTML until they are built when embedded into site content.
+					HtmlText = stringBuilder.ToString(); // markdown
+					break;
+				case ResourceLocation.Site:
+					HtmlText =
+						HtmlPostProcessors.Process(
+							Markdown.ToHtml(
+								stringBuilder.ToString(), // markdown
+								markdownPipeline
+							)
+						);
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+			
 		}
 
 		public enum WriteStatus
@@ -191,7 +210,7 @@ namespace Troubleshooter
 			Written
 		}
 
-		public WriteStatus WriteToDisk(Arguments arguments, Links builtLinks, int siteRootIndex)
+		public WriteStatus WriteToDisk(Arguments arguments, int siteRootIndex)
 		{
 			switch (Location)
 			{
@@ -202,27 +221,9 @@ namespace Troubleshooter
 					return WriteStatus.Ignored;
 			}
 
-			if (builtLinks != null)
-			{
-				// Check the previously built file to see whether it ought to be re-written.
-				if (builtLinks.LinksToGuids.TryGetValue(SiteBuilder.ConvertFullPathToLinkPath(FullPath, siteRootIndex), out var oldGuid))
-				{
-					var oldPath = Path.Combine(arguments.HtmlOutputDirectory, $"{oldGuid}.html");
-					if (File.Exists(oldPath))
-					{
-						if (File.ReadAllText(oldPath).Equals(HtmlText, StringComparison.Ordinal))
-						{
-							// Reset the GUID to maintain the link to the previously built file.
-							Guid = oldGuid;
-							return WriteStatus.Skipped;
-						}
-					}
-				}
-			}
-			
-			string path = Path.Combine(arguments.HtmlOutputDirectory, $"{Guid}.html");
-			File.WriteAllText(path, HtmlText);
-			return WriteStatus.Written;
+			// Check the previously built file to see whether it ought to be re-written.
+			var path = Path.Combine(arguments.HtmlOutputDirectory, $"{SiteBuilder.ConvertFullPathToLinkPath(FullPath, siteRootIndex)}.html");
+			return IOUtility.CreateFileIfDifferent(path, HtmlText) ? WriteStatus.Written : WriteStatus.Skipped;
 		}
 	}
 }
