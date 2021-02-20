@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 
 namespace Troubleshooter
 {
@@ -14,11 +13,20 @@ namespace Troubleshooter
 
 		public static string Process(string html) => All.Aggregate(html, (current, processor) => processor.Process(current));
 	}
-	
+
 	// ReSharper disable once UnusedType.Global
 	public class RelativeLinkConverter : IHtmlPostProcessor
 	{
-		public string Process(string html) => Regex.Replace(html, @"(?<=<a )href=""([\w/-]+)""", "onclick=\"loadPage(\'$1\')\"");
+		public string Process(string html)
+		{
+			//return Regex.Replace(html, @"(?<=<a )href=""([^""]+\.md)""", "onclick=\"loadPage(\'$1\')\"");
+			return StringUtility.ReplaceMatch(html, @"(?<=<a )href=""([^""]+\.md)""", group =>
+			{
+				var insert = group.Replace("&amp;", "and");
+				insert = insert.Replace("&", "and");
+				return $"onclick=\"loadPage(\'{insert}\')\"";
+			});
+		}
 	}
 
 	// ReSharper disable once UnusedType.Global

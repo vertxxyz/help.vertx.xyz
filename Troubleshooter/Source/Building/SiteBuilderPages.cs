@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Markdig;
@@ -9,11 +8,11 @@ namespace Troubleshooter
 {
 	public static partial class SiteBuilder
 	{
-		private static Dictionary<string, PageResource> BuildPages(Arguments arguments, Site site, MarkdownPipeline pipeline)
+		private static void BuildPages(Arguments arguments, Site site, MarkdownPipeline pipeline)
 		{
-			Links builtLinks = GetBuiltLinks(arguments);
-			int siteRootIndex = GetSiteRootIndex(site);
-			
+			int siteRootIndex = GetSiteRootIndex(site, ResourceLocation.Site);
+			int embedRootIndex = GetSiteRootIndex(site, ResourceLocation.Embed);
+
 			var allResources = CollectPages(site);
 			var allBuiltResources = new HashSet<string>();
 
@@ -43,9 +42,9 @@ namespace Troubleshooter
 						continue;
 					}
 
-					resource.BuildText(site, allResources, pipeline);
+					resource.BuildText(site, allResources, pipeline, siteRootIndex, embedRootIndex);
 					allBuiltResources.Add(path);
-					switch (resource.WriteToDisk(arguments, builtLinks, siteRootIndex))
+					switch (resource.WriteToDisk(arguments, siteRootIndex))
 					{
 						case PageResource.WriteStatus.Ignored:
 							ignoredPages++;
@@ -62,10 +61,8 @@ namespace Troubleshooter
 				if (prevBuilt == allBuiltResources.Count)
 					throw new BuildException("Build has soft-locked - infinite loop due to recursive embedding?");
 			}
-			
-			arguments.VerboseLog($"{builtPages} pages written to disk. {skippedPages} were skipped as identical, and {ignoredPages} skipped as embeds.");
 
-			return allResources;
+			arguments.VerboseLog($"{builtPages} pages written to disk. {skippedPages} were skipped as identical, and {ignoredPages} were embeds.");
 		}
 
 		private static Dictionary<string, PageResource> CollectPages(Site site)
@@ -77,7 +74,7 @@ namespace Troubleshooter
 				ProcessPath(path, ResourceLocation.Embed);
 
 			// Collect Site Pages
-			foreach (var path in Directory.EnumerateFiles(site.Directory, "*", SearchOption.AllDirectories))
+			foreach (var path in Directory.EnumerateFiles(site.Directory, "*.md", SearchOption.AllDirectories))
 				ProcessPath(path, ResourceLocation.Site);
 
 			return pages;
@@ -85,7 +82,8 @@ namespace Troubleshooter
 			void ProcessPath(string path, ResourceLocation location)
 			{
 				string fullPath = Path.GetFullPath(path);
-				PageResource page = GetNewResource(fullPath, location);
+				if (!TryGetNewResource(fullPath, location, out var page))
+					return;
 
 				if (page.Type != ResourceType.Markdown)
 					return;
@@ -96,16 +94,17 @@ namespace Troubleshooter
 				{
 					string fullEmbedPath = LocalEmbedToFullPath(embed.localPath, site);
 					page.AddEmbedded(fullEmbedPath);
-					PageResource embeddedPage = GetNewResource(fullEmbedPath, ResourceLocation.Embed);
+					if (!TryGetNewResource(fullEmbedPath, ResourceLocation.Embed, out var embeddedPage))
+						continue;
 					embeddedPage.AddEmbeddedInto(fullPath);
 				}
 			}
 
 			//Returns true if a new page is created
-			PageResource GetNewResource(string fullPath, ResourceLocation location)
+			bool TryGetNewResource(string fullPath, ResourceLocation location, out PageResource page)
 			{
-				if (pages.TryGetValue(fullPath, out PageResource page))
-					return page;
+				if (pages.TryGetValue(fullPath, out page))
+					return true;
 
 				string extension = Path.GetExtension(fullPath);
 				switch (extension)
@@ -117,13 +116,13 @@ namespace Troubleshooter
 						page = new PageResource(fullPath, ResourceType.RichText, location);
 						break;
 					default:
-						Console.WriteLine($"{fullPath} is not a valid file type.");
-						page = new PageResource(fullPath, ResourceType.None, location);
-						break;
+						// Ignore content that is not buildable page content.
+						page = null;
+						return false;
 				}
 
 				pages.Add(fullPath, page);
-				return page;
+				return true;
 			}
 		}
 	}

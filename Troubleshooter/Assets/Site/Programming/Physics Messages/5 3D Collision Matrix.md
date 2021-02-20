@@ -5,7 +5,7 @@ Check that the toggles in the project settings match with the two colliders in q
 
 See **Edit/Project Settings/Physics**, and the **Layer Collision Matrix** at the bottom.  
 
-![Layer Collision Matrix](http://help.vertx.xyz/Images/collision-layer-matrix.png)  
+![Layer Collision Matrix](collision-layer-matrix.png)  
 
 See [Layer-based collision detection](https://docs.unity3d.com/Manual/LayerBasedCollision.html) for more information.  
 

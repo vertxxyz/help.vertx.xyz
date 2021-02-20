@@ -10,4 +10,4 @@ It is recommended to have a Runtime and Editor asmdefs separated into different 
 An editor asmdef should only include **Editor** under the Platforms selection.  
 Ensure that **Any Platform** is switched **off**, *Deselect All*, and then only tick **Editor**.
 
-![Editor Assembly Definition](http://help.vertx.xyz/Images/editor-asmdef.png)
+![Editor Assembly Definition](editor-asmdef.png)

@@ -39,6 +39,7 @@ namespace Troubleshooter
 				{
 					Console.WriteLine("Press Key to Proceed:");
 					Console.WriteLine("B - Build Site");
+					Console.WriteLine("C - Content Build Only");
 					Console.WriteLine("U - Log External URLs");
 					Console.WriteLine("Other - Exit");
 					var key = Console.ReadKey().Key;
@@ -49,6 +50,11 @@ namespace Troubleshooter
 							// Build Site
 							SiteBuilder.Build(arguments);
 							Console.WriteLine("Successful Build.");
+							break;
+						case ConsoleKey.C:
+							// Content Build
+							SiteBuilder.ContentBuild(arguments);
+							Console.WriteLine("Successful Content Build.");
 							break;
 						case ConsoleKey.U:
 							SiteLogging.LogAllExternalUrls(arguments);

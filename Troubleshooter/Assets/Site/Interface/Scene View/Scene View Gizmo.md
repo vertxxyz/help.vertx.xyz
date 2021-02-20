@@ -5,7 +5,7 @@ The [Scene Gizmo](https://docs.unity3d.com/Manual/SceneViewNavigation.html) is a
 - The center can be clicked on to toggle between perpective and orthographic views, as can the label below the gizmo.  
 - Rotation lock can be toggled via the lock icon to the top right.  
 
-![Scene Gizmo](http://help.vertx.xyz/Images/scene-view-trumpets.png)
+![Scene Gizmo](scene-view-trumpets.png)
 
 Using the tools mentioned above you can fix most rotation issues with the Scene View.
 

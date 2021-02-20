@@ -11,9 +11,6 @@ namespace Troubleshooter.Constants
 			ContentDirectory,
 			Main;
 
-		public const string
-			LinksJsonFileName = "links.json";
-
 		public Site(string root = null)
 		{
 			AssetsRoot = root != null ? Path.Combine(root, "Assets") : Path.GetFullPath("Assets");

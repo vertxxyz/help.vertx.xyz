@@ -27,6 +27,7 @@ hr {
 a {
 	color: #60a2ec;
 	text-decoration: underline;
+	text-decoration-color: #60a2ecbb;
 }
 
 a:hover, a:focus {
