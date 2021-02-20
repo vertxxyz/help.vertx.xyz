@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Troubleshooter
 {
-	public class IOUtility
+	public static class IOUtility
 	{
 		public static void CopyAll(DirectoryInfo source, DirectoryInfo target, StringBuilder log = null)
 		{

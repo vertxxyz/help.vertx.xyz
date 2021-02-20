@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using Markdig;
 using Troubleshooter.Constants;
 
@@ -31,7 +32,7 @@ namespace Troubleshooter
 		/// <summary>
 		/// GUID used in the final output to remove paths from the html files
 		/// </summary>
-		public readonly string Guid;
+		public string Guid { get; private set; }
 		
 		/// <summary>
 		/// Full path to the source file
@@ -135,15 +136,15 @@ namespace Troubleshooter
 				var embeds = PageUtility.EmbedsAsLocalEmbedPaths(allText);
 
 				int last = 0;
-				foreach (var embed in embeds)
+				foreach ((string localPath, Group group) in embeds)
 				{
-					string fullPath = PageUtility.LocalEmbedToFullPath(embed.localPath, site);
+					string fullPath = PageUtility.LocalEmbedToFullPath(localPath, site);
 					if (!allResources.TryGetValue(fullPath, out var embeddedPage))
 						throw new LogicException($"\"{fullPath}\" is missing from {nameof(allResources)} while processing \"{FullPath}\".{nameof(embeds)}");
 
-					stringBuilder.Append(allText[last..(embed.group.Index - 2)]);
+					stringBuilder.Append(allText[last..(group.Index - 2)]);
 					stringBuilder.Append(embeddedPage.HtmlText);
-					last = embed.group.Index + embed.group.Length + 2;
+					last = group.Index + group.Length + 2;
 				}
 
 				stringBuilder.Append(allText[last..]);
@@ -155,19 +156,18 @@ namespace Troubleshooter
 			//
 			
 			// Find and replace local links with jquery guid loading
-
 			{
 				var links = PageUtility.LinksAsFullPaths(markdownWithEmbeds, FullPath);
 
 				int last = 0;
-				foreach (var link in links)
+				foreach ((string fullPath, Group group) in links)
 				{
-					if (!allResources.TryGetValue(link.fullPath, out var linkedPage))
-						throw new LogicException($"\"{link.fullPath}\" is missing from {nameof(allResources)} while processing \"{FullPath}\".{nameof(links)}");
+					if (!allResources.TryGetValue(fullPath, out var linkedPage))
+						throw new LogicException($"\"{fullPath}\" is missing from {nameof(allResources)} while processing \"{FullPath}\".{nameof(links)}");
 					
-					stringBuilder.Append(markdownWithEmbeds[last..link.group.Index]);
+					stringBuilder.Append(markdownWithEmbeds[last..group.Index]);
 					stringBuilder.Append(linkedPage.Guid);
-					last = link.group.Index + link.group.Length;
+					last = group.Index + group.Length;
 				}
 
 				stringBuilder.Append(markdownWithEmbeds[last..]);
@@ -184,19 +184,45 @@ namespace Troubleshooter
 				);
 		}
 
-		public void WriteToDisk(Arguments arguments)
+		public enum WriteStatus
+		{
+			Ignored,
+			Skipped,
+			Written
+		}
+
+		public WriteStatus WriteToDisk(Arguments arguments, Links builtLinks, int siteRootIndex)
 		{
 			switch (Location)
 			{
 				case ResourceLocation.Site:
 					break;
 				default:
-					//Do not write to disk if this is not a part of the site.
-					return;
+					// Do not write to disk if this is not a part of the site.
+					return WriteStatus.Ignored;
 			}
 
+			if (builtLinks != null)
+			{
+				// Check the previously built file to see whether it ought to be re-written.
+				if (builtLinks.LinksToGuids.TryGetValue(SiteBuilder.ConvertFullPathToLinkPath(FullPath, siteRootIndex), out var oldGuid))
+				{
+					var oldPath = Path.Combine(arguments.HtmlOutputDirectory, $"{oldGuid}.html");
+					if (File.Exists(oldPath))
+					{
+						if (File.ReadAllText(oldPath).Equals(HtmlText, StringComparison.Ordinal))
+						{
+							// Reset the GUID to maintain the link to the previously built file.
+							Guid = oldGuid;
+							return WriteStatus.Skipped;
+						}
+					}
+				}
+			}
+			
 			string path = Path.Combine(arguments.HtmlOutputDirectory, $"{Guid}.html");
 			File.WriteAllText(path, HtmlText);
+			return WriteStatus.Written;
 		}
 	}
 }
