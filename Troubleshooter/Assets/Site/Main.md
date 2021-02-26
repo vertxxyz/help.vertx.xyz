@@ -46,5 +46,9 @@
 ## VFX
 [VFX Graph](VFX%20Graph/Common%20VFX%20Graph%20Issues.md)
 
+## Animation
+
+[Animation Window](Animation/Animation%20Window.md)
+
 ## Package Manager
 [Common Issues](Package%20Manager/UPM%20Common%20Issues.md)
