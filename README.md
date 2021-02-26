@@ -17,7 +17,7 @@ If your contribution does not fall within that, it's unlikely to have a place on
 #### Content
 Static content that is copied directly to the output folder without modification.
 #### Site
-Markdown content that is processed and converted to HTML, and then copied into the output content's HTML folder.
+Markdown content that is processed and converted to HTML, content is then copied into the output HTML folder with the hierarchy maintained.  
 #### Embeds
 Embedded content that is referenced into the Site content or other Embedded content.  
 This can include markdown and rich-text content that is converted to HTML, ready to be embedded.
