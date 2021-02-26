@@ -186,6 +186,7 @@ namespace Troubleshooter
 			{
 				case ResourceLocation.Embed:
 					// Embeds are not fully processed into HTML until they are built when embedded into site content.
+					// This is done because something like Abbreviations requires the abbreviation target to be processed at the same time as the source.
 					HtmlText = stringBuilder.ToString(); // markdown
 					break;
 				case ResourceLocation.Site:

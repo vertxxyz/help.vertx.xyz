@@ -6,7 +6,7 @@ This means we can represent 32 layer toggles with a single `int` value.
 #### Creating Masks
 To create a bitmask with a single layer enabled, [shift](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators#left-shift-operator-) a single bit over to the position in the mask that matches the layer index.  
 For example, to create a mask with layer `5` active, create `int` with a the first bit enabled, a `1`, then shift that bit over 5 places to the 6th index (layers are **0 indexed** so this is layer 5).  
-It's worth nothing that the first bit is said to be the rightmost bit, also called "big endian."  
+It's worth noting that the first bit is said to be the rightmost bit, also called "big endian."  
 ```csharp
 int mask = 1 << 5;
 //    1: 000001
