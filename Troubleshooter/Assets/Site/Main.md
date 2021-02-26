@@ -30,17 +30,21 @@
 [Editor Windows](Programming/Editor%20Issues/Editor%20Windows.md)  
 
 ## Building
-[Common Build Errors](Building/Common%20Build%20Errors.md)  
-
-## Package Manager
-[Common Issues](Package%20Manager/UPM%20Common%20Issues.md)  
+[Common Build Errors](Building/Common%20Build%20Errors.md)
 
 ## UI
 [Input Issues](Programming/Common%20Input%20Issues.md)  
 
-## Models & Materials
-[Common Material Issues](Models%20&%20Materials/Common%20Material%20Issues.md)  
-[Common Model Issues](Models%20&%20Materials/Common%20Model%20Issues.md)  
-
 ## Physics
-[Common Physics Issues](Physics/Physics%20Issues.md)  
+[Common Physics Issues](Physics/Physics%20Issues.md)
+
+## Models, Materials, & Shaders
+[Materials](Models%20&%20Materials/Common%20Material%20Issues.md)  
+[Models](Models%20&%20Materials/Common%20Model%20Issues.md)  
+[Shader Graph](Shader%20Graph/Common%20Shader%20Graph%20Issues.md)
+
+## VFX
+[VFX Graph](VFX%20Graph/Common%20VFX%20Graph%20Issues.md)
+
+## Package Manager
+[Common Issues](Package%20Manager/UPM%20Common%20Issues.md)

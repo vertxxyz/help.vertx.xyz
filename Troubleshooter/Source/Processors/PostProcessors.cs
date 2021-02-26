@@ -7,7 +7,7 @@ namespace Troubleshooter
 	public static class HtmlPostProcessors
 	{
 		public static readonly IHtmlPostProcessor[] All =
-			Assembly.GetAssembly(typeof(IHtmlPostProcessor)).GetTypes()
+			typeof(IHtmlPostProcessor).Assembly.GetTypes()
 				.Where(t => typeof(IHtmlPostProcessor).IsAssignableFrom(t) && !t.IsAbstract)
 				.Select(t => (IHtmlPostProcessor) Activator.CreateInstance(t)).ToArray();
 
