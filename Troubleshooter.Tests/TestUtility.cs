@@ -5,6 +5,7 @@ namespace Troubleshooter.Tests
 {
 	public class TestUtility
 	{
-		public static readonly Site TestSite = new Site(Directory.GetCurrentDirectory()[..^".Tests\\bin\\Release\\netcoreapp3.1".Length]);
+		public static readonly Site TestSite =
+			new Site(Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../../../../Troubleshooter")));
 	}
 }

@@ -152,7 +152,7 @@ namespace Troubleshooter
 
 				int rootIndex;
 				string directoryRoot;
-				string embedsDirectory = Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds");
+				string embedsDirectory = Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").Replace('\\', '/');
 				switch (Location)
 				{
 					case ResourceLocation.Embed:
