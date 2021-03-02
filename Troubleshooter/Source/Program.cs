@@ -41,6 +41,9 @@ namespace Troubleshooter
 					Console.WriteLine("B - Build Site");
 					Console.WriteLine("C - Content Build Only");
 					Console.WriteLine("U - Log External URLs");
+#if WINDOWS
+					Console.WriteLine("R - Create Rich-Text Embed from Clipboard");
+#endif
 					Console.WriteLine("Other - Exit");
 					var key = Console.ReadKey().Key;
 					Console.Clear();
@@ -59,6 +62,11 @@ namespace Troubleshooter
 						case ConsoleKey.U:
 							SiteLogging.LogAllExternalUrls(arguments);
 							break;
+#if WINDOWS
+						case ConsoleKey.R:
+							RtfClip.CreateRtfFile(arguments);
+							break;
+#endif
 						default:
 							return;
 					}

@@ -5,6 +5,7 @@ namespace Troubleshooter.Constants
 	public class Site
 	{
 		public readonly string
+			Root,
 			AssetsRoot,
 			Directory,
 			EmbedsDirectory,
@@ -13,7 +14,8 @@ namespace Troubleshooter.Constants
 
 		public Site(string root = null)
 		{
-			AssetsRoot = root != null ? Path.Combine(root, "Assets") : Path.GetFullPath("Assets");
+			Root = root ?? System.IO.Directory.GetCurrentDirectory();
+			AssetsRoot = Path.Combine(Root, "Assets");
 			Directory = Path.Combine(AssetsRoot, "Site");
 			EmbedsDirectory = Path.Combine(AssetsRoot, "Embeds");
 			ContentDirectory = Path.Combine(AssetsRoot, "Content");
