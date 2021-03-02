@@ -6,6 +6,11 @@
 		<RootNamespace>help.vertx.xyz</RootNamespace>
 		<Configurations>Release;Debug</Configurations>
 		<Platforms>AnyCPU</Platforms>
+		<IsWindows Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))' == 'true'">true</IsWindows>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(IsWindows)'=='true'">
+		<DefineConstants>WINDOWS</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

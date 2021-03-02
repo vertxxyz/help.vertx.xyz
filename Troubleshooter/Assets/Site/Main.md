@@ -33,7 +33,7 @@
 [Common Build Errors](Building/Common%20Build%20Errors.md)
 
 ## UI
-[Input Issues](Programming/Common%20Input%20Issues.md)  
+[Input Issues](UI/Input%20Issues.md)  
 
 ## Physics
 [Common Physics Issues](Physics/Physics%20Issues.md)
