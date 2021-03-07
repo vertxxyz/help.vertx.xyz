@@ -14,6 +14,6 @@ Provide an appropriate distance in the Vector3 parameter.
 
 #### Alternate Methods
 
-Sometimes it is more suitable to use a `Plane` to avoid calculating an appropriate distance from the camera. This is a suitable approach when the result is on a fixed plane in space.  
+Sometimes it is more suitable to use a [Plane](https://docs.unity3d.com/ScriptReference/Plane.html) to avoid calculating an appropriate distance from the camera. This is a suitable approach when the result is on a fixed plane in space.  
 
 <<Code/Specific/Plane Raycast.rtf>>

@@ -10,8 +10,9 @@
 [Variables](Programming/Variables.md)  
 [Scripts](Programming/Scripts/Scripts.md)  
 [Debugging](Programming/Debugging.md)  
-#### Errors
+#### Errors & Warnings
 [Common Errors](Programming/Common%20Errors.md)  
+[Common Warnings](Programming/Common%20Warnings.md)
 #### Input
 [Common Issues](Programming/Common%20Input%20Issues.md)  
 #### Physics  

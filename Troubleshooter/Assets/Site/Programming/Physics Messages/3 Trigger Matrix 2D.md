@@ -1,6 +1,6 @@
 ### Trigger Matrix
 
-If your two colliders in question do not match in the matrix then you **will not** get collision messages
+If your two colliders in question do not match in the matrix then you **will not** get trigger messages
 
 +-------------------------------+--------+-----------+---------------------+----------------+-------------------+-----------------------------+
 |                               | Static | Rigidbody | Kinematic Rigidbody | Static Trigger | Rigidbody Trigger | Kinematic Rigidbody Trigger |

@@ -103,9 +103,19 @@ iframe {
 	margin: 15px 10px 15px 10px;
 }
 
+.container {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+}
+
+.sidebar {
+	flex-grow: 1;
+	margin: 40px 0 0 0;
+}
+
 .contents {
 	margin: 40px 0 0 10%;
-	position: absolute;
 	width: 58%;
 	height: calc(100vh - 50px);
 	overflow: auto;
