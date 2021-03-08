@@ -8,5 +8,5 @@ If you want a prefab to refer to components in the scene, create a serialized re
 ##### Example
 <<Code/Variables/Instancing Prefabs.rtf>>  
 
-`PrefabType` should be replaced with the root component type on your prefab you wish to configure, and `ConfigType` should be replaced with the component type your component is looking
+`PrefabType` should be replaced with the root component type on your prefab you wish to configure, and `ConfigType` should be replaced with the type `PrefabType` is looking
  to be configured with.
