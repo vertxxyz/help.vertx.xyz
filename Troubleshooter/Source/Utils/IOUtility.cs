@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Text;
 namespace Troubleshooter
 {
 	public static class IOUtility
-	{
+	{		
 		public static void CopyAll(DirectoryInfo source, DirectoryInfo target, StringBuilder log = null)
 		{
 			if (string.Equals(source.FullName, target.FullName, StringComparison.Ordinal))
@@ -44,6 +45,8 @@ namespace Troubleshooter
 
 		public static bool CreateFileIfDifferent(string fullPath, string contents)
 		{
+			recordedPaths.Add(fullPath);
+			
 			string directory = Path.GetDirectoryName(fullPath);
 			Directory.CreateDirectory(directory);
 			if (File.Exists(fullPath) && string.Equals(File.ReadAllText(fullPath), contents, StringComparison.Ordinal))
@@ -52,8 +55,15 @@ namespace Troubleshooter
 			return true;
 		}
 
+		public static IEnumerable<string> RecordedPaths => recordedPaths;
+		private static readonly HashSet<string> recordedPaths = new HashSet<string>();
+
+		public static void ResetRecording() => recordedPaths.Clear();
+		
 		public static bool CopyFileIfDifferent(string destinationFullPath, FileInfo file)
 		{
+			recordedPaths.Add(destinationFullPath);
+			
 			string directory = Path.GetDirectoryName(destinationFullPath);
 			Directory.CreateDirectory(directory);
 			if (File.Exists(destinationFullPath) && AreFileContentsEqual(destinationFullPath, file)) return false;
