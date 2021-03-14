@@ -15,8 +15,11 @@ namespace Troubleshooter
 
 			Site site = new Site(arguments.TroubleshooterRoot);
 
-			BuildPages(arguments, site, pipeline);
-			BuildContent(arguments, site);
+			using (new BuildScope(arguments))
+			{
+				BuildPages(arguments, site, pipeline);
+				BuildContent(arguments, site);
+			}
 		}
 		
 		public static void ContentBuild(Arguments arguments)

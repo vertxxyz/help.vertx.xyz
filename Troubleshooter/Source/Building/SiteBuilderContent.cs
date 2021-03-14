@@ -10,6 +10,9 @@ namespace Troubleshooter
 			IOUtility.CopyAll(new DirectoryInfo(site.ContentDirectory), new DirectoryInfo(arguments.Path));
 			
 			int siteRootIndex = GetSiteRootIndex(site, ResourceLocation.Site);
+
+			int siteContent = 0;
+			int totalContent = 0;
 			
 			// Copy all files that are not pages to the destination
 			foreach (var path in Directory.EnumerateFiles(site.Directory, "*", SearchOption.AllDirectories))
@@ -19,9 +22,14 @@ namespace Troubleshooter
 				
 				string fullPath = Path.GetFullPath(path);
 				string outputPath = Path.Combine(arguments.HtmlOutputDirectory, $"{ConvertFullPathToLinkPath(fullPath, siteRootIndex)}{extension}");
-				IOUtility.CopyFileIfDifferent(outputPath, new FileInfo(fullPath));
+
+				totalContent++;
+				if (IOUtility.CopyFileIfDifferent(outputPath, new FileInfo(fullPath)))
+					siteContent++;
 			}
-			
+
+
+			int embedContent = 0;
 			int embedRootIndex = GetSiteRootIndex(site, ResourceLocation.Embed);
 			
 			// Copy all embed files that are not pages to the destination/Embeds
@@ -32,8 +40,13 @@ namespace Troubleshooter
 				
 				string fullPath = Path.GetFullPath(path);
 				string outputPath = Path.Combine(arguments.HtmlOutputDirectory, "Embeds", $"{ConvertFullPathToLinkPath(fullPath, embedRootIndex)}{extension}");
-				IOUtility.CopyFileIfDifferent(outputPath, new FileInfo(fullPath));
+				
+				totalContent++;
+				if(IOUtility.CopyFileIfDifferent(outputPath, new FileInfo(fullPath)))
+					embedContent++;
 			}
+			
+			arguments.VerboseLog($"{siteContent + embedContent} content files were written to disk. ({totalContent} total)");
 		}
 	}
 }
