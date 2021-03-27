@@ -15,4 +15,4 @@ Scaling a *normalized* vector will produce a vector with that length. This can b
 <<Code/Drawing/Draw Functions 2.rtf>>  
 
 #### Extra
-I've provided a few custom debug drawing functions in a utility package I am developing that you can find [here](https://github.com/vertxxyz/Troubleshooter.Debugging). This is a work in progress, but you can debug a few 3D physics functions with custom line gizmos, and draw labels at positions in the scene.
+I've provided a few custom debug drawing functions in a utility package I am developing that you can find [here](https://github.com/vertxxyz/Vertx.Debugging). This is a work in progress, but you can debug a many physics functions with custom gizmos, and draw labels at positions in the scene.
