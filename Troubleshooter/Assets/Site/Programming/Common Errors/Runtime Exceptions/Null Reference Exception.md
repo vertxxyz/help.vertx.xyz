@@ -10,11 +10,12 @@ The error gives you the line and column where it is occurring, so you can go the
     - Drag and drop the reference **in the inspector** (if it is a serialized)
     - Manually assign the reference in a method like Awake or Start
 - Check whether the reference is not null before trying to access it  
-    `if(example != null)`
-  
+    `if(example != null)`  
+
 Additionally ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.  
 Method usage that follows incorrect assumptions can also return null values. For example, `GetComponent<Example>` will return `null` if `Example` is not present on the same GameObject the current Component is attached to.  
-When troubleshooting which variable is null, be aware that only reference types can be null. Ie. `class`, `interface`, or `delegate` variables.
+When troubleshooting which variable is null, be aware that only reference types can be null. Ie. `class`, `interface`, or `delegate` variables.  
+
 ---
 
 See [General Debugging](../../Debugging.md) for troubleshooting techniques.  

@@ -6,3 +6,4 @@
 - [CS1612](Compiler%20Errors/CS1612.md) Cannot modify the return value of 'Foo' because it is not a variable  
 - [CS0120](Compiler%20Errors/CS0120.md) An object reference is required for the nonstatic field, method, or property 'Foo'  
 - [CS0236](Compiler%20Errors/CS0236.md) A field initializer cannot reference the nonstatic field, method, or property 'Foo'
+- [CS1644](Compiler%20Errors/CS1644.md) Feature 'feature' is not part of the C# 4.0 language specification
