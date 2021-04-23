@@ -18,4 +18,4 @@ You can serialize a backing field of an auto-property using `[field: SerializeFi
 
 ---  
 
-[My variable is still not appearing in the inspector](Serialization%202/Serializing%20A%20Field%202.md)
+[My variable is still not appearing in the inspector](../Serialization%202/Serializing%20A%20Field%202.md)
