@@ -11,8 +11,7 @@
 - [Building](#building)
 - [UI](#ui)
 - [Physics](#physics-1)
-- [Models, Materials, & Shaders](#models-materials-shaders)
-- [VFX](#vfx)
+- [Graphics](#graphics)
 - [Animation](#animation)
 - [Package Manager](#package-manager)
 

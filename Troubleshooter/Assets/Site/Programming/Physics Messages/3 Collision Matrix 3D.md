@@ -20,5 +20,9 @@ If your two colliders in question do not match in the matrix then you **will not
 
 You can read more about this and see a copy of this matrix in the Unity docs [here](https://docs.unity3d.com/Manual/CollidersOverview.html).
 
+:::info
+If you are using a Character Controller you may be looking for the [OnControllerColliderHit](https://docs.unity3d.com/ScriptReference/CharacterController.OnControllerColliderHit.html) message
+:::
+
 ---
 [I am still not getting a message](4%20Local%20Functions%203D.md)

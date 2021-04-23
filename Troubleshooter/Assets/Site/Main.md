@@ -39,16 +39,14 @@
 ## Physics
 [Common Physics Issues](Physics/Physics%20Issues.md)
 
-## Models, Materials, & Shaders
-[Materials](Models%20&%20Materials/Common%20Material%20Issues.md)  
-[Models](Models%20&%20Materials/Common%20Model%20Issues.md)  
-[Shader Graph](Shader%20Graph/Common%20Shader%20Graph%20Issues.md)
-
-## VFX
-[VFX Graph](VFX%20Graph/Common%20VFX%20Graph%20Issues.md)
+## Graphics
+[Materials](Graphics/Models%20&%20Materials/Common%20Material%20Issues.md)  
+[Models](Graphics/Models%20&%20Materials/Common%20Model%20Issues.md)  
+[Lighting](Graphics/Lighting/Common%20Lighting%20Issues.md)  
+[Shader Graph](Graphics/Shader%20Graph/Common%20Shader%20Graph%20Issues.md)  
+[VFX Graph](Graphics/VFX%20Graph/Common%20VFX%20Graph%20Issues.md)
 
 ## Animation
-
 [Animation Window](Animation/Animation%20Window.md)
 
 ## Package Manager
