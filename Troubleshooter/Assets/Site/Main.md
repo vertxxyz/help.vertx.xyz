@@ -42,6 +42,7 @@
 ## Graphics
 [Materials](Graphics/Models%20&%20Materials/Common%20Material%20Issues.md)  
 [Models](Graphics/Models%20&%20Materials/Common%20Model%20Issues.md)  
+[Textures](Graphics/Textures/Common%20Texture%20Issues.md)  
 [Lighting](Graphics/Lighting/Common%20Lighting%20Issues.md)  
 [Shader Graph](Graphics/Shader%20Graph/Common%20Shader%20Graph%20Issues.md)  
 [VFX Graph](Graphics/VFX%20Graph/Common%20VFX%20Graph%20Issues.md)
