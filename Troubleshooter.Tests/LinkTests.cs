@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -13,9 +11,6 @@ namespace Troubleshooter.Tests
 	public class LinkTests
 	{
 		private readonly ITestOutputHelper testOutputHelper;
-		public static IEnumerable<object[]> Pages =>
-			Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, "*.md", SearchOption.AllDirectories).Select(file => new object[] {Path.GetFileNameWithoutExtension(file), file});
-
 		private readonly HashSet<string> embeddedFiles = new HashSet<string>();
 
 		public LinkTests(ITestOutputHelper testOutputHelper)
@@ -25,9 +20,9 @@ namespace Troubleshooter.Tests
 			foreach (string embeddedFile in Directory.EnumerateFiles(embedsRoot, "*", SearchOption.AllDirectories))
 				embeddedFiles.Add(embeddedFile[(embedsRoot.Length + 1)..]);
 		}
-
+		
 		[Theory]
-		[MemberData(nameof(Pages))]
+		[ClassData(typeof(PageData))]
 		public void ValidateLinks(string name, string path)
 		{
 			string text = File.ReadAllText(path);
@@ -39,7 +34,7 @@ namespace Troubleshooter.Tests
 		}
 
 		[Theory]
-		[MemberData(nameof(Pages))]
+		[ClassData(typeof(PageData))]
 		public void ValidateEmbeds(string name, string path)
 		{
 			string text = File.ReadAllText(path);
@@ -51,7 +46,7 @@ namespace Troubleshooter.Tests
 		}
 		
 		[Theory]
-		[MemberData(nameof(Pages))]
+		[ClassData(typeof(PageData))]
 		public void ValidateImages(string name, string path)
 		{
 			string text = File.ReadAllText(path);

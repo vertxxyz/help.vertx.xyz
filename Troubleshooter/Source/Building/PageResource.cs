@@ -34,12 +34,12 @@ namespace Troubleshooter
 		/// Full path to the source file
 		/// </summary>
 		public readonly string FullPath;
-		
+
 		/// <summary>
 		/// What type of data this resource contains, markdown, rich text, etc.
 		/// </summary>
 		public readonly ResourceType Type;
-		
+
 		/// <summary>
 		/// Where the resource is - site content, embedded page content, etc.
 		/// </summary>
@@ -144,7 +144,7 @@ namespace Troubleshooter
 
 				stringBuilder.Append(allText[last..]);
 			}
-			
+
 			// Find and replace image links with root-based links
 			{
 				allText = stringBuilder.ToString();
@@ -166,19 +166,20 @@ namespace Troubleshooter
 					default:
 						throw new ArgumentOutOfRangeException();
 				}
-				
+
 				string directory = Path.GetDirectoryName(SiteBuilder.ConvertFullPathToLocalPath(FullPath, rootIndex));
 
 				int last = 0;
 				foreach ((string image, Group group) in PageUtility.ImagesAsRootPaths(allText))
 				{
-					if(group.Value.StartsWith(embedsDirectory))
+					if (group.Value.StartsWith(embedsDirectory))
 						continue;
-					
+
 					stringBuilder.Append(allText[last..group.Index]);
 					stringBuilder.Append(HttpUtility.UrlPathEncode(Path.Combine(directoryRoot, directory, image).Replace('\\', '/')));
 					last = group.Index + group.Length;
 				}
+
 				stringBuilder.Append(allText[last..]);
 			}
 
@@ -193,7 +194,9 @@ namespace Troubleshooter
 					HtmlText =
 						HtmlPostProcessors.Process(
 							Markdown.ToHtml(
-								stringBuilder.ToString(), // markdown
+								MarkdownPreProcessors.Process(
+									stringBuilder.ToString() // markdown
+								),
 								markdownPipeline
 							)
 						);
@@ -201,7 +204,6 @@ namespace Troubleshooter
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
-			
 		}
 
 		public enum WriteStatus

@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using System.Reflection;
+using JetBrains.Annotations;
 
 namespace Troubleshooter
 {
@@ -13,8 +13,8 @@ namespace Troubleshooter
 
 		public static string Process(string html) => All.Aggregate(html, (current, processor) => processor.Process(current));
 	}
-
-	// ReSharper disable once UnusedType.Global
+	
+	[UsedImplicitly]
 	public class RelativeLinkConverter : IHtmlPostProcessor
 	{
 		public string Process(string html)
@@ -29,7 +29,7 @@ namespace Troubleshooter
 		}
 	}
 
-	// ReSharper disable once UnusedType.Global
+	[UsedImplicitly]
 	public class BooleanTableConverter : IHtmlPostProcessor
 	{
 		public string Process(string html)
@@ -39,7 +39,7 @@ namespace Troubleshooter
 		}
 	}
 
-	// ReSharper disable once UnusedType.Global
+	[UsedImplicitly]
 	public class InfoBoxConverter : IHtmlPostProcessor
 	{
 		public string Process(string html)
