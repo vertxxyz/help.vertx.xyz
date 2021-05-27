@@ -4,7 +4,12 @@ Unity's [Debug.DrawRay](https://docs.unity3d.com/ScriptReference/Debug.DrawRay.h
 By drawing lines in the scene and gameview you can validate assumptions about positions and directions used in code.
 #### Usage
 Lines not drawn continuously will only appear for a single frame, to counteract this a duration can be provided as the fourth parameter.  
-Make sure that the variables used in your draw functions are the same as those used by the functionality you are debugging.
+Make sure that the variables used in your draw functions are the same as those used by the functionality you are debugging.  
+
+:::info
+If lines do not appear, ensure Gizmos are enabled for that view
+:::
+
 ##### DrawRay
 Note that `DrawRay` takes a position and a **direction**.  
 Scaling a *normalized* vector will produce a vector with that length. This can be done here to make the output more visible.  

@@ -17,4 +17,5 @@ public static bool Raycast(Vector3 origin, Vector3 direction, out RaycastHit hit
 
 ---
 If this is the mistake you have made you should [configure your IDE](../IDE%20Configuration.md) to get proper intellisense support. Parameters should be listed as you type, so making this mistake should be difficult.  
+
 [I am still having problems with my Raycast](Visual%20Debugging.md).

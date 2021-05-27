@@ -50,5 +50,8 @@
 ## Animation
 [Animation Window](Animation/Animation%20Window.md)
 
+## Audio
+[Common Audio Issues](Audio/Common%20Audio%20Issues.md)
+
 ## Package Manager
 [Common Issues](Package%20Manager/UPM%20Common%20Issues.md)
