@@ -26,8 +26,8 @@ hr {
 
 a {
 	color: #60a2ec;
-	text-decoration: underline;
-	text-decoration-color: #60a2ecbb;
+	text-decoration: none;
+	/*text-decoration-color: #60a2ecbb;*/
 }
 
 a:hover, a:focus {
@@ -36,6 +36,16 @@ a:hover, a:focus {
 	cursor: pointer;
 }
 
+/*bold links look bad, so this highlights them instead*/
+/*a strong {
+	font-weight: normal;
+	color: #8dc3ff;
+}
+
+a:hover strong, a:focus strong {
+	color: #f7b44b;
+}*/
+
 p {
 	margin: 0 0 15px 0;
 	padding: 0;
@@ -43,7 +53,7 @@ p {
 	margin-block-start: 1em;
 	margin-block-end: 1em;
 	margin-inline-start: 25px;
-	margin-inline-end: 0;
+	margin-inline-end: 12px;
 	line-height: 1.2em;
 }
 
