@@ -85,7 +85,7 @@ Example description sentence containing a line of troubleshooting that might sol
 
 When a page is made up of a description of a problem, and another description of a resolution, add 4th level headers in this style that separate them into two paragraphs with limited overlap.
 ```
-#### Resolution:
+#### Description
 This error is describing this problem because of this reasoning.  
 
 #### Resolution
