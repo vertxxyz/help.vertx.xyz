@@ -1,22 +1,14 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Troubleshooter.Tests
 {
 	public class SidebarTests
 	{
-		private readonly ITestOutputHelper testOutputHelper;
-		public SidebarTests(ITestOutputHelper testOutputHelper)
-		{
-			this.testOutputHelper = testOutputHelper;
-		}
-
 		/// <summary>
 		/// Tests for line breaks that are not preceded by two new lines.
 		/// </summary>
@@ -41,7 +33,6 @@ namespace Troubleshooter.Tests
 		/// Parse markdown text looking for anchor links
 		/// </summary>
 		/// <param name="text">The markdown</param>
-		/// <param name="path">The file path</param>
 		/// <returns></returns>
 		public static IEnumerable<string> AnchorLinksAsFullPaths(string text)
 		{
