@@ -6,7 +6,7 @@ Dithered materials are often used to fade out objects when they pass close to or
 ![Dithering](dithering.png)
 
 
-#### Legacy/Default Render Pipeline
+#### Built-in Render Pipeline
 Authoring dithered shaders is fairly complex, so looking for pre-authored solutions or tutorials in shader authoring tools is advisable for the faint-hearted. For those that want to author their own there are lovely tutorials out there, like [this one](https://www.ronja-tutorials.com/2019/05/11/dithering.html) by [Ronja](https://twitter.com/TotallyRonja).
 
 #### URP / HDRP
