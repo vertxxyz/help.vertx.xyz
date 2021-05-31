@@ -3,13 +3,13 @@
 This is a short overview of value and reference behaviour. This description does not go over other topics like boxing, heap and stack memory, tuples, etc.
 
 #### Value Types
-`bool`, `char`, `float` and other [floating-point numeric types](https://discord.com/channels/489222168727519232/497872424281440267/592885548918505473), `int` and other [integral numeric types](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types), and `struct` types are value types.
+`bool`, `char`, `float` and other [floating-point numeric types](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types), `int` and other [integral numeric types](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types), and `struct` types are value types.
 
 Value types have value semantics, and each variable has its own copy of the data.  
 
 ```csharp
 int a = 0;
-int b = x;
+int b = a;
 a++;
 // a != b
 ```  
@@ -41,7 +41,7 @@ When a reference type is assigned to another, this assignment will also copy by 
 This means that the location of `a`, a location in memory (something like `0x7fca1dbff861`) is assigned to `b`, `a` and `b` now point to the same value.  
 `a` and `b` are both `1, 1, 2`.
 
-When a reference type is returned or passed to a method or property this is also a copy of the reference. This can trip up programmers who assign classes or arrays, or pass them to methods and expect them to be different, when they were never copied.  
+When a reference type is returned or passed to a method or property this is also a copy of the reference. This can trip up programmers who assign or call methods with classes or arrays, expecting them to be different when they were never copied.  
 
 Most[^1] reference types have complete reference semantics, and different variables can reference the same data.  
 
