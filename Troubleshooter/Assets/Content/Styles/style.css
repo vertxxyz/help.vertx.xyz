@@ -139,6 +139,11 @@ abbr {
 	text-decoration: none;
 }
 
+li {
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
 /* Tables */
 
 table {
