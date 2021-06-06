@@ -1,22 +1,30 @@
 ### Null Reference Exception
 #### Description
-A `NullReferenceException` happens when your script code tries to use a variable which isn’t set, or found. It's probably just unassigned in the inspector.  
-The error gives you the line and column where it is occurring, so you can go there to narrow down what is missing.  
+A `NullReferenceException` or NRE, occurs when code tries to access a variable which isn’t set, or found.  
+The error provides the line throwing the exception, so you can go there to narrow down what is missing.  
 *Declaring* a reference variable does not automatically assign it an appropriate value.  
 
 #### Resolution
 
-- Assign a reference to the variable
-    - Drag and drop the reference **in the inspector** (if it is a serialized)
-    - Manually assign the reference in a method like Awake or Start
-- Check whether the reference is not null before trying to access it  
-    `if(example != null)`  
+1. **Either:**
 
-Additionally ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.  
-Method usage that follows incorrect assumptions can also return null values. For example, `GetComponent<Example>` will return `null` if `Example` is not present on the same GameObject the current Component is attached to.  
+    Assign a reference to the variable  
+    - Drag and drop the reference in the component's inspector. (If your field is serialized by Unity, ie. `public` or `[SerializeField`])  
+    - Manually assign the reference in a method like `Awake` or `Start`
+    - Initialise the variable with `AddComponent` or `new`.
+
+    **Or:**  
+    Check whether the reference is not null before trying to access it  
+        `if(example != null)`  
+2. Ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.  
+3. Check your method usage has correct assumptions can also return null values. For example, `GetComponent<Example>` will return `null` if an `Example` component is not attached to the same GameObject that contains the current component.  
+
+#### Troubleshooting:
 When troubleshooting which variable is null, be aware that only reference types can be null. Ie. `class`, `interface`, or `delegate` variables.  
+Access is denoted by the `.` character (member access), `[var]` (array element or indexer access), or `()` (invocation.)
+On the line throwing this exception, only variables that are being accessed via one of these methods are relevant, as only attempting to *use* a null variable will throw an NRE.
 
 ---
-
 See [General Debugging](../../Debugging.md) for troubleshooting techniques.  
-See [Serializing Component References](../../Variables/Other%20Members/Serializing%20Component%20References.md) to learn how to assign variables in the Inspector.
+See [Serializing Component References](../../Variables/Other%20Members/Serializing%20Component%20References.md) to learn how to assign variables in the Inspector.  
+See [Unity Null](../../Other/Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.
