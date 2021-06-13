@@ -3,6 +3,7 @@
 [Scene View](Interface/Scene%20View.md)  
 [Game View](Interface/Game%20View.md)  
 [Unity Events](Interface/Unity%20Events.md)  
+[Error Dialogs](Common/Error%20Dialogs.md)  
 
 ## Programming
 #### General
@@ -12,7 +13,8 @@
 [Debugging](Programming/Debugging.md)  
 #### Errors & Warnings
 [Common Errors](Programming/Common%20Errors.md)  
-[Common Warnings](Programming/Common%20Warnings.md)
+[Common Warnings](Programming/Common%20Warnings.md)  
+[Error Dialogs](Common/Error%20Dialogs.md)
 #### Input
 [Common Issues](Programming/Common%20Input%20Issues.md)  
 #### Physics  
@@ -45,7 +47,8 @@
 [Textures](Graphics/Textures/Common%20Texture%20Issues.md)  
 [Lighting](Graphics/Lighting/Common%20Lighting%20Issues.md)  
 [Shader Graph](Graphics/Shader%20Graph/Common%20Shader%20Graph%20Issues.md)  
-[VFX Graph](Graphics/VFX%20Graph/Common%20VFX%20Graph%20Issues.md)
+[VFX Graph](Graphics/VFX%20Graph/Common%20VFX%20Graph%20Issues.md)  
+[Occlusion Culling](Graphics/Occlusion%20Culling/Common%20Occlusion%20Culling%20Issues.md)
 
 ## Animation
 [Animation Window](Animation/Animation%20Window.md)

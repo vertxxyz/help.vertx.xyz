@@ -9,8 +9,8 @@ The error provides the line throwing the exception, so you can go there to narro
 1. **Either:**
 
     Assign a reference to the variable  
-    - Drag and drop the reference in the component's inspector. (If your field is serialized by Unity, ie. `public` or `[SerializeField`])  
-    - Manually assign the reference in a method like `Awake` or `Start`
+    - Drag and drop the reference in the component's inspector. (If your field is serialized by Unity)  
+    - Manually assign the reference in a method like `Awake` or `Start` using `GetComponent`
     - Initialise the variable with `AddComponent` or `new`.
 
     **Or:**  
@@ -21,10 +21,11 @@ The error provides the line throwing the exception, so you can go there to narro
 
 #### Troubleshooting:
 When troubleshooting which variable is null, be aware that only reference types can be null. Ie. `class`, `interface`, or `delegate` variables.  
-Access is denoted by the `.` character (member access), `[var]` (array element or indexer access), or `()` (invocation.)
+Access is denoted by the `.` character (member access), `[]` (array element or indexer access), or `()` (invocation.)
 On the line throwing this exception, only variables that are being accessed via one of these methods are relevant, as only attempting to *use* a null variable will throw an NRE.
-
----
 See [General Debugging](../../Debugging.md) for troubleshooting techniques.  
+
+---  
+
 See [Serializing Component References](../../Variables/Other%20Members/Serializing%20Component%20References.md) to learn how to assign variables in the Inspector.  
 See [Unity Null](../../Other/Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.

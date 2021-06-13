@@ -1,4 +1,4 @@
-### Common Compiler Errors
+### Common Compile Errors
 
 - [CS0104](Compiler%20Errors/CS0104.md): 'reference' is an ambiguous reference between 'X identifier' and 'Y identifier'
 - [CS0120](Compiler%20Errors/CS0120.md): An object reference is required for the nonstatic field, method, or property 'Foo'
