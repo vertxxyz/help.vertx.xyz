@@ -45,11 +45,11 @@ namespace Troubleshooter
 		public string Process(string html)
 		{
 			html = html.Replace("<div class=\"info\"><p>",
-				"<div class=\"info\"><img src=\"http://help.vertx.xyz/Images/information.svg\" class=\"info\" alt=\"information\" /><p class=\"info\">");
+				"<div class=\"info\"><img src=\"https://help.vertx.xyz/Images/information.svg\" class=\"info\" alt=\"information\" /><p class=\"info\">");
 			html = html.Replace("<div class=\"warning\"><p>",
-				"<div class=\"info\"><img src=\"http://help.vertx.xyz/Images/warning.svg\" class=\"info\" alt=\"warning\" /><p class=\"info\">");
+				"<div class=\"info\"><img src=\"https://help.vertx.xyz/Images/warning.svg\" class=\"info\" alt=\"warning\" /><p class=\"info\">");
 			return html.Replace("<div class=\"error\"><p>",
-				"<div class=\"info\"><img src=\"http://help.vertx.xyz/Images/error.svg\" class=\"info\" alt=\"error\" /><p class=\"info\">");
+				"<div class=\"info\"><img src=\"https://help.vertx.xyz/Images/error.svg\" class=\"info\" alt=\"error\" /><p class=\"info\">");
 		}
 	}
 }
