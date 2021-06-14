@@ -9,4 +9,8 @@
 ---
 
 #### Errors
-- [You are trying to create a MonoBehaviour using the 'new' keyword.](Runtime%20Errors/MonoBehaviourNew.md)
+- [You are trying to create a MonoBehaviour using the 'new' keyword.](Runtime%20Errors/MonoBehaviourNew.md)  
+
+---  
+
+[Burst Compiler Errors](../Jobs%20And%20Burst/Burst%20Errors.md)
