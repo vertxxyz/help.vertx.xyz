@@ -8,11 +8,13 @@
     - [Assets](#assets)
     - [Specifics](#specifics)
     - [Editor](#editor-extensions)
+    - [DOTS](#dots)
 - [Building](#building)
 - [UI](#ui)
 - [Physics](#physics-1)
 - [Graphics](#graphics)
 - [Animation](#animation)
+- [Audio](#audio)
 - [Package Manager](#package-manager)
 
 #### Resources
