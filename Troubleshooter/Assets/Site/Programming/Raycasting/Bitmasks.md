@@ -1,3 +1,4 @@
+### Bit Masks/Layer Masks
 #### Description
 `int` is a 32 bit value, A bit is `0` or `1`; a `0` in a bitmask is an inactive layer, and a `1` is active.  
 This means we can represent 32 layer toggles with a single `int` value.  
