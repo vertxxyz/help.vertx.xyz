@@ -1,0 +1,288 @@
+{\rtf1\ansi\deff0{\colortbl;\red208\green208\blue208;\red38\green38\blue38;\red19\green63\blue47;\red189\green189\blue189;\red193\green145\blue255;\red108\green149\blue235;\red225\green191\blue255;\red102\green195\blue204;\red237\green148\blue192;\red133\green196\blue108;}
+{\fonttbl{\f1\fmodern JetBrains Mono;}}
+
+\s0\box\cbpat2\cb2\cf1\fs20
+\chcbpat3\cb3
+\cf4
+\f1
+\i0\b0
+
+[\plain\fs20\f1
+\cf4
+\i0\b0
+\cb2
+\cf5
+
+Flags\chcbpat3\cb3
+\cf4
+
+]\plain\fs20\f1
+\cf4
+\i0\b0
+\cb2
+
+\line
+\cf6
+
+public enum \cf7
+
+Days \cf1
+
+: \cf6
+
+byte\line
+\cf4
+
+\{\line
+
+\tab
+\cf8
+\i0\b
+
+None      \cf4
+\i0\b0
+
+= \cf9
+
+0\cf4
+
+,      \cf10
+\i\b0
+
+// 00000000, 0\line
+
+\tab
+\cf8
+\i0\b
+
+Monday    \cf4
+\i0\b0
+
+= \cf9
+
+1 \cf4
+
+<< \cf9
+
+0\cf4
+
+, \cf10
+\i\b0
+
+// 00000001, 1\line
+
+\tab
+\cf8
+\i0\b
+
+Tuesday   \cf4
+\i0\b0
+
+= \cf9
+
+1 \cf4
+
+<< \cf9
+
+1\cf4
+
+, \cf10
+\i\b0
+
+// 00000010, 2\line
+
+\tab
+\cf8
+\i0\b
+
+Wednesday \cf4
+\i0\b0
+
+= \cf9
+
+1 \cf4
+
+<< \cf9
+
+2\cf4
+
+, \cf10
+\i\b0
+
+// 00000100, 4\line
+
+\tab
+\cf8
+\i0\b
+
+Thursday  \cf4
+\i0\b0
+
+= \cf9
+
+1 \cf4
+
+<< \cf9
+
+3\cf4
+
+, \cf10
+\i\b0
+
+// 00001000, 8\line
+
+\tab
+\cf8
+\i0\b
+
+Friday    \cf4
+\i0\b0
+
+= \cf9
+
+1 \cf4
+
+<< \cf9
+
+4\cf4
+
+, \cf10
+\i\b0
+
+// 00010000, 16\line
+
+\tab
+\cf8
+\i0\b
+
+Saturday  \cf4
+\i0\b0
+
+= \cf9
+
+1 \cf4
+
+<< \cf9
+
+5\cf4
+
+, \cf10
+\i\b0
+
+// 00100000, 32\line
+
+\tab
+\cf8
+\i0\b
+
+Sunday    \cf4
+\i0\b0
+
+= \cf9
+
+1 \cf4
+
+<< \cf9
+
+6\cf4
+
+, \cf10
+\i\b0
+
+// 01000000, 64\line
+
+\line
+
+\tab
+// See: Combining Masks\line
+
+\tab
+\cf8
+\i0\b
+
+Weekdays \cf4
+\i0\b0
+
+= \cf8
+\i0\b
+
+Monday \cf4
+\i0\b0
+
+| \cf8
+\i0\b
+
+Tuesday \cf4
+\i0\b0
+
+| \cf8
+\i0\b
+
+Wednesday \cf4
+\i0\b0
+
+| \cf8
+\i0\b
+
+Thursday \cf4
+\i0\b0
+
+| \cf8
+\i0\b
+
+Friday\cf4
+\i0\b0
+
+, \cf10
+\i\b0
+
+// 00011111\line
+
+\tab
+\cf8
+\i0\b
+
+Weekend \cf4
+\i0\b0
+
+= \cf8
+\i0\b
+
+Saturday \cf4
+\i0\b0
+
+| \cf8
+\i0\b
+
+Sunday\cf4
+\i0\b0
+
+,                                 \cf10
+\i\b0
+
+// 01100000\line
+
+\tab
+\cf8
+\i0\b
+
+Everyday \cf4
+\i0\b0
+
+= \cf8
+\i0\b
+
+Weekdays \cf4
+\i0\b0
+
+| \cf8
+\i0\b
+
+Weekend                                \cf10
+\i\b0
+
+// 01111111\line
+\cf4
+\i0\b0
+
+\} \par}

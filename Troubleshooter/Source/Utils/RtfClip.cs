@@ -2,13 +2,42 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Text.RegularExpressions;
 using Troubleshooter.Constants;
 
 namespace Troubleshooter
 {
 	public static class RtfClip
 	{
-		public static void CreateRtfFile(Arguments arguments)
+		[Flags]
+		public enum Stripping
+		{
+			None,
+			Bold = 1,
+			Italics = 1 << 1,
+			All = Bold | Italics
+		}
+
+		private static string PerformStripping(this Stripping value, string input)
+		{
+			if (value.HasFlag(Stripping.Bold))
+			{
+				input = Replace(input, "b");
+				input = Replace(input, "b0");
+			}
+
+			if (value.HasFlag(Stripping.Italics))
+			{
+				input = Replace(input, "i");
+				input = Replace(input, "i0");
+			}
+
+			return input;
+
+			static string Replace(string input, string rtfTag) => Regex.Replace(input, @$"\\{rtfTag}\b", string.Empty);
+		}
+		
+		public static void CreateRtfFile(Arguments arguments, Stripping stripping = Stripping.None)
 		{
 			var site = new Site(arguments.TroubleshooterRoot);
 
@@ -33,6 +62,8 @@ namespace Troubleshooter
 				index++;
 				outputPath = Path.Combine(codeEmbedDirectory, $"{fileName} {index.ToString()}.rtf");
 			}
+
+			rtf = stripping.PerformStripping(rtf);
 			
 			File.WriteAllText(outputPath, rtf);
 			
