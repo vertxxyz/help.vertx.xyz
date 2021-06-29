@@ -25,7 +25,7 @@ In this example we use a `byte`, as the range is known to be less than 8 layers.
 <<Code/Bitmasks/Declaring.rtf>>
 
 #### Combining Masks
-To combine a mask we perform a [logical or](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-or-operator-), which will compare each bit from each mask and run an or comparison with the results. With a layer in one mask set `true`, and the other `false`, is either `true` or `false` enabled? Yes, so the resulting bit is enabled. Only if both masks have the layer disabled will the result be disabled.
+To combine or add to a mask we perform a [logical or](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-or-operator-), which will compare each bit from each mask and run an or comparison with the results. With a layer in one mask set `true`, and the other `false`, is either `true` or `false` enabled? Yes, so the resulting bit is enabled. Only if both masks have the layer disabled will the result be disabled.
 <<Code/Bitmasks/Combining.rtf>>
 
 #### Inverting a Mask
@@ -36,9 +36,13 @@ layerMask = ~layerMask;
 // ~layerMask : 11111101111111111111111011011111
 ```
 
-#### Remove a Layer From a Mask
+#### Remove From a Mask
 Create an inverted mask using the `~` operator, where the layer to remove is now a 0, the rest 1's. Now perform a [logical and](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-and-operator-) to compare each bit and only set the resulting bit if both bits are enabled.
 <<Code/Bitmasks/Removing.rtf>>
+
+#### Toggling Mask Values
+The [logical exclusive or](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-exclusive-or-operator-) (XOR) will not alter values not present in the second operand, while toggling the mask when a match is found.
+<<Code/Bitmasks/Toggling.rtf>>
 
 #### Checking if a Mask Contains another Mask
 ```csharp
