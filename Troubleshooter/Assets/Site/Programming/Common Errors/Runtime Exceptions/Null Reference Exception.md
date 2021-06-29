@@ -10,19 +10,21 @@ The error provides the line throwing the exception, so you can go there to narro
 
     Assign a reference to the variable  
     - Drag and drop the reference in the component's inspector. (If your field is serialized by Unity)  
-    - Manually assign the reference in a method like `Awake` or `Start` using `GetComponent`
-    - Initialise the variable with `AddComponent` or `new`.
+    - Manually assign the reference in a method like `Awake` or `Start` using [GetComponent](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html)
+    - Initialise the variable with [AddComponent](https://docs.unity3d.com/ScriptReference/GameObject.AddComponent.html) or `new`.
 
     **Or:**  
+
     Check whether the reference is not null before trying to access it  
-        `if(example != null)`  
-2. Ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.  
-3. Check your method usage has correct assumptions can also return null values. For example, `GetComponent<Example>` will return `null` if an `Example` component is not attached to the same GameObject that contains the current component.  
+    `if(example != null)`  
+3. Ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.  
+4. Check prior methods make correct assumptions. For example, `GetComponent<Example>()` will return `null` if an `Example` component is not attached to the same GameObject.  
 
 #### Troubleshooting:
 When troubleshooting which variable is null, be aware that only reference types can be null. Ie. `class`, `interface`, or `delegate` variables.  
-Access is denoted by the `.` character (member access), `[]` (array element or indexer access), or `()` (invocation.)
-On the line throwing this exception, only variables that are being accessed via one of these methods are relevant, as only attempting to *use* a null variable will throw an NRE.
+Access is denoted by the `.` character (member access), `[]` (array element or indexer access), or `()` (invocation.)  
+On the line throwing this exception, only variables that are being accessed via one of these methods are relevant, as only attempting to *use* a null variable will throw an NRE.  
+
 See [General Debugging](../../Debugging.md) for troubleshooting techniques.  
 
 ---  
