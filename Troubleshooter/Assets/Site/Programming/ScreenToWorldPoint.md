@@ -12,6 +12,10 @@ Provide an appropriate distance in the Vector3 parameter.
 
 <<Code/Specific/ScreenToWorldPoint.rtf>>
 
+**Or**  
+
+If appropriate, switch your camera to Orthographic projection. This is the correct approach when making entirely 2D games.
+
 #### Alternate Methods
 
 Sometimes it is more suitable to use a [Plane](https://docs.unity3d.com/ScriptReference/Plane.html) to avoid calculating an appropriate distance from the camera. This is a suitable approach when the result is on a fixed plane in space.  

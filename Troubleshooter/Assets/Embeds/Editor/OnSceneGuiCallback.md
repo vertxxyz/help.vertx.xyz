@@ -1,0 +1,3 @@
+The GUI will only show when an appropriate target is selected.
+If you do not want this behaviour, it may be better to make a custom [EditorWindow](https://docs.unity3d.com/ScriptReference/EditorWindow.html), a custom [EditorTool](https://docs.unity3d.com/ScriptReference/EditorTools.EditorTool.html), or subscribe to the SceneView callback from a method decorated with a [InitializeOnLoadMethodAttribute](https://docs.unity3d.com/ScriptReference/InitializeOnLoadMethodAttribute.html).
+Each come with their own benefits and drawbacks depending on what behaviour is needed.

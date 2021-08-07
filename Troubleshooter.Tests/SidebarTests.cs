@@ -29,6 +29,8 @@ namespace Troubleshooter.Tests
 			}
 		}
 		
+		private static readonly Regex anchorRegex = new Regex(@"]\(#([\w /%.]+)\)", RegexOptions.Compiled);
+		
 		/// <summary>
 		/// Parse markdown text looking for anchor links
 		/// </summary>
@@ -36,7 +38,7 @@ namespace Troubleshooter.Tests
 		/// <returns></returns>
 		public static IEnumerable<string> AnchorLinksAsFullPaths(string text)
 		{
-			MatchCollection matches = Regex.Matches(text, @"]\(#([\w /%.]+)\)");
+			MatchCollection matches = anchorRegex.Matches(text);
 			for (int i = 0; i < matches.Count; i++)
 			{
 				Group group = matches[i].Groups[1];

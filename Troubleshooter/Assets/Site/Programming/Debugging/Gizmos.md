@@ -8,3 +8,9 @@ Gizmos can only be drawn from two functions provided by `MonoBehaviour`, [OnDraw
 
 Unlike [Draw Functions](Draw%20Functions.md), gizmo functions do not take a color parameter and instead are driven by [Gizmos.color](https://docs.unity3d.com/ScriptReference/Gizmos-color.html).  
 Many functions will not take arguments for rotation, and instead [Gizmos.matrix](https://docs.unity3d.com/ScriptReference/Gizmos-matrix.html) must be used.
+
+---  
+
+To display gizmos in the scene or game view, toggles for each must be enabled.  
+
+![Scene View Gizmo Toggle](../../Interface/Scene%20View/scene-view-gizmo-toggle.png)

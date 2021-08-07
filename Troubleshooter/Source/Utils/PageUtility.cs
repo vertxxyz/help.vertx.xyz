@@ -7,6 +7,11 @@ namespace Troubleshooter
 {
 	public static class PageUtility
 	{
+		private static readonly Regex pathRegex = new Regex(@"]\(([\w /%.]+)\)", RegexOptions.Compiled);
+		private static readonly Regex linkRegex = new Regex(@"]\((https?:\/\/[\w/%#?.@_\+~=&()]+)\)", RegexOptions.Compiled);
+		private static readonly Regex embedsRegex = new Regex(@"<<([\w /%.]+)>>", RegexOptions.Compiled);
+		private static readonly Regex imagesRegex = new Regex(@"!\[[^\]]*\]\((.*?)\s*(""(?:.*[^""])"")?\s*\)", RegexOptions.Compiled);
+		
 		/// <summary>
 		/// Parse markdown text looking for page links
 		/// </summary>
@@ -16,7 +21,7 @@ namespace Troubleshooter
 		public static IEnumerable<(string fullPath, Group group)> LinksAsFullPaths(string text, string path)
 		{
 			string directory = Path.GetDirectoryName(path) ?? string.Empty;
-			MatchCollection matches = Regex.Matches(text, @"]\(([\w /%.]+)\)");
+			MatchCollection matches = pathRegex.Matches(text);
 			for (int i = 0; i < matches.Count; i++)
 			{
 				Group group = matches[i].Groups[1];
@@ -35,7 +40,7 @@ namespace Troubleshooter
 		{
 			//TODO someone who is better at regex than me can feel free to make this nicer.
 			// - I have no need for this other than debugging at the moment, so the fact that it captures brackets following links also does not currently matter.
-			MatchCollection matches = Regex.Matches(text, @"]\((https?:\/\/[\w/%#?.@_\+~=&()]+)\)");
+			MatchCollection matches = linkRegex.Matches(text);
 			for (int i = 0; i < matches.Count; i++)
 			{
 				Group group = matches[i].Groups[1];
@@ -46,7 +51,7 @@ namespace Troubleshooter
 
 		public static IEnumerable<(string localPath, Group group)> EmbedsAsLocalEmbedPaths(string text)
 		{
-			MatchCollection matches = Regex.Matches(text, @"<<([\w /%.]+)>>");
+			MatchCollection matches = embedsRegex.Matches(text);
 			for (int i = 0; i < matches.Count; i++)
 			{
 				Group group = matches[i].Groups[1];
@@ -56,7 +61,7 @@ namespace Troubleshooter
 		
 		public static IEnumerable<(string localPath, Group group)> ImagesAsRootPaths(string text)
 		{
-			MatchCollection matches = Regex.Matches(text, @"!\[[^\]]*\]\((.*?)\s*(""(?:.*[^""])"")?\s*\)");
+			MatchCollection matches = imagesRegex.Matches(text);
 			for (int i = 0; i < matches.Count; i++)
 			{
 				Group group = matches[i].Groups[1];
