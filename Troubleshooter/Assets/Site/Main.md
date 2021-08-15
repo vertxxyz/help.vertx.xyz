@@ -16,10 +16,11 @@
 [Common Warnings](Programming/Common%20Warnings.md)  
 [Error Dialogs](Common/Error%20Dialogs.md)
 #### Input
-[Common Issues](Programming/Common%20Input%20Issues.md)  
+[Common Input Issues](Programming/Common%20Input%20Issues.md)  
 #### Physics  
 [Physics Messages](Programming/Physics%20Messages.md)  
 [Raycasting](Programming/Raycasting.md)  
+[Character Controllers](Programming/Physics/Character%20Controllers.md)  
 #### Assets
 [Resources](Programming/Resources.md)  
 [AssetDatabase](Programming/Editor%20Issues/AssetDatabase.md)  
@@ -61,4 +62,4 @@
 [Common Audio Issues](Audio/Common%20Audio%20Issues.md)
 
 ## Package Manager
-[Common Issues](Package%20Manager/UPM%20Common%20Issues.md)
+[Common UPM Issues](Package%20Manager/UPM%20Common%20Issues.md)
