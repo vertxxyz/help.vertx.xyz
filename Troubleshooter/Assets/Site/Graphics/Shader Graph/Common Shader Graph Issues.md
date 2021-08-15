@@ -6,6 +6,7 @@
 
 #### Issues
 
+- [I cannot connect ports](Port%20Connection%20Issues.md)
 - [A transparent texture looks incorrect in the Sample Texture 2D node](Alpha%20Output.md)
 
 ---
