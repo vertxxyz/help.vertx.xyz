@@ -10,5 +10,5 @@ public LayerMask exampleMask;
 `LayerMask` is implicitly convertible to `int`, and is simply passed to the `Raycast` functions.
 
 ---
-[I would like to learn more about bitmasks](Bitmasks.md)  
+[I would like to learn more about bitmasks](../Physics/Bitmasks.md)  
 [I am still not returning a result](Incorrect%20Parameters.md)

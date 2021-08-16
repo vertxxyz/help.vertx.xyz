@@ -53,4 +53,4 @@ When dealing with an enum, you could alternatively choose to use the [Enum.HasFl
 
 ---  
 
-Similar information relating to LayerMasks used in Unity's Physics can be found [here](../Programming/Raycasting/Bitmasks.md).
+Similar information relating to LayerMasks used in Unity's Physics can be found [here](../Programming/Physics/Bitmasks.md).
