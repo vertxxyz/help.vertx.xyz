@@ -9,15 +9,18 @@ document.addEventListener("DOMContentLoaded", () => {
 	overlay.addEventListener("click", () => close(sidebar, overlay));
 
 	$(".container").swipe({
-		swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
+		swipeLeft: function () {
 			let width = $(document).width();
 			if (width > 700) return;
-			if (direction === "left") {
-				open(sidebar, overlay);
-			} else if (direction === "right") {
-				close(sidebar, overlay);
-			}
-		}
+			open(sidebar, overlay);
+		},
+		swipeRight: function () {
+			let width = $(document).width();
+			if (width > 700) return;
+			close(sidebar, overlay);
+		},
+		allowPageScroll:"auto",
+		excludedElements:$.fn.swipe.defaults.excludedElements+", code, pre, .editor-colors"
 	});
 });
 

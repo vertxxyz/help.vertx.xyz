@@ -125,6 +125,7 @@ h5 {
 
 img {
 	margin: 15px 10px 15px 10px;
+	max-width: 100%;
 }
 
 iframe {
