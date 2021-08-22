@@ -11,7 +11,9 @@
     <link rel="icon" type="image/png" href="https://help.vertx.xyz/Images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://help.vertx.xyz/Images/favicon-96x96.png" sizes="96x96">
     <script src="Scripts/jquery.min.js"></script>
+    <script src="Scripts/jquery.touchSwipe.min.js"></script>
     <script src="Scripts/script.js"></script>
+    <script src="Scripts/sidebar.js"></script>
     <script src="Scripts/tableHighlighter.js"></script>
     <script src="Scripts/prism.js"></script>
 </head>
@@ -31,30 +33,5 @@
         </div>
     </div>
 </div>
-<script>
-	document.addEventListener("DOMContentLoaded", () => {
-		let transitionClass = "sidebar--transition";
-		const sidebar = document.querySelector(".sidebar");
-		const overlay = document.querySelector(".nav_overlay");
-		const button = document.querySelector("#button-sidebar");
-		button.addEventListener("click", () => {
-			sidebar.classList.add(transitionClass);
-			setTimeout(function () {
-				sidebar.classList.remove(transitionClass);
-			}, 300);
-			sidebar.classList.add("sidebar--open");
-			overlay.classList.add("nav_overlay--open");
-		});
-
-		overlay.addEventListener("click", () => {
-			sidebar.classList.add(transitionClass);
-			setTimeout(function () {
-				sidebar.classList.remove(transitionClass);
-			}, 300);
-			sidebar.classList.remove("sidebar--open");
-			overlay.classList.remove("nav_overlay--open");
-		});
-	})
-</script>
 </body>
 </html>
