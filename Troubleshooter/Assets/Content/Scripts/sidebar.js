@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			close(sidebar, overlay);
 		},
 		allowPageScroll:"auto",
-		excludedElements:$.fn.swipe.defaults.excludedElements+", code, pre, .editor-colors"
+		excludedElements:$.fn.swipe.defaults.excludedElements+", code, pre, .editor-colors, p, h1, h2, h3, h4, h5, a"
 	});
 });
 

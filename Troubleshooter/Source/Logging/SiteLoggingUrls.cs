@@ -5,7 +5,7 @@ using Troubleshooter.Constants;
 
 namespace Troubleshooter
 {
-	public static partial class SiteLogging
+	public static class SiteLogging
 	{
 		public static void LogAllExternalUrls(Arguments arguments)
 		{

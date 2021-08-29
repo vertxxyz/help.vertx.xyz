@@ -14,7 +14,7 @@ namespace Troubleshooter
 			MatchCollection matches = Regex.Matches(text, pattern);
 			for (int i = 0; i < matches.Count; i++)
 			{
-				var match = matches[i];
+				Match match = matches[i];
 				Group group = match.Groups[1];
 				stringBuilder.Append(text[last..match.Index]);
 				stringBuilder.Append(matchRemap.Invoke(group.Value));

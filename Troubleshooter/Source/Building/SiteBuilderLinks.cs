@@ -8,19 +8,13 @@ namespace Troubleshooter
 	{		
 		public static int GetSiteRootIndex(Site site, ResourceLocation resourceLocation)
 		{
-			string directory;
-			switch (resourceLocation)
+			string directory = resourceLocation switch
 			{
-				case ResourceLocation.Embed:
-					directory = site.EmbedsDirectory;
-					break;
-				case ResourceLocation.Site:
-					directory = site.Directory;
-					break;
-				default:
-					throw new ArgumentOutOfRangeException(nameof(resourceLocation), resourceLocation, null);
-			}
-			
+				ResourceLocation.Embed => site.EmbedsDirectory,
+				ResourceLocation.Site => site.Directory,
+				_ => throw new ArgumentOutOfRangeException(nameof(resourceLocation), resourceLocation, null)
+			};
+
 			string rootDirectory = Path.GetFullPath(directory);
 			int siteRootIndex = rootDirectory.Length + 1;
 			return siteRootIndex;

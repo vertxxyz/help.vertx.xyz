@@ -221,6 +221,14 @@ code {
 	padding: 2px 5px 2px 5px;
 }
 
+pre code {
+	display: inline-block;
+	white-space: normal;
+	margin: 2px 10px 3px 10px;
+	font-size: .95em;
+	padding: 10px 15px 10px 15px;
+}
+
 pre {
 	font-family: 'JetBrains Mono', monospace;
 	font-size: 0.85em;
@@ -327,7 +335,7 @@ figure p img {
 	.contents {
 		width: 100%;
 	}
-	
+
 	.sidebar {
 		position: fixed;
 		top: 0;
@@ -337,7 +345,7 @@ figure p img {
 		background-color: #383838;
 		transform: translateX(100%);
 	}
-	
+
 	.sidebar--transition {
 		transition: transform 0.3s;
 	}

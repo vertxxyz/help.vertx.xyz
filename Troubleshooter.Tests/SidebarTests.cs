@@ -21,7 +21,7 @@ namespace Troubleshooter.Tests
 			string pageText = File.ReadAllText(pagePath);
 			using (new AssertionScope())
 			{
-				foreach (var link in AnchorLinksAsFullPaths(text))
+				foreach (string link in AnchorLinksAsFullPaths(text))
 				{
 					string query = @$"# *{link} *\r\n";
 					pageText.Should().Match(v => Regex.IsMatch(v, query, RegexOptions.IgnoreCase), $"\"#{link}\" anchor does not exist - \"{name}\"");
@@ -29,7 +29,7 @@ namespace Troubleshooter.Tests
 			}
 		}
 		
-		private static readonly Regex anchorRegex = new Regex(@"]\(#([\w /%.]+)\)", RegexOptions.Compiled);
+		private static readonly Regex anchorRegex = new(@"]\(#([\w /%.]+)\)", RegexOptions.Compiled);
 		
 		/// <summary>
 		/// Parse markdown text looking for anchor links

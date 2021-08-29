@@ -7,10 +7,10 @@ namespace Troubleshooter
 {
 	public static class PageUtility
 	{
-		private static readonly Regex pathRegex = new Regex(@"]\(([\w /%.]+)\)", RegexOptions.Compiled);
-		private static readonly Regex linkRegex = new Regex(@"]\((https?:\/\/[\w/%#?.@_\+~=&()]+)\)", RegexOptions.Compiled);
-		private static readonly Regex embedsRegex = new Regex(@"<<([\w /%.]+)>>", RegexOptions.Compiled);
-		private static readonly Regex imagesRegex = new Regex(@"!\[[^\]]*\]\((.*?)\s*(""(?:.*[^""])"")?\s*\)", RegexOptions.Compiled);
+		private static readonly Regex pathRegex = new(@"]\(([\w /%.]+)\)", RegexOptions.Compiled);
+		private static readonly Regex linkRegex = new(@"]\((https?:\/\/[\w/%#?.@_\+~=&()]+)\)", RegexOptions.Compiled);
+		private static readonly Regex embedsRegex = new(@"<<([\w /%.]+)>>", RegexOptions.Compiled);
+		private static readonly Regex imagesRegex = new(@"!\[[^\]]*\]\((.*?)\s*(""(?:.*[^""])"")?\s*\)", RegexOptions.Compiled);
 		
 		/// <summary>
 		/// Parse markdown text looking for page links

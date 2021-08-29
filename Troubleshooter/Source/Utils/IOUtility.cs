@@ -56,7 +56,7 @@ namespace Troubleshooter
 		}
 
 		public static IEnumerable<string> RecordedPaths => recordedPaths;
-		private static readonly HashSet<string> recordedPaths = new HashSet<string>();
+		private static readonly HashSet<string> recordedPaths = new();
 
 		public static void ResetRecording() => recordedPaths.Clear();
 		
