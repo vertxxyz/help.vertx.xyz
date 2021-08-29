@@ -10,6 +10,7 @@
 
 #### Errors
 - [You are trying to create a MonoBehaviour using the 'new' keyword.](Runtime%20Errors/MonoBehaviourNew.md)  
+- ['Example' is missing the class attribute 'ExtensionOfNativeClass'!](../Scripts/1%20Script%20Loading.md)
 
 ---  
 

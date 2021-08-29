@@ -3,7 +3,7 @@ Packages in a project are described by the `manifest.json` file in the *Packages
 To manually add a package, find its registered package name, and a version of the package you know exists.  
 
 ##### Example
-1. For the [2D Pixel Perfect](https://docs.unity3d.com/Packages/com.unity.2d.pixel-perfect@latest/) package, you would navigate to its documentation, and note the url contains `com.unity.2d.pixel-perfect`.  
+1. For the 2D Pixel Perfect package, you would navigate to its [documentation](https://docs.unity3d.com/Packages/com.unity.2d.pixel-perfect@latest/)[^1], and note the url contains `com.unity.2d.pixel-perfect`.  
     A package name is always in this format, `<domain-name-extension>.<company-name>.<package-name>`.  
     Some packages will have installation instructions in their documentation, and it's important to exhaust that information first.  
 2. Switch to the changelog tab, and note a release number, e.g. `5.0.1`. This number may contain a suffix, e.g. `5.0.0-pre.2`.  
@@ -13,4 +13,6 @@ To manually add a package, find its registered package name, and a version of th
 
 ---  
 
-See [Package Manifest](https://docs.unity3d.com/Manual/upm-manifestPkg.html) for more information.
+See [Package Manifest](https://docs.unity3d.com/Manual/upm-manifestPkg.html) for more information.  
+
+[^1]: You can find the documentation for packages by looking in the [packages by keywords](https://docs.unity3d.com/Manual/pack-keys.html) section of the Unity Manual.
