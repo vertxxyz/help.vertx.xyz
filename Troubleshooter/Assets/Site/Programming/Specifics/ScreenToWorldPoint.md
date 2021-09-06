@@ -5,10 +5,16 @@ ScreenToWorldPoint returns the camera position.
 ScreenToWorldPoint takes a `Vector3` parameter, where the first two values are screen coordinates. The third value is the distance from the camera.  
 This value is important to provide when using a perspective camera, as a value of zero will just return the world-space camera position.
 
-#### Resolution:
+#### Resolution
 Provide an appropriate distance in the Vector3 parameter.
 
-![Distance values for ScreenToWorldPoint](screenToWorld.png)  
+:::hidden {#camera-img}
+![Camera](camera.svg)
+:::
+<script src="Scripts/screenToWorldPoint.js"></script>
+<canvas id="screen_to_world_point" width="500" height="500"></canvas>
+:::slider {#screen_to_world_point_slider}
+:::
 
 <<Code/Specific/ScreenToWorldPoint.rtf>>
 

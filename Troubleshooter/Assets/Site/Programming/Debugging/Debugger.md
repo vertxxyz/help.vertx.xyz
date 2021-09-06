@@ -10,7 +10,7 @@ A functioning IDE is required, so first check [IDE configuration](../IDE%20Confi
 Your IDE needs to target a running application to start a debugging session. Usually this functionality is found in one of the top utility bars in an IDE's interface.
 
 ##### Breakpoints
-Breakpoints are the entry-point to a debugging session, mark a line at or before a problem area and when the debugger is attached execution will halt when this line is reached.  
+Breakpoints are the entry point to a debugging session, mark a line at or before a problem area and when the debugger is attached execution will halt when this line is reached.  
 
 When program execution is halted **Unity will freeze**, you can now use the other debugger features of your IDE to assess problems. Stop debugging to resume Unity's normal function; debuggers will have a Resume Program button which will continue whilst remaining attached.
 
@@ -26,7 +26,8 @@ Execution can be manually halted similar to a breakpoint, this is very helpful w
 
 #### Usage
 ##### Visual Studio
-VS has a great rundown of their debugger found [here](https://docs.microsoft.com/en-us/visualstudio/debugger/debugger-feature-tour). Instructions about configuration are not specific to Unity and can be ignored.
+VS has a great rundown of their debugger found [here](https://docs.microsoft.com/en-us/visualstudio/debugger/debugger-feature-tour). Instructions about configuration are not specific to Unity and can be ignored.  
+If you're looking for video tutorials, [this video series](https://www.youtube.com/playlist?list=PLReL099Y5nRdW8KEd59B5KkGeqWFao34n) is a fantastic overview of using the debugger with Unity specifically.
 
 
 ##### Visual Studio Code

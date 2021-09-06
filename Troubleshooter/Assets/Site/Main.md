@@ -26,9 +26,9 @@
 [AssetDatabase](Programming/Editor%20Issues/AssetDatabase.md)  
 #### Specifics
 [Coroutines](Programming/Coroutines/Coroutines.md)  
-[Color](Programming/Color.md)  
-[ScreenToWorldPoint](Programming/ScreenToWorldPoint.md)  
-[Parsing Input Strings](Programming/Parsing.md)  
+[Color](Programming/Specifics/Color.md)  
+[ScreenToWorldPoint](Programming/Specifics/ScreenToWorldPoint.md)  
+[Parsing Input Strings](Programming/Specifics/Parsing.md)  
 #### Editor Extensions  
 [Property Drawers](Programming/Editor%20Issues/Property%20Drawers.md)  
 [Property Decorators](Programming/Editor%20Issues/Property%20Decorators.md)  

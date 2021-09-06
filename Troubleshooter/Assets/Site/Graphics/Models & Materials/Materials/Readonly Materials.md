@@ -1,10 +1,10 @@
 ### Readonly Materials
 
-#### Description:
+#### Description
 Materials can be readonly when imported from models or provided in readonly sources like packages.  
 A model's material is a generated asset created by the importer, and cannot be modified.
 
-#### Resolution:
+#### Resolution
 Materials imported from models either must be extracted, or remapped on the model's importer.  
 Select the model and head to the materials tab.
 From there you can choose to either extract the materials, which will place them in a folder and remap them in the importer;

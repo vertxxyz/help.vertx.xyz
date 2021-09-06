@@ -7,5 +7,6 @@
 - [CS0619](Compiler%20Errors/CS0619.md): 'Foo' is obsolete: 'Foo has been removed. Use Bar instead.'
 - [CS1022](Compiler%20Errors/CS1022.md): Type or namespace definition, or end-of-file expected
 - [CS1061](Compiler%20Errors/CS1061.md): Type 'Foo' does not contain a definition for 'Bar' and no extension method 'Bar' of type 'Foo' could be found (are you missing a using directive or an assembly reference?)  
+- [CS1503](Compiler%20Errors/CS1503.md): Argument 'x' cannot convert from Foo to Bar
 - [CS1612](Compiler%20Errors/CS1612.md): Cannot modify the return value of 'Foo' because it is not a variable  
 - [CS1644](Compiler%20Errors/CS1644.md): Feature 'feature' is not part of the C# 4.0 language specification
