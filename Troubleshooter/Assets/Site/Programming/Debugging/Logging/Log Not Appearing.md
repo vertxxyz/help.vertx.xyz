@@ -9,6 +9,7 @@ Keep in mind that the **Collapse** toggle can also hide new messages.
 ##### Exceptions
 When logging it is important to place your log **behind** any error that can occur, as exceptions will halt execution.
 <<Code/Logging/Logging 1.rtf>>  
+
 See the [Logging How-to](Logging%20How-to.md) for more information.  
 
 ##### Debugger

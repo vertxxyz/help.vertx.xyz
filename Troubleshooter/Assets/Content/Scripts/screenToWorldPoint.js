@@ -117,15 +117,15 @@ function drawScreenToWorldPointDiagram(ctx, distance, rayHeightNormalised) {
 	{ // Ray
 		let heightAtDistance = 250 * ((distance - 100) / 400.0); // Similar triangles
 
-		let distanceHeight = lerp(-heightAtDistance, heightAtDistance, rayHeightNormalised);
+		let distanceHeight = 250 + lerp(-heightAtDistance, heightAtDistance, rayHeightNormalised);
 
 		ctx.lineWidth = 2;
 		ctx.beginPath();
 		ctx.moveTo(100, 250);
-		ctx.lineTo(distance, 250 + distanceHeight);
+		ctx.lineTo(distance, distanceHeight);
 		ctx.stroke();
 
-		addPoints(ctx, circlePoints(30, distance, 250 + distanceHeight, 5));
+		addPoints(ctx, circlePoints(30, distance, distanceHeight, 5));
 		if (distance < nearClipPos) {
 			ctx.fillStyle = "#ff0000";
 		}
@@ -137,15 +137,17 @@ function redrawScreenToWorldPointDiagram() {
 	clearAndRedraw(ctx, () => drawScreenToWorldPointDiagram(ctx, distance, rayHeightNormalised))
 }
 
+// Handle changing distance via slider
 new Slider(document.getElementById("screen_to_world_point_slider"), function (x) {
 	distance = 100 + x * 400;
 	redrawScreenToWorldPointDiagram();
 }, undefined, 0.75);
 
+// Handle clicking on the canvas
 new TouchHandler(canvas, TouchEvent, TouchEvent);
 
 function TouchEvent(e) {
-	const pos = toCanvasSpace(e);
+	const pos = toCanvasSpace(canvas, e);
 	let x = inverseLerp(100, 500, pos[0]);
 	if (x < 0.1)
 		return;

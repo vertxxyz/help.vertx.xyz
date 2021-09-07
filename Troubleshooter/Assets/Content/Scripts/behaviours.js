@@ -285,9 +285,9 @@ const clearAndRedraw = (ctx, callback) => {
 	callback();
 };
 
-const toCanvasSpace = e => {
+const toCanvasSpace = (canvas, e) => {
 	let r = canvas.getBoundingClientRect();
-	return [(e.clientX - r.left), (e.clientY - r.top)];
+	return [remap(e.offsetX, 0, r.width, 0, canvas.width), remap(e.offsetY, 0, r.height, 0, canvas.height)];
 };
 
 const clamp01 = v => Math.min(1, Math.max(0, v));
