@@ -12,6 +12,10 @@
 - [You are trying to create a MonoBehaviour using the 'new' keyword.](Runtime%20Errors/MonoBehaviourNew.md)  
 - ['Example' is missing the class attribute 'ExtensionOfNativeClass'!](../Scripts/1%20Script%20Loading.md)
 
+#### Editor-related Errors
+These errors are only relevant to you if you are writing editor code:  
+- [type is not a supported pptr value](Runtime%20Errors/ObjectReferenceValue%20Error.md)
+
 ---  
 
 [Burst Compiler Errors](../Jobs%20And%20Burst/Burst%20Errors.md)

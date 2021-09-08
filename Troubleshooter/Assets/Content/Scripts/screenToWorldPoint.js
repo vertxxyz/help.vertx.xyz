@@ -1,5 +1,5 @@
-const canvas = document.getElementById('screen_to_world_point');
-const ctx = canvas.getContext('2d');
+let canvas = document.getElementById('screen_to_world_point');
+let ctx = canvas.getContext('2d');
 
 ctx.lineWidth = 3;
 ctx.font = '20px JetBrains Mono, monospace';
@@ -147,7 +147,10 @@ new Slider(document.getElementById("screen_to_world_point_slider"), function (x)
 new TouchHandler(canvas, TouchEvent, TouchEvent);
 
 function TouchEvent(e) {
-	const pos = toCanvasSpace(canvas, e);
+	e.preventDefault();
+	const pos = toNormalisedCanvasSpace(canvas, e);
+	pos[0] *= 500;
+	pos[1] *= 500;
 	let x = inverseLerp(100, 500, pos[0]);
 	if (x < 0.1)
 		return;

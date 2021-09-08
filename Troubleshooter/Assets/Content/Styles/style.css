@@ -141,19 +141,27 @@ iframe {
 .container {
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
+	flex-grow: 1;
+}
+
+.left-bar {
 	flex-grow: 1;
 }
 
 .sidebar {
 	flex-grow: 1;
+	flex-basis: 10%;
+	min-width: 250px;
 	padding: 40px 0 0 0;
 	height: calc(100vh - 40px);
 	overflow: auto;
 }
 
 .contents {
-	padding: 40px 0 50px 10%;
+	padding: 40px 0 50px 0;
 	width: 58%;
+	max-width: 1200px;
 	height: 100vh;
 	overflow: auto;
 	border-right: 1px solid #424242;
@@ -346,7 +354,12 @@ figure p img {
 @media only all and (max-width: 800px) {
 	.contents {
 		width: 100%;
-		padding: 40px 20px 50px 40px;
+		padding: 40px 30px 50px 30px;
+		margin: 0 0 0 0;
+	}
+
+	.left-bar {
+		visibility: hidden;
 	}
 
 	.sidebar {
