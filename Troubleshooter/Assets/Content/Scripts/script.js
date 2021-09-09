@@ -77,8 +77,11 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
 
 	if (value == null || value === "")
 		value = main;
-	else
+	else {
 		value = value.replace(/\.[^/.]+$/, "");
+		value = value.replace('%20', "-");
+		value = value.toLowerCase();
+	}
 
 	if (useCurrentDirectory && currentDirectory !== "")
 		value = absolute(`${currentDirectory}/`, value)

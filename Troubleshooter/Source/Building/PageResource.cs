@@ -183,27 +183,16 @@ namespace Troubleshooter
 				stringBuilder.Append(allText[last..]);
 			}
 
-			switch (Location)
+			string markdown = stringBuilder.ToString();
+			HtmlText = Location switch
 			{
-				case ResourceLocation.Embed:
+				ResourceLocation.Embed =>
 					// Embeds are not fully processed into HTML until they are built when embedded into site content.
 					// This is done because something like Abbreviations requires the abbreviation target to be processed at the same time as the source.
-					HtmlText = stringBuilder.ToString(); // markdown
-					break;
-				case ResourceLocation.Site:
-					HtmlText =
-						HtmlPostProcessors.Process(
-							Markdown.ToHtml(
-								MarkdownPreProcessors.Process(
-									stringBuilder.ToString() // markdown
-								),
-								markdownPipeline
-							)
-						);
-					break;
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
+					markdown,
+				ResourceLocation.Site => HtmlPostProcessors.Process(Markdown.ToHtml(MarkdownPreProcessors.Process(markdown), markdownPipeline)),
+				_ => throw new ArgumentOutOfRangeException()
+			};
 		}
 
 		public enum WriteStatus

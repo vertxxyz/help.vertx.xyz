@@ -19,8 +19,17 @@ namespace Troubleshooter
 				matchRemap.Invoke(group.Value, stringBuilder);
 				last = match.Index + match.Length;
 			}
+
 			stringBuilder.Append(text[last..]);
 			return stringBuilder.ToString();
-		}	
+		}
+
+		public static string ToLowerSnakeCase(string text)
+		{
+			text = text.ToLower();
+			text = text.Replace("%20", "-");
+			text = text.Replace(" ", "-");
+			return text;
+		}
 	}
 }

@@ -7,6 +7,7 @@ namespace Troubleshooter
 	{
 		private static void BuildContent(Arguments arguments, Site site)
 		{
+			// Copy content to destination
 			IOUtility.CopyAll(new DirectoryInfo(site.ContentDirectory), new DirectoryInfo(arguments.Path));
 			
 			int siteRootIndex = GetSiteRootIndex(site, ResourceLocation.Site);
@@ -21,7 +22,7 @@ namespace Troubleshooter
 				if(extension.Equals(".md")) continue; // Ignore pages
 				
 				string fullPath = Path.GetFullPath(path);
-				string outputPath = Path.Combine(arguments.HtmlOutputDirectory, $"{ConvertFullPathToLinkPath(fullPath, siteRootIndex)}{extension}");
+				string outputPath = ConvertRootFullEmbedPathToLinkPath(fullPath, extension, siteRootIndex, arguments);
 
 				totalContent++;
 				if (IOUtility.CopyFileIfDifferent(outputPath, new FileInfo(fullPath)))
@@ -39,7 +40,7 @@ namespace Troubleshooter
 				if(extension.Equals(".md") || extension.Equals(".rtf")) continue; // Ignore pages
 				
 				string fullPath = Path.GetFullPath(path);
-				string outputPath = Path.Combine(arguments.HtmlOutputDirectory, "Embeds", $"{ConvertFullPathToLinkPath(fullPath, embedRootIndex)}{extension}");
+				string outputPath = ConvertFullEmbedPathToLinkPath(fullPath, extension, embedRootIndex, arguments);
 				
 				totalContent++;
 				if(IOUtility.CopyFileIfDifferent(outputPath, new FileInfo(fullPath)))

@@ -27,6 +27,7 @@ namespace Troubleshooter
 			{
 				var insert = group.Replace("&amp;", "and");
 				insert = insert.Replace("&", "and");
+				insert = StringUtility.ToLowerSnakeCase(insert);
 				stringBuilder.Append($"onclick=\"loadPage(\'{insert}\')\"");
 			}, 1);
 		}

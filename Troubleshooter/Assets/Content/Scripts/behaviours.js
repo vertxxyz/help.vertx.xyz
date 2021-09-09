@@ -280,9 +280,10 @@ const addPoints = (ctx, points, close, begin) => {
 
 const inversedEase = ease => x => 1 - ease(1 - x);
 
-const clearAndRedraw = (ctx, callback) => {
+const clearAndRedraw = (ctx, canvas, callback) => {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	callback();
+	if(callback != null)
+		callback();
 };
 
 const toNormalisedCanvasSpace = (canvas, e) => {

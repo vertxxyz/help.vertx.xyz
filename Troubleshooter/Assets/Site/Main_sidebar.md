@@ -28,3 +28,7 @@
 - [Package Documentation](https://docs.unity3d.com/Manual/PackagesList.html)
 - [Unity Log Files](https://docs.unity3d.com/Manual/LogFiles.html)
 - [User-Contributed Notes](https://mvi.sh/notes/)
+
+#### Contributing
+- [Github](https://github.com/vertxxyz/help.vertx.xyz)  
+- [Ko-fi](https://ko-fi.com/vertx)

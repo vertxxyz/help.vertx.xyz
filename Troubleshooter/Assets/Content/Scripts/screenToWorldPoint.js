@@ -1,11 +1,11 @@
-let canvas = document.getElementById('screen_to_world_point');
-let ctx = canvas.getContext('2d');
+var swp_canvas = document.getElementById('screen_to_world_point');
+var swp_ctx = swp_canvas.getContext('2d');
 
-ctx.lineWidth = 3;
-ctx.font = '20px JetBrains Mono, monospace';
+swp_ctx.lineWidth = 3;
+swp_ctx.font = '20px JetBrains Mono, monospace';
 
-let distance = 400;
-let rayHeightNormalised = 0.3;
+var distance = 400;
+var rayHeightNormalised = 0.3;
 
 function drawScreenToWorldPointDiagram(ctx, distance, rayHeightNormalised) {
 	let nearClipPlane = 50;
@@ -40,14 +40,17 @@ function drawScreenToWorldPointDiagram(ctx, distance, rayHeightNormalised) {
 	}
 
 	{ // Camera
-		const image = document.getElementById('camera-img').querySelector('img');
+		const img = document.getElementById('camera-img');
+		if(img != null) {
+			const image = img.querySelector('img');
 
-		if (!image.complete) {
-			image.addEventListener('load', e => {
+			if (!image.complete) {
+				image.addEventListener('load', e => {
+					ctx.drawImage(image, 30, 250 - 40, 80, 80);
+				});
+			} else {
 				ctx.drawImage(image, 30, 250 - 40, 80, 80);
-			});
-		} else {
-			ctx.drawImage(image, 30, 250 - 40, 80, 80);
+			}
 		}
 	}
 
@@ -134,7 +137,7 @@ function drawScreenToWorldPointDiagram(ctx, distance, rayHeightNormalised) {
 }
 
 function redrawScreenToWorldPointDiagram() {
-	clearAndRedraw(ctx, () => drawScreenToWorldPointDiagram(ctx, distance, rayHeightNormalised))
+	clearAndRedraw(swp_ctx, swp_canvas,() => drawScreenToWorldPointDiagram(swp_ctx, distance, rayHeightNormalised))
 }
 
 // Handle changing distance via slider
@@ -144,11 +147,11 @@ new Slider(document.getElementById("screen_to_world_point_slider"), function (x)
 }, undefined, 0.75);
 
 // Handle clicking on the canvas
-new TouchHandler(canvas, TouchEvent, TouchEvent);
+new TouchHandler(swp_canvas, touchEvent, touchEvent);
 
-function TouchEvent(e) {
+function touchEvent(e) {
 	e.preventDefault();
-	const pos = toNormalisedCanvasSpace(canvas, e);
+	const pos = toNormalisedCanvasSpace(swp_canvas, e);
 	pos[0] *= 500;
 	pos[1] *= 500;
 	let x = inverseLerp(100, 500, pos[0]);

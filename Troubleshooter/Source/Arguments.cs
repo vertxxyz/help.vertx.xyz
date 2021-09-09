@@ -11,10 +11,19 @@ namespace Troubleshooter
 
 	public readonly struct Arguments
 	{
+		/// <summary>
+		/// Output directory
+		/// </summary>
 		public readonly string Path;
+		/// <summary>
+		/// Output directory + HTML folder
+		/// </summary>
+		public readonly string HtmlOutputDirectory;
+		/// <summary>
+		/// Project root (Contains Assets and Source)
+		/// </summary>
 		public readonly string TroubleshooterRoot;
 		public readonly LoggingLevel LoggingLevel;
-		public readonly string HtmlOutputDirectory;
 		public const string HtmlOutputDirectoryName = "HTML";
 
 		public Arguments(string[] args)
