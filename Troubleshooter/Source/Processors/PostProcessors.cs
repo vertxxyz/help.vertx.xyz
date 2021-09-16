@@ -13,7 +13,7 @@ namespace Troubleshooter
 		private static readonly IHtmlPostProcessor[] All =
 			typeof(IHtmlPostProcessor).Assembly.GetTypes()
 				.Where(t => typeof(IHtmlPostProcessor).IsAssignableFrom(t) && !t.IsAbstract)
-				.Select(t => (IHtmlPostProcessor) Activator.CreateInstance(t)).ToArray();
+				.Select(t => (IHtmlPostProcessor) Activator.CreateInstance(t)).OrderBy(p => p!.Order).ToArray();
 
 		public static string Process(string html) => All.Aggregate(html, (current, processor) => processor.Process(current));
 	}
@@ -23,17 +23,29 @@ namespace Troubleshooter
 	{
 		private readonly Regex regex = new(@"(?<=<a )href=""([^""]+\.md)""", RegexOptions.Compiled);
 		
-		public string Process(string html)
-		{
-			//return Regex.Replace(html, @"(?<=<a )href=""([^""]+\.md)""", "onclick=\"loadPage(\'$1\')\"");
-			return StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) =>
+		public string Process(string html) =>
+			StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) =>
 			{
-				var insert = group.Replace("&amp;", "and");
+				var insert = @group.Replace("&amp;", "and");
 				insert = insert.Replace("&", "and");
 				insert = StringUtility.ToLowerSnakeCase(insert);
 				stringBuilder.Append($"onclick=\"loadPage(\'{insert}\')\"");
 			}, 1);
-		}
+	}
+	
+	[UsedImplicitly]
+	public class ExternalLinkConverter : IHtmlPostProcessor
+	{
+		private readonly Regex regex = new(@"(?<=<a )href=""https?:\/\/[\.\w\/\-%#?=@_]+""", RegexOptions.Compiled);
+
+		public int Order => 1;
+
+		public string Process(string html) =>
+			StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) =>
+			{
+				stringBuilder.Append(@"class=""link--external""");
+				stringBuilder.Append(group);
+			});
 	}
 
 	[UsedImplicitly]

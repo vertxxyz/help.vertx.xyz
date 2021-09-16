@@ -1,8 +1,8 @@
 ### Resetting Windows
 Closing and reopening windows can fix issues with them.  
-1. Right-click on a tab and click *Close Tab*
+1. <kbd>Right-click</kbd> on a tab and click <kbd>Close Tab</kbd>
 2. Reopen the window  
-    a. Right-click on a tab and *Add Tab*  
+    a. <kbd>Right-click</kbd> on a tab and <kbd>Add Tab</kbd>   
     b. From the Window dropdown find the appropriate window to reopen
 
 ---

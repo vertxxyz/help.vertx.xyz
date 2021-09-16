@@ -61,6 +61,12 @@ a:hover, a:focus {
 	cursor: pointer;
 }
 
+.link--external::after {
+	margin-left: 4px;
+	content: "\2197";
+	font-family: 'JetBrains Mono', monospace;
+}
+
 /*bold links look bad, so this highlights them instead*/
 /*a strong {
 	font-weight: normal;
@@ -261,6 +267,7 @@ td.highlight {
 .editor-colors {
 	background-color: #262626;
 	margin: 2px 10px 3px -15px;
+	margin-block-end: 1em;
 	padding: 1px 15px 1px 15px;
 	border-radius: 6px;
 	overflow-x: auto;
@@ -508,11 +515,13 @@ figure p img {
 /* width */
 ::-webkit-scrollbar {
 	width: 13px;
+	height: 13px;
 }
 
 ::-webkit-scrollbar-track {
 	background: #353535;
 	border-left: 1px solid #303030;
+	border-bottom: 1px solid #303030;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -524,5 +533,9 @@ figure p img {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: #383838;
+	background: #686868;
+	border: 1px solid transparent;
+	border-left: 2px solid transparent;
+	border-radius: 10px;
+	background-clip: content-box;
 }
