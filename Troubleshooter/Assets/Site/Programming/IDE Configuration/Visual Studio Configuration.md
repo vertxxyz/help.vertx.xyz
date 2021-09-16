@@ -1,6 +1,10 @@
 ### Visual Studio Configuration
+#### Installed with Unity Hub
+VS will have the Unity workload installed.  
+Follow the configuration instructions listed [here](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#configure-unity-to-use-visual-studio) to configure the remaining setup.  
 
-If you installed Visual Studio via the Unity hub it should have the proper Unity workload installed.  
-Follow the configuration instructions listed [here](https://docs.microsoft.com/en-us/visualstudio/cross-platform/getting-started-with-visual-studio-tools-for-unity?view=vs-2019#configure-unity-for-use-with-visual-studio).  
+#### Installed Manually
+Install the Unity workload installed and follow the configuration instructions listed [here](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#install-unity-support-for-visual-studio).
 
-If you manually installed Visual Studio ensure you have the Unity workload installed and have followed the configuration instructions listed [here](https://docs.microsoft.com/en-us/visualstudio/cross-platform/getting-started-with-visual-studio-tools-for-unity?view=vs-2019#manual-installation).
+---  
+Ensure the [Visual Studio Editor](https://docs.unity3d.com/Manual/com.unity.ide.visualstudio.html) package is installed in UPM.  

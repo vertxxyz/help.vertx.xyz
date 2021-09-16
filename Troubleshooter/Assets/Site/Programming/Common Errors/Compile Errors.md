@@ -1,6 +1,7 @@
 ### Common Compile Errors
 
 - [CS0104](Compiler%20Errors/CS0104.md): 'reference' is an ambiguous reference between 'X identifier' and 'Y identifier'
+- [CS0106](Compiler%20Errors/CS0106.md): The modifier 'modifier' is not valid for this item
 - [CS0120](Compiler%20Errors/CS0120.md): An object reference is required for the nonstatic field, method, or property 'Foo'
 - [CS0119](Compiler%20Errors/CS0119.md): 'Foo' is a 'Bar', which is not valid in the given context
 - [CS0236](Compiler%20Errors/CS0236.md): A field initializer cannot reference the nonstatic field, method, or property 'Foo'

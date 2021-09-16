@@ -5,9 +5,12 @@ using JetBrains.Annotations;
 
 namespace Troubleshooter
 {
+	/// <summary>
+	/// Runs on markdown before it is processed.
+	/// </summary>
 	public static class MarkdownPreProcessors
 	{
-		public static readonly IMarkdownPreProcessor[] All =
+		private static readonly IMarkdownPreProcessor[] All =
 			typeof(IMarkdownPreProcessor).Assembly.GetTypes()
 				.Where(t => typeof(IMarkdownPreProcessor).IsAssignableFrom(t) && !t.IsAbstract)
 				.Select(t => (IMarkdownPreProcessor) Activator.CreateInstance(t)).ToArray();
@@ -21,9 +24,11 @@ namespace Troubleshooter
 	[UsedImplicitly]
 	public class LineBreakRepair : IMarkdownPreProcessor
 	{
+		private static readonly Regex regex = new (@"(?<!\r\n)\r\n(---)(?:\s|$)", RegexOptions.Compiled);
+		
 		public string Process(string text)
 		{
-			MatchCollection matchCollection = Regex.Matches(text, @"(?<!\r\n)\r\n(---)(?:\s|$)");
+			MatchCollection matchCollection = regex.Matches(text);
 			for (var i = 0; i < matchCollection.Count; i++)
 			{
 				Match match = matchCollection[i];

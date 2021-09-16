@@ -65,7 +65,7 @@ namespace Troubleshooter
 			for (int i = 0; i < matches.Count; i++)
 			{
 				Group group = matches[i].Groups[1];
-				yield return (group.Value.ToConsistentPath().ToUnTokenized(), group);
+				yield return (group.Value.FinalisePath(), group);
 			}
 		}
 

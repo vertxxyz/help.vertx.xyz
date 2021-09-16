@@ -39,5 +39,5 @@ Rider has detailed information about debugging Unity applications [here](https:/
 As of Rider 2020.2 rider also has [Pausepoints](https://blog.jetbrains.com/dotnet/2020/06/11/introducing-unity-pausepoints-for-rider/), the ability to pause (`Debug.Break()`) Unity at the end of a frame once a Pausepoint is hit.
 
 #### Debugging Builds
-Builds require *Development Build* and *Script Debugging* to be enabled in the build settings (**File > Build Settings**) to debug script code. When attaching the debugger attach to the built Player and not the Unity Editor.  
+Builds require *Development Build* and *Script Debugging* to be enabled in the build settings (**File | Build Settings**) to debug script code. When attaching the debugger attach to the built Player and not the Unity Editor.  
 More information can be found [here](https://docs.unity3d.com/Manual/ManagedCodeDebugging.html), including the debugging of mobile devices.  

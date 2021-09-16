@@ -10,10 +10,8 @@ namespace Troubleshooter
 	{
 		private static void BuildPages(Arguments arguments, Site site, MarkdownPipeline pipeline)
 		{
-			int siteRootIndex = GetSiteRootIndex(site, ResourceLocation.Site);
-			int embedRootIndex = GetSiteRootIndex(site, ResourceLocation.Embed);
-
 			var allResources = CollectPages(site);
+			PageResourcesPostProcessors.Process(allResources, site);
 			var allBuiltResources = new HashSet<string>();
 
 			arguments.VerboseLog($"{allResources.Count} total un-processed pages");
@@ -42,9 +40,9 @@ namespace Troubleshooter
 						continue;
 					}
 
-					resource.BuildText(site, allResources, pipeline, siteRootIndex, embedRootIndex);
+					resource.BuildText(site, allResources, pipeline);
 					allBuiltResources.Add(path);
-					switch (resource.WriteToDisk(arguments, siteRootIndex))
+					switch (resource.WriteToDisk(arguments, site))
 					{
 						case PageResource.WriteStatus.Ignored:
 							ignoredPages++;
@@ -65,9 +63,9 @@ namespace Troubleshooter
 			arguments.VerboseLog($"{builtPages} pages written to disk. {skippedPages} were skipped as identical, and {ignoredPages} were embeds.");
 		}
 
-		private static Dictionary<string, PageResource> CollectPages(Site site)
+		private static PageResources CollectPages(Site site)
 		{
-			Dictionary<string, PageResource> pages = new Dictionary<string, PageResource>();
+			PageResources pages = new PageResources();
 
 			// Collect Embedded Pages
 			foreach (var path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))

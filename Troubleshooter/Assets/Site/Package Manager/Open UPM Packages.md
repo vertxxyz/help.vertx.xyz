@@ -6,7 +6,7 @@ Users can add scopes, and simply add and update packages as if they were hosted 
 
 #### Adding Packages
 
-- open `Edit/Project Settings/Package Manager`
+- open **Edit | Project Settings | Package Manager**
 - add a new Scoped Registry:
   ```
   Name: OpenUPM
@@ -18,7 +18,7 @@ Users can add scopes, and simply add and update packages as if they were hosted 
 - open Package Manager
 - click <kbd>+</kbd>
 - select <kbd>Add from Git URL</kbd>
-- paste the package name (ie. <kbd>com.company.package</kbd>)
+- paste the package name (ie. `com.company.package`)
 - click <kbd>Add</kbd>
 
 #### Updating Packages

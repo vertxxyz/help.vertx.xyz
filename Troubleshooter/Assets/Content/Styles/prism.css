@@ -49,9 +49,13 @@ pre[class*="language-"] {
 /* Code blocks */
 pre[class*="language-"] {
 	padding: 1em;
-	margin: .5em 10px;
+	margin: .8em 10px .8em -1em;
 	overflow: auto;
 	border-radius: 0.3em;
+}
+
+pre[class*="language-"] code {
+	margin: 0;
 }
 
 :not(pre) > code[class*="language-"],

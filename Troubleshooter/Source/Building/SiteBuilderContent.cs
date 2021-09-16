@@ -10,8 +10,6 @@ namespace Troubleshooter
 			// Copy content to destination
 			IOUtility.CopyAll(new DirectoryInfo(site.ContentDirectory), new DirectoryInfo(arguments.Path));
 			
-			int siteRootIndex = GetSiteRootIndex(site, ResourceLocation.Site);
-
 			int siteContent = 0;
 			int totalContent = 0;
 			
@@ -22,7 +20,7 @@ namespace Troubleshooter
 				if(extension.Equals(".md")) continue; // Ignore pages
 				
 				string fullPath = Path.GetFullPath(path);
-				string outputPath = ConvertRootFullEmbedPathToLinkPath(fullPath, extension, siteRootIndex, arguments);
+				string outputPath = ConvertRootFullSitePathToLinkPath(fullPath, extension, site, arguments);
 
 				totalContent++;
 				if (IOUtility.CopyFileIfDifferent(outputPath, new FileInfo(fullPath)))
@@ -31,8 +29,6 @@ namespace Troubleshooter
 
 
 			int embedContent = 0;
-			int embedRootIndex = GetSiteRootIndex(site, ResourceLocation.Embed);
-			
 			// Copy all embed files that are not pages to the destination/Embeds
 			foreach (var path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))
 			{
@@ -40,7 +36,7 @@ namespace Troubleshooter
 				if(extension.Equals(".md") || extension.Equals(".rtf")) continue; // Ignore pages
 				
 				string fullPath = Path.GetFullPath(path);
-				string outputPath = ConvertFullEmbedPathToLinkPath(fullPath, extension, embedRootIndex, arguments);
+				string outputPath = ConvertFullEmbedPathToLinkPath(fullPath, extension, site, arguments);
 				
 				totalContent++;
 				if(IOUtility.CopyFileIfDifferent(outputPath, new FileInfo(fullPath)))

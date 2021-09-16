@@ -91,3 +91,13 @@ This error is describing this problem because of this reasoning.
 #### Resolution
 These are the instructions that would solve the issue if that was the case.
 ```
+
+## Miscellaneous
+### Keyboard Shortcuts or Interface Buttons
+```
+<kbd>Ctrl+Left-Mouse</kbd>
+```  
+### Menu Paths or Hierarchical Locations
+```
+**File | Settings | Plugins**
+```  

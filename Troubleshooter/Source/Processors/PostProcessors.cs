@@ -5,6 +5,9 @@ using JetBrains.Annotations;
 
 namespace Troubleshooter
 {
+	/// <summary>
+	/// Runs on HTML after it has been processed from markdown.
+	/// </summary>
 	public static class HtmlPostProcessors
 	{
 		private static readonly IHtmlPostProcessor[] All =

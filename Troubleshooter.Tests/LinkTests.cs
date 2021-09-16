@@ -18,7 +18,7 @@ namespace Troubleshooter.Tests
 			this.testOutputHelper = testOutputHelper;
 			string embedsRoot = TestUtility.TestSite.EmbedsDirectory;
 			foreach (string embeddedFile in Directory.EnumerateFiles(embedsRoot, "*", SearchOption.AllDirectories))
-				embeddedFiles.Add(embeddedFile[(embedsRoot.Length + 1)..]);
+				embeddedFiles.Add(embeddedFile[(embedsRoot.Length + 1)..].ToConsistentPath());
 		}
 		
 		[Theory]

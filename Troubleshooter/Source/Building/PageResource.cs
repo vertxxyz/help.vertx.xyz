@@ -48,6 +48,11 @@ namespace Troubleshooter
 		/// <summary>
 		/// Processed output html
 		/// </summary>
+		public string MarkdownText { get; set; }
+		
+		/// <summary>
+		/// Processed output html
+		/// </summary>
 		public string HtmlText { get; private set; }
 
 		// -------- Unbuilt resources --------
@@ -89,7 +94,7 @@ namespace Troubleshooter
 			embedded.Add(page);
 		}
 
-		public void BuildText(Site site, Dictionary<string, PageResource> allResources, MarkdownPipeline markdownPipeline, int siteRootIndex, int embedRootIndex)
+		public void BuildText(Site site, PageResources allResources, MarkdownPipeline markdownPipeline)
 		{
 			switch (Type)
 			{
@@ -97,7 +102,7 @@ namespace Troubleshooter
 					SetHtmlTextAsEmpty();
 					return;
 				case ResourceType.Markdown:
-					BuildMarkdown(site, allResources, markdownPipeline, siteRootIndex, embedRootIndex);
+					BuildMarkdown(site, allResources, markdownPipeline);
 					break;
 				case ResourceType.RichText:
 					try
@@ -121,9 +126,24 @@ namespace Troubleshooter
 		/// <summary>
 		/// Builds page to <see cref="HtmlText"/> to be embedded in other content or written to disk
 		/// </summary>
-		private void BuildMarkdown(Site site, Dictionary<string, PageResource> allResources, MarkdownPipeline markdownPipeline, int siteRootIndex, int embedRootIndex)
+		private void BuildMarkdown(Site site, PageResources allResources, MarkdownPipeline markdownPipeline)
 		{
-			string allText = File.ReadAllText(FullPath);
+			if(MarkdownText == null)
+				ProcessMarkdown(File.ReadAllText(FullPath), site, allResources);
+			HtmlText = Location switch
+			{
+				ResourceLocation.Embed =>
+					// Embeds are not fully processed into HTML until they are built when embedded into site content.
+					// This is done because something like Abbreviations requires the abbreviation target to be processed at the same time as the source.
+					MarkdownText,
+				ResourceLocation.Site => HtmlPostProcessors.Process(Markdown.ToHtml(MarkdownPreProcessors.Process(MarkdownText), markdownPipeline)),
+				_ => throw new ArgumentOutOfRangeException()
+			};
+		}
+
+		public void ProcessMarkdown(string text, Site site, PageResources allResources)
+		{
+			string allText = text;
 			StringBuilder stringBuilder = new StringBuilder();
 
 			// Find and replace embed anchors with their content
@@ -151,48 +171,42 @@ namespace Troubleshooter
 				stringBuilder.Clear();
 
 				int rootIndex;
-				string directoryRoot;
-				string embedsDirectory = Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").Replace('\\', '/');
+				string directoryRoot; // The root output directory.
+				string embedsDirectory = Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").ToConsistentPath();
 				switch (Location)
 				{
 					case ResourceLocation.Embed:
-						rootIndex = embedRootIndex;
+						rootIndex = site.EmbedRootIndex;
 						directoryRoot = embedsDirectory;
 						break;
 					case ResourceLocation.Site:
-						rootIndex = siteRootIndex;
+						rootIndex = site.RootIndex;
 						directoryRoot = Arguments.HtmlOutputDirectoryName;
 						break;
 					default:
 						throw new ArgumentOutOfRangeException();
 				}
 
-				string directory = Path.GetDirectoryName(SiteBuilder.ConvertFullPathToLocalPath(FullPath, rootIndex));
+				string directory = Path.GetDirectoryName(Site.FinalisePathWithRootIndex(FullPath, rootIndex));
 
 				int last = 0;
 				foreach ((string image, Group group) in PageUtility.ImagesAsRootPaths(allText))
 				{
 					if (group.Value.StartsWith(embedsDirectory))
 						continue;
-
+					
 					stringBuilder.Append(allText[last..group.Index]);
-					stringBuilder.Append(HttpUtility.UrlPathEncode(Path.Combine(directoryRoot, directory, image).Replace('\\', '/')));
+					string imagePath = image.FinaliseDirectoryPathOnly(); // The path explicitly mentioned in the markdown
+					string combinedPath = Path.Combine(directoryRoot, directory!, imagePath);
+					string finalPath = HttpUtility.UrlPathEncode(combinedPath).ToConsistentPath();
+					stringBuilder.Append(finalPath);
 					last = group.Index + group.Length;
 				}
 
 				stringBuilder.Append(allText[last..]);
 			}
 
-			string markdown = stringBuilder.ToString();
-			HtmlText = Location switch
-			{
-				ResourceLocation.Embed =>
-					// Embeds are not fully processed into HTML until they are built when embedded into site content.
-					// This is done because something like Abbreviations requires the abbreviation target to be processed at the same time as the source.
-					markdown,
-				ResourceLocation.Site => HtmlPostProcessors.Process(Markdown.ToHtml(MarkdownPreProcessors.Process(markdown), markdownPipeline)),
-				_ => throw new ArgumentOutOfRangeException()
-			};
+			MarkdownText = stringBuilder.ToString();
 		}
 
 		public enum WriteStatus
@@ -202,7 +216,7 @@ namespace Troubleshooter
 			Written
 		}
 
-		public WriteStatus WriteToDisk(Arguments arguments, int siteRootIndex)
+		public WriteStatus WriteToDisk(Arguments arguments, Site site)
 		{
 			switch (Location)
 			{
@@ -214,7 +228,7 @@ namespace Troubleshooter
 			}
 
 			// Check the previously built file to see whether it ought to be re-written.
-			var path = Path.Combine(arguments.HtmlOutputDirectory, $"{SiteBuilder.ConvertFullPathToLinkPath(FullPath, siteRootIndex)}.html");
+			var path = Path.Combine(arguments.HtmlOutputDirectory, $"{site.ConvertFullSitePathToLinkPath(FullPath)}.html");
 			return IOUtility.CreateFileIfDifferent(path, HtmlText) ? WriteStatus.Written : WriteStatus.Skipped;
 		}
 	}
