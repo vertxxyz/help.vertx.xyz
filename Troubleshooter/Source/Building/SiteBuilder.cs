@@ -25,7 +25,6 @@ namespace Troubleshooter
 		public static void ContentBuild(Arguments arguments)
 		{
 			Site site = new Site(arguments.TroubleshooterRoot);
-
 			BuildContent(arguments, site);
 		}
 	}

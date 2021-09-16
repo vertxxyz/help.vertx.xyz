@@ -3,7 +3,7 @@
 Make sure you have declared the function in the correct scope.  
 Message functions cannot be called if they are local functions.
 
-Example:  
+##### Example  
 <<Code/Physics/Local Function.rtf>>
 
 ---

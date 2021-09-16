@@ -2,13 +2,14 @@
 #### Description
 A `NullReferenceException` or NRE, occurs when code tries to access a variable which isn’t set, or found.  
 The error provides the line throwing the exception, so you can go there to narrow down what is missing.  
-*Declaring* a reference variable does not automatically assign it an appropriate value.  
+:::info
+Declaring a reference variable does not automatically assign it an appropriate value.
+:::
 
 #### Resolution
 
-1. **Either:**
-
-    Assign a reference to the variable  
+1. **Either:**  
+    Assign a reference to the variable
     - Drag and drop the reference in the component's inspector. (If your field is serialized by Unity)  
     - Manually assign the reference in a method like `Awake` or `Start` using [GetComponent](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html)
     - Initialise the variable with [AddComponent](https://docs.unity3d.com/ScriptReference/GameObject.AddComponent.html) or `new`.
@@ -16,9 +17,9 @@ The error provides the line throwing the exception, so you can go there to narro
     **Or:**  
 
     Check whether the reference is not null before trying to access it  
-    `if(example != null)`  
-3. Ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.  
-4. Check prior methods make correct assumptions. For example, `GetComponent<Example>()` will return `null` if an `Example` component is not attached to the same GameObject.  
+    `if(example != null)`
+2. Ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.
+3. Check prior methods make correct assumptions. For example, `GetComponent<Example>()` will return `null` if an `Example` component is not attached to the same GameObject.  
 
 #### Troubleshooting:
 When troubleshooting which variable is null, be aware that only reference types can be null. Ie. `class`, `interface`, or `delegate` variables.  

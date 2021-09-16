@@ -18,7 +18,6 @@ We can go one step further and make our entire class generic, enabling us to eas
 Usage:  
 <<Code/Variables/Singleton 4.rtf>>
 
----
 #### Further considerations
 For more advanced users you may want to be using [Configurable Enter Play Mode](https://docs.unity3d.com/2019.3/Documentation/Manual/ConfigurableEnterPlayMode.html), which requires code to manually reset statics across different meta states in the editor.  
 To implement singletons that properly work with this, more advanced inheritance hierarchies that use [RuntimeInitializeOnLoadMethod](https://docs.unity3d.com/ScriptReference/RuntimeInitializeOnLoadMethodAttribute.html) with [SubsystemRegistration](https://docs.unity3d.com/ScriptReference/RuntimeInitializeLoadType.SubsystemRegistration.html) to reset the static members of the singleton are required.

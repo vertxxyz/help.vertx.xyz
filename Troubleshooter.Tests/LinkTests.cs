@@ -23,9 +23,8 @@ namespace Troubleshooter.Tests
 		
 		[Theory]
 		[ClassData(typeof(PageData))]
-		public void ValidateLinks(string name, string path)
+		public void ValidateLinks(string name, string path, string text)
 		{
-			string text = File.ReadAllText(path);
 			using (new AssertionScope())
 			{
 				foreach ((string fullPath, _) in PageUtility.LinksAsFullPaths(text, path))
@@ -35,9 +34,8 @@ namespace Troubleshooter.Tests
 
 		[Theory]
 		[ClassData(typeof(PageData))]
-		public void ValidateEmbeds(string name, string path)
+		public void ValidateEmbeds(string name, string path, string text)
 		{
-			string text = File.ReadAllText(path);
 			using (new AssertionScope())
 			{
 				foreach ((string localPath, _) in PageUtility.EmbedsAsLocalEmbedPaths(text))
@@ -47,9 +45,8 @@ namespace Troubleshooter.Tests
 		
 		[Theory]
 		[ClassData(typeof(PageData))]
-		public void ValidateImages(string name, string path)
+		public void ValidateImages(string name, string path, string text)
 		{
-			string text = File.ReadAllText(path);
 			using (new AssertionScope())
 			{
 				string directory = Path.GetDirectoryName(path);
