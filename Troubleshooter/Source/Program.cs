@@ -51,8 +51,7 @@ namespace Troubleshooter
 					{
 						case ConsoleKey.B:
 							// Build Site
-							SiteBuilder.Build(arguments);
-							Console.WriteLine("Successful Build.");
+							Console.WriteLine(SiteBuilder.Build(arguments) ? "Successful Build." : "Build Failed.");
 							break;
 						case ConsoleKey.C:
 							// Content Build

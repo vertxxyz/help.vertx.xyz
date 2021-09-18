@@ -1,0 +1,35 @@
+table {
+	margin: 20px 20px 20px 0;
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 12px;
+}
+
+td.tableYes {
+	background-color: rgba(124, 220, 54, 0.8);
+}
+
+td.tableNo {
+	background: repeating-linear-gradient(-55deg, rgb(42, 42, 42), rgb(42, 42, 42) 10px, transparent 10px, transparent 20px) fixed;
+}
+
+td.tableYes.highlight {
+	background-color: rgba(124, 220, 54, 1);
+	/*cursor: crosshair;*/
+}
+
+td.tableNo.highlight {
+	background: repeating-linear-gradient(-55deg, rgb(50, 50, 50), rgb(50, 50, 50) 10px, rgba(255, 255, 255, 0.05) 10px, rgba(255, 255, 255, 0.05) 20px) fixed;
+	/*cursor: crosshair;*/
+}
+
+th.highlight,
+td.highlight {
+	background-color: rgba(255, 255, 255, 0.2);
+}

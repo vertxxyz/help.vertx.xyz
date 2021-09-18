@@ -19,15 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (width > 700) return;
 			close(sidebar, overlay);
 		},
-		allowPageScroll:"auto",
-		excludedElements:$.fn.swipe.defaults.excludedElements+", code, pre, .editor-colors, " +
-			"p, h1, h2, h3, h4, h5, a, " +
+		allowPageScroll: "auto",
+		preventDefaultEvents: false,
+		excludedElements: $.fn.swipe.defaults.excludedElements + ", code, pre, .editor-colors, " +
 			".slider, .slider_container, .slider_knob, .slider_left_gutter, .slider_right_gutter"
 	});
 });
 
 function open(sidebar, overlay) {
-	if(sidebar.classList.contains("sidebar--open"))
+	if (sidebar.classList.contains("sidebar--open"))
 		return;
 	sidebar.classList.add(transitionClass);
 	setTimeout(function () {
@@ -38,7 +38,7 @@ function open(sidebar, overlay) {
 }
 
 function close(sidebar, overlay) {
-	if(!sidebar.classList.contains("sidebar--open"))
+	if (!sidebar.classList.contains("sidebar--open"))
 		return;
 	sidebar.classList.add(transitionClass);
 	setTimeout(function () {

@@ -8,15 +8,19 @@ namespace Troubleshooter
 	public class BuildScope : IDisposable
 	{
 		private readonly Arguments arguments;
+		private bool failedBuild;
 		public BuildScope(Arguments arguments)
 		{
 			this.arguments = arguments;
 			IOUtility.ResetRecording();
 		}
 
+		public void MarkBuildAsFailed() => failedBuild = true;
+
 		public void Dispose()
 		{
-			CleanupBuildOutput();
+			if(!failedBuild)
+				CleanupBuildOutput();
 			IOUtility.ResetRecording();
 		}
 

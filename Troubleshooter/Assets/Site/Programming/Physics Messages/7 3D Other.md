@@ -1,6 +1,6 @@
 ### Other Considerations for 3D Physics Messages
 #### Correct Colliders
-Ensure the dimension of the colliders is 3D.  
+Ensure the dimension of the colliders and rigidbodies are 3D.  
 Do not mix different types of colliders and messages.  
 2D and 3D collision systems are separate, and do not interact with each other.
 #### Collision Detection

@@ -6,27 +6,7 @@ This guide only attempts to communicate how to access values, and not how to wri
 
 #### SerializedObject in Editors
 
-```csharp
-public class Example : MonoBehaviour
-{
-    [SerializeField] private Data data;
-    [SerializeField] private float[] values;
-}
-
-[System.Serializable]
-public class Data
-{
-    public bool Active;
-    public Configuration Configuration;
-}
-
-[CreateAssetMenu]
-public class Configuration : ScriptableObject
-{
-    [SerializeField] private Color color;
-    [SerializeField] private Vector3 dimensions;
-}
-```
+<<Code/Editor/SerializedObject/Base.rtf>>  
 
 ```csharp
 [CustomEditor(typeof(Example))]

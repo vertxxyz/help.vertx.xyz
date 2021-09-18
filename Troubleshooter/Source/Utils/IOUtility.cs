@@ -7,8 +7,29 @@ using System.Text;
 namespace Troubleshooter
 {
 	public static class IOUtility
-	{		
-		public static void CopyAll(DirectoryInfo source, DirectoryInfo target, StringBuilder log = null)
+	{
+		public delegate FileResult.Validity FileProcessor(FileInfo file, out FileResult result);
+
+		public class FileResult
+		{
+			public enum Validity
+			{
+				Skipped, // The file is to be skipped (not copied)
+				NotProcessed, // The file is to be copied
+				Processed // Processed to a FileResult
+			}
+			
+			public string Content { get; }
+			public string FileNameWithExtension { get; }
+
+			public FileResult(string content, string fileNameWithExtension)
+			{
+				Content = content;
+				FileNameWithExtension = fileNameWithExtension;
+			}
+		}
+		
+		public static void CopyAll(DirectoryInfo source, DirectoryInfo target, StringBuilder log = null, FileProcessor fileProcessor = null)
 		{
 			if (string.Equals(source.FullName, target.FullName, StringComparison.Ordinal))
 				return;
@@ -18,8 +39,26 @@ namespace Troubleshooter
 			// Copy each file into it's new directory.
 			foreach (FileInfo fi in source.EnumerateFiles())
 			{
-				string destination = Path.GetFullPath(Path.Combine(target.ToString(), fi.Name));
-				if (!CopyFileIfDifferent(destination, fi)) continue;
+				FileResult result = null;
+				var validity = fileProcessor?.Invoke(fi, out result) ?? FileResult.Validity.NotProcessed;
+				string destination;
+				switch (validity)
+				{
+					case FileResult.Validity.Skipped:
+						continue; // Skipped, do not copy.
+					case FileResult.Validity.NotProcessed:
+						destination = Path.GetFullPath(Path.Combine(target.ToString(), fi.Name));
+						if (!CopyFileIfDifferent(destination, fi)) continue;
+						break;
+					case FileResult.Validity.Processed:
+						destination = Path.GetFullPath(Path.Combine(target.ToString(), result!.FileNameWithExtension));
+						File.WriteAllText(destination, result.Content);
+						recordedPaths.Add(destination);
+						break;
+					default:
+						throw new ArgumentOutOfRangeException();
+				}
+
 				log?.AppendLine(destination);
 			}
 
@@ -28,7 +67,7 @@ namespace Troubleshooter
 			{
 				DirectoryInfo nextTargetSubDir =
 					target.CreateSubdirectory(diSourceSubDir.Name);
-				CopyAll(diSourceSubDir, nextTargetSubDir, log);
+				CopyAll(diSourceSubDir, nextTargetSubDir, log, fileProcessor);
 			}
 		}
 

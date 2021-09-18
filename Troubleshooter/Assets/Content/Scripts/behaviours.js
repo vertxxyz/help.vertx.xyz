@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			window.bc_touch_down_state = false;
 		}, false);
 	}
-
 });
 
 window.TouchHandler = function (target, begin, move, end) {
@@ -282,7 +281,7 @@ const inversedEase = ease => x => 1 - ease(1 - x);
 
 const clearAndRedraw = (ctx, canvas, callback) => {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	if(callback != null)
+	if (callback != null)
 		callback();
 };
 

@@ -15,7 +15,7 @@ If your contribution does not fall within that, it's unlikely to have a place on
 
 ### Assets
 #### Content
-Static content that is copied directly to the output folder without modification.
+Static content that is copied directly to the output folder, only building the SCSS to CSS, otherwise without modification.
 #### Site
 Markdown content that is processed and converted to HTML, content is then copied into the output HTML folder with the hierarchy maintained.  
 #### Embeds

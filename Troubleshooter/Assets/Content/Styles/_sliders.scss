@@ -1,0 +1,53 @@
+.slider_container {
+	margin: 50px auto 0 auto;
+	padding: 25px 0 25px 0;
+	max-width: 380px;
+	width: 100%;
+	height: 0;
+	position: relative;
+}
+
+.long_slider .slider_container {
+	max-width: 600px;
+}
+
+.move_cursor {
+	cursor: move;
+}
+
+
+.slider_left_gutter,
+.slider_right_gutter,
+.slider_knob {
+	background: #777;
+}
+
+
+.slider_left_gutter, .slider_right_gutter {
+	position: absolute;
+	height: 4px;
+	top: -2px;
+	border-radius: 2px;
+}
+
+.slider_right_gutter {
+	opacity: 0.2;
+}
+
+.slider_knob_container {
+	width: 0;
+	height: 0;
+	top: 0;
+	position: absolute;
+}
+
+.slider_knob {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	cursor: ew-resize;
+	touch-action: none;
+	left: -20px;
+	top: -20px;
+}

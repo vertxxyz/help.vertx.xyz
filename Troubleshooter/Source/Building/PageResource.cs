@@ -109,10 +109,9 @@ namespace Troubleshooter
 					{
 						HtmlText = RtfUtility.RtfToHtml(File.ReadAllText(FullPath));
 					}
-					catch
+					catch (Exception e)
 					{
-						Console.WriteLine($"Error when parsing {FullPath} into RTF");
-						throw;
+						throw new BuildException(e, $"Error when parsing {FullPath} into RTF");
 					}
 
 					break;

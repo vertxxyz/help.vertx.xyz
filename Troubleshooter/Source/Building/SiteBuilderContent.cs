@@ -1,5 +1,10 @@
+using System;
 using System.IO;
+using System.Linq;
+using DartSassHost;
+using JavaScriptEngineSwitcher.V8;
 using Troubleshooter.Constants;
+using static Troubleshooter.IOUtility;
 
 namespace Troubleshooter
 {
@@ -8,7 +13,7 @@ namespace Troubleshooter
 		private static void BuildContent(Arguments arguments, Site site)
 		{
 			// Copy content to destination
-			IOUtility.CopyAll(new DirectoryInfo(site.ContentDirectory), new DirectoryInfo(arguments.Path));
+			CopyAll(new DirectoryInfo(site.ContentDirectory), new DirectoryInfo(arguments.Path), fileProcessor: FileProcessor);
 			
 			int siteContent = 0;
 			int totalContent = 0;
@@ -23,7 +28,7 @@ namespace Troubleshooter
 				string outputPath = ConvertRootFullSitePathToLinkPath(fullPath, extension, site, arguments);
 
 				totalContent++;
-				if (IOUtility.CopyFileIfDifferent(outputPath, new FileInfo(fullPath)))
+				if (CopyFileIfDifferent(outputPath, new FileInfo(fullPath)))
 					siteContent++;
 			}
 
@@ -39,11 +44,45 @@ namespace Troubleshooter
 				string outputPath = ConvertFullEmbedPathToLinkPath(fullPath, extension, site, arguments);
 				
 				totalContent++;
-				if(IOUtility.CopyFileIfDifferent(outputPath, new FileInfo(fullPath)))
+				if(CopyFileIfDifferent(outputPath, new FileInfo(fullPath)))
 					embedContent++;
 			}
 			
 			arguments.VerboseLog($"{siteContent + embedContent} content files were written to disk. ({totalContent} total)");
+		}
+
+		private static FileResult.Validity FileProcessor(FileInfo file, out FileResult result)
+		{
+			switch (file.Extension)
+			{
+				case ".scss" when file.Name[0] == '_':
+					result = null;
+					return FileResult.Validity.Skipped;
+				case ".scss":
+				{
+					try
+					{
+						CompilationOptions options = new CompilationOptions
+						{
+							IncludePaths = file.Directory!.GetFiles("_*.scss").Select(f => f.FullName).ToList(),
+							IndentType = IndentType.Tab, IndentWidth = 1
+						};
+
+						using SassCompiler sassCompiler = new SassCompiler(new V8JsEngineFactory(), options);
+						CompilationResult compilationResult = sassCompiler.CompileFile(file.FullName);
+						result = new FileResult(compilationResult.CompiledContent, Path.ChangeExtension(file.Name, "css"));
+					}
+					catch (Exception e)
+					{
+						throw new BuildException(e, "SCSS failure");
+					}
+
+					return FileResult.Validity.Processed;
+				}
+				default:
+					result = null;
+					return FileResult.Validity.NotProcessed;
+			}
 		}
 	}
 }
