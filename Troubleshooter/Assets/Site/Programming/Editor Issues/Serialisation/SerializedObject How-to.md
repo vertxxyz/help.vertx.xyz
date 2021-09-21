@@ -6,7 +6,7 @@ This guide only attempts to communicate how to access values, and not how to wri
 
 #### SerializedObject in Editors
 
-<<Code/Editor/SerializedObject/Base.rtf>>  
+<<Code/Editor/SerializedObject/Base.html>>  
 
 ```csharp
 [CustomEditor(typeof(Example))]

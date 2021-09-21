@@ -113,6 +113,9 @@ namespace Troubleshooter
 					case ".rtf":
 						page = new PageResource(fullPath, ResourceType.RichText, location);
 						break;
+					case ".html":
+						page = new PageResource(fullPath, ResourceType.Html, location);
+						break;
 					default:
 						// Ignore content that is not buildable page content.
 						page = null;

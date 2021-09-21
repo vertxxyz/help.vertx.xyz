@@ -2,6 +2,7 @@
 
 .editor-colors {
 	background-color: #262626;
+	color: #BDBDBD;
 	margin: 2px 10px 3px -15px;
 	margin-block-end: 1em;
 	padding: 1px 15px 1px 15px;
@@ -14,30 +15,32 @@ code {
 	background-color: #262626;
 	border-radius: 0.3em;
 	padding: 2px 5px 2px 5px;
+	font-size: 0.85em;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
 }
 
 pre {
 	font-family: 'JetBrains Mono', monospace;
 	font-size: 0.85em;
+
 	code {
 		display: block;
 		/*white-space: normal;*/
 		margin: 2px 10px 3px (base.$left-padding-negative + 15px);
 		padding: 10px 15px 10px 15px;
 		overflow-x: auto;
+		font-size: unset;
 	}
+
 	em {
 		font-family: 'JetBrains Mono Italic', monospace;
 		font-style: normal;
 	}
+
 	strong {
 		font-family: 'JetBrains Mono Bold', monospace;
 		font-style: normal;
 		font-weight: normal;
 	}
-}
-
-.token.comment {
-	font-family: 'JetBrains Mono Italic', monospace;
-	font-style: normal;
 }

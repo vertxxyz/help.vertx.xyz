@@ -13,7 +13,8 @@ namespace Troubleshooter
 	{
 		None,
 		Markdown,
-		RichText
+		RichText,
+		Html
 	}
 
 	public enum ResourceLocation
@@ -49,7 +50,7 @@ namespace Troubleshooter
 		/// Processed output html
 		/// </summary>
 		public string MarkdownText { get; set; }
-		
+
 		/// <summary>
 		/// Processed output html
 		/// </summary>
@@ -115,6 +116,9 @@ namespace Troubleshooter
 					}
 
 					break;
+				case ResourceType.Html:
+					HtmlText = HtmlUtility.Parse(File.ReadAllText(FullPath));
+					break;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
@@ -127,7 +131,7 @@ namespace Troubleshooter
 		/// </summary>
 		private void BuildMarkdown(Site site, PageResources allResources, MarkdownPipeline markdownPipeline)
 		{
-			if(MarkdownText == null)
+			if (MarkdownText == null)
 				ProcessMarkdown(File.ReadAllText(FullPath), site, allResources);
 			HtmlText = Location switch
 			{
@@ -193,7 +197,7 @@ namespace Troubleshooter
 				{
 					if (group.Value.StartsWith(embedsDirectory))
 						continue;
-					
+
 					stringBuilder.Append(allText[last..group.Index]);
 					string imagePath = image.FinaliseDirectoryPathOnly(); // The path explicitly mentioned in the markdown
 					string combinedPath = Path.Combine(directoryRoot, directory!, imagePath);

@@ -109,8 +109,7 @@ $small: base.$max-width;
 $large: 1200px;
 
 .contents {
-	padding: 40px 0 50px 10px;
-	padding-left: functions.between(30px, 100px + base.$left-padding, $small, $large);
+	padding: 40px 0 50px functions.between(30px, 110px + base.$left-padding, $small, $large);
 	max-width: calc(1200px + 20% + #{base.$left-padding});
 	flex-grow: 2;
 	flex-basis: 0;

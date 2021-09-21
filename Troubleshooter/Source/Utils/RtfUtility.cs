@@ -8,53 +8,85 @@ namespace Troubleshooter
 {
 	public static class RtfUtility
 	{
+		private static readonly Regex fontSizeRegex = new(@"font-size:\d+pt;", RegexOptions.Compiled);
+		private static readonly Regex tabsRegex = new(@"<span style=""display:inline-block;width:(\d+)px""></span>", RegexOptions.Compiled);
+		private static readonly Regex backgroundRegex = new(@"background:#\w{6};", RegexOptions.Compiled);
+		private static readonly Regex marginsRegex = new(@"margin:\d+;", RegexOptions.Compiled);
+		private static readonly Regex colorRegex = new(@"color:(#\w{6});", RegexOptions.Compiled);
+
 		public static string RtfToHtml(string rtf)
 		{
 			string html = Rtf.ToHtml(rtf);
-			//Get closing index of font div
+			// Get closing index of font div
 			int closing = IndexOfClosingChar(html, 0, '<', '>');
 			html = html.Substring(closing + 1, html.Length - 6 - (closing + 1)); //6 is "</div>".Length
-			html = Regex.Replace(html, @"font-size:\d+pt;", string.Empty);
-			html = Regex.Replace(html, @"margin:\d+;", string.Empty);
+			html = fontSizeRegex.Replace(html, string.Empty);
+			html = marginsRegex.Replace(html, string.Empty);
+			html = backgroundRegex.Replace(html, string.Empty);
+			// Replace all paragraphs with spans
 			html = html.Replace(@"<p style=""", @"<span style=""");
 			html = html.Replace("</p>", "</span>");
 			ReplaceTabsHack();
-			ReplaceHighlightHack();
 			ReplaceUnusedHack();
+			ReplaceColorsHack();
+			RemoveEmptyStyleHack();
 
 			html = string.Concat("<div class=\"editor-colors\"><pre>", html, "</pre></div>");
 
 			return html;
 
+			// Replace explicit width with spaces
 			void ReplaceTabsHack()
 			{
-				MatchCollection matchCollection = Regex.Matches(html, @"<span style=""display:inline-block;width:(\d+)px""></span>");
-
-				if (matchCollection.Count == 0)
+				html = StringUtility.ReplaceMatch(html, tabsRegex, (match, stringBuilder) =>
 				{
-					return;
-				}
-
-				StringBuilder stringBuilder = new StringBuilder(html.Length);
-				int endIndex = 0;
-				for (int i = 0; i < matchCollection.Count; i++)
-				{
-					Match match = matchCollection[i];
-					stringBuilder.Append(html.Substring(endIndex, match.Index - endIndex));
 					stringBuilder.Append("<span>");
-					stringBuilder.Append(' ', (int) Math.Round(int.Parse(match.Groups[1].Value) * 0.083f));
+					stringBuilder.Append(' ', (int)Math.Round(int.Parse(match) * 0.083f));
 					stringBuilder.Append("</span>");
-					endIndex = match.Index + match.Length;
-				}
-
-				stringBuilder.Append(html[endIndex..]);
-
-				html = stringBuilder.ToString();
+				}, 1);
 			}
 
-			void ReplaceHighlightHack() => html = html.Replace("background:#133F2F;", string.Empty);
+			void ReplaceUnusedHack() => html = html.Replace("color:#787878;", string.Empty);
 
-			void ReplaceUnusedHack() => html = html.Replace("color:#787878;", "color:#BDBDBD;");
+			// Replace all the explicit colour styles with HTML instead
+			void ReplaceColorsHack()
+			{
+				html = StringUtility.ReplaceMatch(html, colorRegex, (match, stringBuilder) =>
+				{
+					if (HtmlUtility.ColorToClassLookup.TryGetValue(match.Groups[1].Value, out string className))
+					{
+						int startOfTag = LastIndexOf(stringBuilder, '<') + 1;
+						int nextSpace = NextIndexOf(stringBuilder, ' ', startOfTag);
+						stringBuilder.Insert(nextSpace, " class=\"");
+						stringBuilder.Insert(nextSpace + 8, className);
+						stringBuilder.Insert(nextSpace + 8 + className.Length, "\"");
+					}
+					else
+					{
+						// - do nothing, just re-append the match
+						stringBuilder.Append(match.Value);
+					}
+				});
+			}
+
+			// Remove empty style blocks
+			void RemoveEmptyStyleHack() => html = html.Replace(@" style=""""", string.Empty);
+		}
+
+		private static int LastIndexOf(StringBuilder stringBuilder, char character)
+		{
+			int index = stringBuilder.Length - 1;
+			while (index >= 0 && stringBuilder[index] != character)
+				index--;
+			return index;
+		}
+
+		private static int NextIndexOf(StringBuilder stringBuilder, char character, int start)
+		{
+			int index = start;
+			while (index >= 0 && index < stringBuilder.Length && stringBuilder[index] != character)
+				index++;
+			return index;
 		}
 
 		private static int IndexOfClosingChar(string expression, int index, char openChar, char closeChar)

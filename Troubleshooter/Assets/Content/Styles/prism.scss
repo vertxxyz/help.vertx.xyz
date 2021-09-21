@@ -67,11 +67,21 @@ pre[class*="language-"] code {
 	white-space: normal;
 }
 
+.token.commentColorOnly {
+	color: #85C46C;
+}
+
 .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
 	color: #85C46C;
+	font-family: 'JetBrains Mono Italic', monospace;
+	font-style: normal;
+}
+
+.token.body {
+	color: #D0D0D0;
 }
 
 .token.punctuation {
@@ -127,10 +137,19 @@ pre[class*="language-"] code {
 	color: #6C95EB;
 }
 
+.token.member {
+	color: #66C3CC;
+}
+
 .token.regex,
 .token.important {
 	color: #FF9259;
 }
+
+.token.struct {
+	color: #E1BFFF;
+}
+
 
 .token.important,
 .token.bold {

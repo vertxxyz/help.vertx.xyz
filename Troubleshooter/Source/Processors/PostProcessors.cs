@@ -99,7 +99,7 @@ namespace Troubleshooter
 					//</div>
 				}
 				stringBuilder.Append("</div>");
-			});
+			}, 0);
 		}
 	}
 }
