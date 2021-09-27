@@ -1,10 +1,10 @@
-### Open UPM
-#### Description
+## Open UPM
+### Description
 
 Open UPM is a package registry that enables developers to easily host and update packages from git.  
 Users can add scopes, and simply add and update packages as if they were hosted officially.  
 
-#### Adding Packages
+### Adding Packages
 
 - Open **Edit | Project Settings | Package Manager**
 - Add a new Scoped Registry:
@@ -21,5 +21,5 @@ Users can add scopes, and simply add and update packages as if they were hosted 
 - Paste the package name (ie. `com.company.package`)
 - Click <kbd>Add</kbd>
 
-#### Updating Packages
+### Updating Packages
 Open UPM packages can be updated as normal through the package manager interface.

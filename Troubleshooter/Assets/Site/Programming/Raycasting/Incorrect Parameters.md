@@ -1,13 +1,13 @@
-### Incorrect Parameters
-#### Description
+## Incorrect Parameters
+### Description
 Occasionally I see a `LayerMask` passed into the incorrect parameter of a `Raycast` function.
 For example, if your function call looks like this:
 ```csharp
 if (Physics.Raycast(origin, direction, out hit, layerMask)) {
 ```
-Then this is **incorrect**, as the 4th parameter for this overload is `maxDistance`, and not a layer mask. Seeing as LayerMasks are implicitly convertable to ints, and ints are to floats, this mistake will not create a compile error.
+Then this is **incorrect**, as the 4th parameter for this overload is `maxDistance`, and not a layer mask. Seeing as LayerMasks are implicitly convertable to ints, and ints are to floats, this mistake will not create a compiler error.
 
-#### Resolution
+### Resolution
 Ensure that the correct parameters are used.  
 The parameters for the functions are listed in [the documentation](https://docs.unity3d.com/ScriptReference/Physics.Raycast.html).  
 Eg.  

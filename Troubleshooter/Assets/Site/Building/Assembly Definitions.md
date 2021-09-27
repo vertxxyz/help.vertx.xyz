@@ -1,6 +1,6 @@
 *[asmdefs]: Assembly Definitions
 *[asmdef]: Assembly Definition
-### Assembly Definitions
+## Assembly Definitions
 :::warning
 Editor folders **do not** function under assembly definitions
 :::

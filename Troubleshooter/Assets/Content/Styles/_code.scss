@@ -44,3 +44,11 @@ pre {
 		font-weight: normal;
 	}
 }
+
+.error-underline {
+	background: url(../Images/code-error-underline.svg) repeat-x bottom left;
+}
+
+.hint-underline {
+	background: url(../Images/code-hint-underline.svg) repeat-x bottom left;
+}

@@ -46,6 +46,7 @@ namespace Troubleshooter
 #endif
 					Console.WriteLine("Other - Exit");
 					var key = Console.ReadKey().Key;
+					Console.WriteLine();
 					Console.Clear();
 					switch (key)
 					{

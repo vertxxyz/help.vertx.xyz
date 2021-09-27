@@ -1,4 +1,4 @@
-### Render Queue
+## Render Queue
 Render Queue determines the order that objects are rendered.  
 `Background` is 1000, `Geometry` is 2000, `AlphaTest` is 2450, `Transparent` is 3000 and `Overlay` is 4000.  
 Shaders can define defaults in their subshader tags, which can also contain offsets from the keywords, eg. `Tags { "Queue" = "Transparent+1" }`. See [subshader tags](https://docs.unity3d.com/Manual/SL-SubShaderTags.html) for more information.  

@@ -1,10 +1,10 @@
-### SerializedObject: How-to
-#### Description
+## SerializedObject: How-to
+### Description
 SerializedObject is a window into Unity's serialized datastructures. It exposes SerializedProperties, objects used to access items in the serialization hierarchy.  
 [SerializedObject](https://docs.unity3d.com/ScriptReference/SerializedObject.html) and [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) are the best way to access and modify Unity-serialized structures; with automatic undo support, multi-object editing, and simplified functions for Editor UI.  
 This guide only attempts to communicate how to access values, and not how to write entire editors.
 
-#### SerializedObject in Editors
+### SerializedObject in Editors
 
 <<Code/Editor/SerializedObject/Base.html>>  
 
@@ -55,7 +55,7 @@ public override void OnInspectorGUI()
 }
 ```
 
-#### [SerializedProperty.FindPropertyRelative](https://docs.unity3d.com/ScriptReference/SerializedProperty.FindPropertyRelative.html)
+### [SerializedProperty.FindPropertyRelative](https://docs.unity3d.com/ScriptReference/SerializedProperty.FindPropertyRelative.html)
 Going levels deeper requires `FindPropertyRelative`.
 
 ```csharp
@@ -70,14 +70,14 @@ private void OnEnable()
 }
 ```
 
-#### Values
+### Values
 
 You **cannot** retrieve the C# instance associated with a SerializedProperty that is not the bottom of the serialization hierarchy. So, in our example, we cannot retrieve the value for `data` from its SerializedProperty, we can only go deeper and get the value of the last descendents.  
 Once at a SerializedProperty that is at the bottom there are predefined *Value* properties that can be used to access the value Unity has serialized.  
 See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) Properties documentation to find the appropriate Value property; `floatValue`, `stringValue`, `objectReferenceValue`, etc.
 
-#### Arrays
-##### Iteration & Access
+### Arrays
+#### Iteration & Access
 Members in arrays are SerializedProperties themselves, you can iterate an array using the `arraySize` limit, eg:
 ```csharp
 for (int i = 0; i < values.arraySize; i++)
@@ -86,7 +86,7 @@ for (int i = 0; i < values.arraySize; i++)
     // element.floatValue is now accessible
 }
 ```
-##### Adding Elements
+#### Adding Elements
 Adding elements to the end of the array
 ```csharp
 // Increase the size of the array
@@ -96,13 +96,13 @@ SerializedProperty lastElement = values.GetArrayElementAtIndex(values.arraySize 
 ```
 
 Inserting elements into the array is achieved with [InsertArrayElementAtIndex](https://docs.unity3d.com/ScriptReference/SerializedProperty.InsertArrayElementAtIndex.html).
-##### Removing Elements
+#### Removing Elements
 Use [DeleteArrayElementAtIndex](https://docs.unity3d.com/ScriptReference/SerializedProperty.DeleteArrayElementAtIndex.html) to remove an element at an array index.  
 If the type is Object Reference you may need to set [objectReferenceValue](https://docs.unity3d.com/ScriptReference/SerializedProperty-objectReferenceValue.html) to null, or else a call to this method will only nullify the reference and not remove the element.  
 
 
 
-#### Objects
+### Objects
 Every new UnityEngine.Object type in the serialization hierarchy is a new SerializedObject. This means that using `FindPropertyRelative` will not iterate its children, as the children are a part of a different hierarchy.  
 To iterate the children of another object you need to instance a new SerializedObject.
 
@@ -163,7 +163,7 @@ private void OnDisable()
 }
 ```
 
-#### Manual Property Iteration
+### Manual Property Iteration
 Serialized Property is actually an iterator, and in more advanced setups can be used as a part of a loop to retrieve all children of a property.  
 
 ```csharp

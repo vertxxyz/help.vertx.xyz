@@ -109,7 +109,9 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
 					/*contents.animate({
 				        scrollTop: $(hash).offset().top
 				    }, 400);*/
-					$(hash).get(0).scrollIntoView()
+					const hashElement = document.getElementById(hash.substring(1));
+					if(hashElement == null) return;
+					hashElement.scrollIntoView();
 				}
 			});
 			sidebarContents.load(`HTML/${value}_sidebar.html`, function (response, status, xhr) {

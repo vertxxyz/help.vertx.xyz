@@ -6,36 +6,36 @@
 [Error Dialogs](Common/Error%20Dialogs.md)  
 
 ## Programming
-#### General
+### General
 [IDE Configuration](Programming/IDE%20Configuration.md)  
 [Variables](Programming/Variables.md)  
 [Scripts](Programming/Scripts/Scripts.md)  
 [Debugging](Programming/Debugging.md)  
-#### Errors & Warnings
+### Errors & Warnings
 [Common Errors](Programming/Common%20Errors.md)  
 [Common Warnings](Programming/Common%20Warnings.md)  
 [Error Dialogs](Common/Error%20Dialogs.md)
-#### Input
+### Input
 [Common Input Issues](Programming/Common%20Input%20Issues.md)  
-#### Physics  
+### Physics  
 [Physics Messages](Programming/Physics%20Messages.md)  
 [Raycasting](Programming/Raycasting.md)  
 [Character Controllers](Programming/Physics/Character%20Controllers.md)  
-#### Assets
+### Assets
 [Resources](Programming/Resources.md)  
 [AssetDatabase](Programming/Editor%20Issues/AssetDatabase.md)  
-#### Specifics
+### Specifics
 [Color](Programming/Specifics/Color.md)  
 [Coroutines](Programming/Coroutines/Coroutines.md)  
 [Parsing Input Strings](Programming/Specifics/Parsing.md)  
 [Random](Programming/Specifics/Random.md)  
 [ScreenToWorldPoint](Programming/Specifics/ScreenToWorldPoint.md)  
-#### Editor Extensions  
+### Editor Extensions  
 [Property Drawers](Programming/Editor%20Issues/Property%20Drawers.md)  
 [Property Decorators](Programming/Editor%20Issues/Property%20Decorators.md)  
 [Custom Inspectors](Programming/Editor%20Issues/Custom%20Inspectors.md)  
 [Editor Windows](Programming/Editor%20Issues/Editor%20Windows.md)  
-#### DOTS
+### DOTS
 [Job System / Burst](Programming/Jobs%20And%20Burst.md)  
 
 ## Building

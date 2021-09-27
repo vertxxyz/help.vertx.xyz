@@ -1,4 +1,4 @@
-### Variable Visibility with Errors
+## Variable Visibility with Errors
 
 <<General/Errors.md>>
 This means that any changes you have made to your scripts will not display.  

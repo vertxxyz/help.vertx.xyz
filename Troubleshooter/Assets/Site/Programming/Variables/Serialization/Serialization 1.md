@@ -1,4 +1,4 @@
-### Debug Mode
+## Debug Mode
 
 Unity's Inspector has multiple modes to view content.  
 One option is called **Debug** mode. To enable debug, find the dropdown in the top right of the Inspector and switch from Normal to Debug.  

@@ -1,10 +1,10 @@
 <<Abbreviations/SRP.md>>
-### Render Pipeline Compatibility
-#### Description
+## Render Pipeline Compatibility
+### Description
 Shader Graph is only compatible with Universal Rendering Pipeline (formerly LWRP), and High Definition Rendering Pipeline.  
 The built-in render pipeline **does not** support Shader Graph.
 
-#### Resolution
+### Resolution
 
 - Switch render pipelines to use Shader Graph. This is generally only advisable at the start of a project with an understanding of the repercussions associated with using one.
     - [Switch to URP](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@latest/index.html?subfolder=/manual/InstallingAndConfiguringURP.html)  

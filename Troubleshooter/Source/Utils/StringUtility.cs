@@ -23,7 +23,7 @@ namespace Troubleshooter
 			stringBuilder.Append(text[last..]);
 			return stringBuilder.ToString();
 		}
-		
+
 		public static string ReplaceMatch(string text, Regex pattern, Action<Match, StringBuilder> matchRemap)
 		{
 			int last = 0;
@@ -49,6 +49,25 @@ namespace Troubleshooter
 			text = text.Replace("%20", "-");
 			text = text.Replace(" ", "-");
 			return text;
+		}
+
+		public static int LastIndexOf(this StringBuilder stringBuilder, char character)
+			=> LastIndexOf(stringBuilder, character, stringBuilder.Length - 1);
+
+		public static int LastIndexOf(this StringBuilder stringBuilder, char character, int start)
+		{
+			int index = start;
+			while (index >= 0 && stringBuilder[index] != character)
+				index--;
+			return index;
+		}
+
+		public static int NextIndexOf(this StringBuilder stringBuilder, char character, int start)
+		{
+			int index = start;
+			while (index >= 0 && index < stringBuilder.Length && stringBuilder[index] != character)
+				index++;
+			return index;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-### General Shader Errors
+## General Shader Errors
 
 Firstly, check if you're actually outputting magenta!  
 

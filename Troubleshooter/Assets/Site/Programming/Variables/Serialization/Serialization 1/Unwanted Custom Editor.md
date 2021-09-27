@@ -1,9 +1,9 @@
-### Variables with Custom Editors
+## Variables with Custom Editors
 
-#### Description
+### Description
 If a variable is only appearing in debug mode the Component or Scriptable Object you are inspecting must have a custom inspector, or the variable you're looking at may have a custom drawer.
 
-#### Resolution
+### Resolution
 First, search your project for inspectors (**Editor**) that match your Component or Scriptable Object.
 They are usually named with the same name as the script, except have "Editor" or "Inspector" appended.  
 

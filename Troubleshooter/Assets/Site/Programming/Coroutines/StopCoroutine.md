@@ -1,8 +1,8 @@
-### StopCoroutine
-#### Description
+## StopCoroutine
+### Description
 [StopCoroutine](https://docs.unity3d.com/ScriptReference/MonoBehaviour.StopCoroutine.html) must be paired with an argument generated from the `StartCoroutine` call.  
 
-#### Resolution
+### Resolution
 Properly cache a `Coroutine` object from the original `StartCoroutine` call.  
 
 <<Code/Coroutines/StopCoroutine.rtf>>

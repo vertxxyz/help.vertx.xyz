@@ -1,9 +1,9 @@
-### Occlusion Setup
-#### Description
+## Occlusion Setup
+### Description
 Occlusion culling is made up of both Occluders and Occludees.  
 Occluders block visibility, and Occludees are visible based on them.
 
-#### Resolution
+### Resolution
 Selectively mark occluders as Occluder Static in the **Object** tab of the **Occlusion Window**.  
 You can additionally mark some occludees as Occludee Static in the same window, this is for objects that do not move.    
 You can filter the scene hierarchy to contain only Renderers which sometimes helps with this process.  

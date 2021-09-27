@@ -1,4 +1,4 @@
-### Collision Matrix
+## Collision Matrix
 
 If your two colliders in question do not match in the matrix then you **will not** get collision messages
 

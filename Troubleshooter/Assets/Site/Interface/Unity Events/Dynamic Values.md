@@ -1,10 +1,10 @@
-### Unity Event Dynamic Values
-#### Description
+## Unity Event Dynamic Values
+### Description
 Certain Unity Events pass parameters, often these are from UI components like a Scrollbar, Input Field, or Toggle.  
 Unity Events that send values can do so dynamically or statically.  
 Static values are set in the inspector, and dynamic values are passed via code.
 
-#### Resolution
+### Resolution
 
 1. Ensure that the target method takes the same parameter that the UnityEvent sends  
 

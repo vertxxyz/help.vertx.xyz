@@ -1,4 +1,4 @@
-### Visual Debugging
+## Visual Debugging
 
 To debug the whereabouts of rays you should draw the ray using `Debug.DrawRay`.  
 This can help validate assumptions about spaces, and what the ray is reaching.  

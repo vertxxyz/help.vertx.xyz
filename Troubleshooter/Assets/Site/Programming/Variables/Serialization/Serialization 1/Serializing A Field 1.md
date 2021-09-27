@@ -1,4 +1,4 @@
-### Serializing a Field
+## Serializing a Field
 
 Ensure your declared variable is either marked with a `[SerializeField]` attribute:  
 <<Code/Serialization/SerializeField.rtf>>  

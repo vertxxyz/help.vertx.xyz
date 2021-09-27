@@ -1,4 +1,4 @@
-### IDE Configuration
+## IDE Configuration
 I need help configuring:
 - [Visual Studio](IDE%20Configuration/Visual%20Studio%20Configuration.md)  
 - [Visual Studio Code](IDE%20Configuration/Visual%20Studio%20Code%20Configuration.md)  

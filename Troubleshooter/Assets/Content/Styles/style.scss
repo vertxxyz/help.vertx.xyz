@@ -24,6 +24,10 @@ html, body {
 	line-height: 1.5em;
 }
 
+strong {
+	color: base.$bold-color;
+}
+
 @font-face {
 	font-family: 'JetBrains Mono';
 	src: local("JetBrainsMono-Regular"),
@@ -49,7 +53,7 @@ html, body {
 
 hr {
 	border-top: 1px solid;
-	border-color: #808080;
+	border-color: #585858;
 	margin-block-start: 0.8em;
 	margin-block-end: 0.8em;
 	margin-left: base.$left-padding-negative;
@@ -149,8 +153,19 @@ li {
 	}
 }
 
+li::marker {
+	color: base.$bold-color;
+	font-weight: bold;
+}
+
 ol {
 	padding-inline-start: 40px - base.$left-padding;
+}
+
+div.footnotes {
+	border: 1px #ffffff4d solid;
+	padding: 0 20px;
+	margin-right: 25px;
 }
 
 kbd {
@@ -188,6 +203,7 @@ figure {
 	p {
 		margin: 0;
 		display: flex;
+
 		img {
 			margin: 0;
 		}

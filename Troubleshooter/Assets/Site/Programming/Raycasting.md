@@ -1,4 +1,4 @@
-### Raycasting
+## Raycasting
 
 Raycasting requires physics colliders to work. You cannot raycast against raw meshes using the `Raycast` functions.  
 2D colliders cannot be hit by the `Physics.Raycast` functions, and require `Physics2D.Raycast` instead. 2D and 3D physics are entirely separate.

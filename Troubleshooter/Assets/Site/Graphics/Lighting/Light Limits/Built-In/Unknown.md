@@ -1,5 +1,5 @@
 <<Abbreviations/SRP.md>>
-### Light Limits - Built-in
+## Light Limits - Built-in
 
 Navigate to the [Graphics Settings](https://docs.unity3d.com/Manual/class-GraphicsSettings.html), **Edit | Project Settings | Graphics**.  
 Expand the [Tier Settings](https://docs.unity3d.com/Manual/class-GraphicsSettings.html#Tier) tab, and note the Rendering Path used under the tier level currently used with your platform.  

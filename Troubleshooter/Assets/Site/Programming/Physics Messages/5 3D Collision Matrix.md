@@ -1,4 +1,4 @@
-### Layer Collision Matrix
+## Layer Collision Matrix
 
 Unity's layer-based collision can exclude colliders and triggers from interacting with each other at all.  
 Check that the toggles in the project settings match with the two colliders in question.  

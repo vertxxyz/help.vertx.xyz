@@ -1,5 +1,5 @@
 <<Abbreviations/SRP.md>>
-### Diffusion Profile
+## Diffusion Profile
 In HDRP the default diffusion profile has a green tint to indicate it has not been properly set up.  
 Follow the instructions to properly set up a diffusion profile [here](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest/index.html?subfolder=/manual/Diffusion-Profile.html).
 

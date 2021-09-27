@@ -1,8 +1,8 @@
-### Manually Adding Packages
+## Manually Adding Packages
 Packages in a project are described by the `manifest.json` file in the *Packages* folder at the root of a project.  
 To manually add a package, find its registered package name, and a version of the package you know exists.  
 
-##### Example
+#### Example
 1. For the 2D Pixel Perfect package, you would navigate to its [documentation](https://docs.unity3d.com/Packages/com.unity.2d.pixel-perfect@latest/)[^1], and note the url contains `com.unity.2d.pixel-perfect`.  
     A package name is always in this format, `<domain-name-extension>.<company-name>.<package-name>`.  
     Some packages will have installation instructions in their documentation, and it's important to exhaust that information first.  

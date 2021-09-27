@@ -55,8 +55,8 @@ namespace Troubleshooter
 				{
 					if (HtmlUtility.ColorToClassLookup.TryGetValue(match.Groups[1].Value, out string className))
 					{
-						int startOfTag = LastIndexOf(stringBuilder, '<') + 1;
-						int nextSpace = NextIndexOf(stringBuilder, ' ', startOfTag);
+						int startOfTag = stringBuilder.LastIndexOf('<') + 1;
+						int nextSpace = stringBuilder.NextIndexOf(' ', startOfTag);
 						stringBuilder.Insert(nextSpace, " class=\"");
 						stringBuilder.Insert(nextSpace + 8, className);
 						stringBuilder.Insert(nextSpace + 8 + className.Length, "\"");
@@ -71,22 +71,6 @@ namespace Troubleshooter
 
 			// Remove empty style blocks
 			void RemoveEmptyStyleHack() => html = html.Replace(@" style=""""", string.Empty);
-		}
-
-		private static int LastIndexOf(StringBuilder stringBuilder, char character)
-		{
-			int index = stringBuilder.Length - 1;
-			while (index >= 0 && stringBuilder[index] != character)
-				index--;
-			return index;
-		}
-
-		private static int NextIndexOf(StringBuilder stringBuilder, char character, int start)
-		{
-			int index = start;
-			while (index >= 0 && index < stringBuilder.Length && stringBuilder[index] != character)
-				index++;
-			return index;
 		}
 
 		private static int IndexOfClosingChar(string expression, int index, char openChar, char closeChar)

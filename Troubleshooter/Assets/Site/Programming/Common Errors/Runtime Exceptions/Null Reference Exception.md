@@ -1,12 +1,12 @@
-### Null Reference Exception
-#### Description
+## Null Reference Exception
+### Description
 A `NullReferenceException` or NRE, occurs when code tries to access a variable which isn’t set, or found.  
 The error provides the line throwing the exception, so you can go there to narrow down what is missing.  
 :::info
 Declaring a reference variable does not automatically assign it an appropriate value.
 :::
 
-#### Resolution
+### Resolution
 
 1. **Either:**  
     Assign a reference to the variable
@@ -21,7 +21,7 @@ Declaring a reference variable does not automatically assign it an appropriate v
 2. Ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.
 3. Check prior methods make correct assumptions. For example, `GetComponent<Example>()` will return `null` if an `Example` component is not attached to the same GameObject.  
 
-#### Troubleshooting:
+### Troubleshooting:
 When troubleshooting which variable is null, be aware that only reference types can be null. Ie. `class`, `interface`, or `delegate` variables.  
 Access is denoted by the `.` character (member access), `[]` (array element or indexer access), or `()` (invocation.)  
 On the line throwing this exception, only variables that are being accessed via one of these methods are relevant, as only attempting to *use* a null variable will throw an NRE.  

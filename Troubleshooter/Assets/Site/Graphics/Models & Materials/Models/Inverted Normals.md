@@ -1,10 +1,10 @@
-### Inverted Normals
+## Inverted Normals
 
-#### Description
+### Description
 Most materials in Unity will render single-sided. This is unlike the defaults of many modelling programs.
 The direction of model faces is determined by the winding order of the vertices that make up a triangle.
 
-#### Resolution
+### Resolution
 Research how to **invert/flip normals** in your modelling program. Additional key words to search for are **face normals** and **backface culling**.  
 
 ^^^

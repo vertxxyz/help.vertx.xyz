@@ -1,4 +1,4 @@
-#### Contents
+### Contents
 - [Interface](#interface)
 - [Programming](#programming)
     - [General](#general)
@@ -17,11 +17,11 @@
 - [Audio](#audio)
 - [Package Manager](#package-manager)
 
-#### Resources
+### Resources
 - [Collision Action Matrix](Info/Collision%20Matrix.md)
 - [Learning Bitmasks](Info/Bitmasks.md)
   
-#### External Resources
+### External Resources
 - [Unity Learn](http://learn.unity.com/)
 - [Unity Manual](https://docs.unity3d.com/Manual/)
 - [API Scripting Reference](https://docs.unity3d.com/ScriptReference/index.html)
@@ -29,6 +29,6 @@
 - [Unity Log Files](https://docs.unity3d.com/Manual/LogFiles.html)
 - [User-Contributed Notes](https://mvi.sh/notes/)
 
-#### Contributing
+### Contributing
 - [Github](https://github.com/vertxxyz/help.vertx.xyz)  
 - [Ko-fi](https://ko-fi.com/vertx)

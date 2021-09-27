@@ -1,8 +1,8 @@
-### Transparency Options
-#### Description
+## Transparency Options
+### Description
 Transparency is a troublesome topic for realtime rendering. As [previously mentioned](Transparent%20Materials.md), transparent materials do not have the luxury of being properly sorted, and there is currently no ideal solution to resolve the sorting of transparent materials in a realtime context.
 
-#### Resolution
+### Resolution
 There are many options for resolving transparency sorting problems while maintaining a transparent look:  
 
 1. [Switching to a Cutout material](Transparent%20To%20Cutout.md). Many material situations actually do not warrant a transparent shader. Foliage (leaves, grasses, and plants) is often treated as cutout. Take a close look at other games and see if you can utilise the same technique.  

@@ -1,4 +1,4 @@
-### 3D Audio Troubleshooting
+## 3D Audio Troubleshooting
 First, move the **Spacial Blend** slider on your Audio Source entirely to 2D.  
 If audio can now be heard, then either your Audio Listener is not inside the Audio Source's volume, or the 3D Sound Settings are incorrect.  
 You can find the Audio Listener by searching `t:AudioListener` in the Hierarchy view. Ensure that this transform is inside the sphere gizmos that are shown when selecting the Audio Source. Outside the outermost sphere is 0% volume, and the innermost is 100%. These are the **Min Distance** and **Max Distance** settings in the **3D Sound Settings** dropdown.

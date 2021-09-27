@@ -1,4 +1,4 @@
-### Scene Gizmo
+## Scene Gizmo
 
 The [Scene Gizmo](https://docs.unity3d.com/Manual/SceneViewNavigation.html) is an axis navigation tool in the top right of the Scene View window.  
 - Each axis arm can be clicked on to realign the view to that axis.  

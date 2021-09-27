@@ -20,16 +20,6 @@ h2 {
 
 h3 {
 	color: white;
-	background-color: #282828;
-	padding: 5px 15px 5px base.$left-padding;
-	margin-left: base.$left-padding-negative;
-	font-size: 1.3em;
-	line-height: 1em;
-	font-weight: 700;
-}
-
-h4 {
-	color: white;
 	background: #3C3C3C;
 	padding: 6px 8px 6px base.$left-padding;
 	margin-left: base.$left-padding-negative;
@@ -42,7 +32,7 @@ h4 {
 	border-bottom: 1px solid #191919;
 }
 
-h5 {
+h4 {
 	color: white;
 	padding: 0 8px 0 0;
 	font-size: 1.05em;

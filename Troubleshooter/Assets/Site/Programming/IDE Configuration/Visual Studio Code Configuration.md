@@ -1,5 +1,5 @@
 <<Abbreviations/UPM.md>>
-### Visual Studio Code Configuration
+## Visual Studio Code Configuration
 
 Ensure you have followed all of the configuration steps listed [here](https://code.visualstudio.com/docs/other/unity).  
 Where it mentions the External Tools preferences, these are **in Unity**.  

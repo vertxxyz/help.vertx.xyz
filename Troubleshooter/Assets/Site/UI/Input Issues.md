@@ -1,4 +1,4 @@
-### Input Issues With UI
+## Input Issues With UI
 Input in UGUI (Unity UI that uses a Canvas) requires multiple things to receive input events.  
 
 1. There must be an [EventSystem](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/EventSystem.html) in the scene.  

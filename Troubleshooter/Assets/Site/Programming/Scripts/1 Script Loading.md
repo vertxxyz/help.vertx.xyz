@@ -1,4 +1,4 @@
-### Class and Script Names
+## Class and Script Names
 
 **Save your Script**  
 First, ensure you have saved.  
