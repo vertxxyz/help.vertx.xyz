@@ -10,7 +10,7 @@ namespace Troubleshooter
 		private static readonly Regex pathRegex = new(@"]\(([\w /%.]+)\)", RegexOptions.Compiled);
 		private static readonly Regex linkRegex = new(@"]\((https?:\/\/[\w/%#?.@_\+~=&()]+)\)", RegexOptions.Compiled);
 		private static readonly Regex embedsRegex = new(@"<<([\w /%.]+)>>", RegexOptions.Compiled);
-		private static readonly Regex imagesRegex = new(@"!\[[^\]]*\]\((.*?)\s*(""(?:.*[^""])"")?\s*\)", RegexOptions.Compiled);
+		private static readonly Regex localImagesRegex = new(@"!\[[^\]]*\]\((?!http)(.*?)\s*(""(?:.*[^""])"")?\s*\)", RegexOptions.Compiled);
 		
 		/// <summary>
 		/// Parse markdown text looking for page links
@@ -59,13 +59,13 @@ namespace Troubleshooter
 			}
 		}
 		
-		public static IEnumerable<(string localPath, Group group)> ImagesAsRootPaths(string text)
+		public static IEnumerable<(string localPath, Group group)> LocalImagesAsRootPaths(string text, bool finalisePath = true)
 		{
-			MatchCollection matches = imagesRegex.Matches(text);
+			MatchCollection matches = localImagesRegex.Matches(text);
 			for (int i = 0; i < matches.Count; i++)
 			{
 				Group group = matches[i].Groups[1];
-				yield return (group.Value.FinalisePath(), group);
+				yield return (finalisePath ? group.Value.FinalisePath() : group.Value, group);
 			}
 		}
 

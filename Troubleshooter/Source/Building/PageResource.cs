@@ -193,7 +193,7 @@ namespace Troubleshooter
 				string directory = Path.GetDirectoryName(Site.FinalisePathWithRootIndex(FullPath, rootIndex));
 
 				int last = 0;
-				foreach ((string image, Group group) in PageUtility.ImagesAsRootPaths(allText))
+				foreach ((string image, Group group) in PageUtility.LocalImagesAsRootPaths(allText))
 				{
 					if (group.Value.StartsWith(embedsDirectory))
 						continue;

@@ -50,8 +50,11 @@ namespace Troubleshooter.Tests
 			using (new AssertionScope())
 			{
 				string directory = Path.GetDirectoryName(path);
-				foreach ((string localPath, _) in PageUtility.ImagesAsRootPaths(text))
-					testOutputHelper.WriteLine(HttpUtility.UrlPathEncode(Path.Combine(directory, localPath)));
+				foreach ((string localPath, _) in PageUtility.LocalImagesAsRootPaths(text, false))
+				{
+					string fullPath = Path.GetFullPath(Path.Combine(directory, localPath)).ToUnTokenized();
+					File.Exists(fullPath).Should().BeTrue();
+				}
 			}
 		}
 	}
