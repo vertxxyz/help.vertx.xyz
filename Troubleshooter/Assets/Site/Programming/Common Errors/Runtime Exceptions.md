@@ -10,6 +10,7 @@
 #### Runtime
 - [You are trying to create a MonoBehaviour using the 'new' keyword.](Runtime%20Errors/MonoBehaviourNew.md)  
 - ['Example' is missing the class attribute 'ExtensionOfNativeClass'!](../Scripts/1%20Script%20Loading.md)
+- [Tag: Example is not defined.](Runtime%20Errors/Undefined%20Tag.md)
 
 #### Editor
 These errors are only relevant to you if you are writing editor code:  

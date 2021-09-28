@@ -11,6 +11,7 @@ Ensure you are **not**:
 1. Calling `StopAllCoroutines` on the MonoBehaviour running your coroutine.
 2. Destroying the MonoBehaviour running the coroutine, including the GameObject that contains it.  
    This includes changing scenes and destroying the objects that way.
-3. Using `StopCoroutine` to halt the execution.
-4. Throwing any exception inside the coroutine.  
+3. Disabling the GameObject containing the MonoBehaviour running the coroutine.
+4. Using `StopCoroutine` to halt the execution.
+5. Throwing any exception inside the coroutine.  
    Exceptions will halt the execution of any method, and unless caught will entirely halt a coroutine.

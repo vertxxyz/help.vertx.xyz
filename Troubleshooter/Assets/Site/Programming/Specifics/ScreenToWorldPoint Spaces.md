@@ -12,4 +12,4 @@ Compare that position with the object you are positioning. For example, if your 
 If the canvas is **Screen Space - Camera**, then those object's positions will be world space, but their local positions will be in screen space.  
 
 If you continue to have issues with this function, simplify your logic and draw more rays to understand the issue.  
-In some specific cases you may find that the camera position has been overridden for a small portion of the frame time. An issue like this will not appear in the scene view, but can affect camera functions for that period of the frame. Drawing rays will indicate whether this is the case.
+In some specific cases you may find that the camera position has been overridden for a small portion of the frame time. An issue like this will not appear in the Scene view, but can affect camera functions for that period of the frame. Drawing rays will indicate whether this is the case.

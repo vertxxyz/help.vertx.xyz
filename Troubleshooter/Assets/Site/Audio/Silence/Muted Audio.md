@@ -1,5 +1,5 @@
 ## Muted Audio
-Ensure that **Mute Audio** is not toggled on in the **Game View**.
+Ensure that **Mute Audio** is not toggled on in the **Game view**.
 
 ![Mute Audio Toggle](mute-toggle.png)
 

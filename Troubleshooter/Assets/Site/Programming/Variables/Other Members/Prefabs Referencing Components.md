@@ -1,9 +1,9 @@
 ## Prefabs Referencing In-Scene Components
 :::info
-Assets cannot directly refer to Objects in scenes
+Assets cannot directly refer to Objects in Scenes
 :::
 
-If you want a prefab to refer to components in the scene, create a serialized reference to that component and pass it to the newly instanced prefab wherever you are instancing it.  
+If you want a prefab to refer to components in the Scene, create a serialized reference to that component and pass it to the newly instanced prefab wherever you are instancing it.  
 
 #### Example
 <<Code/Variables/Instancing Prefabs.rtf>>  

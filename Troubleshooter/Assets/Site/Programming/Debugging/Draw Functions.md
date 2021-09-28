@@ -1,7 +1,7 @@
 ## Draw Functions
 ### Description
 Unity's [Debug.DrawRay](https://docs.unity3d.com/ScriptReference/Debug.DrawRay.html) and [Debug.DrawLine](https://docs.unity3d.com/ScriptReference/Debug.DrawLine.html) are valuable tools for debugging 3D (and 2D) information.  
-By drawing lines in the scene and gameview you can validate assumptions about positions and directions used in code.
+By drawing lines in the Scene and Game view you can validate assumptions about positions and directions used in code.
 ### Usage
 Lines not drawn continuously will only appear for a single frame, to counteract this a duration can be provided as the fourth parameter.  
 Make sure that the variables used in your draw functions are the same as those used by the functionality you are debugging.  
