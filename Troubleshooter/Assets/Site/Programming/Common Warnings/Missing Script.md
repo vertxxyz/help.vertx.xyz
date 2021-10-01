@@ -10,4 +10,5 @@ Missing Scripts can mean a number of things:
 ### Resolution
 
 If the script is no longer relevant, remove the placeholder component from the GameObject.  
-Otherwise follow [these](../Scripts/1%20Script%20Loading.md) steps to sure the script is set up correctly and Unity is compiling the project.
+You can find the GameObject by clicking the warning in the Console window.  
+Otherwise follow [these](../Scripts/1%20Script%20Loading.md) steps to sure the script you expect to be functioning is set up correctly and Unity is compiling the project.

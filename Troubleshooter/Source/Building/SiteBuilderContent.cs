@@ -38,7 +38,7 @@ namespace Troubleshooter
 			foreach (var path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))
 			{
 				string extension = Path.GetExtension(path);
-				if(extension.Equals(".md") || extension.Equals(".rtf")) continue; // Ignore pages
+				if(extension.Equals(".md") || extension.Equals(".rtf") || extension.Equals(".html")) continue; // Ignore pages
 				
 				string fullPath = Path.GetFullPath(path);
 				string outputPath = ConvertFullEmbedPathToLinkPath(fullPath, extension, site, arguments);

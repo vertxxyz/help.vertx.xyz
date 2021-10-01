@@ -33,8 +33,8 @@ namespace Troubleshooter.Tests
 		{
 			using var assertionScope = new AssertionScope(name);
 			assertionScope.BecauseOf("Line breaks must be preceded by multiple newlines. Code blocks must be followed by multiple newlines.");
-			Assert.DoesNotMatch(lineBreak01Regex, text);
-			Assert.DoesNotMatch(lineBreak02Regex, text);
+			text.Should().NotMatch(lineBreak01Regex);
+			text.Should().NotMatch(lineBreak02Regex);
 		}
 
 		/// <summary>
@@ -45,9 +45,7 @@ namespace Troubleshooter.Tests
 		public void ValidateEmptyPage(string name, string path, string text)
 		{
 			using (new AssertionScope(name))
-			{
-				Assert.False(string.IsNullOrEmpty(text), "No page content found.");
-			}
+				text.Should().NotBeNullOrEmpty("Pages should have content");
 		}
 
 		private static readonly Regex footnoteRegex = new(@"\[\^(\d+)\]", RegexOptions.Compiled);
@@ -77,11 +75,12 @@ namespace Troubleshooter.Tests
 				foreach (Match match in footnotes)
 				{
 					int nextIndex = match.Index + match.Length;
+					int prevIndex = match.Index - 1;
 					FootnotePair pair;
-					if (nextIndex >= text.Length || text[nextIndex] != ':')
-						pair = FootnotePair.Source;
-					else
+					if (nextIndex < text.Length && text[nextIndex] == ':' && prevIndex >= 0 && text[prevIndex] == '\n')
 						pair = FootnotePair.Destination;
+					else
+						pair = FootnotePair.Source;
 
 					var value = match.Groups[1].Value;
 					if (!footnotePairs.TryGetValue(value, out FootnotePair oldPair))

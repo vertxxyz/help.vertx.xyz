@@ -25,10 +25,11 @@ namespace Troubleshooter.Tests
 		[ClassData(typeof(PageData))]
 		public void ValidateLinks(string name, string path, string text)
 		{
-			using (new AssertionScope())
+			using var scope = new AssertionScope();
+			scope.BecauseOf($"{name} is missing a link");
+			foreach ((string fullPath, _) in PageUtility.LinksAsFullPaths(text, path))
 			{
-				foreach ((string fullPath, _) in PageUtility.LinksAsFullPaths(text, path))
-					File.Exists(fullPath).Should().BeTrue($"\"{fullPath}\" does not exist - \"{name}\"");
+				new FileInfo(fullPath).Should().Exist();
 			}
 		}
 
@@ -53,7 +54,7 @@ namespace Troubleshooter.Tests
 				foreach ((string localPath, _) in PageUtility.LocalImagesAsRootPaths(text, false))
 				{
 					string fullPath = Path.GetFullPath(Path.Combine(directory, localPath)).ToUnTokenized();
-					File.Exists(fullPath).Should().BeTrue();
+					new FileInfo(fullPath).Should().Exist();
 				}
 			}
 		}

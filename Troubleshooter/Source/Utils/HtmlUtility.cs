@@ -38,7 +38,8 @@ namespace Troubleshooter
 			{ "#C9A26D", "token string" },
 			{ "#ED94C0", "token number" },
 			{ "#D0D0D0", "token body" },
-			{ "#BDBDBD", "token punctuation" }
+			{ "#BDBDBD", "token punctuation" },
+			{ "#FF5647", "token unknown" }
 		};
 		
 		public static readonly Dictionary<string, string> UnderlineColorToClassLookup = new()

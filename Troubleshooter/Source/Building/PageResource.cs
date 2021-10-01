@@ -5,7 +5,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using Markdig;
+using Markdig.Extensions.SelfPipeline;
+using Markdig.Parsers;
+using Markdig.Renderers;
+using Markdig.Renderers.Normalize;
+using Markdig.Syntax;
 using Troubleshooter.Constants;
+using Troubleshooter.Renderers;
 
 namespace Troubleshooter
 {
@@ -139,9 +145,30 @@ namespace Troubleshooter
 					// Embeds are not fully processed into HTML until they are built when embedded into site content.
 					// This is done because something like Abbreviations requires the abbreviation target to be processed at the same time as the source.
 					MarkdownText,
-				ResourceLocation.Site => HtmlPostProcessors.Process(Markdown.ToHtml(MarkdownPreProcessors.Process(MarkdownText), markdownPipeline)),
-				_ => throw new ArgumentOutOfRangeException()
+				ResourceLocation.Site => ToHtml(MarkdownText, markdownPipeline),
+				_ => throw new ArgumentOutOfRangeException(nameof(Location), Location, "Location was not handled.")
 			};
+		}
+		
+		private static string ToHtml(string markdown, MarkdownPipeline pipeline)
+		{
+			string markdownPreProcessed = MarkdownPreProcessors.Process(markdown);
+			
+			MarkdownPipeline GetPipeline()
+			{
+				var selfPipeline = pipeline.Extensions.Find<SelfPipelineExtension>();
+				return selfPipeline is not null ? selfPipeline.CreatePipelineFromInput(markdownPreProcessed) : pipeline;
+			}
+			
+			pipeline = GetPipeline();
+			
+			var document = MarkdownParser.Parse(markdownPreProcessed, pipeline);
+			using var rentedRenderer = pipeline.RentCustomHtmlRenderer();
+			CustomHtmlRenderer renderer = rentedRenderer.Instance;
+			
+			renderer.Render(document);
+			renderer.Writer.Flush();
+			return HtmlPostProcessors.Process(renderer.Writer.ToString() ?? string.Empty);
 		}
 
 		public void ProcessMarkdown(string text, Site site, PageResources allResources)

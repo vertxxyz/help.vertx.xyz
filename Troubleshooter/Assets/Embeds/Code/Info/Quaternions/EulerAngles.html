@@ -1,0 +1,38 @@
+<div id="code_block_1632984549078">
+    <style>
+		#code_block_1632984549078 ._style_default{background-color:#262626;}
+		#code_block_1632984549078 ._style_line{overflow:auto;line-height:1.2;height:22px;color:#d0d0d0;font-size:13px;padding:0;margin:0;font-family:JetBrains Mono,serif;}
+		#code_block_1632984549078 ._style_span{overflow:hidden;line-height:22px;position:relative;height:22px;display:inline-block;white-space:pre-wrap;padding:0;margin:0;vertical-align:top;}
+		/* layer:100  */
+		#code_block_1632984549078 ._style_0{color:#6c95eb;}
+		#code_block_1632984549078 ._style_1{color:#bdbdbd;}
+		#code_block_1632984549078 ._style_2{color:#85c46c;font-style:oblique;}
+		/* layer:1000  */
+		#code_block_1632984549078 ._style_3{color:#e1bfff;}
+		#code_block_1632984549078 ._style_4{color:#6c95eb;}
+		#code_block_1632984549078 ._style_5{color:#66c3cc;}
+		#code_block_1632984549078 ._style_6{color:#39cc8f;}
+		/* layer:3000  */
+		#code_block_1632984549078 ._style_7{color:#39cc8f;}
+		/* layer:3999  */
+		#code_block_1632984549078 ._style_8:before{top:63.63636363636363%;position:absolute;color:#85c46c;width:100%;font-size:5px;content:"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";}
+		/* layer:4000  */
+		#code_block_1632984549078 ._style_9:before{top:63.63636363636363%;position:absolute;color:#f5d86a;width:100%;font-size:5px;content:"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";}
+		/* layer:4001  */
+		#code_block_1632984549078 ._style_10{color:#787878;}
+		/* layer:5999  */
+		#code_block_1632984549078 ._style_11{background-color:#472b63;}
+    </style>
+    <div class="_style_default">
+        <p class="_style_line">
+            <span class="_style_span  _style_2">// The rotation as Euler angles in degrees.</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span  _style_0">public</span><span class="_style_span "> </span><span class="_style_span  _style_3">Vector3</span><span class="_style_span "> </span><span class="_style_span  _style_5 _style_9">eulerAngles</span><span class="_style_span "> </span><span class="_style_span  _style_1">{</span><span class="_style_span "> </span><span class="_style_span  _style_4 _style_7">get</span><span class="_style_span "> </span><span class="_style_span  _style_1 _style_10">{</span><span class="_style_span "> </span><span class="_style_span  _style_0 _style_8">return</span><span class="_style_span "> </span><span class="_style_span  _style_5">rotation</span><span class="_style_span  _style_1">.</span><span class="_style_span  _style_5">eulerAngles</span><span class="_style_span  _style_1">;</span><span class="_style_span "> </span><span class="_style_span  _style_1 _style_10">}</span><span class="_style_span "> </span><span class="_style_span  _style_4 _style_7">set</span><span class="_style_span "> </span><span class="_style_span  _style_1 _style_10">{</span><span class="_style_span "> </span><span class="_style_span  _style_5 _style_8">rotation</span><span class="_style_span "> </span><span class="_style_span  _style_1">=</span><span class="_style_span "> </span><span class="_style_span  _style_3">Quaternion</span><span class="_style_span  _style_1">.</span><span class="_style_span  _style_6">Euler</span><span class="_style_span  _style_1">(</span><span class="_style_span  _style_4">value</span><span class="_style_span  _style_1">);</span><span class="_style_span "> </span><span class="_style_span  _style_1 _style_10">}</span><span class="_style_span "> </span><span class="_style_span  _style_1">}</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span  _style_2">// The rotation as Euler angles in degrees relative to the parent transform&#39;s rotation.</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span  _style_0">public</span><span class="_style_span "> </span><span class="_style_span  _style_3">Vector3</span><span class="_style_span "> </span><span class="_style_span  _style_5 _style_9">localEulerAngles</span><span class="_style_span "> </span><span class="_style_span  _style_1 _style_11">{</span><span class="_style_span "> </span><span class="_style_span  _style_4 _style_7">get</span><span class="_style_span "> </span><span class="_style_span  _style_1 _style_10">{</span><span class="_style_span "> </span><span class="_style_span  _style_0 _style_8">return</span><span class="_style_span "> </span><span class="_style_span  _style_5">localRotation</span><span class="_style_span  _style_1">.</span><span class="_style_span  _style_5">eulerAngles</span><span class="_style_span  _style_1">;</span><span class="_style_span "> </span><span class="_style_span  _style_1 _style_10">}</span><span class="_style_span "> </span><span class="_style_span  _style_4 _style_7">set</span><span class="_style_span "> </span><span class="_style_span  _style_1 _style_10">{</span><span class="_style_span "> </span><span class="_style_span  _style_5 _style_8">localRotation</span><span class="_style_span "> </span><span class="_style_span  _style_1">=</span><span class="_style_span "> </span><span class="_style_span  _style_3">Quaternion</span><span class="_style_span  _style_1">.</span><span class="_style_span  _style_6">Euler</span><span class="_style_span  _style_1">(</span><span class="_style_span  _style_4">value</span><span class="_style_span  _style_1">);</span><span class="_style_span "> </span><span class="_style_span  _style_1 _style_10">}</span><span class="_style_span "> </span><span class="_style_span  _style_1 _style_11">}</span><span class="_style_span "></span></p>
+    </div>
+</div>

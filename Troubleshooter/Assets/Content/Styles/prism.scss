@@ -32,7 +32,6 @@ pre[class*="language-"] {
 	word-spacing: normal;
 	word-break: normal;
 	word-wrap: normal;
-	line-height: 1.5;
 
 	padding: 0;
 
@@ -150,6 +149,9 @@ pre[class*="language-"] code {
 	color: #E1BFFF;
 }
 
+.token.unknown {
+	color: #FF5647;
+}
 
 .token.important,
 .token.bold {

@@ -1,0 +1,40 @@
+<div id="code_block_1632881077580">
+    <style>
+		#code_block_1632881077580 ._style_default{background-color:#262626;}
+		#code_block_1632881077580 ._style_line{height:22px;padding:0;overflow:auto;font-size:13px;line-height:1.2;font-family:JetBrains Mono,serif;color:#d0d0d0;margin:0;}
+		#code_block_1632881077580 ._style_span{padding:0;height:22px;overflow:hidden;position:relative;white-space:pre-wrap;display:inline-block;line-height:22px;vertical-align:top;margin:0;}
+		/* layer:100  */
+		#code_block_1632881077580 ._style_0{color:#6c95eb;}
+		#code_block_1632881077580 ._style_1{color:#bdbdbd;}
+		#code_block_1632881077580 ._style_2{font-style:oblique;color:#85c46c;}
+		/* layer:1000  */
+		#code_block_1632881077580 ._style_3{color:#39cc8f;}
+		#code_block_1632881077580 ._style_4{color:#66c3cc;}
+		#code_block_1632881077580 ._style_5{color:#c191ff;}
+		#code_block_1632881077580 ._style_6{color:#bdbdbd;}
+		/* layer:1001  */
+		#code_block_1632881077580 ._style_7{font-weight:700;}
+		/* layer:5999  */
+		#code_block_1632881077580 ._style_8{background-color:#472b63;}
+    </style>
+    <div class="_style_default">
+        <p class="_style_line">
+            <span class="_style_span  _style_1 _style_8">[</span><span class="_style_span  _style_5">SerializeField</span><span class="_style_span  _style_1 _style_8">]</span><span class="_style_span "> </span><span class="_style_span  _style_0">private</span><span class="_style_span "> </span><span class="_style_span  _style_5">PrefabType</span><span class="_style_span "> </span><span class="_style_span  _style_4 _style_7">myPrefab</span><span class="_style_span  _style_1">;</span><span class="_style_span "> </span><span class="_style_span  _style_2">// Our prefab</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span  _style_1">[</span><span class="_style_span  _style_5">SerializeField</span><span class="_style_span  _style_1">]</span><span class="_style_span "> </span><span class="_style_span  _style_0">private</span><span class="_style_span "> </span><span class="_style_span  _style_5">ConfigType</span><span class="_style_span "> </span><span class="_style_span  _style_4 _style_7">configData</span><span class="_style_span  _style_1">;</span><span class="_style_span "> </span><span class="_style_span  _style_2">// An in-Scene Component to configure our instances with</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span  _style_0">void</span><span class="_style_span "> </span><span class="_style_span  _style_3">SpawnAndConfigurePrefab</span><span class="_style_span  _style_1">()</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span  _style_1 _style_8">{</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span ">	</span><span class="_style_span  _style_5">PrefabType</span><span class="_style_span "> </span><span class="_style_span  _style_6">prefabInstance</span><span class="_style_span "> </span><span class="_style_span  _style_1">=</span><span class="_style_span "> </span><span class="_style_span  _style_3">Instantiate</span><span class="_style_span  _style_1">(</span><span class="_style_span  _style_4">myPrefab</span><span class="_style_span  _style_1">);</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span ">	</span><span class="_style_span  _style_2">// Configure the newly created instance with the in-Scene reference</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span ">	</span><span class="_style_span  _style_6">prefabInstance</span><span class="_style_span  _style_1">.</span><span class="_style_span  _style_4">Data</span><span class="_style_span "> </span><span class="_style_span  _style_1">=</span><span class="_style_span "> </span><span class="_style_span  _style_4">configData</span><span class="_style_span  _style_1">;</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span  _style_1 _style_8">}</span><span class="_style_span "></span></p>
+    </div>
+</div>

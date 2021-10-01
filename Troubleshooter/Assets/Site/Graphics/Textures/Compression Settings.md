@@ -8,3 +8,7 @@ Different platforms support different forms of compression, see [Supported textu
 ### Resolution
 In the [Platform-specific Overrides](https://docs.unity3d.com/Manual/class-TextureImporter.html#platform) section of the Texture Importer, reduce, or disable the compression quality of the texture for the valid platforms.  
 In some cases changing the format may also be required, or may help reduce the amount of artifacts for a similar amount of compression.  
+
+---  
+
+[Colours still appear incorrect](Game%20View%20Zoom.md)

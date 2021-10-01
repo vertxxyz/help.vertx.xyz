@@ -1,4 +1,5 @@
 const pageParameterKey = 'page';
+const contentsClass = '.contents';
 const main = 'Main';
 let currentDirectory = "";
 
@@ -34,7 +35,9 @@ function loadPageFromState(e) {
 
 /*************** FUNCTIONS *******************/
 
-function getPageParameter () { return getParameterByKey(pageParameterKey); }
+function getPageParameter() {
+	return getParameterByKey(pageParameterKey);
+}
 
 function getParameterByKey(key, url) {
 	if (!url) url = window.location.href;
@@ -46,12 +49,14 @@ function getParameterByKey(key, url) {
 	return results[2];
 }
 
-function getHash () { return window.location.hash; }
+function getHash() {
+	return window.location.hash;
+}
 
 function setParameterByKey(key, value, hash, pushHistory = true) {
 	let url = value == null || value === "" ? window.location.pathname : `?${key}=${value}`;
 
-	if(hash !== '')
+	if (hash !== '')
 		url += hash;
 	console.log(`setParameterByName: ${url} - ${hash}`);
 	// State Object, Page Name, URL
@@ -70,11 +75,19 @@ function loadPage(relativeLink) {
 	console.log(`Load Page: ${relativeLink}`);
 	if (relativeLink === main)
 		relativeLink = null;
-	loadPageFromLink(relativeLink, '');
+	loadPageFromLink(relativeLink, '', true, true, true);
 }
 
-function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory = true) {
+//Load Hash is called from HTML
+function loadHash(hash) {
+	// Scroll to the hash and copy the page to the clipboard.
+	setParameterByKey(pageParameterKey, value, hash);
+	console.log(hash);
+	scrollToHash(hash);
+	copyTextToClipboard(window.location.href);
+}
 
+function processPageValue(value, useCurrentDirectory) {
 	if (value == null || value === "")
 		value = main;
 	else {
@@ -87,35 +100,34 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
 		value = absolute(`${currentDirectory}/`, value)
 	else
 		value = `${value}`;
+	return value;
+}
 
+function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory = true) {
+	value = processPageValue(value, useCurrentDirectory);
 	currentDirectory = value.replace(/\/*[^/]+$/, "");
 
 	console.log(`Load Page Contents: \"${value}\" - current directory: \"${currentDirectory}\"`);
 
 	$(document).ready(function () {
-		const contents = $('.contents');
+		const contents = $(contentsClass);
 		const sidebarContents = $('.sidebar-contents');
 		try {
+			// Load the page
 			contents.load(`HTML/${value}.html`, function (response, status, xhr) {
-				if( status === "error") {
+				if (status === "error") {
 					load404();
 					return;
 				}
 				if (setParameter)
 					setParameterByKey(pageParameterKey, value, hash);
-				Prism.highlightAll();
 
-				if(hash !== ''){
-					/*contents.animate({
-				        scrollTop: $(hash).offset().top
-				    }, 400);*/
-					const hashElement = document.getElementById(hash.substring(1));
-					if(hashElement == null) return;
-					hashElement.scrollIntoView();
-				}
+				scrollToHash(hash);
+				setupHeaders();
+				Prism.highlightAll();
 			});
 			sidebarContents.load(`HTML/${value}_sidebar.html`, function (response, status, xhr) {
-				if( status === "error")
+				if (status === "error")
 					sidebarContents.empty();
 			});
 		} catch {
@@ -143,4 +155,51 @@ function absolute(base, relative) {
 function load404() {
 	//console.log('loading 404')
 	loadPageFromLink(`404`, '', false, false);
+}
+
+function scrollToHash(hash) {
+	if (hash === '') {
+		$(contentsClass).scrollTop(0);
+		return;
+	}
+	const hashElement = document.getElementById(hash.substring(1));
+	if (hashElement == null) return;
+	hashElement.scrollIntoView();
+}
+
+function setupHeaders() {
+	$("h1, h2, h3, h4, h5, h6").hover(function () {
+			$(this).find(".header-permalink").addClass("show");
+		}, function () {
+			$(this).find(".header-permalink").removeClass("show");
+		}
+	);
+}
+
+function fallbackCopyTextToClipboard(text) {
+	const textArea = document.createElement("textarea");
+	textArea.value = text;
+
+	// Avoid scrolling to bottom
+	textArea.style.top = "0";
+	textArea.style.left = "0";
+	textArea.style.position = "fixed";
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+		document.execCommand('copy');
+	} finally {
+		document.body.removeChild(textArea);
+	}
+}
+
+function copyTextToClipboard(text) {
+	if (!navigator.clipboard) {
+		fallbackCopyTextToClipboard(text);
+		return;
+	}
+	navigator.clipboard.writeText(text).catch();
 }

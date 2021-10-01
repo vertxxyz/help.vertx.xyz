@@ -41,3 +41,13 @@ h4 {
 	margin-block-start: 1em;
 	margin-block-end: 0.8em;
 }
+
+a.header-permalink {
+	opacity: 0;
+	transition: opacity .15s;
+	margin-left: 4px;
+	color: #bbbbbb;
+}
+a.header-permalink.show {
+	opacity: 1;
+}

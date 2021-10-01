@@ -9,4 +9,5 @@ There are many options for resolving transparency sorting problems while maintai
 2. [Use dithering](Dithered%20Materials.md). Dithered materials are cutout materials that create an effective gradient of transparency whilst never actually being transparent. This is achieved by a screen-space per-pixel mask that can be appealing, or disguised via anti-aliasing solutions.  
 ![Dithering](dithering.png)
 3. [Render Queue](Render%20Queue.md). Forcing the draw order of a material. This only solves inter-material rendering issues.
-4. [Writing to Depth](Depth%20Rendering.md). Forcing a material to define its depth in space, at the cost of appearing solid to transparent objects that try to render behind it afterwards.
+4. [Writing to Depth](Depth%20Rendering.md). Forcing a material to define its depth in space, at the cost of appearing solid to transparent objects that try to render behind it afterwards.  
+5. If the issues are only in one mesh and not between objects, sometimes strategically separating portions of the mesh can result in a consistent viewing experience where each of the new object's centers will be correctly sorted.
