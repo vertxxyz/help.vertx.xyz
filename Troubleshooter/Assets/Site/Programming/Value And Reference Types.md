@@ -34,7 +34,7 @@ int b = 500;
 int[] a = {0, 1, 2};
 int[] b = a;
 a[0]++;
-//a == b
+// a == b
 ```  
 
 When a reference type is assigned to another, this assignment will also copy by value, **but** importantly the value copied is a reference. A reference is a *pointer* to a location in memory.

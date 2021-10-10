@@ -14,7 +14,9 @@ namespace Troubleshooter.Tests
 		public void ValidateIncorrectLanguage(string name, string path, string text)
 		{
 			using var assertionScope = new AssertionScope(name);
-			text.Should().NotContain("Compile Error", StringComparison.OrdinalIgnoreCase, "Should be \"Compiler Error\"");
+			text.Should().NotContain("compile error", StringComparison.OrdinalIgnoreCase, "Should be \"Compiler Error\"");
+			text.Should().NotContain("world-space", StringComparison.OrdinalIgnoreCase, "Should be \"World space\"");
+			text.Should().NotContain("local-space", StringComparison.OrdinalIgnoreCase, "Should be \"Local space\"");
 		}
 	}
 }

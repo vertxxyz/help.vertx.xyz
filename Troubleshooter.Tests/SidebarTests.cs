@@ -14,9 +14,8 @@ namespace Troubleshooter.Tests
 		/// </summary>
 		[Theory]
 		[ClassData(typeof(SidebarData))]
-		public void ValidateSidebarAnchorLinks(string name, string path)
+		public void ValidateSidebarAnchorLinks(string name, string path, string text)
 		{
-			string text = File.ReadAllText(path);
 			var pagePath = path.Replace("_sidebar", string.Empty);
 			string pageText = File.ReadAllText(pagePath);
 			using (new AssertionScope())

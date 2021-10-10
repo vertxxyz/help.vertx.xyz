@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
+using Markdig.Helpers;
 
 namespace Troubleshooter
 {
@@ -61,21 +62,44 @@ namespace Troubleshooter
 	[UsedImplicitly]
 	public class InfoBoxConverter : IHtmlPostProcessor
 	{
+		private static readonly Regex infoRegex = new ("<div class=\"(.*?)info\"(.*?)><p>", RegexOptions.Compiled);
+		private static readonly Regex warningRegex = new ("<div class=\"(.*?)warning\"(.*?)><p>", RegexOptions.Compiled);
+		private static readonly Regex errorRegex = new ("<div class=\"(.*?)error\"(.*?)><p>", RegexOptions.Compiled);
+		
 		public string Process(string html)
 		{
-			html = html.Replace("<div class=\"info\"><p>",
-				"<div class=\"info\"><img src=\"https://help.vertx.xyz/Images/information.svg\" class=\"info\" alt=\"information\" /><p class=\"info\">");
-			html = html.Replace("<div class=\"warning\"><p>",
-				"<div class=\"info\"><img src=\"https://help.vertx.xyz/Images/warning.svg\" class=\"info\" alt=\"warning\" /><p class=\"info\">");
-			return html.Replace("<div class=\"error\"><p>",
-				"<div class=\"info\"><img src=\"https://help.vertx.xyz/Images/error.svg\" class=\"info\" alt=\"error\" /><p class=\"info\">");
+			html = StringUtility.ReplaceMatch(html, infoRegex, (m, builder) =>
+			{
+				builder.Append("<div class=\"");
+				builder.Append(m.Groups[1].Value);
+				builder.Append("info\"");
+				builder.Append(m.Groups[2].Value);
+				builder.Append("><img src=\"https://help.vertx.xyz/Images/information.svg\" class=\"info\" alt=\"information\" /><p class=\"info\">");
+			});
+			html = StringUtility.ReplaceMatch(html, warningRegex, (m, builder) =>
+			{
+				builder.Append("<div class=\"");
+				builder.Append(m.Groups[1].Value);
+				builder.Append("info\"");
+				builder.Append(m.Groups[2].Value);
+				builder.Append("><img src=\"https://help.vertx.xyz/Images/warning.svg\" class=\"info\" alt=\"warning\" /><p class=\"info\">");
+			});
+			html = StringUtility.ReplaceMatch(html, errorRegex, (m, builder) =>
+			{
+				builder.Append("<div class=\"");
+				builder.Append(m.Groups[1].Value);
+				builder.Append("info\"");
+				builder.Append(m.Groups[2].Value);
+				builder.Append("><img src=\"https://help.vertx.xyz/Images/error.svg\" class=\"info\" alt=\"error\" /><p class=\"info\">");
+			});
+			return html;
 		}
 	}
 
 	[UsedImplicitly]
 	public class SliderConverter : IHtmlPostProcessor
 	{
-		private readonly Regex regex = new("<div.* class=\"slider\"></div>", RegexOptions.Compiled);
+		private readonly Regex regex = new("<div.* class=\".*?slider\"></div>", RegexOptions.Compiled);
 		
 		public string Process(string html)
 		{

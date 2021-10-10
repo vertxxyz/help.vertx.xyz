@@ -1,0 +1,46 @@
+<div id="code_block_1633416128524">
+    <style>
+		#code_block_1633416128524 ._style_default{background-color:#262626;}
+		#code_block_1633416128524 ._style_line{overflow:auto;color:#d0d0d0;font-size:13px;margin:0;padding:0;font-family:JetBrains Mono,serif;height:22px;line-height:1.2;}
+		#code_block_1633416128524 ._style_span{overflow:hidden;vertical-align:top;position:relative;white-space:pre-wrap;margin:0;padding:0;display:inline-block;height:22px;line-height:22px;}
+		/* layer:100  */
+		#code_block_1633416128524 ._style_0{color:#6c95eb;}
+		#code_block_1633416128524 ._style_1{font-style:oblique;color:#85c46c;}
+		#code_block_1633416128524 ._style_2{color:#bdbdbd;}
+		/* layer:1000  */
+		#code_block_1633416128524 ._style_3{color:#39cc8f;}
+		#code_block_1633416128524 ._style_4{color:#66c3cc;}
+		#code_block_1633416128524 ._style_5{color:#e1bfff;}
+		#code_block_1633416128524 ._style_6{color:#bdbdbd;}
+		/* layer:1001  */
+		#code_block_1633416128524 ._style_7{color:#bdbdbd;}
+        /* layer:3000  */
+		#code_block_1633416128524 ._style_9{color:#39cc8f;}
+        /* layer:5999  */
+		#code_block_1633416128524 ._style_12{background-color:#472b63;}
+    </style>
+    <div class="_style_default">
+        <p class="_style_line">
+            <span class="_style_span  _style_0">public</span><span class="_style_span "> </span><span class="_style_span  _style_0">void</span><span class="_style_span "> </span><span class="_style_span  _style_3">RotateAround</span><span class="_style_span  _style_2">(</span><span class="_style_span  _style_5">Vector3</span><span class="_style_span "> </span><span class="_style_span  _style_6">point</span><span class="_style_span  _style_2">,</span><span class="_style_span "> </span><span class="_style_span  _style_5">Vector3</span><span class="_style_span "> </span><span class="_style_span  _style_6">axis</span><span class="_style_span  _style_2">,</span><span class="_style_span "> </span><span class="_style_span  _style_0">float</span><span class="_style_span "> </span><span class="_style_span  _style_6">angle</span><span class="_style_span  _style_2">)</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span  _style_2 _style_12">{</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span ">	</span><span class="_style_span  _style_1">// Construct the rotation to transform with</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span ">	</span><span class="_style_span  _style_5">Quaternion</span><span class="_style_span "> </span><span class="_style_span  _style_6">q</span><span class="_style_span "> </span><span class="_style_span  _style_2">=</span><span class="_style_span "> </span><span class="_style_span  _style_5">Quaternion</span><span class="_style_span  _style_2">.</span><span class="_style_span  _style_3">AngleAxis</span><span class="_style_span  _style_2">(</span><span class="_style_span  _style_6">angle</span><span class="_style_span  _style_2">,</span><span class="_style_span "> </span><span class="_style_span  _style_6">axis</span><span class="_style_span  _style_2">);</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span ">	</span><span class="_style_span  _style_1">// localPoint is position viewed as if point was the new origin</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span ">	</span><span class="_style_span  _style_5">Vector3</span><span class="_style_span "> </span><span class="_style_span  _style_6 _style_7">localPoint</span><span class="_style_span "> </span><span class="_style_span  _style_2">=</span><span class="_style_span "> </span><span class="_style_span  _style_4">transform</span><span class="_style_span  _style_2">.</span><span class="_style_span  _style_4">position</span><span class="_style_span "> </span><span class="_style_span  _style_2 _style_9">-</span><span class="_style_span "> </span><span class="_style_span  _style_6">point</span><span class="_style_span  _style_2">;</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span ">	</span><span class="_style_span  _style_1">// Rotate localPoint with our rotation around its new origin</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span ">	</span><span class="_style_span  _style_6 _style_7">localPoint</span><span class="_style_span "> </span><span class="_style_span  _style_2">=</span><span class="_style_span "> </span><span class="_style_span  _style_6">q</span><span class="_style_span "> </span><span class="_style_span  _style_2 _style_9">*</span><span class="_style_span "> </span><span class="_style_span  _style_6 _style_7">localPoint</span><span class="_style_span  _style_2">;</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span ">	</span><span class="_style_span  _style_1">// Reposition at the reconstructed world space position, and transform our rotation.</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span ">	</span><span class="_style_span  _style_4">transform</span><span class="_style_span  _style_2">.</span><span class="_style_span  _style_3">SetPositionAndRotation</span><span class="_style_span  _style_2">(</span><span class="_style_span  _style_6">point</span><span class="_style_span "> </span><span class="_style_span  _style_2 _style_9">+</span><span class="_style_span "> </span><span class="_style_span  _style_6 _style_7">localPoint</span><span class="_style_span  _style_2">,</span><span class="_style_span "> </span><span class="_style_span  _style_6">q</span><span class="_style_span "> </span><span class="_style_span  _style_2 _style_9">*</span><span class="_style_span "> </span><span class="_style_span  _style_4">transform</span><span class="_style_span  _style_2">.</span><span class="_style_span  _style_4">rotation</span><span class="_style_span  _style_2">);</span><span class="_style_span "></span></p>
+        <p class="_style_line">
+            <span class="_style_span  _style_2 _style_12">}</span><span class="_style_span "></span></p>
+    </div>
+</div>

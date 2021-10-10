@@ -1,0 +1,106 @@
+$label-y: 30px;
+$label2-y: 125px;
+
+.color-angle {
+	.slider_left_gutter,
+	.slider_right_gutter,
+	.slider_knob {
+		background: #ed87fd;
+	}
+}
+
+#quaternion-renderer-parent {
+	width: 500px;
+	height: 500px;
+	position: relative;
+}
+
+#quaternion-webgl-renderer-parent-right {
+	width: 115px;
+	height: 115px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#quaternion-webgl-renderer-parent-left {
+	width: 115px;
+	height: 115px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.quaternion-axis{
+	>code {
+		border: solid 1px #fda900;
+	}
+}
+
+.quaternion-angle{
+	>code {
+		border: solid 1px #ed87fd;
+	}
+}
+
+.quaternion-from{
+	>code {
+		border: solid 1px #fd5500;
+	}
+}
+
+.quaternion-to{
+	>code {
+		border: solid 1px #a9fd00;
+	}
+}
+
+.quaternion-up{
+	>code {
+		border: solid 1px #a9fd00;
+	}
+}
+
+.quaternion-forward{
+	>code {
+		border: solid 1px #00b1fd;
+	}
+}
+
+.quaternion-right{
+	>code {
+		border: solid 1px #fd003b;
+	}
+}
+
+.quaternion-overlay-text {
+	position: absolute;
+	color: white;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 40px;
+	user-select: none;
+}
+
+.text-a {
+	font-size: 30px;
+	top: $label-y;
+	left: 105px;
+	color: #dddddd;
+}
+
+.text-b {
+	font-size: 30px;
+	top: $label-y;
+	left: 305px;
+	color: #dddddd;
+}
+
+.text-multiply {
+	top: $label2-y;
+	left: 200px;
+}
+
+.text-equals {
+	top: $label2-y;
+	left: 400px;
+}

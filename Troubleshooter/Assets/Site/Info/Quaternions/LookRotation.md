@@ -1,0 +1,37 @@
+## [Quaternion.LookRotation](https://docs.unity3d.com/ScriptReference/Quaternion.LookRotation.html)
+### Declaration
+<<Code/Info/Quaternions/LookRotation 1.html>>
+
+### Description
+Constructs an orientation with ::`forward`::{.quaternion-forward} and ::`upwards`::{.quaternion-up}.  
+::`upwards`::{.quaternion-up} is used as a hint to the orientation, and ::`right`::{.quaternion-right} is the cross-product between the two.  
+
+Combined with [Vector3.Cross](https://docs.unity3d.com/ScriptReference/Vector3.Cross.html) this function is a staple for creating orientations with surface alignment and facing directions in mind.
+
+### Interactive Diagram
+
+::: {#look_rotation .interactive-content}
+:::
+<script type="module" src="Scripts/Interactive/Quaternions/lookRotation.js"></script>  
+
+<<Code/Info/Quaternions/LookRotation 3.html>>
+
+### Usage
+
+Setting `transform.forward` uses this function internally[^1]:
+<<Code/Info/Quaternions/LookRotation 2.html>>  
+
+A custom [LookAt](https://docs.unity3d.com/ScriptReference/Transform.LookAt.html) function could also choose to use this function:
+
+```csharp
+public static Quaternion GetLookAtOrientation(Vector3 origin, Vector3 target)
+    => GetLookAtDirection(origin, target, Vector3.up);
+
+public static Quaternion GetLookAtOrientation(Vector3 origin, Vector3 target, Vector3 upwards)
+{
+    Vector3 lookDirection = target.position - origin.position;
+    return Quaternion.LookRotation(lookDirection, upwards);
+}
+```
+
+[^1]: `transform.up` and `transform.right` use [FromToRotation](FromToRotation.md).

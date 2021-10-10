@@ -1,1 +1,1 @@
-If there are errors that cannot be cleared in the console, Unity will not be able to recompile your project.  
+Unity will not be able to recompile the project if there are errors that cannot be cleared from the console.  

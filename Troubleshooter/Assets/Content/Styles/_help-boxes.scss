@@ -1,10 +1,12 @@
+@use 'base';
+
 div.info {
 	display: flex;
 	flex-direction: row;
 	border: solid 1px #242424;
 	border-radius: 5px;
 	background-color: #404040;
-	margin: 5px 20px 20px 0;
+	margin: 5px base.$right-margin 20px 0;
 	align-items: center;
 }
 
@@ -20,4 +22,74 @@ img.info {
 	width: 50px;
 	margin: 0;
 	padding: 5px 0 5px 5px;
+}
+
+%small {
+	height: 30px;
+	width: 30px;
+}
+
+div.info.inline {
+	margin-top: -10px;
+
+	img.info {
+		@extend %small;
+	}
+}
+
+div.info.small {
+	img.info {
+		@extend %small;
+	}
+}
+
+%img-note {
+	background-color: #151315;
+	border: none;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	margin-top: -1.5em;
+}
+
+div.info.img-note {
+	@extend %img-note;
+	width: 500px;
+}
+
+div.info.img-note-wide {
+	@extend %img-note;
+	width: 750px;
+}
+
+.code-context {
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 0.85em;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+	margin-top: 0.85em;
+}
+
+%context {
+	border-radius: 0.3em;
+	padding: 2px 5px 2px 5px;
+}
+
+.context-a {
+	@extend %context;
+	border: solid 1px #fd5500;
+}
+
+.context-b {
+	@extend %context;
+	border: solid 1px #a9fd00;
+}
+
+.context-c {
+	@extend %context;
+	border: solid 1px #00b1fd;
+}
+
+.context-d {
+	@extend %context;
+	border: solid 1px #fd0098;
 }

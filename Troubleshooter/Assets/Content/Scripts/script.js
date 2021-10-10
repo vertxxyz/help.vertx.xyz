@@ -4,8 +4,6 @@ const main = 'Main';
 let currentDirectory = "";
 
 let pageParam = getPageParameter();
-console.log(window.location.href);
-console.log(`Initial Page Param: ${pageParam}`);
 //Don't push a history state for this change.
 if (pageParam === main) {
 	//If we've landed on the index then we should set our location as "Main".
@@ -26,7 +24,6 @@ window.onpopstate = loadPageFromState;
 function loadPageFromState(e) {
 	// page reload
 	if (e.state) {
-		console.log(`PopState: ${e.state.pathParameter} - ${e.state.hashParameter}`);
 		loadPageFromLink(e.state.pathParameter, e.state.hashParameter, false, false);
 	} else {
 		loadPageFromLink(getPageParameter(), getHash(), false, false);
@@ -58,7 +55,6 @@ function setParameterByKey(key, value, hash, pushHistory = true) {
 
 	if (hash !== '')
 		url += hash;
-	console.log(`setParameterByName: ${url} - ${hash}`);
 	// State Object, Page Name, URL
 	if (pushHistory)
 		window.history.pushState({pathParameter: value, hashParameter: hash}, document.title, url);
@@ -72,7 +68,6 @@ function loadPage(relativeLink) {
 		console.log('Ignored page load as button links to empty location');
 		return;
 	}
-	console.log(`Load Page: ${relativeLink}`);
 	if (relativeLink === main)
 		relativeLink = null;
 	loadPageFromLink(relativeLink, '', true, true, true);
@@ -81,7 +76,7 @@ function loadPage(relativeLink) {
 //Load Hash is called from HTML
 function loadHash(hash) {
 	// Scroll to the hash and copy the page to the clipboard.
-	setParameterByKey(pageParameterKey, value, hash);
+	setParameterByKey(pageParameterKey, getPageParameter(), hash);
 	console.log(hash);
 	scrollToHash(hash);
 	copyTextToClipboard(window.location.href);
@@ -106,9 +101,7 @@ function processPageValue(value, useCurrentDirectory) {
 function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory = true) {
 	value = processPageValue(value, useCurrentDirectory);
 	currentDirectory = value.replace(/\/*[^/]+$/, "");
-
-	console.log(`Load Page Contents: \"${value}\" - current directory: \"${currentDirectory}\"`);
-
+	
 	$(document).ready(function () {
 		const contents = $(contentsClass);
 		const sidebarContents = $('.sidebar-contents');

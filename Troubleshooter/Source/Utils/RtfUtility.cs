@@ -30,6 +30,7 @@ namespace Troubleshooter
 			ReplaceUnusedHack();
 			ReplaceColorsHack();
 			RemoveEmptyStyleHack();
+			FixRootLevelStyleHack();
 
 			html = string.Concat("<div class=\"editor-colors\"><pre>", html, "</pre></div>");
 
@@ -71,6 +72,8 @@ namespace Troubleshooter
 
 			// Remove empty style blocks
 			void RemoveEmptyStyleHack() => html = html.Replace(@" style=""""", string.Empty);
+			// Anything that isn't explicitly styled should have a style
+			void FixRootLevelStyleHack() => html = html.Replace("<span>", @"<span class=""token punctuation"">");
 		}
 
 		private static int IndexOfClosingChar(string expression, int index, char openChar, char closeChar)

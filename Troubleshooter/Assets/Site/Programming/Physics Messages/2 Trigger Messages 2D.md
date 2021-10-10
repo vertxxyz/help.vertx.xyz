@@ -8,7 +8,7 @@ Type, spelling, and capitalisation are all important.
 ```csharp
 void OnTriggerEnter2D(Collider2D data)
 {
-    //Your behaviour here
+    // Your behaviour here
 }
 ```
 
@@ -16,7 +16,7 @@ void OnTriggerEnter2D(Collider2D data)
 ```csharp
 void OnTriggerStay2D(Collider2D data)
 {
-    //Your behaviour here
+    // Your behaviour here
 }
 ```
 
@@ -24,7 +24,7 @@ void OnTriggerStay2D(Collider2D data)
 ```csharp
 void OnTriggerExit2D(Collider2D data)
 {
-    //Your behaviour here
+    // Your behaviour here
 }
 ```
 

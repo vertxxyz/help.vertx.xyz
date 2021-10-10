@@ -8,7 +8,7 @@ Type, spelling, and capitalisation are all important.
 ```csharp
 void OnCollisionEnter(Collision data)
 {
-    //Your behaviour here
+    // Your behaviour here
 }
 ```
 
@@ -16,7 +16,7 @@ void OnCollisionEnter(Collision data)
 ```csharp
 void OnCollisionStay(Collision data)
 {
-    //Your behaviour here
+    // Your behaviour here
 }
 ```
 

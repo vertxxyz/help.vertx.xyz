@@ -1,3 +1,9 @@
+import {ray} from "./spacialMaths.js";
+
+const TAU = Math.PI * 2;
+const Deg2Rad = 0.01745329;
+const Rad2Deg = 57.29578;
+
 document.addEventListener("DOMContentLoaded", function () {
 	if (window.bc_touch_down_state === undefined) {
 		window.bc_touch_down_state = false;
@@ -14,9 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 });
 
-window.TouchHandler = function (target, begin, move, end) {
-
-
+function TouchHandler (target, begin, move, end) {
 	target.onmousedown = mouse_down;
 	target.ontouchstart = genericTouchHandler(mouse_down);
 
@@ -53,7 +57,7 @@ window.TouchHandler = function (target, begin, move, end) {
 	}
 }
 
-window.Dragger = function (target, callback) {
+function Dragger(target, callback) {
 
 	target.onmousedown = mouse_down;
 	target.ontouchstart = genericTouchHandler(mouse_down);
@@ -110,7 +114,7 @@ function genericTouchHandler(f) {
 	}
 }
 
-window.Slider = function (container_div, callback, style_prefix, default_value, disable_click) {
+function Slider (container_div, callback, style_prefix, default_value, disable_click) {
 	const container = container_div.querySelector('.slider_container');
 	const left_gutter = container.querySelector('.slider_left_gutter');
 	const right_gutter = container.querySelector('.slider_right_gutter');
@@ -210,7 +214,7 @@ window.Slider = function (container_div, callback, style_prefix, default_value, 
 	}
 }
 
-window.EasingFunctions = {
+const EasingFunctions = {
 	// no easing, no acceleration
 	linear: t => t,
 	// accelerating from zero velocity
@@ -256,7 +260,7 @@ const remap = (value, fromA, fromB, toA, toB, easing) => {
 const circlePoints = (n, posX, posY, radius) => {
 	let circle_ps = [];
 	for (let i = 0; i < n; i++) {
-		let t = 2.0 * Math.PI * i / n;
+		let t = TAU * i / n;
 		circle_ps.push([radius * Math.cos(t) + posX, radius * Math.sin(t) + posY, 0]);
 	}
 	return circle_ps;
@@ -292,5 +296,29 @@ const toNormalisedCanvasSpace = (canvas, e) => {
 	return [x / rect.width, y / rect.height];
 };
 
+function getCameraRay(element, e, mouse, raycaster, camera) {
+	const pos = toNormalisedCanvasSpace(element, e);
+	mouse.x = (pos[0] - 0.5) * 2;
+	mouse.y = ((1 - pos[1]) - 0.5) * 2;
+	raycaster.setFromCamera(mouse, camera);
+	return new ray(raycaster.ray.origin, raycaster.ray.direction);
+}
+
 const clamp01 = v => Math.min(1, Math.max(0, v));
 const clamp = (min, max, v) => Math.min(max, Math.max(min, v));
+
+const addCssIfRequired = (path) => {
+	if (document.getElementById(path) != null)
+		return;
+	const head = document.getElementsByTagName("head")[0];
+
+	const cssLink = document.createElement("link");
+
+	cssLink.href = path;
+	cssLink.rel = "stylesheet";
+	cssLink.id = path;
+
+	head.appendChild(cssLink);
+};
+
+export {TAU, Rad2Deg, Deg2Rad, TouchHandler, Slider, EasingFunctions, lerp, inverseLerp, remap, circlePoints, addPoints, inversedEase, clearAndRedraw, toNormalisedCanvasSpace, getCameraRay, clamp01, clamp, addCssIfRequired};
