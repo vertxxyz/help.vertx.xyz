@@ -3,10 +3,10 @@
 <<Code/Info/Quaternions/LookRotation 1.html>>
 
 ### Description
-Constructs an orientation with ::`forward`::{.quaternion-forward} and ::`upwards`::{.quaternion-up}.  
-::`upwards`::{.quaternion-up} is used as a hint to the orientation, and ::`right`::{.quaternion-right} is the cross-product between the two.  
+Creates a rotation with ::`forward`::{.quaternion-forward} and ::`upwards`::{.quaternion-up}.  
+::`upwards`::{.quaternion-up} is used to guide the orientation, and ::`right`::{.quaternion-right} is the cross-product between it and ::`forward`::{.quaternion-forward}.  
 
-Combined with [Vector3.Cross](https://docs.unity3d.com/ScriptReference/Vector3.Cross.html) this function is a staple for creating orientations with surface alignment and facing directions in mind.
+Combined with [Vector3.Cross](https://docs.unity3d.com/ScriptReference/Vector3.Cross.html) this function is a staple for creating orientations aligned to surfaces.
 
 ### Interactive Diagram
 
@@ -18,10 +18,10 @@ Combined with [Vector3.Cross](https://docs.unity3d.com/ScriptReference/Vector3.C
 
 ### Usage
 
-Setting `transform.forward` uses this function internally[^1]:
+Setting `transform.forward` uses LookRotation[^1]:  
 <<Code/Info/Quaternions/LookRotation 2.html>>  
 
-A custom [LookAt](https://docs.unity3d.com/ScriptReference/Transform.LookAt.html) function could also choose to use this function:
+A custom [LookAt](https://docs.unity3d.com/ScriptReference/Transform.LookAt.html) could also choose to use this function:
 
 ```csharp
 public static Quaternion GetLookAtOrientation(Vector3 origin, Vector3 target)

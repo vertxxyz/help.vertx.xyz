@@ -1,5 +1,5 @@
 ### Description
-Defining a serialized field in a class scope allows that instance can be referred to elsewhere in the class.
+Defining a serialized field in a class scope allows that instance to be referred to elsewhere in the class.
 
 ### Resolution
 

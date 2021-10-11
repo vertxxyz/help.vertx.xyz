@@ -2,22 +2,24 @@ import * as THREE from '../three.module.js';
 import {SVGRenderer} from '../Renderers/SVGRenderer.js';
 import * as VERTX from "../behaviours.js";
 import {float3, quaternion, ray, sphere} from "../spacialMaths.js";
+import {appendAllAxesInversed} from "../Shapes/Axes.js";
+import {HoverableAxis} from "../Handles/AxisHandle.js";
 
 VERTX.addCssIfRequired("./Styles/quaternions.css")
 
 var aa_div = document.getElementById('from_to_rotation');
 var scene, renderer, camera, webGlScene, webGlRenderer, webGlCamera/*, topLeftRenderer, topLeftCamera*/;
 var arc, arcCone;
-var axisFromLine, axisToLine,
+var axisFromLine, axisToLine, axisFromCube,
 	circle, cube;
-var sphereCircle, axisLine, cubeLine;
+var sphereCircle, axisLine, sphereHoverCircle;
+var sphereCircleOriginalMaterial;
 var angle; // Angle calculated from the fromToRotation.
 
-var fromAxis = new float3(1, 1, 1);
-fromAxis.normalize();
-
-var toAxis = new float3(1, -0.25, 0.25);
+var fromAxis = new float3(-1, 0, 0);
+var toAxis = new float3(0, -0.5, .5);
 toAxis.normalize();
+var arcRadius = 0.75;
 
 var directionFromColor = 0xff5500;
 var directionToColor = 0xaaff00;
@@ -47,12 +49,12 @@ function drawFromToRotation(canvas) {
 
 	scene = new THREE.Scene();
 	scene.background = new THREE.Color(0x262626);
-	
+
 	const camSize = 1.5;
 	camera = new THREE.OrthographicCamera(-camSize, camSize, camSize, -camSize, .1, 5);
 	camera.position.set(0, 0, 3);
 	camera.lookAt(0, 0, 0);
-	
+
 	const circle_geometry = getCircleGeometry();
 
 	{ // Sphere outline
@@ -60,17 +62,29 @@ function drawFromToRotation(canvas) {
 			color: 0xffffff,
 			linewidth: 2
 		});
+		sphereCircleOriginalMaterial = material;
 		sphereCircle = new THREE.Line(circle_geometry, material);
 		sphereCircle.rotateX(90 * VERTX.Deg2Rad);
 		scene.add(sphereCircle);
 	}
 
-	axisFromLine = getLineAndCone(directionFromColor);
+	{ // Sphere hover
+		const material = new THREE.LineBasicMaterial({
+			color: 0xffffff,
+			linewidth: 1
+		});
+		sphereHoverCircle = new THREE.Line(circle_geometry, material);
+		sphereHoverCircle.scale.setScalar(0.05);
+		scene.add(sphereHoverCircle);
+		sphereHoverCircle.visible = false;
+	}
 
-	axisToLine = getLineAndCone(directionToColor);
+	axisFromLine = new HoverableAxis(directionFromColor, new float3(0, 1 - .15 / 2, 0), scene);
+
+	axisToLine = new HoverableAxis(directionToColor, new float3(0, 1 - .15 / 2, 0), scene);
 
 	{ // Rotation
-		let rotationColor = 0xaa00ff;
+		let rotationColor = 0x666666;
 		let rotationColorSecondary = 0xee88ff;
 		{ // circle
 			const material = new THREE.LineDashedMaterial({
@@ -95,7 +109,7 @@ function drawFromToRotation(canvas) {
 			}
 
 			{ // arc cone
-				const geometry = new THREE.ConeGeometry(.02, .1, 32);
+				const geometry = new THREE.ConeGeometry(.03, .1, 32);
 				const material = new THREE.MeshBasicMaterial({color: rotationColorSecondary});
 				arcCone = new THREE.Mesh(geometry, material);
 				scene.add(arcCone);
@@ -134,7 +148,7 @@ function drawFromToRotationCube(canvas) {
 	element.id = "quaternion-webgl-renderer-parent-right";
 	canvas.appendChild(element);
 
-	webGlRenderer = new THREE.WebGLRenderer( { antialias: true } );
+	webGlRenderer = new THREE.WebGLRenderer({antialias: true});
 	webGlRenderer.setSize(115, 115);
 
 	element.appendChild(webGlRenderer.domElement);
@@ -148,16 +162,14 @@ function drawFromToRotationCube(canvas) {
 	webGlCamera.lookAt(0, 0, 0);
 
 	{ // cube
-		const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-		const material = new THREE.MeshNormalMaterial ( );
-		cube = new THREE.Mesh( geometry, material );
-		webGlScene.add( cube );
+		const geometry = new THREE.BoxGeometry(1, 1, 1);
+		const material = new THREE.MeshNormalMaterial();
+		cube = new THREE.Mesh(geometry, material);
+		webGlScene.add(cube);
 
-		cube.add(getAxis(0xa9fd00, float3.up()));
-		cube.add(getAxis(0xfd003b, float3.right()));
-		cube.add(getAxis(0x00b1fd, float3.back()));
+		appendAllAxesInversed(0.8, 2, cube, true);
 
-		{ // cube line
+		/*{ // cube line
 			const points = [];
 			const lineLength = 1.1;
 			points.push(new THREE.Vector3(0, -lineLength, 0));
@@ -175,6 +187,28 @@ function drawFromToRotationCube(canvas) {
 				const material = new THREE.MeshBasicMaterial({color: directionColor});
 				const cubeCone = new THREE.Mesh(geometry, material);
 				cubeLine.add(cubeCone);
+				cubeCone.position.set(0, lineLength, 0);
+			}
+		}*/
+
+		{ // cube line
+			const points = [];
+			const lineLength = 1.1;
+			points.push(new THREE.Vector3(0, 0, 0));
+			points.push(new THREE.Vector3(0, lineLength, 0));
+			const geometry = new THREE.BufferGeometry().setFromPoints(points);
+			const material = new THREE.LineBasicMaterial({
+				color: directionFromColor,
+				linewidth: 2
+			});
+			axisFromCube = new THREE.Line(geometry, material);
+			cube.add(axisFromCube);
+
+			{ // cube cone
+				const geometry = new THREE.ConeGeometry(.075, .15, 32);
+				const material = new THREE.MeshBasicMaterial({color: directionFromColor});
+				const cubeCone = new THREE.Mesh(geometry, material);
+				axisFromCube.add(cubeCone);
 				cubeCone.position.set(0, lineLength, 0);
 			}
 		}
@@ -196,7 +230,7 @@ function drawFromToRotationCube(canvas) {
 	element.appendChild(topLeftRenderer.domElement);
 }*/
 
-function getCircleGeometry () {
+function getCircleGeometry() {
 	const vertices = [];
 	const divisions = 100;
 	for (let i = 0; i <= divisions; i++) {
@@ -214,38 +248,14 @@ function getCircleGeometry () {
 	return circle_geometry;
 }
 
-function getLineAndCone(color) {
-	const point = new THREE.Vector3(0, 1 - .15 / 2, 0);
-	// Line
-	const points = [];
-	points.push(new THREE.Vector3(0, 0, 0));
-	points.push(point);
-	const geometry = new THREE.BufferGeometry().setFromPoints(points);
-	const material = new THREE.LineBasicMaterial({
-		color: color,
-		linewidth: 2
-	});
-	const line = new THREE.Line(geometry, material);
-	scene.add(line);
-
-	{ // Cone
-		const geo = new THREE.ConeGeometry(.05, .15, 32);
-		const mat = new THREE.MeshBasicMaterial({color: color});
-		const cone = new THREE.Mesh(geo, mat);
-		line.add(cone);
-		cone.position.copy(point)
-	}
-	return line;
-}
-
 function createArcGeometry() {
-	if(Math.abs(float3.dot(fromAxis, toAxis)) > 0.999) {
+	if (Math.abs(float3.dot(fromAxis, toAxis)) > 0.999) {
 		angle = 0;
 		const geometry = new THREE.BufferGeometry();
 		geometry.setAttribute('position', new THREE.Float32BufferAttribute([], 3));
 		return geometry;
 	}
-	
+
 	const rotation = quaternion.fromToRotation(fromAxis, toAxis);
 	angle = rotation.angle();
 
@@ -260,7 +270,7 @@ function createArcGeometry() {
 		const x = Math.sin(v);
 		const z = Math.cos(v);
 
-		vertices.push(x, 0, z);
+		vertices.push(x * arcRadius, 0, z * arcRadius);
 
 	}
 	const geometry = new THREE.BufferGeometry();
@@ -275,7 +285,8 @@ function updateAxis() {
 	const axisCross = float3.normalize(float3.cross(fromAxis, axisOther));
 
 	const rot = quaternion.lookRotation(axisCross, fromAxis);
-	axisFromLine.quaternion.copy(rot);
+	axisFromLine.root.quaternion.copy(rot);
+	axisFromCube.quaternion.copy(rot);
 
 	{ // axis to
 		axisOther = float3.right();
@@ -283,7 +294,7 @@ function updateAxis() {
 			axisOther = float3.up();
 		const axisCrossTo = float3.normalize(float3.cross(toAxis, axisOther));
 		const rotTo = quaternion.lookRotation(axisCrossTo, toAxis);
-		axisToLine.quaternion.copy(rotTo);
+		axisToLine.root.quaternion.copy(rotTo);
 	}
 
 	const angleAbs = Math.abs(angle);
@@ -291,11 +302,11 @@ function updateAxis() {
 		if (angleAbs < 0.5) {
 			arc.visible = false;
 			arcCone.visible = false;
-			
+
 			const circleRot = quaternion.lookRotation(fromAxis, axisCross);
 			circle.quaternion.copy(circleRot);
 			axisLine.quaternion.copy(circleRot);
-			cubeLine.quaternion.copy(circleRot);
+			// cubeLine.quaternion.copy(circleRot);
 		} else {
 			arc.visible = true;
 			axisLine.visible = true;
@@ -306,9 +317,10 @@ function updateAxis() {
 			arc.quaternion.copy(arcRot);
 			circle.quaternion.copy(arcRot);
 			axisLine.quaternion.copy(arcRot);
-			cubeLine.quaternion.copy(arcRot);
+			// cubeLine.quaternion.copy(arcRot);
 
-			let arcConePos = quaternion.mul(quaternion.axisAngleDeg(arcCross, Math.sign(angle) * -2), toAxis);
+			const arcPosLocal = float3.mul(toAxis, arcRadius);
+			let arcConePos = quaternion.mul(quaternion.axisAngleDeg(arcCross, Math.sign(angle) * -3), arcPosLocal);
 			let arcConeRot = quaternion.mul(quaternion.axisAngleDeg(toAxis, Math.sign(angle) * -90), arcRot);
 			arcCone.position.copy(arcConePos);
 			arcCone.quaternion.copy(arcConeRot);
@@ -323,55 +335,15 @@ function updateAxis() {
 	sphereCircle.visible = Math.abs(float3.dot(float3.cross(fromAxis, toAxis), float3.forward())) < 0.975;
 }
 
-function getAxis(color, axis) {
-	{ // cube axis line
-		const points = [];
-		points.push(new THREE.Vector3(0, 0, 0));
-		points.push(new THREE.Vector3(axis.x, axis.y, axis.z));
-		const geometry = new THREE.BufferGeometry().setFromPoints(points);
-		const material = new THREE.LineBasicMaterial({
-			color: color,
-			linewidth: 2
-		});
-		const cubeLine = new THREE.Line(geometry, material);
-
-		{ // cube cone
-			const geometry = new THREE.ConeGeometry(.075, .15, 32);
-			const material = new THREE.MeshBasicMaterial({color: color});
-			const cubeCone = new THREE.Mesh(geometry, material);
-			cubeCone.position.copy(axis);
-			cubeCone.quaternion.copy(quaternion.lookRotation(axis.getAnotherAxis(), axis));
-			cubeLine.add(cubeCone);
-		}
-		return cubeLine;
-	}
-}
-
 function updateFromToRotation() {
 	arc.geometry = createArcGeometry();
 	updateAxis();
 	renderer.render(scene, camera);
-	webGlRenderer.render( webGlScene, webGlCamera);
+	webGlRenderer.render(webGlScene, webGlCamera);
 	// renderTopLeft();
 }
 
-/*function renderTopLeft() {
-	const backAxis = new float3(fromAxis.x, 0, fromAxis.z);
-	backAxis.normalize();
-	const topLeftCameraRotation = quaternion.lookRotation(backAxis, float3.up());
-	const topLeftCameraPosition = float3.mul(quaternion.mul(topLeftCameraRotation, float3.forward()), 3);
-	topLeftCamera.position.copy(topLeftCameraPosition);
-	topLeftCamera.lookAt(0, 0, 0);
-	sphereCircle.visible = false;
-	axisFromLine.visible = false;
-	axisToLine.visible = false;
-	topLeftRenderer.render( scene, topLeftCamera);
-	axisFromLine.visible = true;
-	axisToLine.visible = true;
-	sphereCircle.visible = true;
-}*/
-
-function updateAxisText () {
+function updateAxisText() {
 	const fixedLength = 2;
 	from_x.textContent = fromAxis.x.toFixed(fixedLength) + 'f';
 	from_y.textContent = fromAxis.y.toFixed(fixedLength) + 'f';
@@ -407,9 +379,9 @@ function touchEvent(e, isMove) {
 
 	if (!isMove) {
 		downValid = d >= 0;
-		if(!downValid) return;
+		if (!downValid) return;
 		const query = float3.normalize(r.getPoint(d));
-		handleFromAxis = float3.sqrDistance(query, fromAxis.getAbsolute('z')) < float3.sqrDistance(query, toAxis.getAbsolute('z'));
+		handleFromAxis = shouldHandleFromAxis(query);
 	}
 
 	let p;
@@ -418,9 +390,9 @@ function touchEvent(e, isMove) {
 		pos3.normalize();
 		const zeroCross = float3.cross(float3.forward(), pos3);
 		const rotation = quaternion.axisAngleDeg(zeroCross, (m * 3) * 90);
-		
+
 		p = quaternion.mul(rotation, float3.forward());
-	}else {
+	} else {
 		p = r.getPoint(d);
 	}
 	if (handleFromAxis)
@@ -429,4 +401,60 @@ function touchEvent(e, isMove) {
 		toAxis = float3.normalize(p);
 	updateAxisText();
 	updateFromToRotation();
+}
+
+
+function shouldHandleFromAxis(query) {
+	return float3.sqrDistance(query, fromAxis.getAbsolute('z')) < float3.sqrDistance(query, toAxis.getAbsolute('z'));
+}
+
+function hasRayResult(e, resultOut) {
+	const pos = VERTX.toNormalisedCanvasSpace(renderer.domElement, e);
+	const pos3 = new float3(pos[0] - 0.5, (1 - pos[1]) - 0.5, 0);
+	const s = new sphere(new float3(), 1 / 3.0);
+	const r = new ray(new float3(pos3.x, pos3.y, 3), float3.back());
+	const d = s.raycast(r);
+	if (d < 0)
+		return false;
+	resultOut.copy(float3.normalize(r.getPoint(d)));
+	return true;
+}
+
+var hovering = null;
+
+renderer.domElement.onmousemove = e => {
+	e.preventDefault();
+	const result = new float3(0);
+	if (hasRayResult(e, result)) {
+		const newHovering = shouldHandleFromAxis(result) ? axisFromLine : axisToLine;
+		if (newHovering === hovering) {
+			orientHoverCircle(result);
+			updateFromToRotation();
+			return;
+		}
+		if (hovering != null)
+			hovering.hideHover();
+		hovering = newHovering;
+		hovering.showHover();
+		sphereCircle.material = new THREE.LineBasicMaterial({
+			color: 0xffffff,
+			linewidth: 3
+		});
+		sphereHoverCircle.visible = true;
+		orientHoverCircle(result);
+		updateFromToRotation();
+	} else {
+		if (hovering != null) {
+			hovering.hideHover();
+			hovering = null;
+			sphereCircle.material = sphereCircleOriginalMaterial;
+			sphereHoverCircle.visible = false;
+			updateFromToRotation();
+		}
+	}
+};
+
+function orientHoverCircle(result) {
+	sphereHoverCircle.position.copy(result);
+	sphereHoverCircle.quaternion.copy(quaternion.mul(quaternion.lookRotation(result, result.getAnotherAxis()), quaternion.axisAngleDeg(float3.right(), 90)));
 }

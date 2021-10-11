@@ -1,13 +1,28 @@
 import {float3, quaternion} from "../spacialMaths.js";
 import * as THREE from "../three.module.js";
 
-function appendAllAxes(axisHeight, axisScale, parent, ignoreCylinder) {
+function appendAllAxesInversed(axisHeight, axisScale, parent, ignoreCylinder) {
+	const obj = new THREE.Object3D();
+	parent.add(obj);
 	const up = getAxis(0xa9fd00, float3.up(), true, axisHeight, axisScale, ignoreCylinder);
-	parent.add(up);
+	obj.add(up);
+	const left = getAxis(0xfd003b, float3.right(), true, axisHeight, axisScale, ignoreCylinder);
+	obj.add(left);
+	const forward = getAxis(0x00b1fd, float3.back(), true, axisHeight, axisScale, ignoreCylinder);
+	obj.add(forward);
+	return obj;
+}
+
+function appendAllAxesUnity(axisHeight, axisScale, parent, ignoreCylinder) {
+	const obj = new THREE.Object3D();
+	parent.add(obj);
+	const up = getAxis(0xa9fd00, float3.up(), true, axisHeight, axisScale, ignoreCylinder);
+	obj.add(up);
 	const left = getAxis(0xfd003b, float3.left(), true, axisHeight, axisScale, ignoreCylinder);
-	parent.add(left);
+	obj.add(left);
 	const forward = getAxis(0x00b1fd, float3.forward(), true, axisHeight, axisScale, ignoreCylinder);
-	parent.add(forward);
+	obj.add(forward);
+	return obj;
 }
 
 function getAxis(color, axis, capped, height, axisScale, ignoreCylinder) {
@@ -39,4 +54,4 @@ function getAxis(color, axis, capped, height, axisScale, ignoreCylinder) {
 	return root;
 }
 
-export {appendAllAxes};
+export {appendAllAxesInversed, appendAllAxesUnity};

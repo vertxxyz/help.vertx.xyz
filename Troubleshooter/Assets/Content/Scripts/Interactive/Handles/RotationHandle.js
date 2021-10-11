@@ -58,8 +58,8 @@ class RotationHandle {
 	}
 
 	appendAllRotationAxes(parent, radius) {
-		const geometry = new THREE.TorusGeometry(radius, radius * 0.03, 16, 50);
-		const geometryThick = new THREE.TorusGeometry(radius, radius * 0.06, 16, 50);
+		const geometry = new THREE.TorusGeometry(radius, radius * 0.02, 16, 50);
+		const geometryThick = new THREE.TorusGeometry(radius, radius * 0.05, 16, 50);
 		const xz = this.getRotationAxis(float3.up(), geometry, geometryThick, "axis_xz");
 		parent.add(xz);
 		const yz = this.getRotationAxis(float3.right(), geometry, geometryThick, "axis_yz");

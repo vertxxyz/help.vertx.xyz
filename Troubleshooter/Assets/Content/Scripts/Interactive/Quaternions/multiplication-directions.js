@@ -3,8 +3,7 @@ import * as VERTX from '../behaviours.js';
 import {SimpleShader as NormalShader} from "../SimpleShader.js";
 import {RotationHandle} from "../Handles/RotationHandle.js";
 import {float3, quaternion} from "../spacialMaths.js";
-import {getWireCube} from "../Shapes/WireCube.js";
-import {appendAllAxes} from "../Shapes/Axes.js";
+import {appendAllAxesUnity} from "../Shapes/Axes.js";
 import {AxisHandle} from "../Handles/AxisHandle.js";
 
 VERTX.addCssIfRequired("./Styles/quaternions.css")
@@ -18,8 +17,8 @@ var rotationHandleA, rotationHandleB;
 var camSize = 1.5;
 var cubeYPos = -0.58;
 var secondaryCubeYPos = 0.68;
-var secondaryCubeSize = 0.35;
-var secondaryAxisSize = secondaryCubeSize * 0.6;
+var secondaryCubeSize = 0.25;
+var secondaryAxisSize = 0.375;
 var global = false;
 
 var aa_div = document.getElementById('multiplication-directions');
@@ -32,11 +31,16 @@ element.appendChild(getOverlayText('B', "text-b"));
 element.appendChild(getOverlayText('*', "text-multiply"));
 element.appendChild(getOverlayText('=', "text-equals"));
 
+var axisText_x = document.getElementById("multiply-axis_x");
+var axisText_y = document.getElementById("multiply-axis_y");
+var axisText_z = document.getElementById("multiply-axis_z");
+
 var resetButton = document.getElementById('multiplication-directions-reset-button');
 resetButton.addEventListener("click", () => {
 	cubeA.quaternion.set(0, 0, 0, 1);
 	rotationHandleA.reset();
 	rotationHandleB.reset();
+	rotationHandleB.setAxisText(axisText_x, axisText_y, axisText_z);
 	updateMultiplicationScene();
 });
 
@@ -58,6 +62,7 @@ renderer.domElement.onmousemove = e => {
 	e.preventDefault();
 	const r = VERTX.getCameraRay(renderer.domElement, e, mouse, raycaster, camera);
 	rotationHandleA.hover(r);
+	rotationHandleB.hover(r);
 };
 
 new VERTX.TouchHandler(renderer.domElement, begin, move, end);
@@ -69,6 +74,8 @@ function begin(e) {
 	const r = VERTX.getCameraRay(renderer.domElement, e, mouse, raycaster, camera);
 	let update = rotationHandleA.down(r);
 	usingBHandle = rotationHandleB.down(r);
+	if(usingBHandle)
+		rotationHandleB.setAxisText(axisText_x, axisText_y, axisText_z);
 	return update | usingBHandle;
 }
 
@@ -77,10 +84,12 @@ function move(e) {
 	e.preventDefault();
 	const r = VERTX.getCameraRay(renderer.domElement, e, mouse, raycaster, camera);
 	rotationHandleB.move(r);
+	rotationHandleB.setAxisText(axisText_x, axisText_y, axisText_z);
 }
 
 function end(e) {
 	rotationHandleA.up();
+	rotationHandleB.up();
 }
 
 function getOverlayText(value, additiveClass) {
@@ -110,13 +119,13 @@ function drawMultiplication(canvas) {
 
 	const material = new THREE.RawShaderMaterial({vertexShader: NormalShader.vertexShader, fragmentShader: NormalShader.fragmentShader});
 	const handleRadius = 0.3;
-	const axisScale = 2;
+	const axisScale = 1.2;
 	{ // A
 		const geometry = new THREE.BoxGeometry(secondaryCubeSize, secondaryCubeSize, secondaryCubeSize);
 		cubeA = new THREE.Mesh(geometry, material);
 		scene.add(cubeA);
 		cubeA.position.set(0.84, secondaryCubeYPos, 0);
-		appendAllAxes(secondaryAxisSize, axisScale, cubeA, true);
+		appendAllAxesUnity(secondaryAxisSize, axisScale, cubeA, false);
 		rotationHandleA = new RotationHandle(cubeA, scene, renderer.domElement, handleRadius, updateMultiplicationScene, global);
 	}
 

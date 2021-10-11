@@ -22,13 +22,19 @@ class float3 {
 		}
 	}
 	
+	copy (v) {
+		this.x = v.x;
+		this.y = v.y;
+		this.z = v.z;
+	}
+	
 	static copy(v) {
 		return new float3(v.x, v.y, v.z);
 	}
 	
 	getAnotherAxis() {
 		let otherAxis = float3.up();
-		if (this.x === 0 && this.y === 1 && this.z === 0)
+		if (this.y > this.x && this.y > this.z)
 			otherAxis = float3.right();
 		return otherAxis;
 	}

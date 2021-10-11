@@ -6,11 +6,11 @@ Quaternion * Vector3
 ```
 
 ### Description
-Multiplication will rotate an orientation or point. `A * B`, `A` rotates `B`.
+Multiplication rotates an orientation or point, combining them in sequence. `A * B`, `A` rotates `B`.
 
-### Usage - Rotating Points and Directions
+### Usage - Rotating Vectors
 
-To find a world space direction you can multiply its local space counterpart by the world space orientation.  
+Local space directions can be multiplied by a world space orientation to produce their world space counterpart.  
 This is how [Transform](https://docs.unity3d.com/ScriptReference/Transform.html) `up`, `right`, and `forward` works:  
 
 <<Code/Info/Quaternions/Multiplication 3.html>>  
@@ -23,19 +23,20 @@ Reset
 :::
 :::
 <script type="module" src="Scripts/Interactive/Quaternions/multiplication-directions.js"></script>
+<<Code/Info/Quaternions/Multiplication 2.html>>
 
 The logic can be applied to rotate any point around its origin.  
 
-It is used in combination with simple vector arithmetic and [AngleAxis](AngleAxis.md) in [RotateAround](https://docs.unity3d.com/ScriptReference/Transform.RotateAround.html).  
-Here is an annotated version of the logic:  
+#### Rotate Around
+[RotateAround](https://docs.unity3d.com/ScriptReference/Transform.RotateAround.html) combines vector arithmetic and [AngleAxis](AngleAxis.md) with multiplication, here is an annotated version of the logic:  
 
 <<Code/Info/Quaternions/Multiplication 4.html>>  
 
-### Usage - Rotating Orientations and Rotations
+### Usage - Rotating Quaternions
 Quaternion multiplication is not commutative, `A * B != B * A`.  
-Rotating `A` will influence `B` by rotating it as if its influence occurs as a parent of `B`.  
-Rotating `B` will influence `A` by rotating it as if it's a local space modification on `A`'s orientation.  
-To get an intuition about the influence of `A` or `B` on the resulting rotation, interact with the diagram below.
+Rotating `A` influences `B` as a parent rotation.  
+Rotating `B` influences `A` as a local space modification.  
+To form an intuition about the influence of `A` or `B` on the result, interact with the diagram below.
 
 #### Interactive Diagram
 

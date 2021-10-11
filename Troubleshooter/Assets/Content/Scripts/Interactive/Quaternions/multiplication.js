@@ -4,7 +4,7 @@ import {SimpleShader as NormalShader} from "../SimpleShader.js";
 import {RotationHandle} from "../Handles/RotationHandle.js";
 import {quaternion} from "../spacialMaths.js";
 import {getWireCube} from "../Shapes/WireCube.js";
-import {appendAllAxes} from "../Shapes/Axes.js";
+import {appendAllAxesUnity} from "../Shapes/Axes.js";
 
 VERTX.addCssIfRequired("./Styles/quaternions.css")
 
@@ -16,8 +16,8 @@ var rotationHandleA, rotationHandleB;
 var camSize = 1.5;
 var cubeYPos = -0.58;
 var secondaryCubeYPos = 0.68;
-var secondaryCubeSize = 0.35;
-var secondaryAxisSize = secondaryCubeSize * 0.6;
+var secondaryCubeSize = 0.25;
+var secondaryAxisSize = 0.375;
 var global = false;
 
 var aa_div = document.getElementById('multiplication');
@@ -103,18 +103,18 @@ function drawMultiplication(canvas) {
 		cube.position.set(0, cubeYPos, 0);
 
 		const axisHeight = 0.75;
-		appendAllAxes(axisHeight, 1, cube, false);
+		appendAllAxesUnity(axisHeight, 1, cube, false);
 	}
 
 	const material = new THREE.RawShaderMaterial({vertexShader: NormalShader.vertexShader, fragmentShader: NormalShader.fragmentShader});
 	const handleRadius = 0.3;
-	const axisScale = 2;
+	const axisScale = 1.2;
 	{ // A
 		const geometry = new THREE.BoxGeometry(secondaryCubeSize, secondaryCubeSize, secondaryCubeSize);
 		cubeA = new THREE.Mesh(geometry, material);
 		scene.add(cubeA);
 		cubeA.position.set(0.84, secondaryCubeYPos, 0);
-		appendAllAxes(secondaryAxisSize, axisScale, cubeA, true);
+		appendAllAxesUnity(secondaryAxisSize, axisScale, cubeA, false);
 		rotationHandleA = new RotationHandle(cubeA, scene, renderer.domElement, handleRadius, updateMultiplicationScene, global);
 	}
 
@@ -123,7 +123,7 @@ function drawMultiplication(canvas) {
 		cubeB = new THREE.Mesh(geometry, material);
 		scene.add(cubeB);
 		cubeB.position.set(-0.38, secondaryCubeYPos, 0);
-		appendAllAxes(secondaryAxisSize, axisScale, cubeB, true);
+		appendAllAxesUnity(secondaryAxisSize, axisScale, cubeB, false);
 		rotationHandleB = new RotationHandle(cubeB, scene, renderer.domElement, handleRadius, updateMultiplicationScene, global);
 	}
 
