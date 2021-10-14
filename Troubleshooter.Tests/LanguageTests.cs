@@ -17,6 +17,7 @@ namespace Troubleshooter.Tests
 			text.Should().NotContain("compile error", StringComparison.OrdinalIgnoreCase, "Should be \"Compiler Error\"");
 			text.Should().NotContain("world-space", StringComparison.OrdinalIgnoreCase, "Should be \"World space\"");
 			text.Should().NotContain("local-space", StringComparison.OrdinalIgnoreCase, "Should be \"Local space\"");
+			text.Should().NotContain("unity event", StringComparison.OrdinalIgnoreCase, "Should be \"UnityEvent\"");
 		}
 		
 		/// <summary>

@@ -2,7 +2,7 @@
 - [Interface](#interface)
 - [Programming](#programming)
     - [General](#general)
-    - [Errors & Warnings](#errors-warnings)
+    - [Errors & warnings](#errors-warnings)
     - [Input](#input)
     - [Physics](#physics)
     - [Assets](#assets)

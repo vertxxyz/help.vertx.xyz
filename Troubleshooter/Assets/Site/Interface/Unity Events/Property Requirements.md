@@ -1,4 +1,4 @@
-## Unity Event Property Requirements
+## UnityEvent Property Requirements
 
 The target property must:
 1. Be marked as `public`

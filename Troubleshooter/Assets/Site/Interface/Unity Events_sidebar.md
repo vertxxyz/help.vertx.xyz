@@ -4,4 +4,4 @@
 [Editor Utility Functions](https://docs.unity3d.com/ScriptReference/Events.UnityEventTools.html)  
 
 ### External resources
-[Unity Event Visualiser](https://github.com/MephestoKhaan/UnityEventVisualizer)  
+[UnityEvent Visualiser](https://github.com/MephestoKhaan/UnityEventVisualizer)  

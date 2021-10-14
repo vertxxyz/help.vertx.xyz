@@ -2,7 +2,7 @@
 ## Interface
 [Scene view](Interface/Scene%20View.md)  
 [Game view](Interface/Game%20View.md)  
-[Unity Events](Interface/Unity%20Events.md)  
+[UnityEvents](Interface/Unity%20Events.md)  
 [Error dialogs](Common/Error%20Dialogs.md)  
 
 ## Programming
@@ -12,11 +12,12 @@
 [Scripts](Programming/Scripts/Scripts.md)  
 [Debugging](Programming/Debugging.md)  
 ### Errors & warnings
-[Common errors](Programming/Common%20Errors.md)  
-[Common warnings](Programming/Common%20Warnings.md)  
+[Errors](Programming/Common%20Errors.md)  
+[Warnings](Programming/Common%20Warnings.md)  
 [Error dialogs](Common/Error%20Dialogs.md)
 ### Input
-[Common input issues](Programming/Common%20Input%20Issues.md)  
+[Built-in input](Programming/Input/Built-In%20Input.md)  
+[Input System package](Programming/Input/Input%20System.md)  
 ### Physics  
 [Physics messages](Programming/Physics%20Messages.md)  
 [Raycasting](Programming/Raycasting.md)  
@@ -30,7 +31,7 @@
 [Parsing input strings](Programming/Specifics/Parsing.md)  
 [Random](Programming/Specifics/Random.md)  
 [ScreenToWorldPoint](Programming/Specifics/ScreenToWorldPoint.md)  
-### Editor Extensions  
+### Editor extensions  
 [Property drawers](Programming/Editor%20Issues/Property%20Drawers.md)  
 [Property decorators](Programming/Editor%20Issues/Property%20Decorators.md)  
 [Custom inspectors](Programming/Editor%20Issues/Custom%20Inspectors.md)  
@@ -39,14 +40,14 @@
 [Job System / Burst](Programming/Jobs%20And%20Burst.md)  
 
 ## Building
-[Common Build Errors](Building/Common%20Build%20Errors.md)
+[Build errors](Building/Common%20Build%20Errors.md)
 
 ## UI
 [UGUI](UI/UGUI.md)  
 [UI Toolkit](UI/UIToolkit.md)
 
 ## Physics
-[Common physics issues](Physics/Physics%20Issues.md)
+[Physics issues](Physics/Physics%20Issues.md)
 
 ## Graphics
 [Materials](Graphics/Models%20&%20Materials/Common%20Material%20Issues.md)  
@@ -58,10 +59,10 @@
 [Occlusion culling](Graphics/Occlusion%20Culling/Common%20Occlusion%20Culling%20Issues.md)
 
 ## Animation
-[Animation Window](Animation/Animation%20Window.md)
+[Animation window](Animation/Animation%20Window.md)
 
 ## Audio
-[Common audio issues](Audio/Common%20Audio%20Issues.md)
+[Audio issues](Audio/Common%20Audio%20Issues.md)
 
 ## Package Manager
-[Common UPM issues](Package%20Manager/UPM%20Common%20Issues.md)
+[UPM issues](Package%20Manager/UPM%20Common%20Issues.md)
