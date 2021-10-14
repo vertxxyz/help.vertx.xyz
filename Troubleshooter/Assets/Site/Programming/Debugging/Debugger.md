@@ -5,7 +5,7 @@ This does not require recompiling your code, or exiting play mode.
 
 A functioning IDE is required, so first check [IDE configuration](../IDE%20Configuration.md) if you are experiencing basic issues.
 
-### Shared Concepts
+### Shared concepts
 #### Attaching
 Your IDE needs to target a running application to start a debugging session. Usually this functionality is found in one of the top utility bars in an IDE's interface.
 
@@ -14,7 +14,7 @@ Breakpoints are the entry point to a debugging session, mark a line at or before
 
 When program execution is halted **Unity will freeze**, you can now use the other debugger features of your IDE to assess problems. Stop debugging to resume Unity's normal function; debuggers will have a Resume Program button which will continue whilst remaining attached.
 
-#### Variable Inspection
+#### Variable inspection
 Hovering over an initialised variable during debugging will provide you with a view of its internals. This enables you to discover information about faults in logic, or uninitialised values.  
 Often a debugger will also allow you to hover an expression to evaluate its outcome (eg. the result of an if statement).
 
@@ -38,6 +38,6 @@ How-to instructions for debugging can be found [here](https://code.visualstudio.
 Rider has detailed information about debugging Unity applications [here](https://www.jetbrains.com/help/rider/Debugging_Unity_Applications.html) and [here](https://www.jetbrains.com/help/rider/Using_Breakpoints.html).  
 As of Rider 2020.2 rider also has [Pausepoints](https://blog.jetbrains.com/dotnet/2020/06/11/introducing-unity-pausepoints-for-rider/), the ability to pause (`Debug.Break()`) Unity at the end of a frame once a Pausepoint is hit.
 
-### Debugging Builds
+### Debugging builds
 Builds require *Development Build* and *Script Debugging* to be enabled in the build settings (**File | Build Settings**) to debug script code. When attaching the debugger attach to the built Player and not the Unity Editor.  
 More information can be found [here](https://docs.unity3d.com/Manual/ManagedCodeDebugging.html), including the debugging of mobile devices.  

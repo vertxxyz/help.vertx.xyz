@@ -21,7 +21,7 @@
 - [Collision Action Matrix](Info/Collision%20Matrix.md)
 - [Learning Bitmasks](Info/Bitmasks.md)
   
-### External Resources
+### External resources
 - [Unity Learn](http://learn.unity.com/)
 - [Unity Manual](https://docs.unity3d.com/Manual/)
 - [API Scripting Reference](https://docs.unity3d.com/ScriptReference/index.html)

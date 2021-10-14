@@ -1,4 +1,4 @@
-## Common Runtime Exceptions
+## Common runtime exceptions
 
 ### Exceptions
 

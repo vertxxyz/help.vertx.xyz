@@ -1,14 +1,14 @@
-## Editor Assemblies
+## Editor assemblies
 ### Description
 Editor code is not accessible in a build. Unity has multiple methods to separate and not include this code.
 
 ### Resolution
-#### Editor Folders
+#### Editor folders
 Code placed in a folder named **Editor** will be compiled into an editor assembly. These folders can be placed anywhere in your project.  
 The code in these assemblies will not be present in the build.  
 You can find more information regarding special folder names [here](https://docs.unity3d.com/Manual/SpecialFolders.html).
 
-#### Preprocessor Directives
+#### Preprocessor directives
 Editor code can be wrapped in a `UNITY_EDITOR` preprocessor `#if` directive.  
 This code will only compile when the preprocessor argument is present, which Unity only defines when running code from the editor.  
 The surrounded code will be stripped when building the game.

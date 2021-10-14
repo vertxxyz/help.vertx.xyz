@@ -10,7 +10,7 @@ Euler angles are confusing to author when rotating off-axis. `AngleAxis` greatly
 
 <<Code/Info/Quaternions/AngleAxis 2.html>>
 
-### Interactive Diagram
+### Interactive diagram
 
 ::: {#angle_axis .interactive-content} 
 :::

@@ -8,7 +8,7 @@ Creates a rotation with ::`forward`::{.quaternion-forward} and ::`upwards`::{.qu
 
 Combined with [Vector3.Cross](https://docs.unity3d.com/ScriptReference/Vector3.Cross.html) this function is a staple for creating orientations aligned to surfaces.
 
-### Interactive Diagram
+### Interactive diagram
 
 ::: {#look_rotation .interactive-content}
 :::

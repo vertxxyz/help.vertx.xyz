@@ -1,4 +1,4 @@
-## Object Tunnelling
+## Object tunnelling
 ### Issue
 When rigidbody objects are moving very quickly, they can tunnel through surfaces because checks to resolve their intersections are made without consideration as to the path they have taken.
 

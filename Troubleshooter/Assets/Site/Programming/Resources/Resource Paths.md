@@ -1,4 +1,4 @@
-## Resource Paths
+## Resource paths
 ### Description
 Paths used by the Resources API are **local to the Resources folder** above the asset.  
 Paths **do not include the file extension**.  

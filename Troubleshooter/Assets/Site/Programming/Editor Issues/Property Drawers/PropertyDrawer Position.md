@@ -1,4 +1,4 @@
-## PropertyDrawer Position
+## PropertyDrawer position
 
 ### Description
 PropertyDrawers do not support IMGUI layout functionality. You must not use methods that are of the type [EditorGUILayout](https://docs.unity3d.com/ScriptReference/EditorGUILayout.html) or [GUILayout](https://docs.unity3d.com/ScriptReference/GUILayout.html).

@@ -1,4 +1,4 @@
-## Null Reference Exception
+## Null reference exception
 ### Description
 A `NullReferenceException` (**NRE**), occurs when code tries to access a variable which isn’t set, or found.  
 :::info
@@ -19,7 +19,7 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
 :::
 
 ### Resolution
-#### UnityEngine.Object Types
+#### UnityEngine.Object types
 :::note
 1. **Either:**  
     Assign a reference to the variable (choose one)
@@ -34,7 +34,7 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
 3. Ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.
 4. Check prior methods make correct assumptions. For example, `GetComponent<Example>()` will return `null` if an `Example` component is not attached to the same GameObject.  
 :::
-#### Other Classes
+#### Other classes
 :::note
 1. **Either:**  
    Assign a reference to the variable (choose one)

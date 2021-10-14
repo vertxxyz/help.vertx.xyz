@@ -1,7 +1,7 @@
-## Compiler Errors
+## Compiler rrrors
 
 <<General/Console Window.md>>  
 <<General/Errors.md>>  
 
 ---
-[Common Compiler Errors](../Programming/Common%20Errors/Compiler%20Errors.md)
+[Common compiler errors](../Programming/Common%20Errors/Compiler%20Errors.md)

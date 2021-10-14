@@ -1,4 +1,4 @@
-## Trimming Audio
+## Trimming audio
 ### Description
 Silence still takes up time in audio clip. It's important that effects like shots or impacts start immediately and have no silence preceding them.
 

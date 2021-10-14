@@ -1,4 +1,4 @@
-## Basic Configuration
+## Basic configuration
 
 Ensure that either:  
 - The Audio Source has **Play On Awake** enabled.  

@@ -26,10 +26,9 @@ namespace Troubleshooter.Tests
 		public void ValidateLinks(string name, string path, string text)
 		{
 			using var scope = new AssertionScope();
-			scope.BecauseOf($"{name} is missing a link");
 			foreach ((string fullPath, _) in PageUtility.LinksAsFullPaths(text, path))
 			{
-				new FileInfo(fullPath).Should().Exist();
+				new FileInfo(fullPath).Should().Exist($"\"{name}\" is missing a link");
 			}
 		}
 

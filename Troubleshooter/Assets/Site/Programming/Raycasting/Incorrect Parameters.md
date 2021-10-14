@@ -1,4 +1,4 @@
-## Incorrect Parameters
+## Incorrect parameters
 ### Description
 Occasionally I see a `LayerMask` passed into the incorrect parameter of a `Raycast` function.
 For example, if your function call looks like this:

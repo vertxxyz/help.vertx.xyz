@@ -1,4 +1,4 @@
-## Character Controller Teleportation
+## Character Controller teleportation
 To teleport a CharacterController you need to disable it.  
 <<Code/Physics/CharacterController Teleport.rtf>>  
 

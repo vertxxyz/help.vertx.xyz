@@ -1,4 +1,4 @@
-## MonoBehaviour Construction
+## MonoBehaviour construction
 ```
 You are trying to create a MonoBehaviour using the 'new' keyword.
 This is not allowed.

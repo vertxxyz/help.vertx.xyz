@@ -1,4 +1,4 @@
-## Build Errors
+## Build errors
 ```
 Error building Player: X errors
 Build completed with a result of 'Failed'

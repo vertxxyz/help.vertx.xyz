@@ -1,4 +1,4 @@
-## General IDE Configuration
+## General IDE configuration
 
 The only 3 IDEs you should be using are Visual Studio, Visual Studio Code, or Jetbrains Rider.  
 There are probably other viable alternatives if you know what you're doing and how to configure them properly.  

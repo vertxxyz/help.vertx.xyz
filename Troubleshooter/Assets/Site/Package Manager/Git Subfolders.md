@@ -1,4 +1,4 @@
-## Git Subfolders
+## Git subfolders
 You can specify a repository subfolder for a Git package through the path query parameter. The Package manager will only register the package located in the specified repository subfolder and disregard the rest of the repository.
 
 #### Special considerations

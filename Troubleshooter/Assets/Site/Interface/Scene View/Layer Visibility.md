@@ -1,7 +1,7 @@
-## Scene View: Layer Visibility
+## Scene view: Layer visibility
 Check that Layer visibility is not disabled for the object in question.  
 
-![Scene View Visibility](scene-view-layer-visibility.png)  
+![Scene view visibility](scene-view-layer-visibility.png)  
 
 ---  
 

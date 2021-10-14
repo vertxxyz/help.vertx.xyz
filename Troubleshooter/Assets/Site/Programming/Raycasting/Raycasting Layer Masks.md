@@ -1,4 +1,4 @@
-## Layer Masks with Raycasts
+## Layer Masks with raycasts
 ### Description
 Layer masks are bitmasks that describe which layers are active or otherwise.  
 A layer mask may appear to be an `int`, but it is not representing a single layer.  

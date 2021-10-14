@@ -1,4 +1,4 @@
-## Mouse Input Issues
+## Mouse input issues
 
 Do **not** multiply mouse input by `Time.deltaTime`.  
 

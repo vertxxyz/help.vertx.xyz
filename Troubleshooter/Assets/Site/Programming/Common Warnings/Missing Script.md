@@ -1,4 +1,4 @@
-## Missing Scripts
+## Missing scripts
 ### Description
 Missing Scripts can mean a number of things:  
 1. There was a script that was deleted

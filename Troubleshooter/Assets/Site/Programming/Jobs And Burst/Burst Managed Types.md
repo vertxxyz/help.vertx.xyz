@@ -1,4 +1,4 @@
-## Managed Allocations in Jobs
+## Managed allocations in Jobs
 ### Description
 Burst is a compiler that translates compiled IL bytecode to native code. It's designed to specifically operate on a subset of C# that Unity dubs "High Performance C#", or HPC#.  
 HPC# is made up of [blittable types](https://docs.microsoft.com/en-us/dotnet/framework/interop/blittable-and-non-blittable-types).

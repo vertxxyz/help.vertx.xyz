@@ -1,2 +1,2 @@
-## Game View Scale
-<<Interface/Game View Zoom.md>>
+## Game view scale
+<<Interface/Game view zoom.md>>

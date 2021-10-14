@@ -1,4 +1,4 @@
-## IDE Configuration
+## IDE configuration
 If your IDE is not providing autocomplete suggestions or not underlining errors in red then it needs to be configured.  
 
 **I need help configuring:**

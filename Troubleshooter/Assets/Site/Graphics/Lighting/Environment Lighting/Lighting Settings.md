@@ -1,4 +1,4 @@
-## Environment Lighting - Settings
+## Environment lighting - settings
 ### Description
 Realtime lighting does not produce indirect lighting by itself.  
 Indirect lighting is the light that bounces off surfaces and contributes to lighting behind objects.  

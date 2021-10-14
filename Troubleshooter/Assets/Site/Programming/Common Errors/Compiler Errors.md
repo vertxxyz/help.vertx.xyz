@@ -1,4 +1,4 @@
-## Common Compiler Errors
+## Common compiler errors
 
 - [CS0104](Compiler%20Errors/CS0104.md): 'reference' is an ambiguous reference between 'X identifier' and 'Y identifier'
 - [CS0106](Compiler%20Errors/CS0106.md): The modifier 'modifier' is not valid for this item

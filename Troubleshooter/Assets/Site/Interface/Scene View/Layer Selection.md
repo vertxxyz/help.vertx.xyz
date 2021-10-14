@@ -1,7 +1,7 @@
-## Scene View: Layer Selection
+## Scene view: Layer selection
 Check that Layer pickability is not disabled for the layer the object in question is on.
 
-![Scene View Visibility](scene-view-layer-pickability.png)  
+![Scene view visibility](scene-view-layer-pickability.png)  
 
 ---  
 

@@ -1,4 +1,4 @@
-## Serialized References
+## Serialized references
 ### Components
 - [Referring to other components in the scene](Serializing%20Component%20References.md)
 ### Prefabs

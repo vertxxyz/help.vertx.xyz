@@ -1,4 +1,4 @@
-## Manually Adding Packages
+## Manually adding packages
 Packages in a project are described by the `manifest.json` file in the *Packages* folder at the root of a project.  
 To manually add a package, find its registered package name, and a version of the package you know exists.  
 

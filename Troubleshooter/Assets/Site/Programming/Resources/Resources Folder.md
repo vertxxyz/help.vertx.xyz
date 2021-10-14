@@ -1,4 +1,4 @@
-## Resources Folders
+## Resources folders
 ### Description
 The Resources API requires that assets are loaded within the Resources folder.  
 This is any folder in the project with the name `Resources`.  

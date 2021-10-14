@@ -1,6 +1,6 @@
 ## OnSceneGUI not called - Inspectors
 
-### Primary Inspector
+### Primary inspector
 OnSceneGUI may only be called for the *primary* Inspector. This is a concept Unity does not expose to the user.  
 When opening Inspectors, the first one opened becomes the primary one. Opening an object in this Inspector may show OnSceneGUI, while others may not.  
 

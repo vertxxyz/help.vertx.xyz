@@ -1,4 +1,4 @@
-## Common Build Errors
+## Common build errors
 
 - [Error building Player: X errors](Build%20Errors/Build%20Error.md) - Build completed with a result of 'Failed'  
 - [CS0246](Editor%20References.md) The type of namespace name '**UnityEditor**' could not be found, Are you missing an assembly reference?  

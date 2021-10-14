@@ -1,8 +1,8 @@
-## Resetting Layout
-Selecting a Layout resets the editor windows to match.  
+## Resetting layout
+Selecting a layout resets the editor windows to match.  
 There are two methods to do this.  
 
-The Layouts dropdown in the top right of the interface:    
+The layout dropdown in the top right of the interface:    
 ![Layouts Dropdown](reset-layout-0.png)  
 
 The menu bar:  

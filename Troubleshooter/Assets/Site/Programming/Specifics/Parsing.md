@@ -1,5 +1,5 @@
 <<Abbreviations/TMP.md>>  
-## Parsing Input Strings
+## Parsing input strings
 ### Issue
 When attempting to parse strings from Input Fields the input field may have appended invisible characters. These characters must be removed to parse the string into a result like an `int`.
 

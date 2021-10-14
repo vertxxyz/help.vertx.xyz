@@ -1,4 +1,4 @@
-## SerializedObject: How-to
+## SerializedObject: how-to
 ### Description
 SerializedObject is a window into Unity's serialized datastructures. It exposes SerializedProperties, objects used to access items in the serialization hierarchy.  
 [SerializedObject](https://docs.unity3d.com/ScriptReference/SerializedObject.html) and [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) are the best way to access and modify Unity-serialized structures; with automatic undo support, multi-object editing, and simplified functions for Editor UI.  
@@ -77,7 +77,7 @@ Once at a SerializedProperty that is at the bottom there are predefined *Value* 
 See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) Properties documentation to find the appropriate Value property; `floatValue`, `stringValue`, `objectReferenceValue`, etc.
 
 ### Arrays
-#### Iteration & Access
+#### Iteration & access
 Members in arrays are SerializedProperties themselves, you can iterate an array using the `arraySize` limit, eg:
 ```csharp
 for (int i = 0; i < values.arraySize; i++)
@@ -86,7 +86,7 @@ for (int i = 0; i < values.arraySize; i++)
     // element.floatValue is now accessible
 }
 ```
-#### Adding Elements
+#### Adding elements
 Adding elements to the end of the array
 ```csharp
 // Increase the size of the array
@@ -96,7 +96,7 @@ SerializedProperty lastElement = values.GetArrayElementAtIndex(values.arraySize 
 ```
 
 Inserting elements into the array is achieved with [InsertArrayElementAtIndex](https://docs.unity3d.com/ScriptReference/SerializedProperty.InsertArrayElementAtIndex.html).
-#### Removing Elements
+#### Removing elements
 Use [DeleteArrayElementAtIndex](https://docs.unity3d.com/ScriptReference/SerializedProperty.DeleteArrayElementAtIndex.html) to remove an element at an array index.  
 If the type is Object Reference you may need to set [objectReferenceValue](https://docs.unity3d.com/ScriptReference/SerializedProperty-objectReferenceValue.html) to null beforehand, or else a call to this method will only nullify the reference and not remove the element.  
 
@@ -163,7 +163,7 @@ private void OnDisable()
 }
 ```
 
-### Manual Property Iteration
+### Manual property iteration
 Serialized Property is actually an iterator, and in more advanced setups can be used as a part of a loop to retrieve all children of a property.  
 
 ```csharp

@@ -1,4 +1,4 @@
-## Property Decorators on Properties
+## Property decorators on properties
 
 ### Description
 A decorator like `[Header]` must be decorating a field that Unity already serializes and is displaying in the inspector.

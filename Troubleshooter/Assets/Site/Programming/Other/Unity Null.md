@@ -1,4 +1,4 @@
-## Unity Null
+## Unity null
 Comparing [UnityEngine.Object](https://docs.unity3d.com/ScriptReference/Object.html) derived types to `null` in Unity may not work how you expect.  
 
 ### Details

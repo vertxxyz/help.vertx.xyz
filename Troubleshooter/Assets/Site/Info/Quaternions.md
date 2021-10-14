@@ -12,10 +12,10 @@ What this means:
 - They cannot represent rotations of more than 180 degrees.
 
 ### What do they represent?
-A Quaternion can represent either an **orientation** or a **rotation**.  
-An orientation defines a rotational placement, an application of a rotation from the the default origin or "identity".  
-A rotation is a rotational vector, something to manipulate another orientation or rotation.  
-Sadly, just to confuse everyone **rotation** is a general term and can be used to also describe an orientation. `transform.rotation` is that Object's orientation.  
+A quaternion can represent either an **orientation** or a **rotation**.  
+An orientation is a rotational placement, an application of a rotation from the the reference placement or "identity".  
+A rotation is a manipulation of another orientation or rotation.  
+Sadly, just to confuse everyone **rotation** is a general term and can be used to describe an orientation. `transform.rotation` is a global orientation.  
 
 ### The API
 #### Rotation Construction
@@ -26,5 +26,5 @@ Sadly, just to confuse everyone **rotation** is a general term and can be used t
 - [Quaternion.FromToRotation](Quaternions/FromToRotation.md)
 
 #### Rotation Modification and Application
-- [Quaternion.Inverse](Quaternions/Inverse.md)
 - [* (Multiplication)](Quaternions/Multiplication.md)
+- [Quaternion.Inverse](Quaternions/Inverse.md)

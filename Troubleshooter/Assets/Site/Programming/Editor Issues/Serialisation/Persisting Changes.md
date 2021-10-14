@@ -1,4 +1,4 @@
-## Persisting Changes
+## Persisting changes
 If you're trying to set something from an editor context it needs to be dirtied.  
 :::info
 If something is changed and not dirtied, that change is transient and will be wiped.

@@ -1,4 +1,4 @@
-## Referencing Prefabs From Scenes
+## Referencing Prefabs from Scenes
 <<Variables/Serialized Prefab References.md>>
 Ensure you have dragged the prefab asset into the slot or you will get a [Null Reference Exception](../../Common%20Errors/Runtime%20Exceptions/Null%20Reference%20Exception.md) (Unassigned Reference Exception).  
 

@@ -6,7 +6,7 @@
 Creates a rotation from one direction to another. This will be the most direct rotation.  
 When applied as an orientation, the ::`fromDirection`::{.quaternion-from} axis is rotated to point in ::`toDirection`::{.quaternion-to}.
 
-### Interactive Diagram
+### Interactive diagram
 
 ::: {#from_to_rotation .interactive-content}
 :::

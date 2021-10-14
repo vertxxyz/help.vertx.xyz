@@ -1,8 +1,8 @@
-## Value and Reference Types
+## Value and reference types
 
 This is a short overview of value and reference behaviour. This description does not go over other topics like boxing, heap and stack memory, tuples, etc.
 
-### Value Types
+### Value types
 `bool`, `char`, `float` and other [floating-point numeric types](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types), `int` and other [integral numeric types](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types), and `struct` types are value types.
 
 Value types have value semantics, and each variable has its own copy of the data.  
@@ -27,7 +27,7 @@ int b = 500;
 // a == b
 ```  
 
-### Reference Types
+### Reference types
 `class`, `interface`, `delegate`, and `record` types are reference types.  
 
 ```csharp

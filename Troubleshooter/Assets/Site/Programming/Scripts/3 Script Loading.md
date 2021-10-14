@@ -1,4 +1,4 @@
-## Base Type
+## Base type
 ### Description
 Components and ScriptableObject scripts must inherit from `MonoBehaviour` and `ScriptableObject`.  
 If a user type does not inherit from `MonoBehaviour` it cannot be attached to a GameObject.  

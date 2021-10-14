@@ -1,4 +1,4 @@
-## Trigger Messages
+## Trigger messages
 
 Ensure your functions are exactly as below.
 The variable `data` can be renamed.  

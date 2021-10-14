@@ -1,4 +1,4 @@
-## Serializing Component References
+## Serializing Component references
 <<Variables/Serialized References.md>>  
 Dragging a GameObject from the [Hierarchy](https://docs.unity3d.com/Manual/Hierarchy.html) into the field will reference the first matching Component found on the object.
 

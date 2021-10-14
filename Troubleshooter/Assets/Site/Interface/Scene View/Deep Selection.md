@@ -1,4 +1,4 @@
-## Scene View: Deep Selection
+## Scene view: deep selection
 To select items behind others, click on the same place repeatedly to cycle through objects by depth.  
 Sometimes the UI can get in the way of selection. The [pickability](Selection.md) controls can be used to disable selection of those objects. Or disabling their visibility using the [Scene visibility](Visibility.md) controls.  
 
