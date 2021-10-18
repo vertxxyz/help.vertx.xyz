@@ -18,7 +18,7 @@ If there are changes, this will both dirty the Object, and record an Undo to the
 This can be done  
 To correctly handle prefab changes, calling [RecordPrefabInstancePropertyModifications](https://docs.unity3d.com/ScriptReference/PrefabUtility.RecordPrefabInstancePropertyModifications.html) after RecordObject is advised.  
 
-The dirty state will only be set when the diff is run at the end of the frame. So if you're using this in combination with SaveAllScenes in one frame, the scene will not be marked as dirty, and it will not be saved.  
+The dirty state will be set when the diff is run at the end of the frame. So if you're using this in combination with SaveAllScenes in one frame, the scene will not be marked as dirty, and it will not be saved.  
 If you have this issue, you can use [delayCall](https://docs.unity3d.com/ScriptReference/EditorApplication-delayCall.html) to save the Scene a little later, or to manually [mark the scenes as dirty](https://docs.unity3d.com/ScriptReference/SceneManagement.EditorSceneManager.MarkAllScenesDirty.html).
 
 

@@ -43,11 +43,12 @@
 [Build errors](Building/Common%20Build%20Errors.md)
 
 ## UI
-[UGUI](UI/UGUI.md)  
-[UI Toolkit](UI/UIToolkit.md)
+[Unity UI](UI/UGUI.md)  
+[UI Toolkit](UI/UI%20Toolkit.md)
 
 ## Physics
-[Physics issues](Physics/Physics%20Issues.md)
+[Physics issues](Physics/Physics%20Issues.md)  
+[Character Controller](Physics/Character%20Controller.md)
 
 ## Graphics
 [Materials](Graphics/Models%20&%20Materials/Common%20Material%20Issues.md)  

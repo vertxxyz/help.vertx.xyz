@@ -9,8 +9,7 @@ The target method must:
       - `bool`
       - `string`
       - `UnityEngine.Object` (or an inheriting type)
-3. **Not** be marked as `static`
-4. Have **no** return type. The method must have the return type `void`  
+3. **Not** return a value. The method must have the return type `void`  
 
 ---  
 

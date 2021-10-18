@@ -1,7 +1,7 @@
 ## Debugger
 ### Description
 The debugger is a tool that allows the halting of program execution so values can be inspected, lines of code can be stepped over, and sometimes even modified.  
-This does not require recompiling your code, or exiting play mode.
+This does not require recompiling your code, or exiting Play Mode.
 
 A functioning IDE is required, so first check [IDE configuration](../IDE%20Configuration.md) if you are experiencing basic issues.
 

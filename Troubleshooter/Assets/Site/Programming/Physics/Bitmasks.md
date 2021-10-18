@@ -36,7 +36,7 @@ layerMask = ~layerMask;
 ```
 
 ### Remove a layer from a mask
-Create an inverted mask using the `~` operator, where the layer to remove is now a 0, the rest 1's. Now perform a [logical and](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-and-operator-) to compare each bit and only set the resulting bit if both bits are enabled.
+Create an inverted mask using the `~` operator, where the layer to remove is now a 0, the rest 1's. Now perform a [logical and](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-and-operator-) to compare each bit and set the resulting bit if both bits are enabled.
 ```csharp
 mask &= ~(1 << 8);
 //              mask : 00000000000000000000000100100000

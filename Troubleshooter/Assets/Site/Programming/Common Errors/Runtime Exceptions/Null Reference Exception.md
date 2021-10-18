@@ -1,12 +1,12 @@
 ## Null reference exception
 ### Description
 A `NullReferenceException` (**NRE**), occurs when code tries to access a variable which isn’t set, or found.  
-:::info
-Declaring a reference variable does not automatically assign it an appropriate value.
+:::warning
+Declaring a reference variable does not automatically assign it a value.
 :::
 
 ### Troubleshooting:
-Check accessed variables on the line throwing the exception[^1] for `null`.  
+Check accessed variables on the [line throwing the exception](../Stack%20Traces.md) for `null`.  
 
 Only reference types can be `null`. Ie. `class`, `interface`, or `delegate` variables.  
 Access is denoted by:
@@ -23,7 +23,7 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
 :::note
 1. **Either:**  
     Assign a reference to the variable (choose one)
-    - Drag and drop the reference in the component's inspector[^2]. (If your field is serialized by Unity)  
+    - Drag and drop the reference in the component's inspector[^1]. (If your field is serialized by Unity)  
     - Manually assign the reference in a method like `Awake` or `Start` using [GetComponent](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) or similar.
     - Initialise the variable with [AddComponent](https://docs.unity3d.com/ScriptReference/GameObject.AddComponent.html) or [CreateInstance](https://docs.unity3d.com/ScriptReference/ScriptableObject.CreateInstance.html).
 
@@ -31,8 +31,11 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
     Check whether the reference is not null before trying to access it  
     `if(example != null)`  
     If looking to combine with GetComponent, use [TryGetComponent](https://docs.unity3d.com/ScriptReference/Component.TryGetComponent.html) instead.
-3. Ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.
-4. Check prior methods make correct assumptions. For example, `GetComponent<Example>()` will return `null` if an `Example` component is not attached to the same GameObject.  
+2. Ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.
+3. Check assignments use correct assumptions. Some examples: 
+   - `GetComponent<Example>()` will return `null` if an `Example` component is not attached to the same GameObject.  
+   - `Camera.main` will return null if there is not a camera tagged as MainCamera.  
+4. Check that you are not using modern null checking operators[^2] (`?.`, `??`, `??=`.)
 :::
 #### Other classes
 :::note
@@ -47,9 +50,5 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
 2. Ensure that nothing is setting it to `null` before you attempt to use it.
 :::
 
----  
-
-See [Unity Null](../../Other/Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.
-
-[^1]: See [Error Stack Traces](../Stack%20Traces.md) to learn how to find line numbers for exceptions.  
-[^2]: See [Serializing Component References](../../Variables/Other%20Members/Serializing%20Component%20References.md) to learn how to assign variables in the Inspector.  
+[^1]: See [Serializing Component References]() to learn how to assign variables in the Inspector.  
+[^2]: See [Unity Null](../../Other/Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.

@@ -3,7 +3,7 @@ Check that Scene pickability is not disabled for the object in question.
 
 ![Scene view pickability](scene-view-pickability.png)  
 
-To toggle pickability for an object and its children, click the icon in the left-hand pane. Individual objects can be toggled with an <kbd>Alt+Click</kbd>.  
+To toggle pickability for an object and its children, click the icon in the left-hand pane. Individual objects can be toggled by holding <kbd>Alt</kbd> while clicking.  
 See [picking and selecting GameObjects](https://docs.unity3d.com/2020.1/Documentation/Manual/ScenePicking.html) for more information.  
 
 ---  

@@ -1,6 +1,5 @@
-## Input Issues - UIToolkit
-Input in UIToolkit requires multiple things to receive input events.
-
+## Input Issues - UI Toolkit
+Input in UI Toolkit requires multiple things to receive input events:
 1. There must be an **active [EventSystem](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/EventSystem.html)** in the Scene.
     - You can create one via **GameObject | UI | Event System**
 2. **Picking Mode** must be set to Position on the Visual Element.  

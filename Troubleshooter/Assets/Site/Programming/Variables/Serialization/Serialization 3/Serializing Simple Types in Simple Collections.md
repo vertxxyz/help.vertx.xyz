@@ -4,5 +4,5 @@ Arrays (eg. `float[]`,) and Lists (eg. `List<float>`,) are the two supported col
 
 ---
 
-Dictionaries are not serializable, but you can implement [ISerializationCallbackReceiver](https://docs.unity3d.com/ScriptReference/ISerializationCallbackReceiver.html) to manually reserialize a dictionary at edit-time. There's an example of that structure in the documentation.  
+Dictionaries are not serializable, but you can implement [ISerializationCallbackReceiver](https://docs.unity3d.com/ScriptReference/ISerializationCallbackReceiver.html) to manually serialize a dictionary into serializable datastructures. There's an example of that structure in the documentation.  
 There are also SerializableDictionary implementations out there that are wrapper classes that implement the interface, and may also have a custom property drawer.

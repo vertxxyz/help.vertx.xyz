@@ -8,7 +8,6 @@ The target property must:
     - `bool`
     - `string`
     - `UnityEngine.Object` (or an inheriting type)
-3. **Not** be marked as `static`
 
 ---  
 

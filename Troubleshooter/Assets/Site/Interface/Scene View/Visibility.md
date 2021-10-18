@@ -3,7 +3,7 @@ Check that Scene visibility is not disabled for the object in question.
 
 ![Scene view visibility](scene-view-visibility.png)
 
-Visibility can be toggled for an object and its children by clicking the icon. Individual objects can be toggled with an <kbd>Alt+Click</kbd>.  
+Visibility can be toggled for an object and its children by clicking the icon. Individual objects can be toggled by holding <kbd>Alt</kbd> while clicking.  
 Toggle an isolated view of an object with the shortcut <kbd>Shift+H</kbd>.  
 Toggle Scene visibility entirely using the eye icon on the Scene view toolbar.  
 

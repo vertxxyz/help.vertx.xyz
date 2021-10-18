@@ -1,4 +1,4 @@
-## Coroutines - Halting
+## Coroutines: Halting
 ### Description
 
 Coroutines must be started properly to run to completion.  

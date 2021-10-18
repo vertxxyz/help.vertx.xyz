@@ -1,6 +1,6 @@
 ## UnityEvents
 
-- [A UnityEvent only displays options for **MonoScript**](Unity%20Events/Incorrect%20Assignment.md)  
+- [A UnityEvent displays options for **MonoScript**](Unity%20Events/Incorrect%20Assignment.md)  
 - [A **method** does not appear in the functions list](Unity%20Events/Method%20Requirements.md)  
 - [A **property** does not appear in in the functions list](Unity%20Events/Property%20Requirements.md)
 - [A **field** does not appear in the functions list](Unity%20Events/Field%20Support.md)

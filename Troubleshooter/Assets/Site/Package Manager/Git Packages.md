@@ -2,8 +2,8 @@
 ### Description
 Git packages can be [added via using their git link](https://docs.unity3d.com/Manual/upm-git.html), this is the url ending in `.git`, and not the url of the repository page.  
 
-### Open UPM
-Sometimes these packages are hosted on [Open UPM](https://openupm.com), in these cases you can follow [these steps](Open%20UPM%20Packages.md) to easily add and maintain packages to your project.
+### OpenUPM
+Sometimes these packages are hosted on [OpenUPM](https://openupm.com), in these cases you can follow [these steps](Open%20UPM%20Packages.md) to easily add and maintain packages to your project.
 
 ### Subfolders
 As of 2019.3.4.f1 (and 2020.1.a21) git urls for packages [supports subfolders](Git%20Subfolders.md).

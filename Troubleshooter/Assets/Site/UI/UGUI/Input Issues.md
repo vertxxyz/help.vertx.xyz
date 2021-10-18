@@ -1,6 +1,5 @@
 ## Input Issues - UGUI
-Input in UGUI (Unity UI that uses a Canvas) requires multiple things to receive input events.  
-
+Input in Unity UI (UGUI) requires multiple things to receive input events:
 1. There must be an **active [EventSystem](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/EventSystem.html)** in the Scene.  
     - You can create one via **GameObject | UI | Event System**  
 2. A **[Graphic Raycaster](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/script-GraphicRaycaster.html)** must be present on the Canvas and sub-Canvases.  

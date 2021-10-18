@@ -28,7 +28,7 @@ When using abbreviations, embed the expanded abbreviation into the page (present
 
 ```
 <<Abbreviations/NRE.md>>
-## Missing References
+## Missing references
 This example can throw an NRE, causing code execution to halt.
 ```
 
@@ -93,9 +93,10 @@ These are the instructions that would solve the issue if that was the case.
 ```
 
 ## Miscellaneous
-### Keyboard Shortcuts or Interface Buttons
+### Keyboard Shortcuts
 ```
-<kbd>Ctrl+Left-Mouse</kbd>
+Hold <kbd>Ctrl</kbd> while left clicking.
+Press <kbd>Alt+Ctrl+F</kbd>.
 ```  
 ### Menu Paths or Hierarchical Locations
 ```

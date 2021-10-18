@@ -5,6 +5,6 @@ Sometimes the UI can get in the way of selection. The [pickability](Selection.md
 ### NSelection
 
 I have authored a package called [NSelection](https://github.com/vertxxyz/NSelection) that helps with selecting troublesome items in the Scene view.  
-Once installed, press <kbd>Ctrl+Right-Mouse</kbd> in the Scene view to get a list of objects that are beneath the cursor.  
+Once installed, press <kbd>Ctrl</kbd> while right-clicking in the Scene view to get a list of objects that are beneath the cursor.  
 
 ![NSelection](https://vertx.xyz/Images/NSelection/nSelection4.gif)  

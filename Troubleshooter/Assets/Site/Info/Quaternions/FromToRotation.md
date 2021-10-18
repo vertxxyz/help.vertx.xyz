@@ -15,7 +15,7 @@ When applied as an orientation, the ::`fromDirection`::{.quaternion-from} axis i
 <<Code/Info/Quaternions/FromToRotation 3.html>>  
 
 There is an equivalence to [AngleAxis](AngleAxis.md) here, axis is the ::`cross product`::{.quaternion-axis}, and ::`angle`::{.quaternion-angle} is made between them.  
-Similarly, the starting point around that axis is arbitrary, though defined by ::`fromDirection`::{.quaternion-from}, the angle is only scalar.
+Similarly, the starting point around that axis is arbitrary, though defined by ::`fromDirection`::{.quaternion-from}, the angle is scalar.
 
 ### Usage
 

@@ -10,7 +10,7 @@ You can find more information regarding special folder names [here](https://docs
 
 #### Preprocessor directives
 Editor code can be wrapped in a `UNITY_EDITOR` preprocessor `#if` directive.  
-This code will only compile when the preprocessor argument is present, which Unity only defines when running code from the editor.  
+This code will only compile when the preprocessor argument is present, which Unity defines when running code from the editor.  
 The surrounded code will be stripped when building the game.
 
 ```csharp
