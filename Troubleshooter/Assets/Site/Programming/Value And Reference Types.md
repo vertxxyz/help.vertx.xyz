@@ -16,7 +16,7 @@ a++;
 When a value type is assigned to another, this assignment will copy by value. This means that the value of `a`, `0`, was copied into `b`, and when `a` was incremented, `b` was unaffected.  
 `a` is now `1`, but `b` has remained `0`.  
 
-When a value type is returned via a method or property this is also a copy. This means that directly modifying the return value of these statements will not modify the original value. The compiler will throw a warning when you attempt this, because the logic performed is useless (see [CS1612](Common%20Errors/Compiler%20Errors/CS1612.md).)  
+When a value type is returned via a method or property this is also a copy. This means that directly modifying the return value of these statements will not modify the original value. The compiler will throw a warning when you attempt this, because the logic performed is useless (see [CS1612](Common%20Errors/Compiler%20Errors/CS1612.md)).  
 These values are copied when passed to a method or a property. This behaviour can be modified with methods with the `ref` or `in` keywords.
 
 When two value types are compared, they are done so by value:  

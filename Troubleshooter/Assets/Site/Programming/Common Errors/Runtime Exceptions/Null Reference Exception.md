@@ -35,7 +35,7 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
 3. Check assignments use correct assumptions. Some examples: 
    - `GetComponent<Example>()` will return `null` if an `Example` component is not attached to the same GameObject.  
    - `Camera.main` will return null if there is not a camera tagged as MainCamera.  
-4. Check that you are not using modern null checking operators[^2] (`?.`, `??`, `??=`.)
+4. Check that you are not using modern null checking operators[^2] (`?.`, `??`, `??=`).
 :::
 #### Other classes
 :::note

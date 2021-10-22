@@ -1,13 +1,14 @@
+<<Abbreviations/NRE.md>>
 ## Unity null
 Comparing [UnityEngine.Object](https://docs.unity3d.com/ScriptReference/Object.html) derived types to `null` in Unity may not work how you expect.  
 
 ### Details
 The equality operators (`==` and `!=`) for `UnityEngine.Object` types have been overridden by Unity, and don't only perform reference comparisons.  
-A Unity Object is spit into two parts: managed C#, and native C++. Users interact with the managed object, and the engine manages the native object.  
+A Unity Object is split into two parts: managed C#, and native C++. Users interact with the managed object, and the engine manages the native object.  
 When an Object is compared with null and it isn't *really* null, a check against the native object occurs. This makes it possible to Destroy an Object somewhere, and have an entirely different reference evaluate to null.  
 
-Additionally, the Editor adds extra context to null assignments occuring in the editor through this object.  
-If something is not assigned in the editor a custom Null Reference Exception, an [Unassigned Reference Exception](../Common%20Errors/Runtime%20Exceptions/Unassigned%20Reference%20Exception.md) is thrown.   
+The Editor adds extra context to null assignments occuring in the editor through this object.  
+If something is not assigned in the editor a custom NRE, an [Unassigned Reference Exception](../Common%20Errors/Runtime%20Exceptions/Unassigned%20Reference%20Exception.md) is thrown.   
 If there used to be an object, but it has been Destroyed or become invalid, you get a a  [Missing Reference Exception](../Common%20Errors/Runtime%20Exceptions/Missing%20Reference%20Exception.md).  
 These exceptions also come bundled with some extra context, the location that is missing the object, none of which would be provided with a normal NRE.  
 Due to this [GetComponent](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) will allocate memory in the Editor. Using [TryGetComponent](https://docs.unity3d.com/ScriptReference/GameObject.TryGetComponent.html) will not.  
