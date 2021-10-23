@@ -1,5 +1,7 @@
 ## Serializing a Field
 
+### General
+
 Ensure your declared variable is either marked with a `[SerializeField]` attribute:  
 <<Code/Serialization/SerializeField.rtf>>  
 
@@ -8,13 +10,14 @@ or is `public`:
 
 A `static`, `const`, or `readonly` field **cannot** be serialized.
 
----  
+### Properties
 
 :::warning
 Unity will not serialize properties, so make sure your variable is a field type.
 :::  
 
-You can serialize a backing field of an auto-property using `[field: SerializeField]`. Pre-2020 this did not display properly in the Inspector and could cause serialization issues.
+You can serialize a backing field of an auto-property using `[field: SerializeField]`. Pre-2020 this did not display properly in the Inspector.  
+The field will be serialized as `<PropertyName>k__BackingField`, which adds complexity when renaming fields and creating editor extensions. Generally just serializing a field manually is more desirable.
 
 ---  
 
