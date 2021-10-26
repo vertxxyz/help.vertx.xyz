@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 });
 
-function TouchHandler (target, begin, move, end) {
+function TouchHandler(target, begin, move, end) {
 	target.onmousedown = mouse_down;
 	target.ontouchstart = genericTouchHandler(mouse_down);
 
@@ -114,7 +114,7 @@ function genericTouchHandler(f) {
 	}
 }
 
-function Slider (container_div, callback, style_prefix, default_value, disable_click) {
+function Slider(container_div, callback, style_prefix, default_value, disable_click) {
 	const container = container_div.querySelector('.slider_container');
 	const left_gutter = container.querySelector('.slider_left_gutter');
 	const right_gutter = container.querySelector('.slider_right_gutter');
@@ -321,4 +321,23 @@ const addCssIfRequired = (path) => {
 	head.appendChild(cssLink);
 };
 
-export {TAU, Rad2Deg, Deg2Rad, TouchHandler, Slider, EasingFunctions, lerp, inverseLerp, remap, circlePoints, addPoints, inversedEase, clearAndRedraw, toNormalisedCanvasSpace, getCameraRay, clamp01, clamp, addCssIfRequired};
+export {
+	TAU,
+	Rad2Deg,
+	Deg2Rad,
+	TouchHandler,
+	Slider,
+	EasingFunctions,
+	lerp,
+	inverseLerp,
+	remap,
+	circlePoints,
+	addPoints,
+	inversedEase,
+	clearAndRedraw,
+	toNormalisedCanvasSpace,
+	getCameraRay,
+	clamp01,
+	clamp,
+	addCssIfRequired
+};

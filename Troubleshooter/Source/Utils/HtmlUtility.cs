@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using AdvancedStringBuilder;
+using Markdig.Helpers;
 
 namespace Troubleshooter
 {
@@ -41,7 +42,7 @@ namespace Troubleshooter
 			{ "#BDBDBD", "token punctuation" },
 			{ "#FF5647", "token unknown" }
 		};
-		
+
 		public static readonly Dictionary<string, string> UnderlineColorToClassLookup = new()
 		{
 			{ "#85C46C", "hint-underline" },
@@ -83,19 +84,20 @@ namespace Troubleshooter
 					italicStyles.Add(styleNameMatch.Groups[0].Value);
 				}
 			}
-			
-			{ // Underlines
+
+			{
+				// Underlines
 				MatchCollection styles = underlineRegex.Matches(styleContent);
 				foreach (Match match in styles)
 				{
 					string color = match.Groups[1].Value.ToUpper();
 					if (!UnderlineColorToClassLookup.TryGetValue(color, out var replacementStyle))
 						continue;
-					
+
 					if (!TryGetStyleNameMatchBeforeBlockData(match, styleContent, out var styleNameMatch, stylePlainRegex))
 						continue;
 
-					colorStylesToReplacement.Add(styleNameMatch.Groups[0].Value, replacementStyle); 
+					colorStylesToReplacement.Add(styleNameMatch.Groups[0].Value, replacementStyle);
 					// Console.WriteLine($"{styleNameMatch.Groups[0].Value}, {replacementStyle}");
 				}
 			}
@@ -113,7 +115,8 @@ namespace Troubleshooter
 			stringBuilder.TrimEnd();
 
 			content = stringBuilder.ToString();
-			{ // Style replacement
+			{
+				// Style replacement
 				// Replace italic <span>s with <em> - Must occur before we replace inline styles
 				foreach (string style in italicStyles)
 				{
@@ -149,10 +152,9 @@ namespace Troubleshooter
 			// Replace spans containing only spaces with just the spaces.
 			html = StringUtility.ReplaceMatch(html, spanSpacesRegex, (s, builder) => builder.Append(s), 1);
 			// Surround with code-block setup
-			html = string.Concat("<div class=\"editor-colors\"><pre>", html, "</pre></div>");
-
+			StringBuilder sb = AppendWithCodeBlockSetup(html);
 			// Console.WriteLine(styleContent);
-			return html;
+			return sb.ToString();
 		}
 
 		/// <summary>
@@ -160,7 +162,7 @@ namespace Troubleshooter
 		/// </summary>
 		private static bool TryGetStyleNameMatchBeforeBlockData(Match blockMatch, string content, out Match result)
 			=> TryGetStyleNameMatchBeforeBlockData(blockMatch, content, out result, styleNameRegex);
-		
+
 		/// <summary>
 		/// In a block like ._style_1{foo;bar;}, find "_style_1" from a match of either foo; or bar;
 		/// </summary>
@@ -172,6 +174,43 @@ namespace Troubleshooter
 			Console.WriteLine(styleName);*/
 			result = styleNameRegex.Match(content, styleNameStart + 1, blockStart - (styleNameStart + 1));
 			return result.Success;
+		}
+
+		public static StringBuilder AppendWithCodeBlockSetup(string html, bool appendPre = true, StringBuilder stringBuilder = null)
+		{
+			var sb = stringBuilder ?? new StringBuilder(512);
+			sb.Append("<div class=\"code-container\">");
+			{
+				sb.Append("<div class=\"dropdown code-setting\">");
+				{
+					// sb.Append("...");
+					sb.Append("<span class=\"dropdown-caret\"></span>");
+					sb.Append("<div class=\"dropdown-content\">");
+					{
+						sb.Append("<button class=\"code-setting-ligatures\">Ligatures ✓</button>");
+						sb.Append("<button class=\"code-setting-theme\">Switch Theme</button>");
+					}
+					sb.Append("</div>");
+				}
+				sb.Append("</div>");
+				
+				sb.Append("<div class=\"code-container-inner\">");
+				{
+					if (appendPre)
+					{
+						sb.Append("<pre>");
+						sb.Append(html);
+						sb.Append("</pre>");
+					}
+					else
+					{
+						sb.Append(html);
+					}
+				}
+				sb.Append("</div>");
+			}
+			sb.Append("</div>");
+			return sb;
 		}
 	}
 }

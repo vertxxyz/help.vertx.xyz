@@ -32,9 +32,8 @@ namespace Troubleshooter
 			RemoveEmptyStyleHack();
 			FixRootLevelStyleHack();
 
-			html = string.Concat("<div class=\"editor-colors\"><pre>", html, "</pre></div>");
-
-			return html;
+			StringBuilder sb = HtmlUtility.AppendWithCodeBlockSetup(html);
+			return sb.ToString();
 
 			// Replace explicit width with spaces
 			void ReplaceTabsHack()

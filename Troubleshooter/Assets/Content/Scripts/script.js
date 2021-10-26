@@ -3,6 +3,45 @@ const contentsClass = '.contents';
 const main = 'Main';
 let currentDirectory = "";
 
+class CodeSettings {
+	usesLigatures;
+	theme;
+	storage;
+
+	static get LigaturesKey() {
+		return "help_CodeLigatures"
+	};
+
+	static get ThemeKey() {
+		return "help_CodeLigatures"
+	};
+
+	constructor(storage) {
+		this.storage = storage;
+		const ligaturesValue = storage.getItem(CodeSettings.LigaturesKey);
+		const themeValue = storage.getItem(CodeSettings.ThemeKey);
+
+		this.usesLigatures = ligaturesValue == null ? true : ligaturesValue === "true";
+		this.theme = themeValue == null ? "Rider Dark" : themeValue;
+	}
+
+	UpdateLigatures() {
+		storage.setItem(CodeSettings.LigaturesKey, this.usesLigatures);
+		if (this.usesLigatures) {
+			removeCssRuleIfRequired(CodeSettings.LigaturesKey)
+		} else {
+			addCssRuleIfRequired("pre { font-variant-ligatures: none; }", CodeSettings.LigaturesKey)
+		}
+	}
+
+	UpdateTheme() {
+		storage.setItem(CodeSettings.ThemeKey, this.theme);
+	}
+}
+
+const storage = window.localStorage;
+let codeSettings = new CodeSettings(storage);
+
 let pageParam = getPageParameter();
 //Don't push a history state for this change.
 if (pageParam === main) {
@@ -101,7 +140,7 @@ function processPageValue(value, useCurrentDirectory) {
 function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory = true) {
 	value = processPageValue(value, useCurrentDirectory);
 	currentDirectory = value.replace(/\/*[^/]+$/, "");
-	
+
 	$(document).ready(function () {
 		const contents = $(contentsClass);
 		const sidebarContents = $('.sidebar-contents');
@@ -118,6 +157,7 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
 				scrollToHash(hash);
 				setupHeaders();
 				Prism.highlightAll();
+				setupCodeSettings();
 			});
 			sidebarContents.load(`HTML/${value}_sidebar.html`, function (response, status, xhr) {
 				if (status === "error")
@@ -169,6 +209,27 @@ function setupHeaders() {
 	);
 }
 
+function setupCodeSettings() {
+	// Ligatures setting
+	const ligaturesSetting = $(".code-setting-ligatures");
+	codeSettings.UpdateLigatures();
+	ligaturesSetting.html(codeSettings.usesLigatures ? "Ligatures ✓" : "Ligatures");
+	ligaturesSetting.click(function () {
+		codeSettings.usesLigatures = !codeSettings.usesLigatures;
+		codeSettings.UpdateLigatures();
+		ligaturesSetting.html(codeSettings.usesLigatures ? "Ligatures ✓" : "Ligatures");
+	});
+	// Theme setting
+	codeSettings.UpdateTheme();
+	$(".code-setting-theme").click(function () {
+		if (this.theme === "Rider Dark")
+			this.theme = "VS Dark";
+		else
+			this.theme = "Rider Dark";
+		codeSettings.UpdateTheme();
+	});
+}
+
 function fallbackCopyTextToClipboard(text) {
 	const textArea = document.createElement("textarea");
 	textArea.value = text;
@@ -195,4 +256,25 @@ function copyTextToClipboard(text) {
 		return;
 	}
 	navigator.clipboard.writeText(text).catch();
+}
+
+function removeCssRuleIfRequired(id) {
+	const element = document.getElementById(id)
+	if (element == null)
+		return;
+	const head = document.getElementsByTagName("head")[0];
+	head.removeChild(element);
+}
+
+function addCssRuleIfRequired(rule, id) {
+	if (document.getElementById(id) != null)
+		return;
+	const head = document.getElementsByTagName("head")[0];
+
+	const style = document.createElement('style');
+
+	style.innerHTML = rule;
+	style.id = id;
+
+	head.appendChild(style);
 }

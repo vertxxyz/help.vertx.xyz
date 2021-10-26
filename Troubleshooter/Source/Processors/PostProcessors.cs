@@ -14,16 +14,16 @@ namespace Troubleshooter
 		private static readonly IHtmlPostProcessor[] All =
 			typeof(IHtmlPostProcessor).Assembly.GetTypes()
 				.Where(t => typeof(IHtmlPostProcessor).IsAssignableFrom(t) && !t.IsAbstract)
-				.Select(t => (IHtmlPostProcessor) Activator.CreateInstance(t)).OrderBy(p => p!.Order).ToArray();
+				.Select(t => (IHtmlPostProcessor)Activator.CreateInstance(t)).OrderBy(p => p!.Order).ToArray();
 
 		public static string Process(string html) => All.Aggregate(html, (current, processor) => processor.Process(current));
 	}
-	
+
 	[UsedImplicitly]
 	public class RelativeLinkConverter : IHtmlPostProcessor
 	{
 		private readonly Regex regex = new(@"(?<=<a )href=""([^""]+\.md)""", RegexOptions.Compiled);
-		
+
 		public string Process(string html) =>
 			StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) =>
 			{
@@ -33,7 +33,7 @@ namespace Troubleshooter
 				stringBuilder.Append($"onclick=\"loadPage(\'{insert}\')\"");
 			}, 1);
 	}
-	
+
 	[UsedImplicitly]
 	public class ExternalLinkConverter : IHtmlPostProcessor
 	{
@@ -62,10 +62,10 @@ namespace Troubleshooter
 	[UsedImplicitly]
 	public class InfoBoxConverter : IHtmlPostProcessor
 	{
-		private static readonly Regex infoRegex = new ("<div class=\"(.*?)info\"(.*?)><p>", RegexOptions.Compiled);
-		private static readonly Regex warningRegex = new ("<div class=\"(.*?)warning\"(.*?)><p>", RegexOptions.Compiled);
-		private static readonly Regex errorRegex = new ("<div class=\"(.*?)error\"(.*?)><p>", RegexOptions.Compiled);
-		
+		private static readonly Regex infoRegex = new("<div class=\"(.*?)info\"(.*?)><p>", RegexOptions.Compiled);
+		private static readonly Regex warningRegex = new("<div class=\"(.*?)warning\"(.*?)><p>", RegexOptions.Compiled);
+		private static readonly Regex errorRegex = new("<div class=\"(.*?)error\"(.*?)><p>", RegexOptions.Compiled);
+
 		public string Process(string html)
 		{
 			html = StringUtility.ReplaceMatch(html, infoRegex, (m, builder) =>
@@ -100,7 +100,7 @@ namespace Troubleshooter
 	public class SliderConverter : IHtmlPostProcessor
 	{
 		private readonly Regex regex = new("<div.* class=\".*?slider\"></div>", RegexOptions.Compiled);
-		
+
 		public string Process(string html)
 		{
 			return StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) =>
@@ -126,7 +126,7 @@ namespace Troubleshooter
 			}, 0);
 		}
 	}
-	
+
 	[UsedImplicitly]
 	public class FootnoteRuleRemoval : IHtmlPostProcessor
 	{
@@ -140,5 +140,14 @@ namespace Troubleshooter
 				return html;
 			return string.Concat(html[..(footnoteIndex + length)], html[(footnoteIndex + length + 7)..]);
 		}
+	}
+
+	[UsedImplicitly]
+	public class PrismCodeWrapper : IHtmlPostProcessor
+	{
+		private readonly Regex regex = new("<pre><code class=\"language-\\w+\">.+</code></pre>", RegexOptions.Compiled | RegexOptions.Singleline);
+
+		public string Process(string html)
+			=> StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) => HtmlUtility.AppendWithCodeBlockSetup(@group, false, stringBuilder), 0);
 	}
 }
