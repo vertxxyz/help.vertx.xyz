@@ -37,6 +37,8 @@ class CodeSettings {
 	UpdateTheme() {
 		// If theme is not valid, set it to default.
 		if (this.theme !== 'rider-dark' &&
+			this.theme !== 'one-monokai' &&
+			this.theme !== 'dracula' &&
 			this.theme !== 'vs-dark') {
 			this.theme = 'rider-dark';
 		}
@@ -230,9 +232,23 @@ function setupCodeSettings() {
 	$(".code-setting-theme").click(function () {
 		if (codeSettings.theme === "rider-dark")
 			codeSettings.theme = "vs-dark";
+		else if (codeSettings.theme === "vs-dark")
+			codeSettings.theme = "one-monokai";
+		else if (codeSettings.theme === "one-monokai")
+			codeSettings.theme = "dracula";
 		else
 			codeSettings.theme = "rider-dark";
 		codeSettings.UpdateTheme();
+	});
+	$(".code-setting-copy").click(function () {
+		const container = $(this).closest('div[class^="code-container"]');
+		const inner = container.find('.code-container-inner').get(0);
+		const r = document.createRange();
+		r.selectNode(inner);
+		window.getSelection().removeAllRanges();
+		window.getSelection().addRange(r);
+		document.execCommand('copy');
+		window.getSelection().removeAllRanges();
 	});
 }
 

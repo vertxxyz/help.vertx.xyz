@@ -145,7 +145,7 @@ namespace Troubleshooter
 	[UsedImplicitly]
 	public class PrismCodeWrapper : IHtmlPostProcessor
 	{
-		private readonly Regex regex = new("<pre><code class=\"language-\\w+\">.+</code></pre>", RegexOptions.Compiled | RegexOptions.Singleline);
+		private readonly Regex regex = new("<pre><code class=\"language-\\w+\">.+?</code></pre>", RegexOptions.Compiled | RegexOptions.Singleline);
 
 		public string Process(string html)
 			=> StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) => HtmlUtility.AppendWithCodeBlockSetup(@group, false, stringBuilder), 0);

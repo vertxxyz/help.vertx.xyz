@@ -55,6 +55,40 @@
 	--unknownColor: #ff6666;
 }
 
+.one-monokai {
+	--backgroundColor: #282c34;
+	--textColor: #bbbbbb;
+	--delimiterColor: #bbbbbb;
+	--operatorColor: #e06c75;
+	--commentColor: #676f7d;
+	--classColor: #61afef;
+	--stringColor: #e5c07b;
+	--keywordColor: #e06c75;
+	--numberColor: #b5cea8;
+	--memberColor: #9cdcfe;
+	--structColor: #F59762;
+	--functionColor: #98c379;
+	--regexColor: #d69d85;
+	--unknownColor: #FF5647;
+}
+
+.dracula {
+	--backgroundColor: #282a36;
+	--textColor: #f8f8f2;
+	--delimiterColor: #f8f8f2;
+	--operatorColor: #ff79c6;
+	--commentColor: #6272a4;
+	--classColor: #8be9fd;
+	--stringColor: #f1fa8c;
+	--keywordColor: #ff79c6;
+	--numberColor: #bd93f9;
+	--memberColor: #f8f8f2;
+	--structColor: #8be9fd;
+	--functionColor: #50fa7b;
+	--regexColor: #d69d85;
+	--unknownColor: #FF5647;
+}
+
 .token {
 	&.commentColorOnly {
 		color: var(--commentColor);

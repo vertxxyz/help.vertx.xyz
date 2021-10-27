@@ -22,7 +22,7 @@ Information is presented newest to oldest, the path the code took to get to here
 
 ### Details
 
-:::editor-colors
+:::code-container{.code-container-inner}
 :::code-context
 UnassignedReferenceException: The variable pivot of Rotator has not been assigned.  
 You probably need to assign the pivot variable of the GeneralRotationTest script in the inspector.  

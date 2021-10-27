@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		},
 		allowPageScroll: "auto",
 		preventDefaultEvents: false,
-		excludedElements: $.fn.swipe.defaults.excludedElements + ", code, pre, .editor-colors, " +
+		excludedElements: $.fn.swipe.defaults.excludedElements + ", code, pre, .code-container, " +
 			".slider, .slider_container, .slider_knob, .slider_left_gutter, .slider_right_gutter"
 	});
 });

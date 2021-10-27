@@ -189,6 +189,7 @@ namespace Troubleshooter
 					{
 						sb.Append("<button class=\"code-setting-ligatures\">Ligatures ✓</button>");
 						sb.Append("<button class=\"code-setting-theme\">Switch Theme</button>");
+						sb.Append("<button class=\"code-setting-copy\">Copy As Text</button>");
 					}
 					sb.Append("</div>");
 				}
