@@ -29,7 +29,7 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
 
     **Or:**  
     Check whether the reference is not null before trying to access it  
-    `if(example != null)`  
+    `if (example != null)`  
     If looking to combine with GetComponent, use [TryGetComponent](https://docs.unity3d.com/ScriptReference/Component.TryGetComponent.html) instead.
 2. Ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.
 3. Check assignments use correct assumptions. Some examples: 
@@ -46,7 +46,7 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
 
    **Or:**  
    Check whether the reference is not null before trying to access it  
-   `if(example != null)`
+   `if (example != null)`
 2. Ensure that nothing is setting it to `null` before you attempt to use it.
 :::
 
