@@ -13,7 +13,7 @@ class CodeSettings {
 	};
 
 	static get ThemeKey() {
-		return "help_CodeLigatures"
+		return "help_CodeTheme"
 	};
 
 	constructor(storage) {
@@ -22,7 +22,7 @@ class CodeSettings {
 		const themeValue = storage.getItem(CodeSettings.ThemeKey);
 
 		this.usesLigatures = ligaturesValue == null ? true : ligaturesValue === "true";
-		this.theme = themeValue == null ? "Rider Dark" : themeValue;
+		this.theme = themeValue == null ? "rider-dark" : themeValue;
 	}
 
 	UpdateLigatures() {
@@ -35,7 +35,13 @@ class CodeSettings {
 	}
 
 	UpdateTheme() {
+		// If theme is not valid, set it to default.
+		if (this.theme !== 'rider-dark' &&
+			this.theme !== 'vs-dark') {
+			this.theme = 'rider-dark';
+		}
 		storage.setItem(CodeSettings.ThemeKey, this.theme);
+		document.documentElement.className = this.theme;
 	}
 }
 
@@ -222,10 +228,10 @@ function setupCodeSettings() {
 	// Theme setting
 	codeSettings.UpdateTheme();
 	$(".code-setting-theme").click(function () {
-		if (this.theme === "Rider Dark")
-			this.theme = "VS Dark";
+		if (codeSettings.theme === "rider-dark")
+			codeSettings.theme = "vs-dark";
 		else
-			this.theme = "Rider Dark";
+			codeSettings.theme = "rider-dark";
 		codeSettings.UpdateTheme();
 	});
 }

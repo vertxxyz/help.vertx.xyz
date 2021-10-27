@@ -8,8 +8,8 @@
  * stringColor ----   //#C9A26D
  * keywordColor ----   //#6C95EB
  * numberColor ----   //#ED94C0
- * stringEscapeColor ----   //#66C3CC
- * stringEscapeColor2 ----   //#D688D4
+ * memberColor ----   //#66C3CC
+ * stringEscapeColor ----   //#D688D4
  * operatorColor ----   //#BDBDBD
  * tagColor ----   //#C191FF
  * entityColor ----   //#FFD49E
@@ -21,23 +21,43 @@
  * unknownColor ----   //#FF5647
 */
 
-$textColor: #D0D0D0;
-$delimiterColor: #BDBDBD;
-$operatorColor: #BDBDBD;
-$commentColor: #85C46C;
-$classColor: #C191FF;
-$stringColor: #C9A26D;
-$keywordColor: #6C95EB;
-$numberColor: #ED94C0;
-$stringEscapeColor: #66C3CC;
-$structColor: #E1BFFF;
-$functionColor: #39CC8F;
-$regexColor: #FF9259;
-$unknownColor: #FF5647;
+.rider-dark {
+	--backgroundColor: #262626;
+	--textColor: #D0D0D0;
+	--delimiterColor: #BDBDBD;
+	--operatorColor: #BDBDBD;
+	--commentColor: #85C46C;
+	--classColor: #C191FF;
+	--stringColor: #C9A26D;
+	--keywordColor: #6C95EB;
+	--numberColor: #ED94C0;
+	--memberColor: #66C3CC;
+	--structColor: #E1BFFF;
+	--functionColor: #39CC8F;
+	--regexColor: #FF9259;
+	--unknownColor: #FF5647;
+}
+
+.vs-dark {
+	--backgroundColor: #1e1e1e;
+	--textColor: #d4d4d4;
+	--delimiterColor: #d4d4d4;
+	--operatorColor: #d4d4d4;
+	--commentColor: #6a9955;
+	--classColor: #4ec9b0;
+	--stringColor: #ce9178;
+	--keywordColor: #569cd6;
+	--numberColor: #b5cea8;
+	--memberColor: #9cdcfe;
+	--structColor: #4ec9b0;
+	--functionColor: #DCDCAA;
+	--regexColor: #CE9178;
+	--unknownColor: #ff6666;
+}
 
 .token {
 	&.commentColorOnly {
-		color: $commentColor;
+		color: var(--commentColor);
 	}
 
 
@@ -45,21 +65,21 @@ $unknownColor: #FF5647;
 	&.prolog,
 	&.doctype,
 	&.cdata {
-		color: $commentColor;
+		color: var(--commentColor);
 		font-family: 'JetBrains Mono Italic', monospace;
 		font-style: normal;
 	}
 
 	&.body {
-		color: $textColor;
+		color: var(--textColor);
 	}
 
 	&.punctuation {
-		color: $delimiterColor;
+		color: var(--delimiterColor);
 	}
 
 	&.namespace {
-		color: $classColor;
+		color: var(--classColor);
 	}
 
 	&.property,
@@ -67,12 +87,12 @@ $unknownColor: #FF5647;
 	&.constant,
 	&.symbol,
 	&.deleted {
-		color: $textColor;
+		color: var(--textColor);
 	}
 
 	&.boolean,
 	&.number {
-		color: $numberColor;
+		color: var(--numberColor);
 	}
 
 	&.selector,
@@ -81,45 +101,45 @@ $unknownColor: #FF5647;
 	&.char,
 	&.builtin,
 	&.inserted {
-		color: $stringColor;
+		color: var(--stringColor);
 	}
 
 	&.operator,
 	&.entity,
 	&.url,
 	&.variable {
-		color: $operatorColor;
+		color: var(--operatorColor);
 	}
 
 	&.atrule,
 	&.attr-value,
 	&.class-name {
-		color: $classColor;
+		color: var(--classColor);
 	}
 
 	&.function {
-		color: $functionColor;
+		color: var(--functionColor);
 	}
 
 	&.keyword {
-		color: $keywordColor;
+		color: var(--keywordColor);
 	}
 
 	&.member {
-		color: $stringEscapeColor;
+		color: var(--memberColor);
 	}
 
 	&.regex,
 	&.important {
-		color: $regexColor;
+		color: var(--regexColor);
 	}
 
 	&.struct {
-		color: $structColor;
+		color: var(--structColor);
 	}
 
 	&.unknown {
-		color: $unknownColor;
+		color: var(--unknownColor);
 	}
 
 	&.important,
@@ -138,11 +158,11 @@ $unknownColor: #FF5647;
 
 .language-css {
 	.token.string{
-		color: $operatorColor;
+		color: var(--operatorColor);
 	}
 }
 .style {
 	.token.string{
-		color: $operatorColor;
+		color: var(--operatorColor);
 	}
 }
