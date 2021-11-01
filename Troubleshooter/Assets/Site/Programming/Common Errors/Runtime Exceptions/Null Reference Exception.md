@@ -28,7 +28,7 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
     - Initialise the variable with [AddComponent](https://docs.unity3d.com/ScriptReference/GameObject.AddComponent.html) or [CreateInstance](https://docs.unity3d.com/ScriptReference/ScriptableObject.CreateInstance.html).
 
     **Or:**  
-    Check whether the reference is not null before trying to access it  
+    Check the reference is not null before trying to access it  
     `if (example != null)`  
     If looking to combine with GetComponent, use [TryGetComponent](https://docs.unity3d.com/ScriptReference/Component.TryGetComponent.html) instead.
 2. Ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.
@@ -45,9 +45,9 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
     - Assign the reference using `new`. This can be done inline or in a method like `Awake` or `Start`.
 
    **Or:**  
-   Check whether the reference is not null before trying to access it  
+   Check the reference is not null before trying to access it  
    `if (example != null)`
-2. Ensure that nothing is setting it to `null` before you attempt to use it.
+2. Ensure that nothing sets it to `null` before you attempt to use it.
 :::
 
 [^1]: See [Serializing Component References]() to learn how to assign variables in the Inspector.  

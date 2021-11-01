@@ -10,4 +10,4 @@ The [Scene gizmo](https://docs.unity3d.com/Manual/SceneViewNavigation.html) is a
 Using the tools mentioned above you can fix most rotation issues with the Scene view.
 
 ---
-[I still have issues with the Scene view](Resetting%20Windows.md)
+[I still have issues with the Scene view](../Windows/Resetting%20Windows.md)

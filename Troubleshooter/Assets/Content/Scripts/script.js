@@ -124,7 +124,6 @@ function loadPage(relativeLink) {
 function loadHash(hash) {
 	// Scroll to the hash and copy the page to the clipboard.
 	setParameterByKey(pageParameterKey, getPageParameter(), hash);
-	console.log(hash);
 	scrollToHash(hash);
 	copyTextToClipboard(window.location.href);
 }
