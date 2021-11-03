@@ -15,7 +15,7 @@ Due to this [GetComponent](https://docs.unity3d.com/ScriptReference/GameObject.G
 
 
 ### Ramifications
-The null conditional (`?.`) and the null coalescing (`??`, `??=`) operators will not function correctly with `UnityEngine.Object` types as these operators could not be overridden by Unity. When Unity was created these operators did not exist.  
+The null conditional (`?.`) and null coalescing (`??`, `??=`) operators, and `is` null checks (`is null`, `is not null`, `is {}`) will not function correctly with `UnityEngine.Object` types as these operators could not be overridden by Unity. When Unity was created these operators did not exist.  
 
 If you want to reclaim memory on Destroyed objects you need to additionally ensure all references are set to null to allow the C# garbage collector to reclaim that memory exactly like other heap allocated types.  
 

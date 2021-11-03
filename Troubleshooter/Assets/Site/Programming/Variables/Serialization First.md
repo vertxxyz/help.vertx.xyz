@@ -1,6 +1,6 @@
-## Serializing Fields
+## Serializing fields
 
-**Save your Script**  
+**Save your script**  
 First, ensure you have saved.  
 
 <<General/Console Window.md>>

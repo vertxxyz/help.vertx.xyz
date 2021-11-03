@@ -1,4 +1,4 @@
-## Invalid Window
+## Invalid window
 ### Description
 This error is thrown either because the editor has entered a strange state, or because the Editor Window is improperly named.  
 
