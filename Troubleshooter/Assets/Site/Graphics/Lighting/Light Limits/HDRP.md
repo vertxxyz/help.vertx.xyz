@@ -1,4 +1,4 @@
-## Light limits - HDRP
+## Light limits: HDRP
 ### Description
 HDRP's flexible light limits are not per-object, but are instead on-screen limits.  
 HDRP is a [hybrid tile and cluster-based renderer](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest/index.html?subfolder=/manual/HDRP-Features.html#lighting-architecture), which means that lights are evaluated in a grid on-screen, the lighting limits may visually appear as a 2D grid due to the nature of this architecture.  

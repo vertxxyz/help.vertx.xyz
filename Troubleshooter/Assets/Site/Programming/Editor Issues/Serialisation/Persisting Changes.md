@@ -6,7 +6,7 @@ If something is changed and not dirtied, that change is transient and will be wi
 
 The options are **in order of preference**:
 
-### SerializedObject / SerializedProperty
+### SerializedObject and SerializedProperty
 **After** making property modifications the Serialized Object needs changes applied to persist them to the base object using [ApplyModifiedProperties](https://docs.unity3d.com/ScriptReference/SerializedObject.ApplyModifiedProperties.html).  
 Applying changes will also record a modification for the Undo stack. If you do not want an Undo, use [ApplyModifiedPropertiesWithoutUndo](https://docs.unity3d.com/ScriptReference/SerializedObject.ApplyModifiedPropertiesWithoutUndo.html).  
 If your Object can be modified externally, you should call [Update](https://docs.unity3d.com/ScriptReference/SerializedObject.Update.html) before drawing the fields to synchronise the SerializedObject with the base object.

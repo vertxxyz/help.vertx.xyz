@@ -1,4 +1,4 @@
-## UnityEvent Debugging
+## UnityEvent debugging
 
 **Save your Script**  
 First, ensure you have saved.

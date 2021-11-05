@@ -1,4 +1,4 @@
-## Light limits - URP
+## Light limits: URP
 ### Description
 URP has per-object and per-camera light limits. Currently the limits are [8 per-object, and 256 per-camera](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@latest/index.html?subfolder=/manual/universalrp-builtin-feature-comparison.html).  
 The per-object limit can be **reduced** in the pipeline asset, and defaults to **4**.

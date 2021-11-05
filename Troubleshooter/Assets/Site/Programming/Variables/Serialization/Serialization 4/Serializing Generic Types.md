@@ -1,4 +1,4 @@
-## Serializing Generic Types
+## Serializing generic types
 ### 2020.1.0a8+
 The serializer can now serialize fields of generic types directly; it is no longer necessary to derive a concrete subclass from a generic type in order to serialize it.
 

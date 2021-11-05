@@ -1,4 +1,4 @@
-## Incorrect Assignment to UnityEvents
+## Incorrect assignment to UnityEvents
 ### Description
 Events should have an appropriate **Component** instance assigned to their object field. If you are seeing MonoScript you have assigned a Script Asset from the Project window.
 

@@ -1,4 +1,4 @@
-## Port Connection Issues
+## Port connection issues
 First, acknowledge what types each port is capable of handling.  
 1. Drag the output of the port you're attempting to **connect from** to an empty space.  
 2. Ensure that the node type you're attempting to **connect to** is present in the list.  

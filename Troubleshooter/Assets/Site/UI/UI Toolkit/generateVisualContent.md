@@ -1,4 +1,4 @@
-## Generate Visual Content
+## Generate visual content
 
 Ensure that:
 - Vertices are drawn at the correct depth. The helper [Vertex.nearZ](https://docs.unity3d.com/ScriptReference/UIElements.Vertex-nearZ.html) provides this z depth for you.

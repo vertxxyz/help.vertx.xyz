@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Troubleshooter.Search;
 
 namespace Troubleshooter
 {
@@ -34,6 +35,8 @@ namespace Troubleshooter
 				if(recordedFilePaths.Contains(file)) continue;
 				redundantFilePaths.Add(file);
 			}
+
+			redundantFilePaths.Remove(SearchIndex.GetJsonFilePath(arguments));
 
 			if (redundantFilePaths.Count <= 0)
 				return;

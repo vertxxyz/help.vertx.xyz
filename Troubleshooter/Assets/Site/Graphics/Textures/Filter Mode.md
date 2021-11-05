@@ -1,4 +1,4 @@
-## Filter Mode
+## Filter mode
 ### Description
 Filter Mode is how a texture appears when scaled or skewed in the viewport. By default, textures are bilinearly filtered, which means the points between pixels will blur between each other when not perfectly aligned.  
 

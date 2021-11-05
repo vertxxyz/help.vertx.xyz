@@ -1,4 +1,4 @@
-## Input System - Input handling
+## Input System: Input handling
 ### Description
 When you have switched the Input System from the built-in input system to the new Input System there may be code that requires upgrading.  
 ### Resolution

@@ -59,7 +59,10 @@ namespace Troubleshooter
 						int nextSpace = stringBuilder.NextIndexOf(' ', startOfTag);
 						stringBuilder.Insert(nextSpace, " class=\"");
 						stringBuilder.Insert(nextSpace + 8, className);
-						stringBuilder.Insert(nextSpace + 8 + className.Length, "\"");
+						int index = nextSpace + 8 + className.Length;
+						stringBuilder.Insert(index, "\"");
+						if (stringBuilder[index + 1] != '>')
+							stringBuilder.Insert(index + 1, ' ');
 					}
 					else
 					{

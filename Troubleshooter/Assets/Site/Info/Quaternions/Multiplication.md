@@ -1,4 +1,4 @@
-## [Quaternion - Multiplication](https://docs.unity3d.com/ScriptReference/Quaternion-operator_multiply.html)
+## [Quaternion: Multiplication](https://docs.unity3d.com/ScriptReference/Quaternion-operator_multiply.html)
 ### Declaration
 ```csharp
 Quaternion * Quaternion
@@ -8,7 +8,7 @@ Quaternion * Vector3
 ### Description
 Multiplication rotates an orientation or point, combining them in sequence. `A * B`, `A` rotates `B`.
 
-### Usage - rotating vectors
+### Usage: rotating vectors
 
 Local space directions can be multiplied by a world space orientation to produce their world space counterpart.  
 This is how [Transform](https://docs.unity3d.com/ScriptReference/Transform.html) `up`, `right`, and `forward` works:  
@@ -32,7 +32,7 @@ The logic can be applied to rotate any point around its origin.
 
 <<Code/Info/Quaternions/Multiplication 4.html>>  
 
-### Usage - rotating quaternions
+### Usage: rotating quaternions
 Quaternion multiplication is not commutative, `A * B != B * A`.  
 Rotating `A` influences `B` as a parent rotation.  
 Rotating `B` influences `A` as a local space modification.  

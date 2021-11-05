@@ -1,4 +1,4 @@
-## OnSceneGUI not called - Inspectors
+## OnSceneGUI not called: Inspectors
 
 ### Primary inspector
 OnSceneGUI may only be called for the *primary* Inspector. This is a concept Unity does not expose to the user.  

@@ -1,4 +1,4 @@
-## Input Issues - UGUI
+## Input issues: UGUI
 Input in Unity UI (UGUI) requires multiple things to receive input events:
 1. There must be an **active [EventSystem](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/EventSystem.html)** in the Scene.  
     - You can create one via **GameObject | UI | Event System**  

@@ -1,4 +1,4 @@
-## Corrupted / deleted Scenes
+## Corrupted or deleted Scenes
 ```
 '' is an incorrect path for a scene file.
 BuildPlayer expects paths relative to the project folder.

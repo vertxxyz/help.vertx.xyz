@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Text;
+using System.Threading.Tasks;
+using Troubleshooter.Search;
 
 namespace Troubleshooter
 {
 	class Program
 	{
-		static void Main(string[] args)
+		static async Task Main(string[] args)
 		{
 			try
 			{
@@ -14,37 +16,38 @@ namespace Troubleshooter
 				// Register this for RtfPipe
 				Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-				MainLoop(arguments);
+				await MainLoop(arguments);
 			}
 			catch (Exception e)
 			{
-				LogExitException(e, "Startup Failed!");
+				LogExitException(e, "Startup failed!");
 			}
 		}
 
-		private static void MainLoop(Arguments arguments)
+		private static async Task MainLoop(Arguments arguments)
 		{
 			try
 			{
-				ProgramLoop();
+				await ProgramLoop();
 			}
 			catch (Exception e)
 			{
-				LogExitException(e, "Operation Failed!");
+				LogExitException(e, "Operation failed!");
 			}
 
-			void ProgramLoop()
+			async Task ProgramLoop()
 			{
 				while (true)
 				{
-					Console.WriteLine("Press Key to Proceed:");
-					Console.WriteLine("B - Build Site");
-					Console.WriteLine("C - Content Build Only");
-					Console.WriteLine("U - Log External URLs");
+					Console.WriteLine("Press key to proceed:");
+					Console.WriteLine("  B - Build site");
+					Console.WriteLine("  C - Content build only");
+					Console.WriteLine("  S - Build search index");
+					Console.WriteLine("  U - Log external URLs");
 #if WINDOWS
-					Console.WriteLine("R - Create Rich-Text Embed from Clipboard");
+					Console.WriteLine("  R - Create rich-text embed from clipboard");
 #endif
-					Console.WriteLine("Other - Exit");
+					Console.WriteLine("  Other - Exit");
 					var key = Console.ReadKey().Key;
 					Console.WriteLine();
 					Console.Clear();
@@ -52,12 +55,15 @@ namespace Troubleshooter
 					{
 						case ConsoleKey.B:
 							// Build Site
-							Console.WriteLine(SiteBuilder.Build(arguments) ? "Successful Build." : "Build Failed.");
+							Console.WriteLine(SiteBuilder.Build(arguments) ? "Successful build." : "Build failed.");
 							break;
 						case ConsoleKey.C:
 							// Content Build
 							SiteBuilder.ContentBuild(arguments);
 							Console.WriteLine("Successful Content Build.");
+							break;
+						case ConsoleKey.S:
+							await SearchIndex.Generate(arguments);
 							break;
 						case ConsoleKey.U:
 							SiteLogging.LogAllExternalUrls(arguments);
@@ -83,7 +89,7 @@ namespace Troubleshooter
 			Console.WriteLine();
 			Console.WriteLine(e.StackTrace);
 			Console.WriteLine("----------------");
-				
+
 			Console.WriteLine("Press any key to exit.");
 			Console.ReadKey();
 		}

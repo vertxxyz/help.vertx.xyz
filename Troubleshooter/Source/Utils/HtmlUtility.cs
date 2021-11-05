@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 using AdvancedStringBuilder;
@@ -141,13 +142,15 @@ namespace Troubleshooter
 			// Remove paragraphs
 			stringBuilder.Replace("<p>", string.Empty);
 			stringBuilder.Replace("</p>", string.Empty);
+			// Remove div endings (no divs inside of a pre)
+			stringBuilder.Replace("</div>", string.Empty);
 
 			string html = stringBuilder.ToString();
 			html = whitespaceRegex.Replace(html, string.Empty);
 			html = html.Replace($"<span></span>{Environment.NewLine}", Environment.NewLine);
 			html = html.Replace($"{Environment.NewLine}{Environment.NewLine}", "<br>");
 			// Cleanup empty spaces in classes
-			html = html.Replace("\" ", "\"");
+			html = html.Replace("\" >", "\">");
 			html = html.Replace(" \"", "\"");
 			// Replace spans containing only spaces with just the spaces.
 			html = StringUtility.ReplaceMatch(html, spanSpacesRegex, (s, builder) => builder.Append(s), 1);
@@ -175,7 +178,7 @@ namespace Troubleshooter
 			result = styleNameRegex.Match(content, styleNameStart + 1, blockStart - (styleNameStart + 1));
 			return result.Success;
 		}
-
+		
 		public static StringBuilder AppendWithCodeBlockSetup(string html, bool appendPre = true, StringBuilder stringBuilder = null)
 		{
 			var sb = stringBuilder ?? new StringBuilder(512);

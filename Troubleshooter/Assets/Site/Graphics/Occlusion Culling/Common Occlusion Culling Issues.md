@@ -1,4 +1,4 @@
-## Common Occlusion Culling Issues
+## Common Occlusion Culling issues
 
 ### Troubleshooting
 The following resources are all present in the same blog post:  

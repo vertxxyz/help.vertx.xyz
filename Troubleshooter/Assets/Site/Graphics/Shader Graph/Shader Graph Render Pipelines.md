@@ -1,5 +1,5 @@
 <<Abbreviations/SRP.md>>
-## Render Pipeline Compatibility
+## Render Pipeline compatibility
 ### Description
 Shader Graph is only compatible with Universal Rendering Pipeline (formerly LWRP), and High Definition Rendering Pipeline.  
 The built-in render pipeline **does not** support Shader Graph.

@@ -1,4 +1,4 @@
-## Common Shader Graph Issues
+## Common Shader Graph issues
 
 ### Errors
 

@@ -16,6 +16,8 @@ namespace Troubleshooter.Renderers
 			"h6",
 		};
 
+		public const string HeaderTextTag = "<span class =\"header-text\">";
+
 		protected override void Write(HtmlRenderer renderer, HeadingBlock obj)
 		{
 			int index = obj.Level - 1;
@@ -26,7 +28,7 @@ namespace Troubleshooter.Renderers
 			if (renderer.EnableHtmlForBlock)
 			{
 				renderer.Write("<").Write(headingText).WriteAttributes(obj).Write('>');
-				renderer.Write("<span class =\"header-text\">");
+				renderer.Write(HeaderTextTag);
 			}
 
 			renderer.WriteLeafInline(obj);

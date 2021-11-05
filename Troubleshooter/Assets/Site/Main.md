@@ -37,7 +37,7 @@
 [Custom inspectors](Programming/Editor%20Issues/Custom%20Inspectors.md)  
 [Editor windows](Programming/Editor%20Issues/Editor%20Windows.md)  
 ### DOTS
-[Job System / Burst](Programming/Jobs%20And%20Burst.md)  
+[Job System and Burst](Programming/Jobs%20And%20Burst.md)  
 
 ## Building
 [Build errors](Building/Common%20Build%20Errors.md)

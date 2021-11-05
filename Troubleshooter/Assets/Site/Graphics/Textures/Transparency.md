@@ -1,4 +1,4 @@
-## Transparency Settings
+## Transparency settings
 ### Description
 Unity will not import textures as transparent by default.
 
@@ -8,7 +8,7 @@ Next, ensure the Alpha Source is set to your alpha input, and Alpha Is Transpare
 
 ![Transparency Options](transparency-options.png)  
 
-#### For use in 2D / UI
+#### For use in 2D and UI
 2D and UI textures should be imported as Sprites. This should automatically set the above options when valid.
 
 ![Texture Type - Sprite](texture-type-sprite.png)  

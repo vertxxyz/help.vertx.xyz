@@ -1,4 +1,4 @@
-## UnityEvent Dynamic Values
+## UnityEvent dynamic values
 ### Description
 Certain UnityEvents pass parameters, often these are from UI components like a Scrollbar, Input Field, or Toggle.  
 UnityEvents that send values can do so dynamically or statically.  

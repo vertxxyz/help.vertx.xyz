@@ -1,4 +1,4 @@
-## UnityEvent Method Requirements
+## UnityEvent method requirements
 
 The target method must:  
 1. Be marked as `public`

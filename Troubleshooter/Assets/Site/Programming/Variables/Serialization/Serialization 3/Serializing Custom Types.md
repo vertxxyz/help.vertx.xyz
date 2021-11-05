@@ -1,4 +1,4 @@
-## Serializing Custom Types
+## Serializing custom types
 
 Ensure **all** custom structs and classes in your serialization hierarchy are marked with the `[System.Serializable]` attribute.
 

@@ -1,4 +1,4 @@
-## Common Material Issues
+## Common material issues
 
  - [A material **cannot be modified**](Materials/Readonly%20Materials.md)
  - [A material is completely **pink**](Materials/Shader%20Errors.md)

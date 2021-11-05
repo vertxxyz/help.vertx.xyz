@@ -1,4 +1,4 @@
-## Transparent Materials
+## Transparent materials
 
 ### Description
 Rendering in game engines often involves two passes, an opaque, and a transparent pass.  

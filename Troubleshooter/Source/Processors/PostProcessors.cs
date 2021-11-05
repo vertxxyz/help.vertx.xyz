@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
-using Markdig.Helpers;
 
 namespace Troubleshooter
 {
@@ -44,7 +43,7 @@ namespace Troubleshooter
 		public string Process(string html) =>
 			StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) =>
 			{
-				stringBuilder.Append(@"class=""link--external""");
+				stringBuilder.Append(@"class=""link--external"" ");
 				stringBuilder.Append(group);
 			});
 	}
@@ -148,6 +147,6 @@ namespace Troubleshooter
 		private readonly Regex regex = new("<pre><code class=\"language-\\w+\">.+?</code></pre>", RegexOptions.Compiled | RegexOptions.Singleline);
 
 		public string Process(string html)
-			=> StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) => HtmlUtility.AppendWithCodeBlockSetup(@group, false, stringBuilder), 0);
+			=> StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) => HtmlUtility.AppendWithCodeBlockSetup(group, false, stringBuilder), 0);
 	}
 }

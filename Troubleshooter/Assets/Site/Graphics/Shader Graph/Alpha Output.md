@@ -1,4 +1,4 @@
-## Shader Graph - Alpha
+## Shader Graph: Alpha
 ### Description
 The preview for the Sample Texture 2D node does not show the alpha channel from an image.  
 All content (even that that is usually displayed as transparent) in the RGB channels is displayed.  

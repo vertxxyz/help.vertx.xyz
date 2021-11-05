@@ -1,6 +1,6 @@
 ## Referencing Prefabs from Scenes
 <<Variables/Serialized Prefab References.md>>
-Ensure you have dragged the prefab asset into the slot or you will get a [Null Reference Exception](../../Common%20Errors/Runtime%20Exceptions/Null%20Reference%20Exception.md) (Unassigned Reference Exception).  
+Ensure you have dragged the prefab asset into the slot or you will get an [Unassigned Reference Exception](../../Common%20Errors/Runtime%20Exceptions/Unassigned%20Reference%20Exception.md).  
 
 <video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://help.vertx.xyz/Video/prefab-references.webm"></video>
 

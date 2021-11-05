@@ -1,4 +1,4 @@
-## Occlusion Setup
+## Occlusion setup
 ### Description
 Occlusion culling is made up of both occluders and occludees.  
 Occluders block visibility, and occludees are visible based on them.

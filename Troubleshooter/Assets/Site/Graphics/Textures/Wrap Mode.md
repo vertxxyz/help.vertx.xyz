@@ -1,4 +1,4 @@
-## Texture Wrap Mode
+## Texture wrap mode
 ### Description
 Textures can be set to wrap, clamp, or mirror along different axes.  
 As UV coordinates go out of the 0⟶1 range they will experience the influence of this setting.  
