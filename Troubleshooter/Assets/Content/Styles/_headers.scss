@@ -9,7 +9,7 @@ h1 {
 
 h2 {
 	color: white;
-	background-color: #282828;
+	background-color: base.$dark-color;
 	padding: 5px 15px 6px base.$left-padding;
 	margin-left: base.$left-padding-negative;
 	font-size: 1.5em;
@@ -18,14 +18,18 @@ h2 {
 	position: relative;
 }
 
+%h3-shared {
+	font-size: 1.1em;
+	font-weight: 500;
+}
+
 h3 {
+	@extend %h3-shared;
 	color: white;
 	background: base.$lighter-background-color;
 	padding: 6px 8px 6px base.$left-padding;
 	margin-left: base.$left-padding-negative;
-	font-size: 1.1em;
 	line-height: 1em;
-	font-weight: 500;
 	margin-block-start: 1em;
 	margin-block-end: 1em;
 	border-top: 1px solid #191919;
@@ -50,4 +54,9 @@ a.header-permalink {
 }
 a.header-permalink.show {
 	opacity: 1;
+}
+
+.home-header {
+	@extend %h3-shared;
+	margin-top: 5px;
 }

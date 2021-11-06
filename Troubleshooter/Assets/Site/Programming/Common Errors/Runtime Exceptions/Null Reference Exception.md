@@ -21,9 +21,9 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
 ### Resolution
 #### UnityEngine.Object types
 :::note
-1. **Either:**  
+- **Either:**  
     Assign a reference to the variable (choose one)
-    - Drag and drop the reference in the component's inspector[^1]. (If your field is serialized by Unity)  
+    - Drag and drop the reference in the component's inspector[^1] (if your field is serialized by Unity).  
     - Manually assign the reference in a method like `Awake` or `Start` using [GetComponent](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) or similar.
     - Initialise the variable with [AddComponent](https://docs.unity3d.com/ScriptReference/GameObject.AddComponent.html) or [CreateInstance](https://docs.unity3d.com/ScriptReference/ScriptableObject.CreateInstance.html).
 
@@ -31,15 +31,15 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
     Check the reference is not null before trying to access it  
     `if (example != null)`  
     If looking to combine with GetComponent, use [TryGetComponent](https://docs.unity3d.com/ScriptReference/Component.TryGetComponent.html) instead.
-2. Ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.
-3. Check assignments use correct assumptions. Some examples: 
+- Ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.
+- Check assignments use correct assumptions. Some examples: 
    - `GetComponent<Example>()` will return `null` if an `Example` component is not attached to the same GameObject.  
    - `Camera.main` will return null if there is not a camera tagged as MainCamera.  
-4. Check that you are not using modern null checking operators[^2] (`?.`, `??`, `??=`).
+- Check that you are not using modern null checking operators[^2] (`?.`, `??`, `??=`).
 :::
 #### Other classes
 :::note
-1. **Either:**  
+- **Either:**  
    Assign a reference to the variable (choose one)
     - [Serialize the field](../../Variables/Serialization/Serialization%201/Serializing%20A%20Field%201.md) if appropriate.
     - Assign the reference using `new`. This can be done inline or in a method like `Awake` or `Start`.
@@ -47,7 +47,7 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
    **Or:**  
    Check the reference is not null before trying to access it  
    `if (example != null)`
-2. Ensure that nothing sets it to `null` before you attempt to use it.
+- Ensure that nothing sets it to `null` before you attempt to use it.
 :::
 
 [^1]: See [Serializing Component References]() to learn how to assign variables in the Inspector.  

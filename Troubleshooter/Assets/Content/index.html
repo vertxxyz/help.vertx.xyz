@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1,maximum-scale=1">
     <title>Unity Help</title>
-    <link rel="stylesheet" href="Styles/style.css?v=1.1.0">
+    <link rel="stylesheet" href="Styles/style.css?v=1.1.1">
     <link rel="stylesheet" href="Styles/code-highlighting.css?v=1.0.0">
     <link href="https://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://help.vertx.xyz/Images/favicon-16x16.png" sizes="16x16">
@@ -12,8 +12,9 @@
     <link rel="icon" type="image/png" href="https://help.vertx.xyz/Images/favicon-96x96.png" sizes="96x96">
     <script src="Scripts/jquery.min.js"></script>
     <script src="Scripts/jquery.touchSwipe.min.js"></script>
-    <script src="Scripts/script.js"></script>
-    <script src="Scripts/sidebar.js"></script>
+    <script src="Scripts/script.js?v=1.0.0"></script>
+    <script src="Scripts/search.js?v=1.0.0"></script>
+    <script src="Scripts/sidebar.js?v=1.0.0"></script>
     <script src="Scripts/tableHighlighter.js"></script>
     <script src="Scripts/prism.js"></script>
 </head>
@@ -27,7 +28,8 @@
         <img class="sidebar--button-content" src="Images/sidebar-foldout.svg" alt="Foldout Sidebar"/>
     </button>
     <div class="sidebar">
-        <p>[ <a href="./">Home</a> ]</p>
+        <p class="home-header"><a href="./">Home</a></p>
+        <input id="page-search" type="text" placeholder="Search...">
         <div class="sidebar-contents">
             <!-- sidebar content -->
         </div>

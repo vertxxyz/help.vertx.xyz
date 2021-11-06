@@ -117,7 +117,7 @@ function loadPage(relativeLink) {
 	}
 	if (relativeLink === main)
 		relativeLink = null;
-	loadPageFromLink(relativeLink, '', true, true, true);
+	loadPageFromLink(relativeLink, '', true, true);
 }
 
 //Load Hash is called from HTML
@@ -150,7 +150,6 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
 
 	$(document).ready(function () {
 		const contents = $(contentsClass);
-		const sidebarContents = $('.sidebar-contents');
 		try {
 			// Load the page
 			contents.load(`HTML/${value}.html`, function (response, status, xhr) {
@@ -166,6 +165,8 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
 				Prism.highlightAll();
 				setupCodeSettings();
 			});
+			document.getElementById('page-search').value = "";
+			const sidebarContents = $('.sidebar-contents');
 			sidebarContents.load(`HTML/${value}_sidebar.html`, function (response, status, xhr) {
 				if (status === "error")
 					sidebarContents.empty();
@@ -244,11 +245,27 @@ function setupCodeSettings() {
 		const inner = container.find('.code-container-inner').get(0);
 		const r = document.createRange();
 		r.selectNode(inner);
-		window.getSelection().removeAllRanges();
-		window.getSelection().addRange(r);
-		document.execCommand('copy');
-		window.getSelection().removeAllRanges();
+		if (!navigator.clipboard) {
+			copyFallback(getRangeSelection(r));
+		} else {
+			const selection = getRangeSelection(r);
+			navigator.clipboard.writeText(selection.toString())
+				.then(() => selection.removeAllRanges())
+				.catch(() => copyFallback(r));
+		}
 	});
+}
+
+function getRangeSelection(range) {
+	const selection = window.getSelection();
+	selection.removeAllRanges();
+	selection.addRange(range);
+	return selection;
+}
+
+function copyFallback(selection) {
+	document.execCommand('copy');
+	selection.removeAllRanges();
 }
 
 function fallbackCopyTextToClipboard(text) {

@@ -7,8 +7,8 @@ Shader Graph requires the networks that make up these stages to be separated.
 Some nodes are also incompatible with the vertex stage.  
 
 ### Resolution
-1. Do not cross-connect edges across the vert-frag networks. This may require you to duplicate some of your graph.  
-2. Ensure the vertex stage uses nodes that are compatible with it. Any node contributing to the vertex stage must be compatible.  
+- Do not cross-connect edges across the vert-frag networks. This may require you to duplicate some of your graph.  
+- Ensure the vertex stage uses nodes that are compatible with it. Any node contributing to the vertex stage must be compatible.  
     eg. The `Sample Texture 2D` node can only be used in the frag stage. Instead use a `Sample Texture 2D LOD` node.  
     Visit [the documentation](http://docs.unity3d.com/Packages/com.unity.shadergraph@latest/index.html?subfolder=/manual/Node-Library.html), and search for complex nodes in your networks to understand whether they are valid.
-3. Rebuild the graph node by node from the vert output until something fails to connect to the graph. This node will have to be replaced as it's likely not compatible with the vertex stage.  
+- Rebuild the graph node by node from the vert output until something fails to connect to the graph. This node will have to be replaced as it's likely not compatible with the vertex stage.  

@@ -50,9 +50,9 @@ namespace Troubleshooter.Search
 			foreach (string s in files)
 			{
 				if (EndsWithAny(s, SearchCommon.ExcludedFileEndings)) continue;
-				fileNameToIndex[s] = filePaths.Count;
 				string localPath = s[(rootDirectory.Length + 1)..];
 				if (!localPath.Contains('\\')) continue; // Do not process root-level files. These files should not be searchable.
+				fileNameToIndex[s] = filePaths.Count;
 				filePaths.Add(localPath.Replace('\\', '/'));
 			}
 

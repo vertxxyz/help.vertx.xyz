@@ -1,11 +1,11 @@
 ## Missing scripts
 ### Description
 Missing Scripts can mean a number of things:  
-1. There was a script that was deleted
-2. There was a script that was manually moved without its `.meta` file
-3. A project was loaded without properly compiling, and Unity has not yet imported the script
-4. The script or class it contains is improperly named
-5. The script file no longer contains a MonoBehaviour or ScriptableObject
+- There was a script that was deleted
+- There was a script that was manually moved without its `.meta` file
+- A project was loaded without properly compiling, and Unity has not yet imported the script
+- The script or class it contains is improperly named
+- The script file no longer contains a MonoBehaviour or ScriptableObject
 
 ### Resolution
 

@@ -1,8 +1,8 @@
 ## UnityEvent property requirements
 
 The target property must:
-1. Be marked as `public`
-2. It must be either a:
+- Be marked as `public`
+- It must be either a:
     - `float`
     - `int`
     - `bool`

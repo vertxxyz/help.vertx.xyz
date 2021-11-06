@@ -19,20 +19,20 @@ namespace Troubleshooter.Search
 				await SearchGatherer.GenerateSearchResult(arguments.HtmlOutputDirectory);
 
 			// Create words to indices lookup
-			var wordsToIndices = new Dictionary<string, int[]>();
+			var termsToIndices = new Dictionary<string, int[]>();
 			foreach (KeyValuePair<string, Dictionary<int, int>> pair in sortedWordsToFileIndexAndCount)
 			{
-				(string key, Dictionary<int, int> fileIndexToCount) = pair;
+				(string term, Dictionary<int, int> fileIndexToCount) = pair;
 				int[] sortedFileIndices = fileIndexToCount
 					.OrderBy(indexAndCount => indexAndCount.Value)
 					.ThenBy(indexAndCount => filePaths[indexAndCount.Key])
 					.Select(indexAndCount => indexAndCount.Key)
 					.ToArray();
-				wordsToIndices.Add(key, sortedFileIndices);
+				termsToIndices.Add(term, sortedFileIndices);
 			}
 
 			// Serialize Json.
-			SearchIndexStructure index = new SearchIndexStructure(filePaths, fileHeaders, wordsToIndices);
+			SearchIndexStructure index = new SearchIndexStructure(filePaths, fileHeaders, termsToIndices, SearchCommon.CommonValues);
 			string json = JsonSerializer.Serialize(index, new JsonSerializerOptions
 			{
 				PropertyNamingPolicy = JsonNamingPolicy.CamelCase
