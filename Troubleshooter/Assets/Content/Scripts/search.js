@@ -84,19 +84,31 @@ function performSearch(text) {
 function displayResults(results) {
 	const sidebarContents = $('.sidebar-contents');
 	sidebarContents.empty();
-	const paragraph = document.createElement("p");
-	paragraph.classList.add('search-results');
-	sidebarContents.append(paragraph);
+	const div = document.createElement("div");
+	div.classList.add('search-results');
 	for (const result of results) {
-		const url = getPageURL(result);
-		const title = getPageTitle(result);
-		const link = document.createElement("a");
-		link.classList.add('search-result');
-		link.innerHTML = title;
-		link.onclick = () => loadPageFromLink(url, '', true, false);
-		paragraph.append(link);
-		paragraph.append(document.createElement("br"));
+		const searchResultDiv = document.createElement("div");
+		searchResultDiv.classList.add('search-result');
+		{
+			const url = getPageURL(result);
+			const title = getPageTitle(result);
+			
+			const link = document.createElement("a");
+			link.innerHTML = title;
+			link.onclick = () => loadPageFromLink(url, '', true, false);
+			searchResultDiv.append(link);
+			
+			searchResultDiv.append(document.createElement("br"));
+
+			const urlDiv = document.createElement("span");
+			urlDiv.classList.add('search-result-url');
+			urlDiv.innerText = url.slice(0, -5);
+			
+			searchResultDiv.append(urlDiv);
+		}
+		div.append(searchResultDiv);
 	}
+	sidebarContents.append(div);
 }
 
 function getSearchResults(terms, query) {

@@ -367,5 +367,19 @@ input {
 }
 
 .search-result {
-	margin-block-start: 1em;
+	margin-block-start: .25em;
+}
+
+.search-result-url {
+	display: inline-block;
+	font-size: 12px;
+	background-color: base.$dark-background-color;
+	white-space: nowrap;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+	color: #999999;
+	padding: 0 5px;
+	margin-left: -5px;
+	border-radius: 6px;
+	user-select: none;
 }

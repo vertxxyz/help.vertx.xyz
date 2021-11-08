@@ -72,8 +72,9 @@ div.info.img-note-wide {
 
 %context {
 	border-radius: 0.3em;
-	padding: 2px 5px 2px 5px;
+	padding: 0 5px 0 5px;
 	-webkit-box-decoration-break: clone;
+	display: inline-block;
 }
 
 .context-a {
@@ -94,4 +95,14 @@ div.info.img-note-wide {
 .context-d {
 	@extend %context;
 	border: solid 1px #fd0098;
+}
+
+.context-e {
+	@extend %context;
+	border: solid 1px #fdf000;
+}
+
+.context-f {
+	@extend %context;
+	border: solid 1px #00fd98;
 }
