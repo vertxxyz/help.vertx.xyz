@@ -1,3 +1,5 @@
+import {addPoints, circlePoints, clearAndRedraw, EasingFunctions, inverseLerp, lerp, remap, Slider, toNormalisedCanvasSpace, TouchHandler} from "../behaviours.js";
+
 var swp_canvas = document.getElementById('screen_to_world_point');
 var swp_ctx = swp_canvas.getContext('2d');
 
