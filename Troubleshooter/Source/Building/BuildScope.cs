@@ -4,72 +4,71 @@ using System.IO;
 using System.Linq;
 using Troubleshooter.Search;
 
-namespace Troubleshooter
+namespace Troubleshooter;
+
+public class BuildScope : IDisposable
 {
-	public class BuildScope : IDisposable
+	private readonly Arguments arguments;
+	private bool failedBuild;
+	public BuildScope(Arguments arguments)
 	{
-		private readonly Arguments arguments;
-		private bool failedBuild;
-		public BuildScope(Arguments arguments)
+		this.arguments = arguments;
+		IOUtility.ResetRecording();
+	}
+
+	public void MarkBuildAsFailed() => failedBuild = true;
+
+	public void Dispose()
+	{
+		if(!failedBuild)
+			CleanupBuildOutput();
+		IOUtility.ResetRecording();
+	}
+
+	private void CleanupBuildOutput()
+	{
+		HashSet<string> recordedFilePaths = new HashSet<string>(IOUtility.RecordedPaths.Select(Path.GetFullPath));
+		HashSet<string> redundantFilePaths = new HashSet<string>();
+			
+		foreach (var file in Directory.EnumerateFiles(arguments.Path, "*", SearchOption.AllDirectories))
 		{
-			this.arguments = arguments;
-			IOUtility.ResetRecording();
+			if(recordedFilePaths.Contains(file)) continue;
+			redundantFilePaths.Add(file);
 		}
 
-		public void MarkBuildAsFailed() => failedBuild = true;
+		redundantFilePaths.Remove(SearchIndex.GetJsonFilePath(arguments));
 
-		public void Dispose()
-		{
-			if(!failedBuild)
-				CleanupBuildOutput();
-			IOUtility.ResetRecording();
-		}
-
-		private void CleanupBuildOutput()
-		{
-			HashSet<string> recordedFilePaths = new HashSet<string>(IOUtility.RecordedPaths.Select(Path.GetFullPath));
-			HashSet<string> redundantFilePaths = new HashSet<string>();
+		if (redundantFilePaths.Count <= 0)
+			return;
 			
-			foreach (var file in Directory.EnumerateFiles(arguments.Path, "*", SearchOption.AllDirectories))
-			{
-				if(recordedFilePaths.Contains(file)) continue;
-				redundantFilePaths.Add(file);
-			}
+		Console.WriteLine();
+		Console.WriteLine($"Run cleaning step? {redundantFilePaths.Count} redundant files were found.");
+		Console.WriteLine($"Example: \"{redundantFilePaths.First()}\"");
+		Console.WriteLine("y/n?");
 
-			redundantFilePaths.Remove(SearchIndex.GetJsonFilePath(arguments));
-
-			if (redundantFilePaths.Count <= 0)
-				return;
-			
-			Console.WriteLine();
-			Console.WriteLine($"Run cleaning step? {redundantFilePaths.Count} redundant files were found.");
-			Console.WriteLine($"Example: \"{redundantFilePaths.First()}\"");
-			Console.WriteLine("y/n?");
-
-			if (Console.ReadKey().Key != ConsoleKey.Y)
-			{
-				Console.Clear();
-				return;
-			}
-
+		if (Console.ReadKey().Key != ConsoleKey.Y)
+		{
 			Console.Clear();
-
-			foreach (string filePath in redundantFilePaths)
-				File.Delete(filePath);
-			
-			DeleteEmptyDirectories(arguments.Path);
-			
-			Console.WriteLine("Files and folders cleaned.");
+			return;
 		}
+
+		Console.Clear();
+
+		foreach (string filePath in redundantFilePaths)
+			File.Delete(filePath);
+			
+		DeleteEmptyDirectories(arguments.Path);
+			
+		Console.WriteLine("Files and folders cleaned.");
+	}
 		
-		private static void DeleteEmptyDirectories(string startLocation)
+	private static void DeleteEmptyDirectories(string startLocation)
+	{
+		foreach (var directory in Directory.GetDirectories(startLocation))
 		{
-			foreach (var directory in Directory.GetDirectories(startLocation))
-			{
-				DeleteEmptyDirectories(directory);
-				if (!Directory.EnumerateFileSystemEntries(directory).Any())
-					Directory.Delete(directory, false);
-			}
+			DeleteEmptyDirectories(directory);
+			if (!Directory.EnumerateFileSystemEntries(directory).Any())
+				Directory.Delete(directory, false);
 		}
 	}
 }

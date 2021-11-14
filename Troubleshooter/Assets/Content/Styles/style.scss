@@ -104,6 +104,12 @@ p {
 img {
 	margin: 15px 10px 15px 10px;
 	max-width: 100%;
+	
+	&.inline {
+		width: 20px;
+		margin: 0;
+		transform: translateY(6px);
+	}
 }
 
 canvas {
@@ -208,15 +214,25 @@ div.footnotes {
 div.note {
 	border: 1px #ffffff4d solid;
 	margin-right: base.$right-margin;
-	margin-top: 25px;
-	margin-bottom: 25px;
+	margin-top: 1em;
+	margin-bottom: 1em;
 	padding: 0 20px;
-}
 
-.note {
 	> p:first-child {
 		margin-block-start: 1em;
 	}
+	> :last-child {
+		margin-block-end: 1em;
+	}
+	.code-container {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+span.note {
+	border: 1px #ffffff4d solid;
+	padding: 4px;
 }
 
 kbd {

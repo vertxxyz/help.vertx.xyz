@@ -7,7 +7,7 @@ If a user type does not inherit from `ScriptableObject` it cannot be instanced a
 ### Resolution
 Ensure your class appropriately inherits from `MonoBehaviour` or `ScriptableObject`, or a suitable subtype.  
 
-<<Code/Scripts/Script Loading 1.rtf>>  
+<<Code/Scripts/Script Loading 1 Plain.html>>  
 
 ---  
 [My script still cannot be loaded](4%20Script%20Loading.md)

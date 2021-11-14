@@ -1,6 +1,9 @@
 ## Common warnings
-### Console warnings
-- [The referenced script (Unknown) on this Behaviour is missing!](Common%20Warnings/Missing%20Script.md)  
+### [Compiler warnings](Common%20Warnings/Compiler%20Warnings.md)
+Compiler warnings are numbered warnings containing the `CS` prefix.
 
-### Script warnings
-- [The associated script cannot be loaded](Scripts/1%20Script%20Loading.md)  
+### [Console warnings](Common%20Warnings/Console%20Warnings.md)
+Console warnings are Unity-related warnings that appear in the Console window.
+
+### [Script warnings](Common%20Warnings/Script%20Warnings.md)
+Script warnings appear on components or scriptable objects.

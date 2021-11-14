@@ -1,3 +1,4 @@
+<<Abbreviations/UPM.md>>
 ## Visual Studio configuration
 ### Installed with Unity Hub
 VS will have the Unity workload installed.  

@@ -1,160 +1,159 @@
 using System;
 using System.IO;
 
-namespace Troubleshooter
+namespace Troubleshooter;
+
+public enum LoggingLevel
 {
-	public enum LoggingLevel
-	{
-		Default,
-		Verbose
-	}
+	Default,
+	Verbose
+}
 
-	public readonly struct Arguments
-	{
-		/// <summary>
-		/// Output directory
-		/// </summary>
-		public readonly string Path;
-		/// <summary>
-		/// Output directory + HTML folder
-		/// </summary>
-		public readonly string HtmlOutputDirectory;
-		/// <summary>
-		/// Project root (Contains Assets and Source)
-		/// </summary>
-		public readonly string TroubleshooterRoot;
-		public readonly LoggingLevel LoggingLevel;
-		public const string HtmlOutputDirectoryName = "HTML";
+public readonly struct Arguments
+{
+	/// <summary>
+	/// Output directory
+	/// </summary>
+	public readonly string Path;
+	/// <summary>
+	/// Output directory + HTML folder
+	/// </summary>
+	public readonly string HtmlOutputDirectory;
+	/// <summary>
+	/// Project root (Contains Assets and Source)
+	/// </summary>
+	public readonly string TroubleshooterRoot;
+	public readonly LoggingLevel LoggingLevel;
+	public const string HtmlOutputDirectoryName = "HTML";
 
-		public Arguments(string[] args)
+	public Arguments(string[] args)
+	{
+		Path = null;
+		LoggingLevel = LoggingLevel.Default;
+		TroubleshooterRoot = null;
+		HtmlOutputDirectory = null;
+
+		for (var i = 0; i < args.Length; i++)
 		{
-			Path = null;
-			LoggingLevel = LoggingLevel.Default;
-			TroubleshooterRoot = null;
-			HtmlOutputDirectory = null;
+			string arg = args[i].ToLower().TrimStart('-');
 
-			for (var i = 0; i < args.Length; i++)
+			switch (arg)
 			{
-				string arg = args[i].ToLower().TrimStart('-');
-
-				switch (arg)
+				case "h":
+				case "help":
+				case "/?":
+					PrintHelp();
+					break;
+				case "path":
+				case "p":
+				case "output":
+				case "o":
 				{
-					case "h":
-					case "help":
-					case "/?":
-						PrintHelp();
-						break;
-					case "path":
-					case "p":
-					case "output":
-					case "o":
+					if (!TryGetParameter(out var param))
 					{
-						if (!TryGetParameter(out var param))
-						{
-							Console.WriteLine($"\"{args[i]}\" was not followed by a path.");
-							continue;
-						}
-
-						if (!ValidatePath(param))
-							throw new ArgumentException($"\"{param}\" is not a valid path.");
-
-						Path = param;
-						HtmlOutputDirectory = System.IO.Path.Combine(Path, HtmlOutputDirectoryName);
-						Directory.CreateDirectory(HtmlOutputDirectory);
-						break;
+						Console.WriteLine($"\"{args[i]}\" was not followed by a path.");
+						continue;
 					}
-					case "logging":
-					case "l":
-					{
-						if (!TryGetParameter(out var param))
-						{
-							Console.WriteLine($"\"{args[i]}\" was not followed by a parameter.");
-							Console.WriteLine("Valid parameters are \"verbose\".");
-							continue;
-						}
 
-						switch (param.ToLower())
-						{
-							case "verbose":
-							case "v":
-								LoggingLevel = LoggingLevel.Verbose;
-								break;
-						}
+					if (!ValidatePath(param))
+						throw new ArgumentException($"\"{param}\" is not a valid path.");
 
-						break;
-					}
-					case "root-offset":
-					{
-						if (!TryGetParameter(out var param))
-						{
-							Console.WriteLine($"\"{args[i]}\" was not followed by a parameter.");
-							Console.WriteLine("A valid parameter is the extra path following the root Troubleshooter directory.");
-							continue;
-						}
-
-						TroubleshooterRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(Directory.GetCurrentDirectory(), param));
-						break;
-					}
+					Path = param;
+					HtmlOutputDirectory = System.IO.Path.Combine(Path, HtmlOutputDirectoryName);
+					Directory.CreateDirectory(HtmlOutputDirectory);
+					break;
 				}
-
-				bool TryGetParameter(out string param)
+				case "logging":
+				case "l":
 				{
-					if (i + 1 >= args.Length)
+					if (!TryGetParameter(out var param))
 					{
-						param = null;
-						return false;
+						Console.WriteLine($"\"{args[i]}\" was not followed by a parameter.");
+						Console.WriteLine("Valid parameters are \"verbose\".");
+						continue;
 					}
 
-					param = args[i + 1];
-					return true;
+					switch (param.ToLower())
+					{
+						case "verbose":
+						case "v":
+							LoggingLevel = LoggingLevel.Verbose;
+							break;
+					}
+
+					break;
 				}
-
-				static bool ValidatePath(string path)
+				case "root-offset":
 				{
-					// Path does not exist
-					if (string.IsNullOrEmpty(path))
+					if (!TryGetParameter(out var param))
 					{
-						Console.WriteLine("No \"--path\" argument was passed to the program.");
-						Console.WriteLine("Press any key to exit.");
-						Console.ReadKey();
-						return false;
+						Console.WriteLine($"\"{args[i]}\" was not followed by a parameter.");
+						Console.WriteLine("A valid parameter is the extra path following the root Troubleshooter directory.");
+						continue;
 					}
 
-					// Path is not valid
-					try
-					{
-						string _ = System.IO.Path.GetFullPath(path);
-					}
-					catch
-					{
-						return false;
-					}
-
-					return true;
+					TroubleshooterRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(Directory.GetCurrentDirectory(), param));
+					break;
 				}
 			}
-		}
 
-		private static void PrintHelp()
-		{
-			Console.WriteLine("---Arguments:----");
-			Console.WriteLine("--help, -h, /?");
-			Console.WriteLine("This very output!");
-			Console.WriteLine("--path, p, --output, -o");
-			Console.WriteLine("The output path for the site content. Must be followed by a valid path.");
-			Console.WriteLine("--logging, -l");
-			Console.WriteLine("The logging level. Follow by \"verbose\"/\"v\" to get detailed logging.");
-			Console.WriteLine("--root-offset");
-			Console.WriteLine("If running the project from a directory nested below the Troubleshooter root " +
-			                  "you can follow with the relative path to your directory to locate the correct root directory.");
-		}
+			bool TryGetParameter(out string param)
+			{
+				if (i + 1 >= args.Length)
+				{
+					param = null;
+					return false;
+				}
 
-		public void VerboseLog(object @object) => VerboseLog(@object.ToString());
+				param = args[i + 1];
+				return true;
+			}
 
-		public void VerboseLog(string message)
-		{
-			if (LoggingLevel == LoggingLevel.Verbose)
-				Console.WriteLine(message);
+			static bool ValidatePath(string path)
+			{
+				// Path does not exist
+				if (string.IsNullOrEmpty(path))
+				{
+					Console.WriteLine("No \"--path\" argument was passed to the program.");
+					Console.WriteLine("Press any key to exit.");
+					Console.ReadKey();
+					return false;
+				}
+
+				// Path is not valid
+				try
+				{
+					string _ = System.IO.Path.GetFullPath(path);
+				}
+				catch
+				{
+					return false;
+				}
+
+				return true;
+			}
 		}
+	}
+
+	private static void PrintHelp()
+	{
+		Console.WriteLine("---Arguments:----");
+		Console.WriteLine("--help, -h, /?");
+		Console.WriteLine("This very output!");
+		Console.WriteLine("--path, p, --output, -o");
+		Console.WriteLine("The output path for the site content. Must be followed by a valid path.");
+		Console.WriteLine("--logging, -l");
+		Console.WriteLine("The logging level. Follow by \"verbose\"/\"v\" to get detailed logging.");
+		Console.WriteLine("--root-offset");
+		Console.WriteLine("If running the project from a directory nested below the Troubleshooter root " +
+		                  "you can follow with the relative path to your directory to locate the correct root directory.");
+	}
+
+	public void VerboseLog(object @object) => VerboseLog(@object.ToString());
+
+	public void VerboseLog(string message)
+	{
+		if (LoggingLevel == LoggingLevel.Verbose)
+			Console.WriteLine(message);
 	}
 }

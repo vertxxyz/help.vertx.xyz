@@ -1,7 +1,6 @@
-namespace Troubleshooter
+namespace Troubleshooter;
+
+public interface IMarkdownPreProcessor
 {
-	public interface IMarkdownPreProcessor
-	{
-		string Process(string text);
-	}
+	string Process(string text);
 }

@@ -7,7 +7,7 @@
 		<Configurations>Release;Debug</Configurations>
 		<Platforms>AnyCPU</Platforms>
 		<IsWindows Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))' == 'true'">true</IsWindows>
-		<LangVersion>9</LangVersion>
+		<LangVersion>10</LangVersion>
 		<Authors>Vertx</Authors>
 		<Company>Vertx</Company>
 	</PropertyGroup>
@@ -17,19 +17,19 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="DartSassHost" Version="1.0.0-preview6" />
-	  <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.13.3" />
-	  <PackageReference Include="JetBrains.Annotations" Version="2021.3.0-eap4" />
-	  <PackageReference Include="Markdig" Version="0.26.0" />
-	  <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.1.7" />
-	  <PackageReference Include="NUglify" Version="1.16.1" />
-	  <PackageReference Include="RtfPipe" Version="2.0.7677.4303" />
-	  <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0-rc.2.21480.5" />
-	  <PackageReference Include="WebStoating.Markdig.Prism" Version="1.0.0" />
+		<PackageReference Include="DartSassHost" Version="1.0.0-preview6" />
+		<PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.13.3" />
+		<PackageReference Include="JetBrains.Annotations" Version="2021.3.0-eap4" />
+		<PackageReference Include="Markdig" Version="0.26.0" />
+		<PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.1.7" />
+		<PackageReference Include="NUglify" Version="1.16.1" />
+		<PackageReference Include="RtfPipe" Version="2.0.7677.4303" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0-rc.2.21480.5" />
+		<PackageReference Include="WebStoating.Markdig.Prism" Version="1.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Assets" />
+		<Folder Include="Assets" />
 	</ItemGroup>
 
 </Project>

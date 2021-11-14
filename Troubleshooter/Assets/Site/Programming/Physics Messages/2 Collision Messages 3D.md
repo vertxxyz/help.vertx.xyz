@@ -24,7 +24,7 @@ void OnCollisionStay(Collision data)
 ```csharp
 void OnCollisionExit(Collision data)
 {
-    //Your behaviour here
+    // Your behaviour here
 }
 ```
 

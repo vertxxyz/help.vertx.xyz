@@ -155,6 +155,7 @@
 		color: var(--functionColor);
 	}
 
+	&.preprocessor,
 	&.keyword {
 		color: var(--keywordColor);
 	}

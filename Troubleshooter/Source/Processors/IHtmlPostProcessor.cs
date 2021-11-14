@@ -1,8 +1,7 @@
-namespace Troubleshooter
+namespace Troubleshooter;
+
+public interface IHtmlPostProcessor
 {
-	public interface IHtmlPostProcessor
-	{
-		string Process(string html);
-		int Order => 0;
-	}
+	string Process(string html);
+	int Order => 0;
 }

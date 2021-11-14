@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Script-Icon" serif:id="Script Icon" transform="matrix(1.78571,0,0,1.78571,-37.5,-35.7143)">
+        <path d="M65.019,76C55.334,76 30.784,76 23.24,76C22.646,76 22.076,75.764 21.656,75.344C21.236,74.924 21,74.354 21,73.76C21,64.512 21,29.532 21,24.039C21,22.968 21.425,21.94 22.183,21.183C22.94,20.426 23.968,20 25.039,20C34.441,20 57,20 57,20L69,32L69,72.019C69,74.218 67.218,76 65.019,76Z" style="fill:white;"/>
+        <g transform="matrix(46.6667,0,0,46.6667,29.5013,66)">
+            <g id="Layer1">
+                <path d="M0.34,-0L0.46,-0.727L0.559,-0.727L0.44,-0L0.34,-0ZM0.012,-0.188L0.029,-0.287L0.589,-0.287L0.572,-0.188L0.012,-0.188ZM0.085,-0L0.204,-0.727L0.303,-0.727L0.184,-0L0.085,-0ZM0.055,-0.44L0.071,-0.54L0.631,-0.54L0.614,-0.44L0.055,-0.44Z" style="fill:rgb(39,105,42);fill-rule:nonzero;"/>
+            </g>
+        </g>
+    </g>
+</svg>

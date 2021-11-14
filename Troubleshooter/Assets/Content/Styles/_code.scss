@@ -21,24 +21,28 @@
 	}
 }
 
-code {
-	font-family: 'JetBrains Mono', monospace;
-	background-color: base.$dark-background-color;
-	border-radius: 0.3em;
-	padding: 2px 5px 2px 5px;
-	font-size: 0.85em;
-	-webkit-box-decoration-break: clone;
-	box-decoration-break: clone;
+:not(pre) {
+	> code {
+		font-family: 'JetBrains Mono', monospace;
+		background-color: base.$dark-background-color;
+		border-radius: 0.3em;
+		padding: 2px 5px 2px 5px;
+		font-size: 0.85em;
+		-webkit-box-decoration-break: clone;
+		box-decoration-break: clone;
+	}
 }
 
-code[class*="language-"] {
-	font-family: inherit;
-	background-color: inherit;
-	border-radius: inherit;
-	padding: inherit;
-	font-size: inherit;
-	-webkit-box-decoration-break: inherit;
-	box-decoration-break: inherit;
+pre {
+	> code {
+		font-family: inherit;
+		background-color: inherit;
+		border-radius: inherit;
+		padding: inherit;
+		font-size: inherit;
+		-webkit-box-decoration-break: inherit;
+		box-decoration-break: inherit;
+	}
 }
 
 pre {
