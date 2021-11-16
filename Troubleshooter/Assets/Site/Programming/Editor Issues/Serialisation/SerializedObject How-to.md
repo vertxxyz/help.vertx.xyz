@@ -70,6 +70,27 @@ private void OnEnable()
 }
 ```
 
+```nomnoml
+#font: "Roboto", sans-serif
+#fontSize: 11
+#fill: #282828; #282828
+#stroke: #D0D0D0
+#arrowSize: .8
+#fillArrows: true
+#lineWidth: 2
+#gutter: 1
+#edges: hard
+[ScriptableObject (Example)|]
+[<label>FindProperty("data")]
+[<label>FindProperty("values")]
+[SerializedProperty (data)|]
+[SerializedProperty (values)|]
+[ScriptableObject (Example)]-[FindProperty("data")]
+[FindProperty("data")]_>[SerializedProperty (data)]
+[ScriptableObject (Example)]-[FindProperty("values")]
+[FindProperty("values")]_>[SerializedProperty (values)]
+```
+
 Once we have valid SerializedProperties we can simply draw them using a [PropertyField](https://docs.unity3d.com/ScriptReference/EditorGUILayout.PropertyField.html).
 
 ```csharp
@@ -111,11 +132,67 @@ private void OnEnable()
 }
 ```
 
+```nomnoml
+#font: "Roboto", sans-serif
+#fontSize: 11
+#fill: #282828; #282828
+#stroke: #D0D0D0
+#arrowSize: .8
+#fillArrows: true
+#lineWidth: 2
+#gutter: 1
+#edges: hard
+
+[<hidden>Data]
+[Data]_>[SerializedProperty (data)]
+[SerializedProperty (data)|]
+[<label>FindPropertyRelative("Active")]
+[<label>FindPropertyRelative("Configuration")]
+[SerializedProperty (data)]-[FindPropertyRelative("Active")]
+[FindPropertyRelative("Active")]_>[SerializedProperty (Active)]
+[SerializedProperty (data)]-[FindPropertyRelative("Configuration")]
+[FindPropertyRelative("Configuration")]_>[SerializedProperty (Configuration)]
+
+[SerializedProperty (Active)|]
+[SerializedProperty (Configuration)|]
+```
+
 ### Values
 
 You **cannot** retrieve the C# instance associated with a SerializedProperty that is not the bottom of the serialization hierarchy. So, in our example, we cannot retrieve the value for `data` from its SerializedProperty, we can only go deeper and get the value of the last descendants.  
 Once at a SerializedProperty that is at the bottom there are predefined *Value* properties that can be used to access the value Unity has serialized.  
 See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) Properties documentation to find the appropriate Value property; `floatValue`, `stringValue`, `objectReferenceValue`, etc.
+
+```nomnoml
+#font: "Roboto", sans-serif
+#fontSize: 11
+#fill: #282828; #282828
+#stroke: #D0D0D0
+#arrowSize: .8
+#fillArrows: true
+#lineWidth: 2
+#gutter: 1
+#edges: hard
+#.red: stroke=#ccaa99
+
+[<hidden>A]
+[<hidden>B]
+[<hidden>C]
+[A]_>[SerializedProperty (Active)]
+[B]_>[SerializedProperty (Configuration)]
+[C]_>[SerializedProperty (data)]
+
+[SerializedProperty (Active)|]
+[SerializedProperty (Configuration)|]
+[<label>boolValue]
+[<label>objectReferenceValue]
+[SerializedProperty (Active)]__[boolValue]
+[SerializedProperty (Configuration)]__[objectReferenceValue]
+[boolValue]-->[bool (Active)]
+[objectReferenceValue]-->[UnityEngine.Object (Configuration)]
+
+[<red>SerializedProperty (data)|]
+```
 
 ### Arrays
 #### Iteration & access
@@ -127,6 +204,26 @@ for (int i = 0; i < values.arraySize; i++)
     // element.floatValue is now accessible
 }
 ```
+
+```nomnoml
+#font: "Roboto", sans-serif
+#fontSize: 11
+#fill: #282828; #282828
+#stroke: #D0D0D0
+#arrowSize: .8
+#fillArrows: true
+#lineWidth: 2
+#gutter: 1
+#edges: hard
+[<hidden>Data]
+[Data]_>[SerializedProperty (values)]
+[SerializedProperty (values)|arraySize: int]
+[<label>GetArrayElementAtIndex(i)]
+[SerializedProperty (values)]-[GetArrayElementAtIndex(i)]
+[GetArrayElementAtIndex(i)]->[SerializedProperty (values\[0..arraySize\])]
+[SerializedProperty (values\[0..arraySize\])|]
+```
+
 #### Adding elements
 Adding elements to the end of the array
 ```csharp
@@ -170,14 +267,14 @@ private void OnEnable()
 #edges: hard
 
 [<hidden>Data]
-[Data]__>[SerializedProperty (Configuration)]
+[Data]_>[SerializedProperty (Configuration)]
 
 [SerializedProperty (Configuration)|]
 [SerializedObject (Configuration)||UpdateIfRequiredOrScript()
 ApplyModifiedProperties()
 ...]
 
-[<reference>Configuration|]
+[<reference>Configuration]
 [<label>targetObject]
 [Configuration]<__[<label>targetObject]
 [<label>targetObject]__[SerializedObject (Configuration)]
