@@ -19,8 +19,9 @@ This guide only attempts to communicate how to access values, and not how to wri
 #gutter: 1
 #edges: hard
 
-[ScriptableObject (Example)|targetObject: UnityEngine.Object|Update()
-ApplyModifiedProperties()]
+[ScriptableObject (Example)|targetObject: UnityEngine.Object|UpdateIfRequiredOrScript()
+ApplyModifiedProperties()
+...]
 [<label>FindProperty("data")]
 [<label>FindProperty("values")]
 [ScriptableObject (Example)]-[FindProperty("data")]
@@ -155,6 +156,47 @@ private void OnEnable()
     if(configuration.objectReferenceValue != null)
         configurationSO = new SerializedObject(configuration.objectReferenceValue);
 }
+```
+
+```nomnoml
+#font: "Roboto", sans-serif
+#fontSize: 11
+#fill: #282828; #282828
+#stroke: #D0D0D0
+#arrowSize: .8
+#fillArrows: true
+#lineWidth: 2
+#gutter: 1
+#edges: hard
+
+[<hidden>Data]
+[Data]__>[SerializedProperty (Configuration)]
+
+[SerializedProperty (Configuration)|]
+[SerializedObject (Configuration)||UpdateIfRequiredOrScript()
+ApplyModifiedProperties()
+...]
+
+[<reference>Configuration|]
+[<label>targetObject]
+[Configuration]<__[<label>targetObject]
+[<label>targetObject]__[SerializedObject (Configuration)]
+
+[<label>objectReferenceValue]
+[SerializedProperty (Configuration)]__[<label>objectReferenceValue]
+[<label>objectReferenceValue]__>[Configuration]
+
+[SerializedProperty (color)|colorValue: Color]
+[SerializedProperty (dimensions)|vector3Value: Vector3]
+
+[<label>FindProperty("color")]
+[<label>FindProperty("dimensions")]
+
+[SerializedObject (Configuration)]-[<label>FindProperty("color")]
+[<label>FindProperty("color")]_>[SerializedProperty (color)]
+
+[SerializedObject (Configuration)]-[<label>FindProperty("dimensions")]
+[<label>FindProperty("dimensions")]_>[SerializedProperty (dimensions)]
 ```
 
 This is a new hierarchy to find properties within, and needs to have `ApplyModifiedProperties` called **separately**.  
