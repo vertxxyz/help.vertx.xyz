@@ -164,6 +164,16 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
 				setupHeaders();
 				Prism.highlightAll();
 				setupCodeSettings();
+
+				function htmlDecode(input)
+				{
+					const doc = new DOMParser().parseFromString(input, "text/html");
+					return doc.documentElement.textContent;
+				}
+				const graphs = document.getElementsByClassName('nomnoml');
+				for (let i = 0; i < graphs.length; i++) {
+					graphs[i].innerHTML = nomnoml.renderSvg(htmlDecode(graphs[i].innerHTML));
+				}
 			});
 			document.getElementById('page-search').value = "";
 			const sidebarContents = $('.sidebar-contents');

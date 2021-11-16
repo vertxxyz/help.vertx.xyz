@@ -103,3 +103,18 @@ pre {
 		margin-top: -3px;
 	}
 }
+
+.nomnoml {
+	user-select: none;
+	width: calc(100% + 15px);
+	margin-left: -15px;
+	>svg {
+		width: 100%;
+		stroke-linejoin: miter !important;
+		stroke-linecap: square !important;
+	}
+	rect {
+		rx: 5px;
+		ry: 5px;
+	}
+}

@@ -4,9 +4,49 @@ SerializedObject is a window into Unity's serialized datastructures. It exposes 
 [SerializedObject](https://docs.unity3d.com/ScriptReference/SerializedObject.html) and [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) are the best way to access and modify Unity-serialized structures; with automatic undo support, multi-object editing, and simplified functions for Editor UI.  
 This guide only attempts to communicate how to access values, and not how to write entire editors.
 
-### SerializedObject in Editors
+### Example Overview
 
 <<Code/Editor/SerializedObject/Base.html>>  
+
+```nomnoml
+#font: "Roboto", sans-serif
+#fontSize: 11
+#fill: #282828; #282828
+#stroke: #D0D0D0
+#arrowSize: .8
+#fillArrows: true
+#lineWidth: 2
+#gutter: 1
+#edges: hard
+
+[ScriptableObject (Example)|targetObject: UnityEngine.Object|Update()
+ApplyModifiedProperties()]
+[<label>FindProperty("data")]
+[<label>FindProperty("values")]
+[ScriptableObject (Example)]-[FindProperty("data")]
+[FindProperty("data")]->[SerializedProperty (data)]
+[ScriptableObject (Example)]-[FindProperty("values")]
+[FindProperty("values")]->[SerializedProperty (values)]
+
+[SerializedProperty (data)|]
+[<label>FindPropertyRelative("Active")]
+[<label>FindPropertyRelative("Configuration")]
+[SerializedProperty (data)]-[FindPropertyRelative("Active")]
+[FindPropertyRelative("Active")]->[SerializedProperty (Active)]
+[SerializedProperty (data)]-[FindPropertyRelative("Configuration")]
+[FindPropertyRelative("Configuration")]->[SerializedProperty (Configuration)]
+
+[SerializedProperty (values)|arraySize: int]
+[<label>GetArrayElementAtIndex(i)]
+[SerializedProperty (values)]-[GetArrayElementAtIndex(i)]
+[GetArrayElementAtIndex(i)]->[SerializedProperty (values\[0..arraySize\])]
+[SerializedProperty (values\[0..arraySize\])|floatValue: float]
+
+[SerializedProperty (Active)|boolValue: bool]
+[SerializedProperty (Configuration)|objectReferenceValue: UnityEngine.Object]
+```
+
+### SerializedObject in Editors
 
 ```csharp
 [CustomEditor(typeof(Example))]

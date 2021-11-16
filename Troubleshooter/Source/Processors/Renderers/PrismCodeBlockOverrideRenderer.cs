@@ -7,7 +7,21 @@ namespace Troubleshooter.Renderers;
 
 public class PrismCodeBlockOverrideRenderer : PrismCodeBlockRenderer
 {
-	public PrismCodeBlockOverrideRenderer(CodeBlockRenderer codeBlockRenderer) : base(codeBlockRenderer) { }
+	private readonly CodeBlockRenderer codeBlockRenderer;
 
-	protected override void Write(HtmlRenderer renderer, CodeBlock node) => HtmlUtility.AppendWithCodeBlockSetup(renderer, () => base.Write(renderer, node));
+	public PrismCodeBlockOverrideRenderer(CodeBlockRenderer codeBlockRenderer) : base(codeBlockRenderer)
+		=> this.codeBlockRenderer = codeBlockRenderer;
+
+	protected override void Write(HtmlRenderer renderer, CodeBlock node)
+	{
+		var fencedCodeBlock = node as FencedCodeBlock;
+		// Bypass prism if this block should just render as a div.
+		if (fencedCodeBlock?.Info != null && codeBlockRenderer.BlocksAsDiv.Contains(fencedCodeBlock.Info))
+		{
+			codeBlockRenderer.Write(renderer, node);
+			return;
+		}
+
+		HtmlUtility.AppendWithCodeBlockSetup(renderer, () => base.Write(renderer, node));
+	}
 }
