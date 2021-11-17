@@ -1,6 +1,18 @@
 ## Null reference exception
 ### Description
 A `NullReferenceException` (**NRE**), occurs when code tries to access a variable which isn’t set, or found.  
+
+```nomnoml
+<<Nomnoml/shared.nomnoml>>
+#direction: right
+#.x: visual=none stroke=#f55 body=bold
+
+[<reference>null]
+[<x>?]
+[variable]->[null]
+[null]-->[?]
+```
+
 :::warning
 Declaring a reference variable does not automatically assign it a value.
 :::
@@ -8,7 +20,7 @@ Declaring a reference variable does not automatically assign it a value.
 ### Troubleshooting:
 Check accessed variables on the [line throwing the exception](../Stack%20Traces.md) for `null`.  
 
-Only reference types can be `null`. Ie. `class`, `interface`, or `delegate` variables.  
+Only [reference types](../../Value%20And%20Reference%20Types.md) can be `null`. Ie. `class`, `interface`, or `delegate` variables.  
 Access is denoted by:
 - `.`  - member access.
 - `[]` - array element or indexer access.

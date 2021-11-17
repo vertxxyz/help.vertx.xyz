@@ -1,0 +1,9 @@
+#font: "Roboto", sans-serif
+#fontSize: 11
+#fill: #282828; #282828
+#stroke: #D0D0D0
+#arrowSize: .8
+#fillArrows: true
+#lineWidth: 2
+#gutter: 1
+#edges: hard

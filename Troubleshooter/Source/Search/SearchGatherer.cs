@@ -220,8 +220,8 @@ public static class SearchGatherer
 			yield return text[start..^1];
 		}
 
-		bool IsWordCharacter(char c) => char.IsLetter(c) || c == '\'';
-		bool IsStartWordCharacter(char c) => char.IsLetter(c);
-		bool IsEndWordCharacter(char c) => char.IsLetter(c);
+		bool IsWordCharacter(char c) => char.IsLetterOrDigit(c) || c == '\'';
+		bool IsStartWordCharacter(char c) => char.IsLetterOrDigit(c);
+		bool IsEndWordCharacter(char c) => char.IsLetterOrDigit(c);
 	}
 }

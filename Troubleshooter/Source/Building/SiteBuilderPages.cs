@@ -114,6 +114,7 @@ public static partial class SiteBuilder
 					page = new PageResource(fullPath, ResourceType.RichText, location);
 					break;
 				case ".html":
+				case ".nomnoml":
 					page = new PageResource(fullPath, ResourceType.Html, location);
 					break;
 				default:

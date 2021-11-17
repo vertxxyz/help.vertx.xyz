@@ -9,15 +9,7 @@ This guide only attempts to communicate how to access values, and not how to wri
 <<Code/Editor/SerializedObject/Base.html>>  
 
 ```nomnoml
-#font: "Roboto", sans-serif
-#fontSize: 11
-#fill: #282828; #282828
-#stroke: #D0D0D0
-#arrowSize: .8
-#fillArrows: true
-#lineWidth: 2
-#gutter: 1
-#edges: hard
+<<Nomnoml/shared.nomnoml>>
 
 [ScriptableObject (Example)|targetObject: UnityEngine.Object|UpdateIfRequiredOrScript()
 ApplyModifiedProperties()
@@ -71,15 +63,7 @@ private void OnEnable()
 ```
 
 ```nomnoml
-#font: "Roboto", sans-serif
-#fontSize: 11
-#fill: #282828; #282828
-#stroke: #D0D0D0
-#arrowSize: .8
-#fillArrows: true
-#lineWidth: 2
-#gutter: 1
-#edges: hard
+<<Nomnoml/shared.nomnoml>>
 [ScriptableObject (Example)|]
 [<label>FindProperty("data")]
 [<label>FindProperty("values")]
@@ -133,15 +117,7 @@ private void OnEnable()
 ```
 
 ```nomnoml
-#font: "Roboto", sans-serif
-#fontSize: 11
-#fill: #282828; #282828
-#stroke: #D0D0D0
-#arrowSize: .8
-#fillArrows: true
-#lineWidth: 2
-#gutter: 1
-#edges: hard
+<<Nomnoml/shared.nomnoml>>
 
 [<hidden>Data]
 [Data]_>[SerializedProperty (data)]
@@ -164,15 +140,7 @@ Once at a SerializedProperty that is at the bottom there are predefined *Value* 
 See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) Properties documentation to find the appropriate Value property; `floatValue`, `stringValue`, `objectReferenceValue`, etc.
 
 ```nomnoml
-#font: "Roboto", sans-serif
-#fontSize: 11
-#fill: #282828; #282828
-#stroke: #D0D0D0
-#arrowSize: .8
-#fillArrows: true
-#lineWidth: 2
-#gutter: 1
-#edges: hard
+<<Nomnoml/shared.nomnoml>>
 #.red: stroke=#ccaa99
 
 [<hidden>A]
@@ -206,15 +174,7 @@ for (int i = 0; i < values.arraySize; i++)
 ```
 
 ```nomnoml
-#font: "Roboto", sans-serif
-#fontSize: 11
-#fill: #282828; #282828
-#stroke: #D0D0D0
-#arrowSize: .8
-#fillArrows: true
-#lineWidth: 2
-#gutter: 1
-#edges: hard
+<<Nomnoml/shared.nomnoml>>
 [<hidden>Data]
 [Data]_>[SerializedProperty (values)]
 [SerializedProperty (values)|arraySize: int]
@@ -256,15 +216,7 @@ private void OnEnable()
 ```
 
 ```nomnoml
-#font: "Roboto", sans-serif
-#fontSize: 11
-#fill: #282828; #282828
-#stroke: #D0D0D0
-#arrowSize: .8
-#fillArrows: true
-#lineWidth: 2
-#gutter: 1
-#edges: hard
+<<Nomnoml/shared.nomnoml>>
 
 [<hidden>Data]
 [Data]_>[SerializedProperty (Configuration)]
@@ -274,7 +226,7 @@ private void OnEnable()
 ApplyModifiedProperties()
 ...]
 
-[<reference>Configuration]
+[Configuration]
 [<label>targetObject]
 [Configuration]<__[<label>targetObject]
 [<label>targetObject]__[SerializedObject (Configuration)]
