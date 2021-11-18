@@ -19,7 +19,7 @@ public static partial class SiteBuilder
 		int totalContent = 0;
 			
 		// Copy all files that are not pages to the destination
-		foreach (var path in Directory.EnumerateFiles(site.Directory, "*", SearchOption.AllDirectories))
+		foreach (string path in Directory.EnumerateFiles(site.Directory, "*", SearchOption.AllDirectories))
 		{
 			string extension = Path.GetExtension(path);
 			if(extension.Equals(".md")) continue; // Ignore pages
@@ -35,10 +35,10 @@ public static partial class SiteBuilder
 
 		int embedContent = 0;
 		// Copy all embed files that are not pages to the destination/Embeds
-		foreach (var path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))
+		foreach (string path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))
 		{
 			string extension = Path.GetExtension(path);
-			if(extension.Equals(".md") || extension.Equals(".rtf") || extension.Equals(".html")) continue; // Ignore pages
+			if(extension.Equals(".md") || extension.Equals(".rtf") || extension.Equals(".html") || extension.Equals(".nomnoml")) continue; // Ignore pages & nomnoml
 				
 			string fullPath = Path.GetFullPath(path);
 			string outputPath = ConvertFullEmbedPathToLinkPath(fullPath, extension, site, arguments);

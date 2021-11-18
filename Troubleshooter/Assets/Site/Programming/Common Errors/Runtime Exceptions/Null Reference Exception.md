@@ -1,6 +1,6 @@
 ## Null reference exception
 ### Description
-A `NullReferenceException` (**NRE**), occurs when code tries to access a variable which isn’t set, or found.  
+A `NullReferenceException` (NRE), occurs when code tries to access a variable which isn’t set, or found.  
 
 ```nomnoml
 <<Nomnoml/shared.nomnoml>>
@@ -62,5 +62,5 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
 - Ensure that nothing sets it to `null` before you attempt to use it.
 :::
 
-[^1]: See [Serializing Component References]() to learn how to assign variables in the Inspector.  
-[^2]: See [Unity Null](../../Other/Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.
+[^1]: See [Serializing Component references]() to learn how to assign variables in the Inspector.  
+[^2]: See [Unity null](../../Other/Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.

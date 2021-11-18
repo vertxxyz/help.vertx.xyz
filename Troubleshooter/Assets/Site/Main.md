@@ -16,7 +16,7 @@
 [Warnings](Programming/Common%20Warnings.md)  
 [Error dialogs](Common/Error%20Dialogs.md)
 ### Input
-[Built-in input](Programming/Input/Built-In%20Input.md)  
+[Built-in Input Manager](Programming/Input/Built-In%20Input.md)  
 [Input System package](Programming/Input/Input%20System.md)  
 ### Physics  
 [Physics messages](Programming/Physics%20Messages.md)  

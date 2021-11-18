@@ -58,6 +58,11 @@ public class PageResource
 	/// Processed output html
 	/// </summary>
 	public string HtmlText { get; private set; }
+	
+	/// <summary>
+	/// Output location. This is only processed after <see cref="WriteToDisk"/> is called.
+	/// </summary>
+	public string OutputLinkPath { get; private set; }
 
 	// -------- Unbuilt resources --------
 	/// <summary>
@@ -261,7 +266,8 @@ public class PageResource
 		}
 
 		// Check the previously built file to see whether it ought to be re-written.
-		var path = Path.Combine(arguments.HtmlOutputDirectory, $"{site.ConvertFullSitePathToLinkPath(FullPath)}.html");
+		OutputLinkPath = site.ConvertFullSitePathToLinkPath(FullPath);
+		string path = Path.Combine(arguments.HtmlOutputDirectory, $"{OutputLinkPath}.html");
 		return IOUtility.CreateFileIfDifferent(path, HtmlText) ? WriteStatus.Written : WriteStatus.Skipped;
 	}
 }

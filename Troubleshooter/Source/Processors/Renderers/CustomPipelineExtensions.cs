@@ -9,7 +9,6 @@ namespace Troubleshooter.Renderers;
 public static class CustomPipelineExtensions
 {
 	private static HtmlRendererCache _rendererCache;
-	private static HtmlRendererCache _rendererCacheForCustomWriter;
 
 	internal static RentedCustomHtmlRenderer RentCustomHtmlRenderer(this MarkdownPipeline pipeline)
 	{

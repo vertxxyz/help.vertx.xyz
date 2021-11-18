@@ -1,10 +1,10 @@
 using System.Text.Json.Serialization;
 
-namespace Troubleshooter.Search;
+namespace Troubleshooter.Issues;
 
 [JsonSourceGenerationOptions(
 	GenerationMode = JsonSourceGenerationMode.Serialization,
 	PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase
 )]
-[JsonSerializable(typeof(SearchIndexStructure))]
-internal partial class SearchIndexStructureJsonContext : JsonSerializerContext { }
+[JsonSerializable(typeof(SourceIndexStructure))]
+internal partial class SourceIndexStructureJsonContext : JsonSerializerContext { }

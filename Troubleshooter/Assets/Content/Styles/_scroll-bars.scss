@@ -1,6 +1,8 @@
+@use 'base';
+
 /* width */
 ::-webkit-scrollbar {
-	width: 13px;
+	width: base.$scroll-bar-width;
 	height: 13px;
 }
 

@@ -5,6 +5,7 @@ Input in Unity UI (UGUI) requires multiple things to receive input events:
 - A **[Graphic Raycaster](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/script-GraphicRaycaster.html)** must be present on the Canvas and sub-Canvases.  
 - **Raycast Target** must be enabled on the Graphic (eg. Image) attached to a component that receives input (eg. Button).  
 ![Raycast Target](ui-raycast-target.png)
+- **[Canvas Groups](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/class-CanvasGroup.html)** above the element must be marked Interactable.
 - There mustn't be other UI receiving the same events below in the hierarchy.  
    [Event Triggers](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/script-EventTrigger.html) will absorb all events, regardless of what is registered to them.
 - The EventSystem's [StandaloneInputModule](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/script-StandaloneInputModule.html) must have matching axes in the [Input Manager](https://docs.unity3d.com/Manual/class-InputManager.html) (**Edit | Project Settings | Input Manager**).  
@@ -13,3 +14,5 @@ Input in Unity UI (UGUI) requires multiple things to receive input events:
 :::warning
 Do not make assumptions. Double checking these steps are met is always recommended.
 :::
+
+To troubleshoot cases where other UI is blocking input, select the Event System and hover/click the UI that's failing. The preview pane at the bottom of the inspector should list the gameobject that received the event.

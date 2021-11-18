@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using Markdig;
 using Troubleshooter.Constants;
+using Troubleshooter.Issues;
 using static Troubleshooter.PageUtility;
 
 namespace Troubleshooter;
@@ -61,6 +62,8 @@ public static partial class SiteBuilder
 		}
 
 		arguments.VerboseLog($"{builtPages} pages written to disk. {skippedPages} were skipped as identical, and {ignoredPages} were embeds.");
+		
+		SourceIndex.GeneratePageSourceLookup(arguments, allResources);
 	}
 
 	private static PageResources CollectPages(Site site)

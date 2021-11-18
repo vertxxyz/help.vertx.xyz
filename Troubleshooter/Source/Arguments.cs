@@ -20,11 +20,16 @@ public readonly struct Arguments
 	/// </summary>
 	public readonly string HtmlOutputDirectory;
 	/// <summary>
+	/// Output directory + Json folder
+	/// </summary>
+	public readonly string JsonOutputDirectory;
+	/// <summary>
 	/// Project root (Contains Assets and Source)
 	/// </summary>
 	public readonly string TroubleshooterRoot;
 	public readonly LoggingLevel LoggingLevel;
 	public const string HtmlOutputDirectoryName = "HTML";
+	public const string JsonOutputDirectoryName = "Json";
 
 	public Arguments(string[] args)
 	{
@@ -32,6 +37,7 @@ public readonly struct Arguments
 		LoggingLevel = LoggingLevel.Default;
 		TroubleshooterRoot = null;
 		HtmlOutputDirectory = null;
+		JsonOutputDirectory = null;
 
 		for (var i = 0; i < args.Length; i++)
 		{
@@ -61,6 +67,9 @@ public readonly struct Arguments
 					Path = param;
 					HtmlOutputDirectory = System.IO.Path.Combine(Path, HtmlOutputDirectoryName);
 					Directory.CreateDirectory(HtmlOutputDirectory);
+
+					JsonOutputDirectory = System.IO.Path.Combine(Path, JsonOutputDirectoryName);
+					Directory.CreateDirectory(JsonOutputDirectory);
 					break;
 				}
 				case "logging":

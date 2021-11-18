@@ -33,17 +33,10 @@ public static class SearchIndex
 
 		// Serialize Json.
 		SearchIndexStructure index = new SearchIndexStructure(filePaths, fileHeaders, termsToIndices, SearchCommon.CommonValues);
-		string json = JsonSerializer.Serialize(index, new JsonSerializerOptions
-		{
-			PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-		}); // TODO use SearchIndexStructureJsonContext when Rider supports it.
+		string json = JsonSerializer.Serialize(index, SearchIndexStructureJsonContext.Default.SearchIndexStructure);
 
 		// Write index file.
-		string jsonDirectory = Path.Combine(arguments.Path, "Json");
-		if (!Directory.Exists(jsonDirectory))
-			Directory.CreateDirectory(jsonDirectory);
-
-		await using var file = File.CreateText(Path.Combine(jsonDirectory, "search-index.json"));
+		await using var file = File.CreateText(Path.Combine(arguments.JsonOutputDirectory, "search-index.json"));
 		await file.WriteAsync(json);
 		Console.WriteLine("Generated search index.");
 	}

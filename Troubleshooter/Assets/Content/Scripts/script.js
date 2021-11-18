@@ -164,16 +164,7 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
 				setupHeaders();
 				Prism.highlightAll();
 				setupCodeSettings();
-
-				function htmlDecode(input)
-				{
-					const doc = new DOMParser().parseFromString(input, "text/html");
-					return doc.documentElement.textContent;
-				}
-				const graphs = document.getElementsByClassName('nomnoml');
-				for (let i = 0; i < graphs.length; i++) {
-					graphs[i].innerHTML = nomnoml.renderSvg(htmlDecode(graphs[i].innerHTML));
-				}
+				processNomnoml();
 			});
 			document.getElementById('page-search').value = "";
 			const sidebarContents = $('.sidebar-contents');
@@ -306,6 +297,24 @@ function copyTextToClipboard(text) {
 	navigator.clipboard.writeText(text).catch();
 }
 
+function processNomnoml() {
+	function htmlDecode(input) {
+		const doc = new DOMParser().parseFromString(input, "text/html");
+		return doc.documentElement.textContent;
+	}
+
+	const graphs = document.getElementsByClassName('nomnoml');
+	for (let i = 0; i < graphs.length; i++) {
+		try {
+			graphs[i].innerHTML = nomnoml.renderSvg(htmlDecode(graphs[i].innerHTML));
+		} catch (e) {
+			(console.error || console.log).call(console, e.stack || e);
+			continue;
+		}
+		graphs[i].classList.add("processed-nomnoml");
+	}
+}
+
 function removeCssRuleIfRequired(id) {
 	const element = document.getElementById(id)
 	if (element == null)
@@ -325,4 +334,21 @@ function addCssRuleIfRequired(rule, id) {
 	style.id = id;
 
 	head.appendChild(style);
+}
+
+function reportIssue() {
+	let param = getPageParameter();
+	fetch("Json/source-index.json")
+		.then(response => response.json())
+		.then(json => {
+			if (param === null) param = "main";
+			let source = json.pageToSourcePath[param];
+			let currentLoc = encodeURIComponent(window.location.href);
+			if (source === 'undefined') {
+				window.location.href = `https://github.com/vertxxyz/help.vertx.xyz/issues/new?title=&body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Document%20Details%0A%0A%E2%9A%A0%20*Do%20not%20edit%20this%20section.*%0A%0A*%20Content%3A%20%5B${param}%5D(${currentLoc})%0A*%20Content%20Source%3A%20Unknown&labels=content`;
+			} else {
+				source = encodeURIComponent(source);
+				window.location.href = `https://github.com/vertxxyz/help.vertx.xyz/issues/new?title=&body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Document%20Details%0A%0A%E2%9A%A0%20*Do%20not%20edit%20this%20section.*%0A%0A*%20Content%3A%20%5B${param}%5D(${currentLoc})%0A*%20Content%20Source%3A%20%5B${source}%5D(https://github.com/vertxxyz/help.vertx.xyz/tree/main/Troubleshooter/${source})&labels=content`;
+			}
+		});
 }
