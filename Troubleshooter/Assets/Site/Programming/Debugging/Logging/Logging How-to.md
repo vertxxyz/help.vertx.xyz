@@ -4,10 +4,20 @@
 Unity's [Debug.Log](https://docs.unity3d.com/ScriptReference/Debug.Log.html) function will print a message to the [Console window](https://docs.unity3d.com/Manual/Console.html).  
 Code can pass any object to the log and it will be converted to a `string` and displayed.  
 
+#### String interpolation
+You can use [string interpolation](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated) to easily insert values into text:
+
+```csharp
+int value = 10;
+Debug.Log($"The example value is {value}.");
+// Prints: The example value is 10.
+```
+
+#### Exceptions
 When logging it is important to place your log **behind** any error that can occur, as exceptions will halt execution.
 <<Code/Logging/Logging 1.rtf>>
 
-### The context parameter
+#### The context parameter
 The second parameter of `Debug.Log`, the context object, is extremely valuable. This `UnityEngine.Object` will be **pinged** when the log is selected. This is often used to discern whether there are multiple instances of a script producing a log.
 
 <<Code/Logging/Logging 2.rtf>>
@@ -23,10 +33,11 @@ Null values will sometimes print nothing, so note if a log does not print detail
 A much less tedious way of discovering what values are null is to [use the debugger](../Debugger.md), where code execution is halted and values can be inspected directly.
 
 ### Extra details
+#### Vectors
 The `ToString` implementation for vectors have very little precision, so when logging it is best to use `.ToString("F7")` to display a suitable amount of decimal places.  
-
+#### Print
 The [print](https://docs.unity3d.com/ScriptReference/MonoBehaviour-print.html) function is only inherited from `MonoBehaviour` and indirectly calls `Debug.Log`. It also does not take the context parameter, and so should generally be avoided.  
-
+#### Logs, Warnings, and Errors
 Unity has multiple types of logs:  
 :::info{.inline}
 Log can describe informative or verbose details.
