@@ -24,6 +24,7 @@ public class LanguageTests
 		text.Should().NotContain("alt+click", StringComparison.OrdinalIgnoreCase, "Should be \"hold <kbd>Alt</kbd> while clicking\"");
 		text.Should().NotContain("ctrl+click", StringComparison.OrdinalIgnoreCase, "Should be \"hold <kbd>Ctrl</kbd> while clicking\"");
 		text.Should().NotContain("uitoolkit", StringComparison.OrdinalIgnoreCase, "Should be \"UI Toolkit\"");
+		text.Should().NotContain("assmdef", StringComparison.OrdinalIgnoreCase, "Should be \"asmdef\"");
 	}
 		
 	/// <summary>

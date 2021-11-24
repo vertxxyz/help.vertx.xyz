@@ -7,18 +7,14 @@ Code can pass any object to the log and it will be converted to a `string` and d
 #### String interpolation
 You can use [string interpolation](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated) to easily insert values into text:
 
-```csharp
-int value = 10;
-Debug.Log($"The example value is {value}.");
-// Prints: The example value is 10.
-```
+<<Code/Logging/Logging 0.html>>
 
 #### Exceptions
 When logging it is important to place your log **behind** any error that can occur, as exceptions will halt execution.
 <<Code/Logging/Logging 1.rtf>>
 
 #### The context parameter
-The second parameter of `Debug.Log`, the context object, is extremely valuable. This `UnityEngine.Object` will be **pinged** when the log is selected. This is often used to discern whether there are multiple instances of a script producing a log.
+The second parameter, the context object, is extremely valuable. This object will be **pinged** when the log is selected. This is often used to discern whether there are multiple instances of a script producing a log.
 
 <<Code/Logging/Logging 2.rtf>>
 

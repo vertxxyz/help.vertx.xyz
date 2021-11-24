@@ -4,6 +4,7 @@
 - [CS0106](Compiler%20Errors/CS0106.md): The modifier 'modifier' is not valid for this item
 - [CS0120](Compiler%20Errors/CS0120.md): An object reference is required for the non-static field, method, or property 'Foo'
 - [CS0119](Compiler%20Errors/CS0119.md): 'Foo' is a 'Bar', which is not valid in the given context
+- [CS0266](Compiler%20Errors/CS0266.md): Cannot implicitly convert type 'Foo' to 'Bar'. An explicit conversion exists (are you missing a cast?)
 - [CS0236](Compiler%20Errors/CS0236.md): A field initializer cannot reference the non-static field, method, or property 'Foo'
 - [CS0246](Compiler%20Errors/CS0246.md): The type or namespace name 'Foo' could not be found (are you missing a using directive or an assembly reference?)  
 - [CS0619](Compiler%20Errors/CS0619.md): 'Foo' is obsolete: 'Foo has been removed. Use Bar instead.'

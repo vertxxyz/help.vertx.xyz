@@ -46,6 +46,13 @@ h4 {
 	margin-block-end: 0.8em;
 }
 
+h5, h6 {
+	color: white;
+	font-weight: 500;
+	line-height: 1em;
+	font-size: 1em;
+}
+
 a.header-permalink {
 	opacity: 0;
 	transition: opacity .15s;
