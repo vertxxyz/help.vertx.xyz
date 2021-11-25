@@ -42,7 +42,7 @@ function resetPage() {
 	if(sidebarContents.length === 0) return;
 	const value = processPageValue(getPageParameter());
 	sidebarContents.load(`/HTML/${value}_sidebar.html`, function (response, status, xhr) {
-		if (status === "error")
+		if (status === "error" || response.startsWith("<!DOCTYPE html>"))
 			sidebarContents.empty();
 	});
 }

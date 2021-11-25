@@ -1,5 +1,6 @@
 ## Common compiler errors
 
+- [CS0101](Compiler%20Errors/CS0101.md): The namespace 'Foo' already contains a definition for "Bar"
 - [CS0104](Compiler%20Errors/CS0104.md): 'reference' is an ambiguous reference between 'X identifier' and 'Y identifier'
 - [CS0106](Compiler%20Errors/CS0106.md): The modifier 'modifier' is not valid for this item
 - [CS0120](Compiler%20Errors/CS0120.md): An object reference is required for the non-static field, method, or property 'Foo'
