@@ -11,7 +11,7 @@ public static class PageUtility
 	private static readonly Regex linkRegex = new(@"]\((https?:\/\/[\w/%#?.@_\+~=&()]+)\)", RegexOptions.Compiled);
 	private static readonly Regex embedsRegex = new(@"<<([\w /%.]+)>>", RegexOptions.Compiled);
 	private static readonly Regex localImagesRegex = new(@"!\[[^\]]*\]\((?!http)(.*?)\s*(""(?:.*[^""])"")?\s*\)", RegexOptions.Compiled);
-		
+
 	/// <summary>
 	/// Parse markdown text looking for page links
 	/// </summary>
@@ -25,12 +25,12 @@ public static class PageUtility
 		for (int i = 0; i < matches.Count; i++)
 		{
 			Group group = matches[i].Groups[1];
-			var match = group.Value.ToConsistentPath().ToUnTokenized();
+			string match = group.Value.ToConsistentPath().ToUnTokenized();
 			string fullPath = Path.GetFullPath(Path.Combine(directory, match));
 			yield return (fullPath, group);
 		}
 	}
-		
+
 	/// <summary>
 	/// Parse markdown text looking for external links
 	/// </summary>
@@ -44,7 +44,7 @@ public static class PageUtility
 		for (int i = 0; i < matches.Count; i++)
 		{
 			Group group = matches[i].Groups[1];
-			var url = group.Value;
+			string url = group.Value;
 			yield return (url, group);
 		}
 	}
@@ -58,7 +58,7 @@ public static class PageUtility
 			yield return (group.Value.ToConsistentPath().ToUnTokenized(), group);
 		}
 	}
-		
+
 	public static IEnumerable<(string localPath, Group group)> LocalImagesAsRootPaths(string text, bool finalisePath = true)
 	{
 		MatchCollection matches = localImagesRegex.Matches(text);

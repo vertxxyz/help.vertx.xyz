@@ -16,7 +16,7 @@ Euler angles are confusing to author when rotating off-axis. `AngleAxis` greatly
 :::
 :::slider {#angle_axis_slider .color-angle} 
 :::
-<script type="module" src="Scripts/Interactive/Quaternions/angleAxis.js"></script>  
+<script type="module" src="/Scripts/Interactive/Quaternions/angleAxis.js"></script>  
 <<Code/Info/Quaternions/AngleAxis 3.html>>  
 
 Note that the rotation around axis does not have a starting position, it is purely scalar.

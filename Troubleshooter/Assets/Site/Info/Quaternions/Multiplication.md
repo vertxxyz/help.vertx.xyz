@@ -22,7 +22,7 @@ This is how [Transform](https://docs.unity3d.com/ScriptReference/Transform.html)
 Reset
 :::
 :::
-<script type="module" src="Scripts/Interactive/Quaternions/multiplication-directions.js"></script>
+<script type="module" src="/Scripts/Interactive/Quaternions/multiplication-directions.js"></script>
 <<Code/Info/Quaternions/Multiplication 2.html>>
 
 The logic can be applied to rotate any point around its origin.  
@@ -45,7 +45,7 @@ To form an intuition about the influence of `A` or `B` on the result, interact w
 Reset
 :::
 :::
-<script type="module" src="Scripts/Interactive/Quaternions/multiplication.js"></script>
+<script type="module" src="/Scripts/Interactive/Quaternions/multiplication.js"></script>
 
 ```csharp
 transform.rotation = A.rotation * B.rotation;

@@ -38,6 +38,5 @@ public static class SearchIndex
 		// Write index file.
 		await using var file = File.CreateText(Path.Combine(arguments.JsonOutputDirectory, "search-index.json"));
 		await file.WriteAsync(json);
-		Console.WriteLine("Generated search index.");
 	}
 }

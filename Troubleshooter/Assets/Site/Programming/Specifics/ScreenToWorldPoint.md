@@ -11,7 +11,7 @@ Provide an appropriate distance in the Vector3 parameter.
 :::hidden {#camera-img}
 ![Camera](camera.svg)
 :::
-<script type="module" src="Scripts/Interactive/ScreenToWorldPoint/scene.js"></script>
+<script type="module" src="/Scripts/Interactive/ScreenToWorldPoint/scene.js"></script>
 <canvas id="screen_to_world_point" width="500" height="500"></canvas>
 :::slider {#screen_to_world_point_slider}
 :::

@@ -54,10 +54,10 @@ let pageParam = getPageParameter();
 //Don't push a history state for this change.
 if (pageParam === main) {
 	//If we've landed on the index then we should set our location as "Main".
-	setParameterByKey(pageParameterKey, '', getHash(), false);
+	setPage('', '', getHash(), false);
 	pageParam = null;
 } else {
-	setParameterByKey(pageParameterKey, pageParam, getHash(), false);
+	setPage(pageParam, pageParam, getHash(), false);
 }
 
 loadPageFromLink(pageParam, getHash(), false);
@@ -97,8 +97,8 @@ function getHash() {
 	return window.location.hash;
 }
 
-function setParameterByKey(key, value, hash, pushHistory = true) {
-	let url = value == null || value === "" ? window.location.pathname : `?${key}=${value}`;
+function setPage(value, url, hash, pushHistory = true) {
+	url = url == null || url === "" ? window.location.pathname : url;
 
 	if (hash !== '')
 		url += hash;
@@ -123,12 +123,15 @@ function loadPage(relativeLink) {
 //Load Hash is called from HTML
 function loadHash(hash) {
 	// Scroll to the hash and copy the page to the clipboard.
-	setParameterByKey(pageParameterKey, getPageParameter(), hash);
+	const pageParameter = getPageParameter();
+	setPage(pageParameter, pageParameter, hash);
 	scrollToHash(hash);
 	copyTextToClipboard(window.location.href);
 }
 
-function processPageValue(value, useCurrentDirectory) {
+function processPageValue(value) {
+	if(value === null)
+		value = location.pathname.slice(1);
 	if (value == null || value === "")
 		value = main;
 	else {
@@ -136,29 +139,28 @@ function processPageValue(value, useCurrentDirectory) {
 		value = value.replace('%20', "-");
 		value = value.toLowerCase();
 	}
-
-	if (useCurrentDirectory && currentDirectory !== "")
-		value = absolute(`${currentDirectory}/`, value)
-	else
-		value = `${value}`;
 	return value;
 }
 
 function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory = true) {
-	value = processPageValue(value, useCurrentDirectory);
-	currentDirectory = value.replace(/\/*[^/]+$/, "");
+	value = processPageValue(value);
+	let valueToLoad = value;
+	if (useCurrentDirectory && currentDirectory !== "")
+		valueToLoad = absolute(`${currentDirectory}/`, value)
+	
+	currentDirectory = valueToLoad.replace(/\/*[^/]+$/, "");
 
 	$(document).ready(function () {
 		const contents = $(contentsClass);
 		try {
 			// Load the page
-			contents.load(`HTML/${value}.html`, function (response, status, xhr) {
+			contents.load(`/HTML/${valueToLoad}.html`, function (response, status, xhr) {
 				if (status === "error") {
 					load404();
 					return;
 				}
 				if (setParameter)
-					setParameterByKey(pageParameterKey, value, hash);
+					setPage(valueToLoad, value, hash);
 
 				scrollToHash(hash);
 				setupHeaders();
@@ -168,8 +170,8 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
 			});
 			document.getElementById('page-search').value = "";
 			const sidebarContents = $('.sidebar-contents');
-			sidebarContents.load(`HTML/${value}_sidebar.html`, function (response, status, xhr) {
-				if (status === "error")
+			sidebarContents.load(`/HTML/${valueToLoad}_sidebar.html`, function (response, status, xhr) {
+				if (status === "error" || response.startsWith("<!DOCTYPE html>"))
 					sidebarContents.empty();
 			});
 		} catch {
@@ -195,7 +197,6 @@ function absolute(base, relative) {
 }
 
 function load404() {
-	//console.log('loading 404')
 	loadPageFromLink(`404`, '', false, false);
 }
 
@@ -338,7 +339,7 @@ function addCssRuleIfRequired(rule, id) {
 
 function reportIssue() {
 	let param = getPageParameter();
-	fetch("Json/source-index.json")
+	fetch("/Json/source-index.json")
 		.then(response => response.json())
 		.then(json => {
 			if (param === null) param = "main";

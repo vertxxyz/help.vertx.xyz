@@ -37,6 +37,7 @@ public class BuildScope : IDisposable
 		}
 
 		redundantFilePaths.Remove(SearchIndex.GetJsonFilePath(arguments));
+		redundantFilePaths.RemoveWhere(f => f.EndsWith(".htaccess"));
 
 		if (redundantFilePaths.Count <= 0)
 			return;

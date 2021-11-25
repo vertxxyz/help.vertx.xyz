@@ -12,7 +12,7 @@ Combined with [Vector3.Cross](https://docs.unity3d.com/ScriptReference/Vector3.C
 
 ::: {#look_rotation .interactive-content}
 :::
-<script type="module" src="Scripts/Interactive/Quaternions/lookRotation.js"></script>  
+<script type="module" src="/Scripts/Interactive/Quaternions/lookRotation.js"></script>  
 
 <<Code/Info/Quaternions/LookRotation 3.html>>
 

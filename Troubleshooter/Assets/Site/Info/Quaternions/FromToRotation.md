@@ -10,7 +10,7 @@ When applied as an orientation, the ::`fromDirection`::{.quaternion-from} axis i
 
 ::: {#from_to_rotation .interactive-content}
 :::
-<script type="module" src="Scripts/Interactive/Quaternions/fromToRotation.js"></script>  
+<script type="module" src="/Scripts/Interactive/Quaternions/fromToRotation.js"></script>  
 
 <<Code/Info/Quaternions/FromToRotation 3.html>>  
 

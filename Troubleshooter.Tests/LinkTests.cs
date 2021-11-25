@@ -1,26 +1,23 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Web;
+using System.Text.RegularExpressions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Troubleshooter.Tests;
 
 public class LinkTests
 {
-	private readonly ITestOutputHelper testOutputHelper;
 	private readonly HashSet<string> embeddedFiles = new();
 
-	public LinkTests(ITestOutputHelper testOutputHelper)
+	public LinkTests()
 	{
-		this.testOutputHelper = testOutputHelper;
 		string embedsRoot = TestUtility.TestSite.EmbedsDirectory;
 		foreach (string embeddedFile in Directory.EnumerateFiles(embedsRoot, "*", SearchOption.AllDirectories))
 			embeddedFiles.Add(embeddedFile[(embedsRoot.Length + 1)..].ToConsistentPath());
 	}
-		
+
 	[Theory]
 	[ClassData(typeof(PageData))]
 	public void ValidateLinks(string name, string path, string text)
@@ -42,7 +39,7 @@ public class LinkTests
 				embeddedFiles.Should().Contain(localPath, $"was not present in embedded files - \"{name}\"");
 		}
 	}
-		
+
 	[Theory]
 	[ClassData(typeof(PageData))]
 	public void ValidateImages(string name, string path, string text)

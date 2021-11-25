@@ -237,7 +237,7 @@ public class PageResource
 				string imagePath = image.FinaliseDirectoryPathOnly(); // The path explicitly mentioned in the markdown
 				string combinedPath = Path.Combine(directoryRoot, directory!, imagePath);
 				string finalPath = HttpUtility.UrlPathEncode(combinedPath).ToConsistentPath();
-				stringBuilder.Append(finalPath);
+				stringBuilder.Append($"/{finalPath}");
 				last = group.Index + group.Length;
 			}
 

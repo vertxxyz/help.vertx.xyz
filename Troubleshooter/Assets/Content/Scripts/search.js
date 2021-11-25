@@ -11,7 +11,7 @@ var searchIsClear = true;
 * 	common
 * 		string[]
 */
-fetch("Json/search-index.json")
+fetch("/Json/search-index.json")
 	.then(response => response.json())
 	.then(json => searchIndex = json);
 
@@ -40,8 +40,8 @@ function resetPage() {
 	searchIsClear = true;
 	const sidebarContents = $('.sidebar-contents');
 	if(sidebarContents.length === 0) return;
-	const value = processPageValue(getPageParameter(), false);
-	sidebarContents.load(`HTML/${value}_sidebar.html`, function (response, status, xhr) {
+	const value = processPageValue(getPageParameter());
+	sidebarContents.load(`/HTML/${value}_sidebar.html`, function (response, status, xhr) {
 		if (status === "error")
 			sidebarContents.empty();
 	});

@@ -42,7 +42,6 @@ class Program
 				Console.WriteLine("Press key to proceed:");
 				Console.WriteLine("  B - Build site");
 				Console.WriteLine("  C - Content build only");
-				Console.WriteLine("  S - Build search index");
 				Console.WriteLine("  U - Log external URLs");
 #if WINDOWS
 				Console.WriteLine("  R - Create rich-text embed from clipboard");
@@ -55,15 +54,21 @@ class Program
 				{
 					case ConsoleKey.B:
 						// Build Site
-						Console.WriteLine(SiteBuilder.Build(arguments) ? "Successful build." : "Build failed.");
+						if (SiteBuilder.Build(arguments))
+						{
+							Console.WriteLine("Successful build, generating search index.");
+							await SearchIndex.Generate(arguments);
+							Console.WriteLine("Search index generated.");
+						}
+						else
+						{
+							Console.WriteLine("Build failed.");
+						}
 						break;
 					case ConsoleKey.C:
 						// Content Build
 						SiteBuilder.ContentBuild(arguments);
 						Console.WriteLine("Successful Content Build.");
-						break;
-					case ConsoleKey.S:
-						await SearchIndex.Generate(arguments);
 						break;
 					case ConsoleKey.U:
 						SiteLogging.LogAllExternalUrls(arguments);

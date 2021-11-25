@@ -14,16 +14,16 @@ public static partial class SiteBuilder
 	{
 		// Copy content to destination
 		CopyAll(new DirectoryInfo(site.ContentDirectory), new DirectoryInfo(arguments.Path), fileProcessor: FileProcessor);
-			
+
 		int siteContent = 0;
 		int totalContent = 0;
-			
+
 		// Copy all files that are not pages to the destination
 		foreach (string path in Directory.EnumerateFiles(site.Directory, "*", SearchOption.AllDirectories))
 		{
 			string extension = Path.GetExtension(path);
-			if(extension.Equals(".md")) continue; // Ignore pages
-				
+			if (extension.Equals(".md")) continue; // Ignore pages
+
 			string fullPath = Path.GetFullPath(path);
 			string outputPath = ConvertRootFullSitePathToLinkPath(fullPath, extension, site, arguments);
 
@@ -32,22 +32,36 @@ public static partial class SiteBuilder
 				siteContent++;
 		}
 
+		Generate404();
+
+		void Generate404()
+		{
+			string indexhtml = Path.Combine(site.ContentDirectory, "index.html");
+			if (!File.Exists(indexhtml))
+				throw new BuildException($"\"{indexhtml}\" was not found when generating 404 page.");
+			string indexText = File.ReadAllText(indexhtml);
+			//int indexOfContent = indexText.IndexOf("</head>", StringComparison.Ordinal);
+			//if (indexOfContent < 0)
+			//	throw new BuildException("\"</head>\" not found when generating 404 page from index.html.");
+			//string text404 = indexText.Insert(indexOfContent, "    <script src=\"/Scripts/404.js\"></script>\n");
+			CreateFileIfDifferent(Path.Combine(arguments.Path, "404.html"), indexText);
+		}
 
 		int embedContent = 0;
 		// Copy all embed files that are not pages to the destination/Embeds
 		foreach (string path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))
 		{
 			string extension = Path.GetExtension(path);
-			if(extension.Equals(".md") || extension.Equals(".rtf") || extension.Equals(".html") || extension.Equals(".nomnoml")) continue; // Ignore pages & nomnoml
-				
+			if (extension.Equals(".md") || extension.Equals(".rtf") || extension.Equals(".html") || extension.Equals(".nomnoml")) continue; // Ignore pages & nomnoml
+
 			string fullPath = Path.GetFullPath(path);
 			string outputPath = ConvertFullEmbedPathToLinkPath(fullPath, extension, site, arguments);
-				
+
 			totalContent++;
-			if(CopyFileIfDifferent(outputPath, new FileInfo(fullPath)))
+			if (CopyFileIfDifferent(outputPath, new FileInfo(fullPath)))
 				embedContent++;
 		}
-			
+
 		arguments.VerboseLog($"{siteContent + embedContent} content files were written to disk. ({totalContent} total)");
 	}
 
