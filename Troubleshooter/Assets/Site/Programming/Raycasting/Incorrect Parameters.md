@@ -25,4 +25,4 @@ If this is an issue you should [configure your IDE](../IDE%20Configuration.md) t
 
 ---
 
-[I am still having problems with my raycast](Visual%20Debugging.md)
+[I am still having problems with my raycast.](Visual%20Debugging.md)

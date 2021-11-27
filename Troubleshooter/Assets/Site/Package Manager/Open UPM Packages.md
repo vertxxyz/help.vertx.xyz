@@ -13,7 +13,7 @@ Users can add scopes, and simply add and update packages as if they were hosted 
   URL:  https://package.openupm.com/
   Scope(s): com.company
   ```
-  The `com.company` scope must match the package in question.
+  The `com.company` scope must be edited to match the package. If you already have the OpenUPM registry listed, add a new scope with the **+**.
 - Select **Save**.
 - Open the Package Manager (**Window | Package Manager**).
 - Select **+** from the top left.

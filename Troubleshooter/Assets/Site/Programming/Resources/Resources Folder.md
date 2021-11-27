@@ -10,4 +10,4 @@ Move the asset under a folder named `Resources`.
 
 ---
 
-[My asset still isn't being loaded](Resource%20Paths.md)
+[My asset still isn't being loaded.](Resource%20Paths.md)

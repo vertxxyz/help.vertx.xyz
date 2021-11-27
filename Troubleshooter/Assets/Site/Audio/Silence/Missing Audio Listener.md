@@ -5,4 +5,4 @@ If there are no Audio Listeners then you need to add the component (generally th
 If you have multiple, this can cause other issues, removing the second listener is required.  
 
 ---
-[Audio still cannot be heard](Audio%20Disabled.md)
+[Audio still cannot be heard.](Audio%20Disabled.md)

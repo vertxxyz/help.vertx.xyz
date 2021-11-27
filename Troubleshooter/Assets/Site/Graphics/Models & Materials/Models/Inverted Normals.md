@@ -21,4 +21,4 @@ Not all your faces may be inverted, so make sure you understand which are. If on
 
 ---
 
-[My model or material still appears inverted](../Materials/Rendering%20Issues/Transparent%20Materials.md)
+[My model or material still appears inverted.](../Materials/Rendering%20Issues/Transparent%20Materials.md)

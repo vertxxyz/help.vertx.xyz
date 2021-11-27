@@ -10,4 +10,4 @@ If you are a beginner this is never going to be the case and you should be using
 
 ---  
 
-[Continue configuring a valid IDE](../IDE%20Configuration.md)  
+[Continue configuring a valid IDE.](../IDE%20Configuration.md)

@@ -11,4 +11,4 @@ In some cases changing the format may also be required, or may help reduce the a
 
 ---  
 
-[Colours still appear incorrect](Game%20View%20Zoom.md)
+[Colours still appear incorrect.](Game%20View%20Zoom.md)

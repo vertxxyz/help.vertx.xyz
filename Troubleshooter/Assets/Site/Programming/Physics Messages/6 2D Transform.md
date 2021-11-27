@@ -7,4 +7,4 @@ These methods should generally be called from [FixedUpdate](https://docs.unity3d
 
 ---  
 
-[I am still not getting a message](7%202D%20Other.md)
+[I am still not getting a message.](7%202D%20Other.md)

@@ -13,4 +13,4 @@ Subscribe to the [duringSceneGui](https://docs.unity3d.com/ScriptReference/Scene
 
 ---  
 
-[OnSceneGUI is still not called](OnSceneGUI%20Gizmos.md)
+[OnSceneGUI is still not called.](OnSceneGUI%20Gizmos.md)

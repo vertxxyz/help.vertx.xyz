@@ -7,5 +7,5 @@ First, ensure you have saved.
 
 --- 
 
-[I have errors in the console](Serialization/Serialization%20with%20errors.md)  
-[I have no errors in the console](Serialization/Serialization%201.md)
+- [I have errors in the console.](Serialization/Serialization%20with%20errors.md)
+- [I have no errors in the console.](Serialization/Serialization%201.md)

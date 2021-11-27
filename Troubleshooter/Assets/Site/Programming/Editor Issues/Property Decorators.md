@@ -1,2 +1,2 @@
 ## Property decorators
-- [My decorator is not displaying](Property%20Attributes/Property%20Decorators%20On%20Properties.md).
+- [My decorator is not displaying.](Property%20Attributes/Property%20Decorators%20On%20Properties.md)

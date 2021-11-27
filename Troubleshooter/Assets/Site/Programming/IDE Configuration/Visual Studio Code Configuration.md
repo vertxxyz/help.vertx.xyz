@@ -3,7 +3,7 @@
 
 Ensure you have followed all of the configuration steps listed [here](https://code.visualstudio.com/docs/other/unity).  
 Where it mentions the External Tools preferences, these are **in Unity**.  
-The [.Net 4.7.1 Targeting Pack](https://dotnet.microsoft.com/download/dotnet-framework/net471) must also be installed.
+The [.Net Framework 4.7.1 Developer Pack](https://dotnet.microsoft.com/download/dotnet-framework/net471) must also be installed.
 
 ---
 Ensure the [Visual Studio Code Editor](https://docs.unity3d.com/Manual/com.unity.ide.vscode.html) package is installed in UPM.  

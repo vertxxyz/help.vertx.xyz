@@ -13,4 +13,4 @@ See [Scene visibility](https://docs.unity3d.com/2020.1/Documentation/Manual/Scen
 
 ---  
 
-[I still cannot see items in the Scene view](Layer%20Visibility.md)
+[I still cannot see items in the Scene view.](Layer%20Visibility.md)

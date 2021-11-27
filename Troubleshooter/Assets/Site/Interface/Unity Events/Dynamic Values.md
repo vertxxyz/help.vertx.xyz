@@ -18,4 +18,4 @@ Static values are set in the inspector, and dynamic values are passed via code.
 
 ---  
 
-[The method doesn't appear in the functions list at all](Method%20Requirements.md)
+[The method doesn't appear in the functions list at all.](Method%20Requirements.md)

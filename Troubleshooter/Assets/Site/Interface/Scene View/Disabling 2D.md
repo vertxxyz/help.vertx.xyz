@@ -5,4 +5,4 @@ Disable the 2D toggle in the [Scene view toolbar](https://docs.unity3d.com/Manua
 
 ---
 
-[I still cannot rotate the Scene view](Scene%20View%20Gizmo.md)
+[I still cannot rotate the Scene view.](Scene%20View%20Gizmo.md)

@@ -53,7 +53,7 @@ public static class SearchGatherer
 			string localPath = s[(rootDirectory.Length + 1)..];
 			if (!localPath.Contains('\\')) continue; // Do not process root-level files. These files should not be searchable.
 			fileNameToIndex[s] = filePaths.Count;
-			filePaths.Add(localPath.Replace('\\', '/'));
+			filePaths.Add($"/{localPath.Replace('\\', '/')}");
 		}
 
 		ConcurrentDictionary<int, string> headerText = new ConcurrentDictionary<int, string>();

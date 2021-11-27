@@ -15,4 +15,4 @@ When using HDRP, **Preserve specular lighting** should be disabled, as this will
 
 If you continue to have issues where a material does not appear properly transparent, check the original texture is **entirely** transparent in an external application.  
 
-[I cannot edit my material](../Readonly%20Materials.md)
+[I cannot edit my material.](../Readonly%20Materials.md)

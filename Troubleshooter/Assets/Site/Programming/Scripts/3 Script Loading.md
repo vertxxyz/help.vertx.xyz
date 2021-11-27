@@ -10,4 +10,4 @@ Ensure your class appropriately inherits from `MonoBehaviour` or `ScriptableObje
 <<Code/Scripts/Script Loading 1 Plain.html>>  
 
 ---  
-[My script still cannot be loaded](4%20Script%20Loading.md)
+[My script still cannot be loaded.](4%20Script%20Loading.md)

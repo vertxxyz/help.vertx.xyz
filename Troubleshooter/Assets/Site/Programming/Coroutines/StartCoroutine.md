@@ -10,4 +10,4 @@ Properly start the coroutine with a call to [StartCoroutine](https://docs.unity3
 <<Code/Coroutines/StartCoroutine.rtf>>
 
 ---  
-[The coroutine still stops before completion](Disabling%20Objects.md)
+[The coroutine still stops before completion.](Disabling%20Objects.md)

@@ -7,4 +7,4 @@ If your AudioSource has Spacial Blend set to **3D** then by default the falloff 
 Switching to Linear or Custom may be appropriate if you wish to achieve a more specific result, but increasing the Min Distance can make a meaningful difference.
 
 ---
-[Audio still cannot be heard](AudioSource%20Play.md)
+[Audio still cannot be heard.](AudioSource%20Play.md)

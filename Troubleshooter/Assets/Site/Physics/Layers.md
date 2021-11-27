@@ -1,7 +1,7 @@
 ## Layer issues
 
 Unity's layer-based collision can exclude colliders and triggers from interacting with each other at all.  
-Check that the toggles in the project settings match with the two colliders in question.  
+Check that the toggles matching the colliders layers are enabled in the project settings.  
 
 For **3D**:  
 See **Edit | Project Settings | Physics**, and the **Layer Collision Matrix** at the bottom.  

@@ -12,4 +12,4 @@ Debug `propertyType` to determine what the type of the SerializedProperty is, an
 
 ---  
 
-[I would like to learn more about Serialized Properties](../../Editor%20Issues/Serialisation/SerializedObject%20How-to.md)
+[I would like to learn more about Serialized Properties.](../../Editor%20Issues/Serialisation/SerializedObject%20How-to.md)

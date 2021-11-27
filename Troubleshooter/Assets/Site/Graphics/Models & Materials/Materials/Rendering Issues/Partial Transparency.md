@@ -8,5 +8,5 @@ Some materials may improperly handle specularity with transparent surfaces, othe
 The [Rendering Mode](https://docs.unity3d.com/Manual/StandardShaderMaterialParameterRenderingMode.html) setting on the Standard shader will control the way transparency is handled.  
 
 ---  
-[My object should appear partially cutout](Transparent%20To%20Cutout.md) - with solid and see-through parts  
-[My object should be transparent](Rendering%20Mode.md)
+- [My object should appear partially cutout](Transparent%20To%20Cutout.md) - with solid and see-through parts.
+- [My object should be transparent.](Rendering%20Mode.md)

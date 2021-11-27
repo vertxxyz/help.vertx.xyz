@@ -31,4 +31,4 @@ void OnCollisionExit(Collision data)
 The parameters are optional if you are not using them.
 
 ---
-[I am still not getting a message](3%20Collision%20Matrix%203D.md)
+[I am still not getting a message.](3%20Collision%20Matrix%203D.md)

@@ -6,4 +6,4 @@ Closing and reopening windows can fix issues with them.
     b. From the window menu find the appropriate window to reopen
 
 ---
-[I still have issues with a window](Resetting%20Layout.md)
+[I still have issues with a window.](Resetting%20Layout.md)

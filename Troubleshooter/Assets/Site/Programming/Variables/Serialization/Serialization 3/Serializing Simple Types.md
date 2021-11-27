@@ -1,5 +1,5 @@
 ## Serializing simple types
-Are you *sure* the inspected object ihe type that contains the variable you are declaring? 👀  
+Are you *sure* the inspected object is the type that contains the variable you are declaring? 👀  
 Check that your Component or Scriptable Object is the same.  
 
 Using your IDE's Go To Definition[^1] feature should make it clear what type is actually being exposed.  

@@ -32,18 +32,16 @@ When using abbreviations, embed the expanded abbreviation into the page (present
 This example can throw an NRE, causing code execution to halt.
 ```
 
-Sentences that are entirely links do not need full stops, but sentences that are partially links do, if these are mixed the full stop should always be present.  
-Full stops should not be a part of the link. Clarifications in parentheses are not seen as a part of the sentences when it comes to linking.
+Sidebar links should not contain periods.
 ```
-### Example 1
-[A sentence that is a link](A.md)  
-[Another sentence that is a link](A.md)  
-### Example 2
-[A sentence that is a link](A.md).  
-Another sentence that [has a link](A.md).  
-### Example 3
-[A sentence that is a link](A.md)  
-[Another sentence that is a link](A.md) (Clarification)  
+### Example Sidebar
+- [External example site link](https://example.com)
+```
+
+Periods should be inside links if the link is a major part of the sentence, but after links if they are not.
+```
+[Sentence containing an example link.](link.md)  
+Sentence containing an example [link](link.md).
 ```
 
 ## Pages
@@ -51,26 +49,9 @@ Another sentence that [has a link](A.md).
 When a hub page has many different topics that are branched off as links within sentences please use dot points to distinguish each line.  
 If a page is likely going to become something that uses this format, also use this style.  
 ```
-- [Example sentence that has a link](link0.md)  
-- [More example sentences that contain links](link1.md)  
-- [Even more example sentences that contain links](link2.md)  
-```
-
-When a page has a links made up of few **related** options, the dot points should be omitted.  
-```
-[Either A](a.md)  
-[Or B](b.md)  
-```
-
-If a page is a hub for different topics that are distinguished with headers, the dot points should also be omitted.
-
-```
-### Example 1
-[A](a.md)  
-[B](b.md)  
-### Example 2
-[C](c.md)  
-[D](d.md)  
+- [Example sentence that has a link](link0.md).
+- [More example sentences that contain links](link1.md).
+- [Even more example sentences that contain links](link2.md).
 ```
 
 ### General Pages
@@ -79,8 +60,8 @@ When a page contains a description and links that continue the line of troublesh
 Example description sentence containing a line of troubleshooting that might solve a problem.  
 
 ---  
-[Option A](a.md)  
-[Option B](b.md)  
+- [Option A](a.md).
+- [Option B](b.md).
 ```
 
 When a page is made up of a description of a problem, and another description of a resolution, add 4th level headers in this style that separate them into two paragraphs with limited overlap.

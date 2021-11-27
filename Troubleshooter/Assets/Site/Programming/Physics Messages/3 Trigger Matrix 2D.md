@@ -1,6 +1,6 @@
 ## Trigger matrix
 
-If your two colliders in question do not match in the matrix then you **will not** get trigger messages
+If your two colliders do not match in the matrix then you **will not** get trigger messages.
 
 +-------------------------------+--------+-----------+---------------------+----------------+-------------------+-----------------------------+
 |                               | Static | Rigidbody | Kinematic Rigidbody | Static Trigger | Rigidbody Trigger | Kinematic Rigidbody Trigger |
@@ -21,4 +21,4 @@ If your two colliders in question do not match in the matrix then you **will not
 You can read more about this and see a copy of this matrix in the Unity docs [here](https://docs.unity3d.com/Manual/CollidersOverview.html).
 
 ---
-[I am still not getting a message](4%20Local%20Functions%202D.md)
+[I am still not getting a message.](4%20Local%20Functions%202D.md)

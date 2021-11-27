@@ -1,6 +1,6 @@
 ## Collision matrix
 
-If your two colliders in question do not match in the matrix then you **will not** get collision messages
+If your two colliders do not match in the matrix then you **will not** get collision messages.
 
 +-------------------------------+--------+-----------+---------------------+----------------+-------------------+-----------------------------+
 |                               | Static | Rigidbody | Kinematic Rigidbody | Static Trigger | Rigidbody Trigger | Kinematic Rigidbody Trigger |
@@ -25,4 +25,4 @@ If you are using a Character Controller you may be looking for the [OnController
 :::
 
 ---
-[I am still not getting a message](4%20Local%20Functions%203D.md)
+[I am still not getting a message.](4%20Local%20Functions%203D.md)

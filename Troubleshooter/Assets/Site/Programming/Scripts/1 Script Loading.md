@@ -12,4 +12,4 @@
    Note that there should only be one component or scriptable object per file due to this restriction.  
 
 ---  
-[My script still cannot be loaded](2%20Script%20Loading.md)
+[My script still cannot be loaded.](2%20Script%20Loading.md)

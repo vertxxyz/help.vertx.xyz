@@ -21,4 +21,4 @@ The field will be serialized as `<PropertyName>k__BackingField`, which adds comp
 
 ---  
 
-[My variable is still not appearing in the inspector](../Serialization%202/Serializing%20A%20Field%202.md)
+[My variable is still not appearing in the inspector.](../Serialization%202/Serializing%20A%20Field%202.md)

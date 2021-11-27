@@ -10,4 +10,4 @@ This performs a sweep to determine whether the path the body has taken is interr
 
 ---
 
-[My rigidbody is still tunnelling through walls](Layers.md)
+[My rigidbody is still tunnelling through walls.](Layers.md)

@@ -51,4 +51,4 @@ if ((mask & (1 << layer)) != 0) {
 ```
 
 ---
-[My raycast is still not returning a result](../Raycasting/Incorrect%20Parameters.md)
+[My raycast is still not returning a result.](../Raycasting/Incorrect%20Parameters.md)

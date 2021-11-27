@@ -7,4 +7,4 @@ Message functions cannot be called if they are local functions.
 <<Code/Physics/Local Function.rtf>>
 
 ---
-[I am still not getting a message](5%203D%20Collision%20Matrix.md)
+[I am still not getting a message.](5%203D%20Collision%20Matrix.md)

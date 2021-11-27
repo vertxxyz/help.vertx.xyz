@@ -9,4 +9,4 @@
 
 ---  
 
-[OnSceneGUI is still not called](OnSceneGUI%20Inspectors.md)
+[OnSceneGUI is still not called.](OnSceneGUI%20Inspectors.md)

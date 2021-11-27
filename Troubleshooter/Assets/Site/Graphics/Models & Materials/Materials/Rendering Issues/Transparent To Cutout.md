@@ -23,4 +23,4 @@ Shaders created in Shadergraph should also be set to Opaque (default). In some v
 
 --- 
 
-[I cannot edit my material](../Readonly%20Materials.md)
+[I cannot edit my material.](../Readonly%20Materials.md)

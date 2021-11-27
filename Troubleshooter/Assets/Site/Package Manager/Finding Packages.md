@@ -12,4 +12,4 @@ These packages will have to be [manually added](Manually%20Adding%20Packages.md)
 
 ---  
 
-[I still cannot add a package](Manually%20Adding%20Packages.md)
+[I still cannot add a package.](Manually%20Adding%20Packages.md)
