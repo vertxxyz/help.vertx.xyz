@@ -64,12 +64,12 @@ Example description sentence containing a line of troubleshooting that might sol
 - [Option B](b.md).
 ```
 
-When a page is made up of a description of a problem, and another description of a resolution, add 4th level headers in this style that separate them into two paragraphs with limited overlap.
+When a page is made up of a description of a problem, and another description of a resolution, add 3rd level headers in this style that separate them into two paragraphs with limited overlap.
 ```
-#### Description
+### Description
 This error is describing this problem because of this reasoning.  
 
-#### Resolution
+### Resolution
 These are the instructions that would solve the issue if that was the case.
 ```
 

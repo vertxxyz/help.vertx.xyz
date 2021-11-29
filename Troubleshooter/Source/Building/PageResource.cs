@@ -179,6 +179,9 @@ public class PageResource
 		return HtmlPostProcessors.Process(renderer.Writer.ToString() ?? string.Empty);
 	}
 
+	private string _embedsDirectory;
+	private string EmbedsDirectory => _embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").ToConsistentPath();
+
 	public void ProcessMarkdown(string text, Site site, PageResources allResources)
 	{
 		string allText = text;
@@ -210,12 +213,11 @@ public class PageResource
 
 			int rootIndex;
 			string directoryRoot; // The root output directory.
-			string embedsDirectory = Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").ToConsistentPath();
 			switch (Location)
 			{
 				case ResourceLocation.Embed:
 					rootIndex = site.EmbedRootIndex;
-					directoryRoot = embedsDirectory;
+					directoryRoot = EmbedsDirectory;
 					break;
 				case ResourceLocation.Site:
 					rootIndex = site.RootIndex;
@@ -228,9 +230,9 @@ public class PageResource
 			string directory = Path.GetDirectoryName(Site.FinalisePathWithRootIndex(FullPath, rootIndex));
 
 			int last = 0;
-			foreach ((string image, Group group) in PageUtility.LocalImagesAsRootPaths(allText))
+			foreach ((string image, Group group) in PageUtility.LocalImagesAsRootPaths(allText, false))
 			{
-				if (group.Value.StartsWith(embedsDirectory))
+				if (ApproximatelyStartsWith(group.Value, EmbedsDirectory, 2))
 					continue;
 
 				stringBuilder.Append(allText[last..group.Index]);
@@ -248,6 +250,22 @@ public class PageResource
 		}
 
 		MarkdownText = stringBuilder.ToString();
+	}
+
+	/// <summary>
+	/// Check <see cref="count"/> positions at the start of <see cref="input"/> to see if <see cref="query"/> is contained there.
+	/// </summary>
+	private static bool ApproximatelyStartsWith(string input, string query, int count)
+	{
+		for (int i = 0; i < count; i++)
+		{
+			if(i + query.Length > input.Length)
+				continue;
+			ReadOnlySpan<char> span = input.AsSpan(i, query.Length);
+			if(span.SequenceEqual(query)) return true;
+		}
+
+		return false;
 	}
 
 	public enum WriteStatus
