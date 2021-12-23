@@ -11,7 +11,7 @@ Some packages will have installation instructions in their documentation, and it
 
 #### Finding package versions
 In the documentation's **Changelog** tab versions are in the header for each release, e.g. `5.0.1`. This number may contain a suffix, e.g. `5.0.0-pre.2`.  
-Not all versions are compatible with all Unity releases. You may have to upgrade or downgrade versions to match your release.  
+Not all versions are compatible with all Unity releases. You may have to [upgrade or downgrade versions](https://docs.unity3d.com/Manual/upm-ui-update.html) to match your release.  
 :::  
 
 ### Adding packages by name

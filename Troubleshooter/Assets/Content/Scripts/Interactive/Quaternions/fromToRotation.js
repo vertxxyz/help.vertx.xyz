@@ -5,7 +5,7 @@ import {float3, quaternion, ray, sphere} from "../spacialMaths.js";
 import {appendAllAxesInversed} from "../Shapes/Axes.js";
 import {HoverableAxis} from "../Handles/AxisHandle.js";
 
-VERTX.addCssIfRequired("./Styles/quaternions.css")
+VERTX.addCssIfRequired("/Styles/quaternions.css")
 
 var aa_div = document.getElementById('from_to_rotation');
 var scene, renderer, camera, webGlScene, webGlRenderer, webGlCamera/*, topLeftRenderer, topLeftCamera*/;

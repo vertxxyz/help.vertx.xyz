@@ -31,4 +31,4 @@ Compiler errors should be underlined, and you should see autocompleted suggestio
 ### Details
 #### Errors in packages
 If errors are appearing from a package, and not Assets, then either the package is not valid for your version of Unity, or it is corrupted.  
-Go to the Package Manager (**Window | Package Manager**), expand the dropdown for the package having issues, and upgrade or downgrade versions until you no longer have errors in the project.
+Go to the Package Manager (**Window | Package Manager**), expand the dropdown for the package having issues, and [upgrade or downgrade versions](https://docs.unity3d.com/Manual/upm-ui-update.html) until you no longer have errors in the project.

@@ -6,7 +6,7 @@ import {float3, quaternion} from "../spacialMaths.js";
 import {appendAllAxesUnity} from "../Shapes/Axes.js";
 import {AxisHandle} from "../Handles/AxisHandle.js";
 
-VERTX.addCssIfRequired("./Styles/quaternions.css")
+VERTX.addCssIfRequired("/Styles/quaternions.css")
 
 var renderer, scene, camera;
 var raycaster = new THREE.Raycaster();

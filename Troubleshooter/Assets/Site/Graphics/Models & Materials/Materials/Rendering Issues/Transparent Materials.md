@@ -12,6 +12,6 @@ Within a single mesh the triangles are rendered one by one, and are not sorted b
 ---
 
 - [My object is already an opaque material.](Opaque%20Materials.md)
-- [My object should be opaque/solid](Transparent%20To%20Opaque.md) - no transparency.
-- [My object should appear partially cutout](Transparent%20To%20Cutout.md) - with solid and see-through parts.
+- [My object should be opaque/solid](Transparent%20To%20Opaque.md)—no transparency.
+- [My object should appear partially cutout](Transparent%20To%20Cutout.md)—with solid and see-through parts.
 - [My object should be transparent.](Transparency%20Options.md)

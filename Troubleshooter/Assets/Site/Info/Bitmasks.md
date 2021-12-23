@@ -15,7 +15,7 @@ int mask = 1 << 5;
 
 ### Declaring masks
 Generally Masks are declared as enums so they can be easily referenced by name.
-The [Flags Attribute](https://docs.microsoft.com/en-us/dotnet/api/system.flagsattribute) is used to indicate this is a bitmask. The attribute also modifies [ToString](https://docs.microsoft.com/en-us/dotnet/api/system.enum.tostring) to print more relevant values.
+The [Flags Attribute](https://docs.microsoft.com/en-us/dotnet/api/system.flagsattribute) is used to indicate this is a bitmask. The attribute also modifies [`ToString`](https://docs.microsoft.com/en-us/dotnet/api/system.enum.tostring) to print more relevant values.
 
 Enums are `int` values by default, but any [integral numeric type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types) can be used when defining an enum.  
 :::warning
@@ -49,7 +49,7 @@ The [logical exclusive or](https://docs.microsoft.com/en-us/dotnet/csharp/langua
 if ((mask & queryMask) == queryMask) {
 ```
 
-When dealing with an enum, you could alternatively choose to use the [Enum.HasFlag](https://docs.microsoft.com/en-us/dotnet/api/system.enum.hasflag) method.
+When dealing with an enum, you could alternatively choose to use the [`Enum.HasFlag`](https://docs.microsoft.com/en-us/dotnet/api/system.enum.hasflag) method.
 
 ---  
 

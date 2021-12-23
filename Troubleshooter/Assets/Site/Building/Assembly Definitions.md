@@ -1,5 +1,4 @@
-*[asmdefs]: Assembly Definitions
-*[asmdef]: Assembly Definition
+<<Abbreviations/Asmdef.md>>
 ## Assembly Definitions
 :::warning
 Editor folders **do not** function under assembly definitions

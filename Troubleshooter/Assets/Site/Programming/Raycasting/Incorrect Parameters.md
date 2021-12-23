@@ -8,7 +8,7 @@ if (Physics.Raycast(origin, direction, out hit, layerMask))
     ...
 ```
 This is **incorrect**. The 4th parameter for this overload is `maxDistance`, not a mask.  
-As LayerMask is implicitly convertable to int, and int is to float, this mistake will not create a compiler error.  
+As `LayerMask` is implicitly convertable to `int`, and `int` is to `float`, this mistake will not create a compiler error.  
 
 ### Resolution
 Ensure that the correct parameters are used.  

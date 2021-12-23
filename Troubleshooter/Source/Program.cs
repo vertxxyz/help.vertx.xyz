@@ -62,7 +62,9 @@ class Program
 						}
 						else
 						{
-							Console.WriteLine("Build failed.");
+							Console.WriteLine("Build failed! Press key to continue.");
+							Console.ReadKey();
+							Console.Clear();
 						}
 						break;
 					case ConsoleKey.C:

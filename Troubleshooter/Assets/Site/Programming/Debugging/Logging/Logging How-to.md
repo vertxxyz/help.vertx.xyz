@@ -1,7 +1,7 @@
 <<Abbreviations/NRE.md>>
 ## Logging: How-to
 ### Usage
-Unity's [Debug.Log](https://docs.unity3d.com/ScriptReference/Debug.Log.html) function will print a message to the [Console window](https://docs.unity3d.com/Manual/Console.html).  
+Unity's [`Debug.Log`](https://docs.unity3d.com/ScriptReference/Debug.Log.html) function will print a message to the [Console window](https://docs.unity3d.com/Manual/Console.html).  
 Code can pass any object to the log and it will be converted to a `string` and displayed.  
 
 #### String interpolation
@@ -32,7 +32,7 @@ A much less tedious way of discovering what values are null is to [use the debug
 #### Vectors
 The `ToString` implementation for vectors have very little precision, so when logging it is best to use `.ToString("F7")` to display a suitable amount of decimal places.  
 #### Print
-The [print](https://docs.unity3d.com/ScriptReference/MonoBehaviour-print.html) function is only inherited from `MonoBehaviour` and indirectly calls `Debug.Log`. It also does not take the context parameter, and so should generally be avoided.  
+The [`print`](https://docs.unity3d.com/ScriptReference/MonoBehaviour-print.html) function is only inherited from `MonoBehaviour` and indirectly calls `Debug.Log`. It also does not take the context parameter, and so should generally be avoided.  
 #### Logs, Warnings, and Errors
 Unity has multiple types of logs:  
 :::info{.inline}

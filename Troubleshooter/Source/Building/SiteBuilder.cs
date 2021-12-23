@@ -24,6 +24,7 @@ public static partial class SiteBuilder
 		}
 		catch (BuildException e)
 		{
+			Console.WriteLine();
 			Console.WriteLine(e);
 			buildScope.MarkBuildAsFailed();
 			return false;

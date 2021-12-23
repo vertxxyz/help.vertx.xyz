@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Markdig;
@@ -41,7 +42,15 @@ public static partial class SiteBuilder
 					continue;
 				}
 
-				resource.BuildText(site, allResources, pipeline);
+				try
+				{
+					resource.BuildText(site, allResources, pipeline);
+				}
+				catch (Exception e)
+				{
+					throw new BuildException(e, $"{resource.FullPath} failed to build text.");
+				}
+
 				allBuiltResources.Add(path);
 				switch (resource.WriteToDisk(arguments, site))
 				{

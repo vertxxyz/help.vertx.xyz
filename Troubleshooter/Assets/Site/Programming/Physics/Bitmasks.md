@@ -3,8 +3,8 @@
 `int` is a 32 bit value, A bit is `0` or `1`; a `0` in a bitmask is an inactive layer, and a `1` is active.  
 This means we can represent 32 layer toggles with a single `int` value.  
 
-In Unity's case they have a struct called a [LayerMask](https://docs.unity3d.com/ScriptReference/LayerMask.html) used to define bitmasks used in the Physics engine.
-A LayerMask can be exposed in the inspector to easily author masks, and is implicitly converted to `int` for use in bitmask operations and physics methods.
+In Unity's case they have a struct called a [`LayerMask`](https://docs.unity3d.com/ScriptReference/LayerMask.html) used to define bitmasks used in the Physics engine.
+A `LayerMask` can be exposed in the inspector to easily author masks, and is implicitly converted to `int` for use in bitmask operations and physics methods.
 The information below shows how to manually define author and manage masks entirely through code when required.  
 
 ### Creating masks

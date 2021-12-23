@@ -3,7 +3,7 @@
 Ensure that either:  
 - The Audio Source has **Play On Awake** enabled.  
 **or**  
-- [Play](https://docs.unity3d.com/ScriptReference/AudioSource.Play.html) is called manually.  
+- [`Play`](https://docs.unity3d.com/ScriptReference/AudioSource.Play.html) is called manually.  
 You should use the [debugger, or log](../../Programming/Debugging.md) that the function is being called, and the source is correct.
   
 Also ensure that the source is not being destroyed, as this will also stop the audio being played.

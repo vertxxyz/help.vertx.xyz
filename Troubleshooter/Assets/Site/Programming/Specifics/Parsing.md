@@ -1,7 +1,8 @@
 <<Abbreviations/TMP.md>>  
 ## Parsing input strings
 ### Issue
-When attempting to parse strings from Input Fields the input field may have appended invisible characters. These characters must be removed to parse the string into a result like an `int`.
+When attempting to parse strings from Input Fields the input field may have invisible characters appended. These characters must be removed to parse the string into a result like an `int`.  
+Hidden characters will also cause issues when attempting to compare to these strings.  
 
 ### Resolution
 The `Trim()` function will often suffice when removing invisible characters, but I have often found TMP has appended characters that need to be removed more manually.  

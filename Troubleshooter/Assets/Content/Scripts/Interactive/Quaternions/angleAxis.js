@@ -5,7 +5,7 @@ import {float3, quaternion, ray, sphere} from "../spacialMaths.js";
 import {AxisHandle} from "../Handles/AxisHandle.js";
 import {appendAllAxesUnity} from "../Shapes/Axes.js";
 
-VERTX.addCssIfRequired("./Styles/quaternions.css")
+VERTX.addCssIfRequired("/Styles/quaternions.css")
 
 var aa_div = document.getElementById('angle_axis');
 var scene, renderer, camera, webGlScene, webGlRenderer, webGlCamera;

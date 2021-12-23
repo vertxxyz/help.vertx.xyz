@@ -4,7 +4,7 @@ import * as VERTX from '../behaviours.js';
 import {float3, quaternion, ray, sphere} from "../spacialMaths.js";
 import {HoverableAxis, PlainAxis} from "../Handles/AxisHandle.js";
 
-VERTX.addCssIfRequired("./Styles/quaternions.css")
+VERTX.addCssIfRequired("/Styles/quaternions.css")
 
 var aa_div = document.getElementById('look_rotation');
 var scene, renderer, camera, webGlScene, webGlRenderer, webGlCamera/*, topLeftRenderer, topLeftCamera*/;

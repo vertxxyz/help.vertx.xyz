@@ -54,7 +54,7 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
 - **Either:**  
    Assign a reference to the variable (choose one)
     - [Serialize the field](../../Variables/Serialization/Serialization%201/Serializing%20A%20Field%201.md) if appropriate.
-    - Assign the reference using `new`. This can be done inline or in a method like `Awake` or `Start`.
+    - Assign the reference using [`new`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator). This can be done inline or in a method like `Awake` or `Start`.
 
    **Or:**  
    Check the reference is not null before trying to access it  
@@ -62,5 +62,5 @@ See [General Debugging](../../Debugging.md) for troubleshooting techniques.
 - Ensure that nothing sets it to `null` before you attempt to use it.
 :::
 
-[^1]: See [Serializing Component references]() to learn how to assign variables in the Inspector.  
+[^1]: See [Serializing Component references](../../Variables/Other%20Members/Serializing%20Component%20References.md) to learn how to assign variables in the Inspector.  
 [^2]: See [Unity null](../../Other/Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.

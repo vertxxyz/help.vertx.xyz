@@ -1,7 +1,7 @@
 ## Generate visual content
 
 Ensure that:
-- Vertices are drawn at the correct depth. The helper [Vertex.nearZ](https://docs.unity3d.com/ScriptReference/UIElements.Vertex-nearZ.html) provides this z depth for you.
+- Vertices are drawn at the correct depth. The helper [`Vertex.nearZ`](https://docs.unity3d.com/ScriptReference/UIElements.Vertex-nearZ.html) provides this z depth for you.
 - The correct triangle winding order is used. This is clockwise[^1].  
 - Colours used for vertices are not transparent.
 - Your triangles have area. If you are drawing lines, two vertices is not enough, you will have to manually give them volume as triangles.

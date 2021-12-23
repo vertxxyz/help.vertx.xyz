@@ -1,7 +1,11 @@
 
 Do **not** multiply mouse input by `Time.deltaTime`.
 
-If you are using combined input with a joystick, only scale the joystick portion of this input.
+If you are using combined input with a joystick, only scale the joystick portion of this input.  
+
+:::info{.inline}
+You will need to reduce the sensitivity to compensate for this.
+:::  
 
 ### Why?
 Mouse input is a *delta*. The value is tracking change.  

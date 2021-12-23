@@ -6,7 +6,7 @@ import {quaternion} from "../spacialMaths.js";
 import {getWireCube} from "../Shapes/WireCube.js";
 import {appendAllAxesUnity} from "../Shapes/Axes.js";
 
-VERTX.addCssIfRequired("./Styles/quaternions.css")
+VERTX.addCssIfRequired("/Styles/quaternions.css")
 
 var renderer, scene, camera;
 var raycaster = new THREE.Raycaster();
