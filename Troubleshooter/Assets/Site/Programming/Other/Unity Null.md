@@ -11,7 +11,7 @@ The Editor adds extra context to null assignments occuring in the editor through
 If something is not assigned in the editor a custom NRE, an [Unassigned Reference Exception](../Common%20Errors/Runtime%20Exceptions/Unassigned%20Reference%20Exception.md) is thrown.   
 If there used to be an object, but it has been Destroyed or become invalid, you get a a  [Missing Reference Exception](../Common%20Errors/Runtime%20Exceptions/Missing%20Reference%20Exception.md).  
 These exceptions also come bundled with some extra context, the location that is missing the object, none of which would be provided with a normal NRE.  
-Due to this [GetComponent](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) will allocate memory in the Editor. Using [TryGetComponent](https://docs.unity3d.com/ScriptReference/GameObject.TryGetComponent.html) will not.  
+Due to this [GetComponent](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) will allocate memory in the Editor even when nothing is found. Using [TryGetComponent](https://docs.unity3d.com/ScriptReference/GameObject.TryGetComponent.html) will not.  
 
 
 ### Ramifications

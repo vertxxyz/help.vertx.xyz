@@ -133,11 +133,11 @@ $small: base.$max-width;
 $large: 1920px;
 
 .contents {
-	padding: 40px 0 50px functions.between(30px, 110px + base.$left-padding, $small, $large);
+	padding: 40px 0 base.$bottom-padding functions.between(30px, 110px + base.$left-padding, $small, $large);
 	max-width: calc(1200px + 20% + #{base.$left-padding});
 	flex-grow: 2;
 	flex-basis: 0;
-	height: calc(100vh - 90px);
+	height: calc(100vh - 40px - #{base.$bottom-padding});
 	overflow: auto;
 	box-sizing: content-box;
 }
@@ -340,7 +340,7 @@ figure {
 @media only all and (max-width: base.$max-width) {
 	.contents {
 		width: 100%;
-		padding: 40px 30px 50px 30px;
+		padding: 40px 30px base.$bottom-padding 30px;
 		margin: 0 0 0 0;
 	}
 

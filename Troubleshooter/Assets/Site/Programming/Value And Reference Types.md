@@ -27,7 +27,7 @@ The value of `a`: `0`, was copied into `b`, and when `a` was incremented, `b` wa
 #### Methods
 When a value type is returned via a method or property this is also a copy.  
 Directly modifying the return value of these statements will not modify the original value. The compiler will throw a warning when you attempt this, because the logic performed is useless (see [CS1612](Common%20Errors/Compiler%20Errors/CS1612.md)).  
-This behaviour can be modified in certain contexts with the `ref` or `in` keywords.
+This behaviour can be modified in certain contexts with the [`ref`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/ref) or [`in`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-parameter-modifier) keywords.
 
 #### Comparisons
 When two value types are compared, they are done so by value:  
