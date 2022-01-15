@@ -1,6 +1,6 @@
-## Missing reference exception
+## MissingReferenceException
 ### Description
-A Missing Reference Exception is a type of [null reference exception](Null%20Reference%20Exception.md) where a Unity Object field was previously assigned to, and the contents have been deleted or become invalid.  
+A MissingReferenceException is a type of [NullReferenceException](NullReferenceException.md) where a Unity Object field was previously assigned to, and the contents have been deleted or become invalid.  
 ### Resolution
 Re-assign a value to the field via the Inspector.
 

@@ -10,6 +10,8 @@ If stack traces are not appearing, change the **Stack Trace Logging**[^1] settin
 [^1]: This setting is shared in **Edit | Project Settings | Player**, and also effects log details in builds.
 
 ### Usage
+Click on an error in the Console to see the full stack trace.  
+
 <<Programming/Common Errors/Stack Trace Breakdown.md>>
 
 ### Details

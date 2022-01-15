@@ -1,4 +1,4 @@
-## Argument exceptions
+## ArgumentException
 ### Description
 Argument exceptions are thrown when what is passed to a method is invalid.  
 The error should describe what went wrong, and often how to fix it.  

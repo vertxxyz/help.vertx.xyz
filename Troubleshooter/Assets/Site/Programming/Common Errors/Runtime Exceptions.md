@@ -2,10 +2,11 @@
 
 ### Exceptions
 
-- [Null Reference Exception.](Runtime%20Exceptions/Null%20Reference%20Exception.md)
-- [Missing Reference Exception.](Runtime%20Exceptions/Missing%20Reference%20Exception.md)
-- [Unassigned Reference Exception.](Runtime%20Exceptions/Unassigned%20Reference%20Exception.md)
-- [Argument Exception.](Runtime%20Exceptions/Argument%20Exceptions.md)
+- [NullReferenceException.](Runtime%20Exceptions/NullReferenceException.md)
+- [MissingReferenceException.](Runtime%20Exceptions/MissingReferenceException.md)
+- [UnassignedReferenceException.](Runtime%20Exceptions/UnassignedReferenceException.md)
+- [IndexOutOfRangeException.](Runtime%20Exceptions/IndexOutOfRangeException.md)
+- [ArgumentException.](Runtime%20Exceptions/ArgumentException.md)
 
 ### Errors
 #### Runtime
@@ -18,4 +19,4 @@ These errors are only relevant to you if you are writing editor code:
 - [type is not a supported pptr value.](Runtime%20Errors/ObjectReferenceValue%20Error.md)
 
 #### Burst
-- [Burst Compiler Errors.](../Jobs%20And%20Burst/Burst%20Errors.md)
+- [Burst compiler errors.](../Jobs%20And%20Burst/Burst%20Errors.md)
