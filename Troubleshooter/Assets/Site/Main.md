@@ -51,14 +51,15 @@
 [Character Controller](Physics/Character%20Controller.md)
 
 ## Graphics
-[Materials](Graphics/Materials/Common%20Issues.md)  
-[Models](Graphics/Models/Common%20Issues.md)  
-[Textures](Graphics/Textures/Common%20Issues.md)  
-[Lighting](Graphics/Lighting/Common%20Issues.md)  
-[Shader Graph](Graphics/Shader%20Graph/Common%20Issues.md)  
-[VFX Graph](Graphics/VFX%20Graph/Common%20Issues.md)  
-[Particle System](Graphics/Particle%20System/Common%20Issues.md)  
-[Occlusion culling](Graphics/Occlusion%20Culling/Common%20Issues.md)
+[Materials](Graphics/Materials.md)  
+[Models](Graphics/Models.md)  
+[Textures](Graphics/Textures.md)  
+[Lighting](Graphics/Lighting.md)  
+[Shader Graph](Graphics/Shader%20Graph.md)  
+[VFX Graph](Graphics/VFX%20Graph.md)  
+[Particle System](Graphics/Particle%20System.md)  
+[Post-processing](Graphics/Post-processing.md)  
+[Occlusion culling](Graphics/Occlusion%20Culling.md)  
 
 ## Animation
 [Animation window](Animation/Animation%20Window.md)
