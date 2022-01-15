@@ -37,13 +37,24 @@ public class BuildScope : IDisposable
 		}
 
 		redundantFilePaths.Remove(SearchIndex.GetJsonFilePath(arguments));
+		redundantFilePaths.RemoveWhere(path =>
+		{
+			var remaining = path.AsSpan()[(arguments.Path.Length + 1)..];
+			return !remaining.Contains('\\') || remaining.StartsWith(".git\\", StringComparison.Ordinal);
+		});
 
 		if (redundantFilePaths.Count <= 0)
 			return;
 			
 		Console.WriteLine();
 		Console.WriteLine($"Run cleaning step? {redundantFilePaths.Count} redundant files were found.");
-		Console.WriteLine($"Example: \"{redundantFilePaths.First()}\"");
+		Console.WriteLine("Examples:");
+		foreach (string path in redundantFilePaths.Take(Math.Min(redundantFilePaths.Count, 10)))
+		{
+			Console.Write("\"");
+			Console.Write(path);
+			Console.WriteLine("\"");
+		}
 		Console.WriteLine("y/n?");
 
 		if (Console.ReadKey().Key != ConsoleKey.Y)

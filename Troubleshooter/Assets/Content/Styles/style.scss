@@ -202,8 +202,6 @@ li {
 
 ol {
 	padding-inline-start: 35px;
-	counter-reset: item-counter;
-
 	> li {
 		counter-increment: item-counter;
 		&::marker {
@@ -212,6 +210,10 @@ ol {
 			font-weight: bold;
 		}
 	}
+}
+
+ol ol {
+	counter-reset: item-counter;
 }
 
 sup {

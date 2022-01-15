@@ -62,7 +62,8 @@
 [Occlusion culling](Graphics/Occlusion%20Culling.md)  
 
 ## Animation
-[Animation window](Animation/Animation%20Window.md)
+[Animation window](Animation/Animation%20Window.md)  
+[Animation Events](Animation/Animation%20Events.md)
 
 ## Audio
 [Audio issues](Audio/Common%20Issues.md)
