@@ -1,0 +1,6 @@
+## Error pause
+### Description
+The [Console window](https://docs.unity3d.com/Manual/Console.html) (**Window | General | Console**, <kbd>Ctrl+Shift+C</kbd>) has a setting called **error pause** that will pause the playing application when an error occurs.  
+
+### Resolution
+Disable **error pause** using the button at the top of the Console window.
