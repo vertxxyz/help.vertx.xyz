@@ -1,3 +1,2 @@
-### Notes
 There's never a reason to have a `GameObject` variable serialized, *unless* using `.SetActive(...)` only.  
 The field should expose the Component used instead, this avoids using GetComponent entirely.  

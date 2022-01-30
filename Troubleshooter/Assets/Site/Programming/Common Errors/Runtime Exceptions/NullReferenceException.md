@@ -1,4 +1,4 @@
-## Null reference exception
+## NullReferenceException
 ### Description
 A `NullReferenceException` (NRE), occurs when code tries to access a variable which isn’t set, or found.  
 

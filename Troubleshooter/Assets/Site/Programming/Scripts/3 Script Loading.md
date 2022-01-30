@@ -5,7 +5,7 @@ If a user type does not inherit from `MonoBehaviour` it cannot be attached to a 
 If a user type does not inherit from `ScriptableObject` it cannot be instanced as a scriptable asset.  
 
 ### Resolution
-Ensure your class appropriately inherits from `MonoBehaviour` or `ScriptableObject`, or a suitable subtype.  
+Ensure your class appropriately inherits from `MonoBehaviour` or `ScriptableObject`, or a suitable **subtype**.  
 
 <<Code/Scripts/Script Loading 1 Plain.html>>  
 

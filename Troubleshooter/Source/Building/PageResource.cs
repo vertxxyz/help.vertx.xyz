@@ -52,37 +52,32 @@ public class PageResource
 	/// <summary>
 	/// Processed output html
 	/// </summary>
-	public string MarkdownText { get; set; }
+	public string? MarkdownText { get; set; }
 
 	/// <summary>
 	/// Processed output html
 	/// </summary>
-	public string HtmlText { get; private set; }
+	public string? HtmlText { get; private set; }
 	
 	/// <summary>
 	/// Output location. This is only processed after <see cref="WriteToDisk"/> is called.
 	/// </summary>
-	public string OutputLinkPath { get; private set; }
+	public string? OutputLinkPath { get; private set; }
 
 	// -------- Unbuilt resources --------
 	/// <summary>
 	/// Resources that are embedded into this page
 	/// </summary>
-	private HashSet<string> embedded;
-	/// <summary>
-	/// Resources that are embedded into other pages
-	/// </summary>
-	private HashSet<string> embeddedInto;
-	// -----------------------------------
+	public HashSet<string>? Embedded { get; private set; }
 
 	/// <summary>
-	/// Resources that are embedded into this page
-	/// </summary>
-	public HashSet<string> Embedded => embedded;
-	/// <summary>
 	/// Resources that are embedded into other pages
 	/// </summary>
-	public HashSet<string> EmbeddedInto => embeddedInto;
+	public HashSet<string>? EmbeddedInto { get; private set; }
+
+	private string EmbedsDirectory => _embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").ToConsistentPath();
+	
+	private string? _embedsDirectory;
 
 	public PageResource(string fullPath, ResourceType type, ResourceLocation location)
 	{
@@ -93,14 +88,14 @@ public class PageResource
 
 	public void AddEmbeddedInto(string page)
 	{
-		embeddedInto ??= new HashSet<string>();
-		embeddedInto.Add(page);
+		EmbeddedInto ??= new HashSet<string>();
+		EmbeddedInto.Add(page);
 	}
 
 	public void AddEmbedded(string page)
 	{
-		embedded ??= new HashSet<string>();
-		embedded.Add(page);
+		Embedded ??= new HashSet<string>();
+		Embedded.Add(page);
 	}
 
 	public void BuildText(Site site, PageResources allResources, MarkdownPipeline markdownPipeline)
@@ -153,7 +148,7 @@ public class PageResource
 				// Embeds are not fully processed into HTML until they are built when embedded into site content.
 				// This is done because something like Abbreviations requires the abbreviation target to be processed at the same time as the source.
 				MarkdownText,
-			ResourceLocation.Site => ToHtml(MarkdownText, markdownPipeline),
+			ResourceLocation.Site => ToHtml(MarkdownText!, markdownPipeline),
 			_ => throw new ArgumentOutOfRangeException(nameof(Location), Location, "Location was not handled.")
 		};
 	}
@@ -178,9 +173,6 @@ public class PageResource
 		renderer.Writer.Flush();
 		return HtmlPostProcessors.Process(renderer.Writer.ToString() ?? string.Empty);
 	}
-
-	private string _embedsDirectory;
-	private string EmbedsDirectory => _embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").ToConsistentPath();
 
 	public void ProcessMarkdown(string text, Site site, PageResources allResources)
 	{
@@ -227,7 +219,7 @@ public class PageResource
 					throw new ArgumentOutOfRangeException();
 			}
 
-			string directory = Path.GetDirectoryName(Site.FinalisePathWithRootIndex(FullPath, rootIndex));
+			string directory = Path.GetDirectoryName(Site.FinalisePathWithRootIndex(FullPath, rootIndex))!;
 
 			int last = 0;
 			foreach ((string image, Group group) in PageUtility.LocalImagesAsRootPaths(allText, false))
@@ -237,7 +229,7 @@ public class PageResource
 
 				stringBuilder.Append(allText[last..group.Index]);
 				string imagePath = image.FinaliseDirectoryPathOnly(); // The path explicitly mentioned in the markdown
-				string combinedPath = Path.Combine(directoryRoot, directory!, imagePath);
+				string combinedPath = Path.Combine(directoryRoot, directory, imagePath);
 				string finalPath = HttpUtility.UrlPathEncode(combinedPath).ToConsistentPath();
 				if(finalPath[0] != '/')
 					stringBuilder.Append($"/{finalPath}");
@@ -288,7 +280,7 @@ public class PageResource
 
 		// Check the previously built file to see whether it ought to be re-written.
 		OutputLinkPath = site.ConvertFullSitePathToLinkPath(FullPath);
-		string path = Path.Combine(arguments.HtmlOutputDirectory, $"{OutputLinkPath}.html");
-		return IOUtility.CreateFileIfDifferent(path, HtmlText) ? WriteStatus.Written : WriteStatus.Skipped;
+		string path = Path.Combine(arguments.HtmlOutputDirectory!, $"{OutputLinkPath}.html");
+		return IOUtility.CreateFileIfDifferent(path, HtmlText!) ? WriteStatus.Written : WriteStatus.Skipped;
 	}
 }

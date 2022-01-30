@@ -13,7 +13,7 @@ public class Site
 		ContentDirectory,
 		Main;
 
-	public Site(string root = null)
+	public Site(string? root = null)
 	{
 		Root = root ?? System.IO.Directory.GetCurrentDirectory();
 		AssetsRoot = Path.Combine(Root, "Assets");

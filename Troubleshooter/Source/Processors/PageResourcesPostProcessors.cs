@@ -16,7 +16,7 @@ public static class PageResourcesPostProcessors
 	private static readonly IPageResourcesPostProcessor[] All =
 		typeof(IPageResourcesPostProcessor).Assembly.GetTypes()
 			.Where(t => typeof(IPageResourcesPostProcessor).IsAssignableFrom(t) && !t.IsAbstract)
-			.Select(t => (IPageResourcesPostProcessor) Activator.CreateInstance(t)).ToArray();
+			.Select(t => (IPageResourcesPostProcessor) Activator.CreateInstance(t)!).ToArray();
 
 	public static void Process(PageResources pageResources, Site site)
 	{
@@ -37,7 +37,7 @@ public class MainResourceProducer : IPageResourcesPostProcessor
 	public void Process(PageResources dictionary, Site site)
 	{
 		(string fullPath, PageResource main) = dictionary.First(pageResource => Path.GetFileName(pageResource.Key) == "Main.md");
-		string directory = Path.GetDirectoryName(fullPath);
+		string directory = Path.GetDirectoryName(fullPath)!;
 		string allText = File.ReadAllText(main.FullPath);
 		string[] pages = titleRegex.Split(allText);
 		foreach (string page in pages.Skip(1))
@@ -48,7 +48,7 @@ public class MainResourceProducer : IPageResourcesPostProcessor
 			stringBuilder.Replace("###", "##");
 			stringBuilder.Replace("####", "###");
 			stringBuilder.Insert(0, "#");
-			string destination = Path.Combine(directory!, $"{title}.md");
+			string destination = Path.Combine(directory, $"{title}.md");
 			var newPage = new PageResource(destination, ResourceType.Markdown, ResourceLocation.Site);
 			newPage.ProcessMarkdown(stringBuilder.ToString(), site, dictionary);
 			dictionary.Add(destination, newPage);

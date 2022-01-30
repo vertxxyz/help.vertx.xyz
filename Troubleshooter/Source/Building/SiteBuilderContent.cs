@@ -13,7 +13,7 @@ public static partial class SiteBuilder
 	private static void BuildContent(Arguments arguments, Site site)
 	{
 		// Copy content to destination
-		CopyAll(new DirectoryInfo(site.ContentDirectory), new DirectoryInfo(arguments.Path), fileProcessor: FileProcessor);
+		CopyAll(new DirectoryInfo(site.ContentDirectory), new DirectoryInfo(arguments.Path!), fileProcessor: FileProcessor);
 
 		int siteContent = 0;
 		int totalContent = 0;
@@ -44,7 +44,7 @@ public static partial class SiteBuilder
 			//if (indexOfContent < 0)
 			//	throw new BuildException("\"</head>\" not found when generating 404 page from index.html.");
 			//string text404 = indexText.Insert(indexOfContent, "    <script src=\"/Scripts/404.js\"></script>\n");
-			CreateFileIfDifferent(Path.Combine(arguments.Path, "404.html"), indexText);
+			CreateFileIfDifferent(Path.Combine(arguments.Path!, "404.html"), indexText);
 		}
 
 		int embedContent = 0;
@@ -65,7 +65,7 @@ public static partial class SiteBuilder
 		arguments.VerboseLog($"{siteContent + embedContent} content files were written to disk. ({totalContent} total)");
 	}
 
-	private static FileResult.Validity FileProcessor(FileInfo file, out FileResult result)
+	private static FileResult.Validity FileProcessor(FileInfo file, out FileResult? result)
 	{
 		switch (file.Extension)
 		{

@@ -1,12 +1,13 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Text.RegularExpressions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 
 namespace Troubleshooter.Tests;
 
+[SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters")]
 public class LinkTests
 {
 	private readonly HashSet<string> embeddedFiles = new();

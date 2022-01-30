@@ -1,6 +1,6 @@
 @use 'base';
 
-div.info {
+div.info-box {
 	display: flex;
 	flex-direction: row;
 	border: solid 1px #242424;
@@ -8,21 +8,20 @@ div.info {
 	background-color: #404040;
 	margin: 5px base.$right-margin 20px 0;
 	align-items: center;
-}
 
-p.info {
-	margin-block-start: 0.5em;
-	margin-block-end: 0.5em;
-	margin-inline-start: 8px;
-	margin-inline-end: 8px;
-	overflow: auto;
-}
-
-img.info {
-	height: 50px;
-	width: 50px;
-	margin: 0;
-	padding: 5px 0 5px 5px;
+	>p {
+		margin-block-start: 0.5em;
+		margin-block-end: 0.5em;
+		margin-inline-start: 8px;
+		margin-inline-end: 8px;
+		overflow: auto;
+	}
+	>img {
+		height: 50px;
+		width: 50px;
+		margin: 0;
+		padding: 5px 0 5px 5px;
+	}
 }
 
 %small {
@@ -30,16 +29,16 @@ img.info {
 	width: 30px;
 }
 
-div.info.inline {
+div.info-box.inline {
 	margin-top: -10px;
 
-	img.info {
+	>img {
 		@extend %small;
 	}
 }
 
-div.info.small {
-	img.info {
+div.info-box.small {
+	>img {
 		@extend %small;
 	}
 }
@@ -52,12 +51,12 @@ div.info.small {
 	margin-top: -1.5em;
 }
 
-div.info.img-note {
+div.info-box.img-note {
 	@extend %img-note;
 	width: 500px;
 }
 
-div.info.img-note-wide {
+div.info-box.img-note-wide {
 	@extend %img-note;
 	width: 750px;
 }

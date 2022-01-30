@@ -27,4 +27,4 @@ The final option for recording modifications is [SetDirty](https://docs.unity3d.
 
 ---  
 
-If you're still not seeing changes persist, ensure that the variables are actually [serializable](../../Variables/Serialization%20First.md).
+If you're still not seeing changes persist, ensure that the variables are actually [serializable](../../Variables/Serialization.md).

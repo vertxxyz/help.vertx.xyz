@@ -7,4 +7,4 @@ Materials can override the render queue [via code](https://docs.unity3d.com/Scri
 ![Dithering](render-queue.png)  
 
 Changing the render queue means objects cannot be batched together and may add more draw calls.  
-Now that the objects' render order is fixed this may cause its own sorting issues, but depending on your project (and ultimately your camera's framing,) this may be the appropriate solution.
+Now that the objects' render order is fixed this may cause its own sorting issues, but depending on your project (and ultimately your camera's framing), this may be the appropriate solution.

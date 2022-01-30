@@ -1,4 +1,4 @@
-## Null Reference Exception: Debugging
+## NullReferenceException: Debugging
 When logging to inspect variables in a line of code throwing an NRE it's important to make individual logs for each access, or else the log will also throw an exception and not be printed.
 
 <<Code/Logging/Logging 3.rtf>>

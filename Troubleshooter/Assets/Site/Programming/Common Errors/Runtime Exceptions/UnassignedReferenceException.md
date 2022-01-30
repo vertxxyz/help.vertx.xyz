@@ -1,6 +1,6 @@
-## Unassigned reference exception
+## UnassignedReferenceException
 ### Description
-An Unassigned Reference Exception is a type of [null reference exception](NullReferenceException.md) where an Object field has not been assigned to.  
+An UnassignedReferenceException is a type of [NullReferenceException](NullReferenceException.md) where an Object field has not been assigned to.  
 
 ### Resolution
 Assign a value to the field via the Inspector.  

@@ -104,7 +104,7 @@ public static class SearchGatherer
 		// Remove code
 		html = PreRegex.Replace(html, string.Empty);
 
-		string headerText = GetHeaderText(html);
+		string? headerText = GetHeaderText(html);
 		if (headerText != null)
 		{
 			indexToHeaderText.TryAdd(index, headerText);
@@ -131,7 +131,7 @@ public static class SearchGatherer
 		return GetWords(text).Select(word => word.ToLower());
 	}
 
-	private static string GetHeaderText(string html)
+	private static string? GetHeaderText(string html)
 	{
 		int headerTextIndex = html.IndexOf(HeadingOverrideRenderer.HeaderTextTag, StringComparison.Ordinal) + HeadingOverrideRenderer.HeaderTextTag.Length;
 

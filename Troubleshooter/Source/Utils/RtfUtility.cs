@@ -53,7 +53,7 @@ public static class RtfUtility
 		{
 			html = StringUtility.ReplaceMatch(html, colorRegex, (match, stringBuilder) =>
 			{
-				if (HtmlUtility.ColorToClassLookup.TryGetValue(match.Groups[1].Value, out string className))
+				if (HtmlUtility.ColorToClassLookup.TryGetValue(match.Groups[1].Value, out string? className))
 				{
 					int startOfTag = stringBuilder.LastIndexOf('<') + 1;
 					int nextSpace = stringBuilder.NextIndexOf(' ', startOfTag);

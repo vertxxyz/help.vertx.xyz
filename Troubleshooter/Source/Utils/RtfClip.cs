@@ -51,7 +51,7 @@ namespace Troubleshooter
 			}
 			
 			Console.WriteLine("Enter file name without extension:");
-			string fileName = Console.ReadLine();
+			string fileName = Console.ReadLine()!;
 			string codeEmbedDirectory = Path.Combine(site.EmbedsDirectory, "Code");
 			
 			// Find valid file name.

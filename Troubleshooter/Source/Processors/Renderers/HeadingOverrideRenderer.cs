@@ -37,7 +37,7 @@ public class HeadingOverrideRenderer : HeadingRenderer
 		{
 			renderer.Write("</span>");
 			// Append Hash permalink to ID if one exists.
-			string id = obj.TryGetAttributes()?.Id;
+			string? id = obj.TryGetAttributes()?.Id;
 			if (!string.IsNullOrEmpty(id))
 			{
 				renderer.Write("<a class=\"header-permalink\" onclick=\"loadHash('#").Write(id).Write("')\">#</a>");

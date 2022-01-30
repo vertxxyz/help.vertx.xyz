@@ -10,7 +10,8 @@ UnityEngine.MonoBehaviour:.ctor()
 ### Description
 `MonoBehaviour` is the user-facing class used for creating Components.  
 Components are required to be attached to a `GameObject`.   
-Unity's API does not support using constructors (`new`) to create MonoBehaviours, this is done internally in the native side of the engine.
+Unity's API does not support using constructors (`new`) to create MonoBehaviours, this is done internally in the native side of the engine.  
+Objects created in this way will evaluate to null while still existing on the C# side. See [Unity null](../../Other/Unity%20Null.md).  
 
 ### Resolution
 Instead of creating a `MonoBehaviour` using the `new` keyword you instead need to use the [`AddComponent`](https://docs.unity3d.com/ScriptReference/GameObject.AddComponent.html) API.  

@@ -9,13 +9,13 @@ namespace Troubleshooter.Search;
 
 public static class SearchIndex
 {
-	public static string GetJsonFilePath(Arguments arguments) => Path.Combine(Path.Combine(arguments.Path, "Json"), "search-index.json");
+	public static string GetJsonFilePath(Arguments arguments) => Path.Combine(Path.Combine(arguments.Path!, "Json"), "search-index.json");
 		
 	public static async Task Generate(Arguments arguments)
 	{
 		// Gather files.
 		(IList<string> filePaths, IList<string> fileHeaders, ImmutableSortedDictionary<string, Dictionary<int, int>> sortedWordsToFileIndexAndCount) =
-			await SearchGatherer.GenerateSearchResult(arguments.HtmlOutputDirectory);
+			await SearchGatherer.GenerateSearchResult(arguments.HtmlOutputDirectory!);
 
 		// Create words to indices lookup
 		var termsToIndices = new Dictionary<string, int[]>();
@@ -35,7 +35,7 @@ public static class SearchIndex
 		string json = JsonSerializer.Serialize(index, SearchIndexStructureJsonContext.Default.SearchIndexStructure);
 
 		// Write index file.
-		await using var file = File.CreateText(Path.Combine(arguments.JsonOutputDirectory, "search-index.json"));
+		await using var file = File.CreateText(Path.Combine(arguments.JsonOutputDirectory!, "search-index.json"));
 		await file.WriteAsync(json);
 	}
 }

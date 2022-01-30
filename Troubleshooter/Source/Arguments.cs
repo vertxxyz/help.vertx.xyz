@@ -14,19 +14,19 @@ public readonly struct Arguments
 	/// <summary>
 	/// Output directory
 	/// </summary>
-	public readonly string Path;
+	public readonly string? Path;
 	/// <summary>
 	/// Output directory + HTML folder
 	/// </summary>
-	public readonly string HtmlOutputDirectory;
+	public readonly string? HtmlOutputDirectory;
 	/// <summary>
 	/// Output directory + Json folder
 	/// </summary>
-	public readonly string JsonOutputDirectory;
+	public readonly string? JsonOutputDirectory;
 	/// <summary>
 	/// Project root (Contains Assets and Source)
 	/// </summary>
-	public readonly string TroubleshooterRoot;
+	public readonly string? TroubleshooterRoot;
 	public readonly LoggingLevel LoggingLevel;
 	public const string HtmlOutputDirectoryName = "HTML";
 	public const string JsonOutputDirectoryName = "Json";
@@ -65,10 +65,10 @@ public readonly struct Arguments
 						throw new ArgumentException($"\"{param}\" is not a valid path.");
 
 					Path = param;
-					HtmlOutputDirectory = System.IO.Path.Combine(Path, HtmlOutputDirectoryName);
+					HtmlOutputDirectory = System.IO.Path.Combine(Path!, HtmlOutputDirectoryName);
 					Directory.CreateDirectory(HtmlOutputDirectory);
 
-					JsonOutputDirectory = System.IO.Path.Combine(Path, JsonOutputDirectoryName);
+					JsonOutputDirectory = System.IO.Path.Combine(Path!, JsonOutputDirectoryName);
 					Directory.CreateDirectory(JsonOutputDirectory);
 					break;
 				}
@@ -82,7 +82,7 @@ public readonly struct Arguments
 						continue;
 					}
 
-					switch (param.ToLower())
+					switch (param!.ToLower())
 					{
 						case "verbose":
 						case "v":
@@ -101,12 +101,12 @@ public readonly struct Arguments
 						continue;
 					}
 
-					TroubleshooterRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(Directory.GetCurrentDirectory(), param));
+					TroubleshooterRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(Directory.GetCurrentDirectory(), param!));
 					break;
 				}
 			}
 
-			bool TryGetParameter(out string param)
+			bool TryGetParameter(out string? param)
 			{
 				if (i + 1 >= args.Length)
 				{
@@ -118,7 +118,7 @@ public readonly struct Arguments
 				return true;
 			}
 
-			static bool ValidatePath(string path)
+			static bool ValidatePath(string? path)
 			{
 				// Path does not exist
 				if (string.IsNullOrEmpty(path))
@@ -158,7 +158,7 @@ public readonly struct Arguments
 		                  "you can follow with the relative path to your directory to locate the correct root directory.");
 	}
 
-	public void VerboseLog(object @object) => VerboseLog(@object.ToString());
+	public void VerboseLog(object @object) => VerboseLog(@object.ToString()!);
 
 	public void VerboseLog(string message)
 	{

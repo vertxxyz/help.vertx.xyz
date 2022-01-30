@@ -19,7 +19,7 @@ public static class PathUtility
 		if (!Path.HasExtension(path))
 			return path.FinalisePath();
 		string fileName = Path.GetFileName(path);
-		string directory = Path.GetDirectoryName(path);
+		string directory = Path.GetDirectoryName(path)!;
 		return Path.Combine(directory.FinalisePath(), fileName).ToConsistentPath();
 	}
 }

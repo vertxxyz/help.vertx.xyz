@@ -200,6 +200,11 @@ li {
 	margin-inline-end: 12px;
 }
 
+::marker {
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 12pt;
+}
+
 ol {
 	padding-inline-start: 35px;
 	> li {

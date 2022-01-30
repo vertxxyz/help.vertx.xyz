@@ -10,6 +10,7 @@
 		<LangVersion>10</LangVersion>
 		<Authors>Vertx</Authors>
 		<Company>Vertx</Company>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(IsWindows)'=='true'">
@@ -17,14 +18,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DartSassHost" Version="1.0.0-preview6" />
-		<PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.13.3" />
-		<PackageReference Include="JetBrains.Annotations" Version="2021.3.0-eap4" />
-		<PackageReference Include="Markdig" Version="0.26.0" />
-		<PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.1.7" />
-		<PackageReference Include="NUglify" Version="1.16.1" />
+		<PackageReference Include="DartSassHost" Version="1.0.0-preview7" />
+		<PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.17.1" />
+		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0-eap2" />
+		<PackageReference Include="Markdig" Version="0.27.0" />
+		<PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.2.1" />
+		<PackageReference Include="NUglify" Version="1.17.10" />
 		<PackageReference Include="RtfPipe" Version="2.0.7677.4303" />
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0-rc.2.21480.5" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.2-mauipre.1.22054.8" />
 		<PackageReference Include="WebStoating.Markdig.Prism" Version="1.0.0" />
 	</ItemGroup>
 

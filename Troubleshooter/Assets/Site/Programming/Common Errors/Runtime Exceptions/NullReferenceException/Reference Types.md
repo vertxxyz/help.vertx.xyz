@@ -1,5 +1,5 @@
-## Null Reference Exception: Reference types
-Now we understand [stack traces](Stack%20Trace.md), we know what line is throwing the Null Reference Exception.  
+## NullReferenceException: Reference types
+Now we understand [stack traces](Stack%20Trace.md), we know what line is throwing the NullReferenceException.  
 
 On this line, only **reference types** can be `null`:  
 :::note  
@@ -7,7 +7,7 @@ On this line, only **reference types** can be `null`:
 `struct` is **not**.  
 :::  
 
-Usually, this can be reduced to *simple*, and *complex* types. Simple structures tend to be structs, `int`, `float`, `Vector3`, `Quaternion`, etc. Complex types tend to be reference types.  
+Usually, this can be reduced to *simple*, and *complex* types. Simple structures tend to be structs, `int`, `float`, `Vector3`, `Quaternion`, etc. Complex types tend to be reference types, `Component`, `GameObject`, `List`, etc.  
 You can double check types by using [the documentation](https://docs.unity3d.com/ScriptReference/) or IDE inspection.  
 ^^^
 ![Struct in the ScriptReference](struct-documentation.png)  

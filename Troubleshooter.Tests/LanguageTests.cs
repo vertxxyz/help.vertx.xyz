@@ -1,10 +1,12 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using FluentAssertions.Execution;
 using Xunit;
 // ReSharper disable StringLiteralTypo
 
 namespace Troubleshooter.Tests;
 
+[SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters")]
 public class LanguageTests
 {
 	/// <summary>

@@ -26,10 +26,10 @@ public static class StringUtility
 
 	public static string ReplaceMatch(string text, Regex pattern, Action<Match, StringBuilder> matchRemap)
 	{
-		int last = 0;
 		MatchCollection matches = pattern.Matches(text);
 		if (matches.Count == 0) return text;
-		StringBuilder stringBuilder = new StringBuilder();
+		int last = 0;
+		StringBuilder stringBuilder = new();
 		for (int i = 0; i < matches.Count; i++)
 		{
 			Match match = matches[i];

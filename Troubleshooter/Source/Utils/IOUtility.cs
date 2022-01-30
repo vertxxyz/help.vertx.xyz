@@ -8,7 +8,7 @@ namespace Troubleshooter;
 
 public static class IOUtility
 {
-	public delegate FileResult.Validity FileProcessor(FileInfo file, out FileResult result);
+	public delegate FileResult.Validity FileProcessor(FileInfo file, out FileResult? result);
 
 	public class FileResult
 	{
@@ -29,7 +29,7 @@ public static class IOUtility
 		}
 	}
 		
-	public static void CopyAll(DirectoryInfo source, DirectoryInfo target, StringBuilder log = null, FileProcessor fileProcessor = null)
+	public static void CopyAll(DirectoryInfo source, DirectoryInfo target, StringBuilder? log = null, FileProcessor? fileProcessor = null)
 	{
 		if (string.Equals(source.FullName, target.FullName, StringComparison.Ordinal))
 			return;
@@ -39,7 +39,7 @@ public static class IOUtility
 		// Copy each file into it's new directory.
 		foreach (FileInfo fi in source.EnumerateFiles())
 		{
-			FileResult result = null;
+			FileResult? result = null;
 			var validity = fileProcessor?.Invoke(fi, out result) ?? FileResult.Validity.NotProcessed;
 			string destination;
 			switch (validity)
@@ -86,7 +86,7 @@ public static class IOUtility
 	{
 		recordedPaths.Add(fullPath);
 			
-		string directory = Path.GetDirectoryName(fullPath);
+		string directory = Path.GetDirectoryName(fullPath)!;
 		Directory.CreateDirectory(directory);
 		if (File.Exists(fullPath) && string.Equals(File.ReadAllText(fullPath), contents, StringComparison.Ordinal))
 			return false;
@@ -103,7 +103,7 @@ public static class IOUtility
 	{
 		recordedPaths.Add(destinationFullPath);
 			
-		string directory = Path.GetDirectoryName(destinationFullPath);
+		string directory = Path.GetDirectoryName(destinationFullPath)!;
 		Directory.CreateDirectory(directory);
 		if (File.Exists(destinationFullPath) && AreFileContentsEqual(destinationFullPath, file)) return false;
 		file.CopyTo(destinationFullPath, true);

@@ -81,21 +81,21 @@ public static partial class SiteBuilder
 
 		// Collect Embedded Pages
 		foreach (var path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))
-			ProcessPath(path, ResourceLocation.Embed);
+			DoProcessPath(path, ResourceLocation.Embed);
 
 		// Collect Site Pages
 		foreach (var path in Directory.EnumerateFiles(site.Directory, "*.md", SearchOption.AllDirectories))
-			ProcessPath(path, ResourceLocation.Site);
+			DoProcessPath(path, ResourceLocation.Site);
 
 		return pages;
 
-		void ProcessPath(string path, ResourceLocation location)
+		void DoProcessPath(string path, ResourceLocation location)
 		{
 			string fullPath = Path.GetFullPath(path);
 			if (!TryGetNewResource(fullPath, location, out var page))
 				return;
 
-			if (page.Type != ResourceType.Markdown)
+			if (page!.Type != ResourceType.Markdown)
 				return;
 
 			// Collect all the links from this markdown page - and add them to the PageResources.
@@ -104,14 +104,14 @@ public static partial class SiteBuilder
 			{
 				string fullEmbedPath = LocalEmbedToFullPath(embed.localPath, site);
 				page.AddEmbedded(fullEmbedPath);
-				if (!TryGetNewResource(fullEmbedPath, ResourceLocation.Embed, out var embeddedPage))
+				if (!TryGetNewResource(fullEmbedPath, ResourceLocation.Embed, out PageResource? embeddedPage))
 					continue;
-				embeddedPage.AddEmbeddedInto(fullPath);
+				embeddedPage!.AddEmbeddedInto(fullPath);
 			}
 		}
 
 		//Returns true if a new page is created
-		bool TryGetNewResource(string fullPath, ResourceLocation location, out PageResource page)
+		bool TryGetNewResource(string fullPath, ResourceLocation location, out PageResource? page)
 		{
 			if (pages.TryGetValue(fullPath, out page))
 				return true;
