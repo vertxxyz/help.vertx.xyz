@@ -11,7 +11,7 @@ public static class StringUtility
 		int last = 0;
 		MatchCollection matches = pattern.Matches(text);
 		if (matches.Count == 0) return text;
-		StringBuilder stringBuilder = new StringBuilder();
+		StringBuilder stringBuilder = new();
 		for (int i = 0; i < matches.Count; i++)
 		{
 			Match match = matches[i];

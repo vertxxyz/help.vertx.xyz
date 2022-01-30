@@ -27,8 +27,8 @@ public class BuildScope : IDisposable
 
 	private void CleanupBuildOutput()
 	{
-		HashSet<string> recordedFilePaths = new HashSet<string>(IOUtility.RecordedPaths.Select(Path.GetFullPath));
-		HashSet<string> redundantFilePaths = new HashSet<string>();
+		HashSet<string> recordedFilePaths = new(IOUtility.RecordedPaths.Select(Path.GetFullPath));
+		HashSet<string> redundantFilePaths = new();
 			
 		foreach (var file in Directory.EnumerateFiles(arguments.Path!, "*", SearchOption.AllDirectories))
 		{

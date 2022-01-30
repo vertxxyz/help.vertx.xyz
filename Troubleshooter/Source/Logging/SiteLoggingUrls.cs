@@ -9,7 +9,7 @@ public static class SiteLogging
 {
 	public static void LogAllExternalUrls(Arguments arguments)
 	{
-		Site site = new Site(arguments.TroubleshooterRoot);
+		Site site = new(arguments.TroubleshooterRoot);
 		foreach (string file in Directory.EnumerateFiles(site.AssetsRoot, "*.md", SearchOption.AllDirectories))
 		{
 			string text = File.ReadAllText(file);

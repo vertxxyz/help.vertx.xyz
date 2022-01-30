@@ -12,7 +12,7 @@ class Program
 		try
 		{
 			// Retrieve arguments
-			Arguments arguments = new Arguments(args);
+			Arguments arguments = new(args);
 			// Register this for RtfPipe
 			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 

@@ -88,13 +88,13 @@ public class PageResource
 
 	public void AddEmbeddedInto(string page)
 	{
-		EmbeddedInto ??= new HashSet<string>();
+		EmbeddedInto ??= new();
 		EmbeddedInto.Add(page);
 	}
 
 	public void AddEmbedded(string page)
 	{
-		Embedded ??= new HashSet<string>();
+		Embedded ??= new();
 		Embedded.Add(page);
 	}
 
@@ -177,7 +177,7 @@ public class PageResource
 	public void ProcessMarkdown(string text, Site site, PageResources allResources)
 	{
 		string allText = text;
-		StringBuilder stringBuilder = new StringBuilder();
+		StringBuilder stringBuilder = new();
 
 		// Find and replace embed anchors with their content
 		{

@@ -43,7 +43,7 @@ public class MainResourceProducer : IPageResourcesPostProcessor
 		foreach (string page in pages.Skip(1))
 		{
 			string title = firstLineRegex.Match(page).Groups[1].Value.Trim();
-			StringBuilder stringBuilder = new StringBuilder(page);
+			StringBuilder stringBuilder = new(page);
 			stringBuilder.Replace("##", "#");
 			stringBuilder.Replace("###", "##");
 			stringBuilder.Replace("####", "###");

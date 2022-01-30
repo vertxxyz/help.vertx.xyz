@@ -56,7 +56,7 @@ public static class SearchGatherer
 			filePaths.Add($"/{localPath.Replace('\\', '/')}");
 		}
 
-		ConcurrentDictionary<int, string> headerText = new ConcurrentDictionary<int, string>();
+		ConcurrentDictionary<int, string> headerText = new();
 		ConcurrentDictionary<string, Dictionary<int, int>> wordsToFileIndexAndCount = new();
 		await Parallel.ForEachAsync(fileNameToIndex, async (pair, _) =>
 		{
@@ -66,7 +66,7 @@ public static class SearchGatherer
 			{
 				wordsToFileIndexAndCount.AddOrUpdate(
 					word,
-					_ => new Dictionary<int, int>
+					_ => new()
 					{
 						{ index, 1 }
 					},
@@ -95,7 +95,7 @@ public static class SearchGatherer
 
 
 		ImmutableSortedDictionary<string, Dictionary<int, int>> sortedWordsToFileIndexAndCount = wordsToFileIndexAndCount.ToImmutableSortedDictionary();
-		return new Result(filePaths, fileHeaders, sortedWordsToFileIndexAndCount);
+		return new(filePaths, fileHeaders, sortedWordsToFileIndexAndCount);
 	}
 
 	private static async Task<IEnumerable<string>> ConstructSearchTermsAsync(string path, int index, ConcurrentDictionary<int, string> indexToHeaderText)
@@ -146,7 +146,7 @@ public static class SearchGatherer
 
 		// Prune tags from header text.
 		int length = headerText.Length;
-		StringBuilder header = new StringBuilder(length);
+		StringBuilder header = new(length);
 		bool add = true;
 		for (int i = 0; i < length; i++)
 		{

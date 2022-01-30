@@ -77,7 +77,7 @@ public static class IOUtility
 			File.ReadAllBytes(fi2.FullName)));
 
 	public static bool AreFileContentsEqual(string path1, string path2) =>
-		AreFileContentsEqual(new FileInfo(path1), new FileInfo(path2));
+		AreFileContentsEqual(new FileInfo(path1), new(path2));
 
 	public static bool AreFileContentsEqual(string path1, FileInfo fi2) =>
 		AreFileContentsEqual(new FileInfo(path1), fi2);

@@ -31,7 +31,7 @@ public static class SearchIndex
 		}
 
 		// Serialize Json.
-		SearchIndexStructure index = new SearchIndexStructure(filePaths, fileHeaders, termsToIndices, SearchCommon.CommonValues);
+		SearchIndexStructure index = new(filePaths, fileHeaders, termsToIndices, SearchCommon.CommonValues);
 		string json = JsonSerializer.Serialize(index, SearchIndexStructureJsonContext.Default.SearchIndexStructure);
 
 		// Write index file.

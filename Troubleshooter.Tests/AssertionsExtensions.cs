@@ -20,8 +20,8 @@ internal static class AssertionExtensions
 		}
 	}
 
-	public static StringAssertionsExtensions Should(this string instance) => new StringAssertionsExtensions(instance);
-	public static FileAssertions Should(this FileInfo instance) => new FileAssertions(instance);
+	public static StringAssertionsExtensions Should(this string instance) => new(instance);
+	public static FileAssertions Should(this FileInfo instance) => new(instance);
 }
 
 internal class StringAssertionsExtensions : StringAssertions
@@ -57,7 +57,7 @@ internal class StringAssertionsExtensions : StringAssertions
 			.BecauseOf(because, becauseArgs)
 			.FailWith("Did not expect {context:string} {0} to contain {1}{reason}.", Subject, unexpected);
 
-		return new AndConstraint<StringAssertions>(this);
+		return new(this);
 	}
 
 	private static bool Contains(string actual, string expected, StringComparison comparison) => (actual ?? string.Empty).Contains(expected ?? string.Empty, comparison);
@@ -74,7 +74,7 @@ internal class StringAssertionsExtensions : StringAssertions
 			.BecauseOf(because, becauseArgs)
 			.FailWith("Regex {1} matched {0}{reason}.", Subject, regex);
 
-		return new AndConstraint<StringAssertions>(this);
+		return new(this);
 	}
 		
 	/// <summary>
@@ -89,7 +89,7 @@ internal class StringAssertionsExtensions : StringAssertions
 			.BecauseOf(because, becauseArgs)
 			.FailWith("Regex {1} matched {0}{reason}.", Subject, regex);
 
-		return new AndConstraint<StringAssertions>(this);
+		return new(this);
 	}
 }
 
@@ -121,6 +121,6 @@ internal class FileAssertions<TAssertions> : ReferenceTypeAssertions<FileInfo, T
 			.BecauseOf(because, becauseArgs)
 			.FailWith("Expected {0} to exist at {1}{reason}.", Subject.Name, Subject.DirectoryName);
 
-		return new AndConstraint<TAssertions>((TAssertions)this);
+		return new((TAssertions)this);
 	}
 }

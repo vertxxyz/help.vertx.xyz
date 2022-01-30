@@ -12,9 +12,9 @@ public static class CustomPipelineExtensions
 
 	internal static RentedCustomHtmlRenderer RentCustomHtmlRenderer(this MarkdownPipeline pipeline)
 	{
-		HtmlRendererCache cache = _rendererCache ??= new HtmlRendererCache(pipeline);
+		HtmlRendererCache cache = _rendererCache ??= new(pipeline);
 		CustomHtmlRenderer renderer = cache.Get();
-		return new RentedCustomHtmlRenderer(cache, renderer);
+		return new(cache, renderer);
 	}
 
 	internal sealed class HtmlRendererCache : ObjectCache<CustomHtmlRenderer>

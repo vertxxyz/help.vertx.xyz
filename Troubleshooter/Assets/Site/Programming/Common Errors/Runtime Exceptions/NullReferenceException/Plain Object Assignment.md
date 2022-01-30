@@ -1,4 +1,6 @@
 ## NullReferenceException: Plain C# Objects
+To resolve a `NullReferenceException` caused by a `null` `object` that is not a `UnityEngine.Object` type you can choose one of the following options:
+
 **Either:**  
 :::note
 #### Assign a reference to the variable (choose one)  
@@ -9,19 +11,19 @@
 :::note
 #### Check the reference is not null before trying to access it (choose one)  
 - Exit early if null.
-```csharp
-if (example == null)
-{
-    return; // Exit early
-}
-```
+    ```csharp
+    if (example == null)
+    {
+        return; // Exit early
+    }
+    ```
 - Nest your code in a null check.
-```csharp
-if (example != null)
-{
-    // Code that uses example here
-}
-```
+    ```csharp
+    if (example != null)
+    {
+        // Code that uses example here
+    }
+    ```
 :::
 **Or:**  
 :::note

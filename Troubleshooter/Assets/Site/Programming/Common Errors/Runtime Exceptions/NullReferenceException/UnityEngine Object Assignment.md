@@ -1,4 +1,6 @@
 ## NullReferenceException: UnityEngine.Object
+To resolve a `NullReferenceException` caused by a `null` `UnityEngine.Object` you can choose one of the following options:  
+
 - ::collapse::{.collapse}
 ::::note
 **Either:**  

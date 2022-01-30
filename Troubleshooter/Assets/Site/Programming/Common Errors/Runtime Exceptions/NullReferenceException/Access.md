@@ -5,7 +5,7 @@ Access is denoted by:
 - `variable[]` - array element or indexer access.
 - `variable()` - invocation.
 
-Only **accessing** a reference type can throw a NullReferenceException. Null is a valid state, but accessing null is not.
+Only **accessing** a reference type can throw a `NullReferenceException`. `null` is a valid state, but accessing `null` is not.
 
 ---  
 

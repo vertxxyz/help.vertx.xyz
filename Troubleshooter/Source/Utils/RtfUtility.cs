@@ -87,7 +87,7 @@ public static class RtfUtility
 			throw new ArgumentOutOfRangeException($"Input index {index} into expression \"{expression}\" did not contain opening char {openChar}.");
 
 		// Stack to store opening brackets.  
-		Stack<int> st = new Stack<int>();
+		Stack<int> st = new();
 
 		// Traverse through string starting from given index.  
 		for (i = index; i < expression.Length; i++)

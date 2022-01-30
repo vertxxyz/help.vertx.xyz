@@ -18,7 +18,7 @@ public static class SourceIndex
 			).ToDictionary(pair => pair.Value.OutputLinkPath!, pair => pair.Key[trimIndex..].Replace('\\', '/'));
 
 		// Serialize Json.
-		SourceIndexStructure structure = new SourceIndexStructure(sourceLookup);
+		SourceIndexStructure structure = new(sourceLookup);
 		string json = JsonSerializer.Serialize(structure, SourceIndexStructureJsonContext.Default.SourceIndexStructure);
 
 		IOUtility.CreateFileIfDifferent(Path.Combine(arguments.JsonOutputDirectory!, "source-index.json"), json);

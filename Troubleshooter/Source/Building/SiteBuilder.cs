@@ -14,7 +14,7 @@ public static partial class SiteBuilder
 			.UsePrism()
 			.Build();
 
-		Site site = new Site(arguments.TroubleshooterRoot);
+		Site site = new(arguments.TroubleshooterRoot);
 
 		using var buildScope = new BuildScope(arguments);
 		try
@@ -35,7 +35,7 @@ public static partial class SiteBuilder
 		
 	public static void ContentBuild(Arguments arguments)
 	{
-		Site site = new Site(arguments.TroubleshooterRoot);
+		Site site = new(arguments.TroubleshooterRoot);
 		BuildContent(arguments, site);
 	}
 }

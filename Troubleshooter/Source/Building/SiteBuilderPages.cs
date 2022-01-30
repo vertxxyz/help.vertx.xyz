@@ -77,7 +77,7 @@ public static partial class SiteBuilder
 
 	private static PageResources CollectPages(Site site)
 	{
-		PageResources pages = new PageResources();
+		PageResources pages = new();
 
 		// Collect Embedded Pages
 		foreach (var path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))
@@ -120,14 +120,14 @@ public static partial class SiteBuilder
 			switch (extension)
 			{
 				case ".md":
-					page = new PageResource(fullPath, ResourceType.Markdown, location);
+					page = new(fullPath, ResourceType.Markdown, location);
 					break;
 				case ".rtf":
-					page = new PageResource(fullPath, ResourceType.RichText, location);
+					page = new(fullPath, ResourceType.RichText, location);
 					break;
 				case ".html":
 				case ".nomnoml":
-					page = new PageResource(fullPath, ResourceType.Html, location);
+					page = new(fullPath, ResourceType.Html, location);
 					break;
 				default:
 					// Ignore content that is not buildable page content.

@@ -96,7 +96,7 @@ namespace Troubleshooter
 		{
 			var process = new Process
 			{
-				StartInfo = new ProcessStartInfo
+				StartInfo = new()
 				{
 					FileName = filename,
 					Arguments = arguments,

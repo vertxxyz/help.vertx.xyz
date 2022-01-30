@@ -72,7 +72,7 @@ public class ContentTests
 		{
 			Assert.DoesNotMatch(incorrectFootnoteRegex, text);
 			MatchCollection footnotes = footnoteRegex.Matches(text);
-			Dictionary<string, FootnotePair> footnotePairs = new Dictionary<string, FootnotePair>();
+			Dictionary<string, FootnotePair> footnotePairs = new();
 			foreach (Match match in footnotes)
 			{
 				int nextIndex = match.Index + match.Length;

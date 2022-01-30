@@ -1,5 +1,7 @@
 ## NullReferenceException: Debugging
-When logging to inspect variables in a line of code throwing an NRE it's important to make individual logs for each access, or else the log will also throw an exception and not be printed.
+Now we understand [reference types](Reference%20Types.md) and when they are being [accessed](Access.md), we can debug to find which one is `null`.  
+
+When logging to find null values it's important to make individual logs for each access, or else the log will also throw an exception and not be printed.
 
 <<Code/Logging/Logging 3.rtf>>
 

@@ -127,7 +127,7 @@ public class ListCompaction : IHtmlPostProcessor
 			builder.Append(html[last..match.Index]);
 			
 			string remaining = html[(match.Index + match.Length)..];
-			builder.AppendLine("<ul>");
+			//builder.AppendLine("<ul>");
 			builder.Append("<li>");
 			int end = GetClosingTagEnd(remaining);
 			builder.Append(remaining[..(end + 1)]);

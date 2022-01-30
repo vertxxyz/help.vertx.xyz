@@ -13,7 +13,7 @@ public static partial class SiteBuilder
 	private static void BuildContent(Arguments arguments, Site site)
 	{
 		// Copy content to destination
-		CopyAll(new DirectoryInfo(site.ContentDirectory), new DirectoryInfo(arguments.Path!), fileProcessor: FileProcessor);
+		CopyAll(new(site.ContentDirectory), new(arguments.Path!), fileProcessor: FileProcessor);
 
 		int siteContent = 0;
 		int totalContent = 0;
@@ -28,7 +28,7 @@ public static partial class SiteBuilder
 			string outputPath = ConvertRootFullSitePathToLinkPath(fullPath, extension, site, arguments);
 
 			totalContent++;
-			if (CopyFileIfDifferent(outputPath, new FileInfo(fullPath)))
+			if (CopyFileIfDifferent(outputPath, new(fullPath)))
 				siteContent++;
 		}
 
@@ -58,7 +58,7 @@ public static partial class SiteBuilder
 			string outputPath = ConvertFullEmbedPathToLinkPath(fullPath, extension, site, arguments);
 
 			totalContent++;
-			if (CopyFileIfDifferent(outputPath, new FileInfo(fullPath)))
+			if (CopyFileIfDifferent(outputPath, new(fullPath)))
 				embedContent++;
 		}
 
@@ -76,15 +76,15 @@ public static partial class SiteBuilder
 			{
 				try
 				{
-					CompilationOptions options = new CompilationOptions
+					CompilationOptions options = new()
 					{
 						IncludePaths = file.Directory!.GetFiles("_*.scss").Select(f => f.FullName).ToList(),
 						IndentType = IndentType.Tab, IndentWidth = 1
 					};
 
-					using SassCompiler sassCompiler = new SassCompiler(new V8JsEngineFactory(), options);
+					using SassCompiler sassCompiler = new(new V8JsEngineFactory(), options);
 					CompilationResult compilationResult = sassCompiler.CompileFile(file.FullName);
-					result = new FileResult(compilationResult.CompiledContent, Path.ChangeExtension(file.Name, "css"));
+					result = new(compilationResult.CompiledContent, Path.ChangeExtension(file.Name, "css"));
 				}
 				catch (Exception e)
 				{
