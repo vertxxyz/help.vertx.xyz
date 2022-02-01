@@ -1,8 +1,7 @@
 ## General IDE configuration
-
-The only 3 IDEs you should be using are Visual Studio, Visual Studio Code, or JetBrains Rider.  
-There are probably other viable alternatives if you know what you're doing and how to configure them properly.  
-If you are a beginner this is never going to be the case and you should be using the options found below.
+:::warning
+The only[^1] 3 IDEs you should be using are **Visual Studio**, **Visual Studio Code**, or **JetBrains Rider**.
+:::
 
 ### Options
 
@@ -11,3 +10,6 @@ If you are a beginner this is never going to be the case and you should be using
 ---  
 
 [Continue configuring a valid IDE.](../IDE%20Configuration.md)
+
+[^1]: There may be alternatives if you know what you're doing and how to configure them properly.  
+If you are a beginner this **will not** be the case and you should be using the options on this page.
