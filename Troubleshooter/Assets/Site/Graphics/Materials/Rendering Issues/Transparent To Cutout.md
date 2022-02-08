@@ -10,7 +10,7 @@ Avoid anything that uses the words "Transparent" or "Fade".
 ### Built-in Render Pipeline
 The Standard shader has an Cutout [Rendering Mode](https://docs.unity3d.com/Manual/StandardShaderMaterialParameterRenderingMode.html).  
 The Unlit shader has a Cutout variant.  
-![Built-In Cutout Material](built-in-cutout-mat.png)  
+![Built-in Cutout Material](built-in-cutout-mat.png)  
 Custom shaders should render to depth, ie. `ZWrite On` (default), and ideally be in the AlphaTest [render queue](https://docs.unity3d.com/Manual/SL-SubShaderTags.html) (default).  
 HLSL shader programs should implement the `clip()` function in the fragment pass.  
 Surface shaders must provide `alphatest:VariableName`. See [optional parameters](https://docs.unity3d.com/Manual/SL-SurfaceShaders.html) and look for examples of Alpha Clip shaders.

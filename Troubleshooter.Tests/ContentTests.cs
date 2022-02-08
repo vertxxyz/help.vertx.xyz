@@ -96,4 +96,19 @@ public class ContentTests
 			}
 		}
 	}
+	
+	private static readonly Regex incorrectPackageDocLink = new(@"@[\d.]+?\/(?:api|manual)\/", RegexOptions.Compiled);
+	
+	/// <summary>
+	/// Validates links to package docs, ensuring they have @latest links.
+	/// </summary>
+	[Theory]
+	[ClassData(typeof(PageData))]
+	public void ValidatePackageDocLinks(string name, string path, string text)
+	{
+		using (new AssertionScope(name))
+		{
+			Assert.DoesNotMatch(incorrectPackageDocLink, text);
+		}
+	}
 }

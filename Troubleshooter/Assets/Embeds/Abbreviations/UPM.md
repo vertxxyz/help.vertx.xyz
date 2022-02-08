@@ -1,1 +1,1 @@
-*[UPM]: Unity Package Manager (Window | Package Manager)
+*[UPM]: Unity Package Manager (**Window | Package Manager**)

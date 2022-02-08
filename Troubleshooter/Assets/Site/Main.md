@@ -44,7 +44,8 @@
 
 ## UI
 [Unity UI](UI/UGUI.md)  
-[UI Toolkit](UI/UI%20Toolkit.md)
+[UI Toolkit](UI/UI%20Toolkit.md)   
+[TextMesh Pro](UI/TextMesh%20Pro.md)  
 
 ## Physics
 [Physics issues](Physics/Physics%20Issues.md)  
