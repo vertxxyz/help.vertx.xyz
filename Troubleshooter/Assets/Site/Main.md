@@ -2,6 +2,7 @@
 ## Interface
 [Scene view](Interface/Scene%20View.md)  
 [Game view](Interface/Game%20View.md)  
+[Gizmos](Interface/Gizmos.md)  
 [UnityEvents](Interface/Unity%20Events.md)  
 [Error dialogs](Common/Error%20Dialogs.md)  
 

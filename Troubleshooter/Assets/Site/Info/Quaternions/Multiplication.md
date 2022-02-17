@@ -50,3 +50,6 @@ Reset
 ```csharp
 transform.rotation = A.rotation * B.rotation;
 ```
+
+---
+Return to [Quaternions](../Quaternions.md).

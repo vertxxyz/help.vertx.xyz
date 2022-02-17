@@ -34,4 +34,7 @@ public static Quaternion GetLookAtOrientation(Vector3 origin, Vector3 target, Ve
 }
 ```
 
+---
+Return to [Quaternions](../Quaternions.md).
+
 [^1]: `transform.up` and `transform.right` use [FromToRotation](FromToRotation.md).

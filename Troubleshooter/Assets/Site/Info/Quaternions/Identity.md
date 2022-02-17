@@ -6,3 +6,6 @@ When used as a global orientation the target will be oriented perfectly aligned 
 
 [^1]:`(0, 0, 0, 1)`.  
 `Vector3.zero`, `(0, 0, 0)` in Euler angles.
+
+---
+Return to [Quaternions](../Quaternions.md).

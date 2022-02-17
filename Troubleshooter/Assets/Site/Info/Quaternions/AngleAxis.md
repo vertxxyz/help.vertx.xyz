@@ -21,4 +21,5 @@ Euler angles are confusing to author when rotating off-axis. `AngleAxis` greatly
 
 Note that the rotation around axis does not have a starting position, it is purely scalar.
 
----  
+---
+Return to [Quaternions](../Quaternions.md).

@@ -75,6 +75,7 @@ function loadPageFromState(e) {
 	} else {
 		loadPageFromLink(getPageParameter(), getHash(), false, false);
 	}
+	// TODO reload script elements.
 }
 
 /*************** FUNCTIONS *******************/

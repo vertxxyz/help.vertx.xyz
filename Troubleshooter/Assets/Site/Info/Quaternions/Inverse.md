@@ -7,3 +7,6 @@ public static Quaternion Inverse(Quaternion rotation);
 ### Description
 Returns the opposite rotation.  
 This is often done to undo orientations.
+
+---
+Return to [Quaternions](../Quaternions.md).

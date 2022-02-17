@@ -10,12 +10,14 @@ What this means:
 - Their individual components are **not** to be used.  
   `x`, `y`, `z`, and `w` are for advanced use cases only.
 - They cannot represent rotations of more than 180 degrees.
+- They do not suffer from [gimbal lock](https://www.youtube.com/watch?v=zc8b2Jo7mno).
 
 ### What do they represent?
-A quaternion can represent either an **orientation** or a **rotation**.  
-An orientation is a rotational placement, an application of a rotation from the the reference placement or "identity".  
-A rotation is a manipulation of another orientation or rotation.  
-Sadly, just to confuse everyone **rotation** is a general term and can be used to describe an orientation. `transform.rotation` is a global orientation.  
+Confusingly just as a `Vector3` can represent a position or a direction, a quaternion can represent either an **orientation** or a **rotation**.  
+An orientation is a rotational placement, similar to position. `transform.rotation` is the global orientation of a transform.  
+A rotation is a manipulation of another orientation or rotation, similar to a direction of movement.  
+
+Sadly, just to confuse everyone **rotation** is a general term and can be used to describe an orientation.
 
 ### The API
 #### Rotation Construction

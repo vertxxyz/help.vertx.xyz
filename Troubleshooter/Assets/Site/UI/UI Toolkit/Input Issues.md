@@ -4,9 +4,11 @@ Input in UI Toolkit requires multiple things to receive input events:
     - You can create one via **GameObject | UI | Event System**
 - **Picking Mode** must be set to Position on the Visual Element.  
 - There mustn't be other elements receiving the same events below in the hierarchy.  
-   Visual Elements have Picking Mode enabled by default, this can block events.
+   Visual Elements have Picking Mode enabled by default, this will block events.
 - If using the Input System package, it is required to be version `1.1.0-pre.5` or above.
 
 :::warning
 Do not make assumptions. Double checking these steps are met is always recommended.
 :::
+
+To troubleshoot cases where other UI is blocking input, use the Event Debugger (**Window | UI Toolkit | Event Debugger**).
