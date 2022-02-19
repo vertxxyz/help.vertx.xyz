@@ -66,16 +66,15 @@ loadPageFromLink(pageParam, getHash(), false);
 /*************** CALLBACKS ****************/
 
 // Popstate is for capturing forward-back events from history.pushState
-window.onpopstate = loadPageFromState;
+window.addEventListener("popstate", loadPageFromState);
 
-function loadPageFromState(e) {
+function loadPageFromState(e) {	
 	// page reload
 	if (e.state) {
 		loadPageFromLink(e.state.pathParameter, e.state.hashParameter, false, false);
 	} else {
 		loadPageFromLink(getPageParameter(), getHash(), false, false);
 	}
-	// TODO reload script elements.
 }
 
 /*************** FUNCTIONS *******************/
@@ -168,6 +167,7 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
 				Prism.highlightAll();
 				setupCodeSettings();
 				processNomnoml();
+				reloadScripts(valueToLoad);
 			});
 			document.getElementById('page-search').value = "";
 			const sidebarContents = $('.sidebar-contents');
@@ -315,6 +315,16 @@ function processNomnoml() {
 		}
 		graphs[i].classList.add("processed-nomnoml");
 	}
+}
+
+function reloadScripts(value) {
+	const event = new CustomEvent('loadedFromState', {
+		detail: value,
+		bubbles: false,
+		cancelable: true,
+		composed: false
+	})
+	window.dispatchEvent(event);
 }
 
 function removeCssRuleIfRequired(id) {

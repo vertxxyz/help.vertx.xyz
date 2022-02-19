@@ -3,8 +3,10 @@
 - [CS0101](Compiler%20Errors/CS0101.md): The namespace 'Foo' already contains a definition for "Bar"
 - [CS0104](Compiler%20Errors/CS0104.md): 'reference' is an ambiguous reference between 'X identifier' and 'Y identifier'
 - [CS0106](Compiler%20Errors/CS0106.md): The modifier 'modifier' is not valid for this item
-- [CS0120](Compiler%20Errors/CS0120.md): An object reference is required for the non-static field, method, or property 'Foo'
+- [CS0117](Compiler%20Errors/CS0117.md): 'Foo' does not contain a definition for 'identifier'
 - [CS0119](Compiler%20Errors/CS0119.md): 'Foo' is a 'Bar', which is not valid in the given context
+- [CS0120](Compiler%20Errors/CS0120.md): An object reference is required for the non-static field, method, or property 'Foo'
+- [CS0131](Compiler%20Errors/CS0131.md): The left-hand side of an assignment must be a variable, property or indexer
 - [CS0266](Compiler%20Errors/CS0266.md): Cannot implicitly convert type 'Foo' to 'Bar'. An explicit conversion exists (are you missing a cast?)
 - [CS0236](Compiler%20Errors/CS0236.md): A field initializer cannot reference the non-static field, method, or property 'Foo'
 - [CS0246](Compiler%20Errors/CS0246.md): The type or namespace name 'Foo' could not be found (are you missing a using directive or an assembly reference?)  

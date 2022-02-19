@@ -264,6 +264,13 @@ div.note {
 	}
 }
 
+div.note.center {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 750px;
+	text-align: center;
+}
+
 span.note {
 	border: 1px #ffffff4d solid;
 	padding: 4px;

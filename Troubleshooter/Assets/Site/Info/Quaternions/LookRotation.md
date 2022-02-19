@@ -4,11 +4,15 @@
 
 ### Description
 Creates a rotation with ::`forward`::{.quaternion-forward} and ::`upwards`::{.quaternion-up}.  
-::`upwards`::{.quaternion-up} is used to guide the orientation, and ::`right`::{.quaternion-right} is the cross-product between it and ::`forward`::{.quaternion-forward}.  
+::`upwards`::{.quaternion-up} is used to guide the orientation, and ::`right`::{.quaternion-right} becomes the cross-product between it and ::`forward`::{.quaternion-forward}.  
 
-Combined with [Vector3.Cross](https://docs.unity3d.com/ScriptReference/Vector3.Cross.html) this function is a staple for creating orientations aligned to surfaces.
+Combined with [`Vector3.Cross`](https://docs.unity3d.com/ScriptReference/Vector3.Cross.html) this function is a staple for creating orientations.
 
 ### Interactive diagram
+
+:::note{.center}
+Drag the sphere near ::`forward`::{.quaternion-forward} or ::`upwards`::{.quaternion-up} to modify their direction.
+:::
 
 ::: {#look_rotation .interactive-content}
 :::
@@ -16,25 +20,26 @@ Combined with [Vector3.Cross](https://docs.unity3d.com/ScriptReference/Vector3.C
 
 <<Code/Info/Quaternions/LookRotation 3.html>>
 
-### Usage
+### In use
 
-Setting `transform.forward` uses LookRotation[^1]:  
+When setting [`transform.forward`](https://docs.unity3d.com/ScriptReference/Transform-forward.html), `LookRotation` is used[^1]:  
 <<Code/Info/Quaternions/LookRotation 2.html>>  
 
-A custom [LookAt](https://docs.unity3d.com/ScriptReference/Transform.LookAt.html) could also choose to use this function:
+A custom [`LookAt`](https://docs.unity3d.com/ScriptReference/Transform.LookAt.html) could choose to use it:
 
 ```csharp
 public static Quaternion GetLookAtOrientation(Vector3 origin, Vector3 target)
-    => GetLookAtDirection(origin, target, Vector3.up);
+    => GetLookAtOrientation(origin, target, Vector3.up);
 
-public static Quaternion GetLookAtOrientation(Vector3 origin, Vector3 target, Vector3 upwards)
+public static Quaternion GetLookAtOrientation(Vector3 origin, Vector3 target, Vector3 up)
 {
-    Vector3 lookDirection = target.position - origin.position;
-    return Quaternion.LookRotation(lookDirection, upwards);
+    Vector3 lookDirection = target - origin;
+    return Quaternion.LookRotation(lookDirection, up);
 }
 ```
 
 ---
-Return to [Quaternions](../Quaternions.md).
+Return to [Quaternions.](../Quaternions.md)  
+Next, [Quaternion.FromToRotation.](FromToRotation.md)  
 
-[^1]: `transform.up` and `transform.right` use [FromToRotation](FromToRotation.md).
+[^1]: [`transform.up`](https://docs.unity3d.com/ScriptReference/Transform-up.html) and [`transform.right`](https://docs.unity3d.com/ScriptReference/Transform-right.html) use [`FromToRotation`](FromToRotation.md).

@@ -1,13 +1,36 @@
 import {addPoints, circlePoints, clearAndRedraw, EasingFunctions, inverseLerp, lerp, remap, Slider, toNormalisedCanvasSpace, TouchHandler} from "../behaviours.js";
 
-var swp_canvas = document.getElementById('screen_to_world_point');
-var swp_ctx = swp_canvas.getContext('2d');
+var swp_canvas, swp_ctx;
+var distance;
+var rayHeightNormalised;
 
-swp_ctx.lineWidth = 3;
-swp_ctx.font = '20px JetBrains Mono, monospace';
+var pageParameter = processPageValue(null);
 
-var distance = 400;
-var rayHeightNormalised = 0.3;
+var reload = (event) => {
+	if(event !== undefined && event.detail !== pageParameter)
+		return;
+
+	swp_canvas = document.getElementById('screen_to_world_point');
+	swp_ctx = swp_canvas.getContext('2d');
+
+	swp_ctx.lineWidth = 3;
+	swp_ctx.font = '20px JetBrains Mono, monospace';
+	
+	distance = 400;
+	rayHeightNormalised = 0.3;
+	
+	// Handle changing distance via slider
+	new Slider(document.getElementById("screen_to_world_point_slider"), function (x) {
+		distance = 100 + x * 400;
+		redrawScreenToWorldPointDiagram();
+	}, undefined, 0.75);
+
+	// Handle clicking on the canvas
+	new TouchHandler(swp_canvas, touchEvent, touchEvent);
+}
+
+window.addEventListener("loadedFromState", reload);
+reload();
 
 function drawScreenToWorldPointDiagram(ctx, distance, rayHeightNormalised) {
 	let nearClipPlane = 50;
@@ -141,15 +164,6 @@ function drawScreenToWorldPointDiagram(ctx, distance, rayHeightNormalised) {
 function redrawScreenToWorldPointDiagram() {
 	clearAndRedraw(swp_ctx, swp_canvas,() => drawScreenToWorldPointDiagram(swp_ctx, distance, rayHeightNormalised))
 }
-
-// Handle changing distance via slider
-new Slider(document.getElementById("screen_to_world_point_slider"), function (x) {
-	distance = 100 + x * 400;
-	redrawScreenToWorldPointDiagram();
-}, undefined, 0.75);
-
-// Handle clicking on the canvas
-new TouchHandler(swp_canvas, touchEvent, touchEvent);
 
 function touchEvent(e) {
 	e.preventDefault();

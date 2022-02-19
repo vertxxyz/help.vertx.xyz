@@ -6,12 +6,18 @@ public static Quaternion Euler(Vector3 euler);
 ```
 
 ### Description
-When working with rotations about the X, Y, and Z axes you may find it more convenient to use Euler angles instead of [AngleAxis](AngleAxis.md).  
+When working with rotations about the X, Y, and Z axes you may find it more convenient to use Euler angles instead of [`AngleAxis`](AngleAxis.md).  
 
+```csharp
+// 30 degrees rotation around Y.
+transform.rotation = Quaternion.Euler(0, 30, 0);
+```
 
-Setting Transform's [eulerAngles](https://docs.unity3d.com/ScriptReference/Transform-eulerAngles.html) and [localEulerAngles](https://docs.unity3d.com/ScriptReference/Transform-localEulerAngles.html) properties uses this function to assign to the internal Quaternion:
+### In use
+Setting [`eulerAngles`](https://docs.unity3d.com/ScriptReference/Transform-eulerAngles.html) or [`localEulerAngles`](https://docs.unity3d.com/ScriptReference/Transform-localEulerAngles.html) on a Transform will call this function to create the Quaternion used for rotation:
 
 <<Code/Info/Quaternions/EulerAngles.html>>  
 
 ---
-Return to [Quaternions](../Quaternions.md).
+Return to [Quaternions.](../Quaternions.md)  
+Next, [Quaternion.AngleAxis.](AngleAxis.md)

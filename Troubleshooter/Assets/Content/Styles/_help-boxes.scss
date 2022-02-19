@@ -14,7 +14,6 @@ div.info-box {
 		margin-block-end: 0.5em;
 		margin-inline-start: 8px;
 		margin-inline-end: 8px;
-		overflow: auto;
 	}
 	>img {
 		height: 50px;
@@ -34,7 +33,7 @@ div.info-box.inline {
 
 	>img {
 		@extend %small;
-	}
+	}	
 }
 
 div.info-box.small {

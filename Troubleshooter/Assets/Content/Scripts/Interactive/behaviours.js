@@ -314,7 +314,7 @@ const addCssIfRequired = (path) => {
 
 	const cssLink = document.createElement("link");
 
-	cssLink.href = path;
+	cssLink.href = path + "?1.0.0";
 	cssLink.rel = "stylesheet";
 	cssLink.id = path;
 

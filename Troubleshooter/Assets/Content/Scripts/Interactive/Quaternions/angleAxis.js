@@ -7,33 +7,68 @@ import {appendAllAxesUnity} from "../Shapes/Axes.js";
 
 VERTX.addCssIfRequired("/Styles/quaternions.css")
 
-var aa_div = document.getElementById('angle_axis');
 var scene, renderer, camera, webGlScene, webGlRenderer, webGlCamera;
 var endLine, arc, arcCone;
 var circle, startLine, cube, cubeLine;
 var axisHandle;
-var axis = new float3(-1, 1, -1);
-var raycaster = new THREE.Raycaster();
-var mouse = new THREE.Vector2();
-axis.normalize();
+var axis;
+var raycaster;
+var mouse;
+var downValid;
 
-var angle = 0;
-var arcRadius = 0.75;
-var directionColor = 0xffaa00;
+var angle;
+var arcRadius;
+var directionColor;
 
-var element = document.createElement("div");
-element.id = "quaternion-renderer-parent";
-aa_div.appendChild(element);
+var angleText;
+var axis_xText;
+var axis_yText;
+var axis_zText;
+var pageParameter = processPageValue(null);
 
-var angleText = document.getElementById("angle_axis-angle");
-var axis_xText = document.getElementById("angle_axis-axis_x");
-var axis_yText = document.getElementById("angle_axis-axis_y");
-var axis_zText = document.getElementById("angle_axis-axis_z");
+var reload = (event) => {
+	if(event !== undefined && event.detail !== pageParameter)
+		return;
 
-drawAngleAxis(element);
-drawAngleAxisCube(element);
-updateAngleAxis();
-updateAxisText();
+	axis = new float3(-1, 1, -1);
+	axis.normalize();
+	raycaster = new THREE.Raycaster();
+	mouse = new THREE.Vector2();
+	angle = 30;
+	arcRadius = 0.75;
+	directionColor = 0xffaa00;
+	angleText = document.getElementById("angle_axis-angle");
+	axis_xText = document.getElementById("angle_axis-axis_x");
+	axis_yText = document.getElementById("angle_axis-axis_y");
+	axis_zText = document.getElementById("angle_axis-axis_z");
+	
+	const element = document.createElement("div");
+	element.id = "quaternion-renderer-parent";
+	document.getElementById('angle_axis').appendChild(element);
+	drawAngleAxis(element);
+	drawAngleAxisCube(element);
+	updateAngleAxis();
+	updateAxisText();
+
+	// Handle clicking on the canvas
+	new VERTX.TouchHandler(renderer.domElement, startTouchEvent, moveTouchEvent);
+
+	// Handle changing distance via slider
+	new VERTX.Slider(document.getElementById("angle_axis_slider"), function (x) {
+		angle = VERTX.remap(x, 0, 1, -180, 180);
+		updateAngleAxis();
+		updateAxisText();
+	}, undefined, VERTX.inverseLerp(-180, 180, angle));
+
+	renderer.domElement.onmousemove = e => {
+		e.preventDefault();
+		const r = VERTX.getCameraRay(renderer.domElement, e, mouse, raycaster, camera);
+		axisHandle.hover(r);
+	};
+}
+
+window.addEventListener("loadedFromState", reload);
+reload();
 
 function drawAngleAxis(canvas) {
 	renderer = new SVGRenderer();
@@ -237,19 +272,6 @@ function updateAxisText () {
 	axis_zText.textContent = axis.z.toFixed(fixedLength) + 'f';
 }
 
-
-// Handle changing distance via slider
-new VERTX.Slider(document.getElementById("angle_axis_slider"), function (x) {
-	angle = VERTX.remap(x, 0, 1, -180, 180);
-	updateAngleAxis();
-	updateAxisText();
-}, undefined, 0.5);
-
-var downValid;
-
-// Handle clicking on the canvas
-new VERTX.TouchHandler(renderer.domElement, startTouchEvent, moveTouchEvent);
-
 function startTouchEvent(e) {
 	touchEvent(e, false);
 }
@@ -287,9 +309,3 @@ function touchEvent(e, isMove) {
 
 	updateAngleAxis();
 }
-
-renderer.domElement.onmousemove = e => {
-	e.preventDefault();
-	const r = VERTX.getCameraRay(renderer.domElement, e, mouse, raycaster, camera);
-	axisHandle.hover(r);
-};

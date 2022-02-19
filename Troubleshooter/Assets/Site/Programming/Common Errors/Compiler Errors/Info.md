@@ -18,7 +18,7 @@ Assets/Scripts/::Example.cs::{.context-a}::(::21::{.context-b},::40::{.context-c
 The ::file name::{.context-a}, ::line number::{.context-b}, ::column number::{.context-c}, ::error code::{.context-d}, and ::description::{.context-e} are the key pieces of information to look for.  
 
 ::file name::{.context-a}, the file containing the code that has the compiler error.  
-::line numbers::{.context-b} are found in the gutter of your IDE (the left hand column beside your code).  
+::line numbers::{.context-b} are found in the gutter of your IDE (the left-hand column beside your code).  
 ::column numbers::{.context-c} are usually found in the bottom right of the IDE's status bar, in the format `line number:column number`.  
 ::error codes::{.context-d} are the shortest description of the issue with a code block. Using a search engine or [MSDN](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/) with this code will provide information to resolve the issue.  
 ::descriptions::{.context-e} provide important context to the error code, explaining what specifically may be wrong.

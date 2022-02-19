@@ -1,7 +1,7 @@
 ## [Quaternions](https://docs.unity3d.com/ScriptReference/Quaternion.html)
 ### What are they?
 Nobody using them practically really needs to know.  
-They're compact fancy four dimensional values that allow for simple *slerping* (spherically interpolating) between values. That is, to rotate to another orientation via the most direct rotation.  
+They're compact fancy four dimensional values that can be easily interpolated between values. That is, to rotate to another orientation via the most direct rotation.  
 
 ### What aren't they?
 **Quaternions are not Euler angles**.  
@@ -15,9 +15,9 @@ What this means:
 ### What do they represent?
 Confusingly just as a `Vector3` can represent a position or a direction, a quaternion can represent either an **orientation** or a **rotation**.  
 An orientation is a rotational placement, similar to position. `transform.rotation` is the global orientation of a transform.  
-A rotation is a manipulation of another orientation or rotation, similar to a direction of movement.  
+A rotation is a manipulation of another orientation or rotation, similar to a movement vector.  
 
-Sadly, just to confuse everyone **rotation** is a general term and can be used to describe an orientation.
+Sadly, just to confuse everyone rotation is a general term and is used to describe both orientation and rotation.
 
 ### The API
 #### Rotation Construction

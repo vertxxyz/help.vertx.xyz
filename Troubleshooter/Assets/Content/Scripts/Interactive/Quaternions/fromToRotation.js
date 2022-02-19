@@ -7,7 +7,6 @@ import {HoverableAxis} from "../Handles/AxisHandle.js";
 
 VERTX.addCssIfRequired("/Styles/quaternions.css")
 
-var aa_div = document.getElementById('from_to_rotation');
 var scene, renderer, camera, webGlScene, webGlRenderer, webGlCamera/*, topLeftRenderer, topLeftCamera*/;
 var arc, arcCone;
 var axisFromLine, axisToLine, axisFromCube,
@@ -16,31 +15,96 @@ var sphereCircle, axisLine, sphereHoverCircle;
 var sphereCircleOriginalMaterial;
 var angle; // Angle calculated from the fromToRotation.
 
-var fromAxis = new float3(-1, 0, 0);
-var toAxis = new float3(0, -0.5, .5);
-toAxis.normalize();
-var arcRadius = 0.75;
+var fromAxis;
+var toAxis;
+var arcRadius;
 
-var directionFromColor = 0xff5500;
-var directionToColor = 0xaaff00;
-var directionColor = 0xffaa00;
+var directionFromColor;
+var directionToColor;
+var directionColor;
 
-var element = document.createElement("div");
-element.id = "quaternion-renderer-parent";
-aa_div.appendChild(element);
+var from_x;
+var from_y;
+var from_z;
+var to_x;
+var to_y;
+var to_z;
 
-var from_x = document.getElementById("from_to-from_x");
-var from_y = document.getElementById("from_to-from_y");
-var from_z = document.getElementById("from_to-from_z");
-var to_x = document.getElementById("from_to-to_x");
-var to_y = document.getElementById("from_to-to_y");
-var to_z = document.getElementById("from_to-to_z");
+var hovering;
+var downValid;
+var handleFromAxis;
 
-drawFromToRotation(element);
-drawFromToRotationCube(element);
-// drawFromToRotationLeft(element);
-updateFromToRotation();
-updateAxisText();
+var pageParameter = processPageValue(null);
+
+var reload = (event) => {
+	if(event !== undefined && event.detail !== pageParameter)
+		return;
+
+	fromAxis = new float3(-1, 0, 0);
+	toAxis = new float3(0, -0.5, .5);
+	toAxis.normalize();
+	arcRadius = 0.75;
+	directionFromColor = 0xff5500;
+	directionToColor = 0xaaff00;
+	directionColor = 0xffaa00;
+
+	const element = document.createElement("div");
+	element.id = "quaternion-renderer-parent";
+	document.getElementById('from_to_rotation').appendChild(element);
+
+	from_x = document.getElementById("from_to-from_x");
+	from_y = document.getElementById("from_to-from_y");
+	from_z = document.getElementById("from_to-from_z");
+	to_x = document.getElementById("from_to-to_x");
+	to_y = document.getElementById("from_to-to_y");
+	to_z = document.getElementById("from_to-to_z");
+
+	hovering = null;
+
+	drawFromToRotation(element);
+	drawFromToRotationCube(element);
+	// drawFromToRotationLeft(element);
+	updateFromToRotation();
+	updateAxisText();
+
+	// Handle clicking on the canvas
+	new VERTX.TouchHandler(renderer.domElement, startTouchEvent, moveTouchEvent);
+
+	renderer.domElement.onmousemove = e => {
+		e.preventDefault();
+		const result = new float3(0);
+		if (hasRayResult(e, result)) {
+			const newHovering = shouldHandleFromAxis(result) ? axisFromLine : axisToLine;
+			if (newHovering === hovering) {
+				orientHoverCircle(result);
+				updateFromToRotation();
+				return;
+			}
+			if (hovering != null)
+				hovering.hideHover();
+			hovering = newHovering;
+			hovering.showHover();
+			sphereCircle.material = new THREE.LineBasicMaterial({
+				color: 0xffffff,
+				linewidth: 3
+			});
+			sphereHoverCircle.visible = true;
+			orientHoverCircle(result);
+			updateFromToRotation();
+		} else {
+			if (hovering != null) {
+				hovering.hideHover();
+				hovering = null;
+				sphereCircle.material = sphereCircleOriginalMaterial;
+				sphereHoverCircle.visible = false;
+				updateFromToRotation();
+			}
+		}
+	};
+}
+
+window.addEventListener("loadedFromState", reload);
+reload();
 
 function drawFromToRotation(canvas) {
 	renderer = new SVGRenderer();
@@ -353,12 +417,6 @@ function updateAxisText() {
 	to_z.textContent = (-toAxis.z).toFixed(fixedLength) + 'f';
 }
 
-var downValid;
-var handleFromAxis;
-
-// Handle clicking on the canvas
-new VERTX.TouchHandler(renderer.domElement, startTouchEvent, moveTouchEvent);
-
 function startTouchEvent(e) {
 	touchEvent(e, false);
 }
@@ -419,40 +477,6 @@ function hasRayResult(e, resultOut) {
 	resultOut.copy(float3.normalize(r.getPoint(d)));
 	return true;
 }
-
-var hovering = null;
-
-renderer.domElement.onmousemove = e => {
-	e.preventDefault();
-	const result = new float3(0);
-	if (hasRayResult(e, result)) {
-		const newHovering = shouldHandleFromAxis(result) ? axisFromLine : axisToLine;
-		if (newHovering === hovering) {
-			orientHoverCircle(result);
-			updateFromToRotation();
-			return;
-		}
-		if (hovering != null)
-			hovering.hideHover();
-		hovering = newHovering;
-		hovering.showHover();
-		sphereCircle.material = new THREE.LineBasicMaterial({
-			color: 0xffffff,
-			linewidth: 3
-		});
-		sphereHoverCircle.visible = true;
-		orientHoverCircle(result);
-		updateFromToRotation();
-	} else {
-		if (hovering != null) {
-			hovering.hideHover();
-			hovering = null;
-			sphereCircle.material = sphereCircleOriginalMaterial;
-			sphereHoverCircle.visible = false;
-			updateFromToRotation();
-		}
-	}
-};
 
 function orientHoverCircle(result) {
 	sphereHoverCircle.position.copy(result);

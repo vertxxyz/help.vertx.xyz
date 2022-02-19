@@ -12,6 +12,10 @@ Euler angles are confusing to author when rotating off-axis. `AngleAxis` greatly
 
 ### Interactive diagram
 
+:::note{.center}
+Drag the sphere to modify ::`axis`::{.quaternion-axis}, move the slider to change ::`angle`::{.quaternion-angle}.
+:::
+
 ::: {#angle_axis .interactive-content} 
 :::
 :::slider {#angle_axis_slider .color-angle} 
@@ -19,7 +23,10 @@ Euler angles are confusing to author when rotating off-axis. `AngleAxis` greatly
 <script type="module" src="/Scripts/Interactive/Quaternions/angleAxis.js"></script>  
 <<Code/Info/Quaternions/AngleAxis 3.html>>  
 
-Note that the rotation around axis does not have a starting position, it is purely scalar.
+:::note
+Note that the rotation angle is scalar, it does not start at the visualised position.
+:::  
 
 ---
-Return to [Quaternions](../Quaternions.md).
+Return to [Quaternions.](../Quaternions.md)  
+Next, [Quaternion.LookRotation.](LookRotation.md)

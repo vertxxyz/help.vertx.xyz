@@ -9,38 +9,65 @@ import {appendAllAxesUnity} from "../Shapes/Axes.js";
 VERTX.addCssIfRequired("/Styles/quaternions.css")
 
 var renderer, scene, camera;
-var raycaster = new THREE.Raycaster();
-var mouse = new THREE.Vector2();
+var raycaster;
+var mouse;
 var cube, cubeA, cubeB;
 var rotationHandleA, rotationHandleB;
-var camSize = 1.5;
-var cubeYPos = -0.58;
-var secondaryCubeYPos = 0.68;
-var secondaryCubeSize = 0.25;
-var secondaryAxisSize = 0.375;
-var global = false;
+var camSize;
+var cubeYPos;
+var secondaryCubeYPos, secondaryCubeSize, secondaryAxisSize;
+var global;
 
-var aa_div = document.getElementById('multiplication');
-var element = document.createElement("div");
-element.id = "quaternion-renderer-parent";
-aa_div.prepend(element);
+var pageParameter = processPageValue(null);
 
-element.appendChild(getOverlayText('A', "text-a"));
-element.appendChild(getOverlayText('B', "text-b"));
-element.appendChild(getOverlayText('*', "text-multiply"));
-element.appendChild(getOverlayText('=', "text-equals"));
+var reload = (event) => {
+	if(event !== undefined && event.detail !== pageParameter)
+		return;
 
-var resetButton = document.getElementById('multiplication-reset-button');
-resetButton.addEventListener("click", () => {
-	cubeA.quaternion.set(0, 0, 0, 1);
-	cubeB.quaternion.set(0, 0, 0, 1);
-	rotationHandleA.reset();
-	rotationHandleB.reset();
+	raycaster = new THREE.Raycaster();
+	mouse = new THREE.Vector2();
+	camSize = 1.5;
+	cubeYPos = -0.58;
+	secondaryCubeYPos = 0.68;
+	secondaryCubeSize = 0.25;
+	secondaryAxisSize = 0.375;
+	global = false;
+
+	var element = document.createElement("div");
+	element.id = "quaternion-renderer-parent";
+	document.getElementById('multiplication').prepend(element);
+
+	element.appendChild(getOverlayText('A', "text-a"));
+	element.appendChild(getOverlayText('B', "text-b"));
+	element.appendChild(getOverlayText('*', "text-multiply"));
+	element.appendChild(getOverlayText('=', "text-equals"));
+
+	var resetButton = document.getElementById('multiplication-reset-button');
+	resetButton.addEventListener("click", () => {
+		cubeA.quaternion.set(0, 0, 0, 1);
+		cubeB.quaternion.set(0, 0, 0, 1);
+		rotationHandleA.reset();
+		rotationHandleB.reset();
+		updateMultiplicationScene();
+	});
+
+	drawMultiplication(element);
 	updateMultiplicationScene();
-});
+
+	renderer.domElement.onmousemove = e => {
+		e.preventDefault();
+		const r = VERTX.getCameraRay(renderer.domElement, e, mouse, raycaster, camera);
+		rotationHandleA.hover(r);
+		rotationHandleB.hover(r);
+	};
+
+	new VERTX.TouchHandler(renderer.domElement, begin, null, end);
+}
+
+window.addEventListener("loadedFromState", reload);
+reload();
 
 window.addEventListener('keydown', function (event) {
-
 	switch (event.code) {
 		case "KeyX":
 			global = !global;
@@ -50,18 +77,6 @@ window.addEventListener('keydown', function (event) {
 			break
 	}
 });
-
-drawMultiplication(element);
-updateMultiplicationScene();
-
-renderer.domElement.onmousemove = e => {
-	e.preventDefault();
-	const r = VERTX.getCameraRay(renderer.domElement, e, mouse, raycaster, camera);
-	rotationHandleA.hover(r);
-	rotationHandleB.hover(r);
-};
-
-new VERTX.TouchHandler(renderer.domElement, begin, null, end);
 
 function begin(e) {
 	e.preventDefault();

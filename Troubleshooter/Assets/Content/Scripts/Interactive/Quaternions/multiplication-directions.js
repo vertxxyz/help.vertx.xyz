@@ -9,40 +9,72 @@ import {AxisHandle} from "../Handles/AxisHandle.js";
 VERTX.addCssIfRequired("/Styles/quaternions.css")
 
 var renderer, scene, camera;
-var raycaster = new THREE.Raycaster();
-var mouse = new THREE.Vector2();
+var raycaster;
+var mouse;
 var cubeA;
 var resultHandle;
 var rotationHandleA, rotationHandleB;
-var camSize = 1.5;
-var cubeYPos = -0.58;
-var secondaryCubeYPos = 0.68;
-var secondaryCubeSize = 0.25;
-var secondaryAxisSize = 0.375;
-var global = false;
+var camSize;
+var cubeYPos;
+var secondaryCubeYPos, secondaryCubeSize, secondaryAxisSize;
+var global;
 
-var aa_div = document.getElementById('multiplication-directions');
-var element = document.createElement("div");
-element.id = "quaternion-renderer-parent";
-aa_div.prepend(element);
+var axisText_x, axisText_y, axisText_z;
 
-element.appendChild(getOverlayText('A', "text-a"));
-element.appendChild(getOverlayText('B', "text-b"));
-element.appendChild(getOverlayText('*', "text-multiply"));
-element.appendChild(getOverlayText('=', "text-equals"));
+var usingBHandle;
 
-var axisText_x = document.getElementById("multiply-axis_x");
-var axisText_y = document.getElementById("multiply-axis_y");
-var axisText_z = document.getElementById("multiply-axis_z");
+var pageParameter = processPageValue(null);
 
-var resetButton = document.getElementById('multiplication-directions-reset-button');
-resetButton.addEventListener("click", () => {
-	cubeA.quaternion.set(0, 0, 0, 1);
-	rotationHandleA.reset();
-	rotationHandleB.reset();
-	rotationHandleB.setAxisText(axisText_x, axisText_y, axisText_z);
+var reload = (event) => {
+	if(event !== undefined && event.detail !== pageParameter)
+		return;
+
+	raycaster = new THREE.Raycaster();
+	mouse = new THREE.Vector2();
+	camSize = 1.5;
+	cubeYPos = -0.58;
+	secondaryCubeYPos = 0.68;
+	secondaryCubeSize = 0.25;
+	secondaryAxisSize = 0.375;
+	global = false;
+
+	var element = document.createElement("div");
+	element.id = "quaternion-renderer-parent";
+	document.getElementById('multiplication-directions').prepend(element);
+
+	element.appendChild(getOverlayText('A', "text-a"));
+	element.appendChild(getOverlayText('B', "text-b"));
+	element.appendChild(getOverlayText('*', "text-multiply"));
+	element.appendChild(getOverlayText('=', "text-equals"));
+
+	axisText_x = document.getElementById("multiply-axis_x");
+	axisText_y = document.getElementById("multiply-axis_y");
+	axisText_z = document.getElementById("multiply-axis_z");
+	
+	var resetButton = document.getElementById('multiplication-directions-reset-button');
+	resetButton.addEventListener("click", () => {
+		cubeA.quaternion.set(0, 0, 0, 1);
+		rotationHandleA.reset();
+		rotationHandleB.reset();
+		rotationHandleB.setAxisText(axisText_x, axisText_y, axisText_z);
+		updateMultiplicationScene();
+	});
+
+	drawMultiplication(element);
 	updateMultiplicationScene();
-});
+
+	renderer.domElement.onmousemove = e => {
+		e.preventDefault();
+		const r = VERTX.getCameraRay(renderer.domElement, e, mouse, raycaster, camera);
+		rotationHandleA.hover(r);
+		rotationHandleB.hover(r);
+	};
+
+	new VERTX.TouchHandler(renderer.domElement, begin, move, end);
+}
+
+window.addEventListener("loadedFromState", reload);
+reload();
 
 window.addEventListener('keydown', function (event) {
 
@@ -54,20 +86,6 @@ window.addEventListener('keydown', function (event) {
 			break
 	}
 });
-
-drawMultiplication(element);
-updateMultiplicationScene();
-
-renderer.domElement.onmousemove = e => {
-	e.preventDefault();
-	const r = VERTX.getCameraRay(renderer.domElement, e, mouse, raycaster, camera);
-	rotationHandleA.hover(r);
-	rotationHandleB.hover(r);
-};
-
-new VERTX.TouchHandler(renderer.domElement, begin, move, end);
-
-var usingBHandle;
 
 function begin(e) {
 	e.preventDefault();
