@@ -7,6 +7,9 @@ The UI Toolkit Events Debugger can help debug issues with element interactions.
 ### Input
 - [Input issues](UI%20Toolkit/Input%20Issues.md)
 
+### Fonts
+- [I cannot assign a TMP FontAsset to a Label.](UI%20Toolkit/Font%20Asset.md)
+
 ### Complex
 
 - [Issues with generateVisualContent](UI%20Toolkit/generateVisualContent.md)

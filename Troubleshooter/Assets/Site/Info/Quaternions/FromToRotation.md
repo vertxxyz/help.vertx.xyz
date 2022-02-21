@@ -21,7 +21,7 @@ Drag the sphere near ::`fromDirection`::{.quaternion-from} or ::`toDirection`::{
 There is an equivalence to [`AngleAxis`](AngleAxis.md) here, axis is the ::`cross product`::{.quaternion-axis}, and ::`angle`::{.quaternion-angle} is made between from and to.  
 
 :::note
-Similarly, the starting rotation position around that axis is arbitrary—though defined by ::`fromDirection`::{.quaternion-from}—the angle is scalar.
+Note that the rotation angle is scalar—though defined by ::`fromDirection`::{.quaternion-from}, it does not start at the visualised position.
 :::  
 
 ### In use

@@ -27,18 +27,22 @@ function TouchHandler(target, begin, move, end) {
 	const move_handler = genericTouchHandler(mouse_move);
 
 	function mouse_down(e) {
+		let res = begin ? begin(e) : true;
+
+		if (res && e.preventDefault)
+			e.preventDefault();
+		
+		if(res === false)
+			return false;
+
 		window.addEventListener("mousemove", mouse_move, false);
 		window.addEventListener("mouseup", mouse_up, false);
 
 		window.addEventListener("touchmove", move_handler, false);
 		window.addEventListener("touchend", mouse_up, false);
 		window.addEventListener("touchcancel", mouse_up, false);
-
-		let res = begin ? begin(e) : true;
-
-		if (res && e.preventDefault)
-			e.preventDefault();
-		return res;
+		
+		return true;
 	}
 
 	function mouse_move(e) {

@@ -101,6 +101,10 @@ public override void OnInspectorGUI()
 }
 ```
 
+:::info
+Changes made in a [PropertyDrawer](https://docs.unity3d.com/ScriptReference/PropertyDrawer.html) will persist if the editor that draws them performs the logic.
+:::  
+
 ### [SerializedProperty.FindPropertyRelative](https://docs.unity3d.com/ScriptReference/SerializedProperty.FindPropertyRelative.html)
 Going levels deeper requires `FindPropertyRelative`.
 

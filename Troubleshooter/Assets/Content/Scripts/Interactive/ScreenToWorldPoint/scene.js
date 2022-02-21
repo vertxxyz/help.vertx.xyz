@@ -166,17 +166,21 @@ function redrawScreenToWorldPointDiagram() {
 }
 
 function touchEvent(e) {
+	if(e.button !== undefined && e.button !== 0)
+		return false;
+	
 	e.preventDefault();
 	const pos = toNormalisedCanvasSpace(swp_canvas, e);
 	pos[0] *= 500;
 	pos[1] *= 500;
 	let x = inverseLerp(100, 500, pos[0]);
 	if (x < 0.1)
-		return;
+		return true;
 	let y = x * 250;
 	let rayHeightNormalisedPrev = rayHeightNormalised;
 	rayHeightNormalised = inverseLerp(250 - y, 250 + y, pos[1]);
 	if (rayHeightNormalisedPrev === rayHeightNormalised)
-		return;
+		return true;
 	redrawScreenToWorldPointDiagram();
+	return true;
 }

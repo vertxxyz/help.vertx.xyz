@@ -6,7 +6,7 @@ public static Quaternion Inverse(Quaternion rotation);
 
 ### Description
 Returns the opposite rotation.  
-This is often used to undo rotations to perform local-space modifications before re-applying the rotation.
+This is often used to undo rotations to perform local space modifications before re-applying the rotation.
 
 ---
 Return to [Quaternions.](../Quaternions.md)
