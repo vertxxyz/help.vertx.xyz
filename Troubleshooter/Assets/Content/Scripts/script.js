@@ -2,6 +2,7 @@ const pageParameterKey = 'page';
 const contentsClass = '.contents';
 const main = 'Main';
 let currentDirectory = "";
+let isLoading = false;
 
 class CodeSettings {
 	usesLigatures;
@@ -109,8 +110,14 @@ function setPage(value, url, hash, pushHistory = true) {
 		window.history.replaceState({pathParameter: value, hashParameter: hash}, document.title, url);
 }
 
-//Load Page is called from HTML
+// Load Page is called from HTML
+// noinspection JSUnusedGlobalSymbols
 function loadPage(relativeLink) {
+	/*if(isLoading) {
+		console.log('Ignored load page request because the previous was loading.');
+		return;
+	}*/
+	
 	if (relativeLink == null || relativeLink === "") {
 		console.log('Ignored page load as button links to empty location');
 		return;
@@ -120,7 +127,8 @@ function loadPage(relativeLink) {
 	loadPageFromLink(relativeLink, '', true, true);
 }
 
-//Load Hash is called from HTML
+// Load Hash is called from HTML
+// noinspection JSUnusedGlobalSymbols
 function loadHash(hash) {
 	// Scroll to the hash and copy the page to the clipboard.
 	const pageParameter = getPageParameter();
@@ -143,16 +151,16 @@ function processPageValue(value) {
 }
 
 function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory = true) {
+	isLoading = true;
 	value = processPageValue(value);
 	let valueToLoad = value;
 	if (useCurrentDirectory && currentDirectory !== "")
 		valueToLoad = absolute(`${currentDirectory}/`, value)
-	
-	currentDirectory = valueToLoad.replace(/\/*[^/]+$/, "");
 
 	$(document).ready(function () {
 		const contents = $(contentsClass);
 		try {
+			currentDirectory = valueToLoad.replace(/\/*[^/]+$/, "");
 			// Load the page
 			contents.load(`/HTML/${valueToLoad}.html`, function (response, status, xhr) {
 				if (status === "error") {
@@ -177,6 +185,8 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
 			});
 		} catch {
 			load404();
+		} finally {
+			isLoading = false;
 		}
 	});
 }
