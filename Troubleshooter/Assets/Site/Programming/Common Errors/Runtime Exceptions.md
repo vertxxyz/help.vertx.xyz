@@ -11,7 +11,7 @@
 ### Errors
 #### Runtime
 - [You are trying to create a MonoBehaviour using the 'new' keyword.](Runtime%20Errors/MonoBehaviourNew.md)
-- ['Example' is missing the class attribute 'ExtensionOfNativeClass'!](../Scripts/1%20Script%20Loading.md)
+- ['Example' is missing the class attribute 'ExtensionOfNativeClass'!](../Scripts/Loading/Script%20Name.md)
 - [Tag: Example is not defined.](Runtime%20Errors/Undefined%20Tag.md)
 - ['X' AnimationEvent 'Y' on animation 'Z' has no receiver! Are you missing a component?](../../Animation/Animation%20Event/Receivers.md)
 

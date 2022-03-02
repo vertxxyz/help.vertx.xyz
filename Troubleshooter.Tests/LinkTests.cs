@@ -50,7 +50,7 @@ public class LinkTests
 			string directory = Path.GetDirectoryName(path);
 			foreach ((string localPath, _) in PageUtility.LocalImagesAsRootPaths(text, false))
 			{
-				string fullPath = Path.GetFullPath(Path.Combine(directory, localPath)).ToUnTokenized();
+				string fullPath = Path.GetFullPath(Path.Combine(directory!, localPath)).ToUnTokenized();
 				new FileInfo(fullPath).Should().Exist();
 			}
 		}
