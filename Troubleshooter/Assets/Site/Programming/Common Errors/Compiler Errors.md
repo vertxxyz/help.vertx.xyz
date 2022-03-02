@@ -18,3 +18,4 @@
 - [CS1612](Compiler%20Errors/CS1612.md): Cannot modify the return value of 'Foo' because it is not a variable  
 - [CS1624](Compiler%20Errors/CS1624.md): The body of 'Foo.Bar()' cannot be an iterator block because 'type' is not an iterator interface type
 - [CS1644](Compiler%20Errors/CS1644.md): Feature 'feature' is not part of the C# 4.0 language specification
+- [CS8641](Compiler%20Errors/CS8641.md): 'else' cannot start a statement

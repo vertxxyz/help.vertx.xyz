@@ -160,9 +160,9 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
 	$(document).ready(function () {
 		const contents = $(contentsClass);
 		try {
-			currentDirectory = valueToLoad.replace(/\/*[^/]+$/, "");
 			// Load the page
 			contents.load(`/HTML/${valueToLoad}.html`, function (response, status, xhr) {
+				currentDirectory = valueToLoad.replace(/\/*[^/]+$/, "");
 				if (status === "error") {
 					load404();
 					return;

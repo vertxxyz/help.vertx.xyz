@@ -1,9 +1,13 @@
 ## Raycasting
-### Basics
-Raycasting requires physics colliders to work. You cannot raycast against raw meshes using the `Raycast` functions.  
+### Colliders
+Raycasting requires physics colliders to work.  
+You cannot raycast against raw meshes using the `Raycast` functions!  
 
-2D colliders cannot be hit by the `Physics.Raycast` functions, and require `Physics2D.Raycast` instead. 2D and 3D physics are entirely separate.
+### Physics systems
+
+2D colliders cannot be hit by [`Physics.Raycast`](https://docs.unity3d.com/ScriptReference/Physics.Raycast.html), requiring [`Physics2D.Raycast`](https://docs.unity3d.com/ScriptReference/Physics2D.Raycast.html) instead.  
+The 2D and 3D physics systems are entirely separate!
 
 ---  
-- [I am using a Layer Mask.](Raycasting/Raycasting%20Layer%20Masks.md)
+- [I am using a Layer Mask.](Raycasting/Layer%20Masks.md)
 - [I am **not** using Layer Mask.](Raycasting/Visual%20Debugging.md)
