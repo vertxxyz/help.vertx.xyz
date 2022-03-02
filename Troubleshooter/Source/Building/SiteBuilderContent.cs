@@ -23,6 +23,7 @@ public static partial class SiteBuilder
 		{
 			string extension = Path.GetExtension(path);
 			if (extension.Equals(".md")) continue; // Ignore pages
+			if (extension.Equals(".gen")) continue; // Ignore generated content
 
 			string fullPath = Path.GetFullPath(path);
 			string outputPath = ConvertRootFullSitePathToLinkPath(fullPath, extension, site, arguments);
@@ -52,7 +53,8 @@ public static partial class SiteBuilder
 		foreach (string path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))
 		{
 			string extension = Path.GetExtension(path);
-			if (extension.Equals(".md") || extension.Equals(".rtf") || extension.Equals(".html") || extension.Equals(".nomnoml")) continue; // Ignore pages & nomnoml
+			if (extension.Equals(".md") || extension.Equals(".rtf") || extension.Equals(".html") ||
+			    extension.Equals(".nomnoml")) continue; // Ignore pages & nomnoml
 
 			string fullPath = Path.GetFullPath(path);
 			string outputPath = ConvertFullEmbedPathToLinkPath(fullPath, extension, site, arguments);
@@ -62,13 +64,15 @@ public static partial class SiteBuilder
 				embedContent++;
 		}
 
-		arguments.VerboseLog($"{siteContent + embedContent} content files were written to disk. ({totalContent} total)");
+		arguments.VerboseLog(
+			$"{siteContent + embedContent} content files were written to disk. ({totalContent} total)");
 	}
 
 	private static FileResult.Validity FileProcessor(FileInfo file, out FileResult? result)
 	{
 		switch (file.Extension)
 		{
+			case ".gen":
 			case ".scss" when file.Name[0] == '_':
 				result = null;
 				return FileResult.Validity.Skipped;

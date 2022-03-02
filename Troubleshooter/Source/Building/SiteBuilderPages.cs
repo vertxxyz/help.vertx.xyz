@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using Markdig;
+using NUglify.Html;
 using Troubleshooter.Constants;
 using Troubleshooter.Issues;
 using static Troubleshooter.PageUtility;
@@ -84,8 +87,10 @@ public static partial class SiteBuilder
 			DoProcessPath(path, ResourceLocation.Embed);
 
 		// Collect Site Pages
-		foreach (var path in Directory.EnumerateFiles(site.Directory, "*.md", SearchOption.AllDirectories))
+		foreach (var path in Directory.EnumerateFiles(site.Directory, "*", SearchOption.AllDirectories).Where(p => p.EndsWith(".md") || p.EndsWith(".gen")))
 			DoProcessPath(path, ResourceLocation.Site);
+
+		CollectGeneratedPages();
 
 		return pages;
 
@@ -120,14 +125,17 @@ public static partial class SiteBuilder
 			switch (extension)
 			{
 				case ".md":
-					page = new(fullPath, ResourceType.Markdown, location);
+					page = new PageResource(fullPath, ResourceType.Markdown, location);
+					break;
+				case ".gen":
+					page = new PageResource(fullPath, ResourceType.Generator, location);
 					break;
 				case ".rtf":
-					page = new(fullPath, ResourceType.RichText, location);
+					page = new PageResource(fullPath, ResourceType.RichText, location);
 					break;
 				case ".html":
 				case ".nomnoml":
-					page = new(fullPath, ResourceType.Html, location);
+					page = new PageResource(fullPath, ResourceType.Html, location);
 					break;
 				default:
 					// Ignore content that is not buildable page content.
@@ -137,6 +145,60 @@ public static partial class SiteBuilder
 
 			pages.Add(fullPath, page);
 			return true;
+		}
+
+		void CollectGeneratedPages()
+		{
+			PageResources toAppend = new();
+			foreach ((_, PageResource page) in pages)
+			{
+				foreach ((string key, PageResource value) in ProcessGenerator(site, pages, page))
+					toAppend.Add(key, value);
+			}
+
+			foreach (KeyValuePair<string, PageResource> pair in toAppend)
+				pages.Add(pair.Key, pair.Value);
+		}
+	}
+	
+	private static readonly Regex _generatorLinkRegex = new(@"\[([\w ]+?)\]\(([\w%/]+?)\.md\)", RegexOptions.Compiled);
+
+	private static IEnumerable<(string key, PageResource value)> ProcessGenerator(Site site, PageResources allResources, PageResource page)
+	{
+		// Generated markdown
+		if (page.FullPath.EndsWith("_sidebar.md.gen"))
+		{
+			// Sidebar markdown
+			page.ProcessMarkdown(File.ReadAllText(page.FullPath), site, allResources);
+
+			// TODO Find all linked content. Linked content is presumed to contain this sidebar content.
+			// Links to a specific page are stripped, and the link text is bolded.
+			// After processing, append the newly generated content to any pre-existing sidebar content, or create new.
+			
+			/*
+			 *- [Script name](Script%20Name.md)
+			 *- [Console errors](Console%20Errors.md)
+			 *- [Base type](Base%20Type.md)
+			 *- [Editor contexts](Editor%20Contexts.md)
+			 *  - [Editor folders](Editor%20Folders.md)
+			 *  - [Editor assembly definitions](Assembly%20Definitions.md)
+			 *- [General advice](General%20Advice.md)
+			 *- [Project reimport](Project%20Reimport.md)
+			 */
+			// E:\Projects\help.vertx.xyz\Troubleshooter\Assets\Site\Programming\Scripts\Loading\Script Loading_sidebar.md.gen
+
+			string markdown = page.MarkdownText!;
+			MatchCollection matches = _generatorLinkRegex.Matches(markdown);
+			string directory = Path.GetDirectoryName(page.FullPath)!;
+			foreach (Match match in matches)
+			{
+				string path = $"{Path.Combine(directory, match.Groups[2].Value)}_sidebar.md";
+				PageResource resource = new(path, ResourceType.Markdown, page.Location)
+				{
+					MarkdownText = markdown.Replace($"[{match.Groups[1].Value}]({match.Groups[2].Value}.md)", $"**{match.Groups[1].Value}**")
+				};
+				yield return (path, resource);
+			}
 		}
 	}
 }

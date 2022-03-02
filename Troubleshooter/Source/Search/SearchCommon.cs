@@ -6,7 +6,8 @@ public static class SearchCommon
 	{
 		"\\index.html",
 		"\\404.html",
-		"_sidebar.html"
+		"_sidebar.html",
+		"gen.html"
 	};
 		
 	public static readonly string[] CommonValues =

@@ -1,4 +1,0 @@
-- **Raycasting**
-  - [Layer Masks with raycasts](Raycasting/Layer%20Masks.md)
-  - [Incorrect parameters](Raycasting/Incorrect%20Parameters.md)
-- [Visual debugging](Raycasting/Visual%20Debugging.md)

@@ -15,3 +15,6 @@ Ensure you are **not**:
 - Using `StopCoroutine` to halt the execution.
 - Throwing any exception inside the coroutine.  
    Exceptions will halt the execution of any method, and unless caught will entirely halt a coroutine.
+
+---  
+[The coroutine still stops before completion.](Overload.md)

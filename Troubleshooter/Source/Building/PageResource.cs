@@ -17,7 +17,8 @@ public enum ResourceType
 	None,
 	Markdown,
 	RichText,
-	Html
+	Html,
+	Generator
 }
 
 public enum ResourceLocation
@@ -58,7 +59,7 @@ public class PageResource
 	/// Processed output html
 	/// </summary>
 	public string? HtmlText { get; private set; }
-	
+
 	/// <summary>
 	/// Output location. This is only processed after <see cref="WriteToDisk"/> is called.
 	/// </summary>
@@ -75,8 +76,9 @@ public class PageResource
 	/// </summary>
 	public HashSet<string>? EmbeddedInto { get; private set; }
 
-	private string EmbedsDirectory => _embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").ToConsistentPath();
-	
+	private string EmbedsDirectory =>
+		_embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").ToConsistentPath();
+
 	private string? _embedsDirectory;
 
 	public PageResource(string fullPath, ResourceType type, ResourceLocation location)
@@ -117,6 +119,7 @@ public class PageResource
 				{
 					throw new BuildException(e, $"Error when parsing \"{FullPath}\" into RTF");
 				}
+
 				break;
 			case ResourceType.Html:
 				try
@@ -127,7 +130,11 @@ public class PageResource
 				{
 					throw new BuildException(e, $"Error when parsing HTML at \"{FullPath}\"");
 				}
+
 				break;
+			case ResourceType.Generator:
+				// Generators are processed during the gather stage.
+				return;
 			default:
 				throw new ArgumentOutOfRangeException();
 		}
@@ -142,33 +149,39 @@ public class PageResource
 	{
 		if (MarkdownText == null)
 			ProcessMarkdown(File.ReadAllText(FullPath), site, allResources);
-		HtmlText = Location switch
+
+		string text = Location switch
 		{
 			ResourceLocation.Embed =>
 				// Embeds are not fully processed into HTML until they are built when embedded into site content.
 				// This is done because something like Abbreviations requires the abbreviation target to be processed at the same time as the source.
-				MarkdownText,
+				MarkdownText!,
 			ResourceLocation.Site => ToHtml(MarkdownText!, markdownPipeline),
 			_ => throw new ArgumentOutOfRangeException(nameof(Location), Location, "Location was not handled.")
 		};
+
+		if (HtmlText == null)
+			HtmlText = text;
+		else
+			HtmlText += text;
 	}
-		
+
 	private static string ToHtml(string markdown, MarkdownPipeline pipeline)
 	{
 		string markdownPreProcessed = MarkdownPreProcessors.Process(markdown);
-			
+
 		MarkdownPipeline GetPipeline()
 		{
 			var selfPipeline = pipeline.Extensions.Find<SelfPipelineExtension>();
 			return selfPipeline is not null ? selfPipeline.CreatePipelineFromInput(markdownPreProcessed) : pipeline;
 		}
-			
+
 		pipeline = GetPipeline();
-			
+
 		var document = MarkdownParser.Parse(markdownPreProcessed, pipeline);
 		using var rentedRenderer = pipeline.RentCustomHtmlRenderer();
 		CustomHtmlRenderer renderer = rentedRenderer.Instance;
-			
+
 		renderer.Render(document);
 		renderer.Writer.Flush();
 		return HtmlPostProcessors.Process(renderer.Writer.ToString() ?? string.Empty);
@@ -188,7 +201,8 @@ public class PageResource
 			{
 				string fullPath = PageUtility.LocalEmbedToFullPath(localPath, site);
 				if (!allResources.TryGetValue(fullPath, out var embeddedPage))
-					throw new LogicException($"\"{fullPath}\" is missing from {nameof(allResources)} while processing \"{FullPath}\".{nameof(embeds)}");
+					throw new LogicException(
+						$"\"{fullPath}\" is missing from {nameof(allResources)} while processing \"{FullPath}\".{nameof(embeds)}");
 
 				stringBuilder.Append(allText[last..(group.Index - 2)]);
 				stringBuilder.Append(embeddedPage.HtmlText);
@@ -231,7 +245,7 @@ public class PageResource
 				string imagePath = image.FinaliseDirectoryPathOnly(); // The path explicitly mentioned in the markdown
 				string combinedPath = Path.Combine(directoryRoot, directory, imagePath);
 				string finalPath = HttpUtility.UrlPathEncode(combinedPath).ToConsistentPath();
-				if(finalPath[0] != '/')
+				if (finalPath[0] != '/')
 					stringBuilder.Append($"/{finalPath}");
 				else
 					stringBuilder.Append(finalPath);
@@ -251,10 +265,10 @@ public class PageResource
 	{
 		for (int i = 0; i < count; i++)
 		{
-			if(i + query.Length > input.Length)
+			if (i + query.Length > input.Length)
 				continue;
 			ReadOnlySpan<char> span = input.AsSpan(i, query.Length);
-			if(span.SequenceEqual(query)) return true;
+			if (span.SequenceEqual(query)) return true;
 		}
 
 		return false;
@@ -278,8 +292,15 @@ public class PageResource
 				return WriteStatus.Ignored;
 		}
 
+		if (Type == ResourceType.Generator)
+		{
+			// Generators do not write, they only create other resources.
+			return WriteStatus.Ignored;
+		}
+
+
 		// Check the previously built file to see whether it ought to be re-written.
-		OutputLinkPath = site.ConvertFullSitePathToLinkPath(FullPath);
+		OutputLinkPath ??= site.ConvertFullSitePathToLinkPath(FullPath);
 		string path = Path.Combine(arguments.HtmlOutputDirectory!, $"{OutputLinkPath}.html");
 		return IOUtility.CreateFileIfDifferent(path, HtmlText!) ? WriteStatus.Written : WriteStatus.Skipped;
 	}

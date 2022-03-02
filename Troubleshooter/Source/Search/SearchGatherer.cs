@@ -62,26 +62,34 @@ public static class SearchGatherer
 		{
 			(string file, int index) = pair;
 			if (EndsWithAny(file, SearchCommon.ExcludedFileEndings)) return;
-			foreach (string word in await ConstructSearchTermsAsync(file, index, headerText))
+			try
 			{
-				wordsToFileIndexAndCount.AddOrUpdate(
-					word,
-					_ => new()
-					{
-						{ index, 1 }
-					},
-					(_, fileIndexToCount) =>
-					{
-						lock (fileIndexToCount)
+				foreach (string word in await ConstructSearchTermsAsync(file, index, headerText))
+				{
+					wordsToFileIndexAndCount.AddOrUpdate(
+						word,
+						_ => new()
 						{
-							if (!fileIndexToCount.TryGetValue(index, out int value))
-								value = 0;
-							fileIndexToCount[index] = value + 1;
+							{ index, 1 }
+						},
+						(_, fileIndexToCount) =>
+						{
+							lock (fileIndexToCount)
+							{
+								if (!fileIndexToCount.TryGetValue(index, out int value))
+									value = 0;
+								fileIndexToCount[index] = value + 1;
+							}
+
+							return fileIndexToCount;
 						}
-							
-						return fileIndexToCount;
-					}
-				);
+					);
+				}
+			}
+			catch (Exception)
+			{
+				Console.WriteLine($"{file} failed to parse for {nameof(GenerateSearchResult)}.");
+				throw;
 			}
 		});
 

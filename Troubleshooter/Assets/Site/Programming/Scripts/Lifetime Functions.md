@@ -1,6 +1,6 @@
 ## Enable toggle: Lifetime functions
 ### Description
-Disabling a script only affects a few functions implemented by that component. A select few of those functions are required to enable the toggle in the component inspector.
+Disabling a script only affects a few functions implemented by that component. Some of those functions are required to enable the toggle in the component inspector.
 
 ### Resolution
 Add any of the listed functions:
