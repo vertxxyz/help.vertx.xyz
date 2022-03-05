@@ -10,7 +10,7 @@ For example, the [2D Pixel Perfect package](https://docs.unity3d.com/Packages/co
 Some packages will have installation instructions in their documentation, and it's important to exhaust that information first.  
 
 #### Finding package versions
-In the documentation's **Changelog** tab versions are in the header for each release, e.g. `5.0.1`. This number may contain a suffix, e.g. `5.0.0-pre.2`.  
+In the documentation's **Changelog** tab versions are in the header for each release, for example `5.0.1`. This number may contain a suffix, e.g. `5.0.0-pre.2`.  
 Not all versions are compatible with all Unity releases. You may have to [upgrade or downgrade versions](https://docs.unity3d.com/Manual/upm-ui-update.html) to match your release.  
 :::  
 
@@ -27,7 +27,7 @@ Packages in a project are described by the `manifest.json` file in the **Package
 
 #### Example
 1. Open the manifest in a text editor, and append a comma to the last line inside the `dependencies` section.
-2. Add your package and release number to a new line in that section in the same format as other entries. E.g. `"com.unity.2d.pixel-perfect": "5.0.1"`.  
+2. Add your package and release number to a new line in that section in the same format as other entries, for example `"com.unity.2d.pixel-perfect": "5.0.1"`.  
     It is important to note that the last entry should not have a trailing comma. This is invalid JSON and Unity will fail to load the manifest.  
 3. Save the manifest and return to Unity.
 

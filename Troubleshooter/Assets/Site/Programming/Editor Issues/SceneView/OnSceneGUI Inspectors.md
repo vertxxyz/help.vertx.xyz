@@ -7,5 +7,5 @@ When opening Inspectors, the first one opened becomes the primary one. Opening a
 Reopening your Inspectors may fix the issue. Resetting the window layout (using the Layouts dropdown in the top right) may also do so.  
 
 ### Debug Mode
-It's also worth noting that an inspector in [Debug Mode](https://docs.unity3d.com/Manual/InspectorOptions.html) does not receive the callbacks, as the custom Editor is not used.  
+It's also worth noting that an inspector in [Debug Mode](https://docs.unity3d.com/Manual/InspectorOptions.html) does not receive the callbacks, as the custom Editor isn't used.  
 

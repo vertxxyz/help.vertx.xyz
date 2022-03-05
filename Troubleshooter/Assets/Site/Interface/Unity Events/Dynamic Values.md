@@ -6,7 +6,7 @@ Static values are set in the inspector, and dynamic values are passed via code.
 
 ### Resolution
 
-1. Ensure that the target method takes the same parameter that the UnityEvent sends  
+1. Check that the target method takes the same parameter that the UnityEvent sends.  
   Looking at the UnityEvent Inspector you can compare the parameter to your own.  
   Unity shows these as the .Net Type, not the keyword. This means that it shows `Single` instead of `float`, `Boolean` instead of `bool`, etc. Your code can use the standard keyword types.  
   ![UnityEvent Parameters](unity-event-parameters.png)
@@ -14,7 +14,7 @@ Static values are set in the inspector, and dynamic values are passed via code.
 2. Choose the target method from the **Dynamic** section of the function list.  
   ![Dynamic UnityEvent](unity-event-dynamic.png)  
   If you can select a value for the parameter you have **not** selected from the **Dynamic** section of the function list.  
-  If the method does not appear in the dynamic section, but appears in the static section, then you have failed step 1.  
+  If the method does not appear in the dynamic section, but appears in the static section, you have failed step 1.  
 
 ---  
 

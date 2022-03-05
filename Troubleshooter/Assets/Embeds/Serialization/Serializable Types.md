@@ -1,4 +1,4 @@
-- References to objects that derive from `UnityEngine.Object` (eg. a reference to a `MonoBehaviour`) that is not generic.
+- References to objects that derive from `UnityEngine.Object` (eg. a reference to a `MonoBehaviour`) that isn't generic.
 - Primitive data types (`int`, `float`, `double`, `bool`, `string`, etc.)
 - Enum types.
 - Certain Unity built-in types: `Vector2`, `Vector3`, `Vector4`, `Rect`, `Quaternion`, `Matrix4x4`, `Color`, `Color32`, `LayerMask`, `AnimationCurve`, `Gradient`, `RectOffset`, `GUIStyle`.

@@ -1,6 +1,6 @@
 ## TextMesh Pro: Blurry text
 ### Description
-If there is not enough padding surrounding text then features will blur together when viewed at a distance due to the nature of TextMesh Pro's signed distance field font representation.
+If there isn't enough padding surrounding text then features will blur together when viewed at a distance due to the nature of TextMesh Pro's signed distance field font representation.
 
 ### Resolution
 Increase the **padding** on the Font Asset through the Update Atlas Texture button or the Font Atlas Creator.  

@@ -50,7 +50,7 @@ public class ExampleInspector : Editor
 ```
 
 [Editor](https://docs.unity3d.com/ScriptReference/Editor.html) provides the [serializedObject](https://docs.unity3d.com/ScriptReference/Editor-serializedObject.html) of the object(s) it is inspecting. In our case this is an instance of `Example`.  
-We can use [FindProperty](https://docs.unity3d.com/ScriptReference/SerializedObject.FindProperty.html) to get root SerializedProperties from the SerializedObject. E.g.  
+We can use [FindProperty](https://docs.unity3d.com/ScriptReference/SerializedObject.FindProperty.html) to get root SerializedProperties from the SerializedObject. For example:  
 
 ```csharp
 private SerializedProperty data, values;
@@ -139,7 +139,7 @@ private void OnEnable()
 
 ### Values
 
-You **cannot** retrieve the C# instance associated with a SerializedProperty that is not the bottom of the serialization hierarchy. So, in our example, we cannot retrieve the value for `data` from its SerializedProperty, we can only go deeper and get the value of the last descendants.  
+You **cannot** retrieve the C# instance associated with a SerializedProperty that isn't the bottom of the serialization hierarchy. So, in our example, we cannot retrieve the value for `data` from its SerializedProperty, we can only go deeper and get the value of the last descendants.  
 Once at a SerializedProperty that is at the bottom there are predefined *Value* properties that can be used to access the value Unity has serialized.  
 See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) Properties documentation to find the appropriate Value property; `floatValue`, `stringValue`, `objectReferenceValue`, etc.
 

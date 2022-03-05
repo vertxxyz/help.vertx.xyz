@@ -10,7 +10,7 @@ What this means:
 - Their individual components are **not** to be used.  
   `x`, `y`, `z`, and `w` are for advanced use cases only.
 - They cannot represent rotations of more than 180 degrees.
-- They do not suffer from [gimbal lock](https://www.youtube.com/watch?v=zc8b2Jo7mno).
+- They don't suffer from [gimbal lock](https://www.youtube.com/watch?v=zc8b2Jo7mno).
 
 ### What do they represent?
 Confusingly just as a `Vector3` can represent a position or a direction, a quaternion can represent either an **orientation** or a **rotation**.  

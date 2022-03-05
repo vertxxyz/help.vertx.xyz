@@ -24,11 +24,11 @@ The ::file name::{.context-a}, ::line number::{.context-b}, ::column number::{.c
 ::descriptions::{.context-e} provide important context to the error code, explaining what specifically may be wrong.
 
 :::info
-If your error is not ::underlined in red::{.error-underline} in your IDE, [configure it correctly](../../IDE%20Configuration.md).  
+If your error isn't ::underlined in red::{.error-underline} in your IDE, [configure it correctly](../../IDE%20Configuration.md).  
 Compiler errors should be underlined, and you should see autocompleted suggestions as you type.
 :::
 
 ### Details
 #### Errors in packages
-If errors are appearing from a package, and not Assets, then either the package is not valid for your version of Unity, or it is corrupted.  
+If errors are appearing from a package, and not Assets, then either the package isn't valid for your version of Unity, or it is corrupted.  
 Go to the Package Manager (**Window | Package Manager**), expand the dropdown for the package having issues, and [upgrade or downgrade versions](https://docs.unity3d.com/Manual/upm-ui-update.html) until you no longer have errors in the project.

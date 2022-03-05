@@ -1,5 +1,5 @@
 ## IDE configuration
-If your IDE is not providing autocomplete suggestions or not underlining errors in red then it needs to be configured.  
+If your IDE isn't providing autocomplete suggestions or not underlining errors in red then it needs to be configured.  
 
 **I need help configuring:**
 - [Visual Studio](IDE%20Configuration/Visual%20Studio%20Configuration.md)

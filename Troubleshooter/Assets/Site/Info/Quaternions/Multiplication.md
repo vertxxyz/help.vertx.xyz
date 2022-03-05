@@ -38,7 +38,7 @@ The logic can be applied to rotate any point around its origin.
 <<Code/Info/Quaternions/Multiplication 4.html>>  
 
 ### Usage: Rotating quaternions
-Quaternion multiplication is not commutative, `A * B != B * A`.  
+Quaternion multiplication isn't commutative, `A * B != B * A`.  
 Rotating `A` influences `B` as a parent rotation.  
 Rotating `B` influences `A` as a local space modification.  
 To form an intuition about the influence of `A` or `B` on the result, interact with the diagram below.

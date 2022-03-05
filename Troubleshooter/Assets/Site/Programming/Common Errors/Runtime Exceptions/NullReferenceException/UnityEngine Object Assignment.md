@@ -12,15 +12,15 @@ To resolve a `NullReferenceException` caused by a `null` `UnityEngine.Object` yo
 :::  
   **Or:**  
 :::note
-  #### Check the reference is not null before trying to access it  
+  #### Check the reference isn't null before trying to access it  
   `if (example != null)`  
   If looking to combine with GetComponent, use [TryGetComponent](https://docs.unity3d.com/ScriptReference/Component.TryGetComponent.html) instead.
 :::
 ::::
 - Ensure that nothing is destroying the Object, or setting it to `null` before you attempt to use it.
 - Check assignments use correct assumptions. Some examples:
-    - `GetComponent<Example>()` will return `null` if an `Example` component is not attached to the same GameObject.
-    - `Camera.main` will return null if there is not a camera tagged as MainCamera.
+    - `GetComponent<Example>()` will return `null` if an `Example` component isn't attached to the same GameObject.
+    - `Camera.main` will return null if there isn't a camera tagged as MainCamera.
 - Check that you are not using modern null checking operators[^2] (`?.`, `??`, `??=`).
 
 ---

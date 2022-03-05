@@ -7,7 +7,7 @@ Lines not drawn continuously will appear for a single frame, to counteract this 
 Make sure that the variables used in your draw functions are the same as those used by the functionality you are debugging.  
 
 :::info
-If lines do not appear, ensure Gizmos are enabled for that view
+If lines don't appear, ensure Gizmos are enabled for that view
 :::
 
 #### DrawRay

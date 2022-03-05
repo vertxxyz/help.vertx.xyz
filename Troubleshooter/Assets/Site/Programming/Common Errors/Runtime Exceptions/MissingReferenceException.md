@@ -8,6 +8,6 @@ Re-assign a value to the field via the Inspector.
 
 ---
 
-This can also occur when trying to retrieve something that is not a `Component` using the [GetComponent](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) functions.  
+This can also occur when trying to retrieve something that isn't a `Component` using the [GetComponent](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) functions.  
 For example, `There is no 'GameObject' attached to the "Example" game object`, is caused by `GetComponent<GameObject>()`.  
 To get a GameObject from a component Unity exposes the [gameObject](https://docs.unity3d.com/ScriptReference/Component-gameObject.html) property.

@@ -8,7 +8,7 @@ Instead, the Rendering Mode should be set to **Fade**, reflections and highlight
 ![Built-In Fade Material](built-in-fade-mat.png)
 
 ### URP or HDRP
-Ensure that the material is using the correct Blending Mode, a typical setup is using Alpha blending. If you intend to use another Blending Mode, enabling Alpha Clipping may make transparency function as expected.  
+Check that the material is using the correct Blending Mode, a typical setup is using Alpha blending. If you intend to use another Blending Mode, enabling Alpha Clipping may make transparency function as expected.  
 When using HDRP, **Preserve specular lighting** should be disabled, as this will make materials behave like glass, where transparent surfaces will reflect the scene.  
 
 ---

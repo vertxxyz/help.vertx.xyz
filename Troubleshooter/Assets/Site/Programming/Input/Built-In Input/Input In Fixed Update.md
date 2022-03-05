@@ -1,13 +1,23 @@
 ## Input in Fixed Update
 ### Description
-If instantaneous [Input](https://docs.unity3d.com/ScriptReference/Input.html) methods (`GetKeyDown`, `GetMouseButtonDown`, etc) are used in `FixedUpdate` or any physics message function (eg. `OnCollisionEnter`) then they will be triggered inconsistently.  
+When **instantaneous** [`Input`](https://docs.unity3d.com/ScriptReference/Input.html) methods ([`GetKeyDown`](https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html), [`GetMouseButtonDown`](https://docs.unity3d.com/ScriptReference/Input.GetMouseButtonDown.html), and others) are used in `FixedUpdate` or any physics message function (eg. `OnCollisionEnter`) they will be triggered inconsistently.  
 
-`FixedUpdate` is not guaranteed to run every frame. It is run at a fixed rate, sometimes multiple times a frame, and is frame-rate independent. If an input occurs on a frame where `FixedUpdate` is not run, then it will not be processed by your code.  
+#### Why?
+`FixedUpdate` is run at a fixed rate, sometimes multiple times a frame, and is frame-rate independent. If input occurs on a frame where `FixedUpdate` isn't run, it won't be processed by your code.  
 See [`FixedUpdate`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html) for more information.  
 
 ### Resolution
-To resolve this cache values in `Update`, and handle them when they are used in `FixedUpdate` or the appropriate message function.
+Cache values in [`Update`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html), and consume them in `FixedUpdate` or appropriate message functions.
 
 #### Example
 <<Code/Input/Fixed Update Input.rtf>>  
 
+---  
+
+When using physics callbacks and not calling physics functions, you can move your logic to `Update`.
+
+#### Example
+
+<<Code/Input/Physics Message Input.rtf>>
+
+If you expect overlapping triggers, this logic should involve a counter.

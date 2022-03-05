@@ -8,7 +8,7 @@ Input in UI Toolkit requires multiple things to receive input events:
 - If using the Input System package, it is required to be version `1.1.0-pre.5` or above.
 
 :::warning
-Do not make assumptions. Double checking these steps are met is always recommended.
+Don't make assumptions. Double checking these steps are met is always recommended.
 :::
 
 To troubleshoot cases where other UI is blocking input, use the Event Debugger (**Window | UI Toolkit | Event Debugger**).

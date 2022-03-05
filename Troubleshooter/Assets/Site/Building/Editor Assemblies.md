@@ -1,6 +1,6 @@
 ## Editor assemblies
 ### Description
-Editor code is not accessible in a build. Unity has multiple methods to separate and not include this code.
+Editor code isn't accessible in a build. Unity has multiple methods to separate and not include this code.
 
 ### Resolution
 #### Editor folders

@@ -1,5 +1,5 @@
 
-Do **not** multiply mouse input by `Time.deltaTime`.
+Don't multiply mouse input by `Time.deltaTime`.
 
 If you are using combined input with a joystick, only scale the joystick portion of this input.  
 

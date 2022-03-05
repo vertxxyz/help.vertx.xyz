@@ -10,7 +10,7 @@ That `Instance` property can then be referred to in other classes via the type n
 <<Code/Variables/Singleton 2.rtf>>
 
 ### Details
-This concept can be applied for non-MonoBehaviour classes by performing similar logic in the constructor. Destroy is not needed in that case.
+This concept can be applied for non-MonoBehaviour classes by performing similar logic in the constructor. Destroy isn't needed in that case.
 
 The above example is a simple implementation of a Singleton, but it isn't necessarily ideal. Often singletons should be set up once for the lifetime of a project, and should survive scene-loading.  
 Unity has a method for doing this called [DontDestroyOnLoad](https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html).  

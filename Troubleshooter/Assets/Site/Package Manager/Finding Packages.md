@@ -1,8 +1,8 @@
 ## Finding packages
 ### Pre-release packages
-If a package is not visible, it may be Pre-release. Pre-release packages are not verified for guaranteed safe use.  
+If a package isn't visible, it may be pre-release. Pre-release packages are not verified for guaranteed safe use.  
 You can find out how to enable these packages with the current version of Unity [here](https://docs.unity3d.com/Manual/pack-preview.html).  
-Pre-release was previously called "Preview".
+Pre-release was previously called "preview".
 
 Before 2020 this was in the Advanced dropdown at the top of UPM, but it has now moved to Project Settings (**Edit | Project Settings**). You can reach this menu using the cog at the top of UPM.  
 

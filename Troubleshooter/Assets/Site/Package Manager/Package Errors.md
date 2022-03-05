@@ -4,8 +4,8 @@ Packages are read-only addons or features that are versioned, with different ver
 
 ### Resolution
 If a package has errors, either:
-1. The package is not compatible with your Unity release.
-2. The package is not compatible with another package.
+1. The package isn't compatible with your Unity release.
+2. The package isn't compatible with another package.
 3. The package is corrupted.
 
 The solution to all 3 problems is to upgrade or downgrade the package until a version has compatibility with your project.

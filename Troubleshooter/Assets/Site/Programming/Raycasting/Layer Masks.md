@@ -4,7 +4,7 @@ Layer masks are bitmasks that describe which layers are active or otherwise.
 :::info{.inline}
 Active layers will be hit by the raycast.
 :::  
-A layer mask may be an `int`, but it is not representing a single layer.  
+A layer mask may be an `int`, but it isn't representing a single layer.  
 ### Resolution
 If bitmasks are confusing, a simple resolution is to expose a `LayerMask` property which can be simply configured via the Inspector.  
 ```csharp

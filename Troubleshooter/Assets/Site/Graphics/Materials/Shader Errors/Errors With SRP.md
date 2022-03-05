@@ -1,6 +1,6 @@
 <<Abbreviations/SRP.md>>
 ## Shader errors with SRPs
-The common problem people have with SRPs is improper setup. This is when the SRP asset is not assigned in Project Settings.  
+The common problem people have with SRPs is improper setup. This is when the SRP asset isn't assigned in Project Settings.  
 
 Setup for **URP** can be found [here](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@latest/index.html?subfolder=/manual/InstallingAndConfiguringURP.html), upgrading shaders [here](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@latest/index.html?subfolder=/manual/upgrading-your-shaders.html).  
 Setup for **HDRP** can be found [here](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest/index.html?subfolder=/manual/Upgrading-To-HDRP.html).  

@@ -1,5 +1,5 @@
 ## Scene view: Visibility
-Check that Scene visibility is not disabled.
+Check that Scene visibility isn't disabled.
 
 ![Scene view visibility](scene-view-visibility.png)
 

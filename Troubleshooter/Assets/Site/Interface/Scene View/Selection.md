@@ -1,5 +1,5 @@
 ## Scene view: Selection
-Check that Scene pickability is not disabled for the object's layer.
+Check that Scene pickability isn't disabled for the object's layer.
 
 ![Scene view pickability](scene-view-pickability.png)  
 

@@ -9,7 +9,7 @@ Having runtime scripts in an editor context is invalid.
 
 
 ### Resolution
-Move the script outside of the context created by the Editor folder. If the folder is not intended to be Editor-only, you should rename it.  
+Move the script outside of the context created by the Editor folder. If the folder isn't intended to be Editor-only, you should rename it.  
 
 If you are using a scriptable object or prefab, this should also not be inside an editor context.  
 

@@ -10,4 +10,4 @@ If you're not okay with switching to Keycode, see the [mapping virtual axes to c
 Capitalisation is important. Uppercase keys will appear unknown.
 :::  
 
-[^1]: Check [IDE configuration](../../IDE%20Configuration.md) if you do not have autocomplete.
+[^1]: Check [IDE configuration](../../IDE%20Configuration.md) if you don't have autocomplete.

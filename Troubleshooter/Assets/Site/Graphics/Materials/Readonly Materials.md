@@ -13,7 +13,7 @@ or you can remap the materials manually to others in your project.
 See the [materials tab](https://docs.unity3d.com/Manual/FBXImporter-Materials.html) documentation for more information.
 
 #### Replacing materials on instances
-Alternatively you can replace the material used on a prefab that is not a model prefab (a prefab directly generated from a model), or an instance, by dragging a different material into the materials slots on the [Renderer](https://docs.unity3d.com/Manual/class-MeshRenderer.html#materials) component.  
+Alternatively you can replace the material used on a prefab that isn't a model prefab (a prefab directly generated from a model), or an instance, by dragging a different material into the materials slots on the [Renderer](https://docs.unity3d.com/Manual/class-MeshRenderer.html#materials) component.  
 
 #### Creating materials
 Other Materials may be readonly because they are built-in, or provided by packages. In this case a new material should be created using the shader used by the material you want to replicate.  

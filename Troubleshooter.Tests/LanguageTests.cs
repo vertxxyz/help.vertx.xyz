@@ -29,6 +29,7 @@ public class LanguageTests
 		text.Should().NotContain("assmdef", StringComparison.OrdinalIgnoreCase, "Should be \"asmdef\"");
 		text.Should().NotContain("left hand", StringComparison.OrdinalIgnoreCase, "Should be \"left-hand\"");
 		text.Should().NotContain("right hand", StringComparison.OrdinalIgnoreCase, "Should be \"right-hand\"");
+		text.Should().NotContain("framerate", StringComparison.OrdinalIgnoreCase, "Should be \"frame rate\"");
 	}
 		
 	/// <summary>

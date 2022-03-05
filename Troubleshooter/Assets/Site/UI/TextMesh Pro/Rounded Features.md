@@ -14,4 +14,4 @@ Do not increase the Atlas Resolution beyond 2048✕2048 when targeting mobile de
 When manually increasing Sampling Point Size large values can cause characters to leave the atlas.
 :::
 
-Using a different **Render Mode** (that is not Smooth or Raster) may also produce better results in specific circumstances. SDFAA is the default mode.
+Using a different **Render Mode** (that isn't Smooth or Raster) may also produce better results in specific circumstances. SDFAA is the default mode.

@@ -7,7 +7,7 @@ but certain Unity-provided structures are provided to work within these restrict
 
 
 ### Resolution
-Allocating managed memory in jobs is incredibly slow, and the job is not able to make use of the Unity Burst compiler to improve performance. So in almost all cases removing this allocation is the way forward.  
+Allocating managed memory in jobs is incredibly slow, and the job isn't able to make use of the Unity Burst compiler to improve performance. So in almost all cases removing this allocation is the way forward.  
 
 When using arrays or lists in Jobs you should be using NativeArray or NativeList, there are many different alternative collection types that can be found in the [Unity Collections Package](https://docs.unity3d.com/Packages/com.unity.collections@latest).  
 These collections provide safety mechanisms for multithreading, and allocations are Burst-compiler ready.  

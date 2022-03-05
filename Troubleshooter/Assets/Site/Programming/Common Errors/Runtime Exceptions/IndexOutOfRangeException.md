@@ -1,7 +1,7 @@
 ## [IndexOutOfRangeException](https://docs.microsoft.com/en-us/dotnet/api/system.indexoutofrangeexception)
 ### Description
 Collections are accessed via indices using the indexer syntax: `[value]`.  
-C#'s indices are **zero-indexed**. This means that indices begin at 0, and go up to but do not include the length of the collection.  
+C#'s indices are **zero-indexed**. This means that indices begin at 0, and go up to but don't include the length of the collection.  
 `[0..Length)`  
 
 ### Resolution

@@ -4,4 +4,4 @@ Anisotropic filtering increases Texture quality when viewed from a grazing angle
 ### Resolution
 Increase the **aniso level** on the Texture asset.  
 
-If this does not affect the texture make sure that **Edit | Project Settings | Quality | Anisotropic Textures** is not set to **disabled**.
+If this does not affect the texture make sure that **Edit | Project Settings | Quality | Anisotropic Textures** isn't set to **disabled**.

@@ -1,7 +1,7 @@
 ## Compression settings
 ### Description
 To reduce file size textures are imported with a degree of compression by default.  
-In some cases, like pixel art, or specific UI textures, compression is not desired, and should be disabled.
+In some cases, like pixel art, or specific UI textures, compression isn't desired, and should be disabled.
 
 Different platforms support different forms of compression, see [Supported texture compression formats, by platform](https://docs.unity3d.com/Manual/class-TextureImporterOverride.html) for format compatibility and effects.
 
