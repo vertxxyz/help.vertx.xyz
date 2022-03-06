@@ -2,7 +2,6 @@
 ### Description
 Linear interpolation or "[`Lerp`](https://docs.unity3d.com/ScriptReference/Mathf.Lerp.html)", is a simple function that returns a straight-line value between two points (`a` and `b`) based on a normalised value (`t`).  
 
-### Huh?
 ```csharp
 public static float Lerp(float a, float b, float t)
 {
@@ -10,13 +9,14 @@ public static float Lerp(float a, float b, float t)
 }
 ```
 
+### "Huh?"
 **It's simple!**
 
 - When `t` is `<= 0`, `Lerp` will return `a`.
 - When `t` is `>= 1`, `Lerp` will return `b`.
 - When `t` is in between `0` and `1`, `Lerp` will return a value between the two.
 
-**Give me an example!**  
+**"Give me an example..."**  
 <<Code/Specific/Lerp/Example.html>>  
 
 - `t = 0.0f`, `value` is `50`.

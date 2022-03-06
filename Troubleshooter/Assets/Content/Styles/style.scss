@@ -419,6 +419,11 @@ input {
 	color: base.$bold-color;
 }
 
+input.token {
+	margin-left: 0;
+	min-width: 10px;
+}
+
 .search-results {
 	margin-block-start: 1em;
 }
@@ -447,4 +452,20 @@ input {
 
 .report-link {
 	font-size: 11pt;
+}
+
+blockquote {
+	border-radius: 6px;
+	border: 1px solid #262626;
+	border-left: 5px #6C95EB solid;
+	padding: 15px 20px;
+	background: #00000024;
+	margin-block-start: 0;
+	margin-block-end: 1em;
+	margin-inline-start: 0;
+	margin-inline-end: 12px;
+	
+	:last-child {
+		margin-block-end: 0;
+	}
 }

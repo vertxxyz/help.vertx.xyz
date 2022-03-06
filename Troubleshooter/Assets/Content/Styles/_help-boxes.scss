@@ -36,6 +36,12 @@ div.info-box.inline {
 	}	
 }
 
+.note {
+	>div.info-box.inline {
+		margin-top: inherit;
+	}
+}
+
 div.info-box.small {
 	>img {
 		@extend %small;

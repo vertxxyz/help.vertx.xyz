@@ -3,7 +3,7 @@
 Lerp is **linear**, if `t` changes at a constant speed, so does the output.  
 Wrong-lerp is an application of lerp that produces smooth, yet imperfect movement towards a target value.  
 Accompanied by such phrases like:
-> Your using Lerp wrong.  
+> *"Your using Lerp wrong."*  
 
 This common hacky application easily creates smooth motion.  
 
@@ -12,12 +12,13 @@ value = Mathf.Lerp(value, target, Time.deltaTime * speed);
 ```
 
 ### Downsides
-- `speed` isn't speed, it's vague quickness.
-- `target` is approached, it isn't reached. We move a vague proportion towards it instead.
+- `speed` isn't speed, it's a vague quickness.
+- `target` is approached, it isn't reached. This moves a vague proportion towards it instead.
 - The result depends on the frame rate.  
-    Although it's common to see `deltaTime` used, its function is only vaguely associated with modifying the result.  
+    Although it's common to see `deltaTime` used, its function here is only a vague improvement.  
 
-*Vague* is the takeaway from this usage. If you don't need exact outcomes or durations and aren't too worried about differences across frame rates, applying lerp like this is a common creative way to smooth movement.  
+*Vague* is the takeaway from this usage.  
+If you don't need exact outcomes or durations and aren't too worried about differences across frame rates, applying lerp like this is a common creative way to smooth movement.  
 
 ### Conclusion
 

@@ -251,6 +251,13 @@ const EasingFunctions = {
 }
 
 const lerp = (a, b, t) => (1 - t) * a + t * b;
+const lerpClamped = (a, b, t) => {
+	if(t < 0)
+		t = 0;
+	else if(t > 1)
+		t = 1;
+	return (1 - t) * a + t * b;
+};
 
 const inverseLerp = (a, b, t) => (t - a) / (b - a);
 
@@ -333,6 +340,7 @@ export {
 	Slider,
 	EasingFunctions,
 	lerp,
+	lerpClamped,
 	inverseLerp,
 	remap,
 	circlePoints,

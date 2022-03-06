@@ -1,6 +1,6 @@
 ## Bit masks and Layer Masks
 ### Description
-`int` is a 32 bit value, A bit is 0 or 1; a 0 in a bitmask is an inactive layer, and a 1 is active.  
+`int` is a 32 bit value, A bit is `0` or `1`; a `0` in a bitmask is an inactive layer, and a `1` is active.  
 This means we can represent 32 layer toggles with a single `int` value.
 
 ### Creating masks from layers
@@ -46,7 +46,7 @@ The [logical exclusive or](https://docs.microsoft.com/en-us/dotnet/csharp/langua
 
 ### Checking if a mask contains another mask
 ```csharp
-if ((mask & queryMask) == queryMask) {
+if ((mask & queryMask) == queryMask)
 ```
 
 When dealing with an enum, you could alternatively choose to use the [`Enum.HasFlag`](https://docs.microsoft.com/en-us/dotnet/api/system.enum.hasflag) method.

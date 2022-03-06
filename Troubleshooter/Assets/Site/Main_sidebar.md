@@ -19,9 +19,10 @@
 
 ### Resources
 - [Collision Action Matrix](Info/Collision%20Matrix.md)
-- [Learning Bitmasks](Info/Bitmasks.md)
+- [Bitmasks](Info/Bitmasks.md)
 - [Quaternions](Info/Quaternions.md)
-- [SerializedObject: How-to](Programming/Editor%20Issues/Serialisation/SerializedObject%20How-to.md)
+- [Lerp](Programming/Specifics/Lerp/Overview.md)
+- [SerializedObject](Programming/Editor%20Issues/Serialisation/SerializedObject%20How-to.md)
   
 ### External resources
 - [Unity Learn](http://learn.unity.com/)
