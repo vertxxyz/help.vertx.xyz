@@ -18,4 +18,4 @@ Do not make assumptions. Double checking these steps are met is always recommend
 
 To troubleshoot cases where other UI is blocking input, select the Event System and hover/click the UI that's failing. The preview pane at the bottom of the inspector should list the gameobject that received the event.
 
-[^1]: Overlapping panels are below the element in the hierarchy.
+[^1]: Overlapping panels are only below the element in the hierarchy.

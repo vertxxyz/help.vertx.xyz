@@ -8,6 +8,10 @@ This value is important to provide when using a perspective camera, as a value o
 ### Resolution
 Provide an appropriate distance in the Vector3 parameter.
 
+:::note{.center}
+Drag the point to modify mouse position, move the slider to change the distance.
+:::
+
 :::hidden {#camera-img}
 ![Camera](camera.svg)
 :::

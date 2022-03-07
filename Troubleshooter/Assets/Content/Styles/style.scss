@@ -37,11 +37,13 @@
 html, body {
 	font-family: base.$font-family;
 	-webkit-font-smoothing: antialiased;
-	height: 100%;
-	width: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	padding: 0;
 	margin: 0;
-	position: relative;
 	overflow-x: hidden;
 	-webkit-overflow-scrolling: touch;
 	background-color: #383838;
@@ -137,7 +139,7 @@ $large: 1920px;
 	max-width: calc(1200px + 20% + #{base.$left-padding});
 	flex-grow: 2;
 	flex-basis: 0;
-	height: calc(100vh - 40px - #{base.$bottom-padding});
+	height: calc(var(--vh) - 40px - #{base.$bottom-padding});
 	overflow: auto;
 	box-sizing: content-box;
 }
@@ -149,7 +151,7 @@ $large: 1920px;
 	min-width: 250px;
 	max-width: 1200px;
 	padding: 60px 0 0 base.$left-padding;
-	height: calc(100vh - 60px);
+	height: calc(var(--vh) - 60px);
 	border-left: 1px solid #1f1f1f;
 }
 
@@ -352,8 +354,15 @@ figure {
 
 /* Mobile styling */
 @media only all and (max-width: base.$max-width) {
+	.container {
+		display: block;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+	
 	.contents {
-		width: 100%;
 		padding: 40px 30px base.$bottom-padding 30px;
 		margin: 0 0 0 0;
 	}
@@ -417,6 +426,12 @@ input {
 	border: solid 1px black;
 	border-radius: 5px;
 	color: base.$bold-color;
+}
+
+@media only all and (max-width: 390px) {
+	input {
+		min-width: auto;
+	}
 }
 
 input.token {

@@ -31,6 +31,9 @@ All lerp functions are linear, and return the in-between values based on a `0->1
 The usage is the same, though the applications are varied.
 
 ### Interactive diagram
+:::note{.center}
+Drag the slider to modify `t`, edit `a` and `b` in the code below.
+:::
 
 <script type="module" src="/Scripts/Interactive/Lerp/scene.js"></script>  
 <canvas id="lerp" width="500" height="500"></canvas>
