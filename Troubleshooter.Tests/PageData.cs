@@ -7,14 +7,31 @@ namespace Troubleshooter.Tests;
 
 public class PageData : IEnumerable<object[]>
 {
-	public IEnumerator<object[]> GetEnumerator() =>
-		Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, "*.md", SearchOption.AllDirectories)
-			.Select(file => new object[]
+	public IEnumerator<object[]> GetEnumerator()
+	{
+		foreach (object[] objects in Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, "*.md", SearchOption.AllDirectories)
+			         .Select(file => new object[]
+			         {
+				         Path.GetFileNameWithoutExtension(file),
+				         file,
+				         File.ReadAllText(file)
+			         }))
+			yield return objects;
+
+		foreach (string file in Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, "*.md.gen", SearchOption.AllDirectories))
+		{
+			foreach ((string path, PageResource value) in SiteBuilder.ProcessGenerator(TestUtility.TestSite, null,
+				         new PageResource(file, ResourceType.Generator, ResourceLocation.Site)))
 			{
-				Path.GetFileNameWithoutExtension(file),
-				file,
-				File.ReadAllText(file)
-			}).GetEnumerator();
+				yield return new object[]
+				{
+					Path.GetFileNameWithoutExtension(path),
+					path,
+					value.MarkdownText
+				};
+			}
+		}
+	}
 
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

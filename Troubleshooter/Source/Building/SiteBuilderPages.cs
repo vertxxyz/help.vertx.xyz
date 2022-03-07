@@ -160,9 +160,9 @@ public static partial class SiteBuilder
 		}
 	}
 	
-	private static readonly Regex _generatorLinkRegex = new(@"\[([\w ]+?)\]\(([\w%/]+?)\.md\)", RegexOptions.Compiled);
+	private static readonly Regex _generatorLinkRegex = new(@"\[(.+?)\]\(([\w%/]+?)\.md\)", RegexOptions.Compiled);
 
-	private static IEnumerable<(string key, PageResource value)> ProcessGenerator(Site site, PageResources allResources, PageResource page)
+	public static IEnumerable<(string key, PageResource value)> ProcessGenerator(Site site, PageResources? allResources, PageResource page)
 	{
 		// Generated markdown
 		if (page.FullPath.EndsWith("_sidebar.md.gen"))
@@ -170,7 +170,6 @@ public static partial class SiteBuilder
 			// Sidebar markdown
 			page.ProcessMarkdown(File.ReadAllText(page.FullPath), site, allResources);
 
-			// TODO Find all linked content. Linked content is presumed to contain this sidebar content.
 			// Links to a specific page are stripped, and the link text is bolded.
 			// After processing, append the newly generated content to any pre-existing sidebar content, or create new.
 			
@@ -185,16 +184,35 @@ public static partial class SiteBuilder
 			 *- [Project reimport](Project%20Reimport.md)
 			 */
 			// E:\Projects\help.vertx.xyz\Troubleshooter\Assets\Site\Programming\Scripts\Loading\Script Loading_sidebar.md.gen
-
+			
 			string markdown = page.MarkdownText!;
 			MatchCollection matches = _generatorLinkRegex.Matches(markdown);
 			string directory = Path.GetDirectoryName(page.FullPath)!;
-			foreach (Match match in matches)
+			for (var i = 0; i < matches.Count; i++)
 			{
-				string path = $"{Path.Combine(directory, match.Groups[2].Value)}_sidebar.md";
+				Match match = matches[i];
+				string relativeLink = match.Groups[2].Value;
+				string path = $"{Path.Combine(directory, relativeLink)}_sidebar.md";
+				
+				// Replace the link to *this* page with a bolded version
+				string markdownText = markdown.Replace($"[{match.Groups[1].Value}]({relativeLink}.md)", $"**{match.Groups[1].Value}**");
+				// Edit links to be local to the destination if required.
+				if (relativeLink.Contains('/'))
+				{
+					string localDirectory = Path.GetDirectoryName(path)!;
+					for (int j = 0; j < matches.Count; j++)
+					{
+						// Do not edit *this*, as it has been bolded already.
+						if(i == j) continue;
+						string originalPath = $"{Path.Combine(directory, matches[j].Groups[2].Value)}.md";
+						string relativePath = Path.GetRelativePath(localDirectory, originalPath).Replace('\\', '/');
+						markdownText = markdownText.Replace($"({matches[j].Groups[2].Value}.md)", $"({relativePath})");
+					}
+				}
+
 				PageResource resource = new(path, ResourceType.Markdown, page.Location)
 				{
-					MarkdownText = markdown.Replace($"[{match.Groups[1].Value}]({match.Groups[2].Value}.md)", $"**{match.Groups[1].Value}**")
+					MarkdownText = markdownText
 				};
 				yield return (path, resource);
 			}

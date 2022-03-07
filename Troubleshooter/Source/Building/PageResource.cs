@@ -187,7 +187,7 @@ public class PageResource
 		return HtmlPostProcessors.Process(renderer.Writer.ToString() ?? string.Empty);
 	}
 
-	public void ProcessMarkdown(string text, Site site, PageResources allResources)
+	public void ProcessMarkdown(string text, Site site, PageResources? allResources)
 	{
 		string allText = text;
 		StringBuilder stringBuilder = new();
@@ -199,6 +199,8 @@ public class PageResource
 			int last = 0;
 			foreach ((string localPath, Group group) in embeds)
 			{
+				if (allResources == null)
+					throw new ArgumentException($"{nameof(allResources)} was null, and yet embeds were found.");
 				string fullPath = PageUtility.LocalEmbedToFullPath(localPath, site);
 				if (!allResources.TryGetValue(fullPath, out var embeddedPage))
 					throw new LogicException(
