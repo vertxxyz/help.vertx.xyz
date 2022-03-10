@@ -32,7 +32,7 @@ Drag a **Component** into the slot or you will get a [NullReferenceException](..
 
 #### 3. Access the member you care about
 ::::note
-`public` members on the target class can be accessed via the instance.
+`public` members on the target component can be accessed via the instance.
 ```csharp
 // Variables and properties
 var variable = _target.Variable;
@@ -41,7 +41,7 @@ _target.Variable = variable;
 // Methods
 _target.Method();
 ```
-If you do not have autocomplete, [configure your IDE](../../IDE%20Configuration.md) to easily find member names and get inline error highlighting.
+If you don't have autocomplete, [configure your IDE](../../IDE%20Configuration.md) to easily find member names and get error highlighting.
 ::::
 ### Notes
 When the Component or ScriptableObject is created Unity will deserialize the reference into the field, there is no need to further assign the value in code.  

@@ -1,12 +1,14 @@
 ## UnityEvent debugging
+#### 1. Save your script
+:::note
+It may sound basic, but please check!
+:::
 
-**Save your Script**  
-First, ensure you have saved.
-
+#### 2. Check for compiler errors
+:::note
 <<General/Console Window.md>>
-
 <<General/Errors.md>>
-This means that any changes you have made to your scripts will not display.  
+:::
 
 ---  
 

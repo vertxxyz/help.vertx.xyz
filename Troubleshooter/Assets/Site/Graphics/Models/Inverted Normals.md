@@ -6,18 +6,19 @@ The direction of model faces is determined by the winding order of the vertices 
 
 ### Resolution
 Research how to **invert/flip normals** in your modelling program. Additional key words to search for are **face normals** and **backface culling**.  
+Select the inverted faces and flip their normals.  
 
 ^^^
 ![Blender - Flip Normals](blender-flip-normals.png)
 ^^^ Flip Normals in Blender  
 
-**Backface Culling** describes single-sided rendering, and is something you may wish to enable in your modelling program when working with models that are to be used inside Unity.  
+**Backface Culling** is single-sided rendering, enable it in your modelling program to see how a model will appear in Unity.
 
 ^^^
 ![Blender - Backface Culling](blender-backface-culling.png)
 ^^^ Backface Culling in Blender  
 
-Not all your faces may be inverted, so make sure you understand which are. If one object has partially flipped normals there may be a **recalculate normals** operation that can unify the normal direction.
+If an object has partially flipped normals there may be a **recalculate normals** operation to unify the normal direction.
 
 ---
 

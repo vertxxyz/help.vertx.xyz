@@ -1,2 +1,2 @@
-Resolve errors from top to bottom.  
-Unity will not be able to recompile the project if there are errors that cannot be cleared from the console.  
+Resolve errors from top to bottom. Unity can't recompile the project with errors that can't be cleared from the console.  
+Changes to your scripts will not display if this is the case.  
