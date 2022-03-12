@@ -28,18 +28,14 @@ div.info-box {
 	width: 30px;
 }
 
-div.info-box.inline {
+p+div.info-box.inline {
 	margin-top: -10px;
+}
 
+div.info-box.inline {
 	>img {
 		@extend %small;
 	}	
-}
-
-.note {
-	>div.info-box.inline {
-		margin-top: inherit;
-	}
 }
 
 div.info-box.small {

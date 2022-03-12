@@ -2,7 +2,7 @@ import {
     addPoints,
     circlePoints, clamp, clamp01,
     clearAndRedraw, inverseLerp,
-    lerp, lerpClamped, remap,
+    lerp, remap,
     Slider
 } from "../behaviours.js";
 

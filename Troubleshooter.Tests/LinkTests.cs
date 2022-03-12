@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Text.RegularExpressions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -27,6 +29,20 @@ public class LinkTests
 		foreach ((string fullPath, _) in PageUtility.LinksAsFullPaths(text, path))
 		{
 			new FileInfo(fullPath).Should().Exist($"\"{name}\" is missing a link");
+		}
+	}
+
+	private static readonly Regex markdownLink = new (@"\[.+?\]\((.+?)\)", RegexOptions.Compiled);
+	
+	[Theory]
+	[ClassData(typeof(PageData))]
+	public void ValidateLinkContent(string name, string path, string text)
+	{
+		using var scope = new AssertionScope();
+		MatchCollection matches = markdownLink.Matches(text);
+		foreach (Match match in matches)
+		{
+			match.Groups[1].Value.Should().NotContain(' ', StringComparison.Ordinal);
 		}
 	}
 

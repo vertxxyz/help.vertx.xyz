@@ -7,6 +7,7 @@
 - [CS0119](Compiler%20Errors/CS0119.md): 'Foo' is a 'Bar', which is not valid in the given context
 - [CS0120](Compiler%20Errors/CS0120.md): An object reference is required for the non-static field, method, or property 'Foo'
 - [CS0131](Compiler%20Errors/CS0131.md): The left-hand side of an assignment must be a variable, property or indexer
+- [CS0193](Compiler%20Errors/CS0193.md): The * or -> operator must be applied to a pointer
 - [CS0266](Compiler%20Errors/CS0266.md): Cannot implicitly convert type 'Foo' to 'Bar'. An explicit conversion exists (are you missing a cast?)
 - [CS0236](Compiler%20Errors/CS0236.md): A field initializer cannot reference the non-static field, method, or property 'Foo'
 - [CS0246](Compiler%20Errors/CS0246.md): The type or namespace name 'Foo' could not be found (are you missing a using directive or an assembly reference?)  

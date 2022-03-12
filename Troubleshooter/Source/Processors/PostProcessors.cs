@@ -113,7 +113,7 @@ public class FootnoteRuleRemoval : IHtmlPostProcessor
 [UsedImplicitly]
 public class ListCompaction : IHtmlPostProcessor
 {
-	private static readonly Regex emptyListRegex = new("<li><span class=\"collapse\">collapse</span></li>\n</ul>", RegexOptions.Compiled);
+	private static readonly Regex emptyListRegex = new("<li><span class=\"collapse\">collapse</span></li>\n</(ul|ol)>", RegexOptions.Compiled);
 	
 	public string Process(string html)
 	{
@@ -134,7 +134,7 @@ public class ListCompaction : IHtmlPostProcessor
 			builder.AppendLine("</li>");
 
 			ReadOnlySpan<char> after = remaining.AsSpan()[(end + 1)..];
-			int index = end + 1 + after.IndexOf("<ul>");
+			int index = end + 1 + after.IndexOf($"<{match.Groups[1].Value}>");
 			last = match.Index + match.Length + index + 5;
 		}
 
@@ -157,7 +157,7 @@ public class ListCompaction : IHtmlPostProcessor
 		{
 			int nextClosing = r.IndexOf(closing, StringComparison.Ordinal);
 			int nextOpening = r.IndexOf(opening, StringComparison.Ordinal);
-			if (nextOpening < nextClosing)
+			if (nextOpening != -1 && nextOpening < nextClosing)
 			{
 				depth++;
 				int nextOpen = nextOpening + opening.Length;
