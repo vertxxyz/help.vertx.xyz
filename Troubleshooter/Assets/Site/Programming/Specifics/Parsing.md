@@ -5,8 +5,10 @@ When attempting to parse strings from input fields they may have invisible chara
 Hidden characters will also cause issues when attempting to compare to these strings.  
 
 ### Resolution
-Instead of referencing the underlying `TextMeshProUGUI` of an `TMP_InputField`, reference the `TMP_InputField` itself.  
-The `TextMeshProUGUI` child uses a zero-width space for layout purposes, and should not be referenced.  
+When referencing text from a TMP input field, do not reference the underlying [`TextMeshProUGUI`](https://docs.unity3d.com/Packages/com.unity.textmeshpro@latest/index.html?subfolder=/api/TMPro.TextMeshProUGUI.html), reference the [`TMP_InputField`](https://docs.unity3d.com/Packages/com.unity.textmeshpro@latest/index.html?subfolder=/api/TMPro.TMP_InputField.html) itself.  
+:::warning{.inline}
+The child `TextMeshProUGUI` uses a zero-width space for layout purposes, and should not be referenced.
+:::
 
 ```csharp
 [SerializeField]
@@ -19,13 +21,13 @@ public void UseInput()
 }
 ```
 
-When looking to remove whitespace from strings you can generally use the [`.Trim()`](https://docs.microsoft.com/en-us/dotnet/api/system.string.trim?view=net-6.0) function, which **returns** a modified string. More complex removal may require the use of [Regex](https://docs.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=net-6.0), a complex and powerful language used to build patterns for searching text. Search for regex tutorials to get started on that journey.
-
 ### Notes
+#### Use TryParse!
 It's almost always worthwhile to use the `TryParse` variants of parsing functions to ensure proper handling of a parsing failure.  
 <<Code/Parsing/Parsing.rtf>>  
 
----  
+#### Trimming whitespace
+To remove whitespace from strings you can generally use the [`.Trim()`](https://docs.microsoft.com/en-us/dotnet/api/system.string.trim?view=net-6.0) function, which **returns** a modified string. More complex removal may require the use of [Regex](https://docs.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=net-6.0), a complex and powerful language used to build patterns for searching text. Search for regex tutorials to get started on that journey.  
 
-The `Trim()` function will often suffice when removing invisible characters, but the TMP child has an appended character that would need to be removed more manually:  
+The `Trim()` function *may* suffice when removing invisible characters from a user, but the child TMP object has an appended character that would need to be removed more manually:  
 <<Code/Parsing/Input Trim.rtf>>  

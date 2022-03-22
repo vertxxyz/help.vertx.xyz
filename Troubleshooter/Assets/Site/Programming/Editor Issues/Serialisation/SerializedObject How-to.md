@@ -1,10 +1,11 @@
 ## SerializedObject: How-to
 ### Description
-SerializedObject is a window into Unity's serialized datastructures. It exposes SerializedProperties, objects used to access items in the serialization hierarchy.  
-[SerializedObject](https://docs.unity3d.com/ScriptReference/SerializedObject.html) and [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) are the best way to access and modify Unity-serialized structures; with automatic undo support, multi-object editing, and simplified functions for Editor UI.  
+[SerializedObject](https://docs.unity3d.com/ScriptReference/SerializedObject.html) is a window into Unity's serialized datastructures. It exposes a [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) structure, objects used to access items in the serialization hierarchy.  
+SerializedObject and SerializedProperty are the best way to access and modify Unity-serialized structures; with automatic undo support, multi-object editing, and simplified functions for Editor UI.  
+
 This guide only attempts to communicate how to access values, and not how to write entire editors.
 
-### Example Overview
+### Example structure
 
 <<Code/Editor/SerializedObject/Base.html>>  
 
@@ -49,8 +50,8 @@ public class ExampleInspector : Editor
 }
 ```
 
-[Editor](https://docs.unity3d.com/ScriptReference/Editor.html) provides the [serializedObject](https://docs.unity3d.com/ScriptReference/Editor-serializedObject.html) of the object(s) it is inspecting. In our case this is an instance of `Example`.  
-We can use [FindProperty](https://docs.unity3d.com/ScriptReference/SerializedObject.FindProperty.html) to get root SerializedProperties from the SerializedObject. For example:  
+[Editor](https://docs.unity3d.com/ScriptReference/Editor.html) provides the [`serializedObject`](https://docs.unity3d.com/ScriptReference/Editor-serializedObject.html) of the object(s) it is inspecting. In our case this is an instance of `Example`.  
+We can use [`FindProperty`](https://docs.unity3d.com/ScriptReference/SerializedObject.FindProperty.html) to get root SerializedProperties from the SerializedObject. For example:  
 
 ```csharp
 private SerializedProperty data, values;
@@ -105,8 +106,8 @@ public override void OnInspectorGUI()
 Changes made in a [PropertyDrawer](https://docs.unity3d.com/ScriptReference/PropertyDrawer.html) will persist if the editor that draws them performs the logic.
 :::  
 
-### [SerializedProperty.FindPropertyRelative](https://docs.unity3d.com/ScriptReference/SerializedProperty.FindPropertyRelative.html)
-Going levels deeper requires `FindPropertyRelative`.
+### Sub-properties
+Going levels deeper requires [`FindPropertyRelative`](https://docs.unity3d.com/ScriptReference/SerializedProperty.FindPropertyRelative.html).
 
 ```csharp
 private SerializedProperty ... active, configuration;
@@ -197,15 +198,15 @@ values.arraySize++;
 SerializedProperty lastElement = values.GetArrayElementAtIndex(values.arraySize - 1);
 ```
 
-Inserting elements into the array is achieved with [InsertArrayElementAtIndex](https://docs.unity3d.com/ScriptReference/SerializedProperty.InsertArrayElementAtIndex.html).
+Inserting elements into the array is achieved with [`InsertArrayElementAtIndex`](https://docs.unity3d.com/ScriptReference/SerializedProperty.InsertArrayElementAtIndex.html).
 #### Removing elements
-Use [DeleteArrayElementAtIndex](https://docs.unity3d.com/ScriptReference/SerializedProperty.DeleteArrayElementAtIndex.html) to remove an element at an array index.  
-If the type is Object Reference you may need to set [objectReferenceValue](https://docs.unity3d.com/ScriptReference/SerializedProperty-objectReferenceValue.html) to null beforehand, or else a call to this method will nullify the reference and not remove the element.  
+Use [`DeleteArrayElementAtIndex`](https://docs.unity3d.com/ScriptReference/SerializedProperty.DeleteArrayElementAtIndex.html) to remove an element at an array index.  
+If the type is Object Reference you may need to set [`objectReferenceValue`](https://docs.unity3d.com/ScriptReference/SerializedProperty-objectReferenceValue.html) to null beforehand, or else a call to this method will nullify the reference and not remove the element.  
 
 
 
 ### Objects
-Every new UnityEngine.Object type in the serialization hierarchy is a new SerializedObject. This means that using `FindPropertyRelative` will not iterate its children, as the children are a part of a different hierarchy.  
+Every new `UnityEngine.Object` type in the serialization hierarchy is a new `SerializedObject`. This means that using `FindPropertyRelative` will not iterate its children, as the children are a part of a different hierarchy.  
 To iterate the children of another object you need to instance a new SerializedObject.
 
 ```csharp

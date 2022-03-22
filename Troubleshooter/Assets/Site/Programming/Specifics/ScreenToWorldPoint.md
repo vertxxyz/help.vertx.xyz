@@ -1,12 +1,14 @@
-## ScreenToWorldPoint
-
-### Issue:
-ScreenToWorldPoint returns the camera position.  
-ScreenToWorldPoint takes a `Vector3` parameter, where the first two values are screen coordinates. The third value is the distance from the camera.  
-This value is important to provide when using a perspective camera, as a value of zero will just return the world space camera position.
+## [ScreenToWorldPoint](https://docs.unity3d.com/ScriptReference/Camera.ScreenToWorldPoint.html)
+### Description
+`ScreenToWorldPoint` takes a `Vector3` argument, where the first two values are screen coordinates, and the third is the distance from the camera.  
+Providing distance is important when using a perspective camera, as `0` distance will return the world space camera position.
 
 ### Resolution
-Provide an appropriate distance in the Vector3 parameter.
+Provide a distance in the z coordinate of the screen position.
+
+<<Code/Specific/ScreenToWorldPoint.rtf>>
+
+#### Interactive Diagram
 
 :::note{.center}
 Drag the point to modify mouse position, move the slider to change the distance.
@@ -20,15 +22,13 @@ Drag the point to modify mouse position, move the slider to change the distance.
 :::slider {#screen_to_world_point_slider}
 :::
 
-<<Code/Specific/ScreenToWorldPoint.rtf>>
-
-**Or**  
+---
 
 If appropriate, switch your camera to Orthographic projection. This is the correct approach when making entirely 2D games.
 
 ### Alternate methods
 
-Sometimes it is more suitable to use a [Plane](https://docs.unity3d.com/ScriptReference/Plane.html) to avoid calculating an appropriate distance from the camera. This is a suitable approach when the result is on a fixed plane in space.  
+Using a [`Plane`](https://docs.unity3d.com/ScriptReference/Plane.html) and [`ScreenPointToRay`](https://docs.unity3d.com/ScriptReference/Camera.ScreenPointToRay.html) avoids having to calculate an appropriate distance from the camera. When the result is on a fixed plane in space, this can be a suitable approach.  
 
 <<Code/Specific/Plane Raycast.rtf>>  
 

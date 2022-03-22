@@ -229,7 +229,7 @@ sup {
 
 div.footnotes {
 	counter-set: item-counter;
-	border: 1px #ffffff4d solid;
+	border: 1px #ffffff20 solid;
 	padding: 0 20px;
 	margin-right: base.$right-margin;
 	margin-top: 30px;
@@ -254,6 +254,10 @@ div.note {
 
 	> p:first-child {
 		margin-block-start: 1em;
+	}
+	
+	> .note {
+		margin-right: 0;
 	}
 
 	> :last-child {

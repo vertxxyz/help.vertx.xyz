@@ -160,7 +160,7 @@ public static partial class SiteBuilder
 		}
 	}
 	
-	private static readonly Regex _generatorLinkRegex = new(@"\[(.+?)\]\(([\w%/]+?)\.md\)", RegexOptions.Compiled);
+	private static readonly Regex _generatorLinkRegex = new(@"\[(.+?)\]\(([\w%/-]+?)\.md\)", RegexOptions.Compiled);
 
 	public static IEnumerable<(string key, PageResource value)> ProcessGenerator(Site site, PageResources? allResources, PageResource page)
 	{
