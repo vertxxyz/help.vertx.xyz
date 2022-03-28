@@ -1,4 +1,4 @@
-### References to Prefab sub-objects
+## References to Prefab sub-objects
 You cannot directly reference sub-objects of a prefab externally.  
 Instead, go through a script on the root of the prefab that contains the references.
 

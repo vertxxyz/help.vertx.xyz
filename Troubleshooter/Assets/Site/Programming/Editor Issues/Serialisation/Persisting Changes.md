@@ -25,6 +25,7 @@ To correctly handle prefab changes, call [`RecordPrefabInstancePropertyModificat
 #### 3. EditorUtility.SetDirty
 The final option for recording modifications is [`SetDirty`](https://docs.unity3d.com/ScriptReference/EditorUtility.SetDirty.html). This will not record Undo states.
 ::::
+
 ---  
 
 If you're still not seeing changes persist, ensure that the variables are actually [serializable](../../Variables/Serialization.md).

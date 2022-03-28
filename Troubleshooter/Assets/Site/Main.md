@@ -71,5 +71,8 @@
 ## Audio
 [Audio issues](Audio/Common%20Issues.md)
 
+## Web
+[WebGL issues](Web/Common%20Issues.md)
+
 ## Package Manager
 [UPM issues](Package%20Manager/Common%20Issues.md)

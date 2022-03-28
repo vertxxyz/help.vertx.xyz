@@ -214,7 +214,7 @@ public static partial class SiteBuilder
 				{
 					MarkdownText = markdownText
 				};
-				yield return (path, resource);
+				yield return (path.ToConsistentPath().ToUnTokenized(), resource);
 			}
 		}
 	}

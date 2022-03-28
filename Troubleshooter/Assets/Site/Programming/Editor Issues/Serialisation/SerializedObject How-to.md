@@ -310,4 +310,4 @@ while (property.Next(true) && !SerializedProperty.EqualContents(property, end))
 }
 ```
 
-When you iterate a property this will change its internal state. If you wish to not modify the original property, [Copy](https://docs.unity3d.com/ScriptReference/SerializedProperty.Copy.html) it and iterate the copy instead.  
+When you iterate a property this will change its internal state. If you wish to not modify the original property, [`Copy`](https://docs.unity3d.com/ScriptReference/SerializedProperty.Copy.html) it and iterate the copy instead.  

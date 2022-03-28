@@ -1,4 +1,4 @@
-## Muted Audio
+## Muted audio
 Check that **Mute Audio** isn't toggled on in the **Game view**.
 
 ![Mute Audio Toggle](mute-toggle.png)

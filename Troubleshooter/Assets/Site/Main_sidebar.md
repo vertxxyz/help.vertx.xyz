@@ -15,6 +15,7 @@
 - [Graphics](#graphics)
 - [Animation](#animation)
 - [Audio](#audio)
+- [Web](#web)
 - [Package Manager](#package-manager)
 
 ### Resources
