@@ -27,3 +27,6 @@ If you are concerned about any of the downsides, consider alternatives like:
 - Using a tweening library.
 - Using [SmoothDamp](https://docs.unity3d.com/ScriptReference/Mathf.SmoothDamp.html).
 - Using [MoveTowards](https://docs.unity3d.com/ScriptReference/Vector3.MoveTowards.html).
+
+---  
+[Return to overview.](Overview.md)

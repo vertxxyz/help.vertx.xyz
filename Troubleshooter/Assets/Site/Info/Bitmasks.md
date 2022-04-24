@@ -1,11 +1,12 @@
 ## Bit masks and Layer Masks
 ### Description
-`int` is a 32 bit value, A bit is `0` or `1`; a `0` in a bitmask is an inactive layer, and a `1` is active.  
+A bit is a `0` or a `1`. `int` is a 32 bit value, 32 different `0`'s or `1`'s.  
+In a bitmask `0` is an inactive layer, and a `1` is active.  
 This means we can represent 32 layer toggles with a single `int` value.
 
 ### Creating masks from layers
 To create a bitmask with a single layer enabled, [shift](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators#left-shift-operator-) a single bit over to the position in the mask that matches the layer index.  
-For example, to create a mask with layer `5` active, create `int` with a the first bit enabled, a `1`, then shift that bit over 5 places to the 6th index (layers are **0 indexed** so this is layer 5).  
+For example, to create a mask with layer **5** active, create `int` with a the first bit enabled, a `1`, then shift that bit over 5 places to the 6th index (layers are **0 indexed** so this is layer 5).  
 It's worth noting that the first bit (the least significant bit) is the rightmost bit, similar to a decimal integer.
 ```csharp
 int mask = 1 << 5;
@@ -25,7 +26,9 @@ In this example we use a `byte`, as the range is known to be less than 8 layers.
 <<Code/Bitmasks/Declaring.rtf>>
 
 ### Combining masks
-To combine or add to a mask we perform a [logical or](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-or-operator-), which will compare each bit from each mask and run an or comparison with the results. With a layer in one mask set `true`, and the other `false`, is either `true` or `false` enabled? Yes, so the resulting bit is enabled. Only if both masks have the layer disabled will the result be disabled.
+To combine or add to a mask we perform a [logical or](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-or-operator-).  
+If a bit is enabled (`1`) in either one mask **or** the other, it will be in our result.
+
 <<Code/Bitmasks/Combining.rtf>>
 
 ### Inverting a mask

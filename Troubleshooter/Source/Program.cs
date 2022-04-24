@@ -46,7 +46,8 @@ class Program
 #if WINDOWS
 				Console.WriteLine("  R - Create rich-text embed from clipboard");
 #endif
-				Console.WriteLine("  Other - Exit");
+				Console.WriteLine("  Esc - Exit");
+				Read:
 				var key = Console.ReadKey().Key;
 				Console.WriteLine();
 				Console.Clear();
@@ -80,8 +81,10 @@ class Program
 						RtfClip.CreateRtfFile(arguments);
 						break;
 #endif
-					default:
+					case ConsoleKey.Escape:
 						return;
+					default:
+						goto Read;
 				}
 			}
 		}

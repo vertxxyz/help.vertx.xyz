@@ -1,10 +1,10 @@
 ## Serializing simple types in collections
 Simple collections of serializable types should serialize correctly.  
 #### Arrays and Lists
-Arrays (eg. `float[]`), and Lists (eg. `List<float>`), are the two supported collection types.  
+Arrays (`float[]`), and Lists (`List<float>`), are the two supported collection types.  
 
 :::warning
-Multi-dimensional and jagged arrays are not serializable. See **other collection types** below.
+Multi-dimensional and jagged arrays are not serializable. See [**other collection types**](#other-collection-types) below.
 :::
 
 #### Dictionaries

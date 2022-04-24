@@ -5,3 +5,6 @@ If you are starting a coroutine in a function like `Update` you may be creating 
 
 ### Resolution
 Ensure you only start one coroutine at a time. Use booleans or [StopCoroutine](StopCoroutine.md) to avoid overlapping coroutine logic.
+
+---
+[The coroutine still stops before completion.](Edit%20Mode.md)
