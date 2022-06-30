@@ -1,6 +1,6 @@
 ## Gizmos
 ### Description
-Unity's [gizmos](https://docs.unity3d.com/ScriptReference/Gizmos.html) are **pickable** shapes used for debugging and content setup in the Scene view.  
+Unity's [gizmos](https://docs.unity3d.com/ScriptReference/Gizmos.html) are shapes associated with components, used for debugging and content setup in the Scene view.  
 By drawing in the Scene and Game view you can validate assumptions about constructs used in code.
 ### Usage
 Gizmos can only be drawn from two functions provided by `MonoBehaviour`, [OnDrawGizmos](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnDrawGizmos.html) and [OnDrawGizmosSelected](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnDrawGizmosSelected.html).  

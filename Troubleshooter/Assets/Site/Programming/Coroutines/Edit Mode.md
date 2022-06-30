@@ -8,4 +8,4 @@ You can add the [Editor Coroutines](https://docs.unity3d.com/Packages/com.unity.
 
 ---
 Sorry, we've run out of troubleshooting!  
-If you resolved your issue and the fix was not listed in the [troubleshooting steps](StartCoroutine.md), please report an issue with this page via the link in the bottom right.
+If you resolved your issue and the fix was not listed in the [troubleshooting steps](StartCoroutine.md), please <<report-issue.html>>.

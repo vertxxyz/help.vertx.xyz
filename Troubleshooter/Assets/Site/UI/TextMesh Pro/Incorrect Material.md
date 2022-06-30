@@ -4,3 +4,7 @@ TextMesh Pro typically uses signed distance fields to cheaply represent fonts at
 
 ### Resolution
 Switch the material used by the font asset to use one of the TextMesh Pro **Distance Field** shaders.
+
+---
+
+[My text is still blurry and clipped.](Blurry%20Text.md)

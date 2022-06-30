@@ -3,6 +3,11 @@
 Error building Player: X errors
 Build completed with a result of 'Failed'
 ```
+
+```
+UnityEditor.BuildPlayerWindow+BuildMethodException: X errors
+```
+
 ### Resolution 
 
 This message is informing you that the build has failed and that there are other errors.  

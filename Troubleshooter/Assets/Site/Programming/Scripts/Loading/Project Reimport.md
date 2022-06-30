@@ -18,4 +18,4 @@ Deleting the library folder will reset all imported code and assets, requiring a
 
 ---  
 Sorry, we've run out of troubleshooting!  
-If you resolved your issue and the fix was not listed in the [troubleshooting steps](Script%20Name.md), please report an issue with this page via the link in the bottom right.
+If you resolved your issue and the fix was not listed in the [troubleshooting steps](Script%20Name.md), please <<report-issue.html>>.

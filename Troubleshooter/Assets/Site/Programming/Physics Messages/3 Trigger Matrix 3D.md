@@ -18,7 +18,8 @@ If your two colliders don't match in the matrix you **will not** get trigger mes
 |**Kinematic Rigidbody Trigger**|Y       |Y          |Y                    |Y               |Y                  |Y                            |
 +-------------------------------+--------+-----------+---------------------+----------------+-------------------+-----------------------------+
 
-You can read more about this and see a copy of this matrix in the Unity docs [here](https://docs.unity3d.com/Manual/CollidersOverview.html).
+You can read more about this and see a copy of this matrix in the Unity docs [here](https://docs.unity3d.com/Manual/CollidersOverview.html).  
+
 
 ---
 [I am still not getting a message.](4%20Local%20Functions%203D.md)

@@ -9,13 +9,14 @@ class Program
 {
 	static async Task Main(string[] args)
 	{
+		
 		try
 		{
 			// Retrieve arguments
 			Arguments arguments = new(args);
 			// Register this for RtfPipe
 			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-
+			
 			await MainLoop(arguments);
 		}
 		catch (Exception e)

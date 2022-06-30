@@ -9,7 +9,7 @@ public static class PageUtility
 {
 	private static readonly Regex pathRegex = new(@"]\(([\w /%.]+)\)", RegexOptions.Compiled);
 	private static readonly Regex linkRegex = new(@"]\((https?:\/\/[\w/%#?.@_\+~=&()]+)\)", RegexOptions.Compiled);
-	private static readonly Regex embedsRegex = new(@"<<([\w /%.]+)>>", RegexOptions.Compiled);
+	private static readonly Regex embedsRegex = new(@"<<(.+?)>>", RegexOptions.Compiled);
 	private static readonly Regex localImagesRegex = new(@"!\[[^\]]*\]\((?!http)(.*?)\s*(""(?:.*[^""])"")?\s*\)", RegexOptions.Compiled);
 
 	/// <summary>

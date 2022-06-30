@@ -44,5 +44,6 @@ public class LanguageTests
 		text.Should().NotContain("Scene View", StringComparison.Ordinal, "Should be \"Scene view\"");
 		text.Should().NotContain("play mode", StringComparison.Ordinal, "Should be \"Play Mode\"");
 		text.Should().NotContain("edit mode", StringComparison.Ordinal, "Should be \"Edit Mode\"");
+		text.Should().NotContain(".Net", StringComparison.Ordinal, "Should be \".NET\"");
 	}
 }
