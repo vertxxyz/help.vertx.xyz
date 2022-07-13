@@ -142,7 +142,7 @@ private void OnEnable()
 
 You **cannot** retrieve the C# instance associated with a SerializedProperty that isn't the bottom of the serialization hierarchy. So, in our example, we cannot retrieve the value for `data` from its SerializedProperty, we can only go deeper and get the value of the last descendants.  
 Once at a SerializedProperty that is at the bottom there are predefined *Value* properties that can be used to access the value Unity has serialized.  
-See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) Properties documentation to find the appropriate Value property; `floatValue`, `stringValue`, `objectReferenceValue`, etc.
+See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) Properties documentation to find the appropriate Value property; such as `floatValue`, `stringValue`, or `objectReferenceValue`.
 
 ```nomnoml
 <<Nomnoml/shared.nomnoml>>

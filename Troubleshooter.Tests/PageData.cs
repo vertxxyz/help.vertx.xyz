@@ -23,10 +23,11 @@ public class PageData : IEnumerable<object[]>
 			foreach ((string path, PageResource value) in SiteBuilder.ProcessGenerator(TestUtility.TestSite, null,
 				         new PageResource(file, ResourceType.Generator, ResourceLocation.Site)))
 			{
+				string localPath = new System.Uri(path).LocalPath;
 				yield return new object[]
 				{
-					Path.GetFileNameWithoutExtension(path),
-					path,
+					Path.GetFileNameWithoutExtension(localPath),
+					localPath,
 					value.MarkdownText
 				};
 			}

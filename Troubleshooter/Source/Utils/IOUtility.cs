@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Troubleshooter;
 
@@ -53,7 +55,7 @@ public static class IOUtility
 				case FileResult.Validity.Processed:
 					destination = Path.GetFullPath(Path.Combine(target.ToString(), result!.FileNameWithExtension));
 					File.WriteAllText(destination, result.Content);
-					recordedPaths.Add(destination);
+					recordedPaths.TryAdd(destination, 0);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
@@ -84,7 +86,7 @@ public static class IOUtility
 
 	public static bool CreateFileIfDifferent(string fullPath, string contents)
 	{
-		recordedPaths.Add(fullPath);
+		recordedPaths.TryAdd(fullPath, 0);
 			
 		string directory = Path.GetDirectoryName(fullPath)!;
 		Directory.CreateDirectory(directory);
@@ -93,16 +95,28 @@ public static class IOUtility
 		File.WriteAllText(fullPath, contents);
 		return true;
 	}
+	
+	public static async Task<bool> CreateFileIfDifferentAsync(string fullPath, string contents)
+	{
+		recordedPaths.TryAdd(fullPath, 0);
+			
+		string directory = Path.GetDirectoryName(fullPath)!;
+		Directory.CreateDirectory(directory);
+		if (File.Exists(fullPath) && string.Equals(await File.ReadAllTextAsync(fullPath), contents, StringComparison.Ordinal))
+			return false;
+		await File.WriteAllTextAsync(fullPath, contents);
+		return true;
+	}
 
-	public static IEnumerable<string> RecordedPaths => recordedPaths;
-	private static readonly HashSet<string> recordedPaths = new();
+	public static IEnumerable<string> RecordedPaths => recordedPaths.Keys;
+	private static readonly ConcurrentDictionary<string, byte> recordedPaths = new();
 
 	public static void ResetRecording() => recordedPaths.Clear();
 		
 	public static bool CopyFileIfDifferent(string destinationFullPath, FileInfo file)
 	{
-		recordedPaths.Add(destinationFullPath);
-			
+		recordedPaths.TryAdd(destinationFullPath, 0);
+
 		string directory = Path.GetDirectoryName(destinationFullPath)!;
 		Directory.CreateDirectory(directory);
 		if (File.Exists(destinationFullPath) && AreFileContentsEqual(destinationFullPath, file)) return false;

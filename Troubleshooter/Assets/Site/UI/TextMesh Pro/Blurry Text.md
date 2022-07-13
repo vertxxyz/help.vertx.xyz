@@ -8,7 +8,7 @@ Increase the **padding** on the Font Asset through the Update Atlas Texture butt
 Typically the ratio of **padding** to **sampling point size** should be **1:10**. For example, a sampling point size of `90` would have a padding of `9`. Increase the padding as required. A larger **atlas resolution** may be needed to accomodate these changes.  
 
 :::info{.inline}
-This ratio also affects the range of material properties like Outline, Underlay, etc. Increasing the ratio will increase their size.
+This ratio also affects the range of material properties like Outline and Underlay. Increasing the ratio will increase their size.
 :::
 
 :::warning{.inline}

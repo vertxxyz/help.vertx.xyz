@@ -17,19 +17,22 @@ public class LanguageTests
 	public void ValidateIncorrectLanguage(string name, string path, string text)
 	{	
 		using var assertionScope = new AssertionScope(name);
-		text.Should().NotContain("compile error", StringComparison.OrdinalIgnoreCase, "Should be \"Compiler Error\"");
-		text.Should().NotContain("world-space", StringComparison.OrdinalIgnoreCase, "Should be \"World space\"");
-		text.Should().NotContain("local-space", StringComparison.OrdinalIgnoreCase, "Should be \"Local space\"");
-		text.Should().NotContain("play-mode", StringComparison.OrdinalIgnoreCase, "Should be \"Play Mode\"");
-		text.Should().NotContain("edit-mode", StringComparison.OrdinalIgnoreCase, "Should be \"Edit Mode\"");
-		text.Should().NotContain("unity event", StringComparison.OrdinalIgnoreCase, "Should be \"UnityEvent\"");
-		text.Should().NotContain("alt+click", StringComparison.OrdinalIgnoreCase, "Should be \"hold <kbd>Alt</kbd> while clicking\"");
-		text.Should().NotContain("ctrl+click", StringComparison.OrdinalIgnoreCase, "Should be \"hold <kbd>Ctrl</kbd> while clicking\"");
-		text.Should().NotContain("uitoolkit", StringComparison.OrdinalIgnoreCase, "Should be \"UI Toolkit\"");
-		text.Should().NotContain("assmdef", StringComparison.OrdinalIgnoreCase, "Should be \"asmdef\"");
-		text.Should().NotContain("left hand", StringComparison.OrdinalIgnoreCase, "Should be \"left-hand\"");
-		text.Should().NotContain("right hand", StringComparison.OrdinalIgnoreCase, "Should be \"right-hand\"");
-		text.Should().NotContain("framerate", StringComparison.OrdinalIgnoreCase, "Should be \"frame rate\"");
+		assertionScope.AddReportable("path", path);
+		text.Should().NotContain("compile error", StringComparison.OrdinalIgnoreCase, "we should use \"Compiler Error\"");
+		text.Should().NotContain("world-space", StringComparison.OrdinalIgnoreCase, "we should use \"World space\"");
+		text.Should().NotContain("local-space", StringComparison.OrdinalIgnoreCase, "we should use \"Local space\"");
+		text.Should().NotContain("play-mode", StringComparison.OrdinalIgnoreCase, "we should use \"Play Mode\"");
+		text.Should().NotContain("edit-mode", StringComparison.OrdinalIgnoreCase, "we should use \"Edit Mode\"");
+		text.Should().NotContain("unity event", StringComparison.OrdinalIgnoreCase, "we should use \"UnityEvent\"");
+		text.Should().NotContain("alt+click", StringComparison.OrdinalIgnoreCase, "we should use \"hold <kbd>Alt</kbd> while clicking\"");
+		text.Should().NotContain("ctrl+click", StringComparison.OrdinalIgnoreCase, "we should use \"hold <kbd>Ctrl</kbd> while clicking\"");
+		text.Should().NotContain("uitoolkit", StringComparison.OrdinalIgnoreCase, "we should use \"UI Toolkit\"");
+		text.Should().NotContain("assmdef", StringComparison.OrdinalIgnoreCase, "we should use \"asmdef\"");
+		text.Should().NotContain("left hand", StringComparison.OrdinalIgnoreCase, "we should use \"left-hand\"");
+		text.Should().NotContain("right hand", StringComparison.OrdinalIgnoreCase, "we should use \"right-hand\"");
+		text.Should().NotContain("framerate", StringComparison.OrdinalIgnoreCase, "we should use \"frame rate\"");
+		text.Should().NotContain("eg.", StringComparison.OrdinalIgnoreCase, "we should use \"for example\"");
+		text.Should().NotContain("etc.", StringComparison.OrdinalIgnoreCase, "we should use \"such as\", or \"like\", \"and other X\"");
 	}
 		
 	/// <summary>
@@ -40,10 +43,10 @@ public class LanguageTests
 	public void ValidateIncorrectCapitalisation(string name, string path, string text)
 	{
 		using var assertionScope = new AssertionScope(name);
-		text.Should().NotContain("Game View", StringComparison.Ordinal, "Should be \"Game view\"");
-		text.Should().NotContain("Scene View", StringComparison.Ordinal, "Should be \"Scene view\"");
-		text.Should().NotContain("play mode", StringComparison.Ordinal, "Should be \"Play Mode\"");
-		text.Should().NotContain("edit mode", StringComparison.Ordinal, "Should be \"Edit Mode\"");
-		text.Should().NotContain(".Net", StringComparison.Ordinal, "Should be \".NET\"");
+		text.Should().NotContain("Game View", StringComparison.Ordinal, "we should write \"Game view\"");
+		text.Should().NotContain("Scene View", StringComparison.Ordinal, "we should write \"Scene view\"");
+		text.Should().NotContain("play mode", StringComparison.Ordinal, "we should write \"Play Mode\"");
+		text.Should().NotContain("edit mode", StringComparison.Ordinal, "we should write \"Edit Mode\"");
+		text.Should().NotContain(".Net", StringComparison.Ordinal, "we should write \".NET\"");
 	}
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Markdig;
 using Markdig.Prism;
 using Troubleshooter.Constants;
@@ -7,7 +8,7 @@ namespace Troubleshooter;
 
 public static partial class SiteBuilder
 {
-	public static bool Build(Arguments arguments)
+	public static async Task<bool> Build(Arguments arguments)
 	{
 		var pipeline = new MarkdownPipelineBuilder()
 			.UseAdvancedExtensions()
@@ -20,7 +21,7 @@ public static partial class SiteBuilder
 		try
 		{
 			BuildPages(arguments, site, pipeline);
-			BuildContent(arguments, site);
+			await BuildContent(arguments, site);
 		}
 		catch (BuildException e)
 		{

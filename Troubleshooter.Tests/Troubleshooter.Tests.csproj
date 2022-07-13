@@ -13,23 +13,26 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FluentAssertions" Version="6.4.0" />
-		<PackageReference Include="FluentAssertions.Analyzers" Version="0.15.0" />
-		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0-eap2" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0-preview-20211130-02" />
+		<PackageReference Include="FluentAssertions" Version="6.7.0" />
+		<PackageReference Include="FluentAssertions.Analyzers" Version="0.17.2">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0-preview-20220707-01" />
 		<PackageReference Include="xunit" Version="2.4.2-pre.12" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="coverlet.collector" Version="3.1.0">
+		<PackageReference Include="coverlet.collector" Version="3.1.2">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Troubleshooter\Troubleshooter.csproj"/>
+		<ProjectReference Include="..\Troubleshooter\Troubleshooter.csproj" />
 	</ItemGroup>
 
 </Project>

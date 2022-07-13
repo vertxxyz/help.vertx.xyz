@@ -25,10 +25,10 @@ public static float Lerp(float a, float b, float t)
 - `t = 0.5f`, `value` is `75`.
 - `t = 0.8f`, `value` is `90`.
 
-### Vector2, Vector3, Color, Quaternion, etc.
+### Vector2, Vector3, Color, Quaternion...
 
 All lerp functions are linear, and return the in-between values based on a `0->1` `t` value.  
-The usage is the same, though the applications are varied.
+Their usage is the same, even though the applications are varied.
 
 ### Interactive diagram
 :::note{.center}

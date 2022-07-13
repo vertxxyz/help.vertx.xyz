@@ -1,6 +1,6 @@
 const pageParameterKey = 'page';
 const contentsClass = '.contents';
-const main = 'Main';
+const main = 'main';
 let currentDirectory = "";
 let isLoading = false;
 

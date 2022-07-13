@@ -24,5 +24,5 @@ IEnumerator DoMoveTo(Vector3 destination, float duration = 1)
 }
 ```
 
-Remember to use [StopCoroutine](../../Coroutines/StopCoroutine.md) if you're calling this function while it's already running.  
+Remember to use [`StopCoroutine`](../../Coroutines/StopCoroutine.md) if you're calling this function while it's already running.  
 Similar logic can be applied to all lerp variations, and is commonly used in tweening libraries.

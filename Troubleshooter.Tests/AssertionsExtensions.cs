@@ -26,7 +26,16 @@ internal static class AssertionExtensions
 
 internal class StringAssertionsExtensions : StringAssertions
 {
-	public StringAssertionsExtensions(string value) : base(value) { }
+	private const int _truncationLength = 100;
+	private readonly string _truncated;
+
+	public StringAssertionsExtensions(string value) : base(value)
+	{
+		if (string.IsNullOrEmpty(value)) 
+			_truncated = value;
+		else
+			_truncated = value.Length <= _truncationLength ? value : $"{value[..(_truncationLength - 3)]}...";
+	}
 
 	/// <summary>
 	/// Asserts that a string does not contain another (fragment of a) string.
@@ -55,7 +64,7 @@ internal class StringAssertionsExtensions : StringAssertions
 		Execute.Assertion
 			.ForCondition(!Contains(Subject, unexpected, comparison))
 			.BecauseOf(because, becauseArgs)
-			.FailWith("Did not expect {context:string} {0} to contain {1}{reason}.", Subject, unexpected);
+			.FailWith("Did not expect {context:string} to contain {1}{reason}.\n{0}", _truncated, unexpected);
 
 		return new AndConstraint<StringAssertions>(this);
 	}
@@ -82,7 +91,7 @@ internal class StringAssertionsExtensions : StringAssertions
 		Execute.Assertion
 			.ForCondition(!Contains(Subject, unexpected, comparison))
 			.BecauseOf(because, becauseArgs)
-			.FailWith("Did not expect {context:string} {0} to contain {1}{reason}.", Subject, unexpected);
+			.FailWith("Did not expect {context:string} to contain {1}{reason}.\n{0}", _truncated, unexpected);
 
 		return new AndConstraint<StringAssertions>(this);
 	}
@@ -101,7 +110,7 @@ internal class StringAssertionsExtensions : StringAssertions
 		Execute.Assertion
 			.ForCondition(!regex.IsMatch(Subject))
 			.BecauseOf(because, becauseArgs)
-			.FailWith("Regex {1} matched {0}{reason}.", Subject, regex);
+			.FailWith("Regex {1} matched {0}{reason}.", _truncated, regex);
 
 		return new(this);
 	}
@@ -116,7 +125,7 @@ internal class StringAssertionsExtensions : StringAssertions
 		Execute.Assertion
 			.ForCondition(regex.IsMatch(Subject))
 			.BecauseOf(because, becauseArgs)
-			.FailWith("Regex {1} matched {0}{reason}.", Subject, regex);
+			.FailWith("Regex {1} matched {0}{reason}.", _truncated, regex);
 
 		return new(this);
 	}

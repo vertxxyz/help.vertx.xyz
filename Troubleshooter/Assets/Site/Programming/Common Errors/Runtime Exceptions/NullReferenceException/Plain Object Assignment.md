@@ -1,11 +1,11 @@
 ## NullReferenceException: Plain C# objects
-To resolve a `NullReferenceException` caused by a `null` `object` that isn't a `UnityEngine.Object` type you can choose one of the following options:
+To resolve a `NullReferenceException` caused by plain C# objects choose one of the following options:
 
 **Either:**  
 :::note
 #### Assign a value (choose one)  
 - [Serialize the field](../../../Variables/Serialization/Serializing%20A%20Field%201.md) if appropriate.
-- Assign the reference using [`new`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator). This can be done inline or in a method like [Awake](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) or [Start](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html).  
+- Assign the reference using [`new`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator). This can be done inline or in a method like [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) or [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html).  
 :::  
 **Or:**  
 :::note
@@ -29,5 +29,5 @@ To resolve a `NullReferenceException` caused by a `null` `object` that isn't a `
 :::  
 **Or:**  
 :::note
-#### Ensure nothing assigns `null` before you access it.
+#### Ensure nothing assigns the reference to `null` before you access it.
 :::

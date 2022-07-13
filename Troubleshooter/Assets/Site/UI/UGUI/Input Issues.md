@@ -3,7 +3,7 @@ Input in Unity UI (UGUI) requires multiple things to receive input events:
 - There must be an **active [EventSystem](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/EventSystem.html)** in the Scene.  
     - You can create one via **GameObject | UI | Event System**  
 - A **[Graphic Raycaster](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/script-GraphicRaycaster.html)** must be present on the Canvas and sub-Canvases above the element.  
-- **Raycast target** must be enabled on the Graphic (eg. Image) attached to a the element that receives input (eg. Button).  
+- **Raycast target** must be enabled on the Graphic (Image for example) attached to a the element that receives input (such as Button).  
 ![Raycast Target](ui-raycast-target.png)
 - If clicking a Button, it should be marked as **interactable**.
 - Overlapping[^1] elements with **raycast target** enabled will block input.

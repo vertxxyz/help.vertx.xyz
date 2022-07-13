@@ -7,4 +7,4 @@ Serialized references are exposed via the inspector and are defined per-instance
 Singletons are referenced in code and require **only one instance** of the target type.
 
 ### Alternate methods
-There are other methods to refer to members in other scripts. There are dependency injection frameworks, different ways to utilise the `static` keyword, etc. Generally these can be avoided until users are familiar with more basic and common concepts.
+Other ways to refer to external members include dependency injection frameworks and varied use of the `static` keyword. Generally these can be avoided until users are familiar with more basic and common concepts.

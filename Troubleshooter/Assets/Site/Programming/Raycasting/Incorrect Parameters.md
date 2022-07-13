@@ -18,7 +18,7 @@ As `LayerMask` is implicitly convertable to `int`, and `int` is to `float`, this
 
 ### Resolution
 Check the parameters used in overloads of Raycast using [the documentation](https://docs.unity3d.com/ScriptReference/Physics.Raycast.html), making sure your usage matches the method signature.  
-Eg.  
+#### Example signature  
 ```csharp
 public static bool Raycast(Vector3 origin, Vector3 direction, out RaycastHit hitInfo, float maxDistance, int layerMask, QueryTriggerInteraction queryTriggerInteraction);
 ```

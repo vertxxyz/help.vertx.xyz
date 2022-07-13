@@ -16,7 +16,7 @@ When execution is halted **Unity will freeze**. You can now use the other debugg
 
 #### Variable inspection
 Hovering over an initialised variable during debugging will provide you with a view of its internals. You can discover information about faults in logic or uninitialised values this way.  
-Often a debugger will also allow you to hover an expression to evaluate its outcome (eg. the result of an if statement).
+Often a debugger will also allow you to hover an expression to evaluate its outcome (the result of an if statement for example).
 
 #### Stepping
 Stepping through code is a way to continue execution line by line, optionally stepping into or over functions and properties. This gives information about program execution, testing false assumptions about branching behaviour or loops.

@@ -47,7 +47,8 @@ class Program
 #if WINDOWS
 				Console.WriteLine("  R - Create rich-text embed from clipboard");
 #endif
-				Console.WriteLine("  Esc - Exit");
+				Console.WriteLine("  Space - Clear");
+				Console.WriteLine("  Other - Exit");
 				Read:
 				var key = Console.ReadKey().Key;
 				Console.WriteLine();
@@ -56,7 +57,7 @@ class Program
 				{
 					case ConsoleKey.B:
 						// Build Site
-						if (SiteBuilder.Build(arguments))
+						if (await SiteBuilder.Build(arguments))
 						{
 							Console.WriteLine("Successful build, generating search index.");
 							await SearchIndex.Generate(arguments);
@@ -82,10 +83,10 @@ class Program
 						RtfClip.CreateRtfFile(arguments);
 						break;
 #endif
-					case ConsoleKey.Escape:
-						return;
-					default:
+					case ConsoleKey.Spacebar:
 						goto Read;
+					default:
+						return;
 				}
 			}
 		}

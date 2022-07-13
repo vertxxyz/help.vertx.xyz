@@ -1,1 +1,1 @@
-*[IDE]: Integrated Development Environment (eg. Visual Studio, VS Code, Rider)
+*[IDE]: Integrated Development Environment (Visual Studio, VS Code, Rider, for example)

@@ -1,6 +1,6 @@
 ## Value and reference types
 
-This is a short overview of value and reference behaviour. This description does not go over other topics like boxing, heap and stack memory, tuples, etc.
+This is a short overview of value and reference behaviour. This description does not go over other topics like boxing, heap and stack memory, or tuples.
 
 ### Value types
 `bool`, `char`, `float` and other [floating-point numeric types](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types), `int` and other [integral numeric types](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types), and `struct` types are value types.
@@ -57,7 +57,7 @@ a[0]++;
 ```  
 
 When a reference type is assigned to another, this copies by value, **but** importantly the value copied is a reference.  
-The value of `a`: a location in memory (eg. `0x7fca1dbff861`), is assigned to `b`, `a` and `b` now point to the same value.  
+The value of `a`: a location in memory (`0x7fca1dbff861` for example), is assigned to `b`, `a` and `b` now point to the same value.  
 Incrementing a value in `a` will also affect `b`.
 
 ```nomnoml

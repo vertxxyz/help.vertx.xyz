@@ -8,8 +8,8 @@ On this line, only **reference types** can be `null`:
 :::  
 
 Usually, this can be reduced to *complex*, and *simple* types:  
-*Complex* types tend to be reference types, `Component`, `GameObject`, `List`, etc.  
-*Simple* structures tend to be structs, `int`, `float`, `Vector3`, `Quaternion`, etc.  
+*Complex* types tend to be reference types, such as `Component`, `GameObject`, or `List`.  
+*Simple* structures tend to be structs, such as `int`, `float`, `Vector3`, or `Quaternion`.  
 
 You can double check types by using the [documentation](https://docs.unity3d.com/ScriptReference/) or IDE inspection.  
 ^^^
