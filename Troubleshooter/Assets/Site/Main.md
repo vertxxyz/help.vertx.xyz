@@ -76,3 +76,4 @@
 
 ## Package Manager
 [UPM issues](Package%20Manager/Common%20Issues.md)
+[UPM errors](Package%20Manager/Common%20Errors.md)

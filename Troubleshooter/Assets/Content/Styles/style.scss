@@ -250,7 +250,7 @@ div.note {
 	margin-right: base.$right-margin;
 	margin-top: 1em;
 	margin-bottom: 1em;
-	padding: 0 20px;
+	padding: 0 base.$note-padding;
 
 	> p:first-child {
 		margin-block-start: 1em;

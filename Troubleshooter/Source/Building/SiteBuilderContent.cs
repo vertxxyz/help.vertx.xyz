@@ -19,6 +19,7 @@ public static partial class SiteBuilder
 		// Copy content to destination
 		CopyAll(new DirectoryInfo(site.ContentDirectory), new DirectoryInfo(arguments.Path!), fileProcessor: FileProcessor);
 
+		string indexOutputPath = Path.Combine(arguments.Path!, "index.html");
 		await DownloadAndReplaceSourceFiles();
 
 		async Task DownloadAndReplaceSourceFiles()
@@ -26,8 +27,7 @@ public static partial class SiteBuilder
 			// Source files
 			Regex r = new Regex(@"<script src=""(\/\/unpkg\.com\/.+?.js)""><\/script>");
 			Regex rVersion = new Regex(@"@([\d.]+?)\/");
-
-			string indexOutputPath = Path.Combine(arguments.Path!, "index.html");
+			
 			if (!File.Exists(indexOutputPath))
 				throw new BuildException($"\"{indexOutputPath}\" was not found when replacing source files.");
 
@@ -107,10 +107,9 @@ public static partial class SiteBuilder
 
 		void Generate404()
 		{
-			string indexHtml = Path.Combine(site.ContentDirectory, "index.html");
-			if (!File.Exists(indexHtml))
-				throw new BuildException($"\"{indexHtml}\" was not found when generating 404 page.");
-			string indexText = File.ReadAllText(indexHtml);
+			if (!File.Exists(indexOutputPath))
+				throw new BuildException($"\"{indexOutputPath}\" was not found when generating 404 page.");
+			string indexText = File.ReadAllText(indexOutputPath);
 			//int indexOfContent = indexText.IndexOf("</head>", StringComparison.Ordinal);
 			//if (indexOfContent < 0)
 			//	throw new BuildException("\"</head>\" not found when generating 404 page from index.html.");

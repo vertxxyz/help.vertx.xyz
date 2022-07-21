@@ -36,6 +36,13 @@ h3 {
 	border-bottom: 1px solid #191919;
 }
 
+.note {
+	>h3 {
+		margin-left: -(base.$note-padding);
+		margin-right: -(base.$note-padding);
+	}
+}
+
 h4 {
 	color: white;
 	padding: 0 8px 0 0;

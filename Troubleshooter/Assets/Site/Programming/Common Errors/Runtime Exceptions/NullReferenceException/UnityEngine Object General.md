@@ -23,6 +23,7 @@ To resolve a `NullReferenceException` caused by a `null` `UnityEngine.Object` yo
   - `GetComponent<Example>()` will return `null` if an `Example` component isn't attached to the same GameObject[^2].
   - `Camera.main` will return null if there isn't a camera tagged as `MainCamera`.
 - Check that you are not using modern null checking operators[^3] (`?.`, `??`, `??=`).
+- Assignment must occur before access. Often you would use [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) to get, and [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) to use.
 
 ---
 

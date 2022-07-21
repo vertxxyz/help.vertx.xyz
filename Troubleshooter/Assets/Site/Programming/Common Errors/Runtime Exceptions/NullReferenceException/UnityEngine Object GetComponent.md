@@ -5,6 +5,7 @@ A component of the target type must be attached to the same gameobject the calle
 1. The **same** gameobject has a component matching the argument.
 1. The target components' type actually matches[^1].  
 1. Search the scene for all instances of the caller and check the assumption is true (`t:ExampleComponent` for example).
+1. Assignment must occur before access. Often you would use [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) to get, and [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) to use.
 
 ### [`GetComponentInChildren`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponentInChildren.html)
 Only components on active gameobject are returned unless the `includeInactive` argument is `true`.
@@ -12,6 +13,7 @@ Only components on active gameobject are returned unless the `includeInactive` a
 1. The component type actually matches[^1].  
 1. Search the scene for all instances of the caller and check the assumption is true (`t:ExampleComponent` for example).
 1. If the component is on an inactive child, provide the `includeInactive` argument as `true`.
+1. Assignment must occur before access. Often you would use [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) to get, and [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) to use.
 
 ### [`GetComponentInParent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponentInParent.html)
 Only components on active gameobject are returned unless the `includeInactive` argument is `true`.
@@ -19,5 +21,6 @@ Only components on active gameobject are returned unless the `includeInactive` a
 1. The component type actually matches[^1].  
 1. Search the scene for all instances of the caller and check the assumption is true (`t:ExampleComponent` for example).
 1. If the component is on an inactive parent, provide the `includeInactive` argument as `true`.
+1. Assignment must occur before access. Often you would use [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) to get, and [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) to use.
 
 [^1]: A common example of this being wrong is `Text` when using subtypes of `TMP_Text`.
