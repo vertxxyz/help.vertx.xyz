@@ -174,18 +174,40 @@ $large: 1920px;
 	bottom: 0;
 	left: 0;
 	right: 0;
-	padding: 150px 0 50px base.$left-padding;
+	padding: 150px 0 (base.$sidebar-bottom-height + 25px) base.$left-padding;
 }
 
 .sidebar-bottom {
 	position: absolute;
-	height: 30px;
+	height: base.$sidebar-bottom-height;
 	padding: 10px 10px 10px 25px;
 	bottom: 0;
 	left: 0;
 	right: base.$scroll-bar-width;
 	margin-top: 16px;
 	background-color: #383838;
+	display: flex;
+	flex-direction: column;
+	
+	> a {
+		display: flex;
+		flex-direction: row;
+		height: 24px;
+		max-width: 280px;
+		padding: 0 6px;
+		margin: 0 0 0 -5px;
+		font-size: 11pt;
+		border: solid 1px #6d72786b;
+		border-radius: 6px;
+	}
+
+	> a:hover {
+		border-color: base.$link-color-hover;
+	}
+
+	> a:not(:last-child) {
+		margin-bottom: 5px;
+	}
 }
 
 abbr {
@@ -469,8 +491,11 @@ input.token {
 	color: base.$link-color-light;
 }
 
-.report-link {
-	font-size: 11pt;
+#kofi-link::before {
+	content: url("../Images/ko-fi--logo.svg");
+	height: 22px;
+	width: 22px;
+	margin: 1px 4px 1px 0;
 }
 
 blockquote {
