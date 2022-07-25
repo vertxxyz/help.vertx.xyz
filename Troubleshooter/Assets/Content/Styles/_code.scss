@@ -26,6 +26,7 @@
 }
 
 :not(pre) {
+	.code-block--no-background,
 	> code {
 		font-family: 'JetBrains Mono', monospace;
 		background-color: base.$dark-background-color;
@@ -34,6 +35,11 @@
 		font-size: 0.85em;
 		-webkit-box-decoration-break: clone;
 		box-decoration-break: clone;
+	}
+
+	.code-block--no-background {
+		background-color: transparent;
+		display: contents;
 	}
 }
 

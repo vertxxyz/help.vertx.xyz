@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DartSassHost;
@@ -70,13 +71,46 @@ public static partial class SiteBuilder
 
 			if (changed)
 			{
-				await Task.WhenAll(fileRequests.Select(request => request.versionTask));
+				try
+				{
+					await Task.WhenAll(fileRequests.Select(request => request.versionTask));
+				}
+				catch (TaskCanceledException e) when (e.InnerException is TimeoutException)
+				{
+					StringBuilder? failedMessage = null;
+					Console.WriteLine("Timeout occurred when requesting:");
+					foreach ((Task<string> versionTask, string fileName, _, _) in fileRequests)
+					{
+						if (!versionTask.IsFaulted && !versionTask.IsCanceled)
+							continue;
+						
+						Console.WriteLine(fileName);
+							
+						string output = Path.Combine(arguments.Path!, "Scripts", fileName);
+						if (File.Exists(output))
+						{
+							RecordFakeFile(output);
+						}
+						else
+						{
+							failedMessage ??= new StringBuilder("Timeout occurred and the following files have not previously been built, and cannot be used as a fallback:");
+							failedMessage.AppendLine($"\"{fileName}\" has not previously been written.");
+						}
+					}
+
+					if (failedMessage != null)
+					{
+						throw new BuildException(failedMessage.ToString());
+					}
+					
+					Console.WriteLine("Continuing with remaining tasks...");
+				}
 
 				int offset = 0;
 				foreach ((Task<string> versionTask, string fileName, int start, int end) in fileRequests)
 				{
-					string version = versionTask.Result;
-					string newValue = $"/Scripts/{fileName}?={version}";
+					string version = versionTask.IsFaulted || versionTask.IsCanceled ? "unknown" : versionTask.Result;
+					string newValue = $"/Scripts/{fileName}?v={version}";
 					indexText = $"{indexText[..(start + offset)]}{newValue}{indexText[(end + offset)..]}";
 					offset += newValue.Length - (end - start);
 				}

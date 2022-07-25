@@ -111,6 +111,8 @@ public static class IOUtility
 	public static IEnumerable<string> RecordedPaths => recordedPaths.Keys;
 	private static readonly ConcurrentDictionary<string, byte> recordedPaths = new();
 
+	public static void RecordFakeFile(string fullPath) => recordedPaths.TryAdd(fullPath, 0);
+
 	public static void ResetRecording() => recordedPaths.Clear();
 		
 	public static bool CopyFileIfDifferent(string destinationFullPath, FileInfo file)
