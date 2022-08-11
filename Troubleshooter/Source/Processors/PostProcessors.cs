@@ -16,7 +16,7 @@ public static class HtmlPostProcessors
 			.Where(t => typeof(IHtmlPostProcessor).IsAssignableFrom(t) && !t.IsAbstract)
 			.Select(t => (IHtmlPostProcessor)Activator.CreateInstance(t)!).OrderBy(p => p.Order).ToArray();
 
-	public static string Process(string html) => All.Aggregate(html, (current, processor) => processor.Process(current));
+	public static string Process(string html, string fullPath) => All.Aggregate(html, (current, processor) => processor.Process(current, fullPath));
 }
 
 [UsedImplicitly]
@@ -24,7 +24,7 @@ public class RelativeLinkConverter : IHtmlPostProcessor
 {
 	private readonly Regex regex = new(@"(?<=<a )href=""([^""]+\.md)""", RegexOptions.Compiled);
 
-	public string Process(string html) =>
+	public string Process(string html, string fullPath) =>
 		StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) =>
 		{
 			var insert = group.Replace("&amp;", "and");
@@ -41,7 +41,7 @@ public class ExternalLinkConverter : IHtmlPostProcessor
 
 	public int Order => 1;
 
-	public string Process(string html) =>
+	public string Process(string html, string fullPath) =>
 		StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) =>
 		{
 			stringBuilder.Append(@"class=""link--external"" ");
@@ -52,7 +52,7 @@ public class ExternalLinkConverter : IHtmlPostProcessor
 [UsedImplicitly]
 public class BooleanTableConverter : IHtmlPostProcessor
 {
-	public string Process(string html)
+	public string Process(string html, string fullPath)
 	{
 		html = html.Replace("<td>Y</td>", "<td onmouseover=\"highlightTable(this)\" onmouseout=\"unhighlightTable(this)\" class=\"tableYes\"></td>");
 		return html.Replace("<td>N</td>", "<td onmouseover=\"highlightTable(this)\" onmouseout=\"unhighlightTable(this)\" class=\"tableNo\"></td>");
@@ -64,7 +64,7 @@ public class SliderConverter : IHtmlPostProcessor
 {
 	private readonly Regex regex = new("<div.* class=\".*?slider\"></div>", RegexOptions.Compiled);
 
-	public string Process(string html)
+	public string Process(string html, string fullPath)
 	{
 		return StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) =>
 		{
@@ -93,7 +93,7 @@ public class SliderConverter : IHtmlPostProcessor
 [UsedImplicitly]
 public class FootnoteRuleRemoval : IHtmlPostProcessor
 {
-	public string Process(string html)
+	public string Process(string html, string fullPath)
 	{
 		int footnoteIndex = html.IndexOf("<div class=\"footnotes\">", StringComparison.Ordinal);
 		if (footnoteIndex < 0)
@@ -115,7 +115,7 @@ public class ListCompaction : IHtmlPostProcessor
 {
 	private static readonly Regex emptyListRegex = new("<li><span class=\"collapse\">collapse</span></li>\n</(ul|ol)>", RegexOptions.Compiled);
 	
-	public string Process(string html)
+	public string Process(string html, string fullPath)
 	{
 		MatchCollection matches = emptyListRegex.Matches(html);
 		if (matches.Count == 0) return html;

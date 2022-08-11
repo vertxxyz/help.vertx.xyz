@@ -5,12 +5,33 @@ C#'s indices are **zero-indexed**. This means that indices begin at 0, and go up
 `[0..Length)`  
 
 ### Resolution
+#### In local scopes
 Ensure that the line pointed to by the [stack trace](../Stack%20Traces.md) is accessing an index that is within the limits of the collection.  
 Common mistakes are:
 - Accessing an empty collection (`.Length` or `.Count` is `0`).
 - An improperly written `for` or `while` loop.
 
 You can use the [debugger](../../Debugging/Debugger.md) to step over your code, inspecting variables and execution to assess what is wrong.  
+
+#### Inside lambdas
+
+If you have code like this:
+```csharp
+for (int i = 0; i < values.Length; i++)
+{
+    values[i].onClick.AddListener(() => values[i].enabled = false);
+}
+```
+The `i` in the delegate is not copied inside the for loop, it is created before it, reused, and increased as the counter of the loop. The value in the listener will increase to `values.Length` at the end of the loop.  
+To fix this, declare a local version of the counter that is used in the delegate:
+```csharp
+for (int i = 0; i < values.Length; i++)
+{
+    int iLocal = i;
+    values[i].onClick.AddListener(() => values[iLocal].enabled = false);
+}
+```
+See [anonymous methods and closures](../../Specifics/Anonymous%20Methods%20and%20Closures.md) for more information.
 
 ### Notes
 A [functioning IDE](../../IDE%20Configuration.md) will be able to autocomplete `for` loops by typing <kbd>for</kbd> and pressing tab/enter.  

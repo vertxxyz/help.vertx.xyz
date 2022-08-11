@@ -15,7 +15,7 @@ This example uses `PrefabComponentType`, it will need to be replaced with the ta
 
 #### 2. Reference the instance in the Inspector
 ::::note
-Drag the prefab asset into the slot or you will get an [Unassigned Reference Exception](../../Common%20Errors/Runtime%20Exceptions/UnassignedReferenceException.md).  
+Drag the prefab asset into the slot or you will get an [`UnassignedReferenceException`](../../Common%20Errors/Runtime%20Exceptions/UnassignedReferenceException.md).  
 
 <video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://help.vertx.xyz/Video/prefab-references.webm"></video>
 ::::

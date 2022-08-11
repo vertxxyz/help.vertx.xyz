@@ -1,7 +1,7 @@
 ## [ScreenToWorldPoint](https://docs.unity3d.com/ScriptReference/Camera.ScreenToWorldPoint.html)
 ### Description
 `ScreenToWorldPoint` takes a `Vector3` argument, where the first two values are screen coordinates, and the third is the distance from the camera.  
-Providing distance is important when using a perspective camera, as `0` distance will return the world space camera position.
+Providing distance is important when using a **perspective camera**, as `0` distance will return the world space camera position.
 
 ### Resolution
 Provide a distance in the z coordinate of the screen position.

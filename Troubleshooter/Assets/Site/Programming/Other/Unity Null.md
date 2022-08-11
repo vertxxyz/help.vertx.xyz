@@ -1,6 +1,6 @@
 <<Abbreviations/NRE.md>>
 ## Unity null
-Comparing [UnityEngine.Object](https://docs.unity3d.com/ScriptReference/Object.html) derived types to `null` in Unity may not work how you expect.  
+Comparing [`UnityEngine.Object`](https://docs.unity3d.com/ScriptReference/Object.html) derived types to `null` in Unity may not work how you expect.  
 
 ### Details
 #### General
@@ -11,8 +11,8 @@ When an `Object` is compared with `null` and it isn't *really* `null`, a check a
 
 #### Editor only
 The editor adds additional context through this destroyed or faked object which is raised when exceptions occur.  
-- When something isn't assigned in the editor, an [Unassigned Reference Exception](../Common%20Errors/Runtime%20Exceptions/UnassignedReferenceException.md) is thrown.   
-- When there used to be an object, a [Missing Reference Exception](../Common%20Errors/Runtime%20Exceptions/MissingReferenceException.md) is thrown.
+- When something isn't assigned in the editor, an [`UnassignedReferenceException`](../Common%20Errors/Runtime%20Exceptions/UnassignedReferenceException.md) is thrown.   
+- When there used to be an object, a [`MissingReferenceException`](../Common%20Errors/Runtime%20Exceptions/MissingReferenceException.md) is thrown.
 
 This context includes the location that is missing the object, which wouldn't be provided with a normal NRE.
 

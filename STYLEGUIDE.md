@@ -49,9 +49,9 @@ Sentence containing an example [link](link.md).
 When a hub page has many different topics that are branched off as links within sentences please use dot points to distinguish each line.  
 If a page is likely going to become something that uses this format, also use this style.  
 ```
-- [Example sentence that has a link](link0.md).
-- [More example sentences that contain links](link1.md).
-- [Even more example sentences that contain links](link2.md).
+- [Example sentence that has a link.](link0.md)
+- [More example sentences that contain links.](link1.md)
+- [Even more example sentences that contain links.](link2.md)
 ```
 
 ### General Pages
@@ -60,11 +60,11 @@ When a page contains a description and links that continue the line of troublesh
 Example description sentence containing a line of troubleshooting that might solve a problem.  
 
 ---  
-- [Option A](a.md).
-- [Option B](b.md).
+- [Option A.](a.md)
+- [Option B.](b.md)
 ```
 
-When a page is made up of a description of a problem, and another description of a resolution, add 3rd level headers in this style that separate them into two paragraphs with limited overlap.
+When a page is made up of a description of a problem, and a resolution, add 3rd level headers in this style that separate them into two paragraphs with limited overlap.
 ```
 ### Description
 This error is describing this problem because of this reasoning.  

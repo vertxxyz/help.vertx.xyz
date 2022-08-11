@@ -156,7 +156,7 @@ public class PageResource
 				// Embeds are not fully processed into HTML until they are built when embedded into site content.
 				// This is done because something like Abbreviations requires the abbreviation target to be processed at the same time as the source.
 				MarkdownText!,
-			ResourceLocation.Site => ToHtml(MarkdownText!, markdownPipeline),
+			ResourceLocation.Site => ToHtml(MarkdownText!, markdownPipeline, FullPath),
 			_ => throw new ArgumentOutOfRangeException(nameof(Location), Location, "Location was not handled.")
 		};
 
@@ -166,7 +166,7 @@ public class PageResource
 			HtmlText += text;
 	}
 
-	private static string ToHtml(string markdown, MarkdownPipeline pipeline)
+	private static string ToHtml(string markdown, MarkdownPipeline pipeline, string fullPath)
 	{
 		string markdownPreProcessed = MarkdownPreProcessors.Process(markdown);
 
@@ -184,7 +184,7 @@ public class PageResource
 
 		renderer.Render(document);
 		renderer.Writer.Flush();
-		return HtmlPostProcessors.Process(renderer.Writer.ToString() ?? string.Empty);
+		return HtmlPostProcessors.Process(renderer.Writer.ToString() ?? string.Empty, fullPath);
 	}
 
 	public void ProcessMarkdown(string text, Site site, PageResources? allResources)
