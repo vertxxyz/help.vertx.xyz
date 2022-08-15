@@ -1,58 +1,92 @@
 table {
-	margin: 20px 20px 20px 0;
-	overflow: auto;
+  margin: 20px 20px 20px 0;
+  overflow: auto;
 }
 
 table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 
 th, td {
-	padding: 12px;
+  padding: 12px;
 }
 
 td.tableYes {
-	background-color: rgba(124, 220, 54, 0.8);
+  background-color: rgba(124, 220, 54, 0.8);
 }
 
 td.tableNo {
-	background: repeating-linear-gradient(-55deg, rgb(42, 42, 42), rgb(42, 42, 42) 10px, transparent 10px, transparent 20px) fixed;
+  background: repeating-linear-gradient(-55deg, rgb(42, 42, 42), rgb(42, 42, 42) 10px, transparent 10px, transparent 20px) fixed;
 }
 
 td.tableYes.highlight {
-	background-color: rgba(124, 220, 54, 1);
-	/*cursor: crosshair;*/
+  background-color: rgba(124, 220, 54, 1);
+  /*cursor: crosshair;*/
 }
 
 td.tableNo.highlight {
-	background: repeating-linear-gradient(-55deg, rgb(50, 50, 50), rgb(50, 50, 50) 10px, rgba(255, 255, 255, 0.05) 10px, rgba(255, 255, 255, 0.05) 20px) fixed;
-	/*cursor: crosshair;*/
+  background: repeating-linear-gradient(-55deg, rgb(50, 50, 50), rgb(50, 50, 50) 10px, rgba(255, 255, 255, 0.05) 10px, rgba(255, 255, 255, 0.05) 20px) fixed;
+  /*cursor: crosshair;*/
 }
 
 th.highlight,
 td.highlight {
-	background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .grid-container {
-	display: grid;
-	grid-template-columns: auto auto auto;
+  display: grid;
+  // Grid is 3 wide
+  grid-template-columns: auto auto auto;
+
+  .grid-item__extra--even {
+    display: none; // Hide extra for even grids
+  }
+}
+
+@media only all and (max-width: 750px) {
+  // Grid is 2 wide
+  .grid-container {
+    grid-template-columns: auto auto;
+
+    .grid-item__extra--odd {
+      display: none; // Hide extra for odd grids
+    }
+
+    .grid-item__extra--even {
+      display: block; // Show extra for grid even grids
+    }
+  }
+}
+
+@media only all and (max-width: 510px) {
+  // Grid is 1 wide
+  .grid-container {
+    grid-template-columns: auto;
+
+    .grid-item__extra--even {
+      display: none; // Hide extra for even grids
+    }
+
+    // Don't show even grids for 1 wide.
+  }
 }
 
 #main-page--content {
-	.grid-item {
-		> :first-child {
-			margin-block-start: 0;
-			margin-top: 0;
-		}
+  .grid-item {
+    > :first-child {
+      margin-block-start: 0;
+      margin-top: 0;
+    }
 
-		> :last-child {
-			margin-block-end: 0;
-			margin-bottom: 0;
-		}
-	}
-	.grid-container {
-		grid-gap: 1em 0;
-	}
+    > :last-child {
+      margin-block-end: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  .grid-container {
+    grid-gap: 1em 0;
+  }
 }

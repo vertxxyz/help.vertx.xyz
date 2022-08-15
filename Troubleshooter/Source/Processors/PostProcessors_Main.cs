@@ -16,13 +16,13 @@ public class MainContentToGrid : IHtmlPostProcessor
 
 		HtmlDocument doc = new HtmlDocument();
 		doc.LoadHtml(html);
-		
+
 		HtmlNode node = doc.GetElementbyId("main-page--content");
 		if (node == null)
 			throw new BuildException("Main.md did not have #main-page--content root!");
 
 		ProcessH3ToTables(node);
-		
+
 		return doc.DocumentNode.OuterHtml;
 	}
 
@@ -74,6 +74,7 @@ public class MainContentToGrid : IHtmlPostProcessor
 					break;
 				}
 			}
+
 			child = child.NextSibling;
 		}
 
@@ -86,10 +87,13 @@ public class MainContentToGrid : IHtmlPostProcessor
 
 			if (grid.ChildNodes.Count != 0 && grid.ChildNodes[^1].FirstChild.Name == "h3")
 			{
-				while (grid.ChildNodes.Count % columnCount != 0)
-				{
-					grid.AppendChild(HtmlNode.CreateNode("<div class=\"grid-item\"><h3>‎</h3></div>"));
-				}
+				grid.AppendChild(
+					HtmlNode.CreateNode(
+						grid.ChildNodes.Count % 2 != 0
+							? "<div class=\"grid-item grid-item__extra--even\"><h3>‎</h3></div>" // even
+							: "<div class=\"grid-item grid-item__extra--odd\"><h3>‎</h3></div>" // odd
+					)
+				);
 			}
 
 			// Insert grid after the last h2.
@@ -101,7 +105,7 @@ public class MainContentToGrid : IHtmlPostProcessor
 		{
 			if (grid == null)
 				return;
-			
+
 			item = HtmlNode.CreateNode(itemHtml);
 			grid.AppendChild(item);
 		}
