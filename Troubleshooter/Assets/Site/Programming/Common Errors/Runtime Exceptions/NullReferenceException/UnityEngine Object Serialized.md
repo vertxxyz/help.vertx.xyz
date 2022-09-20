@@ -9,7 +9,7 @@
 1. Check that you are not using modern null checking operators[^3] (`?.`, `??`, `??=`).
 1. Ensure nothing is destroying the Object, or setting it to `null` before you attempt to use it.
 
-Logs can also be made to ping objects they reference using the [context parameter](../../../Debugging/Logging/Logging%20How-to.md).  
+Logs can also be made to ping objects they reference using the [context parameter](../../../Debugging/Logging/How-to.md).  
 :::  
 **Or:**  
 :::note

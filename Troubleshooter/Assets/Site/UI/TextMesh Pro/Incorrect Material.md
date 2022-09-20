@@ -7,4 +7,4 @@ Switch the material used by the font asset to use one of the TextMesh Pro **Dist
 
 ---
 
-[My text is still blurry and clipped.](Blurry%20Text.md)
+[My text is still blurry and clipped.](Padding%20To%20Size.md)

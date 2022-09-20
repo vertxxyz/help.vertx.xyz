@@ -29,7 +29,7 @@ To resolve a `NullReferenceException` caused by a `null` `UnityEngine.Object` yo
 
 If the object is assigned in the Inspector, search the Scene (`t:ExampleComponent` for example), ensuring there aren't duplicate components causing the issue.
 
-Logs can also be made to ping objects they reference using the [context parameter](../../../Debugging/Logging/Logging%20How-to.md).
+Logs can also be made to ping objects they reference using the [context parameter](../../../Debugging/Logging/How-to.md).
 
 [^1]: See [Serializing Component references](../../../Variables/Other%20Members/Serializing%20Component%20References.md) to learn how to assign variables in the Inspector.  
 [^2]: A common mistake is missing `GetComponent` setting a serialized value to `null` in `Awake` or `Start`.  

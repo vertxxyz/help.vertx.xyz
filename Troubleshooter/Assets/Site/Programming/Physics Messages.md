@@ -5,4 +5,4 @@
 
 ---
 
-To know whether a physics message is being received, place an active [breakpoint](Debugging/Debugger.md) or a [log](Debugging/Logging/Logging%20How-to.md) at the top of the method.
+To know whether a physics message is being received, place an active [breakpoint](Debugging/Debugger.md) or a [log](Debugging/Logging/How-to.md) at the top of the method.

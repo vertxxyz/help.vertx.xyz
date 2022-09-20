@@ -4,3 +4,7 @@ Silence still takes up time in audio clip. It's important that effects like shot
 
 ### Resolution
 Trim the leading silence from your Audio Clip using a program like [Audacity](https://www.audacityteam.org).
+
+---
+
+[My audio is still delayed](Import%20Settings.md)
