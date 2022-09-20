@@ -43,7 +43,7 @@
 - [Editor windows](Programming/Editor%20Issues/Editor%20Windows.md)
 
 ## Building
-- [Build errors](Building/Common%20Build%20Errors.md)
+- [Build errors](Building/Build%20Errors.md)
 
 ## UI
 - [Unity UI](UI/UGUI.md)

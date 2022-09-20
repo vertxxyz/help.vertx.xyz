@@ -7,6 +7,10 @@ A component of the target type must be attached to the same gameobject the calle
 1. Search the scene for all instances of the caller and check the assumption is true (`t:ExampleComponent` for example).
 1. Assignment must occur before access. Often you would use [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) to get, and [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) to use.
 
+:::info{.inline}
+You can use the [`RequireComponent`](https://docs.unity3d.com/ScriptReference/RequireComponent.html) attribute to automatically add component dependencies when adding new components.
+:::  
+
 ### [`GetComponentInChildren`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponentInChildren.html)
 Only components on active gameobject are returned unless the `includeInactive` argument is `true`.
 1. Either the same object or a child has a matching component.
@@ -22,5 +26,9 @@ Only components on active gameobject are returned unless the `includeInactive` a
 1. Search the scene for all instances of the caller and check the assumption is true (`t:ExampleComponent` for example).
 1. If the component is on an inactive parent, provide the `includeInactive` argument as `true`.
 1. Assignment must occur before access. Often you would use [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) to get, and [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) to use.
+
+---
+
+If you're still having issues using these methods, it's often preferable to [serialize components via the inspector](../../../Variables/Other%20Members/Serializing%20Component%20References.md) instead.
 
 [^1]: A common example of this being wrong is `Text` when using subtypes of `TMP_Text`.

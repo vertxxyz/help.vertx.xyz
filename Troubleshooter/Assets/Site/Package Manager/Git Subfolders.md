@@ -4,7 +4,7 @@ You can specify a repository subfolder for a Git package through the path query 
 #### Special considerations
 
 `path` must be a relative path to the root of the repository. An absolute path won't work. (ie: `path=/subfolder` is ok, `path=c:\my\repo\subfolder` is not.)  
-`..` and `.` indirection notation is supported but will block at the repository root (i.e. `/../../..` will resolve to `/` )
+`..` and `.` indirection notation is supported but will block at the repository root (`/../../..` will resolve to `/` )
 path query parameter must be placed before the revision anchor. The reverse order will fail.  
 A package manifest (*package.json*) is expected in the specified path.  
 

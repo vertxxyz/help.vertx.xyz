@@ -8,3 +8,6 @@ Select an object and press <kbd>F</kbd> to focus the camera on the object.
 Focusing an object should reasonably adjust the clipping planes in relation to its scale.
 
 Disable **Dynamic Clipping** in the Scene view control bar's camera dropdown to manually set the clipping planes to fixed values.
+
+---
+[My scene view still has clipping problems.](Scene%20View%20Gizmo.md)

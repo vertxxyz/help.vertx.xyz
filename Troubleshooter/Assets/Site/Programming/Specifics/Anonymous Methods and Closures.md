@@ -27,7 +27,7 @@ private sealed class <>c__DisplayClass0_0
     }
 }
 
-public void Example()
+public void ExampleA()
 {
     Action[] array = new Action[10];
     <>c__DisplayClass0_0 <>c__DisplayClass0_ = new <>c__DisplayClass0_0();

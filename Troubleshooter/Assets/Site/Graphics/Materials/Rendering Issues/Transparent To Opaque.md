@@ -7,7 +7,7 @@ Avoid anything that uses the words "Transparent" or "Fade".
 ### Built-in Render Pipeline
 The Standard shader has an Opaque [Rendering Mode](https://docs.unity3d.com/Manual/StandardShaderMaterialParameterRenderingMode.html). Cutout is also suitable if required.  
 The Unlit shader has Color and Cutout.  
-Custom shaders should render to depth, ie. `ZWrite On` (default), and ideally be in the Geometry [render queue](https://docs.unity3d.com/Manual/SL-SubShaderTags.html) (default).
+Custom shaders should render to depth, `ZWrite On` (default), and ideally be in the Geometry [render queue](https://docs.unity3d.com/Manual/SL-SubShaderTags.html) (default).
 
 ### URP or HDRP
 For default render pipeline materials the Surface Type defined in the Surface Options dropdown for a material must be set to Opaque.  

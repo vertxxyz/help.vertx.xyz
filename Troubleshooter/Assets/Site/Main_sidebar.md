@@ -22,7 +22,7 @@
 - [Package Manager](#package-manager)
 
 ### Resources
-- [Collision Action Matrix](Info/Collision%20Matrix.md)
+- [Collision action matrix](Info/Collision%20Matrix.md)
 - [Bitmasks](Info/Bitmasks.md)
 - [Quaternions](Info/Quaternions.md)
 - [Lerp](Programming/Specifics/Lerp/Overview.md)
@@ -32,8 +32,9 @@
 - [Unity Learn](http://learn.unity.com/)
 - [Unity Manual](https://docs.unity3d.com/Manual/)
 - [API Scripting Reference](https://docs.unity3d.com/ScriptReference/index.html)
-- [Package Documentation](https://docs.unity3d.com/Manual/PackagesList.html)
-- [Unity Log Files](https://docs.unity3d.com/Manual/LogFiles.html)
+- [Package documentation](https://docs.unity3d.com/Manual/PackagesList.html)
+- [Unity log files](https://docs.unity3d.com/Manual/LogFiles.html)
+- [Unity C# reference source code](https://github.com/Unity-Technologies/UnityCsReference/)
 - [User-Contributed Notes](https://mvi.sh/notes/)
 
 ### Contributing

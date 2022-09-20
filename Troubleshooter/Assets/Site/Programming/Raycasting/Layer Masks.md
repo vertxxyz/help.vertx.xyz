@@ -6,12 +6,21 @@ Active layers will be hit by the raycast.
 :::  
 A layer mask may be an `int`, but it isn't representing a single layer.  
 ### Resolution
+:::note  
 If bitmasks are confusing, a simple resolution is to expose a `LayerMask` property which can be simply configured via the Inspector.  
 ```csharp
 public LayerMask exampleMask;
 ```
 `LayerMask` is implicitly convertible to `int`, and is simply passed to the `Raycast` functions.  
-
+:::  
+**Or**  
+:::note  
+Initialise and use a mask created using [`LayerMask.GetMask`](https://docs.unity3d.com/ScriptReference/LayerMask.GetMask.html).  
+:::  
+**Or**  
+:::note  
+Use bit shifting to manually create a mask using layer indexes.  
+:::  
 [I would like to learn more about bitmasks.](../Physics/Bitmasks.md)
 
 ---

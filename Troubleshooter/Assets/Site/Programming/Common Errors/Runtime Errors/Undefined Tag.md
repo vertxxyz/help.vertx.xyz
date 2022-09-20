@@ -9,7 +9,9 @@ Tag: Example is not defined.
 Individual GameObjects have tags that can be used to identify them.  
 Tags are defined in the [Tags and Layers Settings](https://docs.unity3d.com/Manual/class-TagManager.html) (**Edit | Project Settings | Tags and Layers**).  
 Tags are **not** the same as Layers, and don't affect rendering or collision.  
-If you are seeing this error you have either not defined one in the first place, or haven't identically referenced an existing tag.  
+
+If you're seeing this error you have either not defined one in the first place, or haven't identically referenced an existing tag.  
+
 :::warning
 **Identical** includes capitalisation and spaces
 :::

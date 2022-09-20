@@ -33,6 +33,8 @@ public class LanguageTests
 		text.Should().NotContain("framerate", StringComparison.OrdinalIgnoreCase, "we should use \"frame rate\"");
 		text.Should().NotContain("eg.", StringComparison.OrdinalIgnoreCase, "we should use \"for example\"");
 		text.Should().NotContain("etc.", StringComparison.OrdinalIgnoreCase, "we should use \"such as\", or \"like\", \"and other X\"");
+		text.Should().NotContain("ie.", StringComparison.OrdinalIgnoreCase, "we should use \"that is\", or \"such as\"");
+		text.Should().NotContain("i.e.", StringComparison.OrdinalIgnoreCase, "we should use \"that is\", or \"such as\"");
 	}
 		
 	/// <summary>
