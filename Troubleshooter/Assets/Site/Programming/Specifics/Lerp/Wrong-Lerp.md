@@ -20,6 +20,16 @@ value = Mathf.Lerp(value, target, Time.deltaTime * speed);
 *Vague* is the takeaway from this usage.  
 If you don't need exact outcomes or durations and aren't too worried about differences across frame rates, applying lerp like this is a common creative way to smooth movement.  
 
+### Improvement
+
+Using a more complex `t` can solve framerate dependency problems.
+
+```chsharp
+value = Mathf.Lerp(value, target, 1 - Mathf.Pow(fraction, Time.deltaTime));
+```
+
+Where `fraction` is a `0->1` factor that defines a percentage of smoothing. `0` gets you the target (no smoothing), `1` is the source (so smoothed it's useless).  
+
 ### Conclusion
 
 If you are concerned about any of the downsides, consider alternatives like:
