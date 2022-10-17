@@ -22,7 +22,7 @@ If you don't need exact outcomes or durations and aren't too worried about diffe
 
 ### Improvement
 
-Using a more complex `t` can solve framerate dependency problems.
+Using a more complex `t` can solve frame rate dependency problems.
 
 ```chsharp
 value = Mathf.Lerp(value, target, 1 - Mathf.Pow(fraction, Time.deltaTime));

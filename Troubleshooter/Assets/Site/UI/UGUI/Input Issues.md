@@ -14,7 +14,7 @@ Input in Unity UI (UGUI) requires multiple things to receive input events:
     If this isn't properly set up, when you select the EventSystem its preview will say `no module`.
 
 :::warning
-Do not make assumptions. Double checking these steps are met is always recommended.
+Do not make assumptions. Double-checking these steps are met is always recommended.
 :::
 
 To troubleshoot cases where other UI is blocking input, select the Event System and hover/click the UI that's failing. The preview pane at the bottom of the inspector should list the gameobject that received the event.

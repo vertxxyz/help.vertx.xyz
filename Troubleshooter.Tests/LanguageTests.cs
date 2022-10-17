@@ -35,6 +35,7 @@ public class LanguageTests
 		text.Should().NotContain("etc.", StringComparison.OrdinalIgnoreCase, "we should use \"such as\", or \"like\", \"and other X\"");
 		text.Should().NotContain("ie.", StringComparison.OrdinalIgnoreCase, "we should use \"that is\", or \"such as\"");
 		text.Should().NotContain("i.e.", StringComparison.OrdinalIgnoreCase, "we should use \"that is\", or \"such as\"");
+		text.Should().NotContain("double check", StringComparison.OrdinalIgnoreCase, "we should use \"double-check\"");
 	}
 		
 	/// <summary>

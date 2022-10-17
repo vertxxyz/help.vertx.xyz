@@ -4,5 +4,4 @@
 - [A texture is blurry when viewed at a grazing angle.](Textures/Anisotropic%20Filtering.md)
 - [A transparent image is opaque.](Textures/Transparency.md)
 - [A texture stretches at the sides instead of repeating.](Textures/Wrap%20Mode-repeat.md)
-- [A texture has unexpected values (bleed or fringing) at its border.](Textures/Wrap%20Mode-clamp.md)
-- [A texture has unexpected values (fringing) on the edges of transparency.](Textures/Bleeding.md)
+- [A texture has unexpected values (bleed or fringing).](Textures/Bleeding.md)
