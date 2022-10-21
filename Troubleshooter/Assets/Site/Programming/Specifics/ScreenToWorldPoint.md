@@ -8,6 +8,10 @@ Provide a distance in the z coordinate of the screen position.
 
 <<Code/Specific/ScreenToWorldPoint.rtf>>
 
+:::note
+If appropriate, switch your camera to Orthographic projection. This is the correct approach when making entirely 2D games.
+:::  
+
 #### Interactive Diagram
 
 :::note{.center}
@@ -21,10 +25,6 @@ Drag the point to modify mouse position, move the slider to change the distance.
 <canvas id="screen_to_world_point" width="500" height="500"></canvas>
 :::slider {#screen_to_world_point_slider}
 :::
-
----
-
-If appropriate, switch your camera to Orthographic projection. This is the correct approach when making entirely 2D games.
 
 ### Alternate methods
 
