@@ -7,4 +7,4 @@ These methods should generally be called from [`FixedUpdate`](https://docs.unity
 
 ---  
 
-[I am still not getting a message.](7%203D%20Other.md)
+[I am still not getting a message.](7%203D%20Continuous%20Detection.md)
