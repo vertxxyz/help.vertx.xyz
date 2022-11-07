@@ -15,9 +15,14 @@ Note that `DrawRay` takes a position and a **direction**.
 Scaling a *normalized* vector will produce a vector with that length. This can be done here to make the output more visible.  
 <<Code/Drawing/Draw Functions 1.rtf>>  
 
+If you're passing two positions to this function the results will be unexpected. Use `DrawLine` instead.
+
 #### DrawLine
 
 <<Code/Drawing/Draw Functions 2.rtf>>  
 
 ### Extra
-I've provided custom debug drawing functions in a utility package I am developing that you can find [here](https://github.com/vertxxyz/Vertx.Debugging). You can draw many physics functions with custom gizmos, and draw labels at positions in the scene.
+I've created a custom Editor debug drawing package called [Vertx.Debugging](https://github.com/vertxxyz/Vertx.Debugging).  
+You can draw physics functions (casts, overlaps, hits, etc), and draw labels in the scene.
+
+![Vertx.Debugging](https://user-images.githubusercontent.com/21963717/194199755-a63d8ebc-0cc7-4268-9316-78f7d4fbea1a.mp4)

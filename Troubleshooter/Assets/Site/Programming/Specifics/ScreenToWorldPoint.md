@@ -27,10 +27,23 @@ Drag the point to modify mouse position, move the slider to change the distance.
 :::
 
 ### Alternate methods
+#### Using a Plane
 
 Using a [`Plane`](https://docs.unity3d.com/ScriptReference/Plane.html) and [`ScreenPointToRay`](https://docs.unity3d.com/ScriptReference/Camera.ScreenPointToRay.html) avoids having to calculate an appropriate distance from the camera. When the result is on a fixed plane in space, this can be a suitable approach.  
 
 <<Code/Specific/Plane Raycast.rtf>>  
+
+#### Using Physics
+Using a [`Raycast`](https://docs.unity3d.com/ScriptReference/Physics.Raycast.html) and [`ScreenPointToRay`](https://docs.unity3d.com/ScriptReference/Camera.ScreenPointToRay.html) avoids having to calculate an appropriate distance from the camera. When the result is meant to be on the surface of colliders, this is the correct approach.
+
+```csharp
+Plane plane = new Plane(Vector3.up, Vector3.zero); // Provide your own plane
+Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+if (Physics.Raycast(ray, out RaycastHit hit))
+{
+    // Use hit.point
+}
+```
 
 ---  
 

@@ -5,5 +5,6 @@
 - [A **method** does not appear in the functions list.](Unity%20Events/Method%20Requirements.md)
 - [A **property** does not appear in in the functions list.](Unity%20Events/Property%20Requirements.md)
 - [A **field** does not appear in the functions list.](Unity%20Events/Field%20Support.md)
+- [A callback added via `AddListener` does not appear in the UI.](Unity%20Events/Add%20Listener%20UI.md)
 - [A UnityEvent will not send dynamic values.](Unity%20Events/Dynamic%20Values.md)
 - [A UnityEvent will not fire its event when called.](Unity%20Events/States.md)

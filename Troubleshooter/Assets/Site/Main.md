@@ -29,13 +29,17 @@
 - [AssetDatabase](Programming/Editor%20Issues/AssetDatabase.md)
 ### DOTS
 - [Job System and Burst](Programming/Jobs%20And%20Burst.md)
-### Specifics
-- [Color](Programming/Specifics/Color.md)
-- [Coroutines](Programming/Coroutines/Issues.md)
-- [Parsing input strings](Programming/Specifics/Parsing.md)
+### Utility & maths
 - [Random](Programming/Specifics/Random.md)
 - [Lerp](Programming/Specifics/Lerp.md)
 - [ScreenToWorldPoint](Programming/Specifics/ScreenToWorldPoint.md)
+- [Color](Programming/Specifics/Color.md)
+- [Bitmasks](Info/Bitmasks.md)
+- [Quaternions](Info/Quaternions.md)
+### Functionality
+- [Coroutines](Programming/Coroutines/Issues.md)
+- [UnityEvents](Interface/Unity%20Events.md)
+- [Parsing input strings](Programming/Specifics/Parsing.md)
 ### Editor extensions
 - [Property drawers](Programming/Editor%20Issues/Property%20Drawers.md)
 - [Property decorators](Programming/Editor%20Issues/Property%20Decorators.md)

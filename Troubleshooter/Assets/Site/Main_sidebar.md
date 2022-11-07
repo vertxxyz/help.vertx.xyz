@@ -6,7 +6,8 @@
     - [Input](#input)
     - [Physics](#physics)
     - [Assets](#assets)
-    - [Specifics](#specifics)
+    - [Utility & maths](#utility-maths)
+    - [Functionality](#functionality)
     - [Editor](#editor-extensions)
     - [DOTS](#dots)
 - [Building](#building)
@@ -35,7 +36,7 @@
 - [Package documentation](https://docs.unity3d.com/Manual/PackagesList.html)
 - [Unity log files](https://docs.unity3d.com/Manual/LogFiles.html)
 - [Unity C# reference source code](https://github.com/Unity-Technologies/UnityCsReference/)
-- [User-Contributed Notes](https://mvi.sh/notes/)
+- [Developer Notes 💬](https://github.com/Developer-Notes-Extension)
 
 ### Contributing
 - [Github](https://github.com/vertxxyz/help.vertx.xyz)  
