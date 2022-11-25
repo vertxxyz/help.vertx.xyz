@@ -1,9 +1,7 @@
 ## General IDE configuration
-:::warning
-The only[^1] 3 IDEs you should be using are **Visual Studio**, **Visual Studio Code**, or **JetBrains Rider**.
+:::error
+The only[^1] 3 IDEs you should be using are **Visual Studio**, **JetBrains Rider**, or **Visual Studio Code**.
 :::
-
-### Options
 
 <<General/IDE Alternatives.md>>
 
