@@ -17,8 +17,8 @@ The object must inherit the type it's being casted to, or must have a [user-defi
 :::  
 :::note
 #### I am not casting
-If [Instantiate](https://docs.unity3d.com/ScriptReference/Object.Instantiate.html) is throwing the exception, then the original type has been changed.  
-Re-assign the object in the Inspector to serialize the correct instance to the field.
+If [`Instantiate`](https://docs.unity3d.com/ScriptReference/Object.Instantiate.html) is throwing the exception, then the original type of the object has been changed.  
+Re-assign the object you are instancing in the Inspector to fix the type mismatch.
 
 If you are not casting or using Instantiate, please <<report-issue.html>> so this page can be improved.  
 :::

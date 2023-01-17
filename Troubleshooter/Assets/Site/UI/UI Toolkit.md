@@ -10,6 +10,9 @@ The UI Toolkit Events Debugger can help debug issues with element interactions.
 ### Fonts
 - [I cannot assign a TMP FontAsset to a Label.](UI%20Toolkit/Font%20Asset.md)
 
+### Rich text
+- [The `<link>` or `<a href>` tags do not work.](UI%20Toolkit/Links.md)
+
 ### Complex
 
 - [Issues with generateVisualContent](UI%20Toolkit/generateVisualContent.md)

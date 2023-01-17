@@ -22,9 +22,12 @@ General errors:
 - [Tag: Example is not defined.](Runtime%20Errors/Undefined%20Tag.md)
 - [A game object can only be in one layer. The layer needs to be in the range [0...31]](Runtime%20Errors/Undefined%20Layer.md)
 - ['X' AnimationEvent 'Y' on animation 'Z' has no receiver! Are you missing a component?](../../Animation/Animation%20Event/Receivers.md)
+- ['X' AnimationEvent has no function name specified!](../../Animation/Animation%20Event/Functions.md)
+- [Destroying assets is not permitted to avoid data loss.](Runtime%20Errors/Destroying%20Assets.md)
 
 :::  
-[Built-in input system errors.](../Input/Built-In%20Input.md)
+- [Built-in input system errors.](../Input/Built-In%20Input.md)  
+- [Input system package errors.](../Input/Input%20System/Errors.md)
  
 #### Editor
 These errors are only relevant to you if you are writing editor code:  

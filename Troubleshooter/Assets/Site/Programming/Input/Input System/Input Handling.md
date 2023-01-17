@@ -8,6 +8,8 @@ See [migration from the old input system](https://docs.unity3d.com/Packages/com.
 #### UI Issues
 If the code throwing this error is provided by Unity's UI you will need to replace the `StandaloneInputModule` with the new `InputSystemUIInputModule`. This can be found on the Event System GameObject found in the scene, and there may be an upgrade button on the component. See [UI Support](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest/index.html?subfolder=/manual/UISupport.html) for more information.  
 
+If you do not have an Event System, create one via **GameObject | UI | Event System**, then upgrade it.
+
 #### Revert to the old Input Manager
 If you switched to the new Input System and want to switch back to the old one:
 1. Switch the active input handler.
