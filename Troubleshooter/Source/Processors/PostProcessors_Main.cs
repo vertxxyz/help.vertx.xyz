@@ -30,7 +30,6 @@ public class MainContentToGrid : IHtmlPostProcessor
 	{
 		const string containerHtml = "<div class=\"grid-container\"></div>";
 		const string itemHtml = "<div class=\"grid-item\"></div>";
-		const int columnCount = 3;
 
 		HtmlNode? h2 = null;
 		HtmlNode? grid = null;

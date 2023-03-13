@@ -4,7 +4,7 @@ A MissingReferenceException is a type of [NullReferenceException](NullReferenceE
 ### Resolution
 Re-assign a value to the field via the Inspector.
 
-<video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://help.vertx.xyz/Video/inspector-references.webm"></video>
+<video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/Video/inspector-references.webm"></video>
 
 ---
 

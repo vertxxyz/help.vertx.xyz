@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
+using TwemojiSharp;
 
 namespace Troubleshooter;
 
@@ -20,7 +21,7 @@ public static class HtmlPostProcessors
 }
 
 [UsedImplicitly]
-public class RelativeLinkConverter : IHtmlPostProcessor
+public sealed class RelativeLinkConverter : IHtmlPostProcessor
 {
 	private readonly Regex regex = new(@"(?<=<a )href=""([^""]+\.md)""", RegexOptions.Compiled);
 
@@ -35,7 +36,7 @@ public class RelativeLinkConverter : IHtmlPostProcessor
 }
 
 [UsedImplicitly]
-public class ExternalLinkConverter : IHtmlPostProcessor
+public sealed class ExternalLinkConverter : IHtmlPostProcessor
 {
 	private readonly Regex regex = new(@"(?<=<a )href=""https?:\/\/[\.\w\/\-%#?=@_]+""", RegexOptions.Compiled);
 
@@ -50,7 +51,7 @@ public class ExternalLinkConverter : IHtmlPostProcessor
 }
 
 [UsedImplicitly]
-public class BooleanTableConverter : IHtmlPostProcessor
+public sealed class BooleanTableConverter : IHtmlPostProcessor
 {
 	public string Process(string html, string fullPath)
 	{
@@ -60,7 +61,7 @@ public class BooleanTableConverter : IHtmlPostProcessor
 }
 
 [UsedImplicitly]
-public class SliderConverter : IHtmlPostProcessor
+public sealed class SliderConverter : IHtmlPostProcessor
 {
 	private readonly Regex regex = new("<div.* class=\".*?slider\"></div>", RegexOptions.Compiled);
 
@@ -91,7 +92,7 @@ public class SliderConverter : IHtmlPostProcessor
 }
 
 [UsedImplicitly]
-public class FootnoteRuleRemoval : IHtmlPostProcessor
+public sealed class FootnoteRuleRemoval : IHtmlPostProcessor
 {
 	public string Process(string html, string fullPath)
 	{
@@ -111,7 +112,7 @@ public class FootnoteRuleRemoval : IHtmlPostProcessor
 /// This logic will collapse the lists together and add the tag in between them into the list at that point.
 /// </summary>
 [UsedImplicitly]
-public class ListCompaction : IHtmlPostProcessor
+public sealed class ListCompaction : IHtmlPostProcessor
 {
 	private static readonly Regex emptyListRegex = new("<li><span class=\"collapse\">collapse</span></li>\n</(ul|ol)>", RegexOptions.Compiled);
 	
@@ -173,4 +174,15 @@ public class ListCompaction : IHtmlPostProcessor
 			start += nextClose;
 		}
 	}
+}
+
+/// <summary>
+/// Replaces all emoji with Twemoji
+/// </summary>
+[UsedImplicitly]
+public class TwemojiReplacement : IHtmlPostProcessor
+{
+	private readonly TwemojiLib twemoji = new();
+	
+	public string Process(string html, string fullPath) => twemoji.Parse(html);
 }

@@ -6,4 +6,4 @@ Events should have an appropriate **Component instance** assigned to their objec
 Assign a Component to the field. Add the target script to a GameObject before dragging it or the GameObject it is attached to into the field. See [Adding Components](https://docs.unity3d.com/Manual/UsingComponents.html) for more information.  
 The object assigned to the field must be, or attached to, the GameObject with the target Component.  
 
-<video width="750" autoplay loop muted><source type="video/webm" src="https://help.vertx.xyz/Video/unity-event-references.webm"></video>
+<video width="750" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/Video/unity-event-references.webm"></video>

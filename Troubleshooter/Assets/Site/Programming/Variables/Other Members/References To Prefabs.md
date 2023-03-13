@@ -17,7 +17,7 @@ This example uses `PrefabComponentType`, it will need to be replaced with the ta
 ::::note
 Drag the prefab asset into the slot or you will get an [`UnassignedReferenceException`](../../Common%20Errors/Runtime%20Exceptions/UnassignedReferenceException.md).  
 
-<video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://help.vertx.xyz/Video/prefab-references.webm"></video>
+<video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/Video/prefab-references.webm"></video>
 ::::
 
 #### 3. Access the member you care about

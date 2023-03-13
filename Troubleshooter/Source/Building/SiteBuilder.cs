@@ -34,9 +34,9 @@ public static partial class SiteBuilder
 		return true;
 	}
 		
-	public static void ContentBuild(Arguments arguments)
+	public static async Task ContentBuild(Arguments arguments)
 	{
 		Site site = new(arguments.TroubleshooterRoot);
-		BuildContent(arguments, site);
+		await BuildContent(arguments, site);
 	}
 }

@@ -7,5 +7,20 @@ Follow the [configuration instructions](https://docs.microsoft.com/en-us/visuals
 ### Installed manually
 Install the Unity workload and follow the [configuration instructions](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#install-unity-support-for-visual-studio).
 
+### Installing for the first time
+Install Visual Studio via the Unity Hub:
+
+#### No Unity versions are installed
+Tick _Microsoft Visual Studio Community_ during the installation process. (**Installs | Install Editor**)  
+
+#### A Unity version is installed
+1. Navigate to the Installs page and click the cog icon on an install.
+1. Select **Add Modules**.
+1. Tick _Microsoft Visual Studio Community_.
+1. Select **Install**.
+   
+#### I want to install Visual Studio manually
+Follow all of the instructions listed on [this page](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity).
+
 ---  
 Ensure the [Visual Studio Editor](https://docs.unity3d.com/Manual/com.unity.ide.visualstudio.html) package is installed and updated in UPM (`com.unity.ide.visualstudio`).  

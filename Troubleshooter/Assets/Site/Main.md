@@ -1,4 +1,4 @@
-# Help me with:
+# 🤔 Unity, huh, how?
 :::{#main-page--content}  
 ## Interface
 - [Scene view](Interface/Scene%20View.md)
@@ -29,6 +29,7 @@
 - [AssetDatabase](Programming/Editor%20Issues/AssetDatabase.md)
 ### DOTS
 - [Job System and Burst](Programming/Jobs%20And%20Burst.md)
+- [Entities](Programming/Entities.md)
 ### Utility & maths
 - [Random](Programming/Specifics/Random.md)
 - [Lerp](Programming/Specifics/Lerp.md)
@@ -48,6 +49,7 @@
 
 ## Building
 - [Build errors](Building/Build%20Errors.md)
+- [Player issues](Player/Issues.md)
 
 ## UI
 - [Unity UI](UI/UGUI.md)

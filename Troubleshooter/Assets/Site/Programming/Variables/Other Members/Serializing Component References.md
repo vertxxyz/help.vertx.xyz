@@ -24,7 +24,7 @@ This example uses the `Transform` type, it will need to be replaced with the tar
 Create an instance by [adding the Component](https://docs.unity3d.com/Manual/UsingComponents.html) to an object in the scene, and drag it into the exposed field.  
 Dragging a GameObject from the [Hierarchy](https://docs.unity3d.com/Manual/Hierarchy.html) into the field will reference the first matching Component found on the object.
 
-<video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://help.vertx.xyz/Video/inspector-references.webm"></video>  
+<video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/Video/inspector-references.webm"></video>  
 :::error{.small .img-note-wide}
 Drag a **Component** into the slot or you will get a [NullReferenceException](../../Common%20Errors/Runtime%20Exceptions/NullReferenceException.md).
 :::

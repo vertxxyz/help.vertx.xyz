@@ -72,7 +72,7 @@ class Program
 						break;
 					case ConsoleKey.C:
 						// Content Build
-						SiteBuilder.ContentBuild(arguments);
+						await SiteBuilder.ContentBuild(arguments);
 						Console.WriteLine("Successful Content Build.");
 						break;
 					case ConsoleKey.U:

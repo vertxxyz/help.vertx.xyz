@@ -9,9 +9,9 @@ public class HtmlCustomContainerOverrideRenderer : HtmlObjectRenderer<CustomCont
 {
 	private readonly List<(string @class, string imageUrl, string alt)> _infoBoxes = new()
 	{
-		("info", "https://help.vertx.xyz/Images/information.svg", "information"),
-		("warning", "https://help.vertx.xyz/Images/warning.svg", "warning"),
-		("error", "https://help.vertx.xyz/Images/error.svg", "error")
+		("info", "https://unity.huh.how/Images/information.svg", "information"),
+		("warning", "https://unity.huh.how/Images/warning.svg", "warning"),
+		("error", "https://unity.huh.how/Images/error.svg", "error")
 	};
 
 	protected override void Write(HtmlRenderer renderer, CustomContainer obj)
