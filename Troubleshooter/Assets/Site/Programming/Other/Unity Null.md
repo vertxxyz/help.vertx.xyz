@@ -28,5 +28,8 @@ If you want to reclaim memory on Destroyed objects you need to additionally ensu
 #### Access
 Usually, an NRE is thrown whenever a `null` object is accessed, but seeing as a Unity Object can be fake-null, members that do not perform lifetime checks can still be accessed and function in this state.
 
+#### Newing Unity objects
+If you create a `UnityEngine.Object` via the `new` operator, this will subtly fail in the majority of cases (there are valid situations like `GameObject`), where the native portion of the object was never created, and so you have an improperly initialised Unity-null object.
+
 ### Read more
 See the 2014 blog ["Custom == operator, should we keep it?"](https://blog.unity.com/technology/custom-operator-should-we-keep-it), or the Resharper/Rider suggestion ["Possible unintended bypass of lifetime check of underlying Unity engine object"](https://github.com/JetBrains/resharper-unity/wiki/Possible-unintended-bypass-of-lifetime-check-of-underlying-Unity-engine-object) for additional details.   

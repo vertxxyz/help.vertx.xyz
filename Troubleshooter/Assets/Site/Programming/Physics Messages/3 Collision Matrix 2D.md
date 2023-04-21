@@ -20,5 +20,7 @@ If your two colliders don't match in the matrix you **will not** get collision m
 
 You can read more about this and see a copy of this matrix in the Unity docs [here](https://docs.unity3d.com/Manual/CollidersOverview.html).
 
+<<Programming/Physics Messages/Understanding2D.md>>
+
 ---
 [I am still not getting a message.](4%20Local%20Functions%202D.md)

@@ -1,12 +1,12 @@
 ## Collision messages
 
 Ensure your functions are exactly as below.
-The variable `data` can be renamed.  
+The variable `collision` can be renamed.  
 Type, spelling, and capitalisation are all important.
 
 [OnCollisionEnter](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionEnter.html):
 ```csharp
-void OnCollisionEnter(Collision data)
+void OnCollisionEnter(Collision collision)
 {
     // Your behaviour here
 }
@@ -14,7 +14,7 @@ void OnCollisionEnter(Collision data)
 
 [OnCollisionStay](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionStay.html):
 ```csharp
-void OnCollisionStay(Collision data)
+void OnCollisionStay(Collision collision)
 {
     // Your behaviour here
 }
@@ -22,7 +22,7 @@ void OnCollisionStay(Collision data)
 
 [OnCollisionExit](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionExit.html):
 ```csharp
-void OnCollisionExit(Collision data)
+void OnCollisionExit(Collision collision)
 {
     // Your behaviour here
 }

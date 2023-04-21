@@ -4,7 +4,7 @@ To resolve a `NullReferenceException` caused by plain C# objects choose one of t
 **First:**  
 :::note
 #### Assign a value (choose one)  
-- [Serialize the field](../../../Variables/Serialization/Serializing%20A%20Field%201.md) if appropriate.
+- [Serialize the field](../../../Serialization/Serializing%20A%20Field%201.md) if appropriate.
 - Assign the reference using [`new`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator). This can be done inline or in a method like [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) or [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html).  
 :::  
 **Then:**  

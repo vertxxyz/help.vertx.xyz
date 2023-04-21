@@ -13,4 +13,4 @@ The target method must:
 
 ---  
 
-[The method still does not appear in the functions list.](Compile%20Errors.md)
+[The method still does not appear in the functions list.](Compiler%20Errors.md)

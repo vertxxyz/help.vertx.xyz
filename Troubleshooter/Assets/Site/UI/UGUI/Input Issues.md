@@ -10,13 +10,18 @@ Input in Unity UI (UGUI) requires multiple things to receive input events:
 - Overlapping[^1] elements that receive the same events will block input.  
    [Event Triggers](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/script-EventTrigger.html) will absorb all events, regardless of what is registered to them.
 - **[Canvas Groups](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/class-CanvasGroup.html)** above the element must be marked Interactable.
-- The EventSystem's [StandaloneInputModule](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/script-StandaloneInputModule.html) must have matching axes in the [Input Manager](https://docs.unity3d.com/Manual/class-InputManager.html) (**Edit | Project Settings | Input Manager**).  
-    If this isn't properly set up, when you select the EventSystem its preview will say `no module`.
 
 :::warning
 Do not make assumptions. Double-checking these steps are met is always recommended.
 :::
 
-To troubleshoot cases where other UI is blocking input, select the Event System and hover/click the UI that's failing. The preview pane at the bottom of the inspector should list the gameobject that received the event.
+### Troubleshooting overlaps
 
-[^1]: Overlapping panels are only below the element in the hierarchy.
+To troubleshoot cases where other UI is blocking input, select the Event System and hover/click the UI that's failing. The preview pane[^2] at the bottom of the inspector should list the gameobject that received the event.
+
+- If you are using **built-in input** the EventSystem's [StandaloneInputModule](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/script-StandaloneInputModule.html) must have matching axes in the [Input Manager](https://docs.unity3d.com/Manual/class-InputManager.html) (**Edit | Project Settings | Input Manager**).  
+  If this isn't properly set up, when you select the EventSystem its preview will say `no module`.
+- If you are using the **input system package** make sure the EventSystem's StandaloneInputModule is replaced with an [InputSystemUIInputModule](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest/index.html?subfolder=/manual/UISupport.html). There should be an upgrade button on the component.
+
+[^1]: Overlapping panels are only below the element in the hierarchy.  
+[^2]: Clicking the header of the preview pane expands it, and right-clicking it pops it out as a new window.

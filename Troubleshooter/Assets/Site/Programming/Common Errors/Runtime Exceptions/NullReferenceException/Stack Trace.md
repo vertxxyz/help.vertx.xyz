@@ -5,7 +5,8 @@ You must understand stack traces before solving runtime exceptions.
 <<Programming/Common Errors/Stack Trace Breakdown.md>>
 
 You can find a more detailed breakdown of stack traces [here](../../Stack%20Traces.md).  
-If the stack trace isn't leading you to a valid line of code: **save**, and cause the exception again.  
+
+If the stack trace isn't leading you to a valid line of code: **save**, make sure your code has recompiled (there are no [compiler errors](../../../../Common/Compiler%20Errors.md)), and cause the exception again.  
 
 ---  
 

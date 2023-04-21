@@ -11,4 +11,4 @@ The target property must:
 
 ---  
 
-[The property still does not appear in the functions list.](Compile%20Errors.md)
+[The property still does not appear in the functions list.](Compiler%20Errors.md)

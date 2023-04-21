@@ -1,12 +1,12 @@
 ## Trigger messages
 
 Ensure your functions are exactly as below.
-The variable `data` can be renamed.  
+The variable `collider` can be renamed.  
 Type, spelling, and capitalisation are all important.
 
 [OnTriggerEnter](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter.html):
 ```csharp
-void OnTriggerEnter(Collider data)
+void OnTriggerEnter(Collider collider)
 {
     // Your behaviour here
 }
@@ -14,7 +14,7 @@ void OnTriggerEnter(Collider data)
 
 [OnTriggerStay](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerStay.html):
 ```csharp
-void OnTriggerStay(Collider data)
+void OnTriggerStay(Collider collider)
 {
     // Your behaviour here
 }
@@ -22,7 +22,7 @@ void OnTriggerStay(Collider data)
 
 [OnTriggerExit](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerExit.html):
 ```csharp
-void OnTriggerExit(Collider data)
+void OnTriggerExit(Collider collider)
 {
     // Your behaviour here
 }

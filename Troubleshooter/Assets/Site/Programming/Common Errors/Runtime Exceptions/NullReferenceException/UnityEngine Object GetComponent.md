@@ -29,6 +29,6 @@ Only components on active gameobject are returned unless the `includeInactive` a
 
 ---
 
-If you're still having issues using these methods, it's often preferable to [serialize components via the inspector](../../../Variables/Other%20Members/Serializing%20Component%20References.md) instead.
+If you're still having issues using these methods, it's often preferable to [serialize components via the inspector](../../../References/Serializing%20Component%20References.md) instead.
 
 [^1]: A common example of this being wrong is `Text` when using subtypes of `TMP_Text`.

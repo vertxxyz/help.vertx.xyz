@@ -10,6 +10,7 @@
 ## Programming
 ### General
 - [IDE configuration](Programming/IDE%20Configuration.md)
+- [References](Programming/References.md)
 - [Variables](Programming/Variables.md)
 - [Scripts](Programming/Scripts/Scripts.md)
 - [Debugging](Programming/Debugging.md)
@@ -30,6 +31,7 @@
 ### DOTS
 - [Job System and Burst](Programming/Jobs%20And%20Burst.md)
 - [Entities](Programming/Entities.md)
+- [Native Collections](Programming/Native%20Collections.md)
 ### Utility & maths
 - [Random](Programming/Specifics/Random.md)
 - [Lerp](Programming/Specifics/Lerp.md)

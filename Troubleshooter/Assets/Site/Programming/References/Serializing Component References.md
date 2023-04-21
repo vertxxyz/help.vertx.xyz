@@ -8,7 +8,7 @@ Creating a serialized field allows that instance to be referred to elsewhere in 
 
 #### 1. Expose a serialized reference to the target component  
 ::::note
-The field must be marked with [SerializeField](https://docs.unity3d.com/ScriptReference/SerializeField.html):
+The field must be marked with [`SerializeField`](https://docs.unity3d.com/ScriptReference/SerializeField.html):
 
 <<Code/Variables/Serialized Reference.html>>
 
@@ -26,7 +26,7 @@ Dragging a GameObject from the [Hierarchy](https://docs.unity3d.com/Manual/Hiera
 
 <video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/Video/inspector-references.webm"></video>  
 :::error{.small .img-note-wide}
-Drag a **Component** into the slot or you will get a [NullReferenceException](../../Common%20Errors/Runtime%20Exceptions/NullReferenceException.md).
+Drag a **Component** into the slot or you will get a [NullReferenceException](../Common%20Errors/Runtime%20Exceptions/NullReferenceException.md).
 :::
 ::::
 
@@ -41,7 +41,7 @@ _target.Variable = variable;
 // Methods
 _target.Method();
 ```
-If you don't have autocomplete, [configure your IDE](../../IDE%20Configuration.md) to easily find member names and get error highlighting.
+If you don't have autocomplete, [configure your IDE](../IDE%20Configuration.md) to easily find member names and get error highlighting.
 ::::
 ### Notes
 When the Component or ScriptableObject is created Unity will deserialize the reference into the field, there is no need to further assign the value in code.  

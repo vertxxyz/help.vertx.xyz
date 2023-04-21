@@ -1,16 +1,28 @@
 
-Don't multiply mouse input by `Time.deltaTime`.
+:::warning  
+Don't scale mouse input by [`Time.deltaTime`](https://docs.unity3d.com/ScriptReference/Time-deltaTime.html)!  
+:::
 
 If you are using combined input with a joystick, only scale the joystick portion of this input.  
 
 :::info{.inline}
-You will need to reduce the sensitivity to compensate for this.
+You will need to reduce the sensitivity to compensate for this change.
 :::  
 
 ### Why?
-Mouse input is a *delta*. The value is tracking change.  
-Most input is multiplied by `Time.deltaTime`, this translates their fixed value, *"How far is the joystick tilted?"*, to a delta, *"How far should the character move this frame?"*.  
-Seeing as mouse delta already describes how many units the mouse travelled this frame, it should not be scaled again. Doubly scaling the input will make the look speed frame rate dependent. If your game has hitches, you will feel it as jumpiness, as a longer frame-time will translate to more mouse travel, and more delta time.
+Mouse input is already a **delta** (a rate of change).  
+
+#### When to use deltaTime:
+**Most** input is multiplied by `Time.deltaTime`, this translates their **fixed value**:
+> How far is the joystick tilted?  
+
+To a **delta**:
+
+> How far should the character move this frame?  
+
+#### Why mouse input should not be scaled:
+Mouse delta already describes "how many units the mouse travelled this frame", it should not be scaled again.  
+Doubly-scaling the input will make the value **frame rate dependent**. If your game has hitches, you will feel it as jumpiness, as a longer frame-time will give you more time to move your mouse, which you then incorrectly scale again with a larger `deltaTime` value.
 
 ### Jitter with moving rigidbodies
 

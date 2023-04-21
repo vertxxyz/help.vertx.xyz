@@ -4,7 +4,7 @@ Nobody using them practically really needs to know.
 They're compact fancy four dimensional values that can be easily interpolated between values. That is, to rotate to another orientation via the most direct rotation.  
 
 ### What aren't they?
-**Quaternions are not Euler angles**.  
+**Quaternions are not [Euler angles](https://docs.unity3d.com/ScriptReference/Transform-eulerAngles.html)**.  
 What this means:  
 - They are **not** a 3-axis system, they should not be considered rotations about `x`, `y`, `z`.
 - Their individual components are **not** to be used.  

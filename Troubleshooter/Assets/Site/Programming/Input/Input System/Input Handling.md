@@ -6,7 +6,7 @@ When you have switched the input handling from the built-in Input Manager to the
 See [migration from the old input system](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest/index.html?subfolder=/manual/Migration.html) for information on how to upgrade your own code, or follow a tutorial [like this one](https://learn.unity.com/project/using-the-input-system-in-unity) to learn how to use the Input System generally.  
 
 #### UI Issues
-If the code throwing this error is provided by Unity's UI you will need to replace the `StandaloneInputModule` with the new `InputSystemUIInputModule`. This can be found on the Event System GameObject found in the scene, and there may be an upgrade button on the component. See [UI Support](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest/index.html?subfolder=/manual/UISupport.html) for more information.  
+If the code throwing this error is provided by Unity's UI you will need to replace the `StandaloneInputModule` with an [`InputSystemUIInputModule`](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest/index.html?subfolder=/manual/UISupport.html) . This can be found on the Event System GameObject found in the scene, and there may be an upgrade button on the component.
 
 If you do not have an Event System, create one via **GameObject | UI | Event System**, then upgrade it.
 
