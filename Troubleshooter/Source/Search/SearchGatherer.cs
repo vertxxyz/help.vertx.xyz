@@ -44,14 +44,18 @@ public static class SearchGatherer
 	public static async Task<Result> GenerateSearchResult(string rootDirectory)
 	{
 		IEnumerable<string> files = Directory.EnumerateFiles(rootDirectory, "*.html", SearchOption.AllDirectories);
+		return await GenerateSearchResult(rootDirectory, files);
+	}
 
+	public static async Task<Result> GenerateSearchResult(string rootDirectory, IEnumerable<string> files)
+	{
 		Dictionary<string, int> fileNameToIndex = new();
 		List<string> filePaths = new();
 		foreach (string s in files)
 		{
 			if (EndsWithAny(s, SearchCommon.ExcludedFileEndings)) continue;
 			string localPath = s[(rootDirectory.Length + 1)..];
-			if (!localPath.Contains('\\')) continue; // Do not process root-level files. These files should not be searchable.
+			if (!localPath.Contains('/') && !localPath.Contains('\\')) continue; // Do not process root-level files. These files should not be searchable.
 			fileNameToIndex[s] = filePaths.Count;
 			filePaths.Add($"/{localPath.Replace('\\', '/')}");
 		}

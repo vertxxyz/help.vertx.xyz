@@ -38,7 +38,8 @@ If your two colliders don't match in the matrix you **will not** get trigger mes
 |**Kinematic Rigidbody Trigger**|Y       |Y          |Y                    |Y               |Y                  |Y                            |
 +-------------------------------+--------+-----------+---------------------+----------------+-------------------+-----------------------------+
 
----
+## Details
+<<Programming/Physics Messages/Understanding3D.md>>
 
 You can read more about this and see a copy of these matrices in the Unity docs [here](https://docs.unity3d.com/Manual/CollidersOverview.html).  
 See [troubleshooting physics messages](../Programming/Physics%20Messages.md) for help with physics callbacks.

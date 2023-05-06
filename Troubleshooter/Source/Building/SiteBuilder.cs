@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Markdig;
 using Markdig.Prism;
@@ -8,7 +10,7 @@ namespace Troubleshooter;
 
 public static partial class SiteBuilder
 {
-	public static async Task<bool> Build(Arguments arguments)
+	public static async Task<(bool success, IEnumerable<string> paths)> Build(Arguments arguments, bool cleanup)
 	{
 		var pipeline = new MarkdownPipelineBuilder()
 			.UseAdvancedExtensions()
@@ -17,7 +19,7 @@ public static partial class SiteBuilder
 
 		Site site = new(arguments.TroubleshooterRoot);
 
-		using var buildScope = new BuildScope(arguments);
+		using var buildScope = new BuildScope(arguments, cleanup);
 		try
 		{
 			BuildPages(arguments, site, pipeline);
@@ -28,10 +30,10 @@ public static partial class SiteBuilder
 			Console.WriteLine();
 			Console.WriteLine(e);
 			buildScope.MarkBuildAsFailed();
-			return false;
+			return (false, Enumerable.Empty<string>());
 		}
 
-		return true;
+		return (true, IOUtility.RecordedPaths);
 	}
 		
 	public static async Task ContentBuild(Arguments arguments)

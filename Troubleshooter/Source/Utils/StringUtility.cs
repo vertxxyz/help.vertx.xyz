@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Troubleshooter;
 
-public static class StringUtility
+public static partial class StringUtility
 {
 	public static string ReplaceMatch(string text, Regex pattern, Action<string, StringBuilder> matchRemap, int groupIndex)
 	{
@@ -51,8 +51,13 @@ public static class StringUtility
 		return text;
 	}
 
+	[GeneratedRegex("^(.*)$", RegexOptions.Multiline)]
+	private static partial Regex FirstLine();
+
+	public static ReadOnlySpan<char> LineAt(string input, int index) => FirstLine().Match(input[index..]).Groups[1].ValueSpan;
+
 	public static int LastIndexOf(this StringBuilder stringBuilder, char character)
-		=> LastIndexOf(stringBuilder, character, stringBuilder.Length - 1);
+		=> stringBuilder.LastIndexOf(character, stringBuilder.Length - 1);
 
 	public static int LastIndexOf(this StringBuilder stringBuilder, char character, int start)
 	{

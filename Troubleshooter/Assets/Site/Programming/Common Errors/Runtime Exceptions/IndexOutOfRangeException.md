@@ -10,6 +10,7 @@ Ensure that the line pointed to by the [stack trace](../Stack%20Traces.md) is ac
 Common mistakes are:
 - Accessing an empty collection (`.Length` or `.Count` is `0`).
 - An improperly written `for` or `while` loop.
+- Using an index from a different loop, `i` instead of `j` for example.
 
 You can use the [debugger](../../Debugging/Debugger.md) to step over your code, inspecting variables and execution to assess what is wrong.  
 
@@ -34,5 +35,5 @@ for (int i = 0; i < values.Length; i++)
 See [anonymous methods and closures](../../Specifics/Anonymous%20Methods%20and%20Closures.md) for more information.
 
 ### Notes
-A [functioning IDE](../../IDE%20Configuration.md) will be able to autocomplete `for` loops by typing <kbd>for</kbd> and pressing tab/enter.  
-Reverse `for` loops can be autocompleted with <kbd>forr</kbd>. Doing this helps prevent basic mistakes.  
+A [functioning IDE](../../IDE%20Configuration.md) can autocomplete `for` loops by typing <kbd>for</kbd> and pressing tab/enter.  
+Reverse `for` loops can be created with <kbd>forr</kbd>. This helps prevent basic mistakes.  

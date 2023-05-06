@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<RootNamespace>help.vertx.xyz</RootNamespace>
 		<Configurations>Release;Debug</Configurations>
 		<Platforms>AnyCPU</Platforms>
@@ -18,15 +18,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DartSassHost" Version="1.0.1" />
+		<PackageReference Include="DartSassHost" Version="1.0.3" />
 		<PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
-		<PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.20.10" />
-		<PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
+		<PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.21.1" />
+		<PackageReference Include="JetBrains.Annotations" Version="2023.2.0-eap2" />
 		<PackageReference Include="Markdig" Version="0.31.0" />
-		<PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.3.7" />
-		<PackageReference Include="NUglify" Version="1.20.5" />
+		<PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.4.1" />
+		<PackageReference Include="NUglify" Version="1.20.6" />
 		<PackageReference Include="RtfPipe" Version="2.0.7677.4303" />
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0-preview.1.23110.8" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0-preview.3.23174.8" />
 		<PackageReference Include="TwemojiSharp" Version="1.0.1" />
 		<PackageReference Include="WebStoating.Markdig.Prism" Version="1.0.0" />
 	</ItemGroup>

@@ -18,7 +18,10 @@ If you want to handle the case where the object is unassigned:
         // Code that uses example.
     }
     ```  
-Do not use modern null checking operators[^1] (`?.`, `??`, `??=`) to check for null.  
+  
+::::warning{.inline}  
+Do not use modern null-checking operators[^1] (`?.`, `??`, `??=`) to check for null.  
+::::  
 :::
 
 If you want to correctly assign the object:  

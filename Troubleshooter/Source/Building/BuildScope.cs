@@ -9,10 +9,12 @@ namespace Troubleshooter;
 public class BuildScope : IDisposable
 {
 	private readonly Arguments arguments;
+	private readonly bool _cleanup;
 	private bool failedBuild;
-	public BuildScope(Arguments arguments)
+	public BuildScope(Arguments arguments, bool cleanup)
 	{
 		this.arguments = arguments;
+		_cleanup = cleanup;
 		IOUtility.ResetRecording();
 	}
 
@@ -20,7 +22,7 @@ public class BuildScope : IDisposable
 
 	public void Dispose()
 	{
-		if(!failedBuild)
+		if(!failedBuild && _cleanup)
 			CleanupBuildOutput();
 		IOUtility.ResetRecording();
 	}

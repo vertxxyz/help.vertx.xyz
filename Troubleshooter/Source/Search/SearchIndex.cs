@@ -10,13 +10,26 @@ namespace Troubleshooter.Search;
 public static class SearchIndex
 {
 	public static string GetJsonFilePath(Arguments arguments) => Path.Combine(Path.Combine(arguments.Path!, "Json"), "search-index.json");
-		
+
+	public static async Task Generate(Arguments arguments, IEnumerable<string> paths)
+	{
+		List<string> pathsIn = paths.ToList();
+		pathsIn.RemoveAll(f => !f.EndsWith(".html"));
+		(IList<string> filePaths, IList<string> fileHeaders, ImmutableSortedDictionary<string, Dictionary<int, int>> sortedWordsToFileIndexAndCount) =
+			await SearchGatherer.GenerateSearchResult(arguments.HtmlOutputDirectory!, pathsIn);
+		await Generate(arguments, sortedWordsToFileIndexAndCount, filePaths, fileHeaders);
+	}
+	
 	public static async Task Generate(Arguments arguments)
 	{
 		// Gather files.
 		(IList<string> filePaths, IList<string> fileHeaders, ImmutableSortedDictionary<string, Dictionary<int, int>> sortedWordsToFileIndexAndCount) =
 			await SearchGatherer.GenerateSearchResult(arguments.HtmlOutputDirectory!);
+		await Generate(arguments, sortedWordsToFileIndexAndCount, filePaths, fileHeaders);
+	}
 
+	private static async Task Generate(Arguments arguments, ImmutableSortedDictionary<string, Dictionary<int, int>> sortedWordsToFileIndexAndCount, IList<string> filePaths, IList<string> fileHeaders)
+	{
 		// Create words to indices lookup
 		var termsToIndices = new Dictionary<string, int[]>();
 		foreach (KeyValuePair<string, Dictionary<int, int>> pair in sortedWordsToFileIndexAndCount)

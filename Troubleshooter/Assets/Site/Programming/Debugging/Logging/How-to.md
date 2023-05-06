@@ -4,6 +4,12 @@
 Unity's [`Debug.Log`](https://docs.unity3d.com/ScriptReference/Debug.Log.html) function will print a message to the [Console window](https://docs.unity3d.com/Manual/Console.html).  
 Code can pass any object to the log and it will be converted to a `string` and displayed.  
 
+:::note  
+<<General/Console Window Short.md>>
+
+Also be aware when **Collapse** is enabled in the same toolbar, which will merge identical logs.
+:::
+
 #### String interpolation
 You can use [string interpolation](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated) to easily insert values into text:
 
@@ -14,19 +20,21 @@ When logging it is important to place your log **behind** any error that can occ
 <<Code/Logging/Logging 1.rtf>>
 
 #### The context parameter
-The second parameter, the context object, is extremely valuable. This object will be **pinged** when the log is selected. This is often used to discern whether there are multiple instances of a script producing a log.
+The second parameter, `context`, is extremely valuable. This object will be **pinged** when the log is selected. You can use this to check whether there are multiple instances of a script producing a log.
 
 <<Code/Logging/Logging 2.rtf>>
 
 ### Null references
 
-When dealing with null it's accessing the `null` that will throw an exception, so if a long line is causing an NRE it's important to make individual logs for each access, or else the log will also throw an exception and not be printed.
+When dealing with null it's [access](../../Common%20Errors/Runtime%20Exceptions/NullReferenceException/Access.md) that will throw an exception, so if a long line is causing an NRE it's important to make individual logs for each access, or else the log will also throw an exception and not be printed.
 
 <<Code/Logging/Logging 3.rtf>>
 
 Null values will sometimes print nothing, so note if a log does not print details, it could be a `null` value.  
 
 A much less tedious way of discovering what values are null is to [use the debugger](../Debugger.md), where code execution is halted and values can be inspected directly.
+
+See [`NullReferenceException`](../../Common%20Errors/Runtime%20Exceptions/NullReferenceException.md) for more information.
 
 ### Extra details
 #### Vectors
@@ -43,4 +51,7 @@ Warning is for non-critical failures, like handled issues or basic misconfigurat
 :::  
 :::error{.inline}
 Error or Exception are for failures that must be addressed, or halt code execution.
-:::  
+:::
+
+#### HideInCallstack
+You can use the [`[HideInCallstack]`](https://docs.unity3d.com/ScriptReference/HideInCallstackAttribute.html) attribute to mark methods to be hidden when **Strip Logging Callstack** is enabled via the Console window menu. This is useful when creating your own wrappers for logging.

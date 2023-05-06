@@ -1,4 +1,4 @@
-## Trigger matrix
+## Trigger matrix (2D)
 
 If your two colliders don't match in the matrix you **will not** get trigger messages.
 

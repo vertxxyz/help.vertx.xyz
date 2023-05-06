@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Troubleshooter.Search;
@@ -57,10 +58,11 @@ class Program
 				{
 					case ConsoleKey.B:
 						// Build Site
-						if (await SiteBuilder.Build(arguments))
+						(bool success, IEnumerable<string> paths) = await SiteBuilder.Build(arguments, false);
+						if (success)
 						{
 							Console.WriteLine("Successful build, generating search index.");
-							await SearchIndex.Generate(arguments);
+							await SearchIndex.Generate(arguments, paths);
 							Console.WriteLine("Search index generated.");
 						}
 						else

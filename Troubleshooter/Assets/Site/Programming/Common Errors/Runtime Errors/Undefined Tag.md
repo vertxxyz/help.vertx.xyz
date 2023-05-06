@@ -21,5 +21,5 @@ Define an identical tag in the Tags and Layers Settings and apply it to the Game
 
 ![Tag Dropdown](tag-dropdown.png)  
 
-If the error still appears, ensure the console has been cleared. Then log the GameObject and its tag before the [CompareTag](https://docs.unity3d.com/ScriptReference/GameObject.CompareTag.html) call to validate your logic.
+If the error still appears, ensure the console has been cleared. Then log the GameObject and its tag before the [`CompareTag`](https://docs.unity3d.com/ScriptReference/GameObject.CompareTag.html) call to validate your logic.
 See [Logging: how-To](../../Debugging/Logging/How-to.md) for more information.

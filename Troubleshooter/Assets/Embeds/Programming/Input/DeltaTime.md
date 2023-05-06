@@ -1,5 +1,5 @@
 
-:::warning  
+:::error  
 Don't scale mouse input by [`Time.deltaTime`](https://docs.unity3d.com/ScriptReference/Time-deltaTime.html)!  
 :::
 
@@ -21,8 +21,8 @@ To a **delta**:
 > How far should the character move this frame?  
 
 #### Why mouse input should not be scaled:
-Mouse delta already describes "how many units the mouse travelled this frame", it should not be scaled again.  
-Doubly-scaling the input will make the value **frame rate dependent**. If your game has hitches, you will feel it as jumpiness, as a longer frame-time will give you more time to move your mouse, which you then incorrectly scale again with a larger `deltaTime` value.
+Mouse delta already describes "_how many units the mouse travelled this frame_", it is already dependent on the time between frames.  
+DeltaTime scaling will make the value **frame rate dependent**. If your game has hitches, you will feel it as jumpiness, as a longer frame-time will give you more time to move your mouse, which you then incorrectly scale again with a larger `deltaTime` value.
 
 ### Jitter with moving rigidbodies
 

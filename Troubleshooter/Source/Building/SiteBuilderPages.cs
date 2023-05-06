@@ -73,7 +73,7 @@ public static partial class SiteBuilder
 		}
 
 		arguments.VerboseLog($"{builtPages} pages written to disk. {skippedPages} were skipped as identical, and {ignoredPages} were embeds.");
-		
+
 		SourceIndex.GeneratePageSourceLookup(arguments, allResources);
 	}
 
@@ -159,8 +159,12 @@ public static partial class SiteBuilder
 				pages.Add(pair.Key, pair.Value);
 		}
 	}
-	
-	private static readonly Regex _generatorLinkRegex = new(@"\[(.+?)\]\(([\w%/-]+?)\.md\)", RegexOptions.Compiled);
+
+	[GeneratedRegex("\\[(.+?)\\]\\(([\\w%/-]+?)\\.md\\)", RegexOptions.Compiled)]
+	private static partial Regex GeneratorLinkRegex();
+
+	[GeneratedRegex("//\\s*bypass\\s*$")]
+	private static partial Regex BypassRegex();
 
 	public static IEnumerable<(string key, PageResource value)> ProcessGenerator(Site site, PageResources? allResources, PageResource page)
 	{
@@ -172,7 +176,7 @@ public static partial class SiteBuilder
 
 			// Links to a specific page are stripped, and the link text is bolded.
 			// After processing, append the newly generated content to any pre-existing sidebar content, or create new.
-			
+
 			/*
 			 *- [Script name](Script%20Name.md)
 			 *- [Console errors](Console%20Errors.md)
@@ -184,16 +188,21 @@ public static partial class SiteBuilder
 			 *- [Project reimport](Project%20Reimport.md)
 			 */
 			// E:\Projects\help.vertx.xyz\Troubleshooter\Assets\Site\Programming\Scripts\Loading\Script Loading_sidebar.md.gen
-			
+
+			// You can avoid adding the generated content to a sidebar match by adding: "// bypass"
+
 			string markdown = page.MarkdownText!;
-			MatchCollection matches = _generatorLinkRegex.Matches(markdown);
+			MatchCollection matches = GeneratorLinkRegex().Matches(markdown);
 			string directory = Path.GetDirectoryName(page.FullPath)!;
 			for (var i = 0; i < matches.Count; i++)
 			{
 				Match match = matches[i];
 				string relativeLink = match.Groups[2].Value;
 				string path = $"{Path.Combine(directory, relativeLink)}_sidebar.md";
-				
+
+				if (BypassRegex().IsMatch(StringUtility.LineAt(markdown, match.Index + match.Length)))
+					continue;
+
 				// Replace the link to *this* page with a bolded version
 				string markdownText = markdown.Replace($"[{match.Groups[1].Value}]({relativeLink}.md)", $"**{match.Groups[1].Value}**");
 				// Edit links to be local to the destination if required.
@@ -203,13 +212,14 @@ public static partial class SiteBuilder
 					for (int j = 0; j < matches.Count; j++)
 					{
 						// Do not edit *this*, as it has been bolded already.
-						if(i == j) continue;
+						if (i == j) continue;
 						string originalPath = $"{Path.Combine(directory, matches[j].Groups[2].Value)}.md";
 						string relativePath = Path.GetRelativePath(localDirectory, originalPath).Replace('\\', '/');
 						markdownText = markdownText.Replace($"({matches[j].Groups[2].Value}.md)", $"({relativePath})");
 					}
 				}
 
+				markdownText = markdownText.Replace(" // bypass", "");
 				PageResource resource = new(path, ResourceType.Markdown, page.Location)
 				{
 					MarkdownText = markdownText
