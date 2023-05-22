@@ -44,7 +44,12 @@ _target.Method();
 If you don't have autocomplete, [configure your IDE](../IDE%20Configuration.md) to easily find member names and get error highlighting.
 ::::
 ### Notes
+#### Dragging components and using multiple inspectors
+You can drag the header of components themselves. When the origin and destination are on two separate objects you may need to open two inspectors to perform the drag. You can right-click on the tab of an editor window and select **Add Tab | Inspector** to create a second one. You can also select the small lock icon in the top right to lock it to its current selection.
+
+#### Serialization and instancing
 When the Component or ScriptableObject is created Unity will deserialize the reference into the field, there is no need to further assign the value in code.  
 Serialized references are locally maintained when Objects are instanced; references in prefab instances will be local, not referring to the original.  
 
+#### Referencing Components, not GameOjects
 <<Variables/Further Info.md>>

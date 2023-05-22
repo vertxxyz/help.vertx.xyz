@@ -19,3 +19,9 @@ Searches for children by name.
 1. Check the console for a `UnityException`. `FindWithTag` will throw an exception when used with a tag that does not exist.
 1. Only active gameobjects can be found.
 1. Assignment must occur before access. Often you would use [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) to get, and [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) to use.
+
+---
+
+:::warning
+Double-check the assignment is actually executed. Your code may never called because of an incorrect setup like a misspelt method name.
+:::

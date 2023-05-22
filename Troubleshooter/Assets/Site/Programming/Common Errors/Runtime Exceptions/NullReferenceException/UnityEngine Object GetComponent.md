@@ -31,4 +31,8 @@ Only components on active gameobject are returned unless the `includeInactive` a
 
 If you're still having issues using these methods, it's often preferable to [serialize components via the inspector](../../../References/Serializing%20Component%20References.md) instead.
 
+:::warning
+Double-check the assignment is actually executed. Your code may never called because of an incorrect setup like a misspelt method name.
+:::
+
 [^1]: A common example of this being wrong is `Text` when using subtypes of `TMP_Text`.
