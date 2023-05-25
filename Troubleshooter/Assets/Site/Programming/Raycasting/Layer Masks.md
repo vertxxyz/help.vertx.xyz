@@ -26,6 +26,8 @@ Initialise and use a mask created using [`LayerMask.GetMask`](https://docs.unity
 #### Use bit shifting
 Use bit shifting to manually create a mask using layer indexes.  
 :::  
+Then pass that mask to the correct parameter of the raycast.  
+
 [I would like to learn more about bitmasks.](../Physics/Bitmasks.md)
 
 ---

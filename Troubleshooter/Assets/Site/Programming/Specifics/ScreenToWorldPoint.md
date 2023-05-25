@@ -8,7 +8,7 @@ Provide a distance in the z coordinate of the screen position.
 
 <<Code/Specific/ScreenToWorldPoint.rtf>>
 
-:::note
+:::info
 If appropriate, switch your camera to Orthographic projection. This is the correct approach when making entirely 2D games.
 :::  
 

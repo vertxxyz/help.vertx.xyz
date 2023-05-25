@@ -11,3 +11,7 @@ If the event is not green, consider changing your setup, or switching event type
 | **Static Trigger**              | None,<br>or Body Type set to **Static**. | Is Trigger is **on**. |
 | **Rigidbody Trigger**           | Body Type set to **Dynamic**.            | Is Trigger is **on**. |
 | **Kinematic Rigidbody Trigger** | Body Type set to **Kinematic**.          | Is Trigger is **on**. |
+
+:::note{.inline}
+A collider is required on both objects.
+:::

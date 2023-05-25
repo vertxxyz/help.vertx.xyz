@@ -71,9 +71,9 @@ private void OnEnable()
 [SerializedProperty (data)|]
 [SerializedProperty (values)|]
 [ScriptableObject (Example)]-[FindProperty("data")]
-[FindProperty("data")]_>[SerializedProperty (data)]
+[FindProperty("data")]->[SerializedProperty (data)]
 [ScriptableObject (Example)]-[FindProperty("values")]
-[FindProperty("values")]_>[SerializedProperty (values)]
+[FindProperty("values")]->[SerializedProperty (values)]
 ```
 
 Once we have valid SerializedProperties we can simply draw them using a [PropertyField](https://docs.unity3d.com/ScriptReference/EditorGUILayout.PropertyField.html).
@@ -125,14 +125,14 @@ private void OnEnable()
 <<Nomnoml/shared.nomnoml>>
 
 [<hidden>Data]
-[Data]_>[SerializedProperty (data)]
+[Data]->[SerializedProperty (data)]
 [SerializedProperty (data)|]
 [<label>FindPropertyRelative("Active")]
 [<label>FindPropertyRelative("Configuration")]
 [SerializedProperty (data)]-[FindPropertyRelative("Active")]
-[FindPropertyRelative("Active")]_>[SerializedProperty (Active)]
+[FindPropertyRelative("Active")]->[SerializedProperty (Active)]
 [SerializedProperty (data)]-[FindPropertyRelative("Configuration")]
-[FindPropertyRelative("Configuration")]_>[SerializedProperty (Configuration)]
+[FindPropertyRelative("Configuration")]->[SerializedProperty (Configuration)]
 
 [SerializedProperty (Active)|]
 [SerializedProperty (Configuration)|]
@@ -151,16 +151,16 @@ See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/Serialized
 [<hidden>A]
 [<hidden>B]
 [<hidden>C]
-[A]_>[SerializedProperty (Active)]
-[B]_>[SerializedProperty (Configuration)]
-[C]_>[SerializedProperty (data)]
+[A]->[SerializedProperty (Active)]
+[B]->[SerializedProperty (Configuration)]
+[C]->[SerializedProperty (data)]
 
 [SerializedProperty (Active)|]
 [SerializedProperty (Configuration)|]
 [<label>boolValue]
 [<label>objectReferenceValue]
-[SerializedProperty (Active)]__[boolValue]
-[SerializedProperty (Configuration)]__[objectReferenceValue]
+[SerializedProperty (Active)]--[boolValue]
+[SerializedProperty (Configuration)]--[objectReferenceValue]
 [boolValue]-->[bool (Active)]
 [objectReferenceValue]-->[UnityEngine.Object (Configuration)]
 
@@ -181,7 +181,7 @@ for (int i = 0; i < values.arraySize; i++)
 ```nomnoml
 <<Nomnoml/shared.nomnoml>>
 [<hidden>Data]
-[Data]_>[SerializedProperty (values)]
+[Data]->[SerializedProperty (values)]
 [SerializedProperty (values)|arraySize: int]
 [<label>GetArrayElementAtIndex(i)]
 [SerializedProperty (values)]-[GetArrayElementAtIndex(i)]
@@ -224,7 +224,7 @@ private void OnEnable()
 <<Nomnoml/shared.nomnoml>>
 
 [<hidden>Data]
-[Data]_>[SerializedProperty (Configuration)]
+[Data]->[SerializedProperty (Configuration)]
 
 [SerializedProperty (Configuration)|]
 [SerializedObject (Configuration)||UpdateIfRequiredOrScript()
@@ -233,12 +233,12 @@ ApplyModifiedProperties()
 
 [Configuration]
 [<label>targetObject]
-[Configuration]<__[<label>targetObject]
-[<label>targetObject]__[SerializedObject (Configuration)]
+[Configuration]<--[<label>targetObject]
+[<label>targetObject]--[SerializedObject (Configuration)]
 
 [<label>objectReferenceValue]
-[SerializedProperty (Configuration)]__[<label>objectReferenceValue]
-[<label>objectReferenceValue]__>[Configuration]
+[SerializedProperty (Configuration)]--[<label>objectReferenceValue]
+[<label>objectReferenceValue]_->[Configuration]
 
 [SerializedProperty (color)|colorValue: Color]
 [SerializedProperty (dimensions)|vector3Value: Vector3]
@@ -247,10 +247,10 @@ ApplyModifiedProperties()
 [<label>FindProperty("dimensions")]
 
 [SerializedObject (Configuration)]-[<label>FindProperty("color")]
-[<label>FindProperty("color")]_>[SerializedProperty (color)]
+[<label>FindProperty("color")]->[SerializedProperty (color)]
 
 [SerializedObject (Configuration)]-[<label>FindProperty("dimensions")]
-[<label>FindProperty("dimensions")]_>[SerializedProperty (dimensions)]
+[<label>FindProperty("dimensions")]->[SerializedProperty (dimensions)]
 ```
 
 This is a new hierarchy to find properties within, and needs to have `ApplyModifiedProperties` called **separately**.  
