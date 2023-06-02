@@ -2,6 +2,7 @@
 - [General](#general)
     - [Interface](#interface)
     - [Functionality](#functionality)
+    - [Unity Hub](#unity-hub)
 - [Programming](#programming)
     - [General](#general)
     - [Errors & warnings](#errors-warnings)

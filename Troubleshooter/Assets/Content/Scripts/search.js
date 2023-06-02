@@ -43,7 +43,7 @@ function resetPage() {
 	const value = processPageValue(getPageParameter());
 	load(sidebarContents, `/HTML/${value}_sidebar.html`, (response) => {
 		if (response.startsWith("<!DOCTYPE html>"))
-			sidebarContents.empty();
+			sidebarContents.replaceChildren();
 	});
 }
 
@@ -83,7 +83,7 @@ function performSearch(text) {
 
 function displayResults(results) {
 	const sidebarContents = document.querySelector('.sidebar-contents');
-	sidebarContents.empty();
+	sidebarContents.replaceChildren();
 	const div = document.createElement("div");
 	div.classList.add('search-results');
 	for (const result of results) {

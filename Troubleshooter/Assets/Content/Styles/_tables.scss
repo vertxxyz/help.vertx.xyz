@@ -38,7 +38,7 @@ td.highlight {
 .grid-container {
   display: grid;
   // Grid is 3 wide
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 33.3% 33.3% 33.3%;
 
   .grid-item__extra--even {
     display: none; // Hide extra for even grids
@@ -48,7 +48,7 @@ td.highlight {
 @media only all and (max-width: 750px) {
   // Grid is 2 wide
   .grid-container {
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
 
     .grid-item__extra--odd {
       display: none; // Hide extra for odd grids

@@ -21,8 +21,33 @@ If you're passing two positions to this function the results will be unexpected.
 
 <<Code/Drawing/Draw Functions 2.rtf>>  
 
-### Extra
-I've created a custom Editor debug drawing package called [Vertx.Debugging](https://github.com/vertxxyz/Vertx.Debugging).  
-You can draw physics functions (casts, overlaps, hits, etc), and draw labels in the scene.
+## Physics debugger
+If you trying to debug physics queries (overlap, check, cast), you can use the physics debugger (**Window | Analysis | Physics Debugger**).  
 
+^^^
+![Physics debugger showing queries](physics-debugger.png)
+^^^ Physics debugger showing queries in the Scene view
+
+:::warning  
+Your version of Unity may not have the Queries tab, you would have to update to draw queries using built-in functionality.
+:::  
+
+## Drawing packages
+### Vertx.Debugging
+I've created a custom debug drawing package called [Vertx.Debugging](https://github.com/vertxxyz/Vertx.Debugging).  
+It has drop-in replacements for physics functions (casts, overlaps, hits, checks), many extra shapes, and can draw labels in the scene.  
+It is designed for editor debugging and most functions will be stripped when built.
+
+^^^
 ![Vertx.Debugging](https://user-images.githubusercontent.com/21963717/194199755-a63d8ebc-0cc7-4268-9316-78f7d4fbea1a.mp4)
+^^^ Visualised shapes and casts from [Vertx.Debugging](https://github.com/vertxxyz/Vertx.Debugging)
+
+### Raycast Visualization
+[Raycast Visualization](https://github.com/nomnomab/RaycastVisualization) is a drop-in replacement for Physics queries.  
+It is designed for editor debugging and most functions will be stripped when built.
+
+### ALINE
+[ALINE](https://arongranberg.com/aline/) is a paid alternative that is intended to draw shapes in the editor and builds, and supports drawing from jobs.
+
+### Shapes
+[Shapes](https://acegikmo.com/shapes/) is a paid alternative that is designed to draw good looking lines for editor and builds.

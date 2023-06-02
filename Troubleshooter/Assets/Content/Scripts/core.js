@@ -15,7 +15,7 @@ function indexOfChild(child) {
 }
 
 function load(element, content, callback, error) {
-    if(error === undefined) {
+    if (error === undefined) {
         error = e => console.log(e);
     }
     fetch(content, {credentials: "same-origin"})
@@ -27,9 +27,7 @@ function load(element, content, callback, error) {
         .then(html => {
             const nodes = new DOMParser().parseFromString(html, 'text/html');
             const body = nodes.querySelector('body');
-            element.replaceChildren();
-            body.childNodes.forEach(c => element.appendChild(c));
-            
+            element.replaceChildren(...body.childNodes);
             // Recreate all script tags so they actually load.
             element.querySelectorAll("script").forEach(scriptElement => {
                 const parent = scriptElement.parentNode;
@@ -38,7 +36,7 @@ function load(element, content, callback, error) {
                 functionalScript.type = scriptElement.type;
                 parent.replaceChild(functionalScript, scriptElement);
             });
-            
+
             return html;
         })
         .then(callback)

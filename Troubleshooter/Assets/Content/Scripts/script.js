@@ -188,10 +188,11 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
             const sidebarContents = document.querySelector('.sidebar-contents');
             load(sidebarContents, `/HTML/${valueToLoad}_sidebar.html`, response => {
                 if (response.startsWith("<!DOCTYPE html>"))
-                    sidebarContents.empty();
+                    sidebarContents.replaceChildren();
             }, e => {
                 if (e === 404)
                     console.log(`No sidebar found for ${valueToLoad}.`);
+                sidebarContents.replaceChildren();
             });
         } catch {
             load404();
@@ -234,8 +235,8 @@ function scrollToHash(hash) {
 function setupHeaders() {
     document.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(
         e => {
-            e.addEventListener("mouseenter", () => e.querySelector(".header-permalink").classList.add("show"));
-            e.addEventListener("mouseleave", () => e.querySelector(".header-permalink").classList.remove("show"));
+            e.addEventListener("mouseenter", () => e.querySelector(".header-permalink")?.classList.add("show"));
+            e.addEventListener("mouseleave", () => e.querySelector(".header-permalink")?.classList.remove("show"));
         }
     );
 }

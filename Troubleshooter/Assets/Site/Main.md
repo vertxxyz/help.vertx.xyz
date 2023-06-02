@@ -9,6 +9,8 @@
 - [Error dialogs](Common/Error%20Dialogs.md)
 ### Functionality
 - [Freezes, crashes, and pauses](Functionality/Freezes%20Crashes%20and%20Pauses.md)
+### Unity Hub
+- [Installing editor versions](Unity%20Hub/Installing%20Editor%20Versions.md)
 
 ## Programming
 ### General
