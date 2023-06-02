@@ -168,16 +168,12 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
         valueToLoad = absolute(`${currentDirectory}/`, value)
     let url = value;
 
-    $(document).ready(function () {
-        const contents = $(contentsClass);
+    whenReady( function () {
+        const contents = document.querySelector(contentsClass);
         try {
             // Load the page
-            contents.load(`/HTML/${valueToLoad}.html`, function (response, status, xhr) {
+            load(contents,`/HTML/${valueToLoad}.html`, () => {
                 currentDirectory = valueToLoad.replace(/\/*[^/]+$/, "");
-                if (status === "error") {
-                    load404();
-                    return;
-                }
                 if (setParameter)
                     setPage(valueToLoad, url, hash);
 
@@ -187,12 +183,15 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
                 setupCodeSettings();
                 processNomnoml();
                 reloadScripts(valueToLoad);
-            });
+            }, load404);
             document.getElementById('page-search').value = "";
-            const sidebarContents = $('.sidebar-contents');
-            sidebarContents.load(`/HTML/${valueToLoad}_sidebar.html`, function (response, status, xhr) {
-                if (status === "error" || response.startsWith("<!DOCTYPE html>"))
+            const sidebarContents = document.querySelector('.sidebar-contents');
+            load(sidebarContents, `/HTML/${valueToLoad}_sidebar.html`, response => {
+                if (response.startsWith("<!DOCTYPE html>"))
                     sidebarContents.empty();
+            }, e => {
+                if (e === 404)
+                    console.log(`No sidebar found for ${valueToLoad}.`);
             });
         } catch {
             load404();
@@ -224,7 +223,7 @@ function load404() {
 
 function scrollToHash(hash) {
     if (hash === '') {
-        $(contentsClass).scrollTop(0);
+        document.querySelector(contentsClass).scrollTo(0, 0);
         return;
     }
     const hashElement = document.getElementById(hash.substring(1));
@@ -233,50 +232,62 @@ function scrollToHash(hash) {
 }
 
 function setupHeaders() {
-    $("h1, h2, h3, h4, h5, h6").hover(function () {
-            $(this).find(".header-permalink").addClass("show");
-        }, function () {
-            $(this).find(".header-permalink").removeClass("show");
+    document.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(
+        e => {
+            e.addEventListener("mouseenter", () => e.querySelector(".header-permalink").classList.add("show"));
+            e.addEventListener("mouseleave", () => e.querySelector(".header-permalink").classList.remove("show"));
         }
     );
 }
 
 function setupCodeSettings() {
     // Ligatures setting
-    const ligaturesSetting = $(".code-setting-ligatures");
     codeSettings.UpdateLigatures();
-    ligaturesSetting.html(codeSettings.usesLigatures ? "Ligatures ✓" : "Ligatures");
-    ligaturesSetting.click(function () {
-        codeSettings.usesLigatures = !codeSettings.usesLigatures;
-        codeSettings.UpdateLigatures();
-        ligaturesSetting.html(codeSettings.usesLigatures ? "Ligatures ✓" : "Ligatures");
-    });
+    document.querySelectorAll(".code-setting-ligatures").forEach(
+        e => {
+            e.innerHTML = codeSettings.usesLigatures ? "Ligatures ✓" : "Ligatures";
+            e.addEventListener("click", function () {
+                codeSettings.usesLigatures = !codeSettings.usesLigatures;
+                codeSettings.UpdateLigatures();
+                e.innerHTML = codeSettings.usesLigatures ? "Ligatures ✓" : "Ligatures";
+            });
+        });
     // Theme setting
     codeSettings.UpdateTheme();
-    $(".code-setting-theme").click(function () {
-        if (codeSettings.theme === "rider-dark")
-            codeSettings.theme = "vs-dark";
-        else if (codeSettings.theme === "vs-dark")
-            codeSettings.theme = "one-monokai";
-        else if (codeSettings.theme === "one-monokai")
-            codeSettings.theme = "dracula";
-        else
-            codeSettings.theme = "rider-dark";
-        codeSettings.UpdateTheme();
-    });
-    $(".code-setting-copy").click(function () {
-        const container = $(this).closest('div[class^="code-container"]');
-        const inner = container.find('.code-container-inner').get(0);
-        const r = document.createRange();
-        r.selectNode(inner);
-        if (!navigator.clipboard) {
-            copyFallback(getRangeSelection(r));
-        } else {
-            const selection = getRangeSelection(r);
-            navigator.clipboard.writeText(selection.toString())
-                .then(() => selection.removeAllRanges())
-                .catch(() => copyFallback(r));
-        }
+    document.querySelectorAll(".code-setting-theme").forEach(
+        e => {
+            e.addEventListener("click",
+                function () {
+                    if (codeSettings.theme === "rider-dark")
+                        codeSettings.theme = "vs-dark";
+                    else if (codeSettings.theme === "vs-dark")
+                        codeSettings.theme = "one-monokai";
+                    else if (codeSettings.theme === "one-monokai")
+                        codeSettings.theme = "dracula";
+                    else
+                        codeSettings.theme = "rider-dark";
+                    codeSettings.UpdateTheme();
+                }
+            );
+        });
+    document.querySelectorAll(".code-setting-copy").forEach(
+    e => {
+        e.addEventListener("click",
+            function () {
+                const container = e.closest('div[class^="code-container"]');
+                const inner = container.find('.code-container-inner').get(0);
+                const r = document.createRange();
+                r.selectNode(inner);
+                if (!navigator.clipboard) {
+                    copyFallback(getRangeSelection(r));
+                } else {
+                    const selection = getRangeSelection(r);
+                    navigator.clipboard.writeText(selection.toString())
+                        .then(() => selection.removeAllRanges())
+                        .catch(() => copyFallback(r));
+                }
+            }
+        );
     });
 }
 

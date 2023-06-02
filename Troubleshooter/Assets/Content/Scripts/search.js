@@ -15,7 +15,7 @@ fetch("/Json/search-index.json")
 	.then(response => response.json())
 	.then(json => searchIndex = json);
 
-$(document).ready(function () {
+whenReady( function () {
 	const pageSearch = document.getElementById('page-search');
 	pageSearch.addEventListener('input', searchChange);
 });
@@ -38,11 +38,11 @@ function searchChange(e) {
 function resetPage() {
 	if(searchIsClear) return;
 	searchIsClear = true;
-	const sidebarContents = $('.sidebar-contents');
+	const sidebarContents = document.querySelector('.sidebar-contents');
 	if(sidebarContents.length === 0) return;
 	const value = processPageValue(getPageParameter());
-	sidebarContents.load(`/HTML/${value}_sidebar.html`, function (response, status, xhr) {
-		if (status === "error" || response.startsWith("<!DOCTYPE html>"))
+	load(sidebarContents, `/HTML/${value}_sidebar.html`, (response) => {
+		if (response.startsWith("<!DOCTYPE html>"))
 			sidebarContents.empty();
 	});
 }
@@ -82,7 +82,7 @@ function performSearch(text) {
 }
 
 function displayResults(results) {
-	const sidebarContents = $('.sidebar-contents');
+	const sidebarContents = document.querySelector('.sidebar-contents');
 	sidebarContents.empty();
 	const div = document.createElement("div");
 	div.classList.add('search-results');

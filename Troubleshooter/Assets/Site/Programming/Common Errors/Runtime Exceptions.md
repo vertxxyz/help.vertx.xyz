@@ -10,6 +10,7 @@
 - [ArgumentException.](Runtime%20Exceptions/ArgumentException.md)
 - [InvalidCastException.](Runtime%20Exceptions/InvalidCastException.md)
 - [InvalidOperationException.](Runtime%20Exceptions/InvalidOperationException.md)
+- [StackOverflowException](Runtime%20Exceptions/StackOverflowException.md)
 
 :::
 

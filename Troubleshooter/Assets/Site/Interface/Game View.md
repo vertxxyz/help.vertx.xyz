@@ -7,4 +7,5 @@
 - [The view says **no cameras rendering**.](Game%20View/No%20Cameras.md)
 
 ### Functionality
-- [My game pauses unexpectedly.](Game%20View/Error%20Pause.md)
+- [Unity **shortcuts conflict** with my game.](../Functionality/Disable%20Shortcuts.md)
+- [Unity **pauses the Editor** unexpectedly.](../Functionality/Error%20Pause.md)

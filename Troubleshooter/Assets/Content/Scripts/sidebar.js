@@ -1,29 +1,12 @@
 let transitionClass = "sidebar--transition";
 
-document.addEventListener("DOMContentLoaded", () => {
+whenReady(() => {
 	const sidebar = document.querySelector(".sidebar");
 	const overlay = document.querySelector(".nav_overlay");
 	const button = document.querySelector("#button-sidebar");
 
 	button.addEventListener("click", () => open(sidebar, overlay));
 	overlay.addEventListener("click", () => close(sidebar, overlay));
-
-	$(".container").swipe({
-		swipeLeft: function () {
-			let width = $(document).width();
-			if (width > 700) return;
-			open(sidebar, overlay);
-		},
-		swipeRight: function () {
-			let width = $(document).width();
-			if (width > 700) return;
-			close(sidebar, overlay);
-		},
-		allowPageScroll: "auto",
-		preventDefaultEvents: false,
-		excludedElements: $.fn.swipe.defaults.excludedElements + ", code, pre, .code-container, " +
-			".slider, .slider_container, .slider_knob, .slider_left_gutter, .slider_right_gutter"
-	});
 });
 
 function open(sidebar, overlay) {

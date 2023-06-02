@@ -238,7 +238,7 @@ ApplyModifiedProperties()
 
 [<label>objectReferenceValue]
 [SerializedProperty (Configuration)]--[<label>objectReferenceValue]
-[<label>objectReferenceValue]_->[Configuration]
+[<label>objectReferenceValue]-->[Configuration]
 
 [SerializedProperty (color)|colorValue: Color]
 [SerializedProperty (dimensions)|vector3Value: Vector3]

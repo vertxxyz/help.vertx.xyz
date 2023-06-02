@@ -12,7 +12,7 @@ Your IDE needs to target a running application to start debugging. Usually this 
 #### Breakpoints
 Breakpoints are the entry point to a debugging session. Mark a line with a breakpoint and execution will halt when this line is reached if the debugger is attached.  
 
-When execution is halted **Unity will freeze**. You can now use the other debugger features of your IDE to assess problems. **Stop** debugging to resume Unity's normal function, or **Resume** to continue execution while remaining attached.
+When execution is halted **Unity will freeze**, this is normal. You can now use the other debugger features of your IDE to assess problems. **Stop** debugging to resume Unity's normal function, or **Resume** to continue execution while remaining attached.
 
 #### Variable inspection
 Hovering over an initialised variable during debugging will provide you with a view of its internals. You can discover information about faults in logic or uninitialised values this way.  

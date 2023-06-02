@@ -18,3 +18,5 @@ If you are passing around a `SystemState`, make sure it's passed by `ref` so mod
 
 #### Do not read from collections before dependencies are evaluated
 Ensure you don't use any properties of a native collection (like `.Length`) before you have *waited* on a dependency. In the case of an [`EntityQuery`](https://docs.unity3d.com/Packages/com.unity.entities@latest/index.html?subfolder=/api/Unity.Entities.EntityQuery.html), you should use [`CalculateEntityCount`](https://docs.unity3d.com/Packages/com.unity.entities@latest/index.html?subfolder=/api/Unity.Entities.EntityQuery.CalculateEntityCount.html#Unity_Entities_EntityQuery_CalculateEntityCount) to get the length of an array without requiring a dependency.
+
+In some cases you can use a job interface like [`IJobParallelForDefer`](https://docs.unity3d.com/Packages/com.unity.collections@latest/index.html?subfolder=/api/Unity.Jobs.IJobParallelForDefer.html), which does not rely on `Length` being provided before execution.

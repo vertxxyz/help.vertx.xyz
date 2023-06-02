@@ -7,18 +7,18 @@ function unhighlightTable(element) {
 }
 
 function addOrRemoveFromElement(element, add) {
-    const el = $(element);
-    const index = el.index();
-    const parent = el.parent();
-    const row = parent.children().first();
-    const column = parent.closest('table').find('th').eq(index);
+    const el = element;
+    const parent = el.parentNode;
+    const index = Array.prototype.indexOf.call(parent.children, element);
+    const row = parent.children[0];
+    const column = parent.closest('table').querySelectorAll('th')[index];
     if(add) {
-        el.addClass('highlight');
-        row.addClass('highlight');
-        column.addClass('highlight');
+        el.classList.add('highlight');
+        row.classList.add('highlight');
+        column.classList.add('highlight');
     } else {
-        el.removeClass('highlight');
-        row.removeClass('highlight');
-        column.removeClass('highlight');
+        el.classList.remove('highlight');
+        row.classList.remove('highlight');
+        column.classList.remove('highlight');
     }
 }
