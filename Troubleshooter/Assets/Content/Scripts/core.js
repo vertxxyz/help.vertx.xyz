@@ -9,6 +9,11 @@ function whenReady(callback) {
         });
 }
 
+function indexOfChild(child) {
+    const parent = child.parentNode;
+    return Array.prototype.indexOf.call(parent.children, child);
+}
+
 function load(element, content, callback, error) {
     if(error === undefined) {
         error = e => console.log(e);
@@ -24,6 +29,15 @@ function load(element, content, callback, error) {
             const body = nodes.querySelector('body');
             element.replaceChildren();
             body.childNodes.forEach(c => element.appendChild(c));
+            
+            // Recreate all script tags so they actually load.
+            element.querySelectorAll("script").forEach(scriptElement => {
+                const parent = scriptElement.parentNode;
+                const functionalScript = document.createElement("script");
+                functionalScript.src = scriptElement.src;
+                functionalScript.type = scriptElement.type;
+                parent.replaceChild(functionalScript, scriptElement);
+            });
             
             return html;
         })

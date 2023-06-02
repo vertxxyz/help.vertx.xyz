@@ -9,7 +9,7 @@ function unhighlightTable(element) {
 function addOrRemoveFromElement(element, add) {
     const el = element;
     const parent = el.parentNode;
-    const index = Array.prototype.indexOf.call(parent.children, element);
+    const index = indexOfChild(element);
     const row = parent.children[0];
     const column = parent.closest('table').querySelectorAll('th')[index];
     if(add) {
