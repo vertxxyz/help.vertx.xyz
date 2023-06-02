@@ -84,6 +84,10 @@ td.highlight {
       margin-block-end: 0;
       margin-bottom: 0;
     }
+    
+    > ul {
+      padding-inline-start: 18px;
+    }
   }
 
   .grid-container {
