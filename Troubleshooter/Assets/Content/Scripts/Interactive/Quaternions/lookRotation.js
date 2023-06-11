@@ -23,12 +23,8 @@ var downValid;
 var handleForwardAxis;
 var hovering;
 
-var pageParameter = processPageValue(null);
 
-var reload = (event) => {
-	if(event !== undefined && event.detail !== pageParameter)
-		return;
-
+var reload = () => {
 	forwardAxis = new float3(1, 1, 1);
 	forwardAxis.normalize();
 
@@ -94,7 +90,7 @@ var reload = (event) => {
 	};
 }
 
-window.addEventListener("loadedFromState", reload);
+fireCallbackIfPageIsCurrent(reload);
 reload();
 
 function drawFromToRotation(canvas) {

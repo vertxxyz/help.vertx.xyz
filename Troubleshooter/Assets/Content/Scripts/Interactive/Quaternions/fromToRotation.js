@@ -34,12 +34,7 @@ var hovering;
 var downValid;
 var handleFromAxis;
 
-var pageParameter = processPageValue(null);
-
-var reload = (event) => {
-	if(event !== undefined && event.detail !== pageParameter)
-		return;
-
+var reload = () => {
 	fromAxis = new float3(-1, 0, 0);
 	toAxis = new float3(0, -0.5, .5);
 	toAxis.normalize();
@@ -103,7 +98,7 @@ var reload = (event) => {
 	};
 }
 
-window.addEventListener("loadedFromState", reload);
+fireCallbackIfPageIsCurrent(reload);
 reload();
 
 function drawFromToRotation(canvas) {

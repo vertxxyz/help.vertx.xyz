@@ -12,13 +12,14 @@ Manual installation instructions can be found [here](https://docs.microsoft.com/
 ### <img src="/Images/jetbrains_rider.svg" alt="jetbrains rider" style="vertical-align:middle; margin:0 6px 0 0; width:32px; height:32px"> JetBrains Rider
 
 [Rider](https://www.jetbrains.com/rider/) is a paid IDE ([free for students, discounts for various groups](https://www.jetbrains.com/rider/buy/#discounts)).  
-It has advanced Unity integrations that are friendly and helpful for users of all skill levels.
+It has advanced Unity integrations that are friendly and helpful for users of all skill levels.  
+While the [Early Access Program](https://www.jetbrains.com/rider/nextversion/) is running you can also use it freely.
 
 ### <img src="/Images/vscode.svg" alt="visual studio code" style="vertical-align:middle; margin:0 6px 0 0; width:32px; height:32px"> Visual Studio Code
 
 [VS Code](https://code.visualstudio.com/docs/other/unity) is a free, lightweight version of VS, but has a longer, finicky setup.  
 :::warning
 VS Code support is [limited](https://forum.unity.com/threads/update-on-the-visual-studio-code-package.1302621/).  
-- It's [debugger extension](https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug) has been marked as deprecated.
-- New versions of Unity will not have the Visual Studio Code Editor (`com.unity.ide.vscode`) package installed by default.
+- Its [debugger extension](https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug) is marked as deprecated.
+- New versions of Unity don't have the Visual Studio Code Editor (`com.unity.ide.vscode`) package installed by default.
 :::

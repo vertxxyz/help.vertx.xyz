@@ -94,3 +94,9 @@ td.highlight {
     grid-gap: 1em 0;
   }
 }
+
+.table-children--expand {
+  > table {
+    min-width: 100%;
+  }
+}

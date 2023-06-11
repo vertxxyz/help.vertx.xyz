@@ -18,12 +18,8 @@ var cubeYPos;
 var secondaryCubeYPos, secondaryCubeSize, secondaryAxisSize;
 var global;
 
-var pageParameter = processPageValue(null);
 
-var reload = (event) => {
-	if(event !== undefined && event.detail !== pageParameter)
-		return;
-
+var reload = () => {
 	raycaster = new THREE.Raycaster();
 	mouse = new THREE.Vector2();
 	camSize = 1.5;
@@ -64,7 +60,7 @@ var reload = (event) => {
 	new VERTX.TouchHandler(renderer.domElement, begin, null, end);
 }
 
-window.addEventListener("loadedFromState", reload);
+fireCallbackIfPageIsCurrent(reload);
 reload();
 
 window.addEventListener('keydown', function (event) {

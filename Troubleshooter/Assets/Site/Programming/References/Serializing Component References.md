@@ -4,6 +4,10 @@
 To refer to members (such as variables and methods) of a component, you must define which instance is being used.  
 Creating a serialized field allows that instance to be referred to elsewhere in the class.
 
+:::warning
+You cannot serialize references between scenes. [See here to learn more.](Cross-Scene%20References.md)
+:::
+
 ### Resolution
 
 #### 1. Expose a serialized reference to the target component  

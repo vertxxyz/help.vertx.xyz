@@ -4,12 +4,7 @@ var swp_canvas, swp_ctx;
 var distance;
 var rayHeightNormalised;
 
-var pageParameter = processPageValue(null);
-
-var reload = (event) => {
-	if(event !== undefined && event.detail !== pageParameter)
-		return;
-
+var reload = () => {
 	swp_canvas = document.getElementById('screen_to_world_point');
 	swp_ctx = swp_canvas.getContext('2d');
 
@@ -29,7 +24,7 @@ var reload = (event) => {
 	new TouchHandler(swp_canvas, touchEvent, touchEvent);
 }
 
-window.addEventListener("loadedFromState", reload);
+fireCallbackIfPageIsCurrent(reload);
 reload();
 
 function drawScreenToWorldPointDiagram(ctx, distance, rayHeightNormalised) {

@@ -24,12 +24,7 @@ var angleText;
 var axis_xText;
 var axis_yText;
 var axis_zText;
-var pageParameter = processPageValue(null);
-
-var reload = (event) => {
-	if(event !== undefined && event.detail !== pageParameter)
-		return;
-
+var reload = () => {
 	axis = new float3(-1, 1, -1);
 	axis.normalize();
 	raycaster = new THREE.Raycaster();
@@ -67,7 +62,7 @@ var reload = (event) => {
 	};
 }
 
-window.addEventListener("loadedFromState", reload);
+fireCallbackIfPageIsCurrent(reload);
 reload();
 
 function drawAngleAxis(canvas) {

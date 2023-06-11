@@ -6,7 +6,9 @@ Switch **Edit | Preferences | Jobs | Leak Detection Level** to enabled with stac
 This setting will reset when you restart Unity.
 :::
 
-If you do not get stack traces after enabling this setting, it could be a version issue, leak detection is under development to support complex Entities use-cases (bursted ISystem for example).
+Make sure the [Collections](https://docs.unity3d.com/Packages/com.unity.collections@latest) package is up to date, version 2.1.1 fixed collection tracking. You may need to update it manually via the [project manifest](https://docs.unity3d.com/Manual/upm-manifestPrj.html).
+
+If you do not get stack traces after enabling this setting, it could be a version issue, leak detection is under development to support complex Entities use-cases (bursted `ISystem` for example).
 
 ### Resolving leaks
 Non-Temp-allocated Native Collections must be manually disposed using the `Dispose` function.  

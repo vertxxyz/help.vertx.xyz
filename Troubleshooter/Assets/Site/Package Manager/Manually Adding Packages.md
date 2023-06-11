@@ -31,6 +31,6 @@ Packages in a project are described by the `manifest.json` file in the **Package
     It is important to note that the last entry should not have a trailing comma. This is invalid JSON and Unity will fail to load the manifest.  
 3. Save the manifest and return to Unity.
 
-See [Package Manifest](https://docs.unity3d.com/Manual/upm-manifestPkg.html) for more information.  
+See [Project Manifest](https://docs.unity3d.com/Manual/upm-manifestPrj.html) for more information.  
 
 [^1]: You can find the documentation for packages by looking in the [packages by keywords](https://docs.unity3d.com/Manual/pack-keys.html) section of the Unity Manual.

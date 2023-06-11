@@ -14,11 +14,7 @@ A `static`, `const`, or `readonly` field cannot be serialized.
 
 ### Properties
 
-:::info
-Unity will not serialize properties.
-:::  
-
-You can serialize the **backing field** of an [auto-property](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/auto-implemented-properties) using `[field: SerializeField]`. Pre-2020 this did not display properly in the Inspector.  
+Unity doesn't serialize properties. You can serialize the **backing field** of an [auto-property](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/auto-implemented-properties) using `[field: SerializeField]`. Versions before 2020 the names did not display appropriately in the Inspector.  
 ```csharp
 [field: SerializeField]
 public float Value { get; private set; }
@@ -28,7 +24,10 @@ public float Value { get; private set; }
 The property must have a `set` accessor, and cannot be `static`.
 :::
 
-The field will be serialized as `<PropertyName>k__BackingField`, which adds complexity when renaming fields or creating editor extensions. Manually serializing a backing field is generally more desirable.
+#### Reasons to avoid serializing backing fields
+- The field will be serialized as `<PropertyName>k__BackingField` which adds complexity in editor extensions.
+- Refactoring auto-properties into properties and fields occurs quite often, requiring the attribute be moved, and [`FormerlySerializedAs`](https://docs.unity3d.com/ScriptReference/Serialization.FormerlySerializedAsAttribute.html) targeting the annoying name.
+- Certain cases can be appear ambiguous when multiple Attributes are targeting the backing field or property which one is being targeted.
 
 ---  
 

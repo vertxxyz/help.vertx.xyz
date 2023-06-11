@@ -11,12 +11,7 @@ var a, b, t;
 var timeText, valueText;
 var aInput, bInput;
 
-var pageParameter = processPageValue(null);
-
-var reload = (event) => {
-    if (event !== undefined && event.detail !== pageParameter)
-        return;
-
+var reload = () => {
     aInput = document.getElementById("lerp_a");
     bInput = document.getElementById("lerp_b");
     timeText = document.getElementById("lerp_t");
@@ -54,7 +49,7 @@ var reload = (event) => {
     }, undefined, t);
 }
 
-window.addEventListener("loadedFromState", reload);
+fireCallbackIfPageIsCurrent(reload);
 reload();
 
 function drawDiagram(ctx, a, b, time) {

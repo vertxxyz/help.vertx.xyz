@@ -287,6 +287,13 @@ div.note {
 	> .note {
 		margin-right: 0;
 	}
+	
+	> .center {
+		text-align: center;
+		> p {
+			margin-bottom: 0;
+		}
+	}
 
 	.code-container {
 		margin-left: 0;
@@ -555,4 +562,15 @@ blockquote {
 	width: 1em;
 	margin: 0 .05em 0 .1em;
 	vertical-align: -0.1em;
+}
+
+.nomnoml-group {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	> .nomnoml.processed-nomnoml {
+		width: auto;
+		margin: 0 50px;
+	}
 }

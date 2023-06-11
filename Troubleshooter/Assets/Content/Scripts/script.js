@@ -160,6 +160,15 @@ function processPageValue(value) {
     return value;
 }
 
+function fireCallbackIfPageIsCurrent(callback) {
+    const pageParameter = processPageValue(null);
+    window.addEventListener("loadedFromState", event => {
+        if(event !== undefined && event.detail !== pageParameter)
+            return;
+        callback();
+    });
+}
+
 function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory = true) {
     isLoading = true;
     value = processPageValue(value);
