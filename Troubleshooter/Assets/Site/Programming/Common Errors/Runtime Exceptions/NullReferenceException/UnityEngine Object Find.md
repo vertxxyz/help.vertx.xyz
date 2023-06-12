@@ -12,7 +12,7 @@ Searches for children by name.
 1. Only direct children are returned unless a path is provided.
 1. Names are case-sensitive.
 1. If a path is provided, the path should look like: `Child/Descendant/Etc`.
-1. Search the scene for all instances of the caller and check the assumption is true (`t:ExampleComponent` for example).
+1. [Search the scene](../../../../Interface/Scene%20View/Searching.md) for all instances of the caller and check all results (`t:ExampleComponent` for example).
 1. Assignment must occur before access. Often you would use [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) to get, and [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) to use.
 
 ### [`GameObject.FindWithTag`](https://docs.unity3d.com/ScriptReference/GameObject.FindWithTag.html)

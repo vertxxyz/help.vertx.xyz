@@ -1,7 +1,9 @@
 ## Trigger matrix (3D)
 
-If your two colliders don't match in the matrix you **will not** get trigger messages
+If your two colliders don't match in the matrix you **will not** get trigger messages.  
+If you're trying to receive events that don't match, consider using a [Collision](3%20Collision%20Matrix%203D.md) event instead, note that they have [different method signatures](2%20Collision%20Messages%203D.md).
 
+^^^
 +-------------------------------+--------+-----------+---------------------+----------------+-------------------+-----------------------------+
 |                               | Static | Rigidbody | Kinematic Rigidbody | Static Trigger | Rigidbody Trigger | Kinematic Rigidbody Trigger |
 +===============================+========+===========+=====================+================+===================+=============================+
@@ -17,8 +19,7 @@ If your two colliders don't match in the matrix you **will not** get trigger mes
 +-------------------------------+--------+-----------+---------------------+----------------+-------------------+-----------------------------+
 |**Kinematic Rigidbody Trigger**|Y       |Y          |Y                    |Y               |Y                  |Y                            |
 +-------------------------------+--------+-----------+---------------------+----------------+-------------------+-----------------------------+
-
-You can read more about this and see a copy of this matrix in the Unity docs [here](https://docs.unity3d.com/Manual/CollidersOverview.html).  
+^^^ You can read more about this and see a copy of this matrix in the Unity docs [here](https://docs.unity3d.com/Manual/CollidersOverview.html).  
 
 <<Programming/Physics Messages/Understanding3D.md>>
 

@@ -335,6 +335,9 @@ figure {
 	flex-direction: column;
 	align-items: flex-start;
 	margin-inline-start: 15px;
+	:nth-last-child(2) {
+		margin-block-end: 0;
+	}
 }
 
 figcaption {

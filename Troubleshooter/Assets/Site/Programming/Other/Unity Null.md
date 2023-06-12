@@ -20,6 +20,16 @@ This context includes the location that is missing the object, which wouldn't be
 #### Modern null-checking operators
 The null conditional (`?.`) and null coalescing (`??`, `??=`) operators, and `is` null checks (`is null`, `is not null`, `is {}`) will not function correctly with `UnityEngine.Object` types as these operators could not be overridden by Unity. When Unity was created these operators did not exist, and this legacy remains rooted in examples and APIs.  
 
+Avoid using these operators with UnityEngine Objects, and instead consider alternatives. For example:
+
+```cs
+// ❌ Incorrect
+_component = GetComponent<Example>() ?? gameObject.AddComponent<Example>();
+// ✅ Correct
+if (!TryGetComponent(out _component))
+    _component = gameObject.AddComponent<Example>();
+```
+
 #### Garbage collection and allocation
 If you want to reclaim memory on Destroyed objects you need to additionally ensure all references are set to `null` to allow the C# garbage collector to reclaim that memory exactly like other heap allocated types.  
 

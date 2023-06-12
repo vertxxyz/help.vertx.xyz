@@ -1,4 +1,4 @@
-## Trigger messages
+## Trigger messages (2D)
 
 Ensure your functions are exactly as below.
 The variable `collider` can be renamed.  

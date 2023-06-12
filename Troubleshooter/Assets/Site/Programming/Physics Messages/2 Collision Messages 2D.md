@@ -1,4 +1,4 @@
-## Collision messages
+## Collision messages (2D)
 
 Ensure your functions are exactly as below.
 The variable `collision` can be renamed.  
