@@ -1,6 +1,6 @@
 ## Valid references diagram
 
-<script type="module" src="/Scripts/Interactive/References/validReferences.js"></script>  
+<script type="module" src="/Scripts/Interactive/References/validReferences.js?v=1.0.1"></script>  
 
 This directional diagram describes valid serialized references.
 

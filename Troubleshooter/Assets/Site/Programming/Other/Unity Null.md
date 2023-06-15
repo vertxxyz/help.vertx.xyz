@@ -41,5 +41,20 @@ Usually, an NRE is thrown whenever a `null` object is accessed, but seeing as a 
 #### Newing Unity objects
 If you create a `UnityEngine.Object` via the `new` operator, this will subtly fail in the majority of cases (there are valid situations like `GameObject`), where the native portion of the object was never created, and so you have an improperly initialised Unity-null object.
 
+#### Using interfaces or `object`
+Testing destroyed or missing UnityEngine Objects that are casted as interfaces or `object` will fail to work. They will use the default object equality.  
+Either consider an alternative that safely checks for null, or cast to `UnityEngine.Object`.
+
+```cs
+IExample example = GetComponent<IExample>();
+// ❌ Incorrect, this will fail to detect destroyed or missing objects.
+if (example != null) { }
+// ✅ Correct
+if ((UnityEngine.Object)example != null) { }
+// ✅ Correct
+if (TryGetComponent<IExample>(out example)) { }
+```
+
 ### Read more
-See the 2014 blog ["Custom == operator, should we keep it?"](https://blog.unity.com/technology/custom-operator-should-we-keep-it), or the Resharper/Rider suggestion ["Possible unintended bypass of lifetime check of underlying Unity engine object"](https://github.com/JetBrains/resharper-unity/wiki/Possible-unintended-bypass-of-lifetime-check-of-underlying-Unity-engine-object) for additional details.   
+- 2014 Unity blog: ["Custom == operator, should we keep it?"](https://blog.unity.com/technology/custom-operator-should-we-keep-it)
+- Resharper/Rider suggestion: ["Possible unintended bypass of lifetime check of underlying Unity engine object"](https://github.com/JetBrains/resharper-unity/wiki/Possible-unintended-bypass-of-lifetime-check-of-underlying-Unity-engine-object).   

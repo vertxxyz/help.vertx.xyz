@@ -20,7 +20,7 @@ Drag the sphere to modify ::`axis`::{.quaternion-axis}, move the slider to chang
 :::
 :::slider {#angle_axis_slider .color-angle} 
 :::
-<script type="module" src="/Scripts/Interactive/Quaternions/angleAxis.js"></script>  
+<script type="module" src="/Scripts/Interactive/Quaternions/angleAxis.js?v=1.0.0"></script>  
 <<Code/Info/Quaternions/AngleAxis 3.html>>  
 
 :::note

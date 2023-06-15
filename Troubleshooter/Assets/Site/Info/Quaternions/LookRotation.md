@@ -16,7 +16,7 @@ Drag the sphere near ::`forward`::{.quaternion-forward} or ::`upwards`::{.quater
 
 ::: {#look_rotation .interactive-content}
 :::
-<script type="module" src="/Scripts/Interactive/Quaternions/lookRotation.js"></script>  
+<script type="module" src="/Scripts/Interactive/Quaternions/lookRotation.js?v=1.0.0"></script>  
 
 <<Code/Info/Quaternions/LookRotation 3.html>>
 

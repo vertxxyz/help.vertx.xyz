@@ -14,7 +14,7 @@ Drag the sphere near ::`fromDirection`::{.quaternion-from} or ::`toDirection`::{
 
 ::: {#from_to_rotation .interactive-content}
 :::
-<script type="module" src="/Scripts/Interactive/Quaternions/fromToRotation.js"></script>  
+<script type="module" src="/Scripts/Interactive/Quaternions/fromToRotation.js?v=1.0.0"></script>  
 
 <<Code/Info/Quaternions/FromToRotation 3.html>>  
 

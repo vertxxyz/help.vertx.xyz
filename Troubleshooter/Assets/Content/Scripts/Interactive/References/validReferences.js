@@ -27,7 +27,7 @@ var reload = () => {
         title.innerHTML = '';
         svg.onmouseover = e => handleTooltip(e, lookup);
         svg.onclick = e => handleTooltip(e, lookup);
-        svg.onmouseleave = () => showDefaultTooltip();
+        // svg.onmouseleave = () => showDefaultTooltip();
     });
 };
 

@@ -27,7 +27,7 @@ Press <kbd>X</kbd> to alternate between local and world space handles.
 Reset
 :::
 :::
-<script type="module" src="/Scripts/Interactive/Quaternions/multiplication-directions.js"></script>
+<script type="module" src="/Scripts/Interactive/Quaternions/multiplication-directions.js?v=1.0.0"></script>
 <<Code/Info/Quaternions/Multiplication 2.html>>
 
 The logic can be applied to rotate any point around its origin.  
@@ -54,7 +54,7 @@ Drag the axes to interact with A or B, press <kbd>X</kbd> to alternate between l
 Reset
 :::
 :::
-<script type="module" src="/Scripts/Interactive/Quaternions/multiplication.js"></script>
+<script type="module" src="/Scripts/Interactive/Quaternions/multiplication.js?v=1.0.0"></script>
 
 ```csharp
 transform.rotation = A.rotation * B.rotation;

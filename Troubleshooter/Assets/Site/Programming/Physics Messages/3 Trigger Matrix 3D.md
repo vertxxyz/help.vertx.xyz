@@ -1,7 +1,7 @@
 ## Trigger matrix (3D)
 
 If your two colliders don't match in the matrix you **will not** get trigger messages.  
-If you're trying to receive events that don't match, consider using a [Collision](3%20Collision%20Matrix%203D.md) event instead, note that they have [different method signatures](2%20Collision%20Messages%203D.md).
+If you're trying to receive events that don't match, consider using a [collision](3%20Collision%20Matrix%203D.md) event instead, note that they have a [different method signature](2%20Collision%20Messages%203D.md).
 
 ^^^
 +-------------------------------+--------+-----------+---------------------+----------------+-------------------+-----------------------------+

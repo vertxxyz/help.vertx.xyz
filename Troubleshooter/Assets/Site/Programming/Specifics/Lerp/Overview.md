@@ -35,7 +35,7 @@ Their usage is the same, even though the applications are varied.
 Drag the slider to modify `t`, edit `a` and `b` in the code below.
 :::
 
-<script type="module" src="/Scripts/Interactive/Lerp/scene.js"></script>  
+<script type="module" src="/Scripts/Interactive/Lerp/scene.js?v=1.0.0"></script>  
 <canvas id="lerp" width="500" height="500"></canvas>
 :::slider {#lerp_time_slider .color-angle}
 :::

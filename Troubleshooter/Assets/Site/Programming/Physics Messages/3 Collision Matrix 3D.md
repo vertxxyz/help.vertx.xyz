@@ -1,7 +1,7 @@
 ## Collision matrix (3D)
 
 If your two colliders don't match in the matrix you **will not** get collision messages.  
-If you're trying to receive events that don't match, consider using a [Trigger](3%20Trigger%20Matrix%203D.md) event instead, note that they have [different method signatures](2%20Trigger%20Messages%203D.md).
+If you're trying to receive events that don't match, consider using a [trigger](3%20Trigger%20Matrix%203D.md) event instead, note that they have a [different method signature](2%20Trigger%20Messages%203D.md).
 
 ^^^
 +-------------------------------+--------+-----------+---------------------+----------------+-------------------+-----------------------------+
@@ -22,7 +22,7 @@ If you're trying to receive events that don't match, consider using a [Trigger](
 ^^^ You can read more about this and see a copy of this matrix in the Unity docs [here](https://docs.unity3d.com/Manual/CollidersOverview.html).
 
 :::info{.inline}
-If you are using a Character Controller you may be looking for the [OnControllerColliderHit](https://docs.unity3d.com/ScriptReference/CharacterController.OnControllerColliderHit.html) message
+If you are using a Character Controller you may be looking for the [`OnControllerColliderHit`](https://docs.unity3d.com/ScriptReference/CharacterController.OnControllerColliderHit.html) message
 :::
 
 <<Programming/Physics Messages/Understanding3D.md>>
