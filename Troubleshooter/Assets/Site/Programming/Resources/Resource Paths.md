@@ -7,8 +7,8 @@ See [Resources.Load](https://docs.unity3d.com/ScriptReference/Resources.Load.htm
 
 ### Resolution
 Example:
-#### ✅ Correct
+#### 🟢 Correct
 `"Missiles/PlasmaGun"`
 
-#### ❌ Incorrect
+#### 🔴 Incorrect
 `"Assets/Resources/Missiles/PlasmaGun.prefab"`

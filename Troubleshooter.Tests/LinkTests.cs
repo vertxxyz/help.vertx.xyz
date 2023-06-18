@@ -28,7 +28,7 @@ public class LinkTests
 		using var scope = new AssertionScope();
 		foreach ((string fullPath, _) in PageUtility.LinksAsFullPaths(text, path))
 		{
-			new FileInfo(fullPath).Should().Exist($"\"{name}\" is missing a link");
+			new FileInfo(fullPath).Should().Exist("{0} is missing a link", name);
 		}
 	}
 
@@ -63,10 +63,10 @@ public class LinkTests
 	{
 		using (new AssertionScope())
 		{
-			string directory = Path.GetDirectoryName(path);
+			string directory = Path.GetDirectoryName(path)!;
 			foreach ((string localPath, _) in PageUtility.LocalImagesAsRootPaths(text, false))
 			{
-				string fullPath = Path.GetFullPath(Path.Combine(directory!, localPath)).ToUnTokenized();
+				string fullPath = Path.GetFullPath(Path.Combine(directory, localPath)).ToUnTokenized();
 				new FileInfo(fullPath).Should().Exist();
 			}
 		}

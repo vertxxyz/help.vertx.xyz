@@ -128,6 +128,9 @@ public static class SearchGatherer
 			Console.WriteLine($"\"{path}\" header text failed to be added to search index.");
 		}
 
+		// Remove extremely common headers from search results
+		html = html.Replace(">Description<", "><").Replace(">Resolution<", "><").Replace(">Implementation<", "><");
+		
 		// Without this wrapping div Uglify fails to parse many forms of HTML.
 		UglifyResult result = Uglify.HtmlToText($"<div>{html}</div>", sourceFileName: path);
 		if (result.HasErrors)

@@ -9,5 +9,5 @@ You cannot raycast against raw meshes using the `Raycast` functions!
 The 2D and 3D physics systems are entirely separate!
 
 ---  
-- [I am using a Layer Mask.](Raycasting/Layer%20Masks.md)
-- [I am **not** using Layer Mask.](Raycasting/Visual%20Debugging.md)
+- [I am using a layer mask.](Raycasting/Layer%20Masks.md)
+- [I am **not** using layer mask.](Raycasting/Visual%20Debugging.md)

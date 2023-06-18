@@ -27,7 +27,6 @@ var reload = () => {
             e.preventDefault();
             check(i, options[i]);
         };
-        // TODO set background based on checkbox, should this be an event?
     }
 
     bitcontainers = new Array(32);
@@ -93,13 +92,15 @@ function check(index) {
             bitcontainers[index - 2].innerText = checked ? "1" : "0";
             bitcontainers[index - 2].classList.toggle("set", checked);
             state.mask ^= 1 << (index - 2);
-            if (state.mask === 0 || state.mask === ~0)
+            checkFromMask();
+            /*if (state.mask === 0 || state.mask === ~0)
                 checkFromMask();
             else {
                 options[0].firstElementChild.checked = false;
                 options[1].firstElementChild.checked = false;
                 label.innerText = "Mixed...";
-            }
+                // TODO handle single checked values without setting the whole mask
+            }*/
             break;
     }
 }
@@ -126,12 +127,21 @@ function checkFromMask() {
     } else {
         options[0].firstElementChild.checked = false;
         options[1].firstElementChild.checked = false;
+        let checkedCount = 0;
+        let lastCheckedIndex = 0;
         for (let i = 0; i < 32; i++) {
             let checked = (state.mask & (1 << i)) !== 0;
             options[i + 2].firstElementChild.checked = checked;
             bitcontainers[i].innerText = checked ? "1" : "0";
             bitcontainers[i].classList.toggle("set", checked);
+            if (checked) {
+                checkedCount++;
+                lastCheckedIndex = i;
+            }
         }
-        label.innerText = "Mixed...";
+        if (checkedCount === 1)
+            label.innerText = options[lastCheckedIndex + 2].childNodes[2].nodeValue;
+        else
+            label.innerText = "Mixed...";
     }
 }

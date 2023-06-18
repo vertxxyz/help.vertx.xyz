@@ -96,9 +96,9 @@ internal class StringAssertionsExtensions : StringAssertions
 		return new AndConstraint<StringAssertions>(this);
 	}
 
-	private static bool Contains(string actual, string expected, StringComparison comparison) => (actual ?? string.Empty).Contains(expected ?? string.Empty, comparison);
+	private static bool Contains(string? actual, string? expected, StringComparison comparison) => (actual ?? string.Empty).Contains(expected ?? string.Empty, comparison);
 	
-	private static bool Contains(string actual, char expected, StringComparison comparison) => (actual ?? string.Empty).Contains(expected, comparison);
+	private static bool Contains(string? actual, char expected, StringComparison comparison) => (actual ?? string.Empty).Contains(expected, comparison);
 		
 	/// <summary>
 	/// Asserts that a string does not match the regex.
@@ -112,7 +112,7 @@ internal class StringAssertionsExtensions : StringAssertions
 			.BecauseOf(because, becauseArgs)
 			.FailWith("Regex {1} matched {0}{reason}.", _truncated, regex);
 
-		return new(this);
+		return new AndConstraint<StringAssertions>(this);
 	}
 		
 	/// <summary>
@@ -127,7 +127,7 @@ internal class StringAssertionsExtensions : StringAssertions
 			.BecauseOf(because, becauseArgs)
 			.FailWith("Regex {1} matched {0}{reason}.", _truncated, regex);
 
-		return new(this);
+		return new AndConstraint<StringAssertions>(this);
 	}
 }
 
@@ -159,6 +159,6 @@ internal class FileAssertions<TAssertions> : ReferenceTypeAssertions<FileInfo, T
 			.BecauseOf(because, becauseArgs)
 			.FailWith("Expected {0} to exist at {1}{reason}.", Subject.Name, Subject.DirectoryName);
 
-		return new((TAssertions)this);
+		return new AndConstraint<TAssertions>((TAssertions)this);
 	}
 }

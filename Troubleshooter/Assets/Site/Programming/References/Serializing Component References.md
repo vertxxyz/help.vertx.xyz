@@ -8,7 +8,7 @@ Creating a serialized field allows that instance to be referred to elsewhere in 
 You cannot serialize references between scenes. [See here to learn more.](Cross-Scene%20References.md)
 :::
 
-### Resolution
+### Implementation
 
 #### 1. Expose a serialized reference to the target component  
 ::::note

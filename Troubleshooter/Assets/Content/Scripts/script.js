@@ -193,7 +193,6 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
                 // -------------------------------
                 setTimeout(() => scrollToHash(hash), 100); // Delay seems to be required in some cases.
                 setupHeaders();
-                Prism.highlightAll();
             }, load404);
             document.getElementById('page-search').value = "";
             const sidebarContents = document.querySelector('.sidebar-contents');

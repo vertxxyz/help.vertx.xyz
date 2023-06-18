@@ -14,4 +14,7 @@ Debug.DrawLine(ray.origin, hit.point);
 
 ---
 
-See [Draw Functions](../Debugging/Draw%20Functions.md) for more information.
+See [draw functions](../Debugging/Draw%20Functions.md) for more information.
+
+---
+If you find an unlisted resolution please <<report-issue.html>> so this page can be improved.

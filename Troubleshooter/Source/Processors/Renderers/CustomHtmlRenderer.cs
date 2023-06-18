@@ -1,7 +1,5 @@
 using System.IO;
-using System.Reflection;
 using Markdig.Extensions.CustomContainers;
-using Markdig.Prism;
 using Markdig.Renderers;
 using Markdig.Renderers.Html;
 
@@ -22,14 +20,6 @@ public class CustomHtmlRenderer : HtmlRenderer
 					break;
 				case HtmlCustomContainerRenderer:
 					ObjectRenderers[i] = new HtmlCustomContainerOverrideRenderer();
-					break;
-				case PrismCodeBlockRenderer renderer:
-					ObjectRenderers[i] =
-						new PrismCodeBlockOverrideRenderer(
-							(CodeBlockRenderer)renderer.GetType()
-								.GetField("codeBlockRenderer", BindingFlags.Instance | BindingFlags.NonPublic)
-								!.GetValue(renderer)!
-						);
 					break;
 				default:
 					continue;

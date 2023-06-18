@@ -22,10 +22,10 @@ The null conditional (`?.`) and null coalescing (`??`, `??=`) operators, and `is
 
 Avoid using these operators with UnityEngine Objects, and instead consider alternatives. For example:
 
-```cs
-// ❌ Incorrect
+```csharp
+// 🔴 Incorrect
 _component = GetComponent<Example>() ?? gameObject.AddComponent<Example>();
-// ✅ Correct
+// 🟢 Correct
 if (!TryGetComponent(out _component))
     _component = gameObject.AddComponent<Example>();
 ```
@@ -45,13 +45,13 @@ If you create a `UnityEngine.Object` via the `new` operator, this will subtly fa
 Testing destroyed or missing UnityEngine Objects that are casted as interfaces or `object` will fail to work. They will use the default object equality.  
 Either consider an alternative that safely checks for null, or cast to `UnityEngine.Object`.
 
-```cs
+```csharp
 IExample example = GetComponent<IExample>();
-// ❌ Incorrect, this will fail to detect destroyed or missing objects.
+// 🔴 Incorrect, this will fail to detect destroyed or missing objects.
 if (example != null) { }
-// ✅ Correct
+// 🟢 Correct
 if ((UnityEngine.Object)example != null) { }
-// ✅ Correct
+// 🟢 Correct
 if (TryGetComponent<IExample>(out example)) { }
 ```
 

@@ -2,12 +2,12 @@
 ### Description
 A `LayerMask` can accidentally be passed as an incorrect parameter of `Raycast`.  
 
-#### ✅ Correct
+#### 🟢 Correct
 ```csharp
 if (Physics.Raycast(origin, direction, out hit, distance, layerMask))
 ```
 
-#### ❌ Incorrect
+#### 🔴 Incorrect
 ```csharp
 if (Physics.Raycast(origin, direction, out hit, layerMask))
 ```
@@ -30,4 +30,4 @@ If this is an issue you should [configure your IDE](../IDE%20Configuration.md) t
 
 ---
 
-[I am still having problems with my raycast.](Visual%20Debugging.md)
+[I am still having problems with my raycast.](Incorrect%20Methods.md)

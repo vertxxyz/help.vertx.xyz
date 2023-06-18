@@ -4,7 +4,7 @@
 - [Referring to objects **between scenes**.](Cross-Scene%20References.md)
 - [Referring to prefab assets, and instancing them.](References%20To%20Prefabs.md)
 - [Referring to objects in the scene **from a prefab**.](Prefabs%20Referencing%20Components.md)
-- [Referring to sub-objects inside of prefabs.](References%20To%20Prefab%20Sub-Objects.md)
+- [Referring to children of prefabs.](References%20To%20Prefab%20Children.md)
 
 For a visual representation of valid serialized references see [this diagram](Valid%20References.md).
 ### Issues

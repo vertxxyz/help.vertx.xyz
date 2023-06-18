@@ -7,7 +7,7 @@
 ### Issues
 
 - [I cannot connect ports.](Shader%20Graph/Port%20Connection%20Issues.md)
-- [A transparent texture looks incorrect in the Sample Texture 2D node.](Shader%20Graph/Alpha%20Output.md)
+- [A transparent texture looks incorrect in a node preview.](Shader%20Graph/Alpha%20Output.md)
 
 ---
 See [Common Material Issues](Materials.md) for general shader troubleshooting.

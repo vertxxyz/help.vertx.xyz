@@ -1,38 +1,42 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<OutputType>Exe</OutputType>
-		<TargetFramework>net7.0</TargetFramework>
-		<RootNamespace>help.vertx.xyz</RootNamespace>
-		<Configurations>Release;Debug</Configurations>
-		<Platforms>AnyCPU</Platforms>
-		<IsWindows Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))' == 'true'">true</IsWindows>
-		<LangVersion>default</LangVersion>
-		<Authors>Vertx</Authors>
-		<Company>Vertx</Company>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+        <RootNamespace>help.vertx.xyz</RootNamespace>
+        <Configurations>Release;Debug</Configurations>
+        <Platforms>AnyCPU</Platforms>
+        <IsWindows Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))' == 'true'">true</IsWindows>
+        <LangVersion>default</LangVersion>
+        <Authors>Vertx</Authors>
+        <Company>Vertx</Company>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 
-	<PropertyGroup Condition="'$(IsWindows)'=='true'">
-		<DefineConstants>WINDOWS</DefineConstants>
-	</PropertyGroup>
+    <PropertyGroup Condition="'$(IsWindows)'=='true'">
+        <DefineConstants>WINDOWS</DefineConstants>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="DartSassHost" Version="1.0.3" />
-		<PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
-		<PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.21.3" />
-		<PackageReference Include="JetBrains.Annotations" Version="2023.2.0-eap3" />
-		<PackageReference Include="Markdig" Version="0.31.0" />
-		<PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.4.2" />
-		<PackageReference Include="NUglify" Version="1.20.7" />
-		<PackageReference Include="RtfPipe" Version="2.0.7677.4303" />
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0-preview.4.23259.5" />
-		<PackageReference Include="TwemojiSharp" Version="1.0.1" />
-		<PackageReference Include="WebStoating.Markdig.Prism" Version="1.0.0" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="DartSassHost" Version="1.0.4"/>
+        <PackageReference Include="HtmlAgilityPack" Version="1.11.46"/>
+        <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.21.3"/>
+        <PackageReference Include="JetBrains.Annotations" Version="2023.2.0-eap3"/>
+        <PackageReference Include="Markdig" Version="0.31.0"/>
+        <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.4.2"/>
+        <PackageReference Include="NUglify" Version="1.20.7"/>
+        <PackageReference Include="RtfPipe" Version="2.0.7677.4303"/>
+        <PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0-preview.5.23280.8"/>
+        <PackageReference Include="TwemojiSharp" Version="1.0.1"/>
+    </ItemGroup>
 
-	<ItemGroup>
-		<Folder Include="Assets" />
-	</ItemGroup>
+    <ItemGroup>
+        <Folder Include="Assets"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Remove="Source\prism.js" />
+        <EmbeddedResource LogicalName="Prism" Include="Source\prism.js"/>
+    </ItemGroup>
 
 </Project>

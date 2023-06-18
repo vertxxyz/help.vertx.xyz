@@ -1,4 +1,4 @@
-## Bit masks and Layer Masks
+## Bitmasks
 ### Description
 A bit is a `0` or a `1`. `int` is a 32 bit value, 32 different `0`'s or `1`'s.  
 In a bitmask `0` is an inactive layer, and a `1` is active.  
@@ -7,7 +7,7 @@ This means we can represent 32 layer toggles with a single `int` value.
 ### Creating masks from layers
 To create a bitmask with a single layer enabled, [shift](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators#left-shift-operator-) a single bit over to the position in the mask that matches the layer index.  
 For example, to create a mask with layer **5** active, create `int` with a the first bit enabled, a `1`, then shift that bit over 5 places to the 6th index (layers are **0 indexed** so this is layer 5).  
-It's worth noting that the first bit (the least significant bit) is the rightmost bit, similar to a decimal integer.
+It's worth noting that the first bit (the least significant bit) is the rightmost bit, similar to normal numbers.
 ```csharp
 int mask = 1 << 5;
 //    1: 000001

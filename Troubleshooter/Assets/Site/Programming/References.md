@@ -15,8 +15,12 @@ Prefer serialized references for their speed and configurability. [`GetComponent
 [`GetComponentInChildren`](https://docs.unity3d.com/ScriptReference/Component.GetComponentInChildren.html), and other similar methods are perfect for dynamic runtime references, like those resolved during collisions and scene queries.
 
 ### Find APIs
-Avoid the various find methods unless you are debugging or prototyping. These methods are generally extremely slow, and even when used from `Awake` or `Start` can cause hitches during loading. Prefer [serialized references](References/Serialized%20References.md) or [singletons](References/Singletons.md).  
-If you are referencing objects you spawned at runtime, add them to a collection (like a List) when they are created, and reference that object to get your instances instead.
+Avoid the various find methods unless you are debugging or prototyping. These methods are often extremely slow, and even when used from `Awake` or `Start` can cause hitches during loading. Prefer [serialized references](References/Serialized%20References.md) or [singletons](References/Singletons.md).  
+If you are referencing objects you spawned at runtime, add them to a collection (like a [List](https://learn.unity.com/tutorial/lists-and-dictionaries)) when they are created, and reference that object to get your instances instead.
+
+### Dependency injection
+Dependency injection (DI) is simply the process of having a reference passed to an object. [Serialized references](References/Serialized%20References.md) are already a simple form of DI, but you can apply the concept yourself and inject references from managers to other objects under their control.  
+[Learn more.](References/Simple%20Dependency%20Injection.md)  
 
 ### Alternate methods
-Other ways to refer to external members include dependency injection frameworks and varied use of the `static` keyword. Generally these can be avoided until users are familiar with more basic and common concepts.
+There are other ways to refer to external members, including varied use of the `static` keyword. Generally these can be avoided until users are familiar with more basic and common concepts.

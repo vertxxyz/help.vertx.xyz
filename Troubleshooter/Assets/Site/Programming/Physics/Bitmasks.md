@@ -1,4 +1,4 @@
-## Bit masks and Layer Masks
+## Bitmasks and LayerMasks
 
 ### Description
 
@@ -13,7 +13,7 @@ bitmask operations and physics methods.
 
 :::::note{#layermask-diagram}
 #### Interactive diagram
-<script type="module" src="/Scripts/Interactive/Bitmasks/layerMaskDropdown.js?v=1.0.0"></script>  
+<script type="module" src="/Scripts/Interactive/Bitmasks/layerMaskDropdown.js?v=1.0.1"></script>  
 ::::{.inspector-root}
 :::{.control-root}
 <div class="control-label">Bitmask</div>
@@ -109,5 +109,6 @@ if ((mask & (1 << layer)) != 0)
     ...
 ```
 
----
-[My raycast is still not returning a result.](../Raycasting/Incorrect%20Parameters.md)
+---  
+
+General information relating to bitmasks (unrelated to `LayerMask`) can be found [here](../../Info/Bitmasks.md).

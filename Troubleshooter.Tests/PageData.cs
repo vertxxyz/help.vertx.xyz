@@ -28,7 +28,7 @@ public class PageData : IEnumerable<object[]>
 				{
 					Path.GetFileNameWithoutExtension(localPath),
 					localPath,
-					value.MarkdownText
+					value.MarkdownText!
 				};
 			}
 		}

@@ -112,71 +112,77 @@ function displayResults(results) {
 }
 
 function getSearchResults(terms, query) {
+	let page, j, i, term;
 	const common = searchIndex.common;
 	const termLookup = searchIndex.termsToFileIndices;
 	const score = {};
 	let min_score = terms.length;
-	for (var i = 0; i < terms.length; i++) {
-		var term = terms[i];
-		if (common[term]) {
+	const scoredPages = new Set();
+	for (i = 0; i < terms.length; i++) {
+		scoredPages.clear();
+		term = terms[i];
+		if (common[term])
 			min_score--;
-		}
 
 		if (termLookup[term]) {
-			for (var j = 0; j < termLookup[term].length; j++) {
-				var page = termLookup[term][j];
+			const termResults = termLookup[term];
+			for (j = 0; j < termResults.length; j++) {
+				page = termResults[j];
+				if(scoredPages.has(page)) continue;
 				if (!score[page])
-					score[page] = j;
+					score[page] = 0;
 				++score[page];
+				scoredPages.add(page);
 			}
 		}
 
-		for (var si in termLookup) {
+		for (const si in termLookup) {
 			if (si.length <= term.length) continue;
-			if (si.slice(0, term.length) === term) {
-				for (var j = 0; j < termLookup[si].length; j++) {
-					var page = termLookup[si][j];
-					if (!score[page])
-						score[page] = j;
-					++score[page];
-				}
+			if (si.slice(0, term.length) !== term) continue;
+			const termResults = termLookup[si];
+			for (j = 0; j < termResults.length; j++) {
+				page = termResults[j];
+				if(scoredPages.has(page)) continue;
+				if (!score[page])
+					score[page] = 0;
+				++score[page];
+				scoredPages.add(page);
 			}
 		}
 	}
-	var results = [];
-	for (var page in score) {
-		var title = getPageTitle(page);
+	let results = [];
+	for (page in score) {
+		const title = getPageTitle(page);
 		// ignore partial matches
-		if (score[page] >= min_score) {
-			results.push(page);
-
-			var placement;
-			// Adjust scores for better matches
-			for (var i = 0; i < terms.length; i++) {
-				var term = terms[i];
-				if ((placement = title.toLowerCase().indexOf(term)) > -1) {
-					score[page] += 50;
-					if (placement === 0 || title[placement - 1] === '.')
-						score[page] += 500;
-					if (placement + term.length === title.length || title[placement + term.length] === '.')
-						score[page] += 500;
-				}
+		if (score[page] < min_score) continue;
+		
+		const titleLower = title.toLowerCase();
+		
+		results.push(page);
+		let placement;
+		for (i = 0; i < terms.length; i++) {
+			term = terms[i];
+			if ((placement = titleLower.indexOf(term)) > -1) {
+				score[page] += 50;
+				if (placement === 0 || title[placement - 1] === '.')
+					score[page] += 500;
+				if (placement + term.length === title.length || title[placement + term.length] === '.')
+					score[page] += 500;
 			}
-
-			if (title.toLowerCase() === query)
-				score[page] += 10000;
-			else if ((placement = title.toLowerCase().indexOf(query)) > -1)
-				score[page] += ((placement < 100) ? (200 - placement) : 100);
 		}
+		if (titleLower === query)
+			score[page] += 10000;
+		else if ((placement = titleLower.indexOf(query)) > -1)
+			score[page] += ((placement < 100) ? (200 - placement) : 100);
 	}
 
 	results = results.sort(function (a, b) {
 		if (score[b] === score[a]) { // sort alphabetically by title if score is the same
-			var x = getPageTitle(a).toLowerCase();
-			var y = getPageTitle(b).toLowerCase();
+			const x = getPageTitle(a).toLowerCase();
+			const y = getPageTitle(b).toLowerCase();
 			return ((x < y) ? -1 : ((x > y) ? 1 : 0));
 		} else { // else by score descending
-			return score[b] - score[a]
+			return score[b] - score[a];
 		}
 	});
 
