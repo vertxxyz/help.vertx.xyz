@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1,maximum-scale=1">
     <title>Unity, huh, how?</title>
     <!--suppress HtmlUnknownTarget -->
-    <link rel="stylesheet" href="/Styles/style.css?v=1.4.0">
+    <link rel="stylesheet" href="/Styles/style.css?v=2.0.0">
     <!--suppress HtmlUnknownTarget -->
     <link rel="stylesheet" href="/Styles/code-highlighting.css?v=1.0.1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,13 +17,25 @@
     <link rel="icon" type="image/png" href="/Images/favicon-96x96.png" sizes="96x96">
     <script src="/Scripts/core.js?v=1.0.0"></script>
     <script src="/Scripts/script.js?v=1.2.0"></script>
-    <script src="/Scripts/search.js?v=1.1.1"></script>
     <script src="/Scripts/sidebar.js?v=1.1.0"></script>
+    <script src="/Scripts/search.js?v=1.2.0"></script>
     <script src="/Scripts/tableHighlighter.js"></script>
     <script src="//unpkg.com/graphre/dist/graphre.js"></script>
     <script src="//unpkg.com/nomnoml/dist/nomnoml.js"></script>
 </head>
 <body>
+<div class="header">
+    <div class="header__contents">
+        <span class="header__title">
+        <a class="" href="https://huh.how"><img class="emoji" draggable="false" alt="🤔"
+                                                src="https://twemoji.maxcdn.com/v/13.0.1/72x72/1f914.png"></a>
+            <a class="" href="/"> Unity, huh, how?</a>
+            </span>
+    </div>
+    <div class="header__sidebar">
+        <input class="header__search" id="page-search" type="text" placeholder="Search...">
+    </div>
+</div>
 <div class="container">
     <div class="contents">
         <!-- page content -->
@@ -36,12 +48,9 @@
         <div class="sidebar-contents">
             <!-- sidebar content -->
         </div>
-        <div class="sidebar-top">
-            <p class="home-header"><a href="/">Home</a></p>
-            <input id="page-search" type="text" placeholder="Search...">
-        </div>
         <div class="sidebar-bottom">
-            <a id="report-link" class="report-link light-link link--external" onclick="reportIssue()">Report an issue with this page</a>
+            <a id="report-link" class="report-link light-link link--external" onclick="reportIssue()">Report an issue
+                with this page</a>
             <a href="https://ko-fi.com/vertx" id="kofi-link" class="light-link link--external">Support me on Ko-fi</a>
         </div>
     </div>

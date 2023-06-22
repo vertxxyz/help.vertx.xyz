@@ -10,4 +10,4 @@
 - [A transparent texture looks incorrect in a node preview.](Shader%20Graph/Alpha%20Output.md)
 
 ---
-See [Common Material Issues](Materials.md) for general shader troubleshooting.
+See [common material issues](Materials.md) for general shader troubleshooting.

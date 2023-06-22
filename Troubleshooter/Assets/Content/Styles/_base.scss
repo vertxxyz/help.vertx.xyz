@@ -1,10 +1,14 @@
-$sidebar-width: 70%;
+$header-height: 3.5em;
+$sidebar-width-mobile: 70%;
 $left-padding: 25px;
 $left-padding-negative: -1 * $left-padding;
 $right-margin: 25px;
 $note-padding: 20px;
 $max-width: 1500px;
 $bottom-padding: 200px;
+$font-family: 'Roboto', sans-serif;
+$scroll-bar-width: 13px;
+$sidebar-bottom-height: 58px;
 // Colors
 $body-color: #c5c5c5;
 $dark-color: #282828;
@@ -15,6 +19,5 @@ $link-color-hover: #f7b44b;
 $link-color-light: #6d7278;
 $lighter-background-color: #3C3C3C;
 $dark-background-color: #262626;
-$font-family: 'Roboto', sans-serif;
-$scroll-bar-width: 13px;
-$sidebar-bottom-height: 58px;
+$unity-header-background: #000000;
+$unity-header-foreground: #FFFFFF;
