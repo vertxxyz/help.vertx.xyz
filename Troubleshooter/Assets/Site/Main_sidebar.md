@@ -12,7 +12,7 @@
     - [DOTS](#dots)
     - [Utility & maths](#utility-maths)
     - [Functionality](#functionality-1)
-    - [Editor](#editor-extensions)
+    - [Editor extensions](#editor-extensions)
 - [Building](#building)
 - [UI](#ui)
 - [Physics](#physics-1)

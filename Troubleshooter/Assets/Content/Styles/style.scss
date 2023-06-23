@@ -54,7 +54,7 @@ html, body {
 
 %grid-parent {
 	display: grid;
-	grid-template-columns: minmax(0, 1fr) 0.5fr;
+	grid-template-columns: minmax(60px, 1fr) 0.5fr;
 	grid-template-areas: "contents sidebar";
 	gap: 0;
 	margin-right: auto;
@@ -177,9 +177,12 @@ iframe {
 .header__sidebar {
 	grid-area: sidebar;
 	display: flex;
+	align-items: center;
 	margin: 0 20px;
 	.header__search {
 		flex-grow: 1;
+		min-width: unset;
+		max-height: 22px;
 	}
 }
 
@@ -188,6 +191,17 @@ iframe {
 	line-height: 1em;
 	font-weight: 700;
 	text-wrap: nowrap;
+	display: flex;
+	align-items: center;
+
+	img {
+		font-size: 24pt;
+		margin-right: 8px;
+	}
+	
+	&.header__title--small {
+		display: none;
+	}
 }
 
 .container {
@@ -402,24 +416,26 @@ figure {
 	}
 }
 
-.sidebar--button {
+.sidebar__button {
 	display: none;
-	position: fixed;
-	top: calc(50% - 50px);
-	right: 0;
-	width: 40px;
-	height: 100px;
-	background-color: #191919;
+	background: none;
 	border: none;
-	border-top-left-radius: 15px;
-	border-bottom-left-radius: 15px;
-	margin: 0;
+	border-radius: 5px;
+	margin: 0 0 0 6px;
 	padding: 0;
+	min-width: 3em;
+	width: 3em;
+	height: 3em;
 	cursor: pointer;
+	fill: #b0b0b0;
+	transition: fill 0.25s, transform 0.1s;
+	&.sidebar__button--open {
+		transform: scaleX(-1);
+	}
 }
 
-.sidebar--button:hover, .sidebar--button:focus {
-	background-color: #707070;
+.sidebar__button:hover {
+	fill: white;
 	outline: none;
 }
 
@@ -427,11 +443,21 @@ figure {
 	display: none;
 }
 
-.sidebar--button-content {
-	width: 40px;
-	height: 40px;
+.sidebar__button__content {
 	margin: 0;
 	padding: 0;
+}
+
+@media only all and (max-width: 560px) {
+	.header__title {
+		&.header__title--small {
+			display: flex;
+		}
+
+		&.header__title--large {
+			display: none;
+		}
+	}
 }
 
 /* Mobile styling */
@@ -467,7 +493,7 @@ figure {
 		transition: transform 0.3s;
 	}
 
-	.sidebar--button {
+	.sidebar__button {
 		display: block;
 	}
 
@@ -607,6 +633,8 @@ blockquote {
 .emoji {
 	height: 1em;
 	width: 1em;
+	min-width: 1em;
+	min-height: 1em;
 	margin: 0 .05em 0 .1em;
 	vertical-align: -0.1em;
 }

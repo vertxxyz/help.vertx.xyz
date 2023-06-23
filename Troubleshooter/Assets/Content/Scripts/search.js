@@ -1,6 +1,6 @@
 var searchIndex;
 var searchIsClear = true;
-var sidebar, overlay;
+var sidebar, overlay, button;
 
 /* search-index.json:
 * 	filePaths
@@ -20,6 +20,7 @@ whenReady(function () {
     const pageSearch = document.getElementById('page-search');
     sidebar = document.querySelector(".sidebar");
     overlay = document.querySelector(".nav_overlay");
+    button = document.querySelector("#button-sidebar");
     pageSearch.addEventListener('input', searchChange);
     pageSearch.addEventListener('focus', focusChange);
 });
@@ -31,6 +32,7 @@ function focusChange(e) {
     if (!sidebar?.classList.contains("sidebar--open")) {
         sidebar?.classList.add("sidebar--open");
         overlay?.classList.add("nav_overlay--open");
+        button?.classList.add("sidebar__button--open");
     }
 }
 
@@ -40,6 +42,7 @@ function searchChange(e) {
     if (!sidebar?.classList.contains("sidebar--open")) {
         sidebar?.classList.add("sidebar--open");
         overlay?.classList.add("nav_overlay--open");
+        button?.classList.add("sidebar__button--open");
     }
 
     if (e.length < 3) {
