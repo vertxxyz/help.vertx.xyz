@@ -9,7 +9,6 @@ using Xunit;
 
 namespace Troubleshooter.Tests;
 
-[SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters")]
 public class LinkTests
 {
 	private readonly HashSet<string> embeddedFiles = new();

@@ -3,8 +3,8 @@
 Dependency injection (DI) might sound complex, but it's simply the process of having a reference passed to an object.  
 
 ### Implementation
-#### 1. Create an initializer method
 ::::note   
+#### 1. Create an initializer method
 The method should receive the references your class requires as parameters, which are then assigned locally.
 
 ```csharp
@@ -22,8 +22,8 @@ public void Initialise(Example example2, Example example2)
 If you aren't using a `UnityEngine.Object` subtype you can use contructors and variable initializers, and don't need to make an Initialise method.
 :::  
 ::::  
-#### 2. Where your class is created or instanced, reference your objects
 ::::note  
+#### 2. Where your class is created or instanced, reference your objects
 See [serialized references](Serialized%20References.md), or use another method like `GetComponent`.
 ```csharp
 [Header("References")]
@@ -31,8 +31,8 @@ See [serialized references](Serialized%20References.md), or use another method l
 [SerializeField] private Example _example2;
 ```
 ::::  
-#### 3. Call your initializer method with the references as arguments
 ::::note  
+#### 3. Call your initializer method with the references as arguments
 Where your class is created or instanced call the method on the new instance.
 ```csharp
 public void Spawn()

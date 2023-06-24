@@ -6,7 +6,6 @@ using Xunit;
 
 namespace Troubleshooter.Tests;
 
-[SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters")]
 public class LanguageTests
 {
 	/// <summary>
@@ -36,6 +35,7 @@ public class LanguageTests
 		text.Should().NotContain("ie.", StringComparison.OrdinalIgnoreCase, "we should use \"that is\", or \"such as\"");
 		text.Should().NotContain("i.e.", StringComparison.OrdinalIgnoreCase, "we should use \"that is\", or \"such as\"");
 		text.Should().NotContain("double check", StringComparison.OrdinalIgnoreCase, "we should use \"double-check\"");
+		text.Should().NotContain("text mesh pro", StringComparison.OrdinalIgnoreCase, "we should use \"TextMesh Pro\"");
 	}
 		
 	/// <summary>
@@ -51,5 +51,6 @@ public class LanguageTests
 		text.Should().NotContain("play mode", StringComparison.Ordinal, "we should write \"Play Mode\"");
 		text.Should().NotContain("edit mode", StringComparison.Ordinal, "we should write \"Edit Mode\"");
 		text.Should().NotContain(".Net", StringComparison.Ordinal, "we should write \".NET\"");
+		text.Should().NotContain("assembly definition", StringComparison.Ordinal, "we should write \"Assembly Definition\"");
 	}
 }

@@ -1,1 +1,1 @@
-*[TMP]: Text Mesh Pro
+*[TMP]: TextMesh Pro

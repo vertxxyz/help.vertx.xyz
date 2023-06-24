@@ -5,8 +5,8 @@ C#'s indices are **zero-indexed**. This means that indices begin at 0, and go up
 `[0..Length)`  
 
 ### Resolution
+:::note
 #### In local scopes
-:::note  
 Ensure that the line pointed to by the [stack trace](../Stack%20Traces.md) is accessing an index that is within the limits of the collection.  
 The index needs to be 0 or above, and less than the length of the collection.  
 Common mistakes include:
@@ -17,8 +17,8 @@ Common mistakes include:
 You can use the [debugger](../../Debugging/Debugger.md) to step over your code, inspecting variables and execution to assess what is wrong.  
 :::
 
+:::note
 #### Inside lambdas
-:::note  
 If you have code like this:
 ```csharp
 for (int i = 0; i < values.Length; i++)

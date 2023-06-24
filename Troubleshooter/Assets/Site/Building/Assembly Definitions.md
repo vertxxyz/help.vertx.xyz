@@ -1,7 +1,7 @@
 <<Abbreviations/Asmdef.md>>
 ## Assembly Definitions
 :::warning
-Editor folders don't function under assembly definitions
+Editor folders don't function under Assembly Definitions
 :::
 
 It is recommended to have a Runtime and Editor asmdefs separated into different folders at a root level, unlike the usual paradigm of having editor folders scattered throughout your project.  

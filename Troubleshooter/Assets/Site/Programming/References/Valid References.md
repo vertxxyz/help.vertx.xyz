@@ -1,6 +1,6 @@
 ## Valid references diagram
 
-<script type="module" src="/Scripts/Interactive/References/validReferences.js?v=1.0.1"></script>  
+<script type="module" src="/Scripts/Interactive/References/validReferences.js?v=1.0.2"></script>  
 
 This directional diagram describes valid serialized references.
 
@@ -60,113 +60,82 @@ Hover or select elements for more information.
 :::::{.hidden #ref-tooltip-data}  
 
 ::::{ data-title="ref_overview" data-keys="Scene ᵃ, Scene ᵇ" }
-+-------------------+--------------+------------+  
-|                   | From a scene | To a scene |  
-+===================+==============+============+  
-| Other **scenes**  |N             |N           |  
-+-------------------+--------------+------------+  
-| **Project**       |Y             |N           |  
-| assets            |              |            |  
-+-------------------+--------------+------------+  
-| **Packaged**      |Y             |N           |  
-| assets            |              |            |  
-+-------------------+--------------+------------+  
+
+|                 | From a scene | To a scene |
+|-----------------|--------------|------------|
+| Other scenes    | N            | N          |
+| Project assets  | Y            | N          |
+| Packaged assets | Y            | N          |
+
 :::warning{.inline}  
 See Assets diagram for asset reference specifics  
 :::  
 ::::  
 
 ::::{ data-title="ref_overview" data-keys="Project assets" }  
-+-----------------------+---------------------+-------------------+  
-|                       | From project assets | To project assets |  
-+=======================+=====================+===================+  
-| **Scenes**            |N                    |Y                  |  
-+-----------------------+---------------------+-------------------+  
-| Other **project**     |Y                    |Y                  |  
-| assets                |                     |                   |  
-+-----------------------+---------------------+-------------------+  
-| **Packaged**          |Y                    |N                  |  
-| assets                |                     |                   |  
-+-----------------------+---------------------+-------------------+  
+
+|                      | From project assets | To project assets |
+|----------------------|---------------------|-------------------|
+| Scenes               | N                   | Y                 |
+| Other project assets | Y                   | Y                 |
+| Packaged assets      | Y                   | N                 |
+
 :::warning{.inline}  
 See Assets diagram for asset reference specifics  
 :::  
 ::::  
 
 ::::{ data-title="ref_overview" data-keys="Package assets" }  
-+-----------------------+---------------------+-------------------+  
-|                       | From package assets | To package assets |  
-+=======================+=====================+===================+  
-| **Scenes**            |N                    |Y                  |  
-+-----------------------+---------------------+-------------------+  
-| **Project**           |N                    |Y                  |  
-| assets                |                     |                   |  
-+-----------------------+---------------------+-------------------+  
-| Other **packaged**    |Y                    |Y                  |  
-| assets                |                     |                   |  
-+-----------------------+---------------------+-------------------+  
+
+|                       | From package assets | To package assets |
+|-----------------------|---------------------|-------------------|
+| Scenes                | N                   | Y                 |
+| Project assets        | N                   | Y                 |
+| Other packaged assets | Y                   | Y                 |
+
 :::warning{.inline}  
 See Assets diagram for asset reference specifics  
 :::  
 ::::  
 
 ::::{ data-title="ref_assets" data-keys="Asset or sub-asset" }
-+-----------------------+---------------------------+-------------------------+  
-|                       | From assets or sub-assets | To assets or sub-assets |  
-+=======================+===========================+=========================+  
-| Scenes                |N                          |Y                        |  
-+-----------------------+---------------------------+-------------------------+  
-| Other                 |Y                          |Y                        |  
-| assets or sub-assets  |                           |                         |  
-+-----------------------+---------------------------+-------------------------+  
-| Prefab assets         |Y                          |Y                        |  
-+-----------------------+---------------------------+-------------------------+  
-| Prefab asset children |N                          |Y                        |  
-+-----------------------+---------------------------+-------------------------+  
+
+|                               | From assets or sub-assets | To assets or sub-assets |
+|-------------------------------|---------------------------|-------------------------|
+| Scenes                        | N                         | Y                       |
+| Other assets or sub-assets    | Y                         | Y                       |
+| Prefab assets                 | Y                         | Y                       |
+| Prefab asset children         | N                         | Y                       |
+
 :::warning{.inline}  
 See Scene/Project/Package diagram for location specifics  
 :::  
 ::::  
 
 ::::{ data-title="ref_assets" data-keys="Prefab asset" }
-+-----------------------+---------------------------+-------------------------+  
-|                       | From prefab assets        | To prefab assets        |  
-+=======================+===========================+=========================+  
-| Scenes                |N                          |Y                        |  
-+-----------------------+---------------------------+-------------------------+  
-| Assets or sub-assets  |Y                          |Y                        |  
-+-----------------------+---------------------------+-------------------------+  
-| Other                 |Y                          |Y                        |  
-| prefab assets         |                           |                         |  
-+-----------------------+---------------------------+-------------------------+  
-| This prefab's         |Y                          |Y                        |
-| children              |                           |                         |  
-+-----------------------+---------------------------+-------------------------+  
-| Other prefab's        |N                          |Y                        |
-| children              |                           |                         |  
-+-----------------------+---------------------------+-------------------------+  
+
+|                         | From prefab assets | To prefab assets |
+|-------------------------|--------------------|------------------|
+| Scenes                  | N                  | Y                |
+| Assets or sub-assets    | Y                  | Y                |
+| Other prefab assets     | Y                  | Y                |
+| This prefab's children  | Y                  | Y                |
+| Other prefab's children | N                  | Y                |
+
 :::warning{.inline}  
 See Scene/Project/Package diagram for location specifics  
 :::  
 ::::  
 
 ::::{ data-title="ref_assets" data-keys="Children" }
-+-----------------------+----------------------------+--------------------------+  
-|                       | From prefab asset children | To prefab asset children |  
-+=======================+============================+==========================+  
-| Scenes                |N                           |N                         |  
-+-----------------------+----------------------------+--------------------------+  
-| Assets or sub-assets  |Y                           |N                         |  
-+-----------------------+----------------------------+--------------------------+  
-| Other                 |Y                           |N                         |  
-| prefab assets         |                            |                          |  
-+-----------------------+----------------------------+--------------------------+  
-| This prefab's         |Y                           |Y                         |
-| children              |                            |                          |  
-+-----------------------+----------------------------+--------------------------+  
-| Other prefab's        |N                           |N                         |
-| children              |                            |                          |  
-+-----------------------+----------------------------+--------------------------+  
+
+|                         | From prefab asset children | To prefab asset children |
+|-------------------------|----------------------------|--------------------------|
+| Scenes                  | N                          | N                        |
+| Assets or sub-assets    | Y                          | N                        |
+| Other prefab assets     | Y                          | N                        |
+| This prefab's children  | Y                          | Y                        |
+| Other prefab's children | N                          | N                        |
 :::warning{.inline}  
 See Scene/Project/Package diagram for location specifics  
 :::  

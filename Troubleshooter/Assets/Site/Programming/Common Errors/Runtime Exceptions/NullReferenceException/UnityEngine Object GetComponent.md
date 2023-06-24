@@ -1,6 +1,7 @@
 ## NullReferenceException: UnityEngine.Object — GetComponent
 Check your usage of `GetComponent` or its variants:  
-### [`GetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) or [`TryGetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.TryGetComponent.html)
+::::note  
+#### [`GetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) or [`TryGetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.TryGetComponent.html)
 A component of the target type must be attached to the same gameobject the caller is. If the value is `null` after calling, then this assumption is wrong.
 1. The **same** gameobject has a component matching the argument.
 1. The target components' type actually matches[^1].  
@@ -10,8 +11,10 @@ A component of the target type must be attached to the same gameobject the calle
 :::info{.inline}
 You can use the [`RequireComponent`](https://docs.unity3d.com/ScriptReference/RequireComponent.html) attribute to automatically add component dependencies when adding new components.
 :::  
+::::  
 
-### [`GetComponentInChildren`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponentInChildren.html)
+::::note
+#### [`GetComponentInChildren`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponentInChildren.html)
 Only components on active gameobject are returned unless the `includeInactive` argument is `true`.
 1. Either the same object or a child has a matching component.
 1. The component type actually matches[^1].  
@@ -19,13 +22,18 @@ Only components on active gameobject are returned unless the `includeInactive` a
 1. If the component is on an inactive child, provide the `includeInactive` argument as `true`.
 1. Assignment must occur before access. Often you would use [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) to get, and [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) to use.
 
-### [`GetComponentInParent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponentInParent.html)
+::::  
+::::note
+#### [`GetComponentInParent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponentInParent.html)
 Only components on active gameobject are returned unless the `includeInactive` argument is `true`.
 1. Either the same object or a parent has a matching component.
 1. The component type actually matches[^1].  
 1. [Search the scene](../../../../Interface/Scene%20View/Searching.md) for all instances of the caller and check all results (`t:ExampleComponent` for example).
 1. If the component is on an inactive parent, provide the `includeInactive` argument as `true`.
 1. Assignment must occur before access. Often you would use [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) to get, and [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) to use.
+
+::::  
+
 
 ---
 

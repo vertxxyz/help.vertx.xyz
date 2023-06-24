@@ -183,7 +183,7 @@ public static partial class SiteBuilder
 			 *- [Base type](Base%20Type.md)
 			 *- [Editor contexts](Editor%20Contexts.md)
 			 *  - [Editor folders](Editor%20Folders.md)
-			 *  - [Editor assembly definitions](Assembly%20Definitions.md)
+			 *  - [Editor Assembly Definitions](Assembly%20Definitions.md)
 			 *- [General advice](General%20Advice.md)
 			 *- [Project reimport](Project%20Reimport.md)
 			 */

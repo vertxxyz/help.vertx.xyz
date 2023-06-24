@@ -47,7 +47,7 @@ html, body {
   margin: 0;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  background-color: #383838;
+  background-color: base.$unity-colors-window-background;
   color: base.$body-color;
   line-height: 1.5em;
 }
@@ -92,8 +92,8 @@ a:hover, a:focus {
 }
 
 hr {
-  border-top: 1px solid;
-  border-color: #585858;
+  border: 0;
+  border-top: 1px solid base.$unity-colors-window-border;
   margin-block-start: 0.8em;
   margin-block-end: 0.8em;
   margin-left: base.$left-padding-negative;
@@ -231,7 +231,11 @@ iframe {
   overflow: auto;
   box-sizing: content-box;
 
-  :first-child {
+  > :first-child {
+    margin-block-start: 0;
+  }
+
+  > #main-page--content > :first-child {
     margin-block-start: 0;
   }
 }
@@ -240,7 +244,7 @@ iframe {
   grid-area: sidebar;
   position: relative;
   height: calc(var(--vh) - #{base.$header-height});
-  border-left: 1px solid #1f1f1f;
+  border-left: 1px solid base.$unity-colors-default-border;
 }
 
 .sidebar-contents {
@@ -252,7 +256,8 @@ iframe {
   left: 0;
   right: 0;
   padding: 30px 0 (base.$sidebar-bottom-height + 25px) base.$left-padding;
-  :first-child {
+  
+  > :first-child {
     margin-block-start: 0;
   }
 }
@@ -318,7 +323,6 @@ ol {
     &::marker {
       content: counters(item-counter, ".") ". ";
       color: base.$bold-color;
-      font-weight: bold;
     }
   }
 }
@@ -508,7 +512,7 @@ figure {
     padding: 30px 30px base.$bottom-padding 30px;
     margin: 0 0 0 0;
   }
-  
+
   .header__contents {
     margin-left: 0;
   }
@@ -662,7 +666,7 @@ blockquote {
   margin-block-end: 1em;
   margin-inline-start: 0;
   margin-inline-end: 12px;
-  
+
   > h3 {
     margin-left: -20px;
     padding-left: 20px;

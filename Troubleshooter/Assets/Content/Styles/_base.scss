@@ -24,3 +24,49 @@ $huh-how-highlight: #ffcb4c;
 $huh-how-highlight-darker: #f19020;
 $unity-header-background: #000000;
 $unity-header-foreground: #FFFFFF;
+// Unity colors  https://www.foundations.unity.com/fundamentals/color-palette
+// Base 1
+$unity-colors-app_toolbar-background: #191919;
+$unity-colors-app_toolbar_button-background: #383838;
+$unity-colors-app_toolbar_button-background-checked: #6A6A6A;
+$unity-colors-app_toolbar_button-background-hover: #424242;
+$unity-colors-app_toolbar_button-background-pressed: #6A6A6A;
+$unity-colors-app_toolbar_button-border: #191919;
+$unity-colors-app_toolbar_button-border_accent: #222222;
+// Base 2
+// Buttons
+$unity-colors-button-background: #585858;
+$unity-colors-button-background-focus: #6E6E6E;
+$unity-colors-button-background-hover: #676767;
+$unity-colors-button-background-hover_pressed: #4F657F;
+$unity-colors-button-background-pressed: #46607C;
+$unity-colors-button-border: #303030;
+$unity-colors-button-border_accent: #242424;
+$unity-colors-button-border_accent-focus: #7BAEFA;
+$unity-colors-button-border-pressed: #0D0D0D;
+$unity-colors-button-text: #EEEEEE;
+// Multi Column Header
+$unity-colors-headerbar-background: #3C3C3C;
+$unity-colors-headerbar_column-background: #3C3C3C;
+$unity-colors-headerbar_column-background-hover: #464646;
+$unity-colors-headerbar_column-background-pressed: #505050;
+// Inspector backgrounds
+$unity-colors-inspector_titlebar-background: #3E3E3E;
+$unity-colors-inspector_titlebar-background-hover: #474747;
+$unity-colors-toolbar-background: #3C3C3C;
+$unity-colors-window-background: #383838;
+// Inspector Borders
+$unity-colors-inspector_titlebar-border: #1A1A1A;
+$unity-colors-inspector_titlebar-border_accent: #303030;
+// Window Backgrounds 
+$unity-colors-default-background: #282828;
+$unity-colors-highlight-background-inactive: #4D4D4D;
+$unity-colors-highlight-background: #2C5D87;
+$unity-colors-highlight-background-hover: rgba(256, 256, 256, 0.0627451);
+$unity-colors-highlight-background-hover-lighter: #5F5F5F;
+$unity-colors-window-background: #383838;
+$unity-colors-alternated_rows-background: #3F3F3F;
+// Window Borders
+$unity-colors-default-border: #232323;
+$unity-colors-toolbar-border: #232323;
+$unity-colors-window-border: #242424;

@@ -1,7 +1,7 @@
 ## Referencing Prefabs from Scenes
+::::note  
 #### 1. Expose a serialized reference to the target component
 The target component is a **component** on the **root** of the prefab asset.  
-::::note
 The field must be marked with [`SerializeField`](https://docs.unity3d.com/ScriptReference/SerializeField.html):  
 <<Code/Variables/Prefab Reference.rtf>>
 
@@ -13,8 +13,8 @@ This example uses `PrefabComponentType`, it will need to be replaced with the ta
 :::  
 ::::
 
+::::note  
 #### 2. Reference the instance in the Inspector
-::::note
 
 <video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/Video/prefab-references.webm"></video>
 :::error{.small .img-note-wide}
@@ -22,8 +22,8 @@ Drag the prefab asset into the slot or you will get an [`UnassignedReferenceExce
 :::
 ::::
 
+::::note  
 #### 3. Access the member you care about
-::::note
 `public` members on the target component can be accessed via the instance.
 ```csharp
 // Variables and properties

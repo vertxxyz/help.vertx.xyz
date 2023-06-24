@@ -6,7 +6,7 @@ When referencing an input field, take care to not reference text field directly.
 In other cases, these hidden characters must be removed. They will also cause issues when attempting to compare strings.
 
 ### Resolution
-#### Text mesh pro input fields
+#### TextMesh Pro input fields
 When referencing text from a TMP input field, do not reference the underlying [`TextMeshProUGUI`](https://docs.unity3d.com/Packages/com.unity.textmeshpro@latest/index.html?subfolder=/api/TMPro.TextMeshProUGUI.html), reference the [`TMP_InputField`](https://docs.unity3d.com/Packages/com.unity.textmeshpro@latest/index.html?subfolder=/api/TMPro.TMP_InputField.html) itself.  
 :::warning{.inline}
 The child `TextMeshProUGUI` uses a zero-width space for layout purposes, and should not be referenced.

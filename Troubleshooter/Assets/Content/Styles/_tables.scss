@@ -1,11 +1,23 @@
+@use 'base';
+
 table {
   margin: 20px 20px 20px 0;
   overflow: auto;
 }
 
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid base.$unity-colors-inspector_titlebar-border;
   border-collapse: collapse;
+}
+
+th {
+  background-color: base.$unity-colors-default-background;
+}
+
+tr {
+  td:first-child:has(> strong:only-child):not(.highlight) {
+    background-color: base.$unity-colors-default-background;
+  }
 }
 
 th, td {

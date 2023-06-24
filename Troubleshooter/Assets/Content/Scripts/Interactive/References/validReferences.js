@@ -52,14 +52,21 @@ function handleTooltip(e, lookup) {
     if (currentTooltip === result) return;
 
     tooltipContainer.replaceChildren(...result.cloneNode(true).childNodes);
-    
+
     // Set the columns to be equal width.
-    tooltipContainer.querySelectorAll("colgroup").forEach(cg => {
-       const val = 100.0 / cg.childElementCount - 0.001;
-       cg.querySelectorAll(":scope > col").forEach(col => {
-           col.setAttribute("style", `width:${val}%`); 
-       })
-    });
+    const table= tooltipContainer.querySelector("table");
+    let colgroup = table.querySelector(":scope > colgroup");
+    if (colgroup == null) {
+        colgroup = document.createElement("colgroup");
+        table.insertBefore(colgroup, table.firstChild);
+        const ths = table.querySelectorAll("th");
+        for (let i = 0; i < ths.length; i++)
+            colgroup.append(document.createElement("col"));
+    }
+    const val = 100.0 / colgroup.childElementCount - 0.001;
+    colgroup.querySelectorAll(":scope > col").forEach(col => {
+        col.setAttribute("style", `width:${val}%`);
+    })
     currentTooltip = result;
 }
 
@@ -70,13 +77,13 @@ function showDefaultTooltip() {
 }
 
 function hoverNewTarget(target) {
-    if(target === currentTarget) return;
+    if (target === currentTarget) return;
     if (currentTarget != null) {
         setTargetFillAndStroke(lastFill, lastStroke);
         setTargetTextColor(lastTextColor);
     }
     currentTarget = target;
-    if(target == null) return;
+    if (target == null) return;
     setTargetFillAndStroke("#8f8", "#000");
     setTargetTextColor("#000");
 }
@@ -92,8 +99,13 @@ function setTargetAttributeAndReturnPrev(attr, value) {
     return null;
 }
 
-function setTargetFill(color) { lastFill = setTargetAttributeAndReturnPrev("fill", color); }
-function setTargetStroke(color) { lastStroke = setTargetAttributeAndReturnPrev("stroke", color); }
+function setTargetFill(color) {
+    lastFill = setTargetAttributeAndReturnPrev("fill", color);
+}
+
+function setTargetStroke(color) {
+    lastStroke = setTargetAttributeAndReturnPrev("stroke", color);
+}
 
 function setTargetFillAndStroke(fill, stroke) {
     setTargetFill(fill);
@@ -102,9 +114,9 @@ function setTargetFillAndStroke(fill, stroke) {
 
 function setTargetTextColor(color) {
     if (currentTarget == null) return;
-    const text= currentTarget.querySelector("text")
+    const text = currentTarget.querySelector("text")
     if (text == null) return;
-    if(!text.parentElement.hasAttribute("fill")) return;
+    if (!text.parentElement.hasAttribute("fill")) return;
     lastTextColor = text.parentElement.getAttribute("fill");
     text.parentElement.setAttribute("fill", color);
 }

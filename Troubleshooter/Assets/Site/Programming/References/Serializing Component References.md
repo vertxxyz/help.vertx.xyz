@@ -10,8 +10,8 @@ You cannot serialize references between scenes. [See here to learn more.](Cross-
 
 ### Implementation
 
+::::note  
 #### 1. Expose a serialized reference to the target component  
-::::note
 The field must be marked with [`SerializeField`](https://docs.unity3d.com/ScriptReference/SerializeField.html):
 
 <<Code/Variables/Serialized Reference.html>>
@@ -22,9 +22,9 @@ The field must be marked with [`SerializeField`](https://docs.unity3d.com/Script
 :::info{.inline}
 This example uses the `Transform` type, it will need to be replaced with the target type.
 :::
-::::
+::::  
+::::note  
 #### 2. Reference the instance in the Inspector  
-::::note
 Create an instance by [adding the Component](https://docs.unity3d.com/Manual/UsingComponents.html) to an object in the scene, and drag it into the exposed field.  
 Dragging a GameObject from the [Hierarchy](https://docs.unity3d.com/Manual/Hierarchy.html) into the field will reference the first matching Component found on the object.
 
@@ -34,8 +34,8 @@ Drag a **Component** into the slot or you will get a [NullReferenceException](..
 :::
 ::::
 
+::::note  
 #### 3. Access the member you care about
-::::note
 `public` members on the target component can be accessed via the instance.
 ```csharp
 // Variables and properties
