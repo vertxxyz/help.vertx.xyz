@@ -1,14 +1,14 @@
 @use 'base';
 
 h1 {
-	color: white;
+	color: base.$header-color;
 	font-size: 2em;
 	line-height: 1em;
 	font-weight: 700;
 }
 
 h2 {
-	color: white;
+	color: base.$header-color;
 	background-color: base.$dark-color;
 	padding: 5px 15px 6px base.$left-padding;
 	margin-left: base.$left-padding-negative;
@@ -25,7 +25,7 @@ h2 {
 
 h3 {
 	@extend %h3-shared;
-	color: white;
+	color: base.$header-color;
 	background: base.$lighter-background-color;
 	padding: 6px 8px 6px base.$left-padding;
 	margin-left: base.$left-padding-negative;
@@ -44,7 +44,7 @@ h3 {
 }
 
 h4 {
-	color: white;
+	color: base.$header-color;
 	padding: 0 8px 0 0;
 	font-size: 1.05em;
 	line-height: 1em;
@@ -54,7 +54,7 @@ h4 {
 }
 
 h5, h6 {
-	color: white;
+	color: base.$header-color;
 	font-weight: 500;
 	line-height: 1em;
 	font-size: 1em;

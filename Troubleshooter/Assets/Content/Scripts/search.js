@@ -117,13 +117,21 @@ function displayResults(results) {
 
             const link = document.createElement("a");
             link.innerHTML = title;
-            link.onclick = () => {
+            link.setAttribute('tabindex', '0');
+            const select = () => {
                 if (sidebar?.classList.contains("sidebar--open")) {
                     sidebar?.classList.remove("sidebar--open");
                     overlay?.classList.remove("nav_overlay--open");
                 }
                 loadPageFromLink(url, '', true, false);
             };
+            link.onclick = select;
+            link.addEventListener("keyup", function(event) {
+                event.preventDefault();
+                if (event.code === 'Enter')
+                    select();
+            });
+            
             searchResultDiv.append(link);
 
             searchResultDiv.append(document.createElement("br"));

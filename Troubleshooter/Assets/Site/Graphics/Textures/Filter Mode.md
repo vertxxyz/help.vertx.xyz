@@ -7,7 +7,7 @@ Below the Advanced dropdown of the [Texture Importer](https://docs.unity3d.com/M
 
 ^^^
 ![Filter Mode setting](filter-mode.png)
-^^^ Filter Mode in texture importer
+^^^ Filter Mode in Texture Importer
 
 Also consider using Unity's [2D Pixel Perfect package](https://docs.unity3d.com/Packages/com.unity.2d.pixel-perfect@latest/) so the camera consistently aligns to a pixel grid relative to your sprites.
 

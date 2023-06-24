@@ -46,7 +46,7 @@
 - [Bitmasks](Info/Bitmasks.md)
 - [Quaternions](Info/Quaternions.md)
 ### Functionality
-- [Coroutines](Programming/Coroutines/Issues.md)
+- [Coroutines](Programming/Coroutines.md)
 - [UnityEvents](Interface/Unity%20Events.md)
 - [Parsing input strings](Programming/Specifics/Parsing.md)
 ### Editor extensions
@@ -73,6 +73,7 @@
 - [Materials](Graphics/Materials.md)
 - [Models](Graphics/Models.md)
 - [Textures](Graphics/Textures.md)
+- [Sprites](Graphics/Sprites.md)
 ### Effects
 - [Post-processing](Graphics/Post-processing.md)
 - [Shader Graph](Graphics/Shader%20Graph.md)

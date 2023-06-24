@@ -19,7 +19,7 @@ Not all versions are compatible with all Unity releases. You may have to [upgrad
 2. Select **+** from the top left.
 3. Select **Add package by name** or **Add package from git URL** if by name is not present.
 4. Enter the package name.  
-   You can specify a version with the format `com.company.package@0.0.0`, this is optional.
+   You can specify a version with the format `com.company.package@0.0.0`{.link--exclude}, this is optional.
 5. Select **Add**.
 
 ### Adding packages via the manifest
