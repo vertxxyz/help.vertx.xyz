@@ -1,5 +1,5 @@
 ## Transparency fringing
-### Description
+
 Values right outside the border of transparent regions may be saved as white, with image authoring applications varying on their handling of regions in full transparency.
 With different resolutions and padding, this area of unwanted values can bleed into the edges of transparency, causing fringing artifacts.
 

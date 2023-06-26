@@ -1,5 +1,5 @@
 ## Dependencies
-### Description
+
 Reading and writing from native collections requires maintaining a delicate chain of dependencies.  
 Systems take dependencies in, and output them. Collections should not be accessed without relying on those dependencies.
 

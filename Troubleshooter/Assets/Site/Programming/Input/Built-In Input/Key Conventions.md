@@ -1,5 +1,5 @@
 ## Key conventions
-### Description
+
 The `GetKey` functions queries keyboard keys using a specific convention, or the `KeyCode` enum.
 
 ### Resolution

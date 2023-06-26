@@ -1,5 +1,5 @@
 ## UV mapping
-### Description
+
 Most commonly, the way materials map to surfaces is defined by a model's UV coordinates.  
 These coordinates are authored in a modelling program. This is often called "unwrapping".  
 

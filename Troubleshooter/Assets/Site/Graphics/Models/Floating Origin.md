@@ -1,5 +1,5 @@
 ## Floating origin
-### Description
+
 The reality of representing real numbers using the limited binary memory of a computer means that these values lose precision as they become larger.  
 
 See [Exposing Floating Point](https://ciechanow.ski/exposing-floating-point/) and the companion site, [float.exposed](https://float.exposed/).

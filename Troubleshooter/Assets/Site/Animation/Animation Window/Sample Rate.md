@@ -1,5 +1,4 @@
 ## Sample rate controls
-### Description
 As of 2019.3 the sample rate field is hidden by default.
 
 ### Resolution

@@ -1,3 +1,2 @@
 ## Common script warnings
-
-- [The associated script cannot be loaded.](../Scripts/Loading/Script%20Name.md)
+- [The associated script cannot be loaded.](../Scripts/Loading%20Issues.md)

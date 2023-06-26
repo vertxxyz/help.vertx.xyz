@@ -1,7 +1,8 @@
 ## SerializedObject: How-to
-### Description
-[SerializedObject](https://docs.unity3d.com/ScriptReference/SerializedObject.html) is a window into Unity's serialized datastructures. It exposes a [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) structure, objects used to access items in the serialization hierarchy.  
-SerializedObject and SerializedProperty are the best way to access and modify Unity-serialized structures; with automatic undo support, multi-object editing, and simplified functions for Editor UI.  
+
+[`SerializedObject`](https://docs.unity3d.com/ScriptReference/SerializedObject.html) is a window into Unity's serialized datastructures. It exposes a [`SerializedProperty`](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) structure, objects used to access items in the serialization hierarchy.  
+
+`SerializedObject` and `SerializedProperty` are the best way to access and modify Unity-serialized structures; with automatic undo support, multi-object editing, and simplified functions for Editor UI.  
 
 This guide only attempts to communicate how to access values, and not how to write entire editors. For the sake of linearity these examples use [IMGUI](https://docs.unity3d.com/Manual/GUIScriptingGuide.html), but I would recommend using [UI Toolkit](https://docs.unity3d.com/Manual/UIElements.html), which also supports UI binding by path name.
 

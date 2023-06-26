@@ -1,5 +1,4 @@
 ## Included assets
-### Description
 Assets can be stripped from a build if they aren't explicitly referenced. This reduces the size of the build, but can cause build-only issues.
 
 ### Resolution

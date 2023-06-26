@@ -1,5 +1,5 @@
 ## Color range
-### Description
+
 The [`Color`](https://docs.unity3d.com/ScriptReference/Color.html) struct defines colours as a `0->1` float, it does **not** use `0->255`.  
 
 ### Resolution

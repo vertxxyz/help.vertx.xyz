@@ -1,5 +1,5 @@
 ## Cross origin requests
-### Description
+
 To prevent remote code execution attacks modern browsers block certain requests to resources. WebGL games cannot be run directly due to these restrictions.
 
 ### Resolution

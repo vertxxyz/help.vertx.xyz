@@ -1,5 +1,5 @@
 ## Incorrect parameters
-### Description
+
 A `LayerMask` can accidentally be passed as an incorrect parameter of `Raycast`.  
 
 #### 🟢 Correct

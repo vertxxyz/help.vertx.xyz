@@ -4,7 +4,7 @@
 The type or namespace name 'Foo' could not be found (are you missing a using directive or an assembly reference?)
 ```
 
-### Description
+
 Assembly Definitions (asmdefs) are used to manually group code into individual assemblies.  
 They also define the references between those assemblies, giving you tighter control over your compilation.  
 

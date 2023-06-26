@@ -1,5 +1,4 @@
 ## Animation Event receivers
-### Description
 Animation Events are callbacks that fire during an animation's playback.  
 These events require a component with the correct method signature to be attached to the GameObject with the Animator.
 

@@ -1,5 +1,5 @@
 ## Linear interpolation
-### Description
+
 Linear interpolation or "[`Lerp`](https://docs.unity3d.com/ScriptReference/Mathf.Lerp.html)", is a simple function that returns a straight-line value between two points (`a` and `b`) based on a normalised value (`t`).  
 
 ```csharp

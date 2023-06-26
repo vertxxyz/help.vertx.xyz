@@ -1,5 +1,5 @@
 ## OpenUPM
-### Description
+
 
 OpenUPM is a package registry that enables developers to easily host and update packages from git.  
 Users can add scopes, and simply add and update packages as if they were hosted officially.  

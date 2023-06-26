@@ -1,6 +1,6 @@
 <<Abbreviations/IDE.md>>
 ## Serializing Component references
-### Description
+
 To refer to members (such as variables and methods) of a component, you must define which instance is being used.  
 Creating a serialized field allows that instance to be referred to elsewhere in the class.
 

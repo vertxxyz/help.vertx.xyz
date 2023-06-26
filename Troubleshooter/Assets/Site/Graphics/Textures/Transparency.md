@@ -1,5 +1,5 @@
 ## Transparency settings
-### Description
+
 Unity will not import textures as transparent by default.
 
 ### Resolution

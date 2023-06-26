@@ -1,5 +1,5 @@
 ## [Random.Range](https://docs.unity3d.com/ScriptReference/Random.Range.html)
-### Description
+
 `Range` with `int` is `[minInclusive..maxExclusive)`. The upper bound isn't included in the results.
 
 ```csharp

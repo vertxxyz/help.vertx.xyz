@@ -1,5 +1,5 @@
 ## Coroutines: Waiting
-### Description
+
 Starting a coroutine does not cause your code to wait for the coroutine to finish running.  
 A coroutine is started, execution runs until the first `yield`, then execution returns to the code after the StartCoroutine call, and continues. When the yield is resolved the execution will return to that point. Waiting only affects code running inside the coroutine.  
 

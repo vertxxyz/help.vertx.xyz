@@ -1,5 +1,5 @@
 ## UnityEvents - AddListener
-### Description
+
 Callbacks added via [`AddListener`](https://docs.unity3d.com/ScriptReference/Events.UnityEvent.AddListener.html) do not show up in the UI.  
 
 ### Resolution

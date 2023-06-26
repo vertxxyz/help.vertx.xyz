@@ -18,7 +18,7 @@
 - [IDE configuration](Programming/IDE%20Configuration.md)
 - [References](Programming/References.md)
 - [Variables](Programming/Variables.md)
-- [Scripts](Programming/Scripts/Scripts.md)
+- [Scripts](Programming/Scripts.md)
 - [Debugging](Programming/Debugging.md)
 ### Errors & warnings
 - [Errors](Programming/Common%20Errors.md)
@@ -43,8 +43,8 @@
 - [Lerp](Programming/Specifics/Lerp.md)
 - [ScreenToWorldPoint](Programming/Specifics/ScreenToWorldPoint.md)
 - [Color](Programming/Specifics/Color.md)
-- [Bitmasks](Info/Bitmasks.md)
-- [Quaternions](Info/Quaternions.md)
+- [LayerMasks and bitmasks](Programming/Physics/Bitmasks.md)
+- [Quaternions](Programming/Quaternions.md)
 ### Functionality
 - [Coroutines](Programming/Coroutines.md)
 - [UnityEvents](Interface/Unity%20Events.md)

@@ -1,5 +1,5 @@
 ## StopCoroutine
-### Description
+
 [`StopCoroutine`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.StopCoroutine.html) must be paired with an argument generated from the [`StartCoroutine`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html) call.  
 
 ### Resolution

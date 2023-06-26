@@ -4,7 +4,7 @@
 The type or namespace name 'Foo' could not be found (are you missing a using directive or an assembly reference?)
 ```
 
-### Description
+
 Unity has a number of [special folders](https://docs.unity3d.com/Manual/ScriptCompileOrderFolders.html) that are reserved for various purposes. A few of these control which assemblies scripts end up in.
 
 | Phase | Assembly name                    | Script files                                                                                                                                |

@@ -1,6 +1,6 @@
 <<Abbreviations/SRP.md>>
 ## Render Pipeline compatibility
-### Description
+
 #### Unity 2021.2+
 :::info
 As of Unity **2021.2**, Shader Graph added a Built-In target.

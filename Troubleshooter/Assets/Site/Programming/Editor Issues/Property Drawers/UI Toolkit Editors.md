@@ -1,5 +1,5 @@
 ## Property drawers: UI Toolkit requirements
-### Description
+
 By default the Editor that draws fields is an IMGUI inspector.  
 UI Toolkit property drawers cannot be drawn inside of an IMGUI context.
 

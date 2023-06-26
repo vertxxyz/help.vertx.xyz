@@ -1,5 +1,4 @@
 ## Post-processing: Render pipelines
-### Description
 Both URP and HDRP have their own built-in post-processing stacks.  
 
 ### Resolution

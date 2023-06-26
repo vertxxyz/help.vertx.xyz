@@ -1,5 +1,5 @@
 ## Line Renderer: Vertex colors
-### Description
+
 The colors that make up a Line Renderer are displayed using vertex colors.  
 If there are not enough vertices in the line, then not all color stops on the gradient will be represented.
 

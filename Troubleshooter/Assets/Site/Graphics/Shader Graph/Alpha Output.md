@@ -1,6 +1,6 @@
 <<Abbreviations/Channel-Packing.md>>  
 ## Shader Graph: Alpha
-### Description
+
 The preview for RGBA nodes doesn't show the alpha (A) channel.  
 
 All content in the RGB channels is displayed—even where it's covered by transparency (A). This information is often helpful to see in shaders, especially when dealing with channel-packed textures.

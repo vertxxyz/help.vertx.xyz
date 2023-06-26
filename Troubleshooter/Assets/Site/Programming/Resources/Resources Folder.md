@@ -1,5 +1,5 @@
 ## Resources folders
-### Description
+
 The Resources API requires that assets are loaded within the Resources folder.  
 This is any folder in the project with the name `Resources`.  
 If an asset isn't nested under a Resources folder it cannot be loaded via the API.  

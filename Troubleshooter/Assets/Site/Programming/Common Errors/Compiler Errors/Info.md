@@ -1,6 +1,6 @@
 <<Abbreviations/IDE.md>>
 ## Compiler Errors
-### Description
+
 Compiler errors describe issues with code that will stop it from being compiled and used.  
 These errors are accompanied with [warning messages](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/), error codes that detail what failed.  
 

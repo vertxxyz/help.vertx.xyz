@@ -1,5 +1,5 @@
 ## Transparency options
-### Description
+
 Transparency is a troublesome topic for realtime rendering. As [previously mentioned](Transparent%20Materials.md), transparent materials don't have the luxury of being properly sorted, and there is currently no ideal solution to resolve the sorting of transparent materials in a realtime context.
 
 ### Resolution

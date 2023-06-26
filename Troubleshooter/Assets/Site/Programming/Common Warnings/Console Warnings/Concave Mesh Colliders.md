@@ -5,7 +5,7 @@ PhysX does not support concave Mesh Colliders with dynamic Rigidbody GameObjects
 Either make the Mesh Collider convex, or make the Rigidbody kinematic. Scene hierarchy path "Foo", Mesh asset path "Bar" Mesh name "Baz"
 ```
 
-### Description
+
 You cannot use concave mesh colliders with dynamic rigidbodies.
 
 ### Resolution

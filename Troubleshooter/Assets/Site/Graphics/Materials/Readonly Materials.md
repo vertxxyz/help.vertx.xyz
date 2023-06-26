@@ -1,6 +1,6 @@
 ## Readonly materials
 
-### Description
+
 Materials can be readonly when imported from models or provided in readonly sources like packages.  
 A model's material is a generated asset created by the importer, and cannot be modified.
 

@@ -10,10 +10,10 @@ You will need to reduce the sensitivity to compensate for this change.
 :::  
 
 ### Why?
-Mouse input is already a **delta** (a rate of change).  
+Mouse input is already a delta (a rate of change).  
 
 #### When to use deltaTime:
-**Most** input is multiplied by `Time.deltaTime`, this translates their **fixed value**:
+Most input is multiplied by `Time.deltaTime`, this translates their **fixed value**:
 > How far is the joystick tilted?  
 
 To a **delta**:

@@ -1,5 +1,5 @@
 ## TextMesh Pro: Padding to sampling point size
-### Description
+
 If there isn't enough padding surrounding text then features will blur together when viewed at a distance due to the nature of TextMesh Pro's signed distance field font representation.
 
 ### Resolution

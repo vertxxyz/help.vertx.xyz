@@ -1,5 +1,5 @@
 ## No Cameras rendering
-### Description
+
 Generally, if there are no cameras rendering to the game view this is unwanted behaviour, so there is an Editor-only warning to help debug this situation.
 
 ### Resolution

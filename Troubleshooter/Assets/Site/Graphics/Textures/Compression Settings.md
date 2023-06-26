@@ -1,5 +1,5 @@
 ## Compression settings
-### Description
+
 To reduce file size textures are imported with a degree of compression by default.  
 In some cases, like pixel art, or specific UI textures, compression isn't desired, and should be disabled.
 

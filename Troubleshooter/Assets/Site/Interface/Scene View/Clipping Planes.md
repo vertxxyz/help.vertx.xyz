@@ -1,5 +1,5 @@
 ## Clipping Planes
-### Description
+
 The near and far clipping planes describe two bounds of the volume rendered by a camera.  
 The Scene view camera automatically adjusts its bounds when focusing objects, and can be adjusted manually.
 

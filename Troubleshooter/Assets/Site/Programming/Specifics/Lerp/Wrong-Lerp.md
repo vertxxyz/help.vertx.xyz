@@ -1,5 +1,5 @@
 ## Wrong-lerp
-### Description
+
 Lerp is **linear**, if `t` changes at a constant speed, so does the output.  
 Wrong-lerp is an application of lerp that produces smooth, yet imperfect movement towards a target value.  
 Accompanied by such phrases like:

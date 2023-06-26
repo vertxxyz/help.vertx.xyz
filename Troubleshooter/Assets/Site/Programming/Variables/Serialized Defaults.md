@@ -1,5 +1,5 @@
 ## Serialized defaults
-### Description
+
 The value a serialized variable is set to in code is only the default when a new instance is created from scratch.  
 After the value has been serialized, that value will override anything that it's initialised to code.
 

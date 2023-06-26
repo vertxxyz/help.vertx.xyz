@@ -1,6 +1,6 @@
 ## Variables with custom editors
 
-### Description
+
 If a variable is only appearing in debug mode the Component or Scriptable Object you are inspecting must have a custom inspector, or the variable you're looking at may have a custom drawer.
 
 ### Resolution

@@ -1,5 +1,5 @@
 ## OnSceneGUI not called: Scriptable Object
-### Description
+
 [Editor.OnSceneGUI](https://docs.unity3d.com/ScriptReference/Editor.OnSceneGUI.html) isn't called for editors of ScriptableObjects.
 
 ### Resolution

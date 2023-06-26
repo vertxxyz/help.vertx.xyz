@@ -1,5 +1,4 @@
 ## Light limits: Built-in - forward
-### Description
 Forward rendering is lighting strategy that manually handles the rendering of lights individually on a per-object basis.  
 These lights are prioritised based on their Importance, brightness, and distance.  
 Their quality can also be affected by these metrics, as their accuracy is reduced to different levels of detail as their importance diminishes.

@@ -1,5 +1,5 @@
 ## Package errors
-### Description
+
 Packages are read-only addons or features that are versioned, with different versions having different compatibility with Unity releases and other packages. Errors within packages are common due to the complexity of these compatibility issues.
 
 ### Resolution

@@ -123,8 +123,7 @@
 	&.deleted {
 		color: var(--textColor);
 	}
-
-	&.boolean,
+	
 	&.number {
 		color: var(--numberColor);
 	}
@@ -155,6 +154,7 @@
 		color: var(--functionColor);
 	}
 
+	&.boolean,
 	&.preprocessor,
 	&.keyword {
 		color: var(--keywordColor);

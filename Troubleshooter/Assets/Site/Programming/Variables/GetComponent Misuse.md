@@ -1,5 +1,5 @@
 ## GetComponent misuse
-### Description
+
 When assigning variables via the Inspector there is no need to use `GetComponent` in code.  
 
 [`GetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) gets components on the **same** gameobject, otherwise it will return `null`.  

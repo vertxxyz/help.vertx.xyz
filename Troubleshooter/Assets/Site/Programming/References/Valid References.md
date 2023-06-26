@@ -143,7 +143,7 @@ See Scene/Project/Package diagram for location specifics
 
 :::::
 
-### Description
+
 #### Scene
 Any content in the hierarchy of a [scene](https://docs.unity3d.com/Manual/CreatingScenes.html).
 #### Project assets

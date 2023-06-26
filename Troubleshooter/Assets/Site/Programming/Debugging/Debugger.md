@@ -1,5 +1,5 @@
 ## Debugger
-### Description
+
 The debugger is a tool that can halt code execution. Values can be inspected, lines of code can be stepped over, and sometimes even modified.  
 This does not require recompiling your code, or exiting Play Mode.
 

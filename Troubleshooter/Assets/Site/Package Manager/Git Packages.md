@@ -1,5 +1,5 @@
 ## Git packages
-### Description
+
 Git packages can be [added via using their git link](https://docs.unity3d.com/Manual/upm-git.html), this is the url ending in `.git`, and not the url of the repository page.  
 
 ### OpenUPM

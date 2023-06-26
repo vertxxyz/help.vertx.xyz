@@ -1,5 +1,5 @@
 ## UnassignedReferenceException
-### Description
+
 An UnassignedReferenceException is a type of [NullReferenceException](NullReferenceException.md) where an Object field has not been assigned to.  
 
 ### Resolution

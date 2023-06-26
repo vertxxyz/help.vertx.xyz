@@ -1,5 +1,5 @@
 ## References to Prefab children
-### Description
+
 You cannot directly reference children of a prefab externally.  
 Instead, create a script on the root of the prefab that contains the references.
 

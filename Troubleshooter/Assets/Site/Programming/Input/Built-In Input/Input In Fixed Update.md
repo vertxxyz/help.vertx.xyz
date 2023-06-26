@@ -1,5 +1,5 @@
 ## Input in Fixed Update
-### Description
+
 **Instantaneous** [`Input`](https://docs.unity3d.com/ScriptReference/Input.html) functions ([`GetKeyDown`](https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html), [`GetMouseButtonDown`](https://docs.unity3d.com/ScriptReference/Input.GetMouseButtonDown.html), and others) will trigger inconsistently when used in `FixedUpdate` or any physics message function like `OnCollisionEnter`.  
 
 #### Why?

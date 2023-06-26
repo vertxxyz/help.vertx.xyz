@@ -1,14 +1,13 @@
 ## Freezing
-### Description
 Freezes are almost always caused by some form of infinite loop. Remove or break out of the loop and the program will resume.
 
 ### Resolution
 Common forms of undesirable loops include:
 
-:::note
+::::note
 #### Incorrect application of a while loop
 ```csharp
-// This is an infinite loop
+// 🔴 This is an infinite loop
 while (Input.GetMouseDown(0))
 {
     DoSomething();
@@ -18,8 +17,10 @@ The contents of a while loop is the only thing running until the condition is me
 It's important understand this means **no other code is running**, not even the code that updates input or renders the game.
 
 Resolve this issue by using an `if` statement instead. As `Update` is already a loop, if the condition is inside it it will be evaluated again the next frame.  
-If the loop is inside of a coroutine use `yield return null` inside of the loop to cause execution to return to that point on the next frame.  
-:::   
+If the loop is inside of a coroutine use [`yield return null`](https://docs.unity3d.com/Manual/Coroutines.html) inside of the loop to cause execution to return to that point on the next frame.  
+
+
+::::   
 
 :::note
 #### Logic errors in loops

@@ -1,5 +1,5 @@
 ## NullReferenceException: UnityEngine.Object — Camera.main
-### Description
+
 [`Camera.main`](https://docs.unity3d.com/ScriptReference/Camera-main.html) will return `null` if there isn't an enabled camera tagged as <kbd>MainCamera</kbd>.  
 
 ### Resolution

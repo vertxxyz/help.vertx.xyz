@@ -1,5 +1,5 @@
 ## Gizmos
-### Description
+
 Unity's [gizmos](https://docs.unity3d.com/ScriptReference/Gizmos.html) are shapes associated with components, used for debugging and content setup in the Scene view.  
 By drawing in the Scene and Game view you can validate assumptions about constructs used in code.
 ### Usage

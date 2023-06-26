@@ -1,5 +1,5 @@
 ## Partial transparency
-### Description
+
 Different Material types have different ways of interpreting transparency.  
 Some materials may improperly handle specularity with transparent surfaces, others may not fade entirely.
 

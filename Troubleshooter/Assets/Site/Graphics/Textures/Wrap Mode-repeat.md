@@ -1,5 +1,5 @@
 ## Texture wrap mode: Repeat
-### Description
+
 <<Graphics/Wrap Mode.md>>
 
 ### Resolution

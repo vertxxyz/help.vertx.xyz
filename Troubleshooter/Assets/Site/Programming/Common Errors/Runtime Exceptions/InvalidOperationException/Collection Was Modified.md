@@ -1,5 +1,5 @@
 ## InvalidOperationException: Collection was modified
-### Description
+
 When iterating over a collection using a foreach loop you are using an iterator that maintains the state of that loop.  
 Modifying the collection while looping like this will cause the iterator to become invalid, so an exception is thrown.
 

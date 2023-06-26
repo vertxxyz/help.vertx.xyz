@@ -73,16 +73,16 @@ Example description sentence containing a line of troubleshooting that might sol
 - [Option B.](b.md)
 ```
 
-When a page is made up of a description of a problem, and a resolution, add 3rd level headers in this style that separate them into two paragraphs with limited overlap.
+When a page is made up of a description of a problem, and a resolution, add a 3rd level header in this style that separate them into two paragraphs with limited overlap.
 ```md
-### Description
+## The error
 This error is describing this problem because of this reasoning.  
 
 ### Resolution
 These are the instructions that would solve the issue if that was the case.
 ```
 
-Common alternative or additional titles include: **Implementation**, **Notes**.
+Common alternative or additional titles include: **Implementation**, **Notes**, **Description**, **How-to**, and **Troubleshooting**.
 
 ## Tables
 Tables with a vertical 'header' column should contain bold text in their entry. Avoid using bold text in the left column otherwise. If you require highlighting info, consider emoji!

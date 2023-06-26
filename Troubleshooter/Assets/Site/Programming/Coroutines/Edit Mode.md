@@ -1,5 +1,5 @@
 ## Coroutines: Halting
-### Description
+
 Coroutines do not work in Edit Mode.
 
 ### Resolution

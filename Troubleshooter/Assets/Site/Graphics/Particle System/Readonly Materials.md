@@ -1,6 +1,6 @@
 ## Readonly materials
 
-### Description
+
 Materials can be readonly when imported from models or provided in readonly sources like packages.  
 A particle system's default material is from built-in resources, and cannot be modified.
 

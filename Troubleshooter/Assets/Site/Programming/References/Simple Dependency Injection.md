@@ -1,5 +1,5 @@
 ## Simple dependency injection
-### Description
+
 Dependency injection (DI) might sound complex, but it's simply the process of having a reference passed to an object.  
 
 ### Implementation

@@ -1,5 +1,5 @@
 ## TextMesh Pro: Rounded features
-### Description
+
 TextMesh Pro typically uses signed distance fields to cheaply represent fonts well at multiple distances.  
 Distance fields work best with smooth features due to their typically low resolution.
 

@@ -1,5 +1,5 @@
 ## Vertex and Fragment functions
-### Description
+
 Shaders are broken up into multiple stages. A typical shader graph is broken up into a Vertex stage, and a Fragment stage (vert, frag).  
 The **vertex stage** controls the position, normals, and tangents, of vertices.  
 The **fragment stage** approximates the pixels on the screen.  

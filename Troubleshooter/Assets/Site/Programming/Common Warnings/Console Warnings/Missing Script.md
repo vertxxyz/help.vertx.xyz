@@ -1,5 +1,5 @@
 ## Missing scripts
-### Description
+
 Missing Scripts can mean a number of things:  
 - There was a script that was deleted.
 - There was a script that was manually moved without its `.meta` file.
@@ -12,4 +12,4 @@ Missing Scripts can mean a number of things:
 
 If the script is no longer relevant, remove the placeholder component from the GameObject.  
 You can find the GameObject by clicking the warning in the Console window.  
-Otherwise follow [these](../../Scripts/Loading/Script%20Name.md) steps to set up the script correctly and ensure Unity is compiling the project.
+Otherwise follow [these](../../Scripts/Loading%20Issues.md) steps to set up the script correctly and ensure Unity is compiling the project.

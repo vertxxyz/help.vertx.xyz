@@ -1,5 +1,5 @@
 ## Incorrect methods
-### Description
+
 There are various versions of raycast methods, use [the documentation](https://docs.unity3d.com/ScriptReference/) and check that you are using one that makes sense to your use-case.
 
 ### Resolution

@@ -1,5 +1,4 @@
 ## Safe Mode
-### Description
 Safe Mode is a new Unity feature that allows you to open a project *without* importing all the assets.  
 In Safe Mode you have access to compilation errors through the Unity Console, and access to the Package Manager to resolve any issues with package configuration.  
 

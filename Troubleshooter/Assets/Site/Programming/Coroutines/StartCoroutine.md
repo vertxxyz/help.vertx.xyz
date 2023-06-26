@@ -1,5 +1,5 @@
 ## Coroutines: Halting
-### Description
+
 
 Coroutines must be started properly to run to completion.  
 Starting a coroutine like a normal method call will halt silently.  

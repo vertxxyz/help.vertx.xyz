@@ -19,7 +19,7 @@
 General errors:  
 :::code-block--no-background
 - [You are trying to create a MonoBehaviour using the 'new' keyword.](Runtime%20Errors/MonoBehaviourNew.md)
-- ['Example' is missing the class attribute 'ExtensionOfNativeClass'!](../Scripts/Loading/Script%20Name.md)
+- ['Example' is missing the class attribute 'ExtensionOfNativeClass'!](../Scripts/Loading%20Issues.md)
 - [Tag: Example is not defined.](Runtime%20Errors/Undefined%20Tag.md)
 - [A game object can only be in one layer. The layer needs to be in the range [0...31]](Runtime%20Errors/Undefined%20Layer.md)
 - ['X' AnimationEvent 'Y' on animation 'Z' has no receiver! Are you missing a component?](../../Animation/Animation%20Event/Receivers.md)

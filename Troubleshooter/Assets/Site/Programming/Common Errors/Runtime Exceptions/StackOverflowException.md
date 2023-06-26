@@ -1,5 +1,5 @@
 ## StackOverflowException
-### Description
+
 A StackOverflowException most often occurs in recursive cases, where code is calling itself in an infinite loop.  
 In this case the stack—a place where memory local to a scope is allocated—grows until there is no more space to contain it.
 

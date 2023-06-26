@@ -1,5 +1,5 @@
 ## Stack traces
-### Description
+
 Stack traces are reports of the path code took to get to an execution point.  
 Compiler errors and runtime exceptions will generally be accompanied with a stack trace.  
 Stack traces are vital tools that give context to errors, and are the first step to understanding cause.  

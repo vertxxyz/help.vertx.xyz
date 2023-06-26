@@ -1,5 +1,5 @@
 ## UnityEvent: States
-### Description
+
 UnityEvents have a State that defines how the persistent events can be called.  
 - Off
 - Editor and Runtime

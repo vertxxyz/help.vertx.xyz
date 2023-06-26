@@ -1,4 +1,5 @@
 ## Native Collections
+### General
 - [Finding and resolving leaks.](Native%20Collections/Leaks.md)
 
 ### Errors

@@ -1,5 +1,5 @@
 ## LayerMasks with raycasts
-### Description
+
 Layer masks are **bitmasks** that describe which layers are active or otherwise.  
 :::info{.inline}
 Active layers will be hit by the raycast.

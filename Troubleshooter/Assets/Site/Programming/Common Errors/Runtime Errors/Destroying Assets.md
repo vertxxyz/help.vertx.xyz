@@ -1,5 +1,5 @@
 ## Destroying assets
-### Description
+
 Assets are imported objects in your Project. You do not want to destroy them, as that will delete the original, causing permanent damage to your project.
 
 ### Resolution

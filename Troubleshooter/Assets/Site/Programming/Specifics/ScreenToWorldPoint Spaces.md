@@ -1,5 +1,5 @@
 ## ScreenToWorldPoint: Spaces
-### Description
+
 ScreenToWorldPoint will transform a position from **Screen Space** to **World Space**.  
 This world space position is generated with the Camera, but is relative to the origin.  
 

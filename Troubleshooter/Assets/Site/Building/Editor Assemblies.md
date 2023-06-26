@@ -1,5 +1,4 @@
 ## Editor assemblies
-### Description
 Editor code isn't accessible in a build. Unity has multiple methods to separate and not include this code.
 
 ### Resolution

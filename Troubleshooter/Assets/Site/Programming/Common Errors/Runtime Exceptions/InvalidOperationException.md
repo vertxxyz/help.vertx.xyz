@@ -1,5 +1,5 @@
 ## InvalidOperationException
-### Description
+
 Invalid operations occur when code performs logic that goes against a system.  
 Read the message associated with the error to get context associated with the error.
 

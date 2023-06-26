@@ -1,5 +1,5 @@
 ## NullReferenceException
-### Description
+
 A `NullReferenceException` (NRE) occurs when code tries to access members of a variable which has no value assigned.  
 
 ```nomnoml

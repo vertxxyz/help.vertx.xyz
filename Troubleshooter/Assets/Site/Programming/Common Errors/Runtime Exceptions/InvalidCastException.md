@@ -1,5 +1,5 @@
 ## InvalidCastException
-### Description
+
 Invalid casts occur when an instance is converted to a type it does not match.
 
 ### Resolution

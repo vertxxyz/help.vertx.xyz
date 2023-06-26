@@ -321,7 +321,6 @@ ol {
     counter-increment: item-counter;
 
     &::marker {
-      content: counters(item-counter, ".") ". ";
       color: base.$bold-color;
     }
   }

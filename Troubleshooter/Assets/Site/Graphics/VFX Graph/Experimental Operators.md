@@ -1,5 +1,5 @@
 ## Experimental Operators and Blocks
-### Description
+
 Some operators and blocks are disabled by default as they are experimental.
 
 ### Resolution

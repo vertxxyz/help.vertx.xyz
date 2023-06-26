@@ -1,5 +1,5 @@
 ## Sprites: Import settings
-### Description
+
 Textures are not imported as [sprites](https://docs.unity3d.com/Manual/Sprites.html) by default.  
 Multiple sprites can be generated from a single texture atlas, and sprites allow for slicing and collision settings that normal textures do not have.
 

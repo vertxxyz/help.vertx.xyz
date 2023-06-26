@@ -1,5 +1,5 @@
 ## Prefabs referencing in-Scene Components
-### Description
+
 :::warning
 Assets cannot directly refer to Objects in Scenes
 :::

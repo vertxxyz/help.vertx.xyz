@@ -1,5 +1,5 @@
 ## Input System: Input handling
-### Description
+
 When you have switched the input handling from the built-in Input Manager to the new Input System there may be code that requires upgrading.  
 ### Resolution
 #### Migration

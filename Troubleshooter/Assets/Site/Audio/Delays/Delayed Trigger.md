@@ -1,5 +1,4 @@
 ## Delayed triggering
-### Description
 Delays built into animations and code are much more common than those being a part of audio processing.
 
 ### Resolution

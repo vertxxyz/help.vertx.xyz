@@ -1,5 +1,5 @@
 ## Texture wrap mode: Clamp
-### Description
+
 <<Graphics/Wrap Mode.md>>
 
 ### Resolution

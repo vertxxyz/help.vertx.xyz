@@ -4,7 +4,7 @@
 A game object can only be in one layer. The layer needs to be in the range [0...31]
 ```
 
-### Description
+
 
 Individual GameObjects have layers that can be used to affect physics and rendering.  
 Layers are defined in the [Tags and Layers Settings](https://docs.unity3d.com/Manual/class-TagManager.html) (**Edit | Project Settings | Tags and Layers**).  

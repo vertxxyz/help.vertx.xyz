@@ -1,5 +1,5 @@
 ## Persisting changes
-### Description
+
 If you're modifying something from an editor context it needs to be dirtied.  
 If something is changed and not dirtied, that change is transient and will be wiped.
 

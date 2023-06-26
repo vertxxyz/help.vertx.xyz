@@ -1,5 +1,5 @@
 ## FontAsset
-### Description
+
 TextMesh Pro is now TextCore, and is built-in. TextCore's FontAsset is extremely similar to TMP_FontAsset, supporting an almost identical feature set. 
 
 ### Resolution

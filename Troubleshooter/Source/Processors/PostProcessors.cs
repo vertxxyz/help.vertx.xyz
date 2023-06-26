@@ -21,12 +21,15 @@ public static class HtmlPostProcessors
 }
 
 [UsedImplicitly]
-public sealed class RelativeLinkConverter : IHtmlPostProcessor
+public sealed partial class RelativeLinkConverter : IHtmlPostProcessor
 {
-	private readonly Regex regex = new(@"(?<=<a )href=""([^""]+\.md)""", RegexOptions.Compiled);
+	[GeneratedRegex("(?<=<a )href=\"([^\"]+\\.md)\"", RegexOptions.Compiled)]
+	private static partial Regex GetRelativeLinkRegex();
+
+	private static readonly Regex s_RelativeLinkRegex = GetRelativeLinkRegex();
 
 	public string Process(string html, string fullPath) =>
-		StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) =>
+		StringUtility.ReplaceMatch(html, s_RelativeLinkRegex, (group, stringBuilder) =>
 		{
 			var insert = group.Replace("&amp;", "and");
 			insert = insert.Replace("&", "and");
@@ -36,14 +39,17 @@ public sealed class RelativeLinkConverter : IHtmlPostProcessor
 }
 
 [UsedImplicitly]
-public sealed class ExternalLinkConverter : IHtmlPostProcessor
+public sealed partial class ExternalLinkConverter : IHtmlPostProcessor
 {
-	private readonly Regex regex = new(@"(?<=<a )href=""https?:\/\/[\.\w\/\-%#?=@_]+""", RegexOptions.Compiled);
+	[GeneratedRegex("(?<=<a )href=\"https?:\\/\\/[\\.\\w\\/\\-%#?=@_]+\"", RegexOptions.Compiled)]
+	private static partial Regex GetExternalLinkRegex();
+
+	private static readonly Regex s_ExternalLinkRegex = GetExternalLinkRegex();
 
 	public int Order => 1;
 
 	public string Process(string html, string fullPath) =>
-		StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) =>
+		StringUtility.ReplaceMatch(html, s_ExternalLinkRegex, (group, stringBuilder) =>
 		{
 			stringBuilder.Append(@"class=""link--external"" ");
 			stringBuilder.Append(group);
@@ -61,13 +67,16 @@ public sealed class BooleanTableConverter : IHtmlPostProcessor
 }
 
 [UsedImplicitly]
-public sealed class SliderConverter : IHtmlPostProcessor
+public sealed partial class SliderConverter : IHtmlPostProcessor
 {
-	private readonly Regex regex = new("<div.* class=\".*?slider\"></div>", RegexOptions.Compiled);
+	[GeneratedRegex("<div.* class=\".*?slider\"></div>", RegexOptions.Compiled)]
+	private static partial Regex GetSliderRegex();
+
+	private static readonly Regex s_SliderRegex = GetSliderRegex();
 
 	public string Process(string html, string fullPath)
 	{
-		return StringUtility.ReplaceMatch(html, regex, (group, stringBuilder) =>
+		return StringUtility.ReplaceMatch(html, s_SliderRegex, (group, stringBuilder) =>
 		{
 			stringBuilder.Append(group[..^6]);
 			{
@@ -112,13 +121,16 @@ public sealed class FootnoteRuleRemoval : IHtmlPostProcessor
 /// This logic will collapse the lists together and add the tag in between them into the list at that point.
 /// </summary>
 [UsedImplicitly]
-public sealed class ListCompaction : IHtmlPostProcessor
+public sealed partial class ListCompaction : IHtmlPostProcessor
 {
-	private static readonly Regex emptyListRegex = new("<li><span class=\"collapse\">collapse</span></li>\n</(ul|ol)>", RegexOptions.Compiled);
-	
+	[GeneratedRegex("<li><span class=\"collapse\">collapse</span></li>\n</(ul|ol)>", RegexOptions.Compiled)]
+	private static partial Regex GetEmptyListRegex();
+
+	private static readonly Regex s_EmptyListRegex = GetEmptyListRegex();
+
 	public string Process(string html, string fullPath)
 	{
-		MatchCollection matches = emptyListRegex.Matches(html);
+		MatchCollection matches = s_EmptyListRegex.Matches(html);
 		if (matches.Count == 0) return html;
 		int last = 0;
 		StringBuilder builder = new();
@@ -142,12 +154,15 @@ public sealed class ListCompaction : IHtmlPostProcessor
 		builder.Append(html[last..]);
 		return builder.ToString();
 	}
-	
-	private static readonly Regex simplifiedTag = new("<([\\w]+) *[\\w =\"-.]*>", RegexOptions.Compiled);
+
+	[GeneratedRegex("<([\\w]+) *[\\w =\"-.]*>", RegexOptions.Compiled)]
+	private static partial Regex GetSimplifiedTagRegex();
+
+	private static readonly Regex s_SimplifiedTagRegex = GetSimplifiedTagRegex();
 
 	private static int GetClosingTagEnd(string remaining)
 	{
-		Match firstTag = simplifiedTag.Match(remaining);
+		Match firstTag = s_SimplifiedTagRegex.Match(remaining);
 		string tagType = firstTag.Groups[1].Value;
 		int depth = 0;
 		string closing = $"</{tagType}>";
@@ -180,7 +195,7 @@ public sealed class ListCompaction : IHtmlPostProcessor
 /// Replaces all emoji with Twemoji
 /// </summary>
 [UsedImplicitly]
-public class TwemojiReplacement : IHtmlPostProcessor
+public sealed class TwemojiReplacement : IHtmlPostProcessor
 {
 	private readonly TwemojiLib twemoji = new();
 	
@@ -191,11 +206,13 @@ public class TwemojiReplacement : IHtmlPostProcessor
 /// Replaces com.unity links with a deep link that can add the package via UMP
 /// </summary>
 [UsedImplicitly]
-public partial class UpmPackageLinkReplacement : IHtmlPostProcessor
+public sealed partial class UpmPackageLinkReplacement : IHtmlPostProcessor
 {
 	[GeneratedRegex(@"<code>(com\.[\w.\-@]+?)<\/code>", RegexOptions.Multiline)]
-	private static partial Regex UpmLink();
+	private static partial Regex GetUpmLinkRegex();
 
-	public string Process(string html, string fullPath) => UpmLink().Replace(html, "<code><a class=\"link--upm\" href=\"com.unity3d.kharma:upmpackage/$1\" title=\"Install $1 via UPM 2021.2+\">$1</a></code>");
+	private static readonly Regex s_UpmLinkRegex = GetUpmLinkRegex();
+
+	public string Process(string html, string fullPath) => s_UpmLinkRegex.Replace(html, "<code><a class=\"link--upm\" href=\"com.unity3d.kharma:upmpackage/$1\" title=\"Install $1 via UPM 2021.2+\">$1</a></code>");
 }
 

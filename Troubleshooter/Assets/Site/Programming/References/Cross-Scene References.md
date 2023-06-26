@@ -1,5 +1,5 @@
 ## Cross-scene references
-### Description
+
 :::warning
 Serialized references between objects cannot occur across scenes
 :::

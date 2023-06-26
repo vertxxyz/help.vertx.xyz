@@ -1,5 +1,5 @@
 ## TextMesh Pro: Incorrect material
-### Description
+
 TextMesh Pro typically uses signed distance fields to cheaply represent fonts at multiple distances and sizes. This requires specialised materials to function correctly. If a font was previously generated using a bitmap mode, or a material had its shader switched, this may cause the font to render incorrectly.
 
 ### Resolution

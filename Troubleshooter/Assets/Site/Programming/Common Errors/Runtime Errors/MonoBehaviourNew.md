@@ -7,7 +7,7 @@ Alternatively, your script can inherit from ScriptableObject or no base class at
 UnityEngine.MonoBehaviour:.ctor()
 ```  
 
-### Description
+
 `MonoBehaviour` is the user-facing class used for creating Components.  
 Components are required to be attached to a `GameObject`.   
 Unity's API does not support using constructors (`new`) to create MonoBehaviours, this is done internally in the native side of the engine.  

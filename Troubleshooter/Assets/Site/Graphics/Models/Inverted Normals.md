@@ -1,6 +1,6 @@
 ## Inverted normals
 
-### Description
+
 Most materials in Unity will render single-sided. This is unlike the defaults of many modelling programs.
 The direction of model faces is determined by the winding order of the vertices that make up a triangle.
 
