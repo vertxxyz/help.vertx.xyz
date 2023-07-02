@@ -29,7 +29,7 @@
 - [Input System package](Programming/Input/Input%20System.md)
 ### Physics
 - [Physics messages](Programming/Physics%20Messages.md)
-- [Raycasting](Programming/Raycasting.md)
+- [Physics queries](Programming/Physics%20Queries.md)
 - [Character Controller](Programming/Physics/Character%20Controller.md)
 ### Assets
 - [Resources](Programming/Resources.md)

@@ -4,7 +4,7 @@ Visual Studio Community is a free, feature rich IDE that can be easily installed
 You can add it as a module to an install through the Unity Hub if you don't have it already:  
 
 ^^^
-![Add Modules](/HTML/Unity%20Hub/add-modules.png)
+![Add Modules](https://unity.huh.how/HTML/unity-hub/add-modules.png)
 ^^^ Add modules in the Unity Hub
 
 Manual installation instructions can be found [here](https://docs.microsoft.com/en-us/visualstudio/cross-platform/getting-started-with-visual-studio-tools-for-unity?view=vs-2019#manual-installation).
