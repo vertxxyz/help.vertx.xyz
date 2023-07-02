@@ -1,19 +1,29 @@
 <<Abbreviations/UPM.md>>
-## Visual Studio Code configuration
+## <img src="/Images/vscode.svg" alt="visual studio code" style="vertical-align:middle; margin:0 6px 0 0; width:32px; height:32px"> Visual Studio Code configuration
 ### Steps
 1. Follow **all** of the [configuration steps](https://code.visualstudio.com/docs/other/unity).  
 Where it mentions the External Tools preferences, these are **in Unity**.  
-   1. Install the [.NET SDK](https://dotnet.microsoft.com/download)
-      2. **Windows:** Logout or Restart Windows.
-   1. **Windows:** Install the [.NET Framework 4.7.1 **Developer Pack**](https://dotnet.microsoft.com/download/dotnet-framework/net471).
-   1. Ensure a full Framework runtime and MSBuild tooling is installed:
-      1. **Windows:** Install .NET Framework along with [MSBuild Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022)
-      1. **MacOS/Linux:** Install [Mono with MSBuild](https://www.mono-project.com/download/preview/)
+   :::note
+   #### Windows
+   1. Install the [.NET SDK](https://dotnet.microsoft.com/download).  
+      1. Logout or Restart Windows.
+   1. Install the [.NET Framework 4.7.1 **Developer Pack**](https://dotnet.microsoft.com/download/dotnet-framework/net471).
+   1. Install [MSBuild Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022).
    1. Install the [C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) from the VS Code Marketplace.
    1. In the VS Code Settings editor (</kbd>Ctrl+,</kbd>), uncheck the C# extension's **Omnisharp: Use Modern Net** setting (`"omnisharp.useModernNet": false`).
    1. Set the **External Script Editor** dropdown in Unity's External Tools preferences (**Edit | Preferences | External Tools**) to VS Code.
-1. Install and update the [Visual Studio Code Editor](https://docs.unity3d.com/Manual/com.unity.ide.vscode.html) package in UPM (`com.unity.ide.vscode`).  
-As a last resort to troubleshooting setup try rolling back the package as some versions have introduced issues. You can always update it again if that fails.
+   :::  
+   :::note  
+   #### MacOS/Linux
+   1. Install the [.NET SDK](https://dotnet.microsoft.com/download).
+   1. Install the [.NET Framework 4.7.1 **Developer Pack**](https://dotnet.microsoft.com/download/dotnet-framework/net471).
+   1. Install [Mono with MSBuild](https://www.mono-project.com/download/preview/).
+   1. Install the [C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) from the VS Code Marketplace.
+   1. In the VS Code Settings editor (</kbd>Ctrl+,</kbd>), uncheck the C# extension's **Omnisharp: Use Modern Net** setting (`"omnisharp.useModernNet": false`).
+   1. Set the **External Script Editor** dropdown in Unity's External Tools preferences (**Edit | Preferences | External Tools**) to VS Code.
+   :::
+2. Install and update the [Visual Studio Code Editor](https://docs.unity3d.com/Manual/com.unity.ide.vscode.html) package in UPM (`com.unity.ide.vscode`).  
+   As a last resort to troubleshooting setup try rolling back the package as some versions have introduced issues. You can always update it again if that fails.
 
 :::warning  
 VS Code support is [limited](https://forum.unity.com/threads/update-on-the-visual-studio-code-package.1302621/).
