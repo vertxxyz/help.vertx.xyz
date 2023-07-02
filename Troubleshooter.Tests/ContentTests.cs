@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -7,12 +8,13 @@ using Xunit;
 
 namespace Troubleshooter.Tests;
 
-public class ContentTests
+[SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters")]
+public partial class ContentTests
 {
 	/// <summary>
 	/// Matches --- not preceded by multiple newlines
 	/// </summary>
-	private static readonly Regex lineBreak01Regex = new(@"(?<!\r\n)\r\n---(?:\s|$)", RegexOptions.Compiled);
+	private static readonly Regex lineBreak01Regex = LineBreak01Regex();
 
 	/// <summary>
 	/// Matches .rtf>> not followed by:
@@ -21,7 +23,7 @@ public class ContentTests
 	/// newline + header,
 	/// newline + end of file
 	/// </summary>
-	private static readonly Regex lineBreak02Regex = new(@".rtf>>(?! *\r?\n\r?\n| *\r?\n<<| *\r?\n#| *\r*\n?$)", RegexOptions.Compiled);
+	private static readonly Regex lineBreak02Regex = LineBreak02Regex();
 
 	/// <summary>
 	/// Tests for line breaks that are not preceded by two new lines.
@@ -47,8 +49,8 @@ public class ContentTests
 			text.Should().NotBeNullOrEmpty("Pages should have content");
 	}
 
-	private static readonly Regex footnoteRegex = new(@"\[\^(\d+)\]", RegexOptions.Compiled);
-	private static readonly Regex incorrectFootnoteRegex = new(@"\[\d+\^\]", RegexOptions.Compiled);
+	private static readonly Regex footnoteRegex = FootnoteRegex();
+	private static readonly Regex incorrectFootnoteRegex = IncorrectFootnoteRegex();
 
 	[Flags]
 	private enum FootnotePair : byte
@@ -95,7 +97,7 @@ public class ContentTests
 		}
 	}
 	
-	private static readonly Regex incorrectPackageDocLink = new(@"@[\d.]+?\/(?:api|manual)\/", RegexOptions.Compiled);
+	private static readonly Regex incorrectPackageDocLink = IncorrectPackageDocLink();
 	
 	/// <summary>
 	/// Validates links to package docs, ensuring they have @latest links.
@@ -109,4 +111,19 @@ public class ContentTests
 			Assert.DoesNotMatch(incorrectPackageDocLink, text);
 		}
 	}
+
+    [GeneratedRegex(@"(?<!\r\n)\r\n---(?:\s|$)", RegexOptions.Compiled)]
+    private static partial Regex LineBreak01Regex();
+    
+    [GeneratedRegex(@".rtf>>(?! *\r?\n\r?\n| *\r?\n<<| *\r?\n#| *\r*\n?$)", RegexOptions.Compiled)]
+    private static partial Regex LineBreak02Regex();
+    
+    [GeneratedRegex(@"\[\^(\d+)\]", RegexOptions.Compiled)]
+    private static partial Regex FootnoteRegex();
+    
+    [GeneratedRegex(@"\[\d+\^\]", RegexOptions.Compiled)]
+    private static partial Regex IncorrectFootnoteRegex();
+    
+    [GeneratedRegex(@"@[\d.]+?\/(?:api|manual)\/", RegexOptions.Compiled)]
+    private static partial Regex IncorrectPackageDocLink();
 }

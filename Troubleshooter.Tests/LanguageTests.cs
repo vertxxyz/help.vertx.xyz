@@ -6,6 +6,7 @@ using Xunit;
 
 namespace Troubleshooter.Tests;
 
+[SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters")]
 public class LanguageTests
 {
 	/// <summary>

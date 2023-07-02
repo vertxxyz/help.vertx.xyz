@@ -1,6 +1,7 @@
 ## Common compiler errors
 :::code-block--no-background
 - [CS0101](Compiler%20Errors/CS0101.md): The namespace 'Foo' already contains a definition for "Bar"
+- [CS0102](Compiler%20Errors/CS0102.md): The type 'Foo' already contains definition for 'Bar'
 - [CS0104](Compiler%20Errors/CS0104.md): 'reference' is an ambiguous reference between 'X identifier' and 'Y identifier'
 - [CS0106](Compiler%20Errors/CS0106.md): The modifier 'modifier' is not valid for this item
 - [CS0117](Compiler%20Errors/CS0117.md): 'Foo' does not contain a definition for 'identifier'
@@ -18,6 +19,7 @@
 - [CS1503](Compiler%20Errors/CS1503.md): Argument 'x' cannot convert from Foo to Bar
 - [CS1513](Compiler%20Errors/CS1513.md): } expected
 - [CS1519](Compiler%20Errors/CS1519.md): Invalid token 'token' in class, struct, or interface member declaration
+- [CS1529](Compiler%20Errors/CS1529.md): A using clause must precede all other elements defined in the namespace except extern alias declarations
 - [CS1612](Compiler%20Errors/CS1612.md): Cannot modify the return value of 'Foo' because it is not a variable
 - [CS1624](Compiler%20Errors/CS1624.md): The body of 'Foo.Bar()' cannot be an iterator block because 'type' is not an iterator interface type
 - [CS1644](Compiler%20Errors/CS1644.md): Feature 'feature' is not part of the C# 4.0 language specification

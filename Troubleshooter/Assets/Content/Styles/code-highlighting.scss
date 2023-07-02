@@ -189,6 +189,27 @@
 	&.entity {
 		cursor: help;
 	}
+	
+	&.deleted-sign.deleted {
+		background-color: #612722;
+	}
+
+	&.inserted-sign.inserted {
+		background-color: #29421F;
+	}
+
+	&.diff.bold {
+		background-color: #3A3070;
+		font-weight: normal;
+	}
+
+	&.prefix {
+		&.deleted,
+		&.inserted,
+		&.diff {
+			display: none;
+		}
+	}
 }
 
 .language-css {

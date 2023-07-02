@@ -15,4 +15,4 @@ The UI Toolkit Events Debugger can help debug issues with element interactions.
 
 ### Complex
 
-- [Issues with generateVisualContent](UI%20Toolkit/generateVisualContent.md)
+- [Issues with generateVisualContent.](UI%20Toolkit/generateVisualContent.md)

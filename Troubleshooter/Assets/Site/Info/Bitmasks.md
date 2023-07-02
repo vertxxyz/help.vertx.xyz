@@ -34,9 +34,9 @@ If a bit is enabled (`1`) in either one mask **or** the other, it will be in our
 ### Inverting a mask
 Bitmasks can be inverted with the [bitwise complement](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators#bitwise-complement-operator-) operator, which will reverse each bit.
 ```csharp
-layerMask = ~layerMask;
-//  layerMask : 00000010000000000000000100100000
-// ~layerMask : 11111101111111111111111011011111
+mask = ~mask;
+//  mask : 00000010000000000000000100100000
+// ~mask : 11111101111111111111111011011111
 ```
 
 ### Remove from a mask
@@ -50,9 +50,36 @@ The [logical exclusive or](https://docs.microsoft.com/en-us/dotnet/csharp/langua
 ### Checking if a mask contains another mask
 ```csharp
 if ((mask & queryMask) == queryMask)
+{
+    // mask contains queryMask.
+}
 ```
 
-When dealing with an enum, you could alternatively choose to use the [`Enum.HasFlag`](https://docs.microsoft.com/en-us/dotnet/api/system.enum.hasflag) method.
+When dealing with an enum, you could alternatively choose to use the [`Enum.HasFlag`](https://docs.microsoft.com/en-us/dotnet/api/system.enum.hasflag) method, note that this may box.
+
+### A mask with all values enabled
+[Invert](#inverting-a-mask) `0` to enable all bits.
+```csharp
+var enabledMask = ~0;
+```
+Note that this value may not be the same as "Everything" or "All", and different implementations may or may not interpret it that way. Note how `Days.Everyday` is `01111111`, not all bits are enabled. Your implementations may need to consider this.
+
+### Setting a mask using another mask
+If `setOn` is `true` then `~mask` will invert the original mask, `& Days.Weekend` isolates the bits we want to enable, giving us a mask that only contains the weekend bits that aren't enabled in the original `mask`. We then [toggle](#toggling-mask-values) the mask with this value.
+```csharp
+var weekendCorrectedMask = mask ^ ((setOn ? ~mask : mask) & Days.Weekend);
+//                 mask : 01001001  setOn: true
+//                ~mask : 10110110
+//       & Days.Weekend : 00100000
+// weekendCorrectedMask : 01101001
+```
+If `setOn` is `false` then `mask` does nothing, `& Days.Weekend` isolates the bits we want to disable, giving us a mask which contains the weekend bits that are enabled in the original `mask`. We then [toggle](#toggling-mask-values) the mask with this value.
+```csharp
+var weekendCorrectedMask = mask ^ ((setOn ? ~mask : mask) & Days.Weekend);
+//                 mask : 01001001  setOn: false
+//       & Days.Weekend : 01000000
+// weekendCorrectedMask : 00001001
+```
 
 ---  
 

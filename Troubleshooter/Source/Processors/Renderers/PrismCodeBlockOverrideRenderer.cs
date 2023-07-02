@@ -75,19 +75,31 @@ public class PrismCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 				case "cs":
 				case "csharp":
 				{
-					_engine.SetVariableValue("sourceCode", ExtractSourceCode(node));
-					_engine.SetVariableValue("language", str);
-					_engine.Execute("highlighted = Prism.highlight(sourceCode, Prism.languages.csharp, language)");
-					
-					string highlightedSourceCode = _engine.Evaluate<string>("highlighted");
-					
-					renderer.Write("<pre>").Write("<code").Write(">").Write(highlightedSourceCode).Write("</code>").Write("</pre>");
+					Highlight(str, "csharp");
+					break;
+				}
+				case "diff":
+				{
+					Highlight(str, "diff");
 					break;
 				}
 				default:
 					codeBlockRenderer.Write(renderer, node);
 					break;
 			}
+		}
+
+		return;
+
+		void Highlight(string language, string languageKey)
+		{
+			_engine.SetVariableValue("sourceCode", ExtractSourceCode(node));
+			_engine.SetVariableValue("language", language);
+			_engine.Execute($"highlighted = Prism.highlight(sourceCode, Prism.languages.{languageKey}, language)");
+
+			string highlightedSourceCode = _engine.Evaluate<string>("highlighted");
+
+			renderer.Write("<pre>").Write("<code").Write(">").Write(highlightedSourceCode).Write("</code>").Write("</pre>");
 		}
 	}
 

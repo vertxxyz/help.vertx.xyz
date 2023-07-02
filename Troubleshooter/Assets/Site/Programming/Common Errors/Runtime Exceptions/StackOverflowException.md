@@ -6,7 +6,7 @@ In this case the stack—a place where memory local to a scope is allocated—gr
 ### Resolution
 Fix the recursive loop.  
 
-The [stack trace](../Stack%20Traces.md) should give a very good indicator of the path of the recursive loop. Look for repetition in the trace, and look to remove the cause of the loop.
+The [stack trace](../../Stack%20Traces.md) should give a very good indicator of the path of the recursive loop. Look for repetition in the trace, and look to remove the cause of the loop.
 
 :::note
 #### Recursive methods

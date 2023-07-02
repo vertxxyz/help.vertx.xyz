@@ -11,18 +11,65 @@ You will need to reduce the sensitivity to compensate for this change.
 
 ### Why?
 Mouse input is already a delta (a rate of change).  
+> How many units the mouse travelled this frame
+
+It is already dependent on the time between frames.
+
+DeltaTime scaling will make the value **frame rate dependent**. If your game has hitches, you will feel it as jumpiness, as a longer frame-time will give you more time to move your mouse, which you then incorrectly scale again with a larger `deltaTime` value.
+
 
 #### When to use deltaTime:
 Most input is multiplied by `Time.deltaTime`, this translates their **fixed value**:
 > How far is the joystick tilted?  
 
 To a **delta**:
-
 > How far should the character move this frame?  
 
-#### Why mouse input should not be scaled:
-Mouse delta already describes "_how many units the mouse travelled this frame_", it is already dependent on the time between frames.  
-DeltaTime scaling will make the value **frame rate dependent**. If your game has hitches, you will feel it as jumpiness, as a longer frame-time will give you more time to move your mouse, which you then incorrectly scale again with a larger `deltaTime` value.
+Anything that returns a fixed value when evaluated should be scaled by deltaTime. For example, joysticks, held key presses (like WSAD movement), and constants.  
+If the returned value is dependent on the length of a frame, or isn't constantly evaluated, then no scaling should be applied. For example, mouse delta, scroll-wheel delta, and button presses.
+
+### Comparing approaches
+:::note  
+#### Scenario 1: You move your mouse 1cm over a 20ms frame and 2cm over a 40ms frame
+##### 🟢 Not scaling by deltaTime
+
+| Frame | Frame time | Movement | Added | Total |
+|-------|------------|----------|-------|-------|
+| 1     | 0.02ms     | 1        | 1     | 1     |
+| 2     | 0.04ms     | 2        | 2     | **3** |
+
+The value we added on the frame 2 was twice as large as frame 1, this makes sense 🙂  
+
+##### 🔴 Scaling by deltaTime
+
+| Frame | Frame time | Movement | Added | Total   |
+|-------|------------|----------|-------|---------|
+| 1     | 0.02ms     | 1        | 0.02  | 0.02    |
+| 2     | 0.04ms     | 2        | 0.08  | **0.1** |
+
+The value we added on frame 2 was four times as large as frame 1, this makes no sense ☹️
+:::  
+:::note  
+#### Scenario 2: You move mouse 2cm over a 20ms frame and 1cm over a 40ms frame
+##### 🟢 Not scaling by deltaTime
+
+| Frame | Frame time | Movement | Added | Total |
+|-------|------------|----------|-------|-------|
+| 1     | 0.02ms     | 2        | 2     | 2     |
+| 2     | 0.04ms     | 1        | 1     | **3** |
+
+The total is the same as the previous scenario, this makes sense 🙂
+
+##### 🔴 Scaling by deltaTime
+
+| Frame | Frame time | Movement | Added | Total    |
+|-------|------------|----------|-------|----------|
+| 1     | 0.02ms     | 2        | 0.04  | 0.04     |
+| 2     | 0.04ms     | 1        | 0.04  | **0.08** |
+
+The total is different to the previous scenario, this makes no sense ☹️
+
+:::  
 
 ### Jitter with moving rigidbodies
 
