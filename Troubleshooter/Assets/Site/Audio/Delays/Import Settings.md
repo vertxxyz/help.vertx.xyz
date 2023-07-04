@@ -1,4 +1,4 @@
-## Import settings
+## Audio: Import settings
 Some settings can delay the moment audio is played. If disabled this may cause frame hitches.  
 These delays are one time only, only causing issues on the first play.
 

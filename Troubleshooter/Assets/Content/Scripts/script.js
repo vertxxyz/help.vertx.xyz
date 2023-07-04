@@ -407,3 +407,16 @@ function reportIssue() {
             }
         });
 }
+
+function toggleCollapsedCode(button) {
+    const collapsed = "collapsable--collapsed";
+    const expanded = "collapsable--expanded";
+    let collapsable = button.closest(".collapsable");
+    if(collapsable.classList.contains(collapsed)) {
+        collapsable.classList.remove(collapsed);
+        collapsable.classList.add(expanded);
+    }else{
+        collapsable.classList.remove(expanded);
+        collapsable.classList.add(collapsed);
+    }
+}

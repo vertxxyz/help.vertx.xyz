@@ -1,1 +1,0 @@
-Don't reference a `GameObject` unless you only use its methods. Referencing a component directly avoids using `GetComponent`.  

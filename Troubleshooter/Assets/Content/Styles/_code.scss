@@ -145,3 +145,49 @@ pre {
 		}
 	}
 }
+
+.collapsable {
+	> .collapsable__icon {
+		fill: #6F737A;
+		position: absolute;
+		left: 3px;
+		transform: translateY(2px);
+		width: 1em;
+		height: 1em;
+		cursor: pointer;
+		user-select: none;
+		&:hover {
+			fill: #bdbdbd;
+		}
+	}
+	
+	&.collapsable--collapsed {
+		> .collapsable__icon {
+			transform: rotate(270deg) translate(-3px, 0);
+		}
+		
+		> .collapsable__contents {
+			display: none;
+		}
+	}
+
+	&.collapsable--expanded {
+		&::before { }
+		
+		> .collapsable__description { 
+			display: none;
+		}
+	}
+	
+	> .collapsable__description {
+		color: #787878;
+		background-color: #303030;
+		outline: solid 1px #404040;
+		&::after {
+			content: " {...}"
+		}
+		&:hover {
+			color: inherit;
+		}
+	}
+}

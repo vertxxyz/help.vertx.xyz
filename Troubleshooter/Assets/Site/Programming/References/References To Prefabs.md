@@ -36,5 +36,37 @@ _instance.Method();
 If you don't have autocomplete, [configure your IDE](../IDE%20Configuration.md) to easily find member names and get error highlighting.
 ::::
 ### Notes
+#### Serialization and instancing
 When cloning a component using [`Instantiate`](https://docs.unity3d.com/ScriptReference/Object.Instantiate.html), all attached objects and components are cloned with their properties set like those of the original object.  
-<<Variables/Further Info.md>>
+Serialized references are locally maintained when Objects are instanced; references in prefab instances will be local, not referring to the original. Without indirection it's not possible for a prefab instance to maintain a reference to the prefab it was spawned from.
+
+#### Prefabs and runtime
+Prefabs are an editor-only concept. At runtime prefab instances are not logically connected to what spawned them, and nor is any information about prefab hierarchies or overrides maintained.
+
+#### Prefab roots
+The prefab root is the top-level GameObject of a prefab. You cannot directly reference the children of a prefab from the scene, so prefab children should generally reference a component on the root if they want data you've configured from the scene.
+
+#### Referencing Components, not GameObjects
+Don't reference a `GameObject` unless you only use its methods. Referencing a component directly avoids using `GetComponent`.
+
+```csharp
+/* --- 🟠 Wasteful and error-prone --- */
+[SerializeField] private GameObject _prefab;
+
+void Spawn()
+{
+    GameObject instance = Instantiate(_prefab);
+    // GetComponent is required to do anything beyond calling SetActive.
+    instance.GetComponent<Example>().Foo();
+}
+
+/* --- 🟢 Simple and communicates usage --- */
+[SerializeField] private Example _prefab;
+
+void Spawn()
+{
+    Example instance = Instantiate(_prefab);
+    // Has direct access to useful methods.
+    instance.Foo();
+}
+```

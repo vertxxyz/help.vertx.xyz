@@ -138,7 +138,7 @@ public sealed partial class ListCompaction : IHtmlPostProcessor
 		{
 			Match match = matches[i];
 			builder.Append(html[last..match.Index]);
-			
+
 			string remaining = html[(match.Index + match.Length)..];
 			//builder.AppendLine("<ul>");
 			builder.Append("<li>");
@@ -198,7 +198,7 @@ public sealed partial class ListCompaction : IHtmlPostProcessor
 public sealed class TwemojiReplacement : IHtmlPostProcessor
 {
 	private readonly TwemojiLib twemoji = new();
-	
+
 	public string Process(string html, string fullPath) => twemoji.Parse(html);
 }
 
@@ -216,3 +216,19 @@ public sealed partial class UpmPackageLinkReplacement : IHtmlPostProcessor
 	public string Process(string html, string fullPath) => s_UpmLinkRegex.Replace(html, "<code><a class=\"link--upm\" href=\"com.unity3d.kharma:upmpackage/$1\" title=\"Install $1 via UPM 2021.2+\">$1</a></code>");
 }
 
+[UsedImplicitly]
+public sealed partial class CollapsableCodeSegmentsReplacement : IHtmlPostProcessor
+{
+	[GeneratedRegex("""
+	                (<span class="token comment">\/\* Collapsable: (?<description>[\w ]+) \*\/<\/span>)(\s+)(?<contents>(.|
+	                )*?)(\s+)(<span class="token comment">\/\* End Collapsable \*\/<\/span>)
+	                """)]
+	private static partial Regex GetCollapsableCodeSegmentRegex();
+	
+	private static readonly Regex s_CollapsableCodeSegmentRegex = GetCollapsableCodeSegmentRegex();
+
+	public string Process(string html, string fullPath) 
+		=> s_CollapsableCodeSegmentRegex.Replace(html, 
+			"<span class=\"collapsable collapsable--collapsed\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"collapsable__icon\" onclick=\"toggleCollapsedCode(this)\"><use href=\"#code-expand-icon\"></use></svg><a class=\"collapsable__description\" onclick=\"toggleCollapsedCode(this)\">${description}</a><span class=\"collapsable__contents\">${contents}</span></span>"
+		);
+}

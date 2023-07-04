@@ -55,5 +55,25 @@ You can drag the header of components themselves. When the origin and destinatio
 When the Component or ScriptableObject is created Unity will deserialize the reference into the field, there is no need to further assign the value in code.  
 Serialized references are locally maintained when Objects are instanced; references in prefab instances will be local, not referring to the original.  
 
-#### Referencing Components, not GameOjects
-<<Variables/Further Info.md>>
+#### Referencing Components, not GameObjects
+Don't reference a `GameObject` unless you only use its methods. Referencing a component directly avoids using `GetComponent`.
+
+```csharp
+// 🟠 Wasteful and error-prone.
+[SerializeField] private GameObject _example;
+
+void CallFoo()
+{
+    // GetComponent is required to do anything beyond calling SetActive.
+    _example.GetComponent<Example>().Foo();
+}
+
+// 🟢 Simple and communicates usage.
+[SerializeField] private Example _example;
+
+void CallFoo()
+{
+    // Has direct access to useful methods.
+    _example.Foo();
+}
+```
