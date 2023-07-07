@@ -1,7 +1,7 @@
 ## Cross-scene references
 
 :::warning
-Serialized references between objects cannot occur across scenes
+Serialized references between objects cannot occur across scenes.
 :::
 
 Cross-scene references are disallowed as they cannot be saved in Scene files and will also cause [NullReferenceExceptions](../Common%20Errors/Runtime%20Exceptions/NullReferenceException.md) when both scenes are not loaded in the editor.
@@ -9,6 +9,7 @@ Cross-scene references are disallowed as they cannot be saved in Scene files and
 ### Resolution
 If you cannot change your architecture to avoid these references, consider constructing them in code, not serializing them directly.  
 
+::::note  
 #### Some options include:
 - Finding the target via a scene query ([`Physics`](https://docs.unity3d.com/ScriptReference/Physics.html) queries for example) and using `GetComponent` and its variants.
 - Serialize a reference to the target to a [singleton](Singletons.md) in the target scene, then use the singleton to get the target.
@@ -17,7 +18,8 @@ If you cannot change your architecture to avoid these references, consider const
 - Using a [Scriptable Object architecture](https://www.youtube.com/watch?v=raQ3iHhE_Kk).
 - Using a dependency injection framework.
 
-Each of these approaches have benefits and drawbacks, including project and code maintenance overhead. Some have pre-built approaches that you might find on a repository host or [OpenUPM](https://openupm.com).
+Each of these approaches have benefits and drawbacks, including project and code maintenance overhead. Some have pre-built approaches that you might find on a repository host or [OpenUPM](https://openupm.com).  
+::::  
 
 ### Notes
 If you are avoiding having too many things in a single scene to prevent merge conflicts, consider breaking areas down into prefabs, and make sure you have [smart merge](https://docs.unity3d.com/Manual/SmartMerge.html) configured.

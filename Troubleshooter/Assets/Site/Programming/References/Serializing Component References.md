@@ -1,15 +1,16 @@
 <<Abbreviations/IDE.md>>
+*[instance]: A single GameObject or Component. A component can exist in the scene many times, one of these is an instance.
+*[target component]: A component in the scene that you want to reference.
 ## Serializing Component references
 
 To refer to members (such as variables and methods) of a component, you must define which instance is being used.  
 Creating a serialized field allows that instance to be referred to elsewhere in the class.
 
 :::warning
-You cannot serialize references between scenes. [See here to learn more.](Cross-Scene%20References.md)
+You cannot serialize references between scenes. See [cross-scene references](Cross-Scene%20References.md) to learn more.
 :::
 
 ### Implementation
-
 ::::note  
 #### 1. Expose a serialized reference to the target component  
 The field must be marked with [`SerializeField`](https://docs.unity3d.com/ScriptReference/SerializeField.html):
@@ -24,14 +25,16 @@ This example uses the `Transform` type, it will need to be replaced with the tar
 :::
 ::::  
 ::::note  
-#### 2. Reference the instance in the Inspector  
-Create an instance by [adding the Component](https://docs.unity3d.com/Manual/UsingComponents.html) to an object in the scene, and drag it into the exposed field.  
-Dragging a GameObject from the [Hierarchy](https://docs.unity3d.com/Manual/Hierarchy.html) into the field will reference the first matching Component found on the object.
+#### 2. Reference the target component in the Inspector  
+Do not directly reference the script asset. The target component must be an instance [added to an object in the scene](https://docs.unity3d.com/Manual/UsingComponents.html).  
 
 <video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/Video/inspector-references.webm"></video>  
 :::error{.small .img-note-wide}
 Drag a **Component** into the slot or you will get a [NullReferenceException](../Common%20Errors/Runtime%20Exceptions/NullReferenceException.md).
 :::
+
+Dragging a GameObject from the [Hierarchy](https://docs.unity3d.com/Manual/Hierarchy.html) into the field will reference the first matching Component found on the object.
+
 ::::
 
 ::::note  
@@ -45,7 +48,9 @@ _target.Variable = variable;
 // Methods
 _target.Method();
 ```
+:::info{.inline}  
 If you don't have autocomplete, [configure your IDE](../IDE%20Configuration.md) to easily find member names and get error highlighting.
+:::  
 ::::
 ### Notes
 #### Dragging components and using multiple inspectors

@@ -11,35 +11,32 @@ table, th, td {
 }
 
 th {
+  padding: 8px 12px;
   background-color: base.$unity-colors-default-background;
+}
+
+td {
+  padding: 12px 12px;
+  &.tableYes {
+    background-color: rgba(124, 220, 54, 0.8);
+    &.highlight {
+      background-color: rgba(124, 220, 54, 1);
+      /*cursor: crosshair;*/
+    }
+  }
+  &.tableNo {
+    background: repeating-linear-gradient(-55deg, rgb(42, 42, 42), rgb(42, 42, 42) 10px, transparent 10px, transparent 20px) fixed;
+    &.highlight {
+      background: repeating-linear-gradient(-55deg, rgb(50, 50, 50), rgb(50, 50, 50) 10px, rgba(255, 255, 255, 0.05) 10px, rgba(255, 255, 255, 0.05) 20px) fixed;
+      /*cursor: crosshair;*/
+    }
+  }
 }
 
 tr {
   td:first-child:has(> strong:only-child):not(.highlight) {
     background-color: base.$unity-colors-default-background;
   }
-}
-
-th, td {
-  padding: 12px;
-}
-
-td.tableYes {
-  background-color: rgba(124, 220, 54, 0.8);
-}
-
-td.tableNo {
-  background: repeating-linear-gradient(-55deg, rgb(42, 42, 42), rgb(42, 42, 42) 10px, transparent 10px, transparent 20px) fixed;
-}
-
-td.tableYes.highlight {
-  background-color: rgba(124, 220, 54, 1);
-  /*cursor: crosshair;*/
-}
-
-td.tableNo.highlight {
-  background: repeating-linear-gradient(-55deg, rgb(50, 50, 50), rgb(50, 50, 50) 10px, rgba(255, 255, 255, 0.05) 10px, rgba(255, 255, 255, 0.05) 20px) fixed;
-  /*cursor: crosshair;*/
 }
 
 th.highlight,

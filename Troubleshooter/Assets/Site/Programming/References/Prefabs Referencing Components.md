@@ -1,3 +1,4 @@
+<<Abbreviations/IDE.md>>
 ## Prefabs referencing in-Scene Components
 
 :::warning
@@ -6,23 +7,22 @@ Assets cannot directly refer to Objects in Scenes
 
 Prefab assets cannot refer to components in the Scene, their instances can be configured with those references.  
 
-### Resolution
+### Implementation
 The in-scene component that instances your prefab can reference other in-Scene components, so have it pass your instance that reference.
 
 ::::note  
 #### Follow these steps to configure a prefab instance with a reference:
 Refer to the table to understand the terms used in the following steps.
 
-| Name             | Description                                                    |
+| Term             | Description                                                    |
 |------------------|----------------------------------------------------------------|
-| Spawner          | A component in the scene that spawns your prefab.              |
+| Spawner          | A component in the scene that spawns your prefab asset.        |
 | Root component   | A component on the top-level GameObject of your prefab.        |
 | Target component | A component in the scene that you want to pass to your prefab. |
+| Instance         | A copy of your prefab that exists in the scene.                |
 
-1. Create references on your spawner:
-   1. [Reference the root component (your prefab).](References%20To%20Prefabs.md)
-   1. [Reference the target component.](Serializing%20Component%20References.md)
-1. [`Instantiate`](https://docs.unity3d.com/ScriptReference/Object.Instantiate.html) your prefab.  
+1. [Reference the target component](Serializing%20Component%20References.md) from your spawner.
+1. On your spawner, [reference and `Instantiate` the root component](References%20To%20Prefabs.md) (your prefab).   
   This creates a new instance of the prefab in the scene, and returns the copy of the root component.
 1. Create members on your root component to pass your target component to.
 1. Assign the target component to your new root component instance.  
