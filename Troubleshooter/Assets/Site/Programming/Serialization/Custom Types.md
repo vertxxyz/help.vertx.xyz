@@ -6,7 +6,7 @@ Serializable unity types should appear in [debug mode](Debug%20Mode.md); look fo
 
 ### I am trying to serialize my own type
 1. Custom structs and classes should be marked with the `[System.Serializable]` attribute.
-2. ::collapse::{.collapse}
+1. ::collapse::{.collapse}
 ::::
 Ensure that there are serializable types in that structure:  
 <<Serialization/Serializable Types.md>>  
@@ -21,3 +21,4 @@ Empty structures or those without serializable fields are also not serializable.
 
 - [My class is generic.](Generic%20Types.md)
 - [I am serializing an interface.](Interfaces.md)
+- [I am directly nesting collections.](Nested%20Collections.md)

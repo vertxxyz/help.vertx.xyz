@@ -8,6 +8,10 @@ See [Resources](https://docs.unity3d.com/ScriptReference/Resources.html).
 ### Resolution
 Move the asset under a folder named `Resources`.
 
+:::warning  
+Do not disregard capitalisation.  
+:::
+
 ---
 
 [My asset still isn't being loaded.](Resource%20Paths.md)

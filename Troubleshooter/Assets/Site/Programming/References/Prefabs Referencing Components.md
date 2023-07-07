@@ -58,7 +58,7 @@ public class SpawnerExample : MonoBehaviour
 using UnityEngine;
 
 /// <summary>
-/// This component lives on the root of a prefab, and is configused by SpawnerExample after it is instanced.
+/// This component lives on the root of a prefab, and is configured by SpawnerExample after it's instanced.
 /// </summary>
 public class MoveToTargetExample : MonoBehaviour
 {

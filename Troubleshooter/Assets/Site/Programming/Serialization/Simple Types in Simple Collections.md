@@ -14,3 +14,6 @@ There are also SerializableDictionary implementations out there that are wrapper
 
 #### Other collection types
 You can implement [ISerializationCallbackReceiver](https://docs.unity3d.com/ScriptReference/ISerializationCallbackReceiver.html) to manually serialize these types, but it can add unnecessary complexity to your codebase.
+
+#### Nested collections
+See [serializing nested collections](Nested%20Collections.md).

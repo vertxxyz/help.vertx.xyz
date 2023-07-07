@@ -3,14 +3,15 @@
 ### Interface
 - [Scene view](Interface/Scene%20View.md)
 - [Game view](Interface/Game%20View.md)
+- [Windows](Interface/Windows.md)
 - [Gizmos](Interface/Gizmos.md)
 - [UnityEvents](Interface/Unity%20Events.md)
-- [Error dialogs](Common/Error%20Dialogs.md)
 ### Unity Hub
 - [Editor installation instructions](Unity%20Hub/Editor%20Installation.md)
 - [Editor installation issues](Unity%20Hub/Editor%20Installation%20Issues.md)
 - [Editor module installation issues](Unity%20Hub/Module%20Installation%20Issues.md)
 ### Functionality
+- [Error dialogs](Common/Error%20Dialogs.md)
 - [Freezes, crashes, and pauses](Functionality/Freezes%20Crashes%20and%20Pauses.md)
 
 ## Programming

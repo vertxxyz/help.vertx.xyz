@@ -7,6 +7,7 @@
 - [UnassignedReferenceException](Runtime%20Exceptions/UnassignedReferenceException.md)
 - [IndexOutOfRangeException](Runtime%20Exceptions/IndexOutOfRangeException.md)
 - [ArgumentException](Runtime%20Exceptions/ArgumentException.md)
+- [ArgumentNullException](Runtime%20Exceptions/ArgumentNullException.md)
 - [InvalidCastException](Runtime%20Exceptions/InvalidCastException.md)
 - [InvalidOperationException](Runtime%20Exceptions/InvalidOperationException.md)
 - [StackOverflowException](Runtime%20Exceptions/StackOverflowException.md)

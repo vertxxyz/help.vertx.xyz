@@ -5,7 +5,7 @@ You must be using functions from the [`Physics2D`](https://docs.unity3d.com/Scri
 If you are calling a query like [`collider2D.Raycast(...`](https://docs.unity3d.com/ScriptReference/Collider2D.Raycast.html) from a collider, then you are using a method that can only hit that single collider.  
 Make sure you understand this, or instead, use the static method [`Physics2D.Raycast`](https://docs.unity3d.com/ScriptReference/Physics2D.Raycast.html) that queries all the colliders in the scene.
 
-### Use colliders
+### Issues with colliders
 Raycasting requires [2D colliders](https://docs.unity3d.com/Manual/Collider2D.html) to work.  
 You cannot query against raw meshes or sprites using `Physics2D` functions.
 
