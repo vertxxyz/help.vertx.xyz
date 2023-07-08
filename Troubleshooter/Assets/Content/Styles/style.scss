@@ -256,7 +256,7 @@ iframe {
   left: 0;
   right: 0;
   padding: 30px 0 (base.$sidebar-bottom-height + 25px) base.$left-padding;
-  
+
   > :first-child {
     margin-block-start: 0;
   }
@@ -384,6 +384,10 @@ div.note {
   .code-container {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  > hr {
+    margin-left: unset;
   }
 }
 
@@ -670,6 +674,10 @@ blockquote {
     margin-left: -20px;
     padding-left: 20px;
     margin-right: -20px;
+  }
+
+  :first-child {
+    margin-block-start: 0;
   }
 
   :last-child {

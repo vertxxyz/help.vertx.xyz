@@ -24,6 +24,7 @@
 - ['X' AnimationEvent 'Y' on animation 'Z' has no receiver! Are you missing a component?](../../Animation/Animation%20Event/Receivers.md)
 - ['X' AnimationEvent has no function name specified!](../../Animation/Animation%20Event/Functions.md)
 - [Destroying assets is not permitted to avoid data loss.](Runtime%20Errors/Destroying%20Assets.md)
+- [Coroutine couldn't be started because the the game object 'X' is inactive!](../Coroutines/Inactive%20Objects.md)
 
 :::  
 

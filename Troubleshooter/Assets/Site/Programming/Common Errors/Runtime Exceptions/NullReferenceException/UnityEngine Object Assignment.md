@@ -34,6 +34,7 @@ If you want to correctly assign the object:
 - [I am using `Camera.main`.](UnityEngine%20Object%20Camera%20Main.md)
 - [I am using another method.](UnityEngine%20Object%20General.md)
 - [I am not sure.](UnityEngine%20Object%20General.md)
+- [I am subscribed to a delegate and something inside callee is null.](Unsubscribing%20From%20Delegates.md)
 
 :::
 
