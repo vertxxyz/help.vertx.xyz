@@ -1,6 +1,6 @@
 ## Lerp
 ### General
-- [Overview of Lerp.](Lerp/Overview.md)
+- [Overview of Lerp](Lerp/Overview.md)
 - [Lerping in coroutines](Lerp/Coroutines.md)
 - [Wrong-lerp](Lerp/Wrong-Lerp.md)
 

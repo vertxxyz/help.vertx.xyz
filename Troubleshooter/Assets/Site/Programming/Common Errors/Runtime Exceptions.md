@@ -25,18 +25,25 @@
 - ['X' AnimationEvent has no function name specified!](../../Animation/Animation%20Event/Functions.md)
 - [Destroying assets is not permitted to avoid data loss.](Runtime%20Errors/Destroying%20Assets.md)
 - [Coroutine couldn't be started because the the game object 'X' is inactive!](../Coroutines/Inactive%20Objects.md)
-
+- [Setting the parent of a transform which resides in a Prefab Asset is disabled to prevent data corruption.](Runtime%20Errors/Prefab%20Modifications_Parents.md)
 :::  
 
 ---
 - [Built-in input system errors.](../Input/Built-In%20Input.md)  
 - [Input system package errors.](../Input/Input%20System/Errors.md)
-- [Burst compiler errors.](../Jobs%20And%20Burst/Burst%20Errors.md)
+- [Burst compiler errors.](../../DOTS/Burst/Common%20Errors.md)
+- [Entities errors.](../../DOTS/Entities/Common%20Errors.md)
  
 #### Editor
+These errors occur outside of Play mode:  
+:::code-block--no-background
+
+- [Serialization depth limit exceeded at 'X'. There may be an object composition cycle in one or more of your serialized classes.](Runtime%20Errors/Serialization%20Depth%20Limit.md)
+
+:::
+
 These errors are only relevant to you if you are writing editor code:  
 :::code-block--no-background
 - [type is not a supported pptr value.](Runtime%20Errors/ObjectReferenceValue%20Error.md)
-- [Serialization depth limit exceeded at 'X'. There may be an object composition cycle in one or more of your serialized classes.](Runtime%20Errors/Serialization%20Depth%20Limit.md)
 
 :::

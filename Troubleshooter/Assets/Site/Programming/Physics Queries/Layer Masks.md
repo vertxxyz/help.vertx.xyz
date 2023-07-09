@@ -11,6 +11,11 @@ A layer mask may be an `int`, but it doesn't represent a single layer.
 ```csharp
 int layerMask = 5;
 ```
+
+#### 🔴 Incorrect
+```csharp
+int layerMask = LayerMask.NameToLayer("Name");
+```
 :::
 
 ### Resolution

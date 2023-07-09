@@ -139,18 +139,6 @@ public static partial class SiteBuilder
 
 		Generate404();
 
-		void Generate404()
-		{
-			if (!File.Exists(indexOutputPath))
-				throw new BuildException($"\"{indexOutputPath}\" was not found when generating 404 page.");
-			string indexText = File.ReadAllText(indexOutputPath);
-			//int indexOfContent = indexText.IndexOf("</head>", StringComparison.Ordinal);
-			//if (indexOfContent < 0)
-			//	throw new BuildException("\"</head>\" not found when generating 404 page from index.html.");
-			//string text404 = indexText.Insert(indexOfContent, "    <script src=\"/Scripts/404.js\"></script>\n");
-			CreateFileIfDifferent(Path.Combine(arguments.Path!, "404.html"), indexText);
-		}
-
 		int embedContent = 0;
 		// Copy all embed files that are not pages to the destination/Embeds
 		foreach (string path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))
@@ -169,6 +157,20 @@ public static partial class SiteBuilder
 
 		arguments.VerboseLog(
 			$"{siteContent + embedContent} content files were written to disk. ({totalContent} total)");
+		
+		return;
+
+		void Generate404()
+		{
+			if (!File.Exists(indexOutputPath))
+				throw new BuildException($"\"{indexOutputPath}\" was not found when generating 404 page.");
+			string indexText = File.ReadAllText(indexOutputPath);
+			//int indexOfContent = indexText.IndexOf("</head>", StringComparison.Ordinal);
+			//if (indexOfContent < 0)
+			//	throw new BuildException("\"</head>\" not found when generating 404 page from index.html.");
+			//string text404 = indexText.Insert(indexOfContent, "    <script src=\"/Scripts/404.js\"></script>\n");
+			CreateFileIfDifferent(Path.Combine(arguments.Path!, "404.html"), indexText);
+		}
 	}
 
 	private static FileResult.Validity FileProcessor(FileInfo file, out FileResult? result)

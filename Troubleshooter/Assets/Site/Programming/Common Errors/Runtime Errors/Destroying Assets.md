@@ -1,4 +1,7 @@
 ## Destroying assets
+```
+Destroying assets is not permitted to avoid data loss.
+```
 
 Assets are imported objects in your Project. You do not want to destroy them, as that will delete the original, causing permanent damage to your project.
 
@@ -14,7 +17,7 @@ private MyScript _instance;
 
 void SpawnAndDestroyLater(float delay)
 {
-    // Spawn our prefab, and collect what it created.
+    // Spawn our prefab and reference the new instance.
     _instance = Instantiate(_prefab);
     // Destroy the new object after a delay.
     Destroy(_instance, delay);

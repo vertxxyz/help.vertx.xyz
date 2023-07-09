@@ -5,7 +5,7 @@
 Assets cannot directly refer to Objects in Scenes
 :::
 
-Prefab assets cannot refer to components in the Scene, their instances can be configured with those references.  
+Prefab assets cannot refer to components in the Scene, their instances can be configured with those references. This is a form of [dependency injection](Simple%20Dependency%20Injection.md).  
 
 ### Implementation
 The in-scene component that instances your prefab can reference other in-Scene components, so have it pass your instance that reference.

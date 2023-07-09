@@ -1,4 +1,8 @@
 ## Coroutines: Inactive objects
+```
+Coroutine couldn't be started because the the game object 'X' is inactive!
+```
+
 Coroutines can only be run on active GameObjects.
 
 ### Resolution

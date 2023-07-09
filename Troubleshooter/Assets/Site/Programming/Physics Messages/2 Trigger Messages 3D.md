@@ -1,7 +1,7 @@
 ## Trigger messages (3D)
 
 Ensure your functions are exactly as below.
-The variable `collider` can be renamed.  
+The variable `collider` can be renamed, and [access modifiers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers) are not important.  
 Type, spelling, and capitalisation are all important.
 
 [OnTriggerEnter](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter.html):

@@ -1,5 +1,10 @@
 ## Managed allocations in Jobs
 
+```
+Burst error BC1016: The managed function `Foo.Bar()` is not supported.
+Burst error BC1021: Creating a managed object `Foo..ctor(...)` is not supported.
+```
+
 Burst is a compiler that translates compiled IL bytecode to native code. It's designed to specifically operate on a subset of C# that Unity dubs "High Performance C#", or HPC#.  
 HPC# is made up of [blittable types](https://docs.microsoft.com/en-us/dotnet/framework/interop/blittable-and-non-blittable-types).
 Burst's [language restrictions](https://docs.unity3d.com/Packages/com.unity.burst@latest/index.html?subfolder=/manual/docs/CSharpLanguageSupport_Types.html) are limited further,

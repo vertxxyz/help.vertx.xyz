@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 using HtmlAgilityPack;
 using JetBrains.Annotations;
 
@@ -9,11 +12,17 @@ public class MainContentToGrid : IHtmlPostProcessor
 {
 	public int Order => 999;
 
+	private static readonly ImmutableList<string> s_MainPages = ImmutableList.Create(
+	
+		@"Assets\Site\Main.md"
+		// @"Assets\Site\Programming\Entities.md"
+	);
+	
 	public string Process(string html, string fullPath)
 	{
-		if (!fullPath.EndsWith(@"Assets\Site\Main.md", StringComparison.OrdinalIgnoreCase))
+		if(!s_MainPages.Any(page => fullPath.EndsWith(page, StringComparison.OrdinalIgnoreCase)))
 			return html;
-
+		
 		HtmlDocument doc = new HtmlDocument();
 		doc.LoadHtml(html);
 
@@ -29,6 +38,7 @@ public class MainContentToGrid : IHtmlPostProcessor
 	private static void ProcessH3ToTables(HtmlNode node)
 	{
 		const string containerHtml = "<div class=\"grid-container\"></div>";
+		const string fakeContainerHtml = "<div class=\"grid-container--fake\"></div>";
 		const string itemHtml = "<div class=\"grid-item\"></div>";
 
 		HtmlNode? h2 = null;
@@ -44,8 +54,23 @@ public class MainContentToGrid : IHtmlPostProcessor
 					item = null;
 					InsertGrid();
 					h2 = child;
-					grid = HtmlNode.CreateNode(containerHtml);
+					grid = HasUpcomingH3Header(child) ? HtmlNode.CreateNode(containerHtml) : HtmlNode.CreateNode(fakeContainerHtml);
+
 					break;
+
+					bool HasUpcomingH3Header(HtmlNode htmlNode)
+					{
+						do
+						{
+							htmlNode = htmlNode.NextSibling;
+							if (htmlNode == null)
+								return false;
+							if (htmlNode.Name == "h3")
+								return true;
+						} while (htmlNode.Name != "h2");
+
+						return false;
+					}
 				}
 				case "h3":
 				{

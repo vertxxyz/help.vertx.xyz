@@ -4,8 +4,6 @@
 Tag: Example is not defined.
 ```
 
-
-
 Individual GameObjects have tags that can be used to identify them.  
 Tags are defined in the [Tags and Layers Settings](https://docs.unity3d.com/Manual/class-TagManager.html) (**Edit | Project Settings | Tags and Layers**).  
 Tags are **not** the same as Layers, and don't affect rendering or collision.  

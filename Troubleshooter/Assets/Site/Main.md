@@ -35,26 +35,27 @@
 ### Assets
 - [Resources](Programming/Resources.md)
 - [AssetDatabase](Programming/Editor%20Issues/AssetDatabase.md)
-### DOTS
-- [Job System and Burst](Programming/Jobs%20And%20Burst.md)
-- [Entities](Programming/Entities.md)
-- [Native Collections](Programming/Native%20Collections.md)
-### Utility & maths
-- [Random](Programming/Specifics/Random.md)
-- [Lerp](Programming/Specifics/Lerp.md)
-- [ScreenToWorldPoint](Programming/Specifics/ScreenToWorldPoint.md)
-- [Color](Programming/Specifics/Color.md)
-- [LayerMasks and bitmasks](Programming/Physics/Bitmasks.md)
-- [Quaternions](Programming/Quaternions.md)
-### Functionality
-- [Coroutines](Programming/Coroutines.md)
-- [UnityEvents](Interface/Unity%20Events.md)
-- [Parsing input strings](Programming/Specifics/Parsing.md)
 ### Editor extensions
 - [Property drawers](Programming/Editor%20Issues/Property%20Drawers.md)
 - [Property decorators](Programming/Editor%20Issues/Property%20Decorators.md)
 - [Custom inspectors](Programming/Editor%20Issues/Custom%20Inspectors.md)
 - [Editor windows](Programming/Editor%20Issues/Editor%20Windows.md)
+### Utility classes
+- [Random](Programming/Specifics/Random.md)
+- [Quaternions](Programming/Quaternions.md)
+- [Color](Programming/Specifics/Color.md)
+- [LayerMasks and bitmasks](Programming/Physics/Bitmasks.md)
+- [UnityEvents](Interface/Unity%20Events.md)
+### Utility functions
+- [Lerp](Programming/Specifics/Lerp.md)
+- [ScreenToWorldPoint](Programming/Specifics/ScreenToWorldPoint.md)
+### Implementation
+- [Coroutines](Programming/Coroutines.md)
+- [Async/await](Programming/Async.md)
+- [Parsing input strings](Programming/Specifics/Parsing.md)
+
+## Data-Oriented Technology Stack (DOTS)
+- [Entities, Job System, Burst, native collections](DOTS.md)
 
 ## Building
 - [Build errors](Building/Build%20Errors.md)

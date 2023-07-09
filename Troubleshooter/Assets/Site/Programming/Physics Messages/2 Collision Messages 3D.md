@@ -1,7 +1,7 @@
 ## Collision messages (3D)
 
 Ensure your functions are exactly as below.
-The variable `collision` can be renamed.  
+The variable `collision` can be renamed, and [access modifiers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers) are not important.  
 Type, spelling, and capitalisation are all important.
 
 [OnCollisionEnter](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionEnter.html):

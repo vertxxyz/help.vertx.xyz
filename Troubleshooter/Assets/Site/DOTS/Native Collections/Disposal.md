@@ -1,4 +1,4 @@
-## Native Collections: Disposal issues
+## Native collections: Disposal issues
 ```
 ObjectDisposedException: The collection has been deallocated, it is not allowed to access it
 ```
