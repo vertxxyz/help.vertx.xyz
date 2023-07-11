@@ -24,7 +24,8 @@ void SpawnAndParent(Transform parent)
 }
 ```
 
-:::  
+::::
+
 ::::note  
 [`Instantiate`](https://docs.unity3d.com/ScriptReference/Object.Instantiate.html) returns the instance it spawned. Store a reference to it and modify that instead.
 ```csharp
@@ -40,10 +41,26 @@ void SpawnAndParent(Transform parent)
 }
 ```
 
-:::  
+::::  
 
 If you're confused by the above code, see [referencing prefabs from scenes](../../References/References%20To%20Prefabs.md).
 
 #### I know what I'm doing, and want to modify a prefab asset
 
-// TODO
+```csharp
+// Load the content of the Prefab asset so we can modify it.
+var assetRoot = PrefabUtility.LoadPrefabContents(path);
+// Perform our modifications on assetRoot...
+...
+// Cleanup our prefab stage (this is important, not doing so is a leak).
+PrefabUtility.UnloadPrefabContents(assetRoot);
+```
+
+```csharp
+// Load our asset directly (this asset is a "Library folder object").
+var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+// Perform our modifications on prefab...
+...
+// Save our changes.
+PrefabUtility.SavePrefabAsset(prefab);
+```

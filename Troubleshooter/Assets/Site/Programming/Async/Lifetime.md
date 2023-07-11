@@ -28,13 +28,12 @@ private async Awaitable WaitAndPerformActionAsync(float delay, Action callback, 
     // WaitForSecondsAsync will throw an OperationCanceledException when cancellationToken is raised.
     await Awaitable.WaitForSecondsAsync(delay, cancellationToken);
     callback();
-    
-    // If you wanted to exit your function if cancellationToken was raised, you can call cancellationToken.ThrowIfCancellationRequested();
-    // If you just want to check whether it has been raised, you can check cancellationToken.IsCancellationRequested
-    // Using IsCancellationRequested and exiting a function will be light-weight in comparison to raising exceptions,
-    // but that will come at the cost of detailed handling of the cancellation all the way up the stack.
-    // Decide which method works best for you, and add a summary XML tag for your function if it can raise an exception 
-    // so programmers that call it are more aware of the implementation you chose.
 }
-
 ```
+
+### Details
+If you wanted to exit your function if cancellationToken was raised, you can call `cancellationToken.ThrowIfCancellationRequested();`.  
+If you just want to check whether it has been raised, you can check `cancellationToken.IsCancellationRequested`.  
+
+Using `IsCancellationRequested` and exiting a function will be light-weight in comparison to raising exceptions, but that will come at the cost of detailed handling of the cancellation all the way up the stack.
+Decide which method works best for you, and add a summary XML tag for your function if it can raise an exception so programmers that call it are more aware of the implementation you chose.

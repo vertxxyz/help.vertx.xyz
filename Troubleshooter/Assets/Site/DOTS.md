@@ -1,4 +1,4 @@
-# Data-Oriented Technology Stack
+# Data-Oriented Technology Stack (DOTS)
 ## Entities
 - [Baking](DOTS/Entities/Baking.md)  
 - [Systems](DOTS/Entities/Systems.md)  

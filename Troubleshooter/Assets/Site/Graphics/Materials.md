@@ -13,3 +13,7 @@
 #### Other
 - [A material **cannot be modified**.](Materials/Readonly%20Materials.md)
 - [A material **doesn't tile consistently** across surfaces.](Models/UV%20Mapping.md)
+
+---
+
+See [textures](Textures.md) for similar issues caused by texture problems.

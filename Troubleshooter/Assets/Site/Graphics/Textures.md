@@ -6,3 +6,7 @@
 - [A transparent image is opaque.](Textures/Transparency.md)
 - [A texture stretches at the sides instead of repeating.](Textures/Wrap%20Mode-repeat.md)
 - [A texture has unexpected values (bleed or fringing).](Textures/Bleeding.md)
+
+---
+
+See [materials](Materials.md) for similar issues caused by material problems.
