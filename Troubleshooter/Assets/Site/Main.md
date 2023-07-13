@@ -13,6 +13,7 @@
 ### Functionality
 - [Error dialogs](Common/Error%20Dialogs.md)
 - [Freezes, crashes, and pauses](Functionality/Freezes%20Crashes%20and%20Pauses.md)
+- [Play mode](Functionality/Play%20Mode.md)
 
 ## Programming
 ### General
@@ -59,7 +60,7 @@
 
 ## Building
 - [Build errors](Building/Build%20Errors.md)
-- [Player issues](Player/Issues.md)
+- [Player or build-only issues](Player/Issues.md)
 
 ## UI
 - [Unity UI](UI/UGUI.md)

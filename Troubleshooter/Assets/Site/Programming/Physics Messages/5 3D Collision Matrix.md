@@ -1,4 +1,4 @@
-## Layer Collision Matrix
+## Layer Collision Matrix (3D)
 
 ### Global
 Unity's layer-based collision can exclude colliders and triggers from interacting with each other at all.  

@@ -1,10 +1,9 @@
 ## Collision messages (3D)
 
-Ensure your functions are exactly as below.
-The variable `collision` can be renamed, and [access modifiers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers) are not important.  
-Type, spelling, and capitalisation are all important.
+Ensure your functions are exactly as below.  
+Types, spelling, and capitalisation matter. The variable `collider` can be renamed, and [access modifiers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers) are not important.
 
-[OnCollisionEnter](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionEnter.html):
+### [`OnCollisionEnter`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionEnter.html)
 ```csharp
 void OnCollisionEnter(Collision collision)
 {
@@ -12,7 +11,7 @@ void OnCollisionEnter(Collision collision)
 }
 ```
 
-[OnCollisionStay](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionStay.html):
+### [`OnCollisionStay`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionStay.html)
 ```csharp
 void OnCollisionStay(Collision collision)
 {
@@ -20,7 +19,7 @@ void OnCollisionStay(Collision collision)
 }
 ```
 
-[OnCollisionExit](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionExit.html):
+### [`OnCollisionExit`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionExit.html)
 ```csharp
 void OnCollisionExit(Collision collision)
 {
@@ -28,7 +27,9 @@ void OnCollisionExit(Collision collision)
 }
 ```
 
+:::info{.inline}  
 The parameters are optional if you are not using them.
+:::
 
 ---
 [I am still not getting a message.](3%20Collision%20Matrix%203D.md)

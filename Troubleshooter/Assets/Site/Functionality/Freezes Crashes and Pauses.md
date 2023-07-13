@@ -24,4 +24,4 @@ Pausing is when the application halts momentarily.
 🚧 Under Construction 🚧  
 :::
 
-- [Unity **pauses the Editor** unexpectedly.](Error%20Pause.md)
+- [Unity **pauses the Editor** unexpectedly.](Play%20Mode/Error%20Pause.md)

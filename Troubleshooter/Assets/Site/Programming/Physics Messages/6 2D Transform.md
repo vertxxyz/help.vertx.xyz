@@ -1,4 +1,4 @@
-## Transform manipulation
+## Transform manipulation (2D)
 If you are moving dynamic (non-kinematic) rigidbodies via their transforms they are likely **not** interacting with the physics engine, and will not properly send messages.  
 
 Using `transform.position` to move objects bypasses the physics simulation step.  

@@ -1,5 +1,5 @@
 - [Physics messages](../Physics%20Messages.md) // bypass
-- [2D or 3D collision messages](1%20Collision%20Messages.md) // bypass
+- [**2D**](1%202D%20Physics%20Messages.md) or [3D](1%203D%20Physics%20Messages.md) physics messages // bypass
   - [Collision](2%20Collision%20Messages%202D.md) or [trigger](2%20Trigger%20Messages%202D.md) messages
   - [Collision](3%20Collision%20Matrix%202D.md) or [trigger](3%20Trigger%20Matrix%202D.md) matrix
   - [Local functions](4%20Local%20Functions%202D.md)

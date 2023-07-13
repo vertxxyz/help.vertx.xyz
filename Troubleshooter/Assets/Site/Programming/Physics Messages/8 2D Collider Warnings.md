@@ -1,4 +1,4 @@
-## Collider warnings
+## Collider warnings (2D)
 Check all colliders involved in the message have no warning messages on their components.
 
 Warning messages like:

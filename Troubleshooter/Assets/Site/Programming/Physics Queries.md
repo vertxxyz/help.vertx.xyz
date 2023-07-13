@@ -1,5 +1,4 @@
 ## Physics queries
-
 Physics queries include casts, overlaps, and checks in the [`Physics`](https://docs.unity3d.com/ScriptReference/Physics.html) or [`Physics2D`](https://docs.unity3d.com/ScriptReference/Physics2D.html) classes.
 
 ### Test whether your query hits an object

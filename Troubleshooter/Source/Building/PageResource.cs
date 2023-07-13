@@ -33,7 +33,7 @@ public enum ResourceLocation
 	Site
 }
 
-public class PageResource
+public partial class PageResource
 {
 	/// <summary>
 	/// Full path to the source file
@@ -303,7 +303,15 @@ public class PageResource
 
 		// Check the previously built file to see whether it ought to be re-written.
 		OutputLinkPath ??= site.ConvertFullSitePathToLinkPath(FullPath);
+
+		OutputLinkPath = s_NumberRegex.Replace(OutputLinkPath, "/");
+		
 		string path = Path.Combine(arguments.HtmlOutputDirectory!, $"{OutputLinkPath}.html");
 		return IOUtility.CreateFileIfDifferent(path, HtmlText!) ? WriteStatus.Written : WriteStatus.Skipped;
 	}
+
+	private static readonly Regex s_NumberRegex = GetNumberRegex();
+	
+	[GeneratedRegex(@"/\d+-", RegexOptions.Compiled)]
+	private static partial Regex GetNumberRegex();
 }

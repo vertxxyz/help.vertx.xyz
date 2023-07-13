@@ -1,2 +1,0 @@
-- [Physics messages](../Physics%20Messages.md)
-- **2D or 3D collision messages**

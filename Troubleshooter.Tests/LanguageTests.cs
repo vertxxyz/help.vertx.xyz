@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.RegularExpressions;
 using FluentAssertions.Execution;
 using Xunit;
 // ReSharper disable StringLiteralTypo
@@ -7,7 +8,7 @@ using Xunit;
 namespace Troubleshooter.Tests;
 
 [SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters")]
-public class LanguageTests
+public partial class LanguageTests
 {
 	/// <summary>
 	/// Tests for common issues with language
@@ -38,6 +39,8 @@ public class LanguageTests
 		text.Should().NotContain("double check", StringComparison.OrdinalIgnoreCase, "we should use \"double-check\"");
 		text.Should().NotContain("text mesh pro", StringComparison.OrdinalIgnoreCase, "we should use \"TextMesh Pro\"");
 	}
+
+	private static readonly Regex s_UnityRegex = GetUnityRegex();
 		
 	/// <summary>
 	/// Tests for common issues with capitalisation
@@ -53,5 +56,9 @@ public class LanguageTests
 		text.Should().NotContain("edit mode", StringComparison.Ordinal, "we should write \"Edit Mode\"");
 		text.Should().NotContain(".Net", StringComparison.Ordinal, "we should write \".NET\"");
 		text.Should().NotContain("assembly definition", StringComparison.Ordinal, "we should write \"Assembly Definition\"");
+		text.Should().NotMatchRegex(s_UnityRegex, "we should write \"Unity\"");
 	}
+
+    [GeneratedRegex(@"\sunity[\s\.,]")]
+    private static partial Regex GetUnityRegex();
 }

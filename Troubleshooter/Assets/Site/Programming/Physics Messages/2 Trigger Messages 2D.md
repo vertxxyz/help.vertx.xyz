@@ -1,10 +1,9 @@
 ## Trigger messages (2D)
 
-Ensure your functions are exactly as below.
-The variable `collider` can be renamed, and [access modifiers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers) are not important.  
-Type, spelling, and capitalisation are all important.
+Ensure your functions are exactly as below.  
+Types, spelling, and capitalisation matter. The variable `collider` can be renamed, and [access modifiers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers) are not important.
 
-[OnTriggerEnter2D](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter2D.html):
+### [`OnTriggerEnter2D`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter2D.html)
 ```csharp
 void OnTriggerEnter2D(Collider2D collider)
 {
@@ -12,7 +11,7 @@ void OnTriggerEnter2D(Collider2D collider)
 }
 ```
 
-[OnTriggerStay2D](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerStay2D.html):
+### [`OnTriggerStay2D`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerStay2D.html)
 ```csharp
 void OnTriggerStay2D(Collider2D collider)
 {
@@ -20,7 +19,7 @@ void OnTriggerStay2D(Collider2D collider)
 }
 ```
 
-[OnTriggerExit2D](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerExit2D.html):
+### [`OnTriggerExit2D`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerExit2D.html)
 ```csharp
 void OnTriggerExit2D(Collider2D collider)
 {
@@ -28,7 +27,9 @@ void OnTriggerExit2D(Collider2D collider)
 }
 ```
 
+:::info{.inline}  
 The parameters are optional if you are not using them.
+:::
 
 ---
 [I am still not getting a message.](3%20Trigger%20Matrix%202D.md)
