@@ -20,6 +20,10 @@ If we instead center the coordinate system on our island, this is an example of 
 
 There can be many different local spaces, it's a frame of reference aligned to anything. In Unity a Transform is a way to define a new local space. There's a local space relative to any object on our island, any tree, any bird, or rock has its own local space.
 
+:::hidden {#boat-img}
+![Boat](boat.svg)
+:::
+
 <canvas id="vectors-map__local--multi" width="500" height="500"></canvas>
 
 ### Positions

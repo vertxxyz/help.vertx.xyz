@@ -11,4 +11,4 @@ Triggers can be passed through. Trigger messages are sent when two bodies touch 
 ---
 
 - [I am not receiving a collision message.](2%20Collision%20Messages%202D.md)
-- [I am not receiving a trigger message.](2%20Trigger%20Messages%203D.md)
+- [I am not receiving a trigger message.](2%20Trigger%20Messages%202D.md)

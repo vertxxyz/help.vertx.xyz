@@ -11,7 +11,10 @@ import {
 } from "../behaviours.js";
 import {noise} from "../perlin.js"
 
+var boatImage;
+
 var reload = () => {
+    boatImage = document.getElementById('boat-img')?.querySelector('img');
     noise.seed(Math.random());
     redraw();
 }
@@ -84,6 +87,59 @@ function drawMap__localMulti(ctx, pos, canvas) {
     const cx = Math.cos(rot) * 225;
     const sy = Math.sin(rot) * 225;
 
+    ctx.translate(250 + cx, 250 + sy);
+    ctx.rotate(rot + Math.PI);
+
+    // boat
+    if (boatImage != null) {
+        const xScaled = cx * 0.05;
+        const yScaled = sy * 0.05;
+        if (!boatImage.complete) {
+            boatImage.addEventListener('load', e => {
+                ctx.drawImage(boatImage, -20, -20, 40, 40);
+            });
+        } else {
+            ctx.drawImage(boatImage, -20, -20, 40, 40);
+        }
+        let grd = ctx.createLinearGradient(0, -20, 0, 40);
+        grd.addColorStop(0, "#ffffff90");
+        grd.addColorStop(1, "#ffffff00");
+        ctx.fillStyle = grd;
+        
+        ctx.beginPath();
+        ctx.moveTo(0, -20);
+        ctx.lineTo(10, 0);
+        ctx.lineTo(12, 20);
+        ctx.lineTo(15 + noise.perlin2(xScaled, yScaled - 0.2) * 2, 40);
+        ctx.lineTo(0, noise.perlin2(xScaled, yScaled) * 5);
+        ctx.lineTo(-15 + noise.perlin2(xScaled, yScaled + 0.2) * 2, 40);
+        ctx.lineTo(-12, 20);
+        ctx.lineTo(-10, 0);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.resetTransform();
+        ctx.translate(250, 250);
+        grd = ctx.createRadialGradient(cx, sy, 0, cx, sy, 200);
+        grd.addColorStop(0, "#ffffff30");
+        grd.addColorStop(1, "#ffffff00");
+        ctx.strokeStyle = grd;
+        ctx.linewidth = 25;
+        ctx.beginPath();
+        ctx.moveTo(cx, sy);
+        for (let g = 0; g < 20; g++) {
+            const offset = g / 20.0;
+            const cx2 = Math.cos(rot - offset);
+            const sy2 = Math.sin(rot - offset);
+            let r = 225;
+            r += noise.perlin2(cx2, sy2) * 50 * (g / 20.0);
+            ctx.lineTo(cx2 * r, sy2 * r);
+        }
+        ctx.stroke();
+        ctx.linewidth = 1;
+    }
+
+    ctx.resetTransform();
     ctx.translate(250 + cx, 250 + sy);
     ctx.rotate(rot + Math.PI);
     // ctx.translate(0, 500);
@@ -181,7 +237,7 @@ function drawGrid(ctx, range) {
         const t = v.toString();
         const x = remap(v, 0, 10, 0, 500);
         const y = remap(v, 0, 10, 0, -500);
-        ctx.fillText(t, x - 4 + offset,  -5);
+        ctx.fillText(t, x - 4 + offset, -5);
         ctx.fillText(t, 5, y + 5 + offset);
     }
 }
