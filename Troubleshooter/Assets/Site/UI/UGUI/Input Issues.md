@@ -1,5 +1,5 @@
-## Input issues: UGUI
-Input in Unity UI (UGUI) requires multiple things to receive input events.  
+## Input issues: uGUI
+Input in Unity UI (uGUI) requires multiple things to receive input events.  
 :::warning
 Do not make assumptions. Double-checking these steps are met is always recommended.
 :::

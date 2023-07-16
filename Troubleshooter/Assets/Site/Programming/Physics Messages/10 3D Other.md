@@ -8,6 +8,7 @@ Don't mix different types of colliders and messages.
 ### The obvious
 1. Your script must be attached to one of the objects involved in the collision.
 1. The colliders on your objects must be enabled.
+1. Mesh colliders must have meshes assigned.
 1. Do not disable [`detectCollisions`](https://docs.unity3d.com/ScriptReference/Rigidbody-detectCollisions.html) for involved rigidbodies.
 1. Do not disable [`Physics.invokeCollisionCallbacks`](https://docs.unity3d.com/2023.2/Documentation/ScriptReference/Physics-invokeCollisionCallbacks.html) (unless solely handling events with [`Physics.ContactEvent`](https://docs.unity3d.com/2023.2/Documentation/ScriptReference/Physics.ContactEvent.html)).
 

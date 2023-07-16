@@ -6,6 +6,7 @@
 - [Serializing a field - Part 2](Serialization/Serializing%20A%20Field%202.md)
   - [Simple types](Serialization/Simple%20Types.md)
   - [Simple types in collections](Serialization/Simple%20Types%20in%20Simple%20Collections.md)
+  - [Serializing nested collections](Serialization/Nested%20Collections.md)
   - [Custom types](Serialization/Custom%20Types.md)
     - [Generic types](Serialization/Generic%20Types.md)
     - [Interfaces](Serialization/Interfaces.md)

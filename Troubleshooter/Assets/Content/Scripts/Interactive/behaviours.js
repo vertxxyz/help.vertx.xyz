@@ -20,14 +20,14 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 });
 
-function TouchHandler(target, begin, move, end) {
+function TouchHandler(target, begin, move, end, args) {
 	target.onmousedown = mouse_down;
 	target.ontouchstart = genericTouchHandler(mouse_down);
 
 	const move_handler = genericTouchHandler(mouse_move);
 
 	function mouse_down(e) {
-		let res = begin ? begin(e) : true;
+		let res = begin ? begin(e, args) : true;
 
 		if (res && e.preventDefault)
 			e.preventDefault();
@@ -46,7 +46,7 @@ function TouchHandler(target, begin, move, end) {
 	}
 
 	function mouse_move(e) {
-		return move ? move(e) : true;
+		return move ? move(e, args) : true;
 	}
 
 	function mouse_up(e) {
@@ -57,7 +57,7 @@ function TouchHandler(target, begin, move, end) {
 		window.removeEventListener("touchend", mouse_up, false);
 		window.removeEventListener("touchcancel", mouse_up, false);
 
-		return end ? end(e) : true;
+		return end ? end(e, args) : true;
 	}
 }
 

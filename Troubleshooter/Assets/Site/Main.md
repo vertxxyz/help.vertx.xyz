@@ -63,7 +63,7 @@
 - [Player or build-only issues](Player/Issues.md)
 
 ## UI
-- [Unity UI](UI/UGUI.md)
+- [Unity UI (uGUI)](UI/UGUI.md)
 - [UI Toolkit](UI/UI%20Toolkit.md) 
 - [TextMesh Pro](UI/TextMesh%20Pro.md)
 

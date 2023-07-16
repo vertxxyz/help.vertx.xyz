@@ -1,5 +1,6 @@
 const pageParameterKey = 'page';
-const contentsClass = '.contents';
+const contentsId = '#contents';
+const containerId = '#container';
 const main = 'main';
 let currentDirectory = "";
 let isLoading = false;
@@ -11,6 +12,19 @@ function resize() {
 
 window.addEventListener('resize', resize);
 window.addEventListener('load', resize);
+
+// - Scroll redirect
+whenReady(() => {
+    const container = document.querySelector(containerId);
+    const contents = document.querySelector(contentsId);
+    container?.addEventListener('wheel', function (e) {
+        contents?.scrollBy( {
+            left: e.deltaX,
+            top: e.deltaY,
+            behavior: 'smooth'
+        });
+    });
+})
 
 // -----------------
 
@@ -178,7 +192,7 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
     let url = value;
 
     whenReady( function () {
-        const contents = document.querySelector(contentsClass);
+        const contents = document.querySelector(contentsId);
         try {
             // Load the page
             load(contents,`/HTML/${valueToLoad}.html`, () => {
@@ -234,7 +248,7 @@ function load404() {
 
 function scrollToHash(hash) {
     if (hash === '') {
-        document.querySelector(contentsClass).scrollTo(0, 0);
+        document.querySelector(contentsId).scrollTo(0, 0);
         return;
     }
     const hashElement = document.getElementById(hash.substring(1));

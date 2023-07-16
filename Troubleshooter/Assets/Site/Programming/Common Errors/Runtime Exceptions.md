@@ -23,6 +23,7 @@
 - [A game object can only be in one layer. The layer needs to be in the range [0...31]](Runtime%20Errors/Undefined%20Layer.md)
 - ['X' AnimationEvent 'Y' on animation 'Z' has no receiver! Are you missing a component?](../../Animation/Animation%20Event/Receivers.md)
 - ['X' AnimationEvent has no function name specified!](../../Animation/Animation%20Event/Functions.md)
+- [BroadcastMessage X has no receiver!](Runtime%20Errors/BroadcastMessage.md)
 - [Destroying assets is not permitted to avoid data loss.](Runtime%20Errors/Destroying%20Assets.md)
 - [Coroutine couldn't be started because the the game object 'X' is inactive!](../Coroutines/Inactive%20Objects.md)
 - [Setting the parent of a transform which resides in a Prefab Asset is disabled to prevent data corruption.](Runtime%20Errors/Prefab%20Modifications_Parents.md)

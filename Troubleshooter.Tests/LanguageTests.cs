@@ -41,6 +41,7 @@ public partial class LanguageTests
 	}
 
 	private static readonly Regex s_UnityRegex = GetUnityRegex();
+	private static readonly Regex s_UGuiRegex = GetUGuiRegex();
 		
 	/// <summary>
 	/// Tests for common issues with capitalisation
@@ -56,9 +57,13 @@ public partial class LanguageTests
 		text.Should().NotContain("edit mode", StringComparison.Ordinal, "we should write \"Edit Mode\"");
 		text.Should().NotContain(".Net", StringComparison.Ordinal, "we should write \".NET\"");
 		text.Should().NotContain("assembly definition", StringComparison.Ordinal, "we should write \"Assembly Definition\"");
+		text.Should().NotMatchRegex(s_UGuiRegex, "we should write \"uGUI\"");
 		text.Should().NotMatchRegex(s_UnityRegex, "we should write \"Unity\"");
 	}
 
     [GeneratedRegex(@"\sunity[\s\.,]")]
     private static partial Regex GetUnityRegex();
+    
+    [GeneratedRegex(@"\sUGUI[\s\.,]")]
+    private static partial Regex GetUGuiRegex();
 }
