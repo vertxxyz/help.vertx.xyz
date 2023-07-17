@@ -12,7 +12,8 @@ Singletons are referenced in code and require **only one instance** of the targe
 
 ### GetComponent APIs
 Prefer serialized references for their speed and configurability. [`GetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html), [`TryGetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.TryGetComponent.html),
-[`GetComponentInChildren`](https://docs.unity3d.com/ScriptReference/Component.GetComponentInChildren.html), and other similar methods are perfect for dynamic runtime references, like those resolved during collisions and scene queries.
+[`GetComponentInChildren`](https://docs.unity3d.com/ScriptReference/Component.GetComponentInChildren.html), and other similar methods are perfect for dynamic runtime references, like those resolved during collisions and scene queries.  
+[Learn more.](References/GetComponent%20APIs.md)
 
 ### Find APIs
 Avoid the various find methods unless you are debugging or prototyping. These methods are often extremely slow, and even when used from `Awake` or `Start` can cause hitches during loading. Prefer [serialized references](References/Serialized%20References.md) or [singletons](References/Singletons.md).  

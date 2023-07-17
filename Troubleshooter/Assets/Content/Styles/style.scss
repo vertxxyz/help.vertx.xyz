@@ -301,9 +301,12 @@ abbr {
   text-decoration: none;
 }
 
+p + ul {
+  margin-bottom: 1em;
+}
+
 ul {
   padding-inline-start: 35px;
-  margin-bottom: 12px;
 }
 
 li {

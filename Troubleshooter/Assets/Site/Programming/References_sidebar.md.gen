@@ -6,6 +6,7 @@
     - [Prefabs referencing in-Scene Components](References/Prefabs%20Referencing%20Components.md)
     - [References to Prefab children](References/References%20To%20Prefab%20Children.md)
   - [Singletons](References/Singletons.md)
+  - [GetComponent APIs](References/GetComponent%20APIs.md)
   - [Dependency injection](References/Simple%20Dependency%20Injection.md)
 - [Valid references diagram](References/Valid%20References.md)
 - [Assignment issues](References/Assignment%20Issues.md)

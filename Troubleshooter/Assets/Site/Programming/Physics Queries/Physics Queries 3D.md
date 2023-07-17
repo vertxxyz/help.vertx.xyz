@@ -6,7 +6,7 @@ If you are calling a query like [`collider.Raycast(...`](https://docs.unity3d.co
 Make sure you understand this, or instead, use the static method [`Physics.Raycast`](https://docs.unity3d.com/ScriptReference/Physics.Raycast.html) that queries all the colliders in the scene.
 
 ### Issues with colliders
-- Raycasting requires [colliders](https://docs.unity3d.com/Manual/CollidersOverview.html) to work.  
+- Raycasting requires [colliders](https://docs.unity3d.com/Manual/CollidersOverview.html) to work. 2D colliders will not by hit by `Physics` queries.  
 You cannot query against raw meshes using `Physics` functions.
 
 - If you are using a Mesh Collider, be aware that changing the MeshFilter's mesh will not update the Mesh Collider.

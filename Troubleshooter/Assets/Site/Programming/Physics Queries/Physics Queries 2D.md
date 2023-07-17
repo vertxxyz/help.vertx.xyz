@@ -6,7 +6,7 @@ If you are calling a query like [`collider2D.Raycast(...`](https://docs.unity3d.
 Make sure you understand this, or instead, use the static method [`Physics2D.Raycast`](https://docs.unity3d.com/ScriptReference/Physics2D.Raycast.html) that queries all the colliders in the scene.
 
 ### Issues with colliders
-Raycasting requires [2D colliders](https://docs.unity3d.com/Manual/Collider2D.html) to work.  
+Raycasting requires [2D colliders](https://docs.unity3d.com/Manual/Collider2D.html) to work. 3D colliders will not by hit by `Physics2D` queries.  
 You cannot query against raw meshes or sprites using `Physics2D` functions.
 
 ### Correct use of ContactFilter2D

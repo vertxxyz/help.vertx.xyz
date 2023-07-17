@@ -18,11 +18,13 @@ whenReady(() => {
     const container = document.querySelector(containerId);
     const contents = document.querySelector(contentsId);
     container?.addEventListener('wheel', function (e) {
+        if(e.target !== container) return;
         contents?.scrollBy( {
             left: e.deltaX,
             top: e.deltaY,
-            behavior: 'smooth'
+            // behavior: 'smooth'
         });
+        e.stopPropagation();
     });
 })
 

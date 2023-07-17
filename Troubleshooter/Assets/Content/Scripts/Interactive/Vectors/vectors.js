@@ -11,11 +11,15 @@ import {
 } from "../behaviours.js";
 import {noise} from "../perlin.js"
 
-var boatImage;
+var boatImage, xImage;
+var xRot;
+const islandMin = 100, islandMax = 220, boatRadius = 225, islandNoiseSize = 0.75;
 
 var reload = () => {
     boatImage = document.getElementById('boat-img')?.querySelector('img');
+    xImage = document.getElementById('x-img')?.querySelector('img');
     noise.seed(Math.random());
+    xRot = Math.random() * Math.PI * 2;
     redraw();
 }
 
@@ -24,6 +28,8 @@ var redraw = () => {
     reloadCanvasByName('vectors-map__global', drawMap__global);
     reloadCanvasByName('vectors-map__local', drawMap__local);
     reloadCanvasByName('vectors-map__local--multi', drawMap__localMulti);
+    reloadCanvasByName('vectors-map__x--global', drawMap__xGlobal);
+    reloadCanvasByName('vectors-map__x--local', drawMap__xLocal);
 }
 
 function reloadCanvasByName(name, callback) {
@@ -60,6 +66,7 @@ function configureForGrid(ctx) {
 
 function drawMap(ctx, pos) {
     drawIsland(ctx);
+    drawX(ctx);
     drawOutline(ctx);
 }
 
@@ -79,69 +86,9 @@ function drawMap__local(ctx, pos) {
 
 function drawMap__localMulti(ctx, pos, canvas) {
     drawIsland(ctx);
+    const boat = drawBoat(ctx);
 
-    const time = new Date();
-    const rot = ((2 * Math.PI) / 60) * time.getSeconds() +
-        ((2 * Math.PI) / 60000) * time.getMilliseconds();
-
-    const cx = Math.cos(rot) * 225;
-    const sy = Math.sin(rot) * 225;
-
-    ctx.translate(250 + cx, 250 + sy);
-    ctx.rotate(rot + Math.PI);
-
-    // boat
-    if (boatImage != null) {
-        const xScaled = cx * 0.05;
-        const yScaled = sy * 0.05;
-        if (!boatImage.complete) {
-            boatImage.addEventListener('load', e => {
-                ctx.drawImage(boatImage, -20, -20, 40, 40);
-            });
-        } else {
-            ctx.drawImage(boatImage, -20, -20, 40, 40);
-        }
-        let grd = ctx.createLinearGradient(0, -20, 0, 40);
-        grd.addColorStop(0, "#ffffff90");
-        grd.addColorStop(1, "#ffffff00");
-        ctx.fillStyle = grd;
-        
-        ctx.beginPath();
-        ctx.moveTo(0, -20);
-        ctx.lineTo(10, 0);
-        ctx.lineTo(12, 20);
-        ctx.lineTo(15 + noise.perlin2(xScaled, yScaled - 0.2) * 2, 40);
-        ctx.lineTo(0, noise.perlin2(xScaled, yScaled) * 5);
-        ctx.lineTo(-15 + noise.perlin2(xScaled, yScaled + 0.2) * 2, 40);
-        ctx.lineTo(-12, 20);
-        ctx.lineTo(-10, 0);
-        ctx.closePath();
-        ctx.fill();
-
-        ctx.resetTransform();
-        ctx.translate(250, 250);
-        grd = ctx.createRadialGradient(cx, sy, 0, cx, sy, 200);
-        grd.addColorStop(0, "#ffffff30");
-        grd.addColorStop(1, "#ffffff00");
-        ctx.strokeStyle = grd;
-        ctx.linewidth = 25;
-        ctx.beginPath();
-        ctx.moveTo(cx, sy);
-        for (let g = 0; g < 20; g++) {
-            const offset = g / 20.0;
-            const cx2 = Math.cos(rot - offset);
-            const sy2 = Math.sin(rot - offset);
-            let r = 225;
-            r += noise.perlin2(cx2, sy2) * 50 * (g / 20.0);
-            ctx.lineTo(cx2 * r, sy2 * r);
-        }
-        ctx.stroke();
-        ctx.linewidth = 1;
-    }
-
-    ctx.resetTransform();
-    ctx.translate(250 + cx, 250 + sy);
-    ctx.rotate(rot + Math.PI);
+    ctx.setTransform(boat.transform);
     // ctx.translate(0, 500);
     drawGrid(ctx, {min: -10, max: 12});
     ctx.resetTransform();
@@ -153,17 +100,58 @@ function drawMap__localMulti(ctx, pos, canvas) {
     });
 }
 
+function drawMap__xGlobal(ctx, pos) {
+    drawIsland(ctx);
+    const xPos = drawX(ctx);
+    
+    ctx.translate(0, 500);
+    const transform = ctx.getTransform();
+    const range = {min: 0, max: 10};
+    drawGrid(ctx, range);
+
+    const transformedPoint = transform.transformPoint(new DOMPoint(xPos.x, -xPos.y));
+    const x = remap(transformedPoint.x, 0, 500, 0, 10);
+    const y = remap(transformedPoint.y, 0, 500, 0, 10);
+    
+    ctx.resetTransform();
+    drawTextPosition2D(ctx, xPos, x, y);
+}
+
+function drawMap__xLocal(ctx, pos, canvas) {
+    drawIsland(ctx);
+    const xPos = drawX(ctx);
+    const boat = drawBoat(ctx);
+
+    const range = {min: -10, max: 12};
+    ctx.setTransform(boat.transform);
+    drawGrid(ctx, range);
+    
+    const invertedMatrix = boat.transform;
+    invertedMatrix.invertSelf();
+    const transformedPoint = invertedMatrix.transformPoint(new DOMPoint(xPos.x, xPos.y));
+    const x = remap(transformedPoint.x, 0, 500, 0, 10);
+    const y = remap(transformedPoint.y, 0, -500, 0, 10);
+    
+    ctx.resetTransform();
+    drawTextPosition2D(ctx, xPos, x, y);
+
+    window.requestAnimationFrame(() => {
+        clearAndRedraw(ctx, canvas, () => {
+            drawMap__xLocal(ctx, pos, canvas);
+        })
+    });
+}
+
 function drawIsland(ctx) {
     configureForIsland(ctx);
     ctx.beginPath();
     let start = false;
-    const noiseSize = 0.75;
     for (let i = 0; i < 1024; i++) {
         const v = i / 1023.0;
         const a = Math.PI * 2 * v;
         const cx = Math.cos(a);
         const sy = Math.sin(a);
-        const amplitude = lerp(100, 220, noise.perlin2(cx * noiseSize, sy * noiseSize));
+        const amplitude = lerp(islandMin, islandMax, noise.perlin2(cx * islandNoiseSize, sy * islandNoiseSize));
         const x = cx * amplitude;
         const y = sy * amplitude;
         if (!start) {
@@ -180,6 +168,7 @@ function drawIsland(ctx) {
 
 function drawOutline(ctx) {
     configureForGrid(ctx);
+    ctx.beginPath();
     ctx.moveTo(0, 0);
     ctx.lineTo(0, 500);
     ctx.lineTo(500, 500);
@@ -240,6 +229,104 @@ function drawGrid(ctx, range) {
         ctx.fillText(t, x - 4 + offset, -5);
         ctx.fillText(t, 5, y + 5 + offset);
     }
+}
+
+function drawBoat(ctx) {
+    const time = new Date();
+    const rot = ((2 * Math.PI) / 60) * time.getSeconds() +
+        ((2 * Math.PI) / 60000) * time.getMilliseconds();
+
+    const cx = Math.cos(rot) * boatRadius;
+    const sy = Math.sin(rot) * boatRadius;
+
+    ctx.translate(250 + cx, 250 + sy);
+    ctx.rotate(rot + Math.PI);
+
+    const t = ctx.getTransform();
+
+    // boat
+    if (boatImage != null) {
+        const xScaled = cx * 0.05;
+        const yScaled = sy * 0.05;
+        if (!boatImage.complete) {
+            boatImage.addEventListener('load', e => {
+                ctx.drawImage(boatImage, -20, -20, 40, 40);
+            });
+        } else
+            ctx.drawImage(boatImage, -20, -20, 40, 40);
+
+        // wake
+        let grd = ctx.createLinearGradient(0, -20, 0, 40);
+        grd.addColorStop(0, "#ffffff90");
+        grd.addColorStop(1, "#ffffff00");
+        ctx.fillStyle = grd;
+        ctx.beginPath();
+        ctx.moveTo(0, -20);
+        ctx.lineTo(10, 0);
+        ctx.lineTo(12, 20);
+        ctx.lineTo(15 + noise.perlin2(xScaled, yScaled - 0.2) * 2, 40);
+        ctx.lineTo(0, noise.perlin2(xScaled, yScaled) * 5);
+        ctx.lineTo(-15 + noise.perlin2(xScaled, yScaled + 0.2) * 2, 40);
+        ctx.lineTo(-12, 20);
+        ctx.lineTo(-10, 0);
+        ctx.closePath();
+        ctx.fill();
+
+        // trail
+        ctx.resetTransform();
+        ctx.translate(250, 250);
+        grd = ctx.createRadialGradient(cx, sy, 0, cx, sy, 200);
+        grd.addColorStop(0, "#ffffff30");
+        grd.addColorStop(1, "#ffffff00");
+        ctx.strokeStyle = grd;
+        ctx.linewidth = 25;
+        ctx.beginPath();
+        ctx.moveTo(cx, sy);
+        for (let g = 0; g < 20; g++) {
+            const offset = g / 20.0;
+            const cx2 = Math.cos(rot - offset);
+            const sy2 = Math.sin(rot - offset);
+            let r = boatRadius;
+            r += noise.perlin2(cx2, sy2) * 50 * (g / 20.0);
+            ctx.lineTo(cx2 * r, sy2 * r);
+        }
+        ctx.stroke();
+        ctx.linewidth = 1;
+    }
+    return {x: cx, y: sy, rot: rot, transform: t};
+}
+
+function drawX(ctx) {
+    if (xImage == null) return;
+
+    const cx = Math.cos(xRot);
+    const sy = Math.sin(xRot);
+    const amplitude = lerp(islandMin, islandMax, noise.perlin2(cx * islandNoiseSize, sy * islandNoiseSize)) * 0.8;
+    const x = cx * amplitude;
+    const y = sy * amplitude;
+
+    if (!xImage.complete) {
+        xImage.addEventListener('load', e => {
+            ctx.drawImage(xImage, 250 + x - 20, 250 + y - 20, 40, 40);
+        });
+    } else {
+        ctx.drawImage(xImage, 250 + x - 20, 250 + y - 20, 40, 40);
+    }
+    return {x: 250 + x, y: 250 + y};
+}
+
+function drawTextPosition2D(ctx, pos, x, y, drawCircle) {
+    if (pos == null) return;
+
+    if (drawCircle) {
+        ctx.beginPath();
+        ctx.fillStyle = "#fff";
+        addPoints(ctx, circlePoints(30, pos.x, pos.y, 5));
+        ctx.fill();
+    }
+    
+    ctx.fillStyle = "#fff";
+    ctx.fillText(`(${x.toFixed(2)}, ${y.toFixed(2)})`, pos.x + 15, pos.y + 5);
 }
 
 function touchEvent(e, args) {
