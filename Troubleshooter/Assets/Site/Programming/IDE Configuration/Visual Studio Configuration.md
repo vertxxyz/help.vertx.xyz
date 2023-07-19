@@ -34,5 +34,12 @@ Follow the [configuration instructions](https://docs.microsoft.com/en-us/visuals
 Follow all of the instructions listed on [this page](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity).  
 ::::
 
----  
-Ensure the [Visual Studio Editor](https://docs.unity3d.com/Manual/com.unity.ide.visualstudio.html) package is installed and updated in UPM (`com.unity.ide.visualstudio`).  
+### Further steps if you still have issues
+
+- Ensure the [Visual Studio Editor](https://docs.unity3d.com/Manual/com.unity.ide.visualstudio.html) package is installed and updated in UPM (`com.unity.ide.visualstudio`).
+- Regenerate project files via Unity.
+  1. Close VS.
+  1. Select **regenerate project files** in **Edit | Preferences | External Tools**.
+  1. Reopen VS via **Assets/Open C# Project**.
+- Regenerate project files via VS.
+  1. If an assembly in the Solution Explorer is marked as **(incompatible)**, right-click it and select **reload with dependencies**.

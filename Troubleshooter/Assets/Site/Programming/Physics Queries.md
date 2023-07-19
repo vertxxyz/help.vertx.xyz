@@ -10,7 +10,7 @@ Don't put breakpoints or logs **after** or **inside** other code when testing a 
 :::note
 #### My query is not hitting an object
 - [I am using a layer mask to filter my query.](Physics%20Queries/Layer%20Masks.md)
-- [I am not using a layer mask.](Physics%20Queries/2D%20Or%203D.md)
+- [I am not using a layer mask.](Physics%20Queries/Ignore%20Raycast.md)
 
 :::  
 :::note

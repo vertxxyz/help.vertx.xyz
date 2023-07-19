@@ -19,4 +19,5 @@ You can apply similar techniques to understand the relationships between any que
 See [draw functions](../Debugging/Draw%20Functions.md) for more information and extended options when doing complex visual debugging.
 
 ---
-If you find an unlisted resolution please <<report-issue.html>> so this page can be improved.
+
+[I am still having problems with my query.](Errors.md)

@@ -13,3 +13,7 @@ See **Edit | Project Settings | Physics 2D**, and the **Layer Collision Matrix**
 See [Layer-based collision detection](https://docs.unity3d.com/Manual/LayerBasedCollision.html) for more information.  
 
 Make sure the layers of your two objects are interacting in this matrix.
+
+---
+
+[My rigidbody is still tunnelling through walls.](Colliders.md)
