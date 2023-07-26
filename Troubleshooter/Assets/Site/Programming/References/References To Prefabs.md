@@ -7,15 +7,15 @@
 You can only reference components on the root (the top-level GameObject) of a prefab.  
 See [references to prefab children](References%20To%20Prefab%20Children.md) if you want to reference prefab sub-objects.
 
-:::info  
-This example uses `PrefabComponentType`, it will need to be replaced with the root component's type.  
-:::  
-
 ### Implementation
 
 ::::note
 #### 1. Add or choose a root component on your prefab
 On the top-level GameObject of your prefab asset, [add](https://docs.unity3d.com/Manual/UsingComponents.html) or choose a component that you want to reference.  
+:::error{.inline}  
+This example uses `PrefabComponentType`, it will need to be replaced with the root component type you chose.  
+:::  
+
 Your spawner will clone the whole prefab and you will end up with a reference to the copy of the root component.
 
 ::::
@@ -29,7 +29,7 @@ The field must be marked with [`SerializeField`](https://docs.unity3d.com/Script
 
 **or** can be `public`:  
 ```csharp
-public PrefabComponentType _prefab;
+public PrefabComponentType Prefab;
 ```
 ::::
 
@@ -52,7 +52,7 @@ Create a variable for your new instance, and assign it the result of calling [`I
 // A reference to our in-Scene clone of the prefab.
 private PrefabComponentType _instance;
 
-void Start()
+void Spawn()
 {
     // Clone the prefab and assign it to our variable.
     _instance = Instantiate(_prefab);

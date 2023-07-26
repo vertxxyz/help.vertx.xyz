@@ -37,7 +37,6 @@ Using a [`Plane`](https://docs.unity3d.com/ScriptReference/Plane.html) and [`Scr
 Using a [`Raycast`](https://docs.unity3d.com/ScriptReference/Physics.Raycast.html) and [`ScreenPointToRay`](https://docs.unity3d.com/ScriptReference/Camera.ScreenPointToRay.html) avoids having to calculate an appropriate distance from the camera. When the result is meant to be on the surface of colliders, this is the correct approach.
 
 ```csharp
-Plane plane = new Plane(Vector3.up, Vector3.zero); // Provide your own plane
 Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 if (Physics.Raycast(ray, out RaycastHit hit))
 {

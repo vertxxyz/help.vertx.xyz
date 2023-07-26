@@ -16,14 +16,14 @@ button {
   align-items: center;
   margin: 1em;
 
-  :last-child {
+  > :last-child {
     margin-bottom: 0;
   }
 }
 
 .interactive-button {
   position: relative;
-  border: 1px solid #aaaaaa;
+  border: 1px solid transparent;
   border-radius: 8px;
   font-family: 'JetBrains Mono Bold', monospace;
   font-size: 16px;
@@ -34,14 +34,12 @@ button {
   text-align: center;
   color: white;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   > p {
     margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
     user-select: none;
     user-focus: none;
   }

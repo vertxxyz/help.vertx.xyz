@@ -38,6 +38,7 @@ public partial class LanguageTests
 		text.Should().NotContain("i.e.", StringComparison.OrdinalIgnoreCase, "we should use \"that is\", or \"such as\"");
 		text.Should().NotContain("double check", StringComparison.OrdinalIgnoreCase, "we should use \"double-check\"");
 		text.Should().NotContain("text mesh pro", StringComparison.OrdinalIgnoreCase, "we should use \"TextMesh Pro\"");
+		text.Should().NotContain("project view", StringComparison.OrdinalIgnoreCase, "we should use \"Project window\"");
 	}
 
 	private static readonly Regex s_UnityRegex = GetUnityRegex();
@@ -53,6 +54,7 @@ public partial class LanguageTests
 		using var assertionScope = new AssertionScope(name);
 		text.Should().NotContain("Game View", StringComparison.Ordinal, "we should write \"Game view\"");
 		text.Should().NotContain("Scene View", StringComparison.Ordinal, "we should write \"Scene view\"");
+		text.Should().NotContain("Project Window", StringComparison.Ordinal, "we should write \"Project window\"");
 		text.Should().NotContain("play mode", StringComparison.Ordinal, "we should write \"Play Mode\"");
 		text.Should().NotContain("edit mode", StringComparison.Ordinal, "we should write \"Edit Mode\"");
 		text.Should().NotContain(".Net", StringComparison.Ordinal, "we should write \".NET\"");

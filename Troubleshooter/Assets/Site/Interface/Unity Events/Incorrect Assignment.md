@@ -1,9 +1,18 @@
 ## Incorrect assignment to UnityEvents
 
-Events should have an appropriate **Component instance** assigned to their object field. If you are seeing MonoScript you have assigned a Script Asset from the Project window.
+Events should have an appropriate **Component instance** assigned to their object field.  
+
+If you are seeing `MonoScript` you have assigned a Script asset from the Project window.  
+If you aren't seeing your type, then it may not be attached to the assigned object.
 
 ### Resolution
-Assign a Component to the field. Add the target script to a GameObject before dragging it or the GameObject it is attached to into the field. See [Adding Components](https://docs.unity3d.com/Manual/UsingComponents.html) for more information.  
-The object assigned to the field must be, or attached to, the GameObject with the target Component.  
+The target component must be assigned to the field, or it must be attached to the gameobject that is.
+
+1. [Add the target component](https://docs.unity3d.com/Manual/UsingComponents.html) to a gameobject.  
+1. Drag the gameobject into the UnityEvent's object field.
 
 <video width="750" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/Video/unity-event-references.webm"></video>
+
+---
+
+[The component still does not appear in the functions list.](Compiler%20Errors.md)

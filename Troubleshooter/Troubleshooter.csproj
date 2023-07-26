@@ -19,9 +19,9 @@
 
     <ItemGroup>
         <PackageReference Include="DartSassHost" Version="1.0.4"/>
-        <PackageReference Include="HtmlAgilityPack" Version="1.11.46"/>
+        <PackageReference Include="HtmlAgilityPack" Version="1.11.50" />
         <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.21.3"/>
-        <PackageReference Include="JetBrains.Annotations" Version="2023.2.0-eap3"/>
+        <PackageReference Include="JetBrains.Annotations" Version="2023.2.0" />
         <PackageReference Include="Markdig" Version="0.31.0"/>
         <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.4.2"/>
         <PackageReference Include="NUglify" Version="1.20.7"/>
@@ -37,6 +37,8 @@
     <ItemGroup>
         <Content Remove="Source\prism.js" />
         <EmbeddedResource LogicalName="Prism" Include="Source\prism.js"/>
+        <Content Remove="Source\katex-min.js" />
+        <EmbeddedResource LogicalName="Katex" Include="Source\katex-min.js" />
     </ItemGroup>
 
 </Project>

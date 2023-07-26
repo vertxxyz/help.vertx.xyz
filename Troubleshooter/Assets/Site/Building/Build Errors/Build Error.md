@@ -22,3 +22,7 @@ These are errors
 :::warning
 These are warnings
 :::
+
+---
+
+[Return to build errors.](../Build%20Errors.md)

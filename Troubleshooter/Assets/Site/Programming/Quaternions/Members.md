@@ -21,3 +21,7 @@ If you can't work with this, consider either:
 
 
 :::
+
+---
+
+See [Quaternion overview](../../Info/Quaternions.md) for more information.

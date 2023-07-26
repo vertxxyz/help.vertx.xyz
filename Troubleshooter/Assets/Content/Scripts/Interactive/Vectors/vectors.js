@@ -15,6 +15,27 @@ var boatImage, xImage;
 var xRot;
 const islandMin = 100, islandMax = 220, boatRadius = 225, islandNoiseSize = 0.75;
 
+const arrow = function (ctx, x0, y0, x1, y1, w, arrw, arrh) {
+    let dx = x1 - x0;
+    let dy = y1 - y0;
+
+    let l = 1.0 / Math.sqrt(dx * dx + dy * dy);
+    dx *= l;
+    dy *= l;
+
+    ctx.beginPath();
+    ctx.moveTo(x0 - dy * w / 2, y0 + dx * w / 2);
+    ctx.lineTo(x1 - dy * w / 2 - dx * arrh, y1 + dx * w / 2 - dy * arrh);
+    ctx.lineTo(x1 - dy * arrw / 2 - dx * arrh, y1 + dx * arrw / 2 - dy * arrh);
+    ctx.lineTo(x1, y1);
+    ctx.lineTo(x1 + dy * arrw / 2 - dx * arrh, y1 - dx * arrw / 2 - dy * arrh);
+    ctx.lineTo(x1 + dy * w / 2 - dx * arrh, y1 - dx * w / 2 - dy * arrh);
+    ctx.lineTo(x0 + dy * w / 2, y0 - dx * w / 2);
+
+    ctx.closePath();
+    return this;
+}
+
 var reload = () => {
     boatImage = document.getElementById('boat-img')?.querySelector('img');
     xImage = document.getElementById('x-img')?.querySelector('img');
@@ -30,6 +51,7 @@ var redraw = () => {
     reloadCanvasByName('vectors-map__local--multi', drawMap__localMulti);
     reloadCanvasByName('vectors-map__x--global', drawMap__xGlobal);
     reloadCanvasByName('vectors-map__x--local', drawMap__xLocal);
+    reloadCanvasByName('vectors-map__positions', drawMap__positions);
 }
 
 function reloadCanvasByName(name, callback) {
@@ -41,7 +63,7 @@ function reloadCanvasByName(name, callback) {
         ctx: swp_ctx,
         canvas: swp_canvas,
         callback: (args, pos) => {
-            clearAndRedraw(args.ctx, args.canvas, () => callback(args.ctx, pos))
+            clearAndRedraw(args.ctx, args.canvas, () => callback(args.ctx, pos, args.canvas))
         }
     });
 
@@ -53,7 +75,7 @@ reload();
 
 function configureForIsland(ctx) {
     ctx.lineWidth = 3;
-    ctx.strokeStyle = "#af2";
+    ctx.strokeStyle = "#6c7e2a";
     ctx.fillStyle = "#4d7216";
 }
 
@@ -103,7 +125,7 @@ function drawMap__localMulti(ctx, pos, canvas) {
 function drawMap__xGlobal(ctx, pos) {
     drawIsland(ctx);
     const xPos = drawX(ctx);
-    
+
     ctx.translate(0, 500);
     const transform = ctx.getTransform();
     const range = {min: 0, max: 10};
@@ -112,7 +134,7 @@ function drawMap__xGlobal(ctx, pos) {
     const transformedPoint = transform.transformPoint(new DOMPoint(xPos.x, -xPos.y));
     const x = remap(transformedPoint.x, 0, 500, 0, 10);
     const y = remap(transformedPoint.y, 0, 500, 0, 10);
-    
+
     ctx.resetTransform();
     drawTextPosition2D(ctx, xPos, x, y);
 }
@@ -125,19 +147,67 @@ function drawMap__xLocal(ctx, pos, canvas) {
     const range = {min: -10, max: 12};
     ctx.setTransform(boat.transform);
     drawGrid(ctx, range);
-    
+
     const invertedMatrix = boat.transform;
     invertedMatrix.invertSelf();
     const transformedPoint = invertedMatrix.transformPoint(new DOMPoint(xPos.x, xPos.y));
     const x = remap(transformedPoint.x, 0, 500, 0, 10);
     const y = remap(transformedPoint.y, 0, -500, 0, 10);
-    
+
     ctx.resetTransform();
     drawTextPosition2D(ctx, xPos, x, y);
 
     window.requestAnimationFrame(() => {
         clearAndRedraw(ctx, canvas, () => {
             drawMap__xLocal(ctx, pos, canvas);
+        })
+    });
+}
+
+function drawMap__positions(ctx, pos, canvas) {
+    drawIsland(ctx);
+    const xPos = drawX(ctx);
+    const boat = drawBoat(ctx);
+
+    const local = false;
+    const fromOrigin = false;
+    let range;
+    if (fromOrigin) {
+        ctx.translate(0, 500);
+        range = {min: 0, max: 10};
+    } else {
+        if (local) {
+            range = {min: -10, max: 12};
+            ctx.setTransform(boat.transform);
+        } else {
+            ctx.translate(boat.x, boat.y);
+            range = {min: -12, max: 12};
+        }
+    }
+    drawGrid(ctx, range);
+
+    const invertedMatrix = boat.transform;
+    invertedMatrix.invertSelf();
+    const transformedPoint = invertedMatrix.transformPoint(new DOMPoint(xPos.x, xPos.y));
+    const x = remap(transformedPoint.x, 0, 500, 0, 10);
+    const y = remap(transformedPoint.y, 0, -500, 0, 10);
+
+    ctx.resetTransform();
+    // drawTextPosition2D(ctx, xPos, x, y);
+
+    ctx.fillStyle = "#C191FF";
+    ctx.strokeStyle = "#ED94C0";
+    ctx.linewidth = 1;
+    if (fromOrigin)
+        arrow(ctx, 0, 500, xPos.x, xPos.y, 10, 25, 30);
+    else
+        arrow(ctx, 250 + boat.x, 250 + boat.y, xPos.x, xPos.y, 10, 25, 30);
+    ctx.stroke();
+    ctx.fill();
+
+    window.requestAnimationFrame(() => {
+        clearAndRedraw(ctx, canvas, () => {
+            drawMap__positions(ctx, pos, canvas);
         })
     });
 }
@@ -196,7 +266,7 @@ function drawGrid(ctx, range) {
                 ctx.stroke();
                 ctx.beginPath();
             }
-            ctx.strokeStyle = "#00ff005f";
+            ctx.strokeStyle = "#a9fd00";
             ctx.moveTo(x, minY);
             ctx.lineTo(x, maxY);
             ctx.stroke();
@@ -207,7 +277,7 @@ function drawGrid(ctx, range) {
         }
         const y = remap(v, 0, 10, -1, -500);
         if (isCenter) {
-            ctx.strokeStyle = "#ff00005f";
+            ctx.strokeStyle = "#fd003b";
             ctx.beginPath();
             ctx.moveTo(minX, y);
             ctx.lineTo(maxX, y);
@@ -324,7 +394,7 @@ function drawTextPosition2D(ctx, pos, x, y, drawCircle) {
         addPoints(ctx, circlePoints(30, pos.x, pos.y, 5));
         ctx.fill();
     }
-    
+
     ctx.fillStyle = "#fff";
     ctx.fillText(`(${x.toFixed(2)}, ${y.toFixed(2)})`, pos.x + 15, pos.y + 5);
 }

@@ -6,7 +6,7 @@ By instead using [`AddForce`](https://docs.unity3d.com/ScriptReference/Rigidbody
 These methods should generally be called from [`FixedUpdate`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html).  
 
 ### Creating rigidbody character controllers
-If you are confused as to how to write a character controller that uses a Rigidbody2D, watch a tutorial or purchase a pre-made controller.
+If you are confused as to how to write a character controller that uses a `Rigidbody2D`, watch a tutorial or purchase a pre-made controller.
 
 #### Physics-based controllers
 Physics-based controllers will use forces to move a body through the scene, meaning they are fairly easy to create but can respond to forces in ways that may not be desirable. This can include incorrect slope handling, poor control on bumpy surfaces, unexpected responses to external forces, and so on.

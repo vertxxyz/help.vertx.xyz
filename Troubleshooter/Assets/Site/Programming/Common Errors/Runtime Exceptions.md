@@ -38,7 +38,7 @@
 - [Entities errors.](../../DOTS/Entities/Common%20Errors.md)
  
 #### Editor
-These errors occur outside of Play mode:  
+These errors may occur outside of Play mode:  
 :::code-block--no-background
 
 - [Serialization depth limit exceeded at 'X'. There may be an object composition cycle in one or more of your serialized classes.](Runtime%20Errors/Serialization%20Depth%20Limit.md)

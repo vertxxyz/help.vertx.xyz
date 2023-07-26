@@ -54,6 +54,7 @@
 - [Coroutines](Programming/Coroutines.md)
 - [Async/await](Programming/Async.md)
 - [Parsing input strings](Programming/Specifics/Parsing.md)
+- [Player movement](Programming/Player%20Movement.md)
 
 ## Data-Oriented Technology Stack (DOTS)
 - [Entities, Job System, Burst, native collections](DOTS.md)

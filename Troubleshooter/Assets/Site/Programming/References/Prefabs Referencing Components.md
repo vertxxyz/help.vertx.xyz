@@ -96,6 +96,14 @@ You can choose to set members directly, or customise your `Initialise` method to
 #### Awake
 `Awake` is called as soon as an object is created; in this case, don't attempt to use the references in `Awake` as they haven't been assigned by the spawner.
 
+#### Assigning references without manually instantiating prefabs
+If your prefab is being spawned outside of your control, you can delegate the target component assignment to a [singleton](Singletons.md).
+1. [Reference the target component](Serializing%20Component%20References.md) from your singleton.
+1. In [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) on a component in your prefab, register the instance ([`this`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/this)) to your singleton.
+1. Create members on your prefab component to pass your target component to.
+1. Assign the target component to your instance from the singleton's register method.
+
+
 ---
 
 If you are confused by any individual steps, click through the links in the resolution to see detailed examples.

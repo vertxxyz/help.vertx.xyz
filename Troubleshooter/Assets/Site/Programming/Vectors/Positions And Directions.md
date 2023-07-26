@@ -18,7 +18,7 @@ If we instead center the coordinate system on our island, this is an example of 
 
 <canvas id="vectors-map__local" width="500" height="500"></canvas>
 
-There can be many different local spaces, it's a frame of reference aligned to anything. In Unity a Transform is a way to define a new local space. There's a local space relative to any object on our island, any tree, bird, rock, or boat has its own local space.
+There can be many different local spaces, it's a frame of reference aligned to anything. In Unity a [transform](https://docs.unity3d.com/Manual/class-Transform.html) is a way to define a new local space. There's a local space relative to any object on our island, any tree, bird, rock, or boat has its own local space.
 
 ::::hidden
 :::{#boat-img}
@@ -51,5 +51,32 @@ Think of directions as an arrow, a direction can have a magnitude (a length), or
 A normalised direction has a magnitude of 1, and can be simply multiplied with a value to be scaled to that length.  
 
 A position is just a direction from the origin of its frame of reference.
+
+:::::{.interactive-content}  
+<canvas id="vectors-map__positions" width="500" height="500"></canvas>
+:::: {.control-root}
+::: {#vectors-map__positions--toggle-space-button .interactive-button}  
+Global space  
+:::  
+::: {#vectors-map__positions--toggle-origin-button .interactive-button}  
+From origin  
+:::  
+::::  
+:::::  
+
+```csharp
+// World-space position of the treasure is the same as its direction from the origin.
+Vector3 direction = treasurePosition;
+```
+
+```csharp
+// Subtracting the world-space position of the boat from the treasure gives you the world-space direction.
+Vector3 direction = treasurePosition - boatTransform.position;
+```
+
+```csharp
+// InverseTransformDirection converts a world-space direction to a local one. 
+Vector3 direction = boatTransform.InverseTransformDirection(treasurePosition);
+```
 
 🚧 Under Construction 🚧

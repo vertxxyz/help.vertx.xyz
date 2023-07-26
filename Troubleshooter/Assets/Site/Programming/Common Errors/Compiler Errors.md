@@ -27,3 +27,10 @@
 - [CS8641](Compiler%20Errors/CS8641.md): 'else' cannot start a statement
 
 :::
+
+### Unnamed compiler errors
+
+:::code-block--no-background
+- [Assembly with name 'X' already exists (.../X.asmdef)](Compiler%20Errors/Duplicated%20Assemblies.md)
+
+:::

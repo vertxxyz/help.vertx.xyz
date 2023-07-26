@@ -1,7 +1,7 @@
 ## Trigger messages (3D)
 
-Ensure your functions are exactly as below.  
-Types, spelling, and capitalisation matter. The variable `collider` can be renamed, and [access modifiers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers) are not important.
+Ensure your functions use the correct **types**, **spelling**, and **capitalisation** as below.  
+The variable `collision` can be renamed, and [access modifiers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers) are not important. The parameters are optional if you are not using them.
 
 ### [`OnTriggerEnter`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter.html)
 ```csharp
@@ -26,10 +26,6 @@ void OnTriggerExit(Collider collider)
     // Your behaviour here
 }
 ```
-
-:::info{.inline}  
-The parameters are optional if you are not using them.
-:::
 
 ---
 [I am still not getting a message.](3%20Trigger%20Matrix%203D.md)

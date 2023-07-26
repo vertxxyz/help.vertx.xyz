@@ -149,7 +149,7 @@ Any content in the hierarchy of a [scene](https://docs.unity3d.com/Manual/Creati
 #### Project assets
 Any content in the [project](https://docs.unity3d.com/Manual/ProjectView.html). This is any asset in the Assets or Project Settings directories.
 #### Package assets
-Any content in a [package](https://docs.unity3d.com/Manual/PackagesList.html). These are assets that appear in the Packages directory in the [project view](https://docs.unity3d.com/Manual/ProjectView.html). Assets from Unity's Asset Store may use the Package Manager but are not installed as packages.
+Any content in a [package](https://docs.unity3d.com/Manual/PackagesList.html). These are assets that appear in the Packages directory in the [Project window](https://docs.unity3d.com/Manual/ProjectView.html). Assets from Unity's Asset Store may use the Package Manager but are not installed as packages.
 #### Prefab assets
 GameObjects in the project packages. Prefab instances in scenes refer to prefab assets, but are not assets themselves.
 #### Prefab asset children

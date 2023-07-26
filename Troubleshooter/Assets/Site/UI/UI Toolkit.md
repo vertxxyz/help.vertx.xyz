@@ -6,12 +6,15 @@ The UI Toolkit Events Debugger can help debug issues with element interactions.
 
 - [Members return `NaN` or `null`.](UI%20Toolkit/Resolved%20Style.md)
 
-### Input
-- [Input issues](UI%20Toolkit/Input%20Issues.md)
-
 ### Text
 - [I cannot assign a TMP FontAsset to a Label.](UI%20Toolkit/Font%20Asset.md)
 - [The `<link>` or `<a href>` tags do not work.](UI%20Toolkit/Links.md)
+
+### Styling
+- [A transition is instantaneously applied.](UI%20Toolkit/Styles/Transitions.md)
+
+### Input
+- [Input issues.](UI%20Toolkit/Input%20Issues.md)
 
 ### Editor
 - [Issues with PropertyDrawers.](../Programming/Editor%20Issues/Property%20Drawers/UI%20Toolkit%20PropertyDrawer.md)
