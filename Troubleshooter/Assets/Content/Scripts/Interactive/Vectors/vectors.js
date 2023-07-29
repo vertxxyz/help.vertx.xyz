@@ -15,6 +15,14 @@ var boatImage, xImage;
 var xRot;
 const islandMin = 100, islandMax = 220, boatRadius = 225, islandNoiseSize = 0.75;
 
+// Positions state
+var positionsCode = {};
+var toggleSpaceButton, toggleOriginButton;
+var positionsState = {
+    worldSpace: true,
+    fromOrigin: true
+};
+
 const arrow = function (ctx, x0, y0, x1, y1, w, arrw, arrh) {
     let dx = x1 - x0;
     let dy = y1 - y0;
@@ -41,6 +49,23 @@ var reload = () => {
     xImage = document.getElementById('x-img')?.querySelector('img');
     noise.seed(Math.random());
     xRot = Math.random() * Math.PI * 2;
+
+    positionsCode.originWorldSpace = document.querySelector(".vectors-code__positions--origin-world_space");
+    positionsCode.originLocalSpace = document.querySelector(".vectors-code__positions--origin-local_space");
+    positionsCode.boatLocalSpace = document.querySelector(".vectors-code__positions--boat-local_space");
+    positionsCode.boatWorldSpace = document.querySelector(".vectors-code__positions--boat-world_space");
+    toggleSpaceButton = document.getElementById("vectors-map__positions--toggle-space-button")
+    toggleOriginButton = document.getElementById("vectors-map__positions--toggle-origin-button")
+
+    toggleSpaceButton.addEventListener("click", () => {
+        positionsState.worldSpace = !positionsState.worldSpace;
+        updateButtons__positions();
+    });
+    toggleOriginButton.addEventListener("click", () => {
+        positionsState.fromOrigin = !positionsState.fromOrigin;
+        updateButtons__positions();
+    });
+
     redraw();
 }
 
@@ -52,6 +77,7 @@ var redraw = () => {
     reloadCanvasByName('vectors-map__x--global', drawMap__xGlobal);
     reloadCanvasByName('vectors-map__x--local', drawMap__xLocal);
     reloadCanvasByName('vectors-map__positions', drawMap__positions);
+    reloadCanvasByName('vectors-map__relative', drawMap__relative);
 }
 
 function reloadCanvasByName(name, callback) {
@@ -164,15 +190,47 @@ function drawMap__xLocal(ctx, pos, canvas) {
     });
 }
 
+function updateButtons__positions() {
+    toggleOriginButton.innerText = positionsState.fromOrigin ? "World relative" : "Boat relative";
+    toggleSpaceButton.innerText = positionsState.worldSpace ? "World space" : "Local space";
+
+    if (positionsState.fromOrigin) {
+        if (positionsState.worldSpace) {
+            positionsCode.originLocalSpace.classList.add("hidden");
+            positionsCode.boatLocalSpace.classList.add("hidden");
+            positionsCode.boatWorldSpace.classList.add("hidden");
+            positionsCode.originWorldSpace.classList.remove("hidden");
+        } else {
+            positionsCode.originWorldSpace.classList.add("hidden");
+            positionsCode.boatLocalSpace.classList.add("hidden");
+            positionsCode.boatWorldSpace.classList.add("hidden");
+            positionsCode.originLocalSpace.classList.remove("hidden");
+        }
+    } else {
+        if (positionsState.worldSpace) {
+            positionsCode.originWorldSpace.classList.add("hidden");
+            positionsCode.originLocalSpace.classList.add("hidden");
+            positionsCode.boatLocalSpace.classList.add("hidden");
+            positionsCode.boatWorldSpace.classList.remove("hidden");
+        } else {
+            positionsCode.originWorldSpace.classList.add("hidden");
+            positionsCode.originLocalSpace.classList.add("hidden");
+            positionsCode.boatWorldSpace.classList.add("hidden");
+            positionsCode.boatLocalSpace.classList.remove("hidden");
+        }
+    }
+}
+
 function drawMap__positions(ctx, pos, canvas) {
     drawIsland(ctx);
     const xPos = drawX(ctx);
     const boat = drawBoat(ctx);
 
-    const local = false;
-    const fromOrigin = false;
+    const local = !positionsState.worldSpace;
+    const fromOrigin = positionsState.fromOrigin;
     let range;
     if (fromOrigin) {
+        ctx.resetTransform();
         ctx.translate(0, 500);
         range = {min: 0, max: 10};
     } else {
@@ -186,30 +244,51 @@ function drawMap__positions(ctx, pos, canvas) {
     }
     drawGrid(ctx, range);
 
-    const invertedMatrix = boat.transform;
-    invertedMatrix.invertSelf();
-    const transformedPoint = invertedMatrix.transformPoint(new DOMPoint(xPos.x, xPos.y));
+    let transformedPoint;
+    if (fromOrigin) {
+        transformedPoint = new DOMPoint(xPos.x, xPos.y - 500);
+    } else {
+        if (local) {
+            const invertedMatrix = boat.transform;
+            invertedMatrix.invertSelf();
+            transformedPoint = invertedMatrix.transformPoint(new DOMPoint(xPos.x, xPos.y));
+        } else {
+            ctx.resetTransform();
+            ctx.translate(250 + boat.x, 250 + boat.y);
+            const invertedMatrix = ctx.getTransform();
+            invertedMatrix.invertSelf();
+            transformedPoint = invertedMatrix.transformPoint(new DOMPoint(xPos.x, xPos.y));
+        }
+    }
     const x = remap(transformedPoint.x, 0, 500, 0, 10);
     const y = remap(transformedPoint.y, 0, -500, 0, 10);
 
     ctx.resetTransform();
-    // drawTextPosition2D(ctx, xPos, x, y);
 
-    ctx.fillStyle = "#C191FF";
-    ctx.strokeStyle = "#ED94C0";
-    ctx.linewidth = 1;
+    ctx.fillStyle = "#fda900";
     if (fromOrigin)
         arrow(ctx, 0, 500, xPos.x, xPos.y, 10, 25, 30);
     else
         arrow(ctx, 250 + boat.x, 250 + boat.y, xPos.x, xPos.y, 10, 25, 30);
-    ctx.stroke();
     ctx.fill();
+
+    drawTextPosition2D(ctx, xPos, x, y);
 
     window.requestAnimationFrame(() => {
         clearAndRedraw(ctx, canvas, () => {
             drawMap__positions(ctx, pos, canvas);
         })
     });
+}
+
+function drawMap__relative(ctx, pos) {
+    drawIsland(ctx);
+    ctx.translate(0, 500);
+    drawGrid(ctx, {min: 0, max: 10});
+    ctx.resetTransform();
+    
+    // TODO draw moored boat
+    // TODO draw wandering north arrow
 }
 
 function drawIsland(ctx) {

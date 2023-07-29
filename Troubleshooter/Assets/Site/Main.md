@@ -43,6 +43,7 @@
 - [Editor windows](Programming/Editor%20Issues/Editor%20Windows.md)
 ### Utility classes
 - [Random](Programming/Specifics/Random.md)
+- [Vectors](Programming/Vectors.md)
 - [Quaternions](Programming/Quaternions.md)
 - [Color](Programming/Specifics/Color.md)
 - [LayerMasks and bitmasks](Programming/Physics/Bitmasks.md)

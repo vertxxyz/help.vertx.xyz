@@ -37,10 +37,10 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-
+  user-select: none;
+  
   > p {
     margin: 0;
-    user-select: none;
     user-focus: none;
   }
 }
