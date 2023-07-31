@@ -9,11 +9,17 @@ To stop a coroutine, cache the `Coroutine` object returned by the original `Star
 <<Code/Coroutines/StopCoroutine.rtf>>
 
 ::::note
+#### Disabling scripts
+
 :::info{.inline}
 When a GameObject is deactivated a coroutine will be stopped, but if the script is disabled it will continue.  
 :::
 
 When disabling this object you should generally stop the coroutine in [`OnDisable`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnDisable.html) and set the value to `null` to track whether the coroutine is running. 
+
+#### Stopping coroutines from within
+`yield break` will exit a coroutine early.  
+
 ::::  
 
 ---  

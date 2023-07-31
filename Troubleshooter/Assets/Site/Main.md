@@ -26,21 +26,22 @@
 - [Errors](Programming/Common%20Errors.md)
 - [Warnings](Programming/Common%20Warnings.md)
 - [Error dialogs](Common/Error%20Dialogs.md)
-### Input
-- [Built-in Input Manager](Programming/Input/Built-In%20Input.md)
-- [Input System package](Programming/Input/Input%20System.md)
+### Editor extensions
+- [General](Programming/Editor%20Extensions.md)
+- [Property drawers](Programming/Editor%20Extensions/Property%20Drawers.md)
+- [Property decorators](Programming/Editor%20Extensions/Property%20Decorators.md)
+- [Custom inspectors](Programming/Editor%20Extensions/Custom%20Inspectors.md)
+- [Editor windows](Programming/Editor%20Extensions/Editor%20Windows.md)
 ### Physics
 - [Physics messages](Programming/Physics%20Messages.md)
 - [Physics queries](Programming/Physics%20Queries.md)
 - [Character Controller](Programming/Physics/Character%20Controller.md)
 ### Assets
 - [Resources](Programming/Resources.md)
-- [AssetDatabase](Programming/Editor%20Issues/AssetDatabase.md)
-### Editor extensions
-- [Property drawers](Programming/Editor%20Issues/Property%20Drawers.md)
-- [Property decorators](Programming/Editor%20Issues/Property%20Decorators.md)
-- [Custom inspectors](Programming/Editor%20Issues/Custom%20Inspectors.md)
-- [Editor windows](Programming/Editor%20Issues/Editor%20Windows.md)
+- [AssetDatabase](Programming/Editor%20Extensions/AssetDatabase.md)
+### Input
+- [Built-in Input Manager](Programming/Input/Built-In%20Input.md)
+- [Input System package](Programming/Input/Input%20System.md)
 ### Utility classes
 - [Random](Programming/Specifics/Random.md)
 - [Vectors](Programming/Vectors.md)

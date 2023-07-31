@@ -7,3 +7,7 @@ The layout dropdown in the top right of the interface:
 
 The menu bar:  
 ![Window layouts menu](reset-layout.png)  
+
+---
+
+If your problem persists, try restarting Unity.

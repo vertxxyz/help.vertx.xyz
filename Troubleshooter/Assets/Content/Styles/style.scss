@@ -9,6 +9,7 @@
 @use 'interactive';
 @use 'unity';
 @use 'tooltips-and-dropdowns';
+@use 'mermaid';
 
 /*Top Right Bottom Left*/
 
@@ -344,6 +345,17 @@ div.footnotes {
   padding: 0 20px;
   margin-right: base.$right-margin;
   margin-top: 30px;
+  font-size: 11pt;
+  filter: grayscale(40%);
+  
+  &::before {
+    display: block;
+    content: "Footnotes";
+    font-variant: all-small-caps;
+    font-size: 12pt;
+    color: base.$body-color-darker;
+    margin: 10px 0 -8px 6px;
+  }
 
   p {
     margin-block-end: 0.2em;
@@ -352,6 +364,7 @@ div.footnotes {
   li {
     &::marker {
       content: unset;
+      font-size: 10pt;
     }
   }
 }

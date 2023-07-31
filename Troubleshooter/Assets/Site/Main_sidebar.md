@@ -6,10 +6,10 @@
 - [Programming](#programming)
     - [General](#general)
     - [Errors & warnings](#errors-warnings)
-    - [Input](#input)
+    - [Editor extensions](#editor-extensions)
     - [Physics](#physics)
     - [Assets](#assets)
-    - [Editor extensions](#editor-extensions)
+    - [Input](#input)
     - [Utility classes](#utility-classes)
     - [Utility functions](#utility-functions)
     - [Implementation](#implementation)
@@ -31,7 +31,7 @@
 - [Bitmasks](Info/Bitmasks.md)
 - [Quaternions](Info/Quaternions.md)
 - [Lerp](Programming/Specifics/Lerp/Overview.md)
-- [SerializedObject](Programming/Editor%20Issues/Serialisation/SerializedObject%20How-to.md)
+- [SerializedObject](Programming/Editor%20Extensions/Serialisation/SerializedObject%20How-to.md)
 - [Using Git with Unity](Info/Git.md)
   
 ### External resources

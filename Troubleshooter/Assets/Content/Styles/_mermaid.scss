@@ -1,0 +1,22 @@
+@use 'base';
+
+.mermaid {
+  .flowchart-link {
+    stroke: #D0D0D0 !important;
+  }
+
+  .node rect, .node circle, .node ellipse, .node polygon, .node path
+  {
+    fill: #282828 !important;
+    stroke: #D0D0D0 !important;
+  }
+
+  .label text, span, p {
+    fill: #D0D0D0 !important;
+    color: #D0D0D0 !important;
+  }
+
+  .edgeLabel {
+    background-color: base.$unity-colors-window-background !important;
+  }
+}

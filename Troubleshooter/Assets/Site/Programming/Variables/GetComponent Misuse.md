@@ -12,4 +12,4 @@ If you want to assign a default component when the component is added you can do
 
 ---
 [I am having issues with serialization.](../Serialization.md)  
-[I am having issues with persisting changes from the editor.](../Editor%20Issues/Serialisation/Persisting%20Changes.md)
+[I am having issues with persisting changes from the editor.](../Editor%20Extensions/Serialisation/Persisting%20Changes.md)
