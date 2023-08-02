@@ -1,7 +1,7 @@
 <<Abbreviations/NRE.md>>
 ## Logging: How-to
 ### Usage
-Unity's [`Debug.Log`](https://docs.unity3d.com/ScriptReference/Debug.Log.html) function will print a message to the [Console window](https://docs.unity3d.com/Manual/Console.html).  
+Unity's [`Debug.Log`](https://docs.unity3d.com/ScriptReference/Debug.Log.html) function will print a message to the [Console window](https://docs.unity3d.com/Manual/Console.html) (**Window | General | Console**, <kbd>Ctrl+Shift+C</kbd>).  
 Code can pass any object to the log and it will be converted to a `string` and displayed.  
 
 :::note  

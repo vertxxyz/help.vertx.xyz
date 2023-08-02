@@ -722,3 +722,27 @@ blockquote {
     margin: 0 50px;
   }
 }
+
+.menu-path {
+  //font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+  background-color: base.$dark-background-color;
+  color: base.$bold-color;
+  padding: 2px 5px 4px 5px;
+  border-radius: 0.5em;
+  border: solid 1px #6e768166;
+  box-shadow: inset 0 -1px 0 #6e768166;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  
+  > .menu-path__separator {
+    fill: base.$bold-color;
+    user-select: none;
+    transform: rotate(270deg) translateX(-2px);
+    width: 1em;
+    height: 1em;
+  }
+  > .menu-path__item {
+    
+  }
+}
