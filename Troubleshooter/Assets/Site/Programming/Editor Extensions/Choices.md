@@ -24,10 +24,14 @@ flowchart TB
     IsSameType--->|Yes| ContextMenu
     IsSameType--->|No| MenuItem([Create a Menu Item])
 
-    click Drawer href "https://docs.unity3d.com/ScriptReference/PropertyDrawer.html" "PropertyDrawer documentation"
-    click MenuItem href "https://docs.unity3d.com/ScriptReference/MenuItem.html" "MenuItem documentation"
-    click ContextMenu href "https://docs.unity3d.com/ScriptReference/ContextMenu.html" "ContextMenu documentation"
-    click EditorWindow href "https://docs.unity3d.com/ScriptReference/EditorWindow.html" "EditorWindow documentation"
-    click Decorator href "https://docs.unity3d.com/ScriptReference/DecoratorDrawer.html" "DecoratorDrawer documentation"
-    click Decorator href "https://docs.unity3d.com/ScriptReference/Editor.html" "Editor documentation"
+    click Drawer href "https://docs.unity3d.com/ScriptReference/PropertyDrawer.html"
+    click MenuItem href "https://docs.unity3d.com/ScriptReference/MenuItem.html"
+    click ContextMenu href "https://docs.unity3d.com/ScriptReference/ContextMenu.html"
+    click EditorWindow href "https://docs.unity3d.com/ScriptReference/EditorWindow.html"
+    click Decorator href "https://docs.unity3d.com/ScriptReference/DecoratorDrawer.html"
+    click Inspector href "https://docs.unity3d.com/ScriptReference/Editor.html"
 ```
+
+### Notes
+Even when creating a custom Editor you should consider using [property drawers](https://docs.unity3d.com/ScriptReference/PropertyDrawer.html) where possible, avoiding UI that doesn't use [`SerializedObject`](Serialisation/SerializedObject%20How-to.md) data.  
+`PropertyField` ([UI Toolkit](https://docs.unity.cn/ScriptReference/UIElements.PropertyField.html) • [IMGUI](https://docs.unity3d.com/ScriptReference/EditorGUILayout.PropertyField.html)) is the easiest way to draw a property in contexts like an `Editor` or `EditorWindow`, as it will respond to a property drawer without duplicated or embedded logic.

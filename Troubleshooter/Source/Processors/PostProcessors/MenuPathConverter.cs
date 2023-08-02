@@ -6,14 +6,13 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public sealed partial class MenuPathConverter : IHtmlPostProcessor
 {
-	[GeneratedRegex(@"<strong>(.+ \| .+)</strong>", RegexOptions.Compiled)]
+	[GeneratedRegex(@"<strong>([^|<]+ \| [^<]+?)</strong>", RegexOptions.Compiled)]
 	private static partial Regex GetMenuPathRegex();
 
 	private static readonly Regex s_MenuPathRegex = GetMenuPathRegex();
 
-	public string Process(string html, string fullPath)
-	{
-		return StringUtility.ReplaceMatch(html, s_MenuPathRegex, (group, stringBuilder) =>
+	public string Process(string html, string fullPath) =>
+		StringUtility.ReplaceMatch(html, s_MenuPathRegex, (group, stringBuilder) =>
 		{
 			stringBuilder.Append("<span class=\"menu-path\">");
 			{
@@ -33,5 +32,4 @@ public sealed partial class MenuPathConverter : IHtmlPostProcessor
 			}
 			stringBuilder.Append("</span>");
 		}, 1);
-	}
 }

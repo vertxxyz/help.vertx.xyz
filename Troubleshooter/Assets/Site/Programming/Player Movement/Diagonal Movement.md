@@ -10,7 +10,7 @@ Picture the vector that makes up movement as a square:
 (-1,-1) (0, -1) (1, -1)
 ```
 
-The magnitude of a vector at one of the corners of the square is $\sqrt{2}$, it should be `1` instead, which is achieved by normalization.
+The magnitude of a vector at one of the corners of the square is $\sqrt{2}$ (`1.4142...`), it should be `1` instead, which is achieved by normalization.
 
 ### Resolution
 

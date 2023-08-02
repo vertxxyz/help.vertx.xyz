@@ -54,4 +54,4 @@ Error or Exception are for failures that must be addressed, or halt code executi
 :::
 
 #### HideInCallstack
-You can use the [`[HideInCallstack]`](https://docs.unity3d.com/ScriptReference/HideInCallstackAttribute.html) attribute to mark methods to be hidden when **Strip Logging Callstack** is enabled via the Console window menu. This is useful when creating your own wrappers for logging.
+You can use the [`[HideInCallstack]`](https://docs.unity3d.com/ScriptReference/HideInCallstackAttribute.html) attribute to mark methods to be hidden when **⋮ | Strip Logging Callstack** is enabled via the Console window menu. This is useful when creating your own wrappers for logging.

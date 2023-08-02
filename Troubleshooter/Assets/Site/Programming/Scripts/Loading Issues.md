@@ -1,4 +1,4 @@
-## Script Loading issues
+## Script loading issues
 ```
 Can't add script component 'Foo' because the script class cannot be found.
 Make sure that there are no compiler errors and the file name and class name match.

@@ -60,6 +60,18 @@
 	}
 }
 
+.mermaidTooltip {
+	font-family: base.$font-family;
+	color: base.$body-color;
+	background-color: black;
+	position: absolute;
+	border-radius: 6px;
+	padding: 0 5px;
+	z-index: 5;
+	user-select: none;
+	pointer-events: none;
+}
+
 .dropdown-caret {
 	opacity: .8;
 	display: inline-block;

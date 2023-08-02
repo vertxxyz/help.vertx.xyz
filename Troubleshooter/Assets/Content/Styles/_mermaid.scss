@@ -19,4 +19,20 @@
   .edgeLabel {
     background-color: base.$unity-colors-window-background !important;
   }
+  
+  a {
+    label text, span, p {
+      color: base.$link-color !important;
+    }
+    &:hover {
+      label text, span, p {
+        color: base.$link-color-hover !important;
+      }
+    }
+    .nodeLabel::after {
+      margin-left: 4px;
+      content: "\2197";
+      font-family: 'JetBrains Mono', monospace;
+    }
+  }
 }
