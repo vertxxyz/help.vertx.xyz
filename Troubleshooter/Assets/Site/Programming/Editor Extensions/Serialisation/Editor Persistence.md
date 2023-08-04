@@ -9,3 +9,7 @@ See [serializing a field](../../Serialization/Serializing%20A%20Field%201.md) to
 :::info
 As Editors and EditorWindows are UnityEngine.Object types you can serialize fields into them directly, and they should persist for as long as they are open.
 :::
+
+---
+
+See [persisting changes](Persisting%20Changes.md) if your fields are already serialized.
