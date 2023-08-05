@@ -94,10 +94,13 @@ a:hover, a:focus {
 
 hr {
   border: 0;
+  height: 2px;
   border-top: 1px solid base.$unity-colors-window-border;
+  border-bottom: 1px solid base.$unity-colors-inspector_titlebar-border_accent;
   margin-block-start: 0.8em;
   margin-block-end: 0.8em;
   margin-left: base.$left-padding-negative;
+  background-color: base.$unity-colors-inspector_titlebar-background;
 }
 
 a {

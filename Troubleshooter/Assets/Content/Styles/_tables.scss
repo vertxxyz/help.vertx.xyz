@@ -3,6 +3,12 @@
 table {
   margin: 20px 20px 20px 0;
   overflow: auto;
+  img {
+    vertical-align: middle;
+  }
+  img.inline {
+    transform: unset;
+  }
 }
 
 table, th, td {

@@ -6,8 +6,9 @@ If you are calling a query like [`collider2D.Raycast(...`](https://docs.unity3d.
 Make sure you understand this, or instead, use the static method [`Physics2D.Raycast`](https://docs.unity3d.com/ScriptReference/Physics2D.Raycast.html) that queries all the colliders in the scene.
 
 ### Issues with colliders
-Raycasting requires [2D colliders](https://docs.unity3d.com/Manual/Collider2D.html) to work. 3D colliders will not by hit by `Physics2D` queries.  
-You cannot query against raw meshes or sprites using `Physics2D` functions.
+- Raycasting requires [2D colliders](https://docs.unity3d.com/Manual/Collider2D.html) to work. 3D colliders will not by hit by `Physics2D` queries.  
+  You cannot query against raw meshes or sprites using `Physics2D` functions.
+- 
 
 ### Correct use of ContactFilter2D
 A newly constructed [`ContactFilter2D`](https://docs.unity3d.com/ScriptReference/ContactFilter2D.html) will not be correctly configured. Check that you understand how to use the API using the example below.
@@ -25,6 +26,9 @@ filter.useTriggers = false; // Disables contact results based on trigger collide
 int resultCount = Physics2D.OverlapCircle(transform.position, radius, filter, results);
 ```
 
+### Notes on setup
+- Note that casts originating inside of colliders will often return normals that are the inverse of the ray direction.
+
 ---
 
-[I am still having problems with my query.](Visual%20Debugging.md)
+[I am still having problems with my query.](NonAlloc%202D.md)

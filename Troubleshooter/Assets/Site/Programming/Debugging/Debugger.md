@@ -9,8 +9,16 @@ A functioning IDE is required, so first check [IDE configuration](../IDE%20Confi
 #### Attaching
 Your IDE needs to target a running application to start debugging. Usually this functionality is found in one of the top utility bars in an IDE's interface.
 
+^^^
+![Attaching Rider's debugger](debugger-attach-rider.png)
+^^^ Attaching Rider to the Unity Editor
+
 #### Breakpoints
 Breakpoints are the entry point to a debugging session. Mark a line with a breakpoint and execution will halt when this line is reached if the debugger is attached.  
+
+^^^
+![Attaching Rider's debugger](breakpoint-rider.png)
+^^^ A breakpoint in Rider
 
 When execution is halted **Unity will freeze**, this is normal. You can now use the other debugger features of your IDE to assess problems. **Stop** debugging to resume Unity's normal function, or **Resume** to continue execution while remaining attached.
 
@@ -20,6 +28,12 @@ Often a debugger will also allow you to hover an expression to evaluate its outc
 
 #### Stepping
 Stepping through code is a way to continue execution line by line, optionally stepping into or over functions and properties. This gives information about program execution, testing false assumptions about branching behaviour or loops.
+
+| Name                                           | Description                                               |
+|------------------------------------------------|-----------------------------------------------------------|
+| ![Step over](stepOver.svg){.inline} Step over  | Execute the next line of code without entering functions. |
+| ![Step into](stepInto.svg){.inline} Step into  | Execute the next line of code and enter any functions.    |
+| ![Step out](stepOut.svg){.inline} Step out     | Execute until the function is exited.                     |
 
 #### Pausing
 Execution can be manually halted similar to a breakpoint, this is very helpful when debugging freezes caused by infinite loops. Just pause execution when the freeze occurs, and the debugger should lead you to the relevant section of code.

@@ -8,9 +8,17 @@ Make sure you understand this, or instead, use the static method [`Physics.Rayca
 ### Issues with colliders
 - Raycasting requires [colliders](https://docs.unity3d.com/Manual/CollidersOverview.html) to work. 2D colliders will not by hit by `Physics` queries.  
 You cannot query against raw meshes using `Physics` functions.
-
 - If you are using a Mesh Collider, be aware that changing the MeshFilter's mesh will not update the Mesh Collider.
+
+### Issues with setup
+Check the documentation for the function use are using. Many have notes on edge cases where behavior may be undefined or default.
+#### Examples
+- Raycasts will not detect colliders they originate inside.
+- Shape casts will not detect colliders that overlap their starting shape. Consider using overlaps instead.
+- Shape casts with multiple results will detect colliders they overlap at the start, but will return default values.  
+  [`RaycastHit`](https://docs.unity3d.com/ScriptReference/RaycastHit.html) `distance` is zero, `point` is zero, and `normal` is the inverse of the ray direction.
+- Passing in zero size/radius often produces undefined output.
 
 ---
 
-[I am still having problems with my query.](Visual%20Debugging.md)
+[I am still having problems with my query.](NonAlloc%203D.md)
