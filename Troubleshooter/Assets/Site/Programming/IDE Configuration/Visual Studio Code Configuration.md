@@ -1,5 +1,5 @@
 <<Abbreviations/UPM.md>>
-## <img src="/Images/vscode.svg" alt="visual studio code" style="vertical-align:middle; margin:0 6px 0 0; width:32px; height:32px"> Visual Studio Code configuration
+## ![Visual Studio Code](/Images/vscode.svg) Visual Studio Code configuration
 ### Steps
 1. Follow **all** of the [configuration steps](https://code.visualstudio.com/docs/other/unity).  
 Where it mentions the External Tools preferences, these are **in Unity**.  

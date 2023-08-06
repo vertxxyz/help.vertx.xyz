@@ -5,12 +5,12 @@ using Troubleshooter.Constants;
 
 namespace Troubleshooter;
 
-public static class PageUtility
+public static partial class PageUtility
 {
-	private static readonly Regex pathRegex = new(@"]\(([\w /%.]+)\)", RegexOptions.Compiled);
-	private static readonly Regex linkRegex = new(@"]\((https?:\/\/[\w/%#?.@_\+~=&()]+)\)", RegexOptions.Compiled);
-	private static readonly Regex embedsRegex = new(@"<<(.+?)>>", RegexOptions.Compiled);
-	private static readonly Regex localImagesRegex = new(@"!\[[^\]]*\]\((?!http)(.*?)\s*(""(?:.*[^""])"")?\s*\)", RegexOptions.Compiled);
+	private static readonly Regex pathRegex = GetPathRegex();
+	private static readonly Regex linkRegex = GetLinkRegex();
+	private static readonly Regex embedsRegex = GetEmbedsRegex();
+	private static readonly Regex localImagesRegex = GetLocalImagesRegex();
 
 	/// <summary>
 	/// Parse markdown text looking for page links
@@ -71,4 +71,16 @@ public static class PageUtility
 
 	public static string LocalEmbedToFullPath(string embedPath, Site site)
 		=> Path.GetFullPath(Path.Combine(site.EmbedsDirectory, embedPath));
+
+	[GeneratedRegex(@"(?<!!)\[.+?\]\(([\w /%.]+)\)", RegexOptions.Compiled)]
+	private static partial Regex GetPathRegex();
+
+	[GeneratedRegex(@"]\((https?://[\w/%#?.@_+~=&()]+)\)", RegexOptions.Compiled)]
+	private static partial Regex GetLinkRegex();
+
+	[GeneratedRegex("<<(.+?)>>", RegexOptions.Compiled)]
+	private static partial Regex GetEmbedsRegex();
+
+	[GeneratedRegex("!\\[[^\\]]*\\]\\((?!http)(.*?)\\s*(\".*[^\"]\")?\\s*\\)", RegexOptions.Compiled)]
+	private static partial Regex GetLocalImagesRegex();
 }

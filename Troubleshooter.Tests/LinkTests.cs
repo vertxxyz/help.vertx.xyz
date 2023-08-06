@@ -10,7 +10,7 @@ using Xunit;
 namespace Troubleshooter.Tests;
 
 [SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters")]
-public class LinkTests
+public partial class LinkTests
 {
 	private readonly HashSet<string> embeddedFiles = new();
 
@@ -32,8 +32,11 @@ public class LinkTests
 		}
 	}
 
-	private static readonly Regex markdownLink = new (@"\[.+?\]\((.+?)\)", RegexOptions.Compiled);
-	
+	[GeneratedRegex(@"(?<!!)\[.+?\]\((.+?)\)", RegexOptions.Compiled)]
+	private static partial Regex GetMarkdownLinkRegex();
+
+	private static readonly Regex markdownLink = GetMarkdownLinkRegex();
+
 	[Theory]
 	[ClassData(typeof(PageData))]
 	public void ValidateLinkContent(string name, string path, string text)
@@ -66,7 +69,10 @@ public class LinkTests
 			string directory = Path.GetDirectoryName(path)!;
 			foreach ((string localPath, _) in PageUtility.LocalImagesAsRootPaths(text, false))
 			{
-				string fullPath = Path.GetFullPath(Path.Combine(directory, localPath)).ToUnTokenized();
+				string fullPath = localPath.StartsWith('/') 
+					? Path.GetFullPath(Path.Combine(TestUtility.TestSite.ContentDirectory, localPath[1..])).ToUnTokenized() 
+					: Path.GetFullPath(Path.Combine(directory, localPath)).ToUnTokenized();
+
 				new FileInfo(fullPath).Should().Exist();
 			}
 		}

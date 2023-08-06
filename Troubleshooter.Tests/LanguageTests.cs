@@ -63,9 +63,9 @@ public partial class LanguageTests
 		text.Should().NotMatchRegex(s_UnityRegex, "we should write \"Unity\"");
 	}
 
-    [GeneratedRegex(@"\sunity[\s\.,]")]
+    [GeneratedRegex(@"\sunity[\s.,]")]
     private static partial Regex GetUnityRegex();
     
-    [GeneratedRegex(@"\sUGUI[\s\.,]")]
+    [GeneratedRegex(@"\sUGUI[\s.,]")]
     private static partial Regex GetUGuiRegex();
 }

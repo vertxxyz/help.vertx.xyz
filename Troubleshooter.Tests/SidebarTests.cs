@@ -29,7 +29,10 @@ public partial class SidebarTests
 	}
 		
 	private static readonly Regex anchorRegex = GetAnchorRegex();
-		
+
+	[GeneratedRegex(@"]\(#([\w /%.]+)\)", RegexOptions.Compiled)]
+	private static partial Regex GetAnchorRegex();
+
 	/// <summary>
 	/// Parse markdown text looking for anchor links
 	/// </summary>
@@ -45,7 +48,4 @@ public partial class SidebarTests
 			yield return match;
 		}
 	}
-
-    [GeneratedRegex(@"]\(#([\w /%.]+)\)", RegexOptions.Compiled)]
-    private static partial Regex GetAnchorRegex();
 }

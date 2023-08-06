@@ -1,5 +1,5 @@
 <<Abbreviations/UPM.md>>
-## <img src="/Images/visualstudio.svg" alt="visual studio" style="vertical-align:middle; margin:0 6px 0 0; width:32px; height:32px"> Visual Studio configuration
+## ![Visual Studio](/Images/visualstudio.svg) Visual Studio configuration
 ### Installed with Unity Hub
 Visual Studio will have the Unity workload installed.  
 Follow the [configuration instructions](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#configure-unity-to-use-visual-studio) to configure the remaining setup.  

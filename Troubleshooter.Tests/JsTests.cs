@@ -4,10 +4,16 @@ using Xunit.Abstractions;
 
 namespace Troubleshooter.Tests;
 
-public class JsTests
+public partial class JsTests
 {
 	private readonly ITestOutputHelper testOutputHelper;
-	private static readonly Regex importRegex = new("^import .+? from [\"\'](.+?)[\"\'];\r*\n?$", RegexOptions.Compiled | RegexOptions.Multiline);
+
+	private static readonly Regex importRegex = GetImportRegex();
+
+	[GeneratedRegex("^import .+? from [\"'](.+?)[\"'];\r*\n?$", RegexOptions.Multiline | RegexOptions.Compiled)]
+	private static partial Regex GetImportRegex();
+	
+
 	public JsTests(ITestOutputHelper testOutputHelper)
 	{
 		this.testOutputHelper = testOutputHelper;
