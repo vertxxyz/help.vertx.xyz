@@ -19,7 +19,8 @@ Breakpoints are the entry point to a debugging session. Mark a line with a break
 ![Attaching Rider's debugger](breakpoint-rider.png)
 ^^^ A breakpoint in Rider
 
-When execution is halted **Unity will freeze**, this is normal. You can now use the other debugger features of your IDE to assess problems. ![Rider stop debugging](stop_dark.svg){.inline} **stop** debugging to resume Unity's normal function, or ![Rider stop debugging](resume_dark.svg){.inline} **resume** to continue execution while remaining attached.
+When execution is halted **Unity will freeze**, this is normal. You can now use the other debugger features of your IDE to assess problems.  
+![Rider stop debugging](stop_dark.svg){.inline} **stop** debugging to resume Unity's normal function, or ![Rider stop debugging](resume_dark.svg){.inline} **resume** to continue execution while remaining attached, ready to hit more breakpoints.
 
 #### Managing breakpoints
 Select the gutter for an executable line to add a breakpoint. Repeat the selection to remove it.  
@@ -29,14 +30,14 @@ You can ![Rider all breakpoints](multipleBreakpoints_dark.svg){.inline} **view a
 Often you want to continue testing with the debugger connected, without triggering breakpoints. You can ![Rider mute breakpoints](muteBreakpoints_dark.svg){.inline} **mute breakpoints** to stop them triggering without removing them. Individual breakpoints can also be ![Rider disabled breakpoint](breakpointDisabled_dark.svg){.inline} **disabled**.
 
 #### Conditional breakpoints
-Right-click a breakpoint and after adding a condition based on in-scope variables the breakpoint will become a ![Conditional breakpoint in Rider](breakpointConditional_dark.svg){.inline} **conditional breakpoint**, and only trigger when the condition is met.
+Right-click a breakpoint and after adding a condition based on in-scope variables the breakpoint will become a ![Rider conditional breakpoint](breakpointConditional_dark.svg){.inline} **conditional breakpoint**, and only trigger when the condition is met.
 
 ^^^
 ![Conditional breakpoint in Rider](conditional-breakpoint-rider.png)
 ^^^A conditional breakpoint in Rider
 
 #### Tracepoints (logging breakpoints)
-Disable the breakpoint's suspend execution setting in the right-click menu so it becomes a ![Unsuspended breakpoint in Rider](breakpointUnsuspendent_dark.svg){.inline} **tracepoint**, navigate to more settings and add logging. The logs will print to the **IDE's debug console**, not Unity. 
+Disable the breakpoint's suspend execution setting in the right-click menu so it becomes a ![Rider tracepoint](breakpointUnsuspendent_dark.svg){.inline} **tracepoint**, navigate to more settings and add logging. The logs will print to the **IDE's debug console**, not Unity. 
 This makes a great substitution for [manual logging](Logging/How-to.md), avoiding unnecessary recompilation. 
 
 ### ![Rider data](binaryData_dark.svg) Variable inspection
@@ -50,11 +51,11 @@ Often a debugger will also allow you to hover an expression to evaluate its outc
 ### ![Rider step over](stepOver.svg) Stepping
 Stepping through code is a way to continue execution line by line, optionally stepping into or over functions and properties. This gives information about program execution, testing false assumptions about branching behaviour or loops.
 
-| Name                                           | Description                                               |
-|------------------------------------------------|-----------------------------------------------------------|
-| ![Step over](stepOver.svg){.inline} Step over  | Execute the next line of code without entering functions. |
-| ![Step into](stepInto.svg){.inline} Step into  | Execute the next line of code and enter any functions.    |
-| ![Step out](stepOut.svg){.inline} Step out     | Execute until the function is exited.                     |
+| Name                                           | Description                                          |
+|------------------------------------------------|------------------------------------------------------|
+| ![Step over](stepOver.svg){.inline} Step over  | Execute the line of code without entering functions. |
+| ![Step into](stepInto.svg){.inline} Step into  | Execute the line of code and enter any functions.    |
+| ![Step out](stepOut.svg){.inline} Step out     | Execute until the function is exited.                |
 
 ### ![Rider pause](pause_dark.svg) Pausing
 Execution can be manually halted similar to a breakpoint, this is very helpful when debugging freezes caused by infinite loops. Just pause execution when the freeze occurs, and the debugger should lead you to the relevant section of code.
@@ -70,7 +71,7 @@ How-to instructions for debugging can be found [here](https://code.visualstudio.
 
 ### ![VS](/Images/jetbrains_rider.svg) JetBrains Rider
 Rider has detailed information about debugging Unity applications [here](https://www.jetbrains.com/help/rider/Debugging_Unity_Applications.html) and [here](https://www.jetbrains.com/help/rider/Using_Breakpoints.html).  
-As of Rider 2020.2 rider also has [Pausepoints](https://blog.jetbrains.com/dotnet/2020/06/11/introducing-unity-pausepoints-for-rider/), the ability to pause (`Debug.Break()`) Unity at the end of a frame once a Pausepoint is hit.
+Rider also has [pausepoints](https://blog.jetbrains.com/dotnet/2020/06/11/introducing-unity-pausepoints-for-rider/), the ability to pause ([`Debug.Break`](https://docs.unity3d.com/ScriptReference/Debug.Break.html)) Unity at the end of a frame once a pausepoint is hit.
 
 ## Debugging builds
 Builds require **Development Build** and **Script Debugging** to be enabled in the build settings (**File | Build Settings**) to debug script code. When attaching the debugger attach to the built Player and not the Unity Editor.  

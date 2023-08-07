@@ -78,6 +78,9 @@ public partial class PageResource
 
 	private string EmbedsDirectory =>
 		_embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").ToConsistentPath();
+	
+	private string ImagesDirectory =>
+		_embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Content", "Images").ToConsistentPath();
 
 	private string? _embedsDirectory;
 
@@ -241,6 +244,9 @@ public partial class PageResource
 			foreach ((string image, Group group) in PageUtility.LocalImagesAsRootPaths(allText, false))
 			{
 				if (ApproximatelyStartsWith(group.Value, EmbedsDirectory, 2))
+					continue;
+				
+				if (group.Value.StartsWith("/Images/"))
 					continue;
 
 				stringBuilder.Append(allText[last..group.Index]);

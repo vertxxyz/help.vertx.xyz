@@ -9,7 +9,7 @@ Start by regenerating the script assemblies, if that doesn't work regenerate the
 #### Regenerating the script assemblies
 Deleting the ScriptAssemblies folder will reset most code-related issues, and only requires a partial project reimport.  
 1. Close Unity.
-2. Delete the **Library/ScriptAssemblies** folder at the root of the project.
+2. Delete the **Library | ScriptAssemblies** folder at the root of the project.
 3. Reopen Unity.
 
 :::  

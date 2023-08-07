@@ -140,6 +140,7 @@ p {
 img {
   margin: 15px 10px 15px 10px;
   max-width: 100%;
+  color: base.$link-color-broken;
 
   &.inline {
     width: 20px;

@@ -1,34 +1,26 @@
 <<Abbreviations/UPM.md>>
 ## ![Visual Studio Code](/Images/vscode.svg) Visual Studio Code configuration
+
+As of August 2023 Microsoft has released a new version of the Unity extension for VS Code.  
+The new extension relies on the [C# Dev Kit](https://learn.microsoft.com/en-us/visualstudio/subscriptions/vs-c-sharp-dev-kit). Do note that this is unlike the previous extensions, so now it falls under a [new license](https://marketplace.visualstudio.com/items/ms-dotnettools.csdevkit/license) similar to Visual Studio Community's.
+
 ### Steps
-1. Follow **all** of the [configuration steps](https://code.visualstudio.com/docs/other/unity).  
-Where it mentions the External Tools preferences, these are **in Unity**.  
-   :::note
-   #### Windows
-   1. Install the [.NET SDK](https://dotnet.microsoft.com/download).  
-      1. Logout or Restart Windows.
-   1. Install the [.NET Framework 4.7.1 **Developer Pack**](https://dotnet.microsoft.com/download/dotnet-framework/net471).
-   1. Install [MSBuild Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022).
-   1. Install the [C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) from the VS Code Marketplace.
-   1. In the VS Code Settings editor (</kbd>Ctrl+,</kbd>), uncheck the C# extension's **Omnisharp: Use Modern Net** setting (`"omnisharp.useModernNet": false`).
-   1. Set the **External Script Editor** dropdown in Unity's External Tools preferences (**Edit | Preferences | External Tools**) to VS Code.
-   :::  
-   :::note  
-   #### MacOS/Linux
-   1. Install the [.NET SDK](https://dotnet.microsoft.com/download).
-   1. Install the [.NET Framework 4.7.1 **Developer Pack**](https://dotnet.microsoft.com/download/dotnet-framework/net471).
-   1. Install [Mono with MSBuild](https://www.mono-project.com/download/preview/).
-   1. Install the [C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) from the VS Code Marketplace.
-   1. In the VS Code Settings editor (</kbd>Ctrl+,</kbd>), uncheck the C# extension's **Omnisharp: Use Modern Net** setting (`"omnisharp.useModernNet": false`).
-   1. Set the **External Script Editor** dropdown in Unity's External Tools preferences (**Edit | Preferences | External Tools**) to VS Code.
+#### Follow **all** of the [configuration steps](https://code.visualstudio.com/docs/other/unity):
+1. [Install a Unity version](../../Unity%20Hub/Editor%20Installation.md) greater than or equal to 2021+.
+1. Ensure the [Visual Studio Editor](https://docs.unity3d.com/Manual/com.unity.ide.visualstudio.html) package installed and updated to at least `2.0.20` in UPM (`com.unity.ide.visualstudio`).  
+   :::error{.inline}  
+   This is **not** the Visual Studio Code Editor package, if it is installed you should remove it.  
    :::
-2. Install and update the [Visual Studio Code Editor](https://docs.unity3d.com/Manual/com.unity.ide.vscode.html) package in UPM (`com.unity.ide.vscode`).  
-   As a last resort to troubleshooting setup try rolling back the package as some versions have introduced issues. You can always update it again if that fails.
+1. [Install](https://code.visualstudio.com/docs/editor/extension-marketplace) the [Unity for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=visualstudiotoolsforunity.vstuc) extension
+1. Set the **External Script Editor** dropdown in Unity's External Tools preferences (**Edit | Preferences | External Tools**) to Visual Studio Code.
 
-:::warning  
-VS Code support is [limited](https://forum.unity.com/threads/update-on-the-visual-studio-code-package.1302621/).
-- It's [debugger extension](https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug) has been marked as deprecated.
-- New versions of Unity will not have the Visual Studio Code Editor (`com.unity.ide.vscode`) package installed by default.  
+#### If you are experiencing issues:
+1. Check your C# and C# Dev Kit extensions are upgraded to the latest versions.
+1. Install the [.NET SDK](https://dotnet.microsoft.com/download).
+   1. Logout or restart Windows.
+1. Restart VS Code.
+1. Open the project from Unity's **Assets | Open C# Project** menu.
 
-As VS Code is complex to configure, and is currently not receiving support for use with Unity, [Visual Studio](Visual%20Studio%20Code%20Configuration.md) or [JetBrains Rider](JetBrains%20Rider%20Configuration.md) are recommended instead.
-:::
+---
+
+See [old Visual Studio Code configuration](Old%20Visual%20Studio%20Code%20Configuration.md) for the steps for the old extension.

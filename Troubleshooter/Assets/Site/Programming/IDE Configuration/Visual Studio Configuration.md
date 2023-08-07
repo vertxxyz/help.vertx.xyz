@@ -40,6 +40,6 @@ Follow all of the instructions listed on [this page](https://docs.microsoft.com/
 - Regenerate project files via Unity.
   1. Close VS.
   1. Select **regenerate project files** in **Edit | Preferences | External Tools**.
-  1. Reopen VS via **Assets/Open C# Project**.
+  1. Reopen VS via **Assets | Open C# Project**.
 - Regenerate project files via VS.
   1. If an assembly in the Solution Explorer is marked as **(incompatible)**, right-click it and select **reload with dependencies**.
