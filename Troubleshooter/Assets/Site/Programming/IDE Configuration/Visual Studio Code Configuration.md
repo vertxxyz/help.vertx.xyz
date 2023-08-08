@@ -11,7 +11,7 @@ The new extension relies on the [C# Dev Kit](https://learn.microsoft.com/en-us/v
    :::error{.inline}  
    This is **not** the Visual Studio Code Editor package, if it is installed you should remove it.  
    :::
-1. [Install](https://code.visualstudio.com/docs/editor/extension-marketplace) the [Unity for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=visualstudiotoolsforunity.vstuc) extension
+1. [Install](https://code.visualstudio.com/docs/editor/extension-marketplace) the [Unity for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=visualstudiotoolsforunity.vstuc) extension.
 1. Set the **External Script Editor** dropdown in Unity's External Tools preferences (**Edit | Preferences | External Tools**) to Visual Studio Code.
 
 #### If you are experiencing issues:

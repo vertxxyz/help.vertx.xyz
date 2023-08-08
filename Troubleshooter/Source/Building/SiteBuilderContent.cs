@@ -26,8 +26,8 @@ public static partial class SiteBuilder
 		async Task DownloadAndReplaceSourceFiles()
 		{
 			// Source files
-			Regex r = new Regex(@"<script src=""(\/\/unpkg\.com\/.+?.js)""><\/script>");
-			Regex rVersion = new Regex(@"@([\d.]+?)\/");
+			Regex r = GetUnpkgRegex();
+			Regex rVersion = GetReleaseVersionRegex();
 			
 			if (!File.Exists(indexOutputPath))
 				throw new BuildException($"\"{indexOutputPath}\" was not found when replacing source files.");
@@ -207,4 +207,10 @@ public static partial class SiteBuilder
 				return FileResult.Validity.NotProcessed;
 		}
 	}
+
+    [GeneratedRegex("<script src=\"(//unpkg\\.com/.+?.js)\"></script>")]
+    private static partial Regex GetUnpkgRegex();
+    
+    [GeneratedRegex("@([\\d.]+?)/")]
+    private static partial Regex GetReleaseVersionRegex();
 }

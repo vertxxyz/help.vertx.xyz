@@ -6,13 +6,13 @@ using RtfPipe;
 
 namespace Troubleshooter;
 
-public static class RtfUtility
+public static partial class RtfUtility
 {
-	private static readonly Regex fontSizeRegex = new(@"font-size:\d+pt;", RegexOptions.Compiled);
-	private static readonly Regex tabsRegex = new(@"<span style=""display:inline-block;width:(\d+)px""></span>", RegexOptions.Compiled);
-	private static readonly Regex backgroundRegex = new(@"background:#\w{6};", RegexOptions.Compiled);
-	private static readonly Regex marginsRegex = new(@"margin:\d+;", RegexOptions.Compiled);
-	private static readonly Regex colorRegex = new(@"color:(#\w{6});", RegexOptions.Compiled);
+	private static readonly Regex fontSizeRegex = GetFontSizeRegex();
+	private static readonly Regex tabsRegex = GetTabsRegex();
+	private static readonly Regex backgroundRegex = GetBackgroundRegex();
+	private static readonly Regex marginsRegex = GetMarginsRegex();
+	private static readonly Regex colorRegex = GetColorRegex();
 
 	public static string RtfToHtml(string rtf)
 	{
@@ -74,6 +74,7 @@ public static class RtfUtility
 
 		// Remove empty style blocks
 		void RemoveEmptyStyleHack() => html = html.Replace(@" style=""""", string.Empty);
+
 		// Anything that isn't explicitly styled should have a style
 		void FixRootLevelStyleHack() => html = html.Replace("<span>", @"<span class=""token punctuation"">");
 	}
@@ -106,4 +107,19 @@ public static class RtfUtility
 
 		return -1;
 	}
+
+	[GeneratedRegex("font-size:\\d+pt;", RegexOptions.Compiled)]
+	private static partial Regex GetFontSizeRegex();
+
+	[GeneratedRegex("<span style=\"display:inline-block;width:(\\d+)px\"></span>", RegexOptions.Compiled)]
+	private static partial Regex GetTabsRegex();
+
+	[GeneratedRegex("background:#\\w{6};", RegexOptions.Compiled)]
+	private static partial Regex GetBackgroundRegex();
+
+	[GeneratedRegex("margin:\\d+;", RegexOptions.Compiled)]
+	private static partial Regex GetMarginsRegex();
+
+	[GeneratedRegex("color:(#\\w{6});", RegexOptions.Compiled)]
+	private static partial Regex GetColorRegex();
 }

@@ -17,11 +17,13 @@ h2 {
   font-weight: 700;
   position: relative;
 
-  img {
+  img,.emoji {
     vertical-align: middle;
     margin: 0 6px 0 0;
-    width: 32px;
     height: 32px;
+  }
+  .emoji {
+    width: 32px;
   }
 }
 
@@ -42,11 +44,14 @@ h3 {
   border-top: 1px solid base.$unity-colors-inspector_titlebar-border;
   border-bottom: 1px solid base.$unity-colors-inspector_titlebar-border_accent;
 
-  img {
+  img,.emoji {
     vertical-align: middle;
     height: 18px;
     transform: translateY(-5px);
     margin: 0 0 -5px;
+  }
+  .emoji {
+    width: 18px;
   }
 }
 
@@ -66,10 +71,13 @@ h4 {
   margin-block-start: 1.6em;
   margin-block-end: 0.8em;
 
-  img {
-    width: 20px;
+  img,.emoji {
+    height: 20px;
     margin: 0;
-    transform: translateY(4px);
+    transform: translateY(2px);
+  }
+  .emoji {
+    width: 20px;
   }
 }
 

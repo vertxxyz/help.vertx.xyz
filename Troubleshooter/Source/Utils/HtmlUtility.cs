@@ -7,7 +7,7 @@ using Markdig.Renderers;
 
 namespace Troubleshooter;
 
-public static class HtmlUtility
+public static partial class HtmlUtility
 {
 	public static string Parse(string text)
 	{
@@ -26,13 +26,13 @@ public static class HtmlUtility
 		return text;
 	}
 
-	private static readonly Regex whitespaceRegex = new(@"(^ +)|( +$)", RegexOptions.Compiled | RegexOptions.Multiline); // Captures whitespace at the start or end of the line
-	private static readonly Regex colorRegex = new(@"[{;]color:(#\w{6});", RegexOptions.Compiled); // Captures color information only
-	private static readonly Regex styleNameRegex = new(@"_style_\d+([{^]|$)", RegexOptions.Compiled); // Captures pure names (no _style_1:before, etc)
-	private static readonly Regex stylePlainRegex = new(@"_style_\d+", RegexOptions.Compiled); // Captures style information for any unmatched styles
-	private static readonly Regex styleItalicRegex = new("font-style:oblique;", RegexOptions.Compiled);
-	private static readonly Regex spanSpacesRegex = new(@"<span>( +)</span>", RegexOptions.Compiled);
-	private static readonly Regex underlineRegex = new(@"color:(#\w{6});content:""~{500}""", RegexOptions.Compiled); //Captures the content used to underline errors
+	private static readonly Regex whitespaceRegex = GetWhitespaceRegex(); // Captures whitespace at the start or end of the line
+	private static readonly Regex colorRegex = GetColorRegex(); // Captures color information only
+	private static readonly Regex styleNameRegex = GetStyleNameRegex(); // Captures pure names (no _style_1:before, etc)
+	private static readonly Regex stylePlainRegex = GetStylePlainRegex(); // Captures style information for any unmatched styles
+	private static readonly Regex styleItalicRegex = GetStyleItalicRegex();
+	private static readonly Regex spanSpacesRegex = GetSpanSpacesRegex();
+	private static readonly Regex underlineRegex = GetUnderlineRegex(); //Captures the content used to underline errors
 
 	public static readonly Dictionary<string, string> ColorToClassLookup = new()
 	{
@@ -186,7 +186,7 @@ public static class HtmlUtility
 	{
 		return AppendWithCodeBlockSetup(text.Replace("<div id=\"code_block\">", string.Empty).Replace("</div>", string.Empty).Trim()).ToString();
 	}
-		
+
 	public static StringBuilder AppendWithCodeBlockSetup(string html, bool appendPre = true)
 	{
 		var sb = new StringBuilder(512);
@@ -205,7 +205,7 @@ public static class HtmlUtility
 				sb.Append("</div>");
 			}
 			sb.Append("</div>");
-				
+
 			sb.Append("<div class=\"code-container-inner\">");
 			{
 				if (appendPre)
@@ -222,7 +222,7 @@ public static class HtmlUtility
 		sb.Append("</div>");
 		return sb;
 	}
-	
+
 	public static void AppendWithCodeBlockSetup(HtmlRenderer renderer, Action innerBlock)
 	{
 		renderer.Write("<div class=\"code-container\">");
@@ -240,7 +240,7 @@ public static class HtmlUtility
 				renderer.Write("</div>");
 			}
 			renderer.Write("</div>");
-				
+
 			renderer.Write("<div class=\"code-container-inner\">");
 			{
 				innerBlock();
@@ -249,4 +249,25 @@ public static class HtmlUtility
 		}
 		renderer.Write("</div>");
 	}
+
+	[GeneratedRegex("(^ +)|( +$)", RegexOptions.Multiline | RegexOptions.Compiled)]
+	private static partial Regex GetWhitespaceRegex();
+
+	[GeneratedRegex("[{;]color:(#\\w{6});", RegexOptions.Compiled)]
+	private static partial Regex GetColorRegex();
+
+	[GeneratedRegex("_style_\\d+([{^]|$)", RegexOptions.Compiled)]
+	private static partial Regex GetStyleNameRegex();
+
+	[GeneratedRegex("_style_\\d+", RegexOptions.Compiled)]
+	private static partial Regex GetStylePlainRegex();
+
+	[GeneratedRegex("font-style:oblique;", RegexOptions.Compiled)]
+	private static partial Regex GetStyleItalicRegex();
+
+	[GeneratedRegex("<span>( +)</span>", RegexOptions.Compiled)]
+	private static partial Regex GetSpanSpacesRegex();
+
+	[GeneratedRegex("color:(#\\w{6});content:\"~{500}\"", RegexOptions.Compiled)]
+	private static partial Regex GetUnderlineRegex();
 }
