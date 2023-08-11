@@ -10,7 +10,7 @@
     - [Physics](#physics)
     - [Assets](#assets)
     - [Input](#input)
-    - [Utility classes](#utility-classes)
+    - [Utility types](#utility-types)
     - [Utility functions](#utility-functions)
     - [Implementation](#implementation)
 - [Data-Oriented Technology Stack](#data-oriented-technology-stack)
@@ -25,6 +25,7 @@
 - [Audio](#audio)
 - [Web](#web)
 - [Package Manager](#package-manager)
+- [Testing](#testing)
 
 ### Resources
 - [Collision action matrix](Info/Collision%20Matrix.md)

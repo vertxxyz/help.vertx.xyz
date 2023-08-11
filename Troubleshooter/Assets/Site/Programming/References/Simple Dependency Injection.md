@@ -11,7 +11,7 @@ The method should receive the references your class requires as parameters, whic
 private Example _example1;
 private Example _example2;
 
-public void Initialise(Example example2, Example example2)
+public void Initialise(Example example1, Example example2)
 {
     _example1 = example1;
     _example2 = example2;

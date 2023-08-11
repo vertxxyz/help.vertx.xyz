@@ -9,3 +9,6 @@
 
 ### Shadows - Realtime
 - [A light is not casting shadows.](Lighting/Shadows/Missing%20Shadows.md)
+
+### Inspector
+- [Some Light settings are missing.](Lighting/Missing%20Settings.md)

@@ -42,7 +42,7 @@
 ### Input
 - [Built-in Input Manager](Programming/Input/Built-In%20Input.md)
 - [Input System package](Programming/Input/Input%20System.md)
-### Utility classes
+### Utility types
 - [Random](Programming/Specifics/Random.md)
 - [Vectors](Programming/Vectors.md)
 - [Quaternions](Programming/Quaternions.md)
@@ -103,5 +103,8 @@
 ## Package Manager
 - [UPM issues](Package%20Manager/Common%20Issues.md)
 - [UPM errors](Package%20Manager/Common%20Errors.md)
+
+## Testing
+- [Test Runner](Testing/Test%20Runner.md)
 
 :::  

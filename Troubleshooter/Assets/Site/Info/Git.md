@@ -3,7 +3,11 @@ Git is a popular form of source control used with Unity. Source control allows y
 This resource is not exhaustive, but it should get beginners off the ground and using Git.  
 
 #### Other guides
-If you get stuck using this guide there are similar alternatives [like this one by Hextant Studios](https://hextantstudios.com/unity-using-git/) that you can search for.
+If you get stuck using this guide there are similar alternatives that you can search for.
+- [Hextant Studios - Using Git for Unity Projects](https://hextantstudios.com/unity-using-git/)
+- [Unity at Scale - How to set up a Unity project in GitHub.](https://unityatscale.com/unity-version-control-guide/how-to-setup-unity-project-on-github/)
+
+I advise having a look over other resources to prevent misunderstandings, and to understand alternative steps.
 
 #### Alternative steps
 There are also alternate ways to perform most steps. One notable difference is choosing to initialise a local repository on a pre-existing project and linking an empty origin to that project. I chose not avoid this way because it may be harder to learn based on a chosen GUI. Some people also may enjoy an entirely command line approach.
@@ -57,7 +61,7 @@ If you haven't already created a project, create one!
 The command line can be finicky and unfamiliar to work with, I recommend a using a Git GUI to interact with your repository.  
 
 #### Standalone
-Applications that are not embedded into an IDE. Alphabetical; this list is not exhaustive.
+Applications that are not embedded into an IDE. Alphabetical; see [Git - GUI clients](https://git-scm.com/downloads/guis) for a more exhaustive list.
 
 | Name                                             | Cost                                                                                                       | Platforms             | Description                                                                                          |
 |--------------------------------------------------|------------------------------------------------------------------------------------------------------------|-----------------------|------------------------------------------------------------------------------------------------------|

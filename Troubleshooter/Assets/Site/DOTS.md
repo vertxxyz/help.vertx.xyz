@@ -2,6 +2,7 @@
 ## Entities
 - [Baking](DOTS/Entities/Baking.md)  
 - [Systems](DOTS/Entities/Systems.md)  
+- [Transforms](DOTS/Entities/Transforms.md)
 - [Common errors](DOTS/Entities/Common%20Errors.md)
 
 ## Job System

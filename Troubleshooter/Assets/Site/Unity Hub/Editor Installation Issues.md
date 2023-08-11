@@ -2,7 +2,7 @@
 ### Make space on your primary drive
 You need space on your primary (C:) drive as the Unity Hub will cache downloads there during installations.
 
-Modern versions of the hub allow you to change these locations (**Preferences ⚙️ | Installs**), but space on the primary drive is still necessary for certain components.
+Modern versions of the Hub allow you to change these locations (**Preferences ⚙️ | Installs**), but space on the primary drive is still necessary for certain components.
 
 ### Antivirus
 Check that the Hub is not being blocked by antivirus/security programs, and attempt to whitelist the Hub.
@@ -14,10 +14,12 @@ Check the logs ([documentation](https://docs.unity3d.com/Manual/LogFiles.html)),
 - Linux: `~/.config/UnityHub/logs`  
 
 ### Different installation locations
-Try installing into a different location using the settings (**Preferences ⚙️ | Installs | Installs Location**)
+Try installing into a different location using the settings (**Preferences ⚙️ | Installs | Installs Location**).
+
+If you are on Mac, you should check that the Unity Hub has write permissions in the **Privacy and Security | Files and Folders** preferences for the folder you are using (if present).
 
 ### Permissions
-Don't launch the hub with Administrator privileges as it may prompt you to avoid doing so.
+Don't launch the Hub with Administrator privileges as it may prompt you to avoid doing so. Proper configuration and application permissions should be applied normally.
 
 ### Restart
 1. Restart your computer.
