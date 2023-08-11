@@ -10,6 +10,8 @@ Creating a serialized field allows that instance to be referred to elsewhere in 
 You cannot serialize references between scenes. See [cross-scene references](Cross-Scene%20References.md) to learn more.
 :::
 
+If you are trying to reference a component in a dynamic situation, consider the [GetComponent methods](GetComponent%20Methods.md).
+
 ### Implementation
 ::::note  
 #### 1. Expose a serialized reference to the target component  

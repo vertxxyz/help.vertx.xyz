@@ -1,4 +1,4 @@
-## GetComponent APIs
+## GetComponent methods
 [`GetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html), [`TryGetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.TryGetComponent.html),
 [`GetComponentInChildren`](https://docs.unity3d.com/ScriptReference/Component.GetComponentInChildren.html), and other similar methods are perfect for dynamic runtime references like those gathered in a physics message or query.  
 
