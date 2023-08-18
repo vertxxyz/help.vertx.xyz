@@ -11,7 +11,7 @@
 - [Editor installation issues](Unity%20Hub/Editor%20Installation%20Issues.md)
 - [Editor module installation issues](Unity%20Hub/Module%20Installation%20Issues.md)
 ### Functionality
-- [Error dialogs](Common/Error%20Dialogs.md)
+- [Error dialogs](Editor/Error%20Dialogs.md)
 - [Freezes, crashes, and pauses](Functionality/Freezes%20Crashes%20and%20Pauses.md)
 - [Play mode](Functionality/Play%20Mode.md)
 
@@ -25,7 +25,7 @@
 ### Errors & warnings
 - [Errors](Programming/Common%20Errors.md)
 - [Warnings](Programming/Common%20Warnings.md)
-- [Error dialogs](Common/Error%20Dialogs.md)
+- [Error dialogs](Editor/Error%20Dialogs.md)
 ### Editor extensions
 - [General](Programming/Editor%20Extensions.md)
 - [Property drawers](Programming/Editor%20Extensions/Property%20Drawers.md)
@@ -57,6 +57,7 @@
 - [Async/await](Programming/Async.md)
 - [Parsing input strings](Programming/Specifics/Parsing.md)
 - [Player movement](Programming/Player%20Movement.md)
+- [Mesh generation](Programming/Mesh%20Generation.md)
 
 ## Data-Oriented Technology Stack (DOTS)
 - [Entities, Job System, Burst, native collections](DOTS.md)

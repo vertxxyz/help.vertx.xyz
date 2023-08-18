@@ -162,6 +162,8 @@ pre {
 	}
 	
 	&.collapsable--collapsed {
+		user-select: none;
+		
 		> .collapsable__icon {
 			transform: rotate(270deg) translate(-3px, 0);
 		}

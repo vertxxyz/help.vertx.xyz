@@ -3,8 +3,8 @@ Find is an expensive method, see [alternatives](../../../References.md).
 
 ::::note  
 #### [`GameObject.Find`](https://docs.unity3d.com/ScriptReference/GameObject.Find.html)
-Searches for a gameobject by name.
-1. Only active gameobjects can be found.
+Searches for a GameObject by name.
+1. Only active GameObjects can be found.
 1. Names are case-sensitive.
 1. If your path starts with a `/` then the path must begin at the root of the scene.
 1. Assignment must occur before access. Often you would use [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) to get, and [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) to use.
@@ -23,7 +23,7 @@ Searches for children by name.
 ::::note  
 #### [`GameObject.FindWithTag`](https://docs.unity3d.com/ScriptReference/GameObject.FindWithTag.html)
 1. Check the console for a `UnityException`. `FindWithTag` will throw an exception when used with a tag that does not exist.
-1. Only active gameobjects can be found.
+1. Only active GameObjects can be found.
 1. Assignment must occur before access. Often you would use [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) to get, and [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) to use.
 
 ::::  

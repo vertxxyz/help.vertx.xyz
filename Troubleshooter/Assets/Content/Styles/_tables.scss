@@ -9,6 +9,17 @@ table {
   img.inline {
     transform: unset;
   }
+  
+  &+figcaption {
+    background: base.$unity-colors-default-background;
+    border: 1px solid base.$unity-colors-inspector_titlebar-border;
+    border-top: 0;
+  }
+}
+
+figure:has(>table) {
+  margin-top: 0;
+  margin-left: 0;
 }
 
 table, th, td {

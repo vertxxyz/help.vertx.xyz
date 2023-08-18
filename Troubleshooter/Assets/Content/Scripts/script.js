@@ -303,7 +303,7 @@ function setupCodeSettings() {
         e.addEventListener("click",
             function () {
                 const container = e.closest('div[class^="code-container"]');
-                const inner = container.find('.code-container-inner').get(0);
+                const inner = container.querySelector('.code-container-inner');
                 const r = document.createRange();
                 r.selectNode(inner);
                 if (!navigator.clipboard) {

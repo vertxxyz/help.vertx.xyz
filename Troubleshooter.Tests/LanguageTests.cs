@@ -43,6 +43,7 @@ public partial class LanguageTests
 
 	private static readonly Regex s_UnityRegex = GetUnityRegex();
 	private static readonly Regex s_UGuiRegex = GetUGuiRegex();
+	private static readonly Regex s_GameObjectRegex = GetGameObjectRegex();
 		
 	/// <summary>
 	/// Tests for common issues with capitalisation
@@ -63,10 +64,14 @@ public partial class LanguageTests
 		text.Should().NotContain("assembly definition", StringComparison.Ordinal, "we should write \"Assembly Definition\"");
 		text.Should().NotMatchRegex(s_UGuiRegex, "we should write \"uGUI\"");
 		text.Should().NotMatchRegex(s_UnityRegex, "we should write \"Unity\"");
+		text.Should().NotMatchRegex(s_GameObjectRegex, "we should write \"GameObject\"");
 	}
 
     [GeneratedRegex(@"\sunity[\s.,]")]
     private static partial Regex GetUnityRegex();
+    
+    [GeneratedRegex(@"\sgameobjects?[\s.,]")]
+    private static partial Regex GetGameObjectRegex();
     
     [GeneratedRegex(@"\sUGUI[\s.,]")]
     private static partial Regex GetUGuiRegex();

@@ -8,7 +8,7 @@ Make sure you understand this, or instead, use the static method [`Physics2D.Ray
 ### Issues with colliders
 - Raycasting requires [2D colliders](https://docs.unity3d.com/Manual/Collider2D.html) to work. 3D colliders will not by hit by `Physics2D` queries.  
   You cannot query against raw meshes or sprites using `Physics2D` functions.
-- 
+- Edge colliders are single-sided. Check that you are casting against the front face.
 
 ### Correct use of ContactFilter2D
 A newly constructed [`ContactFilter2D`](https://docs.unity3d.com/ScriptReference/ContactFilter2D.html) will not be correctly configured. Check that you understand how to use the API using the example below.
@@ -27,7 +27,8 @@ int resultCount = Physics2D.OverlapCircle(transform.position, radius, filter, re
 ```
 
 ### Notes on setup
-- Note that casts originating inside of colliders will often return normals that are the inverse of the ray direction.
+- **Casts** originating inside of colliders will often return normals that are the inverse of the ray direction.
+- Don't use **casts** of `0` `maxDistance`, or `zero` `direction`, consider using **overlaps** instead.
 
 ---
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="500px" height="100%" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <path d="M100,100L400,400L100,400L100,100Z" style="fill:rgb(0,255,129);fill-opacity:0.37;"/>
+    <path d="M425.504,375.236L435.637,405.637L405.236,395.504L425.504,375.236Z" style="fill:rgb(1,253,128);"/>
+    <path d="M90,60C90,60 351.079,321.079 419.423,389.423" style="fill:none;stroke:rgb(1,253,128);stroke-width:9.55px;"/>
+    <path d="M128.663,434.331L100,420L128.663,405.669L128.663,434.331Z" style="fill:rgb(1,253,128);"/>
+    <path d="M435.637,420L122.93,420" style="fill:none;stroke:rgb(1,253,128);stroke-width:9.55px;"/>
+    <path d="M65.669,98.663L80,70L94.331,98.663L65.669,98.663Z" style="fill:rgb(1,253,128);"/>
+    <path d="M80,405.637L80,92.93" style="fill:none;stroke:rgb(1,253,128);stroke-width:9.55px;"/>
+    <circle cx="80" cy="420" r="14.363" style="fill:rgb(0,255,129);fill-opacity:0.37;stroke:rgb(1,253,128);stroke-width:9.55px;"/>
+    <circle cx="450" cy="420" r="14.363" style="fill:rgb(0,255,129);fill-opacity:0.37;stroke:rgb(1,253,128);stroke-width:9.55px;"/>
+    <circle cx="80" cy="50" r="14.363" style="fill:rgb(0,255,129);fill-opacity:0.37;stroke:rgb(1,253,128);stroke-width:9.55px;"/>
+    <g transform="matrix(47.9719,0,0,47.9719,168.351,67.7496)">
+    </g>
+    <text x="110.785px" y="67.75px" style="font-family:'JetBrainsMono-Bold', 'JetBrains Mono', monospace;font-weight:700;font-size:47.972px;fill:rgb(250,250,250);">12</text>
+    <g transform="matrix(47.9719,0,0,47.9719,478.519,479.499)">
+    </g>
+    <text x="420.953px" y="479.499px" style="font-family:'JetBrainsMono-Bold', 'JetBrains Mono', monospace;font-weight:700;font-size:47.972px;fill:rgb(250,250,250);">21</text>
+    <g transform="matrix(47.9719,0,0,47.9719,108.927,479.499)">
+    </g>
+    <text x="51.361px" y="479.499px" style="font-family:'JetBrainsMono-Bold', 'JetBrains Mono', monospace;font-weight:700;font-size:47.972px;fill:rgb(250,250,250);">22</text>
+    <path d="M213.769,260.614L224.416,290.839L193.848,281.222L213.769,260.614Z" style="fill:rgb(0,177,253);"/>
+    <path d="M228.746,301.5C233.183,319.111 225.66,338.247 209.161,347.773C189.239,359.275 163.728,352.439 152.227,332.518C140.725,312.597 147.561,287.085 167.482,275.584C180.395,268.128 195.657,268.378 207.93,274.902" style="fill:none;stroke:rgb(0,177,253);stroke-width:9.55px;"/>
+</svg>

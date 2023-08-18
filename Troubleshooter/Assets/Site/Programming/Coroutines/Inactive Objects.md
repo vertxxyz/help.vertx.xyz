@@ -8,7 +8,7 @@ Coroutines can only be run on active GameObjects.
 ### Resolution
 ::::note  
 #### Check that the GameObject is active before you start the coroutine
-Use [`activeInHierarchy`](https://docs.unity3d.com/ScriptReference/GameObject-activeInHierarchy.html) to check whether the GameObject is active. Don't use [`activeSelf`](https://docs.unity3d.com/ScriptReference/GameObject-activeSelf.html) as the GameObject's active state is dependent on the hierarchy's state.
+Use [`activeInHierarchy`](https://docs.unity3d.com/ScriptReference/GameObject-activeInHierarchy.html) to check whether the GameObject is active. Don't use [`activeSelf`](https://docs.unity3d.com/ScriptReference/GameObject-activeSelf.html), the GameObject's active state depends on the hierarchy.
 
 ```csharp
 if (gameObject.activeInHierarchy)
@@ -25,3 +25,7 @@ Or
 _otherComponent.StartCoroutine(MyCoroutine());
 ```
 ::::  
+
+---
+
+- [Return to Coroutines.](../Coroutines.md)

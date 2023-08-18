@@ -8,10 +8,18 @@ Modern versions of the Hub allow you to change these locations (**Preferences �
 Check that the Hub is not being blocked by antivirus/security programs, and attempt to whitelist the Hub.
 
 ### Logging locations
-Check the logs ([documentation](https://docs.unity3d.com/Manual/LogFiles.html)), looking for setup issues close to the bottom of the log:
-- Windows: `%UserProfile%\AppData\Roaming\UnityHub\logs`
-- Mac: `~/Library/Application support/UnityHub/logs`
-- Linux: `~/.config/UnityHub/logs`  
+Check the logs, looking for setup issues close to the bottom of the output:
+
+^^^
+
+| Operating system | Unity Hub log location                        |
+|------------------|-----------------------------------------------|
+| Windows          | `%UserProfile%\AppData\Roaming\UnityHub\logs` |
+| Mac              | `~/Library/Application support/UnityHub/logs` |
+| Linux            | `~/.config/UnityHub/logs`                     |
+^^^ You can see this table in the [documentation](https://docs.unity3d.com/Manual/LogFiles.html)
+
+You can also get to this location via the account dropdown in the top left of the Hub **▾ | Troubleshooting | Open log folder**.
 
 ### Different installation locations
 Try installing into a different location using the settings (**Preferences ⚙️ | Installs | Installs Location**).

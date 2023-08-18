@@ -428,8 +428,9 @@ kbd {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.9em;
   background-color: base.$dark-background-color;
-  border-radius: 0.5em;
-  padding: 1px 5px 3px 5px;
+  border-radius: 0.4em;
+  padding: 1px 4px 3px 4px;
+  //margin: 0 1px 0 0;
   border: solid 1px #6e768166;
   box-shadow: inset 0 -1px 0 #6e768166;
   white-space: nowrap;
@@ -442,9 +443,6 @@ kbd {
 }
 
 figure {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   margin-inline-start: 15px;
 
   :nth-last-child(2) {
@@ -455,8 +453,9 @@ figure {
 figcaption {
   font-size: 10pt;
   padding: 5px 12px 5px 12px;
-  background: #191919;
+  background: base.$unity-colors-app_toolbar-background;
   border-radius: 0 0 5px 5px;
+  max-width: fit-content;
 }
 
 figure {

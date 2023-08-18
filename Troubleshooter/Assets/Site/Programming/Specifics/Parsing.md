@@ -43,13 +43,13 @@ Debug.Log($"The problematic character is U+{(int)text[index]:X4}");
 
 #### Common hidden characters
 
-| Character as code | UTF-16 | Description                 |
-|-------------------|--------|-----------------------------|
-| ` `               | U+0020 | Space (SP)                  |
-| `\n`              | U+000A | Line feed (LF)              |
-| `\r`              | U+000D | Carriage return (CR)        |
-| `\t`              | U+0009 | Character tabulation (TAB)  |
-| `\u200b`          | U+200B | Zero-width space[^1] (ZWSP) |
+| Character as code | UTF-16 | Description          | Shorthand |
+|-------------------|--------|----------------------|-----------|
+| ` `               | U+0020 | Space                | SP        |
+| `\n`              | U+000A | Line feed            | LF        |
+| `\r`              | U+000D | Carriage return      | CR        |
+| `\t`              | U+0009 | Character tabulation | TAB       |
+| `\u200b`          | U+200B | Zero-width space[^1] | ZWSP      |
 
 
 `\r\n`, or CRLF is a common combination to denote a new line on Windows. Mac and Unix both use `\n`, LF.

@@ -9,14 +9,9 @@ Crashing is when a program closes unexpectedly.
 Check the appropriate logs ([documentation](https://docs.unity3d.com/Manual/LogFiles.html)), looking for possible causes at the bottom.
 
 #### Unity Editor
-- Windows: `%LOCALAPPDATA%\Unity\Editor\Editor.log`
-- MacOS: `~/Library/Logs/Unity/Editor.log`
-- Linux: `~/.config/unity3d/Editor.log`
-
-#### Unity Hub
-- Windows: `%UserProfile%\AppData\Roaming\UnityHub\logs`  
-- Mac: `~/Library/Application support/UnityHub/logs`  
-- Linux: `~/.config/UnityHub/logs`  
+- [Unity Editor logs](../Editor/Logs.md)
+- [Unity player logs](../Player/Logs.md)
+- [Unity Hub logs](../Unity%20Hub/Logs.md)
 
 ### Pausing
 Pausing is when the application halts momentarily.  

@@ -7,7 +7,7 @@ namespace Troubleshooter;
 public sealed partial class CollapsableCodeSegmentsReplacement : IHtmlPostProcessor
 {
 	[GeneratedRegex("""
-	                (<span class="token comment">/\* Collapsable: (?<description>[\w ]+) \*/</span>)(\s+)(?<contents>(.|
+	                (<span class="token comment">/\* Collapsable: (?<description>[^*]+?) \*/</span>)(\s+)(?<contents>(.|
 	                )*?)(\s+)(<span class="token comment">/\* End Collapsable \*/</span>)
 	                """)]
 	private static partial Regex GetCollapsableCodeSegmentRegex();

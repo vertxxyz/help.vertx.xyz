@@ -1,6 +1,7 @@
 ## Player logs
-Player-related log locations
 To view the Player log, open a [Console window](https://docs.unity3d.com/Manual/Console.html) (**Window | General | Console**) and select **⋮ | Open Player Log** from the window menu. You can also navigate to the following folder:
+
+^^^
 
 | Operating system           | Player log location                                                                                                                                    |
 |----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -11,5 +12,8 @@ To view the Player log, open a [Console window](https://docs.unity3d.com/Manual/
 | Universal Windows Platform | `%USERPROFILE%\AppData\Local\Packages\<productname>\TempState\UnityPlayer.log`                                                                         |
 | WebGL                      | Unity writes the log output to your browser’s JavaScript console.                                                                                      |
 | Windows                    | `%USERPROFILE%\AppData\LocalLow\CompanyName\ProductName\Player.log`                                                                                    |
+^^^ You can see this table in the [documentation](https://docs.unity3d.com/Manual/LogFiles.html)
 
-You can see this table on the [Unity log files documentation](https://docs.unity3d.com/Manual/LogFiles.html).
+---
+- [Unity Editor logs](../Editor/Logs.md)
+- [Unity Hub logs](../Unity%20Hub/Logs.md)

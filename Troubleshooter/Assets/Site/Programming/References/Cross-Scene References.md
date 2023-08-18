@@ -11,7 +11,7 @@ If you cannot change your architecture to avoid these references, consider const
 
 ::::note  
 #### Some options include:
-- Finding the target via a scene query ([`Physics`](https://docs.unity3d.com/ScriptReference/Physics.html) queries for example) and using `GetComponent` and its variants.
+- Finding the target via a scene query ([`Physics`](https://docs.unity3d.com/ScriptReference/Physics.html) queries for example) and using [GetComponent methods](GetComponent%20Methods.md).
 - Serialize a reference to the target to a [singleton](Singletons.md) in the target scene, then use the singleton to get the target.
 - Have the target register itself to a [singleton](Singletons.md) on startup, then use the singleton to get the target.
 - Serialize GUIDs which are later resolved in code via a [registry you create yourself](https://blog.unity.com/engine-platform/spotlight-team-best-practices-guid-based-references).

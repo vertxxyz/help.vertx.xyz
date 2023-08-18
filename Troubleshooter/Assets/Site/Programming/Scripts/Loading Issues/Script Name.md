@@ -7,12 +7,15 @@ You can find the name of your class where your code looks like:
 
 In this example if your script isn't named ::![Script Icon](script-icon.svg){.inline} `ClassName`::{.note}, you must rename it to be identical.  
 
-:::warning  
-Identical includes capitalisation and spaces  
+:::warning{.inline}
+This includes **capitalisation** and **spaces**.  
 :::  
 
+### Notes
+- There should only be one `MonoBehaviour` or `ScriptableObject` in a file due to this restriction.  
+- C# uses pascal case (<kbd>PascalCase</kbd>) as its [naming convention](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names#naming-conventions) for types. If your class is lowercase, it's not following this convention.
+- Unity will hide the file extension, but it should be `.cs`.
 
-Note that there should only be one component or scriptable object per file due to this restriction.  
 
 ---  
-[My script still cannot be loaded.](Console%20Errors.md)
+[My script still cannot be loaded](Console%20Errors.md)

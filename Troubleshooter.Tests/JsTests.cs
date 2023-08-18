@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using FluentAssertions.Execution;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -14,10 +15,7 @@ public partial class JsTests
 	private static partial Regex GetImportRegex();
 	
 
-	public JsTests(ITestOutputHelper testOutputHelper)
-	{
-		this.testOutputHelper = testOutputHelper;
-	}
+	public JsTests(ITestOutputHelper testOutputHelper) => this.testOutputHelper = testOutputHelper;
 
 	/// <summary>
 	/// Ensures that imports end in ".js". Rider automatically imports without the extension, which is a runtime failure.
@@ -26,6 +24,7 @@ public partial class JsTests
 	[ClassData(typeof(JavascriptData))]
 	public void ValidateImports(string text)
 	{
+		using var assertionScope = new AssertionScope();
 		foreach (Match match in importRegex.Matches(text))
 		{
 			testOutputHelper.WriteLine(match.Groups[1].Value);

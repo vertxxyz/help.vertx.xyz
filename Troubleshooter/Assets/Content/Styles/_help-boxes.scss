@@ -67,22 +67,45 @@ div.info-box.small {
 	}
 }
 
-%img-note {
-	background-color: #151315;
-	border: none;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-	margin-top: -1.5em;
+%figcaption-help-box {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	margin: 0 5px 0 0;
+	padding: 0;
+	vertical-align: sub;
 }
 
-div.info-box.img-note {
-	@extend %img-note;
-	width: 500px;
+figcaption {
+	&> .info::before {
+		@extend %figcaption-help-box;
+		content: url("../Images/information.svg");
+	}
+	&> .warning::before {
+		@extend %figcaption-help-box;
+		content: url("../Images/warning.svg");
+	}
+	&> .error::before {
+		@extend %figcaption-help-box;
+		content: url("../Images/error.svg");
+	}
 }
 
-div.info-box.img-note-wide {
-	@extend %img-note;
-	width: 750px;
+figure:has(video),figure:has(image) {
+	&> figcaption {
+		display: flex;
+		box-sizing: border-box;
+		width: 750px;
+		max-width: 750px;
+		&>.info,.warning,.error {
+			font-size: 16px;
+			&::before {
+				vertical-align: middle;
+				height: 30px;
+				width: 30px;
+			}
+		}
+	}
 }
 
 .code-context {

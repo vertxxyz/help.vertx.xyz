@@ -15,16 +15,14 @@ public partial class SidebarTests
 	[ClassData(typeof(SidebarData))]
 	public void ValidateSidebarAnchorLinks(string name, string path, string text)
 	{
-		var pagePath = path.Replace("_sidebar", string.Empty);
+		string pagePath = path.Replace("_sidebar", string.Empty);
 		string? pageText = null;
-		using (new AssertionScope())
+		using var assertionScope = new AssertionScope();
+		foreach (string link in AnchorLinksAsFullPaths(text))
 		{
-			foreach (string link in AnchorLinksAsFullPaths(text))
-			{
-				string query = @$"# *{link} *\r\n";
-				pageText ??= File.ReadAllText(pagePath);
-				pageText.Should().Match(v => Regex.IsMatch(v, query, RegexOptions.IgnoreCase), $"\"#{link}\" anchor does not exist - \"{name}\"");
-			}
+			string query = @$"# *{link} *\r\n";
+			pageText ??= File.ReadAllText(pagePath);
+			pageText.Should().Match(v => Regex.IsMatch(v, query, RegexOptions.IgnoreCase), $"\"#{link}\" anchor does not exist - \"{name}\"");
 		}
 	}
 		

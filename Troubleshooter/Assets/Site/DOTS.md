@@ -7,6 +7,7 @@
 
 ## Job System
 - [Common errors](DOTS/Job%20System/Common%20Errors.md)
+- [Getting data out of jobs](DOTS/Job%20System/Native%20References.md)
 ## Burst
 - [Common errors](DOTS/Burst/Common%20Errors.md)
 ## Native collections

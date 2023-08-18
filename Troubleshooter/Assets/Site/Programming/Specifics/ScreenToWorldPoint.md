@@ -31,7 +31,9 @@ Drag the point to modify mouse position, move the slider to change the distance.
 
 Using a [`Plane`](https://docs.unity3d.com/ScriptReference/Plane.html) and [`ScreenPointToRay`](https://docs.unity3d.com/ScriptReference/Camera.ScreenPointToRay.html) avoids having to calculate an appropriate distance from the camera. When the result is on a fixed plane in space, this can be a suitable approach.  
 
-<<Code/Specific/Plane Raycast.rtf>>  
+^^^
+<<Code/Specific/Plane Raycast.rtf>>
+^^^ ::You must provide your own plane. Note that the [`Plane` constructor](https://docs.unity3d.com/ScriptReference/Plane-ctor.html) is `normal, point`.::{.warning}
 
 #### Using Physics
 Using a [`Raycast`](https://docs.unity3d.com/ScriptReference/Physics.Raycast.html) and [`ScreenPointToRay`](https://docs.unity3d.com/ScriptReference/Camera.ScreenPointToRay.html) avoids having to calculate an appropriate distance from the camera. When the result is meant to be on the surface of colliders, this is the correct approach.

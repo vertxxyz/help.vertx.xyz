@@ -45,8 +45,8 @@ public partial class ContentTests
 	[ClassData(typeof(PageData))]
 	public void ValidateEmptyPage(string name, string path, string text)
 	{
-		using (new AssertionScope(name))
-			text.Should().NotBeNullOrEmpty("Pages should have content");
+		using var assertionScope = new AssertionScope(name);
+		text.Should().NotBeNullOrEmpty("Pages should have content");
 	}
 
 	private static readonly Regex footnoteRegex = FootnoteRegex();
@@ -68,32 +68,30 @@ public partial class ContentTests
 	[ClassData(typeof(PageData))]
 	public void ValidateFootnotes(string name, string path, string text)
 	{
-		using (new AssertionScope(name))
+		using var assertionScope = new AssertionScope(name);
+		Assert.DoesNotMatch(incorrectFootnoteRegex, text);
+		MatchCollection footnotes = footnoteRegex.Matches(text);
+		Dictionary<string, FootnotePair> footnotePairs = new();
+		foreach (Match match in footnotes)
 		{
-			Assert.DoesNotMatch(incorrectFootnoteRegex, text);
-			MatchCollection footnotes = footnoteRegex.Matches(text);
-			Dictionary<string, FootnotePair> footnotePairs = new();
-			foreach (Match match in footnotes)
-			{
-				int nextIndex = match.Index + match.Length;
-				int prevIndex = match.Index - 1;
-				FootnotePair pair;
-				if (nextIndex < text.Length && text[nextIndex] == ':' && prevIndex >= 0 && text[prevIndex] == '\n')
-					pair = FootnotePair.Destination;
-				else
-					pair = FootnotePair.Source;
+			int nextIndex = match.Index + match.Length;
+			int prevIndex = match.Index - 1;
+			FootnotePair pair;
+			if (nextIndex < text.Length && text[nextIndex] == ':' && prevIndex >= 0 && text[prevIndex] == '\n')
+				pair = FootnotePair.Destination;
+			else
+				pair = FootnotePair.Source;
 
-				var value = match.Groups[1].Value;
-				if (!footnotePairs.TryGetValue(value, out FootnotePair oldPair))
-					footnotePairs.Add(value, pair);
-				else
-					footnotePairs[value] = oldPair | pair;
-			}
+			var value = match.Groups[1].Value;
+			if (!footnotePairs.TryGetValue(value, out FootnotePair oldPair))
+				footnotePairs.Add(value, pair);
+			else
+				footnotePairs[value] = oldPair | pair;
+		}
 
-			foreach (KeyValuePair<string, FootnotePair> pair in footnotePairs)
-			{
-				pair.Value.Should().Be(FootnotePair.Both, $"{pair.Value} does not make a pair of footnotes in {name}");
-			}
+		foreach (KeyValuePair<string, FootnotePair> pair in footnotePairs)
+		{
+			pair.Value.Should().Be(FootnotePair.Both, $"{pair.Value} does not make a pair of footnotes in {name}");
 		}
 	}
 	
@@ -106,16 +104,17 @@ public partial class ContentTests
 	[ClassData(typeof(PageData))]
 	public void ValidatePackageDocLinks(string name, string path, string text)
 	{
-		using (new AssertionScope(name))
-		{
-			Assert.DoesNotMatch(incorrectPackageDocLink, text);
-		}
+		using var assertionScope = new AssertionScope(name);
+		Assert.DoesNotMatch(incorrectPackageDocLink, text);
 	}
 
     [GeneratedRegex(@"(?<!\r\n)\r\n---(?:\s|$)", RegexOptions.Compiled)]
     private static partial Regex LineBreak01Regex();
     
-    [GeneratedRegex(@".rtf>>(?! *\r?\n\r?\n| *\r?\n<<| *\r?\n#| *\r*\n?$)", RegexOptions.Compiled)]
+    /// <summary>
+    /// This will match if .rtf>> is not followed by the listed terms. So if we see these terms, they will pass the test.
+    /// </summary>
+    [GeneratedRegex(@"\.rtf>>(?! *\r?\n\r?\n| *\r?\n<<| *\r?\n#| *[\r\n]*$| *\r?\n\^\^\^)", RegexOptions.Compiled)]
     private static partial Regex LineBreak02Regex();
     
     [GeneratedRegex(@"\[\^(\d+)\]", RegexOptions.Compiled)]
@@ -124,6 +123,6 @@ public partial class ContentTests
     [GeneratedRegex(@"\[\d+\^\]", RegexOptions.Compiled)]
     private static partial Regex IncorrectFootnoteRegex();
     
-    [GeneratedRegex(@"@[\d.]+?\/(?:api|manual)\/", RegexOptions.Compiled)]
+    [GeneratedRegex(@"@[\d.]+?/(?:api|manual)/", RegexOptions.Compiled)]
     private static partial Regex IncorrectPackageDocLink();
 }

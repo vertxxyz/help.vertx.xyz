@@ -36,10 +36,9 @@ public PrefabComponentType Prefab;
 ::::note  
 #### 3. Reference the prefab asset in the spawner's Inspector
 
+^^^
 <video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/Video/prefab-references.webm"></video>
-:::error{.small .img-note-wide}
-Drag the prefab asset into the slot or you will get an [`UnassignedReferenceException`](../Common%20Errors/Runtime%20Exceptions/UnassignedReferenceException.md).  
-:::
+^^^ ::Drag the prefab asset into the slot or you will get an [`UnassignedReferenceException`](../Common%20Errors/Runtime%20Exceptions/UnassignedReferenceException.md).::{.error}
 
 Dragging a prefab from the [Project window](https://docs.unity3d.com/Manual/ProjectView.html) into the field will reference the first matching Component found on the root of the object.
 

@@ -30,42 +30,42 @@ If the returned value is dependent on the length of a frame, or isn't constantly
 
 ### Comparing approaches
 :::note  
-#### Scenario 1: You move your mouse 1cm over a 20ms frame and 2cm over a 40ms frame
+#### Scenario 1: You move your mouse 100px over a 20ms frame and 200px over a 40ms frame
 ##### 🟢 Not scaling by deltaTime
 
-| Frame | Frame time | Movement | Added | Total |
-|-------|------------|----------|-------|-------|
-| 1     | 0.02ms     | 1        | 1     | 1     |
-| 2     | 0.04ms     | 2        | 2     | **3** |
+| Frame | Frame time | Movement | Added | Total   |
+|-------|------------|----------|-------|---------|
+| 1     | 0.02ms     | 100      | 100   | 100     |
+| 2     | 0.04ms     | 200      | 200   | **300** |
 
 The value we added on the frame 2 was twice as large as frame 1, this makes sense 🙂  
 
 ##### 🔴 Scaling by deltaTime
 
-| Frame | Frame time | Movement | Added | Total   |
-|-------|------------|----------|-------|---------|
-| 1     | 0.02ms     | 1        | 0.02  | 0.02    |
-| 2     | 0.04ms     | 2        | 0.08  | **0.1** |
+| Frame | Frame time | Movement | Added | Total  |
+|-------|------------|----------|-------|--------|
+| 1     | 0.02ms     | 100      | 2     | 2      |
+| 2     | 0.04ms     | 200      | 8     | **10** |
 
 The value we added on frame 2 was four times as large as frame 1, this makes no sense ☹️
 :::  
 :::note  
-#### Scenario 2: You move mouse 2cm over a 20ms frame and 1cm over a 40ms frame
+#### Scenario 2: You move mouse 200px over a 20ms frame and 100px over a 40ms frame
 ##### 🟢 Not scaling by deltaTime
 
-| Frame | Frame time | Movement | Added | Total |
-|-------|------------|----------|-------|-------|
-| 1     | 0.02ms     | 2        | 2     | 2     |
-| 2     | 0.04ms     | 1        | 1     | **3** |
+| Frame | Frame time | Movement | Added | Total   |
+|-------|------------|----------|-------|---------|
+| 1     | 0.02ms     | 200      | 200   | 200     |
+| 2     | 0.04ms     | 100      | 100   | **300** |
 
 The total is the same as the previous scenario, this makes sense 🙂
 
 ##### 🔴 Scaling by deltaTime
 
-| Frame | Frame time | Movement | Added | Total    |
-|-------|------------|----------|-------|----------|
-| 1     | 0.02ms     | 2        | 0.04  | 0.04     |
-| 2     | 0.04ms     | 1        | 0.04  | **0.08** |
+| Frame | Frame time | Movement | Added | Total |
+|-------|------------|----------|-------|-------|
+| 1     | 0.02ms     | 200      | 4     | 4     |
+| 2     | 0.04ms     | 100      | 4     | **8** |
 
 The total is different to the previous scenario, this makes no sense ☹️
 

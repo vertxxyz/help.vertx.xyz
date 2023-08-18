@@ -12,67 +12,11 @@ foreach (var item in collection)
 ```
 
 ### Resolution
-#### I am removing some items from a list
-Instead, perform a reverse for loop (you can autocomplete `forr` to get one), and remove by index:
 
-```csharp
-for (int i = collection.Count - 1; i >= 0; i--)
-{
-    if (condition)
-        collection.RemoveAt(i);
-}
-```
+#### I am using a `List`:
+- [I am **removing** items.](Collection%20Was%20Modified/List%20Removal.md)
+- [I am **adding** items.](Collection%20Was%20Modified/List%20Addition.md)
 
-Starting removals at the end of the list improves performance, and you don't need to modify the counter after a removal.
-
-#### I am adding items to a list
-Instead, use a for loop (forward or reverse). You must correctly manage the counter to avoid infinite loops.
-```csharp
-for (int i = collection.Count - 1; i >= 0; i--)
-{
-    if (condition)
-        collection.Add(newItem);
-}
-```
-
-#### I am modifying another collection
-Instead, you will need either need to:  
-:::note  
-Create a temporary copy of the collection before iterating over the copy.**
-```csharp
-var copy = new CollectionType(collection);
-foreach (var item in copy)
-{
-    if (condition)
-        collection.Remove(item);
-}
-```
-:::info{.inline}  
-`CollectionType` should be replaced with the type used to create the original collection.
-:::  
-:::  
-**Or:**  
-:::note  
-Create a temporary collection used for removals after the loop.
-```csharp
-var toRemove = new List<ItemType>();
-foreach (var item in collection)
-{
-    if (condition)
-        toRemove.Add(item);
-}
-
-foreach (var item in toRemove)
-{
-    collection.Remove(item);
-}
-
-```
-:::info{.inline}  
-`ItemType` should be replaced with the type used to key removals.
-:::  
-:::  
-
-:::info  
-To reduce the garbage collection impact of either of these methods you can use a pooled collection, like one retrieved from the built-in collection pools like [`ListPool`](https://docs.unity3d.com/ScriptReference/Pool.ListPool_1.html), [`HashSetPool`](https://docs.unity3d.com/ScriptReference/Pool.HashSetPool_1.html), or [`DictionaryPool`](https://docs.unity3d.com/ScriptReference/Pool.DictionaryPool_2.html).
-:::
+#### I am using another collection type:
+- [I am **removing** items.](Collection%20Was%20Modified/Collection%20Removal.md)
+- [I am **adding** items.](Collection%20Was%20Modified/Collection%20Addition.md)
