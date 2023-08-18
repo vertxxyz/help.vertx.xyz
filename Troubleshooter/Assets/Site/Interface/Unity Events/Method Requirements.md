@@ -12,5 +12,5 @@ The target method must:
 - **Not** return a value. The method must have the return type `void`  
 
 ---  
-
-[The method still does not appear in the functions list.](Compiler%20Errors.md)
+- [I want to learn to work around this restriction.](Method%20Requirements%20Workaround.md)
+- [I have changed my method and it still doesn't appear in the functions list.](Compiler%20Errors.md)
