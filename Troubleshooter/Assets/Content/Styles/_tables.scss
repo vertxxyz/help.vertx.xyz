@@ -14,6 +14,7 @@ table {
     background: base.$unity-colors-default-background;
     border: 1px solid base.$unity-colors-inspector_titlebar-border;
     border-top: 0;
+    margin-right: 19px;
   }
 }
 
@@ -34,10 +35,21 @@ th {
 
 td {
   padding: 12px 12px;
+  &.tableYes,&.tableMaybe {
+    color: base.$dark-color;
+  }
+  
   &.tableYes {
     background-color: rgba(124, 220, 54, 0.8);
     &.highlight {
       background-color: rgba(124, 220, 54, 1);
+      /*cursor: crosshair;*/
+    }
+  }
+  &.tableMaybe {
+    background-color: rgba(220, 173, 54, 0.8);
+    &.highlight {
+      background-color: rgba(220, 173, 54, 1);
       /*cursor: crosshair;*/
     }
   }

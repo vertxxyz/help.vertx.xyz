@@ -1,28 +1,5 @@
 @use 'base';
 
-%figcaption-info {
-	height: 17px;
-	width: 17px;
-	position: relative;
-	display: inline-block;
-	transform: translate(-5px, 4px);
-}
-
-figcaption.warning::before{
-	@extend %figcaption-info;
-	content: url("../Images/warning.svg");
-}
-
-figcaption.warning::before{
-	@extend %figcaption-info;
-	content: url("../Images/warning.svg");
-}
-
-figcaption.error::before{
-	@extend %figcaption-info;
-	content: url("../Images/error.svg");
-}
-
 div.info-box {
 	display: flex;
 	flex-direction: row;

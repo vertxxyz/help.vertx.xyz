@@ -456,6 +456,7 @@ figcaption {
   background: base.$unity-colors-app_toolbar-background;
   border-radius: 0 0 5px 5px;
   max-width: fit-content;
+  box-sizing: border-box;
 }
 
 figure {
