@@ -3,7 +3,8 @@ The final transform components are driven by calls to `GetEntity`.
 `GetEntity` takes a `TransformUsageFlags` which defines which components are added to objects. If you manually add components, unless the provided flags are `TransformUsageFlags.ManualOverride`, they will be removed if they don't match the setup.
 
 ### Resolution
-If you are missing a component, make sure you are using a `TransformUsageFlags` flag with `GetEntity` that will include it (or use `ManualOverride` and manually add the components you need).
+If you are missing a component, make sure you are using a `TransformUsageFlags` flag with `GetEntity` that will include it.
+Or use `ManualOverride` and manually add all the components you need.
 #### Notes
 - A GameObject's [static flags](Static%20Entities.md) may override flags, which in turn overrides the final components.
 - Prefabs retrieved by `GetEntity` are given the `Dynamic` flag by default.

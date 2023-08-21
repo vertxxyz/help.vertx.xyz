@@ -16,8 +16,8 @@ IDEs evaluate your code as it is typed, giving you autocomplete, warnings, and e
 Coding without these tools wastes your time, and the time of anyone looking to help you.
 
 ^^^
-<video width="500" height="347" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/HTML/programming/ide-configuration/functioning-ide.mp4"></video>
-^^^ <img src="/Images/jetbrains_rider.svg" alt="jetbrains rider" style="vertical-align:middle; margin:0 6px 0 0; width:16px; height:16px">JetBrains Rider autocompleting code
+<video width="600" height="416" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/HTML/programming/ide-configuration/functioning-ide.mp4"></video>
+^^^ ![JetBrains Rider](/Images/jetbrains_rider.svg) JetBrains Rider autocompleting code.
 
 ### Other common issues
 - [External script editor setting resets itself on startup.](IDE%20Configuration/External%20Script%20Editor%20Resets.md)

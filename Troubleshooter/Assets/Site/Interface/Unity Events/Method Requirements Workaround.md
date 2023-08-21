@@ -1,4 +1,4 @@
-## UnityEvent method requirements: Workaround
+## Workaround for UnityEvent method requirements
 There are third-party UnityEvent implementations that support multiple properties. Use one if you are comfortable with the dependency.
 
 A built-in workaround is to serialize the data you want to pass from the UnityEvent in an intermediary.
@@ -7,7 +7,7 @@ A built-in workaround is to serialize the data you want to pass from the UnityEv
 1. The intermediary invokes another UnityEvent which calls the destination with the data. This must use [dynamic values](Dynamic%20Values.md).
 
 ### Example
-#### The destination script and method
+#### The destination method
 ```csharp
 using UnityEngine;
 
@@ -50,9 +50,9 @@ public class Intermediary : MonoBehaviour
 	/* End Collapsable */
 }
 ```
-^^^ ::Replace the data with your own::{.warning}
+^^^ ::Replace the data with your own.::{.warning}
 
 ##### Inspector setup
 ^^^
 ![UnityEvent Intermediary inspector setup](unity-event-intermediary.png)
-^^^ The button calls the Intermediary, which calls the destination with its data.
+^^^ ::The button calls the Intermediary, which calls the destination with its data.::{.info}

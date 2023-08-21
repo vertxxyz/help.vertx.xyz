@@ -1,0 +1,93 @@
+@use 'base';
+
+figure {
+  position: relative;
+  display: table;
+  margin-inline-start: 15px;
+
+  :nth-last-child(2) {
+    margin-block-end: 0;
+  }
+  
+  &> blockquote + figcaption {
+    background: rgba(0, 0, 0, 0.1411764706);
+    border: 1px #191919 solid;
+    border-top-width: 0;
+    margin-left: 6px;
+  }
+
+  &> p {
+    &> video, &> img {
+      display: block;
+      margin: 0;
+    }
+  }
+  
+  &> *:not(figcaption) {
+    display: table-cell;
+    margin: 0;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+  
+  &> table {
+    border: none;
+  }
+}
+
+%figcaption-help-box {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  margin: 0 5px 0 0;
+  padding: 0;
+  vertical-align: sub;
+}
+
+figcaption {
+  display: table-caption;
+  caption-side: bottom;
+  box-sizing: border-box;
+  //max-width: fit-content;
+  font-size: 10pt;
+  padding: 5px 12px 5px 12px;
+  background: base.$unity-colors-app_toolbar-background;
+  border-radius: 0 0 5px 5px;
+
+  &> img:first-child {
+    @extend %figcaption-help-box;
+  }
+  &> .info::before {
+    @extend %figcaption-help-box;
+    content: url("../Images/information.svg");
+  }
+  &> .warning::before {
+    @extend %figcaption-help-box;
+    content: url("../Images/warning.svg");
+  }
+  &> .error::before {
+    @extend %figcaption-help-box;
+    content: url("../Images/error.svg");
+  }
+}
+
+figure:has(video),figure:has(image) {
+  &> figcaption {
+    &>.info,.warning,.error {
+      font-size: 16px;
+      &::before {
+        vertical-align: middle;
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+}
+
+figure:has(table) {
+  &> figcaption {
+    //background: base.$unity-colors-default-background;
+    border: 1px solid base.$unity-colors-inspector_titlebar-border;
+    border-top: 0;
+  }
+}

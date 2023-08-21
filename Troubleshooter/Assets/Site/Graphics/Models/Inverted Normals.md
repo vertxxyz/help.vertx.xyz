@@ -10,13 +10,13 @@ Select the inverted faces and flip their normals.
 
 ^^^
 ![Blender - Flip Normals](blender-flip-normals.png)
-^^^ Flip Normals in Blender  
+^^^ **Flip normals** in Blender  
 
 **Backface Culling** is single-sided rendering, enable it in your modelling program to see how a model will appear in Unity.
 
 ^^^
 ![Blender - Backface Culling](blender-backface-culling.png)
-^^^ Backface Culling in Blender  
+^^^ **Backface culling** in Blender  
 
 If an object has partially flipped normals there may be a **recalculate normals** operation to unify the normal direction.
 

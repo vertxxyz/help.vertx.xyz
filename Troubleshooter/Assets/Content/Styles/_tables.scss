@@ -9,13 +9,6 @@ table {
   img.inline {
     transform: unset;
   }
-  
-  &+figcaption {
-    background: base.$unity-colors-default-background;
-    border: 1px solid base.$unity-colors-inspector_titlebar-border;
-    border-top: 0;
-    margin-right: 19px;
-  }
 }
 
 figure:has(>table) {
