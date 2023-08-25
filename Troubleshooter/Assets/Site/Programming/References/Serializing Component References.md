@@ -15,7 +15,7 @@ If you are trying to reference a component in a dynamic situation, consider the 
 ### Implementation
 ::::note  
 #### 1. Expose a serialized reference to the target component  
-The field must be marked with [`SerializeField`](https://docs.unity3d.com/ScriptReference/SerializeField.html):
+The [field](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields) must be marked with [`SerializeField`](https://docs.unity3d.com/ScriptReference/SerializeField.html):
 
 <<Code/Variables/Serialized Reference.html>>
 
@@ -25,6 +25,7 @@ The field must be marked with [`SerializeField`](https://docs.unity3d.com/Script
 :::info{.inline}
 This example uses the `Transform` type, it will need to be replaced with the target type.
 :::
+
 ::::  
 ::::note  
 #### 2. Reference the target component in the Inspector  
@@ -52,7 +53,10 @@ _target.Method();
 :::info{.inline}  
 If you don't have autocomplete, [configure your IDE](../IDE%20Configuration.md) to easily find member names and get error highlighting.
 :::  
+
+The usage must be at a [method or block level scope](../Other/Scopes.md).
 ::::
+
 ### Notes
 #### Dragging components and using multiple inspectors
 You can drag the header of components themselves. When the origin and destination are on two separate objects you may need to open two inspectors to perform the drag. You can right-click on the tab of an editor window and select **Add Tab | Inspector** to create a second one. You can also select the small lock icon in the top right to lock it to its current selection.

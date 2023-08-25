@@ -7,7 +7,8 @@ import {
     lerp,
     remap,
     toNormalisedCanvasSpace,
-    TouchHandler
+    TouchHandler,
+    arrow
 } from "../behaviours.js";
 import {noise} from "../perlin.js"
 
@@ -22,27 +23,6 @@ var positionsState = {
     worldSpace: true,
     fromOrigin: true
 };
-
-const arrow = function (ctx, x0, y0, x1, y1, w, arrw, arrh) {
-    let dx = x1 - x0;
-    let dy = y1 - y0;
-
-    let l = 1.0 / Math.sqrt(dx * dx + dy * dy);
-    dx *= l;
-    dy *= l;
-
-    ctx.beginPath();
-    ctx.moveTo(x0 - dy * w / 2, y0 + dx * w / 2);
-    ctx.lineTo(x1 - dy * w / 2 - dx * arrh, y1 + dx * w / 2 - dy * arrh);
-    ctx.lineTo(x1 - dy * arrw / 2 - dx * arrh, y1 + dx * arrw / 2 - dy * arrh);
-    ctx.lineTo(x1, y1);
-    ctx.lineTo(x1 + dy * arrw / 2 - dx * arrh, y1 - dx * arrw / 2 - dy * arrh);
-    ctx.lineTo(x1 + dy * w / 2 - dx * arrh, y1 - dx * w / 2 - dy * arrh);
-    ctx.lineTo(x0 + dy * w / 2, y0 - dx * w / 2);
-
-    ctx.closePath();
-    return this;
-}
 
 var reload = () => {
     boatImage = document.getElementById('boat-img')?.querySelector('img');

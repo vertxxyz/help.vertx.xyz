@@ -12,5 +12,6 @@
 1. Check that you have actually saved your code.
 1. Do some [debugging](../Programming/Debugging/Debugger.md) or [logging](../Programming/Debugging/Logging/How-to.md) to see what's running and that the state is what you expect.
 1. Use [drawing functions](../Programming/Debugging/Draw%20Functions.md) if the problem can be visualised physically.
-1. If an issue is persistent, sometimes restarting Unity will fix it.
+1. Often restarting Unity will fix issues.
+1. If the issue persists, try a [project reimport](../Programming/Scripts/Loading%20Issues/Project%20Reimport.md) (deleting the Library folder).
 1. [Check for other resources on this site.](../Main.md)

@@ -10,6 +10,9 @@
 - [A material **doesn't sort properly** with others.](Materials/Rendering%20Issues/Transparent%20Materials.md)
 - [Transparent parts of a material are only **partially transparent**.](Materials/Rendering%20Issues/Partial%20Transparency.md)
 
+#### Normal maps
+- [A normal map produces unnaturally dark patches, or lights from the wrong direction.](Textures/Normal%20Map%20Format.md)
+
 #### Other
 - [A material **cannot be modified**.](Materials/Readonly%20Materials.md)
 - [A material **doesn't tile consistently** across surfaces.](Models/UV%20Mapping.md)

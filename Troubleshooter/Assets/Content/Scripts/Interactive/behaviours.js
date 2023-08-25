@@ -332,6 +332,35 @@ const addCssIfRequired = (path) => {
 	head.appendChild(cssLink);
 };
 
+const arrow = function (ctx, x0, y0, x1, y1, w, arrw, arrh) {
+	let dx = x1 - x0;
+	let dy = y1 - y0;
+
+	let l = 1.0 / Math.sqrt(dx * dx + dy * dy);
+	dx *= l;
+	dy *= l;
+
+	ctx.beginPath();
+	ctx.moveTo(x0 - dy * w / 2, y0 + dx * w / 2);
+	ctx.lineTo(x1 - dy * w / 2 - dx * arrh, y1 + dx * w / 2 - dy * arrh);
+	ctx.lineTo(x1 - dy * arrw / 2 - dx * arrh, y1 + dx * arrw / 2 - dy * arrh);
+	ctx.lineTo(x1, y1);
+	ctx.lineTo(x1 + dy * arrw / 2 - dx * arrh, y1 - dx * arrw / 2 - dy * arrh);
+	ctx.lineTo(x1 + dy * w / 2 - dx * arrh, y1 - dx * w / 2 - dy * arrh);
+	ctx.lineTo(x0 + dy * w / 2, y0 - dx * w / 2);
+
+	ctx.closePath();
+	return this;
+}
+
+const approximately = (value, target) => {
+	return Math.abs(target - value) < 0.0001;
+}
+
+const toFixedWithDots = (value, fractionalDigits) => {
+	return approximately(value, Math.round(value)) ? value.toString() : `${value.toFixed(fractionalDigits)}…`;
+}
+
 export {
 	TAU,
 	Rad2Deg,
@@ -351,5 +380,8 @@ export {
 	getCameraRay,
 	clamp01,
 	clamp,
-	addCssIfRequired
+	addCssIfRequired,
+	arrow,
+	approximately,
+	toFixedWithDots
 };

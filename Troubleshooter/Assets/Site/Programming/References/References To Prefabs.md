@@ -22,7 +22,7 @@ Your spawner will clone the whole prefab and you will end up with a reference to
 
 ::::note  
 #### 2. On your spawner, expose a serialized reference to your root component
-The field must be marked with [`SerializeField`](https://docs.unity3d.com/ScriptReference/SerializeField.html):  
+The [field](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields) must be marked with [`SerializeField`](https://docs.unity3d.com/ScriptReference/SerializeField.html):  
 ```csharp
 [SerializeField] private PrefabComponentType _prefab;
 ```
