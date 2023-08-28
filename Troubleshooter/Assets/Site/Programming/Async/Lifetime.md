@@ -20,7 +20,7 @@ public async void WaitAndPerformAction(float delay, Action callback)
 }
 
 /// <summary>
-/// Waits for <see cref="delay"/> seconds and then invokes <see cref="callback"/>
+/// Waits for <see cref="delay"/> seconds and then invokes <see cref="callback"/>.
 /// </summary>
 /// <exception cref="OperationCanceledException">Raised if <see cref="cancellationToken"/> is cancelled.</exception>
 private async Awaitable WaitAndPerformActionAsync(float delay, Action callback, CancellationToken cancellationToken)

@@ -69,7 +69,10 @@ public static partial class SiteBuilder
 			}
 
 			if (prevBuilt == allBuiltResources.Count)
-				throw new BuildException("Build has soft-locked - infinite loop due to recursive embedding?");
+			{
+				var remainingResources = allResources.Select(r => r.Key).Where(p => !allBuiltResources.Contains(p));
+				throw new BuildException($"Build has soft-locked - infinite loop due to recursive embedding, or non-existent embed?\nRemaining resources: \n{remainingResources.ToElementsString(p => $"- \"{p}\"")}");
+			}
 		}
 
 		arguments.VerboseLog($"{builtPages} pages written to disk. {skippedPages} were skipped as identical, and {ignoredPages} were embeds.");

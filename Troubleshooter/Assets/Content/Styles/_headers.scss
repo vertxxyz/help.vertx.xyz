@@ -60,6 +60,10 @@ h3 {
     margin-left: -(base.$note-padding);
     margin-right: -(base.$note-padding);
   }
+  
+  &:has(h3:first-child){
+    border-color: base.$unity-colors-inspector_titlebar-border;
+  }
 }
 
 h4 {

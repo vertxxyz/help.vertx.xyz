@@ -17,8 +17,9 @@ public static partial class PageUtility
 	/// </summary>
 	/// <param name="text">The markdown</param>
 	/// <param name="path">The file path</param>
+	/// <param name="root">The root of the site's content</param>
 	/// <returns></returns>
-	public static IEnumerable<(string fullPath, Group group)> LinksAsFullPaths(string text, string path)
+	public static IEnumerable<(string fullPath, Group group)> LinksAsFullPaths(string text, string path, string root)
 	{
 		string directory = Path.GetDirectoryName(path) ?? string.Empty;
 		MatchCollection matches = pathRegex.Matches(text);
@@ -26,7 +27,7 @@ public static partial class PageUtility
 		{
 			Group group = matches[i].Groups[1];
 			string match = group.Value.ToConsistentPath().ToUnTokenized();
-			string fullPath = Path.GetFullPath(Path.Combine(directory, match));
+			string fullPath = match.StartsWith('/') ? Path.GetFullPath(match[1..], root) : Path.GetFullPath(Path.Combine(directory, match));
 			yield return (fullPath, group);
 		}
 	}
@@ -78,7 +79,7 @@ public static partial class PageUtility
 	[GeneratedRegex(@"]\((https?://[\w/%#?.@_+~=&()]+)\)", RegexOptions.Compiled)]
 	private static partial Regex GetLinkRegex();
 
-	[GeneratedRegex("<<(.+?)>>", RegexOptions.Compiled)]
+	[GeneratedRegex(@"<<([A-Za-z0-9\-/ ]+?\.[a-zA-z]+?)>>", RegexOptions.Compiled)]
 	private static partial Regex GetEmbedsRegex();
 
 	[GeneratedRegex("!\\[[^\\]]*\\]\\((?!http)(.*?)\\s*(\".*[^\"]\")?\\s*\\)", RegexOptions.Compiled)]

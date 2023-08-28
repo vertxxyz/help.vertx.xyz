@@ -4,7 +4,12 @@
 
 `SerializedObject` and `SerializedProperty` are the best way to access and modify Unity-serialized structures; with automatic undo support, multi-object editing, and simplified functions for Editor UI.  
 
+### Preamble
+Don't try to create complex Editors by drawing each element individually unless you absolutely require it. A series of [Property Drawers](https://docs.unity3d.com/ScriptReference/PropertyDrawer.html) is almost always preferable to reduce uniquely authored content, and increase usability.  
+
 This guide only attempts to communicate how to access values, and not how to write entire editors. For the sake of linearity these examples use [IMGUI](https://docs.unity3d.com/Manual/GUIScriptingGuide.html), but I would recommend using [UI Toolkit](https://docs.unity3d.com/Manual/UIElements.html), which also supports UI binding by path name.
+
+UI Toolkit comes with helpers for drawing entire UI hierarchies like [`InspectorElement.FillDefaultInspector`](https://docs.unity3d.com/ScriptReference/UIElements.InspectorElement.FillDefaultInspector.html), which can allow you to easily draw an object's entire editor inline with minimal code. Styling can be shared using USS, and generally you reduce the code quantity when making complex Editors.
 
 ### Example structure
 
@@ -16,26 +21,26 @@ This guide only attempts to communicate how to access values, and not how to wri
 [ScriptableObject (Example)|targetObject: UnityEngine.Object|UpdateIfRequiredOrScript()
 ApplyModifiedProperties()
 ...]
-[<label>FindProperty("data")]
-[<label>FindProperty("values")]
-[ScriptableObject (Example)]-[FindProperty("data")]
-[FindProperty("data")]->[SerializedProperty (data)]
-[ScriptableObject (Example)]-[FindProperty("values")]
-[FindProperty("values")]->[SerializedProperty (values)]
+[<label>FindProperty("_data")]
+[<label>FindProperty("_values")]
+[ScriptableObject (Example)]-[FindProperty("_data")]
+[FindProperty("_data")]->[SerializedProperty (_data)]
+[ScriptableObject (Example)]-[FindProperty("_values")]
+[FindProperty("_values")]->[SerializedProperty (_values)]
 
-[SerializedProperty (data)|]
+[SerializedProperty (_data)|]
 [<label>FindPropertyRelative("Active")]
 [<label>FindPropertyRelative("Configuration")]
-[SerializedProperty (data)]-[FindPropertyRelative("Active")]
+[SerializedProperty (_data)]-[FindPropertyRelative("Active")]
 [FindPropertyRelative("Active")]->[SerializedProperty (Active)]
-[SerializedProperty (data)]-[FindPropertyRelative("Configuration")]
+[SerializedProperty (_data)]-[FindPropertyRelative("Configuration")]
 [FindPropertyRelative("Configuration")]->[SerializedProperty (Configuration)]
 
-[SerializedProperty (values)|arraySize: int]
+[SerializedProperty (_values)|arraySize: int]
 [<label>GetArrayElementAtIndex(i)]
-[SerializedProperty (values)]-[GetArrayElementAtIndex(i)]
-[GetArrayElementAtIndex(i)]->[SerializedProperty (values\[0..arraySize\])]
-[SerializedProperty (values\[0..arraySize\])|floatValue: float]
+[SerializedProperty (_values)]-[GetArrayElementAtIndex(i)]
+[GetArrayElementAtIndex(i)]->[SerializedProperty (_values\[0..arraySize\])]
+[SerializedProperty (_values\[0..arraySize\])|floatValue: float]
 
 [SerializedProperty (Active)|boolValue: bool]
 [SerializedProperty (Configuration)|objectReferenceValue: UnityEngine.Object]
@@ -55,26 +60,26 @@ public class ExampleInspector : Editor
 We can use [`FindProperty`](https://docs.unity3d.com/ScriptReference/SerializedObject.FindProperty.html) to get root SerializedProperties from the SerializedObject. For example:  
 
 ```csharp
-private SerializedProperty data, values;
+private SerializedProperty _data, _values;
 
 private void OnEnable()
 {
-    data = serializedObject.FindProperty("data");
-    values = serializedObject.FindProperty("values");
+    _data = serializedObject.FindProperty("_data");
+    _values = serializedObject.FindProperty("_values");
 }
 ```
 
 ```nomnoml
 <<Nomnoml/shared.nomnoml>>
 [ScriptableObject (Example)|]
-[<label>FindProperty("data")]
-[<label>FindProperty("values")]
-[SerializedProperty (data)|]
-[SerializedProperty (values)|]
-[ScriptableObject (Example)]-[FindProperty("data")]
-[FindProperty("data")]->[SerializedProperty (data)]
-[ScriptableObject (Example)]-[FindProperty("values")]
-[FindProperty("values")]->[SerializedProperty (values)]
+[<label>FindProperty("_data")]
+[<label>FindProperty("_values")]
+[SerializedProperty (_data)|]
+[SerializedProperty (_values)|]
+[ScriptableObject (Example)]-[FindProperty("_data")]
+[FindProperty("_data")]->[SerializedProperty (_data)]
+[ScriptableObject (Example)]-[FindProperty("_values")]
+[FindProperty("_values")]->[SerializedProperty (_values)]
 ```
 
 Once we have valid SerializedProperties we can simply draw them using a [PropertyField](https://docs.unity3d.com/ScriptReference/EditorGUILayout.PropertyField.html).
@@ -82,8 +87,8 @@ Once we have valid SerializedProperties we can simply draw them using a [Propert
 ```csharp
 public override void OnInspectorGUI()
 {
-    EditorGUILayout.PropertyField(data);
-    EditorGUILayout.PropertyField(values);
+    EditorGUILayout.PropertyField(_data);
+    EditorGUILayout.PropertyField(_values);
 }
 ```
 
@@ -95,8 +100,8 @@ public override void OnInspectorGUI()
     // Update the serializedObject to match the internal state if required.
     serializedObject.UpdateIfRequiredOrScript();
     
-    EditorGUILayout.PropertyField(data);
-    EditorGUILayout.PropertyField(values);
+    EditorGUILayout.PropertyField(_data);
+    EditorGUILayout.PropertyField(_values);
     
     // Apply changes made before this call.
     serializedObject.ApplyModifiedProperties();
@@ -111,14 +116,14 @@ Changes made in a [PropertyDrawer](https://docs.unity3d.com/ScriptReference/Prop
 Going levels deeper requires [`FindPropertyRelative`](https://docs.unity3d.com/ScriptReference/SerializedProperty.FindPropertyRelative.html).
 
 ```csharp
-private SerializedProperty ... active, configuration;
+private SerializedProperty ... _active, _configuration;
 
 private void OnEnable()
 {
     ...
     // As Active is public we can use nameof to robustly get its name
-    active = data.FindPropertyRelative(nameof(Data.Active));
-    configuration = data.FindPropertyRelative(nameof(Data.Configuration));
+    _active = _data.FindPropertyRelative(nameof(Data.Active));
+    _configuration = _data.FindPropertyRelative(nameof(Data.Configuration));
 }
 ```
 
@@ -126,13 +131,13 @@ private void OnEnable()
 <<Nomnoml/shared.nomnoml>>
 
 [<hidden>Data]
-[Data]->[SerializedProperty (data)]
-[SerializedProperty (data)|]
+[Data]->[SerializedProperty (_data)]
+[SerializedProperty (_data)|]
 [<label>FindPropertyRelative("Active")]
 [<label>FindPropertyRelative("Configuration")]
-[SerializedProperty (data)]-[FindPropertyRelative("Active")]
+[SerializedProperty (_data)]-[FindPropertyRelative("Active")]
 [FindPropertyRelative("Active")]->[SerializedProperty (Active)]
-[SerializedProperty (data)]-[FindPropertyRelative("Configuration")]
+[SerializedProperty (_data)]-[FindPropertyRelative("Configuration")]
 [FindPropertyRelative("Configuration")]->[SerializedProperty (Configuration)]
 
 [SerializedProperty (Active)|]
@@ -141,7 +146,7 @@ private void OnEnable()
 
 ### Values
 
-You **cannot** retrieve the C# instance associated with a SerializedProperty that isn't the bottom of the serialization hierarchy. So, in our example, we cannot retrieve the value for `data` from its SerializedProperty, we can only go deeper and get the value of the last descendants.  
+You **cannot** retrieve the C# instance associated with a SerializedProperty that isn't the bottom of the serialization hierarchy. So, in our example, we cannot retrieve the value for `_data` from its SerializedProperty, we can only go deeper and get the value of the last descendants.  
 Once at a SerializedProperty that is at the bottom there are predefined *Value* properties that can be used to access the value Unity has serialized.  
 See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) Properties documentation to find the appropriate Value property; such as `floatValue`, `stringValue`, or `objectReferenceValue`.
 
@@ -154,7 +159,7 @@ See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/Serialized
 [<hidden>C]
 [A]->[SerializedProperty (Active)]
 [B]->[SerializedProperty (Configuration)]
-[C]->[SerializedProperty (data)]
+[C]->[SerializedProperty (_data)]
 
 [SerializedProperty (Active)|]
 [SerializedProperty (Configuration)|]
@@ -165,16 +170,16 @@ See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/Serialized
 [boolValue]-->[bool (Active)]
 [objectReferenceValue]-->[UnityEngine.Object (Configuration)]
 
-[<red>SerializedProperty (data)|]
+[<red>SerializedProperty (_data)|]
 ```
 
 ### Arrays
 #### Iteration & access
 Members in arrays are SerializedProperties themselves, you can iterate an array using the `arraySize` limit, eg:
 ```csharp
-for (int i = 0; i < values.arraySize; i++)
+for (int i = 0; i < _values.arraySize; i++)
 {
-    SerializedProperty element = values.GetArrayElementAtIndex(i);
+    SerializedProperty element = _values.GetArrayElementAtIndex(i);
     // element.floatValue is now accessible
 }
 ```
@@ -182,21 +187,21 @@ for (int i = 0; i < values.arraySize; i++)
 ```nomnoml
 <<Nomnoml/shared.nomnoml>>
 [<hidden>Data]
-[Data]->[SerializedProperty (values)]
-[SerializedProperty (values)|arraySize: int]
+[Data]->[SerializedProperty (_values)]
+[SerializedProperty (_values)|arraySize: int]
 [<label>GetArrayElementAtIndex(i)]
-[SerializedProperty (values)]-[GetArrayElementAtIndex(i)]
-[GetArrayElementAtIndex(i)]->[SerializedProperty (values\[0..arraySize\])]
-[SerializedProperty (values\[0..arraySize\])|]
+[SerializedProperty (_values)]-[GetArrayElementAtIndex(i)]
+[GetArrayElementAtIndex(i)]->[SerializedProperty (_values\[0..arraySize\])]
+[SerializedProperty (_values\[0..arraySize\])|]
 ```
 
 #### Adding elements
 Adding elements to the end of the array
 ```csharp
 // Increase the size of the array
-values.arraySize++;
+_values.arraySize++;
 // Unity has initialised lastElement to default values
-SerializedProperty lastElement = values.GetArrayElementAtIndex(values.arraySize - 1);
+SerializedProperty lastElement = _values.GetArrayElementAtIndex(_values.arraySize - 1);
 ```
 
 Inserting elements into the array is achieved with [`InsertArrayElementAtIndex`](https://docs.unity3d.com/ScriptReference/SerializedProperty.InsertArrayElementAtIndex.html).
@@ -211,13 +216,13 @@ Every new `UnityEngine.Object` type in the serialization hierarchy is a new `Ser
 To iterate the children of another object you need to instance a new SerializedObject.
 
 ```csharp
-private SerializedObject configurationSO;
+private SerializedObject _configurationSO;
 
 private void OnEnable()
 {
     ...
     if(configuration.objectReferenceValue != null)
-        configurationSO = new SerializedObject(configuration.objectReferenceValue);
+        _configurationSO = new SerializedObject(configuration.objectReferenceValue);
 }
 ```
 
@@ -241,17 +246,17 @@ ApplyModifiedProperties()
 [SerializedProperty (Configuration)]--[<label>objectReferenceValue]
 [<label>objectReferenceValue]-->[Configuration]
 
-[SerializedProperty (color)|colorValue: Color]
-[SerializedProperty (dimensions)|vector3Value: Vector3]
+[SerializedProperty (_color)|colorValue: Color]
+[SerializedProperty (_dimensions)|vector3Value: Vector3]
 
-[<label>FindProperty("color")]
-[<label>FindProperty("dimensions")]
+[<label>FindProperty("_color")]
+[<label>FindProperty("_dimensions")]
 
-[SerializedObject (Configuration)]-[<label>FindProperty("color")]
-[<label>FindProperty("color")]->[SerializedProperty (color)]
+[SerializedObject (Configuration)]-[<label>FindProperty("_color")]
+[<label>FindProperty("_color")]->[SerializedProperty (_color)]
 
-[SerializedObject (Configuration)]-[<label>FindProperty("dimensions")]
-[<label>FindProperty("dimensions")]->[SerializedProperty (dimensions)]
+[SerializedObject (Configuration)]-[<label>FindProperty("_dimensions")]
+[<label>FindProperty("_dimensions")]->[SerializedProperty (_dimensions)]
 ```
 
 This is a new hierarchy to find properties within, and needs to have `ApplyModifiedProperties` called **separately**.  
@@ -267,22 +272,22 @@ public override void OnInspectorGUI()
         if (changeScope.changed)
         {
             // If the configuration changed, dispose of the old one, and ensure the SerializedObject is the same
-            configurationSO?.Dispose();
-            configurationSO = configuration.objectReferenceValue != null ?
+            _configurationSO?.Dispose();
+            _configurationSO = configuration.objectReferenceValue != null ?
                 new SerializedObject(configuration.objectReferenceValue) :
                 null;
         }
     }
     
-    if (configurationSO != null)
+    if (_configurationSO != null)
     {
-        SerializedProperty color = configurationSO.FindProperty("color");
-        SerializedProperty dimensions = configurationSO.FindProperty("dimensions");
+        SerializedProperty _color = _configurationSO.FindProperty("_color");
+        SerializedProperty _dimensions = _configurationSO.FindProperty("_dimensions");
         if (GUILayout.Button("Randomise Example"))
         {
-            color.colorValue = Random.ColorHSV(0, 1);
-            dimensions.vector3Value = new Vector3(Random.value, Random.value, Random.value);
-            configurationSO.ApplyModifiedProperties();
+            _color.colorValue = Random.ColorHSV(0, 1);
+            _dimensions.vector3Value = new Vector3(Random.value, Random.value, Random.value);
+            _configurationSO.ApplyModifiedProperties();
         }
     }
     ...
@@ -295,8 +300,8 @@ When possible SerializedObjects and Editors you create should be Disposed of whe
 ```csharp
 private void OnDisable()
 {
-    configurationSO?.Dispose(); // Release the native data
-    configurationSO = null; // Optionally release the C# reference
+    _configurationSO?.Dispose(); // Release the native data
+    _configurationSO = null; // Optionally release the C# reference
 }
 ```
 

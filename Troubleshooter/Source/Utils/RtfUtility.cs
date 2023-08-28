@@ -73,10 +73,12 @@ public static partial class RtfUtility
 		}
 
 		// Remove empty style blocks
-		void RemoveEmptyStyleHack() => html = html.Replace(@" style=""""", string.Empty);
+		void RemoveEmptyStyleHack() => html = html.Replace("""
+		                                                    style=""
+		                                                   """, string.Empty);
 
 		// Anything that isn't explicitly styled should have a style
-		void FixRootLevelStyleHack() => html = html.Replace("<span>", @"<span class=""token punctuation"">");
+		void FixRootLevelStyleHack() => html = html.Replace("<span>", """<span class="token punctuation">""");
 	}
 
 	private static int IndexOfClosingChar(string expression, int index, char openChar, char closeChar)

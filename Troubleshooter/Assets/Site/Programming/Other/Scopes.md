@@ -129,7 +129,5 @@ public void Foo()
 }
 ```
 
-:::note  
-🚧 Under Construction 🚧  
-:::
+🚧 Under Construction 🚧
 

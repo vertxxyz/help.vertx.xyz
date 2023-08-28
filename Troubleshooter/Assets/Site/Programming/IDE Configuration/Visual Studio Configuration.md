@@ -1,31 +1,25 @@
 <<Abbreviations/UPM.md>>
 ## ![Visual Studio](/Images/visualstudio.svg) Visual Studio configuration
-### Installed with Unity Hub
+### Installation and configuration
+#### Visual Studio was installed with the Unity Hub
 Visual Studio will have the Unity workload installed.  
 Follow the [configuration instructions](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#configure-unity-to-use-visual-studio) to configure the remaining setup.  
 
-### Installed manually
+#### Visual Studio was installed manually
 Follow the [configuration instructions](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#install-unity-support-for-visual-studio), including installation of the Unity workload.
 
-### Installing for the first time
+#### Installing Visual Studio for the first time
 ::::note  
 #### Install Visual Studio via the Unity Hub
 Installing Visual Studio via the Unity Hub means it's mostly ready for use with Unity.
 
 :::note
 #### No Unity versions are installed
-Tick _Microsoft Visual Studio Community_ during the installation process in the Unity Hub. (**Installs | Install Editor**)  
+Tick **Microsoft Visual Studio Community** during the installation process in the Unity Hub. (**Installs | Install Editor**)  
 :::  
 :::note  
 #### A Unity version is installed
-1. Navigate to the Installs page in the Unity Hub and click the cog ⚙️ icon on an install.
-1. Select **Add Modules**.  
-   ^^^
-   ![Add Modules](../../Unity%20Hub/add-modules.png)
-   ^^^ Add modules in the Unity Hub
-1. Tick _Microsoft Visual Studio Community_.
-1. Select **Install**.
-
+See [Unity Hub: Module installation](../../Unity%20Hub/Module%20Installation.md) and install **Microsoft Visual Studio Community**.  
 :::  
 Follow the [configuration instructions](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#configure-unity-to-use-visual-studio) to check the remaining setup.  
 ::::  
@@ -34,7 +28,7 @@ Follow the [configuration instructions](https://docs.microsoft.com/en-us/visuals
 Follow all of the instructions listed on [this page](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity).  
 ::::
 
-### Further steps if you still have issues
+### Resolving configuration issues
 
 - Ensure the [Visual Studio Editor](https://docs.unity3d.com/Manual/com.unity.ide.visualstudio.html) package is installed and updated in UPM (`com.unity.ide.visualstudio`).
 - Regenerate project files via Unity.
@@ -42,4 +36,4 @@ Follow all of the instructions listed on [this page](https://docs.microsoft.com/
   1. Select **regenerate project files** in **Edit | Preferences | External Tools**.
   1. Reopen VS via **Assets | Open C# Project**.
 - Regenerate project files via VS.
-  1. If an assembly in the Solution Explorer is marked as **(incompatible)**, right-click it and select **reload with dependencies**.
+  - If an assembly in the Solution Explorer is marked as **(incompatible)**, right-click it and select **reload with dependencies**.

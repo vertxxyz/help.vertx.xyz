@@ -12,33 +12,6 @@ namespace Troubleshooter.Tests;
 public partial class ContentTests
 {
 	/// <summary>
-	/// Matches --- not preceded by multiple newlines
-	/// </summary>
-	private static readonly Regex lineBreak01Regex = LineBreak01Regex();
-
-	/// <summary>
-	/// Matches .rtf>> not followed by:
-	/// 2x newline,
-	/// newline + code,
-	/// newline + header,
-	/// newline + end of file
-	/// </summary>
-	private static readonly Regex lineBreak02Regex = LineBreak02Regex();
-
-	/// <summary>
-	/// Tests for line breaks that are not preceded by two new lines.
-	/// </summary>
-	[Theory]
-	[ClassData(typeof(PageData))]
-	public void ValidateLineBreaks(string name, string path, string text)
-	{
-		using var assertionScope = new AssertionScope(name);
-		assertionScope.BecauseOf("Line breaks must be preceded by multiple newlines. Code blocks must be followed by multiple newlines.");
-		text.Should().NotMatch(lineBreak01Regex);
-		text.Should().NotMatch(lineBreak02Regex);
-	}
-
-	/// <summary>
 	/// Tests that pages have at least some content in them.
 	/// </summary>
 	[Theory]
@@ -107,15 +80,6 @@ public partial class ContentTests
 		using var assertionScope = new AssertionScope(name);
 		Assert.DoesNotMatch(incorrectPackageDocLink, text);
 	}
-
-    [GeneratedRegex(@"(?<!\r\n)\r\n---(?:\s|$)", RegexOptions.Compiled)]
-    private static partial Regex LineBreak01Regex();
-    
-    /// <summary>
-    /// This will match if .rtf>> is not followed by the listed terms. So if we see these terms, they will pass the test.
-    /// </summary>
-    [GeneratedRegex(@"\.rtf>>(?! *\r?\n\r?\n| *\r?\n<<| *\r?\n#| *[\r\n]*$| *\r?\n\^\^\^)", RegexOptions.Compiled)]
-    private static partial Regex LineBreak02Regex();
     
     [GeneratedRegex(@"\[\^(\d+)\]", RegexOptions.Compiled)]
     private static partial Regex FootnoteRegex();

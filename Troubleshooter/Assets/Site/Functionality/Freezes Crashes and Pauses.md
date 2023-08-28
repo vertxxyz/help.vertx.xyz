@@ -14,9 +14,7 @@ Check the appropriate logs ([documentation](https://docs.unity3d.com/Manual/LogF
 - [Unity Hub logs](../Unity%20Hub/Logs.md)
 
 ### Pausing
-Pausing is when the application halts momentarily.  
-:::note  
-🚧 Under Construction 🚧  
-:::
+Pausing is when the application halts momentarily.
+🚧 Under Construction 🚧
 
 - [Unity **pauses the Editor** unexpectedly.](Play%20Mode/Error%20Pause.md)

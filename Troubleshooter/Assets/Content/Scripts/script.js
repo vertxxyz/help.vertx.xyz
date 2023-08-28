@@ -18,8 +18,8 @@ whenReady(() => {
     const container = document.querySelector(containerId);
     const contents = document.querySelector(contentsId);
     container?.addEventListener('wheel', function (e) {
-        if(e.target !== container) return;
-        contents?.scrollBy( {
+        if (e.target !== container) return;
+        contents?.scrollBy({
             left: e.deltaX,
             top: e.deltaY,
             // behavior: 'smooth'
@@ -167,19 +167,16 @@ function processPageValue(value) {
     if (value === null)
         value = location.pathname.slice(1);
     if (value == null || value === "")
-        value = main;
-    else {
-        value = value.replace(/\.[^/.]+$/, "");
-        value = value.replace('%20', "-");
-        value = value.toLowerCase();
-    }
-    return value;
+        return main;
+    value = value.replace(/\.[^/.]+$/, "");
+    value = value.replace('%20', "-");
+    return value.toLowerCase();
 }
 
 function fireCallbackIfPageIsCurrent(callback) {
     const pageParameter = processPageValue(null);
     window.addEventListener("loadedFromState", event => {
-        if(event !== undefined && event.detail !== pageParameter)
+        if (event !== undefined && event.detail !== pageParameter)
             return;
         callback();
     });
@@ -188,16 +185,18 @@ function fireCallbackIfPageIsCurrent(callback) {
 function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory = true) {
     isLoading = true;
     value = processPageValue(value);
+    if (value.length > 0 && value[0] === '/')
+        useCurrentDirectory = false;
     let valueToLoad = value;
     if (useCurrentDirectory && currentDirectory !== "")
         valueToLoad = absolute(`${currentDirectory}/`, value)
     let url = value;
 
-    whenReady( function () {
+    whenReady(function () {
         const contents = document.querySelector(contentsId);
         try {
             // Load the page
-            load(contents,`/HTML/${valueToLoad}.html`, () => {
+            load(contents, `/HTML/${valueToLoad}.html`, () => {
                 currentDirectory = valueToLoad.replace(/\/*[^/]+$/, "");
                 if (setParameter)
                     setPage(valueToLoad, url, hash);
@@ -299,24 +298,24 @@ function setupCodeSettings() {
             );
         });
     document.querySelectorAll(".code-setting-copy").forEach(
-    e => {
-        e.addEventListener("click",
-            function () {
-                const container = e.closest('div[class^="code-container"]');
-                const inner = container.querySelector('.code-container-inner');
-                const r = document.createRange();
-                r.selectNode(inner);
-                if (!navigator.clipboard) {
-                    copyFallback(getRangeSelection(r));
-                } else {
-                    const selection = getRangeSelection(r);
-                    navigator.clipboard.writeText(selection.toString())
-                        .then(() => selection.removeAllRanges())
-                        .catch(() => copyFallback(r));
+        e => {
+            e.addEventListener("click",
+                function () {
+                    const container = e.closest('div[class^="code-container"]');
+                    const inner = container.querySelector('.code-container-inner');
+                    const r = document.createRange();
+                    r.selectNode(inner);
+                    if (!navigator.clipboard) {
+                        copyFallback(getRangeSelection(r));
+                    } else {
+                        const selection = getRangeSelection(r);
+                        navigator.clipboard.writeText(selection.toString())
+                            .then(() => selection.removeAllRanges())
+                            .catch(() => copyFallback(r));
+                    }
                 }
-            }
-        );
-    });
+            );
+        });
 }
 
 function getRangeSelection(range) {
@@ -378,7 +377,7 @@ function processNomnoml() {
 }
 
 function processMermaid() {
-    mermaid.initialize({ startOnLoad: false });
+    mermaid.initialize({startOnLoad: false});
     mermaid.run({
         querySelector: '.mermaid',
     });
@@ -436,10 +435,10 @@ function toggleCollapsedCode(button) {
     const collapsed = "collapsable--collapsed";
     const expanded = "collapsable--expanded";
     let collapsable = button.closest(".collapsable");
-    if(collapsable.classList.contains(collapsed)) {
+    if (collapsable.classList.contains(collapsed)) {
         collapsable.classList.remove(collapsed);
         collapsable.classList.add(expanded);
-    }else{
+    } else {
         collapsable.classList.remove(expanded);
         collapsable.classList.add(collapsed);
     }

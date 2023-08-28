@@ -375,7 +375,7 @@ div.footnotes {
 }
 
 div.note {
-  border: 1px #ffffff4d solid;
+  border: 1px rgba(255, 255, 255, 0.14) solid;
   margin-right: base.$right-margin;
   margin-top: 1em;
   margin-bottom: 1em;
@@ -423,6 +423,19 @@ div.note.center {
 span.note {
   border: 1px #ffffff4d solid;
   padding: 4px;
+}
+
+.construction {
+  padding: 5px;
+  color: #ffcb4c;
+  border: 1px #f19020 solid;
+  display: block;
+  margin: 1em auto;
+  text-align: center;
+  max-width: 500px;
+  &>p {
+    margin: 0;
+  }
 }
 
 kbd {

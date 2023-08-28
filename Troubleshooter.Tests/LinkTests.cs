@@ -26,7 +26,8 @@ public partial class LinkTests
 	public void ValidateLinks(string name, string path, string text)
 	{
 		using var assertionScope = new AssertionScope();
-		foreach ((string fullPath, _) in PageUtility.LinksAsFullPaths(text, path))
+		string siteRoot = TestUtility.TestSite.Directory;
+		foreach ((string fullPath, _) in PageUtility.LinksAsFullPaths(text, path, siteRoot))
 		{
 			new FileInfo(fullPath).Should().Exist("{0} is missing a link", name);
 		}

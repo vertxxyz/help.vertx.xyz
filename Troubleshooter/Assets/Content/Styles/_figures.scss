@@ -25,13 +25,21 @@ figure {
   
   &> *:not(figcaption) {
     display: table-cell;
-    margin: 0;
+    margin: 0 !important;
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
   }
   
   &> table {
     border: none;
+  }
+  
+  &:has(>.code-container) {
+    margin: base.$code-container-margins;
+    width: calc(100% - (base.$code-container-left-margin + base.$code-container-right-margin));
+    > figcaption {
+      margin: 0;
+    }
   }
 }
 

@@ -4,7 +4,7 @@
 	font-family: 'JetBrains Mono', monospace;
 	background-color: var(--backgroundColor);
 	color: #BDBDBD;
-	margin: 2px 10px 3px -15px;
+	margin: base.$code-container-margins;
 	margin-block-start: 1em;
 	margin-block-end: 1em;
 	border-radius: 6px;

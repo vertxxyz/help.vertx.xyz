@@ -9,6 +9,10 @@ $bottom-padding: 200px;
 $font-family: 'Roboto', sans-serif;
 $scroll-bar-width: 13px;
 $sidebar-bottom-height: 58px;
+$code-container-left-margin: -15px;
+$code-container-right-margin: 10px;
+$code-container-margins: 2px $code-container-right-margin 3px $code-container-left-margin;
+
 // Colors
 $body-color: #c5c5c5;
 $body-color-darker: #999999;
@@ -26,6 +30,7 @@ $huh-how-highlight: #ffcb4c;
 $huh-how-highlight-darker: #f19020;
 $unity-header-background: #000000;
 $unity-header-foreground: #FFFFFF;
+
 // Unity colors  https://www.foundations.unity.com/fundamentals/color-palette
 // Base 1
 $unity-colors-app_toolbar-background: #191919;
