@@ -1,6 +1,7 @@
 - [UnityEvents](Unity%20Events.md)
   - [Incorrect assignment](Unity%20Events/Incorrect%20Assignment.md) (MonoScript)
   - [Method requirements](Unity%20Events/Method%20Requirements.md)
+    - [Method requirements workaround](Unity%20Events/Method%20Requirements%20Workaround.md)
   - [Property requirements](Unity%20Events/Property%20Requirements.md)
   - [Fields](Unity%20Events/Field%20Support.md)
   - [AddListener](Unity%20Events/Add%20Listener%20UI.md)

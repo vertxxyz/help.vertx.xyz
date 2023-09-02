@@ -12,7 +12,7 @@ using Troubleshooter.Renderers;
 
 namespace Troubleshooter.Search;
 
-public static class SearchGatherer
+public static partial class SearchGatherer
 {
 	public class Result
 	{
@@ -39,7 +39,7 @@ public static class SearchGatherer
 		}
 	}
 
-	private static readonly Regex PreRegex = new("<pre>.+?</pre>", RegexOptions.Compiled | RegexOptions.Singleline);
+	private static readonly Regex PreRegex = GetPreRegex();
 
 	public static async Task<Result> GenerateSearchResult(string rootDirectory)
 	{
@@ -72,7 +72,7 @@ public static class SearchGatherer
 				{
 					wordsToFileIndexAndCount.AddOrUpdate(
 						word,
-						_ => new()
+						_ => new Dictionary<int, int>
 						{
 							{ index, 1 }
 						},
@@ -239,4 +239,7 @@ public static class SearchGatherer
 		bool IsStartWordCharacter(char c) => char.IsLetterOrDigit(c);
 		bool IsEndWordCharacter(char c) => char.IsLetterOrDigit(c);
 	}
+
+    [GeneratedRegex("""<pre(?: class="\w*?")>.+?</pre>""", RegexOptions.Compiled | RegexOptions.Singleline)]
+    private static partial Regex GetPreRegex();
 }

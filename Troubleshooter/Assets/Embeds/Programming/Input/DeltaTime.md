@@ -5,7 +5,7 @@ Don't scale mouse input by [`Time.deltaTime`](https://docs.unity3d.com/ScriptRef
 
 If you are using combined input with a joystick, only scale the joystick portion of this input.  
 
-:::info{.inline}
+:::info{.small}
 You will need to reduce the sensitivity to compensate for this change.
 :::  
 

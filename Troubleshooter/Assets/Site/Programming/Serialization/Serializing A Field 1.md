@@ -8,7 +8,7 @@ Mark your variable with a [`[SerializeField]`](https://docs.unity3d.com/ScriptRe
 or make it `public`:  
 <<Code/Serialization/Public.rtf>>
 
-:::warning{.inline}
+:::warning{.small}
 A `static`, `const`, or `readonly` field cannot be serialized.
 :::
 
@@ -20,7 +20,7 @@ Unity doesn't serialize properties. You can serialize the **backing field** of a
 public float Value { get; private set; }
 ```
 
-:::warning{.inline}
+:::warning{.small}
 The property must have a `set` accessor, and cannot be `static`.
 :::
 

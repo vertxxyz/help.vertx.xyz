@@ -3,7 +3,7 @@ Physics queries include casts, overlaps, and checks in the [`Physics`](https://d
 
 ### Test whether your query hits an object
 Test that a physics query hits an object by using a [breakpoint](Debugging/Debugger.md) or [log](Debugging/Logging/How-to.md).  
-:::warning{.inline}  
+:::warning{.small}  
 Don't put breakpoints or logs **after** or **inside** other code when testing a method runs.  
 :::
 

@@ -31,6 +31,6 @@ Alternatively, when starting a project it can be helpful to have up-to-date feat
 1. Use the dropdowns next to the listing to download the installer.
 1. Run the installer and follow the installation steps.
 
-:::warning{.inline}
+:::warning{.small}
 Note that manual installs cannot be later modified via the Unity Hub.
 :::

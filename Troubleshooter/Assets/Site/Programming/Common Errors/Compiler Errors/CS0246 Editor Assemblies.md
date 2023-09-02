@@ -14,7 +14,7 @@ Unity has a number of [special folders](https://docs.unity3d.com/Manual/ScriptCo
 | 3     | Assembly-CSharp                  | All other scripts that are not inside a folder called Editor.                                                                               |
 | 4     | Assembly-CSharp-Editor           | All remaining scripts (those that are inside a folder called Editor).                                                                       |
 
-:::warning{.inline}  
+:::warning{.small}  
 Anything that is compiled in a phase after the current one cannot be referenced.
 :::  
 

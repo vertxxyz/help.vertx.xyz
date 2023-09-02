@@ -83,6 +83,11 @@ public class PrismCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 					Highlight(str, "diff");
 					break;
 				}
+				case "css":
+				{
+					Highlight(str, "css");
+					break;
+				}
 				default:
 					codeBlockRenderer.Write(renderer, node);
 					break;
@@ -99,7 +104,7 @@ public class PrismCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 
 			string highlightedSourceCode = _engine.Evaluate<string>("highlighted");
 
-			renderer.Write("<pre>").Write("<code").Write(">").Write(highlightedSourceCode).Write("</code>").Write("</pre>");
+			renderer.Write($"<pre class=\"{languageKey}\">").Write("<code").Write(">").Write(highlightedSourceCode).Write("</code>").Write("</pre>");
 		}
 	}
 

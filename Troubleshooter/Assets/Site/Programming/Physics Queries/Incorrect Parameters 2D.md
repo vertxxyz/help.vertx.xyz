@@ -7,7 +7,7 @@ A `LayerMask` can accidentally be passed as an incorrect parameter of query, and
 var hit = Physics2D.Raycast(origin, direction, layerMask);
 ```
 
-:::error{.inline}
+:::error{.small}
 The 3rd parameter for this overload is `distance`, not a mask.
 :::  
 ::::

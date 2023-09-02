@@ -13,7 +13,7 @@ foreach (var item in copy)
         collection.Add(item);
 }
 ```
-:::info{.inline}  
+:::info{.small}  
 `CollectionType` should be replaced with the type used to create the original collection.
 :::  
 ::::  
@@ -32,7 +32,7 @@ foreach (var item in collection)
 
 collection.AddRange(toAdd);
 ```
-:::info{.inline}  
+:::info{.small}  
 `ItemType` should be replaced with the type used to key removals.
 :::  
 ::::

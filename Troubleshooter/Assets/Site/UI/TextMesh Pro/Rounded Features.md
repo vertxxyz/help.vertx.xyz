@@ -6,11 +6,11 @@ Distance fields work best with smooth features due to their typically low resolu
 ### Resolution
 Increase the **Atlas Resolution** or **Sampling Point Size** until the quality of the text has reached a threshold you are happy with.  
 
-:::warning{.inline}
+:::warning{.small}
 Do not increase the Atlas Resolution beyond 2048✕2048 when targeting mobile devices.
 :::
 
-:::warning{.inline}
+:::warning{.small}
 When manually increasing Sampling Point Size large values can cause characters to leave the atlas.
 :::
 

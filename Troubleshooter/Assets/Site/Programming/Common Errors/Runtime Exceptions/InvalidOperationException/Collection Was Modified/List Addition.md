@@ -11,7 +11,7 @@ for (int i = list.Count - 1; i >= 0; i--)
 
 You can perform the above logic with a forward loop, but you must correctly manage the counter to avoid infinite loops. Caching the collection count instead of evaluating it in the `for` would prevent it from iterating over the newly added elements.
 
-:::info{.inline}
+:::info{.small}
 You can autocomplete `for` to get a correctly written for loop, and `forr` for a reverse loop.
 :::
 

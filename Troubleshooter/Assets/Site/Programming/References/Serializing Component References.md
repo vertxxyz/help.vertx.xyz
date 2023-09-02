@@ -22,7 +22,7 @@ The [field](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/cl
 **or** can be `public`:  
 <<Code/Variables/Public Reference.html>>
 
-:::info{.inline}
+:::info{.small}
 This example uses the `Transform` type, it will need to be replaced with the target type.
 :::
 
@@ -32,7 +32,7 @@ This example uses the `Transform` type, it will need to be replaced with the tar
 Do not directly reference the script asset. The target component must be an instance [added to an object in the scene](https://docs.unity3d.com/Manual/UsingComponents.html).  
 
 ^^^
-<video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/Video/inspector-references.webm"></video>  
+<video width="750" height="200" autoplay loop muted controls><source type="video/webm" src="https://unity.huh.how/Video/inspector-references.webm"></video>  
 ^^^ ::Drag a **Component** into the slot or you will get an [`UnassignedReferenceException`](../Common%20Errors/Runtime%20Exceptions/UnassignedReferenceException.md).::{.error}
 
 Dragging a GameObject from the [Hierarchy](https://docs.unity3d.com/Manual/Hierarchy.html) into the field will reference the first matching Component found on the object.
@@ -50,7 +50,7 @@ _target.Variable = variable;
 // Methods
 _target.Method();
 ```
-:::info{.inline}  
+:::info{.small}  
 If you don't have autocomplete, [configure your IDE](../IDE%20Configuration.md) to easily find member names and get error highlighting.
 :::  
 

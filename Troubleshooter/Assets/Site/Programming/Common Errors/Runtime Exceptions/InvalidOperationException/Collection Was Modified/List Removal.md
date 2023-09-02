@@ -12,7 +12,7 @@ for (int i = list.Count - 1; i >= 0; i--)
 
 Starting removals at the end of the list improves performance, and you don't need to modify the counter after a removal.
 
-:::info{.inline}
+:::info{.small}
 You can autocomplete `for` to get a correctly written for loop, and `forr` for a reverse loop.
 :::
 

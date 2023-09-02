@@ -14,7 +14,7 @@ To resolve a `NullReferenceException` caused by a `null` `UnityEngine.Object` yo
 #### 1. Assign all references (if you serialized a reference)
 Check that all references have been [assigned in the inspector](../../../References/Serializing%20Component%20References.md).
 ^^^
-<video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/Video/inspector-references.webm"></video>
+<video width="750" height="200" autoplay loop muted controls><source type="video/webm" src="https://unity.huh.how/Video/inspector-references.webm"></video>
 ^^^ Assigning a serialized reference
 
 #### Check for duplicate objects

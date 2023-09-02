@@ -16,7 +16,7 @@ IDEs evaluate your code as it is typed, giving you autocomplete, warnings, and e
 Coding without these tools wastes your time, and the time of anyone looking to help you.
 
 ^^^
-<video width="600" height="416" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/HTML/programming/ide-configuration/functioning-ide.mp4"></video>
+<video width="600" height="416" autoplay loop muted controls><source type="video/webm" src="https://unity.huh.how/HTML/programming/ide-configuration/functioning-ide.mp4"></video>
 ^^^ ![JetBrains Rider](/Images/jetbrains_rider.svg) JetBrains Rider autocompleting code.
 
 ### Other common issues

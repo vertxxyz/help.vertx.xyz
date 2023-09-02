@@ -15,6 +15,12 @@ public static partial class SiteBuilder
 		var pipeline = new MarkdownPipelineBuilder()
 			.UseAdvancedExtensions()
 			.UsePrism()
+			// TOC doesn't run properly on the second pass, requires debugging.
+			/*.UseTableOfContent(options =>
+			{
+				options.ContainerTag = "div";
+				options.ContainerClass = "table-of-contents";
+			})*/
 			.Build();
 
 		Site site = new(arguments.TroubleshooterRoot);

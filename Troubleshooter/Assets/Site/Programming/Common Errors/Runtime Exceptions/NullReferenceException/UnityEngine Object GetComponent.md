@@ -8,7 +8,7 @@ A component of the target type must be attached to the same GameObject the funct
 1. [Search the scene](../../../../Interface/Scene%20View/Searching.md) for all instances of the caller and check all results (`t:ExampleComponent` for example).
 1. Assignment must occur before access. Often you would use [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) to get, and [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) to use.
 
-:::info{.inline}
+:::info{.small}
 You can use the [`RequireComponent`](https://docs.unity3d.com/ScriptReference/RequireComponent.html) attribute to automatically add component dependencies when adding new components in the editor.
 :::  
 ::::  

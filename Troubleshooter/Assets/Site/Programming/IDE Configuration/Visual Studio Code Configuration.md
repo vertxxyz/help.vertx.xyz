@@ -8,7 +8,7 @@ The new extension relies on the [C# Dev Kit](https://learn.microsoft.com/en-us/v
 #### Follow **all** of the [configuration steps](https://code.visualstudio.com/docs/other/unity):
 1. [Install a Unity version](../../Unity%20Hub/Editor%20Installation.md) greater than or equal to 2021+.
 1. Ensure the [Visual Studio Editor](https://docs.unity3d.com/Manual/com.unity.ide.visualstudio.html) package installed and updated to at least `2.0.20` in UPM (`com.unity.ide.visualstudio`).  
-   :::error{.inline}  
+   :::error{.small}  
    This is **not** the Visual Studio Code Editor package, if it is installed you should remove it.  
    :::
 1. [Install](https://code.visualstudio.com/docs/editor/extension-marketplace) the [Unity for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=visualstudiotoolsforunity.vstuc) extension.

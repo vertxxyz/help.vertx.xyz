@@ -7,7 +7,7 @@ You can find the name of your class where your code looks like:
 
 In this example if your script isn't named ::![Script Icon](script-icon.svg){.inline} `ClassName`::{.note}, you must rename it to be identical.  
 
-:::warning{.inline}
+:::warning{.small}
 This includes **capitalisation** and **spaces**.  
 :::  
 

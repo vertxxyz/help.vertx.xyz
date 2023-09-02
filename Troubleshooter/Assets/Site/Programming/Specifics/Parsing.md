@@ -8,7 +8,7 @@ In other cases, these hidden characters must be removed. They will also cause is
 ### Resolution
 #### TextMesh Pro input fields
 When referencing text from a TMP input field, do not reference the underlying [`TextMeshProUGUI`](https://docs.unity3d.com/Packages/com.unity.textmeshpro@latest/index.html?subfolder=/api/TMPro.TextMeshProUGUI.html), reference the [`TMP_InputField`](https://docs.unity3d.com/Packages/com.unity.textmeshpro@latest/index.html?subfolder=/api/TMPro.TMP_InputField.html) itself.  
-:::warning{.inline}
+:::warning{.small}
 The child `TextMeshProUGUI` uses a zero-width space for layout purposes, and should not be referenced.
 :::
 

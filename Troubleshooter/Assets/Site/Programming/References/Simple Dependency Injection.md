@@ -18,7 +18,7 @@ public void Initialise(Example example1, Example example2)
 }
 ```
 
-:::info{.inline}
+:::info{.small}
 If you aren't using a `UnityEngine.Object` subtype you can use contructors and variable initializers, and don't need to make an Initialise method.
 :::  
 ::::  

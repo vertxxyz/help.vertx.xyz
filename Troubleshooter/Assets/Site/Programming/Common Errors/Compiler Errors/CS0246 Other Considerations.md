@@ -15,7 +15,7 @@ Save, and check if there are compiler errors in Unity, if there are no errors li
 ::::note  
 #### You have misspelt the type or namespace
 Make sure you follow the autocomplete suggestions of your IDE and do not type things manually.  
-:::info{.inline}  
+:::info{.small}  
 If your IDE isn't showing errors, you will need to [configure your IDE](../../IDE%20Configuration.md).    
 :::
 

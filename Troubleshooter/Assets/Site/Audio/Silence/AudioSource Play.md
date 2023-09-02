@@ -4,7 +4,7 @@
 **or**  
 - [`Play`](https://docs.unity3d.com/ScriptReference/AudioSource.Play.html) is called manually.  
   You should use the [debugger, or log](../../Programming/Debugging.md) that the function is being called, and the source is correct.
-  ::::warning{.inline}
+  ::::warning{.small}
   Calling `Play` repeatedly will cause the clip to constantly restart.
   ::::
 

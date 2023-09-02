@@ -1,12 +1,19 @@
 @use 'base';
 
 figure {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   position: relative;
-  display: table;
-  margin-inline-start: 15px;
+  inline-size: max-content;
+  margin: base.$block-container-margins;
 
   :nth-last-child(2) {
     margin-block-end: 0;
+  }
+  
+  > .code-container {
+    align-self: normal;
   }
   
   &> blockquote + figcaption {
@@ -24,7 +31,7 @@ figure {
   }
   
   &> *:not(figcaption) {
-    display: table-cell;
+    display: block;
     margin: 0 !important;
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
@@ -35,8 +42,8 @@ figure {
   }
   
   &:has(>.code-container) {
-    margin: base.$code-container-margins;
-    width: calc(100% - (base.$code-container-left-margin + base.$code-container-right-margin));
+    margin: base.$block-container-margins;
+    inline-size: auto;
     > figcaption {
       margin: 0;
     }
@@ -53,10 +60,10 @@ figure {
 }
 
 figcaption {
-  display: table-caption;
+  width: 0;
+  min-width: 100%;
   caption-side: bottom;
   box-sizing: border-box;
-  //max-width: fit-content;
   font-size: 10pt;
   padding: 5px 12px 5px 12px;
   background: base.$unity-colors-app_toolbar-background;

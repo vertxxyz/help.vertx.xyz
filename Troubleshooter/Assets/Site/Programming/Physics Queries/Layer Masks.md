@@ -1,7 +1,7 @@
 ## Physics queries: LayerMasks
 
 Layer masks are [bitmasks](../Physics/Bitmasks.md) that describe which layers are active or otherwise.  
-:::info{.inline}
+:::info{.small}
 Active layers will be hit by the query.
 :::  
 A layer mask may be an `int`, but it doesn't represent a single layer.
@@ -29,7 +29,7 @@ public LayerMask ExampleMask;
 ```
 `LayerMask` can be passed to physics functions as it's implicitly convertible to `int`.  
 
-:::warning{.inline}  
+:::warning{.small}  
 Double-check the mask value set in the inspector.  
 :::  
 ::::  

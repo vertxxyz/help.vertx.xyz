@@ -5,7 +5,7 @@ Skin width is a critical setting that reduces the chances of getting stuck on su
 
 ### Resolution
 Reduce the radius of the character controller, or the skin width property.  
-:::info{.inline}
+:::info{.small}
 It is important to follow the skin width advice given in the [documentation](https://docs.unity3d.com/Manual/class-CharacterController.html).
 :::
 

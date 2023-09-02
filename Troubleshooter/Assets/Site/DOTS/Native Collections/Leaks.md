@@ -2,7 +2,7 @@
 ### Finding leaks
 Switch **Edit | Preferences | Jobs | Leak Detection Level** to enabled with stack trace. Leaks created once this setting is enabled should retain a stack trace from where the allocation occured, which should be appended to the log.
 
-:::warning{.inline}
+:::warning{.small}
 This setting will reset when you restart Unity.
 :::
 

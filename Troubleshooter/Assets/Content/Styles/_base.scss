@@ -1,6 +1,7 @@
 $header-height: 3.5em;
 $sidebar-width-mobile: 70%;
 $left-padding: 25px;
+$right-padding: 0;
 $left-padding-negative: -1 * $left-padding;
 $right-margin: 25px;
 $note-padding: 20px;
@@ -9,9 +10,10 @@ $bottom-padding: 200px;
 $font-family: 'Roboto', sans-serif;
 $scroll-bar-width: 13px;
 $sidebar-bottom-height: 58px;
-$code-container-left-margin: -15px;
-$code-container-right-margin: 10px;
-$code-container-margins: 2px $code-container-right-margin 3px $code-container-left-margin;
+$default-margin-right: 12px;
+$block-container-margin-left-right: 10px;
+$block-container-margin-top-bottom: 15px;
+$block-container-margins: $block-container-margin-top-bottom ($block-container-margin-left-right + $default-margin-right) $block-container-margin-top-bottom $block-container-margin-left-right;
 
 // Colors
 $body-color: #c5c5c5;

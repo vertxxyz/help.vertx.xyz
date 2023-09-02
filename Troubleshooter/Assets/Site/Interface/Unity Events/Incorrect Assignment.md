@@ -11,7 +11,7 @@ The target component must be assigned to the field, or it must be attached to th
 1. [Add the target component](https://docs.unity3d.com/Manual/UsingComponents.html) to a GameObject.  
 1. Drag the GameObject into the UnityEvent's object field.
 
-<video width="750" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/Video/unity-event-references.webm"></video>
+<video width="750" autoplay loop muted controls><source type="video/webm" src="https://unity.huh.how/Video/unity-event-references.webm"></video>
 
 ---
 

@@ -1,7 +1,7 @@
 ## Basic debugging
 
-> It doesn't work.  
-> pls help!
+> it doesn't work  
+> 😢 pls help!
 
 ### Using MonoBehaviours
 1. [Add the component to a GameObject in the scene.](https://docs.unity3d.com/Manual/UsingComponents.html)

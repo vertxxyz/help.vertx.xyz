@@ -13,7 +13,7 @@ foreach (var item in copy)
         collection.Remove(item);
 }
 ```
-:::info{.inline}  
+:::info{.small}  
 `CollectionType` should be replaced with the type used to create the original collection.
 :::  
 ::::
@@ -36,7 +36,7 @@ foreach (var item in toRemove)
 }
 
 ```
-:::info{.inline}  
+:::info{.small}  
 `ItemType` should be replaced with the type used to key removals.
 :::  
 ::::

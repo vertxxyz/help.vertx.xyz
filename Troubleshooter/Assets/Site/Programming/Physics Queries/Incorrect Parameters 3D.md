@@ -7,7 +7,7 @@ A `LayerMask` can accidentally be passed as an incorrect parameter of query, and
 if (Physics.Raycast(origin, direction, out hit, layerMask))
 ```
 
-:::error{.inline}
+:::error{.small}
 The 4th parameter for this overload is `maxDistance`, not a mask.
 :::  
 ::::

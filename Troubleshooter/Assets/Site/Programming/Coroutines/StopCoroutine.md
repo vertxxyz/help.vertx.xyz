@@ -11,7 +11,7 @@ To stop a coroutine, cache the `Coroutine` object returned by the original `Star
 ::::note
 #### Disabling scripts
 
-:::info{.inline}
+:::info{.small}
 When a GameObject is deactivated a coroutine will be stopped, but if the script is disabled it will continue.  
 :::
 

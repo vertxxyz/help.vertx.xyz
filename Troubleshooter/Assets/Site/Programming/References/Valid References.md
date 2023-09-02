@@ -67,7 +67,7 @@ Hover or select elements for more information.
 | Project assets  | Y            | N          |
 | Packaged assets | Y            | N          |
 
-:::warning{.inline}  
+:::warning{.small}  
 See Assets diagram for asset reference specifics  
 :::  
 ::::  
@@ -80,7 +80,7 @@ See Assets diagram for asset reference specifics
 | Other project assets | Y                   | Y                 |
 | Packaged assets      | Y                   | N                 |
 
-:::warning{.inline}  
+:::warning{.small}  
 See Assets diagram for asset reference specifics  
 :::  
 ::::  
@@ -93,7 +93,7 @@ See Assets diagram for asset reference specifics
 | Project assets        | N                   | Y                 |
 | Other packaged assets | Y                   | Y                 |
 
-:::warning{.inline}  
+:::warning{.small}  
 See Assets diagram for asset reference specifics  
 :::  
 ::::  
@@ -107,7 +107,7 @@ See Assets diagram for asset reference specifics
 | Prefab assets                 | Y                         | Y                       |
 | Prefab asset children         | N                         | Y                       |
 
-:::warning{.inline}  
+:::warning{.small}  
 See Scene/Project/Package diagram for location specifics  
 :::  
 ::::  
@@ -122,7 +122,7 @@ See Scene/Project/Package diagram for location specifics
 | This prefab's children  | Y                  | Y                |
 | Other prefab's children | N                  | Y                |
 
-:::warning{.inline}  
+:::warning{.small}  
 See Scene/Project/Package diagram for location specifics  
 :::  
 ::::  
@@ -136,7 +136,7 @@ See Scene/Project/Package diagram for location specifics
 | Other prefab assets     | Y                          | N                        |
 | This prefab's children  | Y                          | Y                        |
 | Other prefab's children | N                          | N                        |
-:::warning{.inline}  
+:::warning{.small}  
 See Scene/Project/Package diagram for location specifics  
 :::  
 ::::

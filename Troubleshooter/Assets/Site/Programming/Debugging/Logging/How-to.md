@@ -43,13 +43,13 @@ The `ToString` implementation for vectors have very little precision, so when lo
 The [`print`](https://docs.unity3d.com/ScriptReference/MonoBehaviour-print.html) function is only inherited from `MonoBehaviour` and indirectly calls `Debug.Log`. It also does not take the context parameter, and so should generally be avoided.  
 #### Logs, Warnings, and Errors
 Unity has multiple types of logs:  
-:::info{.inline}
+:::info{.small}
 Log can describe informative or verbose details.
 :::  
-:::warning{.inline}
+:::warning{.small}
 Warning is for non-critical failures, like handled issues or basic misconfiguration.
 :::  
-:::error{.inline}
+:::error{.small}
 Error or Exception are for failures that must be addressed, or halt code execution.
 :::
 

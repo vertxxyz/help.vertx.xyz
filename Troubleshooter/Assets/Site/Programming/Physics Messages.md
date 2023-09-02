@@ -3,7 +3,7 @@ Physics messages are sent between [`Physics`](https://docs.unity3d.com/ScriptRef
 
 ### Test whether messages are sent to your objects
 Test that you receive a physics message by using a [breakpoint](Debugging/Debugger.md) or [log](Debugging/Logging/How-to.md).  
-:::warning{.inline}  
+:::warning{.small}  
 Don't put breakpoints or logs **after** or **inside** other code when testing a method runs.  
 :::
 

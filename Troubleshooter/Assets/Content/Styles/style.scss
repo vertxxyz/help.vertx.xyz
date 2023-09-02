@@ -68,7 +68,7 @@ $large: 1920px;
 
 %gridarea-contents {
   grid-area: contents;
-  padding: 30px 0 base.$bottom-padding base.$left-padding;
+  padding: 30px base.$right-padding base.$bottom-padding base.$left-padding;
   margin-left: functions.between(0, 200px, $small, $large);
 }
 
@@ -136,17 +136,25 @@ p {
   margin-block-end: 1em;
   margin-inline-start: 0;
   margin-inline-end: 12px;
+  
+  & > img:only-child {
+    display: block;
+  }
 }
 
 img {
-  margin: 15px 10px 15px 10px;
   max-width: 100%;
+  margin: base.$block-container-margins;
   color: base.$link-color-broken;
 
   &.inline {
     width: 20px;
     margin: 0;
     transform: translateY(4px);
+  }
+  
+  &.padded {
+    margin: 0;
   }
 }
 
@@ -349,7 +357,7 @@ div.footnotes {
   border: 1px #ffffff20 solid;
   padding: 0 20px;
   margin-right: base.$right-margin;
-  margin-top: 30px;
+  margin-top: 40px;
   font-size: 11pt;
   filter: grayscale(40%);
   
@@ -379,7 +387,7 @@ div.note {
   margin-right: base.$right-margin;
   margin-top: 1em;
   margin-bottom: 1em;
-  padding: 1em base.$note-padding;
+  padding: 1em base.$right-padding 1em 1em;
 
   > :first-child {
     margin-block-start: 0;
@@ -403,13 +411,12 @@ div.note {
     }
   }
 
-  .code-container {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
   > hr {
     margin-left: unset;
+  }
+  
+  > figure {
+    margin-left: base.$block-container-margin-left-right;
   }
 }
 
@@ -512,7 +519,6 @@ kbd {
   }
 
   .contents {
-    padding: 30px 30px base.$bottom-padding 30px;
     margin: 0 0 0 0;
   }
 

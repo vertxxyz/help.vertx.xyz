@@ -62,6 +62,7 @@ public partial class LanguageTests
 		text.Should().NotContain("Unity hub", StringComparison.Ordinal, "we should write \"Unity Hub\"");
 		text.Should().NotContain(".Net", StringComparison.Ordinal, "we should write \".NET\"");
 		text.Should().NotContain("assembly definition", StringComparison.Ordinal, "we should write \"Assembly Definition\"");
+		text.Should().NotContain("UI Toolkit debugger", StringComparison.Ordinal, "we should write \"UI Toolkit Debugger\"");
 		text.Should().NotMatchRegex(s_UGuiRegex, "we should write \"uGUI\"");
 		text.Should().NotMatchRegex(s_UnityRegex, "we should write \"Unity\"");
 		text.Should().NotMatchRegex(s_GameObjectRegex, "we should write \"GameObject\"");

@@ -16,6 +16,8 @@ There are also alternate ways to perform most steps. One notable difference is c
 There are a lot of terms to get used to when using Git, and understanding them is key to not overriding your work.  
 While source control is a powerful and necessary presence in your project, it can destroy work when terms are misunderstood and warnings are overlooked.
 
+^^^  
+
 | Term           | Description                                                                                                                                                  |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Repository     | A location where the backup data structure is stored. Repo for short.                                                                                        |
@@ -39,6 +41,7 @@ While source control is a powerful and necessary presence in your project, it ca
 | Force          | The act of destructively overriding another state.<br/>For example, force push, or force pull.                                                               |
 | Command line   | A text interface for interacting directly with Git.                                                                                                          |
 | GUI            | A Graphical User Interface for interacting with Git.                                                                                                         |
+^^^ See [more terms](#more-terms) below.
 
 ### Create your Unity project
 If you haven't already created a project, create one!
@@ -53,7 +56,7 @@ If you haven't already created a project, create one!
 
    If your service allows you to choose a `.gitignore` file, choose Unity if present, otherwise choose none.  
    I choose to create a `README` file, which makes a good landing page for the project.  
-   :::warning{.inline}  
+   :::warning{.small}  
    Choose **private** visibility unless you are confident that you want your project to be public, and have the appropriate licenses to do so.  
    :::
 
@@ -110,7 +113,7 @@ LFS is included in many Git GUI clients, if you have previously [installed git](
    ```
 1. Create a [`.gitattributes`](Gitattributes.md) file.  
    Place this file at the root of your repository (under the root folder).  
-   :::warning{.inline}  
+   :::warning{.small}  
    This file must be named `.gitattributes`. This is a file name with only an extension. Make sure this is correct.  
    :::  
    Changes to this file require files be re-staged if staged already.  
@@ -118,7 +121,7 @@ LFS is included in many Git GUI clients, if you have previously [installed git](
 ### Set up your gitignore
 1. If you didn't set up a Unity gitignore file earlier, [GitHub provides a popular one](https://github.com/github/gitignore/blob/main/Unity.gitignore).  
    Place this file at the root of your repository (under the root folder).  
-   :::warning{.inline}  
+   :::warning{.small}  
    This file must be named `.gitignore`. This is a file name with only an extension. Make sure this is correct.  
    :::  
 1. In your GUI, stage all your changes/files, including the gitignore.  

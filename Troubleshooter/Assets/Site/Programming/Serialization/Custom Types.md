@@ -11,7 +11,7 @@ Serializable Unity types should appear in [debug mode](Debug%20Mode.md); look fo
 Ensure that there are serializable types in that structure:  
 <<Serialization/Serializable Types.md>>  
 marked with the `[SerializeField]` attribute, or are `public`.  
-:::info{.inline}
+:::info{.small}
 Empty structures or those without serializable fields are also not serializable.
 :::
 ::::

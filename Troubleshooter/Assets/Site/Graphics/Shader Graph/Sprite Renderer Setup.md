@@ -6,7 +6,7 @@ If Shader Graphs are improperly configured, sprites won't update when the Sprite
 1. Sprite values should be set via the [Sprite Renderer](https://docs.unity3d.com/Manual/class-SpriteRenderer.html).
 1. Use a Sprite Shader Graph (Lit or Unlit)  if it is available to you.
 1. Name the [exposed color texture](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@latest/index.html?subfolder=/manual/ShaderGraph.html) `MainTex` (the reference should be `_MainTex`).  
-   :::warning{.inline}  
+   :::warning{.small}  
    This includes capitalisation and spaces  
    :::
    1. Select **+** on the [Blackboard](https://docs.unity3d.com/Packages/com.unity.shadergraph@latest/index.html?subfolder=/manual/Blackboard.html) and then select **Texture 2D**.

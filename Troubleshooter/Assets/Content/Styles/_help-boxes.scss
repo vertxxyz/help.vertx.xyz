@@ -6,7 +6,7 @@ div.info-box {
 	border: solid 1px #242424;
 	border-radius: 5px;
 	background-color: #404040;
-	margin: 5px base.$right-margin 20px 0;
+	margin: base.$block-container-margins;
 	align-items: center;
 
 	>p,>div {
@@ -28,20 +28,15 @@ div.info-box {
 	width: 30px;
 }
 
-p+div.info-box.inline {
-	margin-top: -10px;
-}
-
-div.info-box.inline {
-	>img {
-		@extend %small;
-	}	
+p:has(+div.info-box.small) {
+	margin-block-end: 0.5em;
 }
 
 div.info-box.small {
+	margin-block-end: 0.5em;
 	>img {
 		@extend %small;
-	}
+	}	
 }
 
 .code-context {

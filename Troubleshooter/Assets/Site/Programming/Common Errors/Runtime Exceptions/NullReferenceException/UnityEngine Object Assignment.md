@@ -19,7 +19,7 @@ If you want to handle the case where the object is unassigned:
     }
     ```  
   
-::::warning{.inline}  
+::::warning{.small}  
 Do not use modern null-checking operators[^1] (`?.`, `??`, `??=`) to check for null.  
 ::::  
 :::

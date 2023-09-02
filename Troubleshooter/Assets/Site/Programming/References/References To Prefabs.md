@@ -12,7 +12,7 @@ See [references to prefab children](References%20To%20Prefab%20Children.md) if y
 ::::note
 #### 1. Add or choose a root component on your prefab
 On the top-level GameObject of your prefab asset, [add](https://docs.unity3d.com/Manual/UsingComponents.html) or choose a component that you want to reference.  
-:::error{.inline}  
+:::error{.small}  
 This example uses `PrefabComponentType`, it will need to be replaced with the root component type you chose.  
 :::  
 
@@ -37,7 +37,7 @@ public PrefabComponentType Prefab;
 #### 3. Reference the prefab asset in the spawner's Inspector
 
 ^^^
-<video width="750" height="200" autoplay loop muted><source type="video/webm" src="https://unity.huh.how/Video/prefab-references.webm"></video>
+<video width="750" height="200" autoplay loop muted controls><source type="video/webm" src="https://unity.huh.how/Video/prefab-references.webm"></video>
 ^^^ ::Drag the prefab asset into the slot or you will get an [`UnassignedReferenceException`](../Common%20Errors/Runtime%20Exceptions/UnassignedReferenceException.md).::{.error}
 
 Dragging a prefab from the [Project window](https://docs.unity3d.com/Manual/ProjectView.html) into the field will reference the first matching Component found on the root of the object.
@@ -70,7 +70,7 @@ _instance.Variable = variable;
 // Methods
 _instance.Method();
 ```
-:::info{.inline}  
+:::info{.small}  
 If you don't have autocomplete, [configure your IDE](../IDE%20Configuration.md) to easily find member names and get error highlighting. 
 :::  
 ::::  

@@ -1,12 +1,12 @@
 ## Input issues: uGUI
 Input in Unity UI (uGUI) requires multiple things to receive input events.  
 :::warning
-Do not make assumptions. Double-checking these steps are met is always recommended.
+Don't make assumptions. Double-checking these steps are met is always recommended.
 :::
 
 :::note  
 #### 1. Check for an Event System
-There must be an **active [EventSystem](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/EventSystem.html)** in the Scene. You can create one via **GameObject | UI | Event System**
+There must be an **active [EventSystem](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/EventSystem.html)** in the Scene. You can create one via **GameObject | UI | Event System**.  
 :::
 
 :::note  
@@ -29,7 +29,7 @@ If your object is not under a [Canvas](https://docs.unity3d.com/Packages/com.uni
 
 ::::note  
 #### 4. Check for overlapping elements
-:::info{.inline}
+:::info{.small}
 Overlapping panels are only those below the element in the hierarchy.
 :::
 
@@ -43,7 +43,7 @@ To troubleshoot cases where other UI is blocking input, select the Event System 
 ![The Event System preview pane](event-system-preview.png)
 ^^^ The Event System preview pane
 
-:::info{.inline}  
+:::info{.small}  
 Clicking the header of the preview pane expands it, and right-clicking it pops it out as a new window.
 :::  
 Sadly the preview pane of the Event System is lacking when using the Input System package. Hopefully they will improve this.
