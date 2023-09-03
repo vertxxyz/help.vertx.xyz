@@ -18,14 +18,14 @@ displayMode: compact
 ---
 gantt
     dateFormat  SSS
-%%    tickInterval 0.0004minute
+    tickInterval 2millisecond
     axisFormat •
     section Frame
-        1: 0, 18ms
+        1: 000, 18ms
         2: 5ms
         3: 13ms
     section Main thread
-        ...: 0, 1ms
+        ...: 000, 1ms
         FixedUpdate: 5ms
         FixedUpdate: 4ms
         Update: 7ms

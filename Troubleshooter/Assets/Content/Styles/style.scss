@@ -137,7 +137,7 @@ p {
   margin-inline-start: 0;
   margin-inline-end: 12px;
   
-  & > img:only-child {
+  & > img:only-child:not(.emoji) {
     display: block;
   }
 }

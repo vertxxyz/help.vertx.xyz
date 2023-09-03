@@ -5,10 +5,20 @@
     stroke: #D0D0D0 !important;
   }
 
-  .node rect, .node circle, .node ellipse, .node polygon, .node path
-  {
+  .transition {
+    stroke: #D0D0D0 !important;
+  }
+
+  .node rect, .node circle, .node ellipse, .node polygon, .node path {
     fill: #282828 !important;
     stroke: #D0D0D0 !important;
+  }
+
+  .node.statediagram-note {
+    fill: base.$unity-colors-app_toolbar-background !important;
+    font-size: 10pt !important;
+    text-align: center !important;
+    shape-rendering: crispedges !important;
   }
 
   .label text, span, p {
@@ -16,23 +26,55 @@
     color: #D0D0D0 !important;
   }
 
+  .edgeLabel .label rect,
   .edgeLabel {
+    fill: base.$unity-colors-window-background !important;
     background-color: base.$unity-colors-window-background !important;
   }
-  
+
   a {
     label text, span, p {
       color: base.$link-color !important;
     }
+
     &:hover {
       label text, span, p {
         color: base.$link-color-hover !important;
       }
     }
+
     .nodeLabel::after {
       margin-left: 4px;
       content: "\2197";
       font-family: 'JetBrains Mono', monospace;
     }
+  }
+
+  /* Gantt */
+  .section0 {
+    fill: rgb(255 255 255 / 49%) !important;
+  }
+
+  .section1 {
+    fill: white !important;
+  }
+
+  .sectionTitle {
+    fill: #D0D0D0 !important;
+  }
+
+  .task {
+    stroke-width: 1px !important;
+    shape-rendering: crispedges !important;
+    fill: base.$unity-colors-app_toolbar-background !important;
+    stroke: white !important;
+  }
+
+  .node circle.state-end {
+    stroke-width: 1px !important;
+  }
+
+  .grid .tick text {
+    fill: base.$body-color !important;
   }
 }
