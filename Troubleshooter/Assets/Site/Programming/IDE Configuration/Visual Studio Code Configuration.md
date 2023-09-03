@@ -5,6 +5,7 @@ As of August 2023 Microsoft has released a new version of the Unity extension fo
 The new extension relies on the [C# Dev Kit](https://learn.microsoft.com/en-us/visualstudio/subscriptions/vs-c-sharp-dev-kit). Do note that this is unlike the previous extensions, so now it falls under a [new license](https://marketplace.visualstudio.com/items/ms-dotnettools.csdevkit/license) similar to Visual Studio Community's.
 
 ### Steps
+
 #### Follow **all** of the [configuration steps](https://code.visualstudio.com/docs/other/unity):
 1. [Install a Unity version](../../Unity%20Hub/Editor%20Installation.md) greater than or equal to 2021+.
 1. Ensure the [Visual Studio Editor](https://docs.unity3d.com/Manual/com.unity.ide.visualstudio.html) package installed and updated to at least `2.0.20` in UPM (`com.unity.ide.visualstudio`).  
@@ -15,11 +16,12 @@ The new extension relies on the [C# Dev Kit](https://learn.microsoft.com/en-us/v
 1. Set the **External Script Editor** dropdown in Unity's External Tools preferences (**Edit | Preferences | External Tools**) to Visual Studio Code.
 
 #### If you are experiencing issues:
-1. Check your C# and C# Dev Kit extensions are upgraded to the latest versions.
-1. Install the [.NET SDK](https://dotnet.microsoft.com/download).
-   1. Logout or restart Windows.
-1. Restart VS Code.
-1. Open the project from Unity's **Assets | Open C# Project** menu.
+- If you have compiler errors, if possible [comment out](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/comments) those files so Unity can compile code.
+- Check your C# and C# Dev Kit extensions are upgraded to the latest versions.
+- Install the [.NET SDK](https://dotnet.microsoft.com/download).
+  - Logout or restart Windows.
+- Restart VS Code.
+- Open the project from Unity's **Assets | Open C# Project** menu.
 
 ---
 

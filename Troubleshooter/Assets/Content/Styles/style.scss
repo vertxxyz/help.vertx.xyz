@@ -355,7 +355,7 @@ sup {
 div.footnotes {
   counter-set: item-counter;
   border: 1px #ffffff20 solid;
-  padding: 0 20px;
+  padding: 0 base.$right-padding 0 base.$left-padding;
   margin-right: base.$right-margin;
   margin-top: 40px;
   font-size: 11pt;
@@ -367,7 +367,7 @@ div.footnotes {
     font-variant: all-small-caps;
     font-size: 12pt;
     color: base.$body-color-darker;
-    margin: 10px 0 -8px 6px;
+    margin: 10px 6px -8px 6px;
   }
 
   p {

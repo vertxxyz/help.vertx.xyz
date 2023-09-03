@@ -30,6 +30,7 @@ Follow all of the instructions listed on [this page](https://docs.microsoft.com/
 
 ### Resolving configuration issues
 
+- If you have compiler errors, if possible [comment out](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/comments) those files so Unity can compile code.
 - Ensure the [Visual Studio Editor](https://docs.unity3d.com/Manual/com.unity.ide.visualstudio.html) package is installed and updated in UPM (`com.unity.ide.visualstudio`).
 - Regenerate project files via Unity.
   1. Close VS.

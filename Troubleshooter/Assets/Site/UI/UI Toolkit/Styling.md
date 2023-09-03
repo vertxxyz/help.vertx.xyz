@@ -96,10 +96,15 @@ For our styling example we will be styling a Slider. The example will use one fr
 
 Use the [UI Toolkit Debugger](https://docs.unity3d.com/Manual/UIE-ui-debugger.html) to inspect the styles, types, names, classes, and hierarchy of your element. If you've used browser dev tools this should be familiar to you.
 
-You can find the debugger at **Window | UI Toolkit | Debugger** or **Window | Analysis | UIElements Debugger** depending on Unity version, right-click on an inspector tab and select it, or press <kbd>Ctrl+F5</kbd>.
+You can find the debugger at **Window | UI Toolkit | Debugger** or **Window | Analysis | UIElements Debugger** depending on Unity version; right-click on an inspector tab and select it, or press <kbd>Ctrl+F5</kbd>.
 
 #### Inspecting your element
 Select the correct window from the top left of the debugger, and select **Pick Element**. Hover your element until the portion you wish to work with is highlighted, and select it.  
+
+:::error
+Don't inspect elements directly in the [UI Builder](https://docs.unity3d.com/Manual/UIBuilder.html) for styling.  
+The UI Builder adds extra elements for resizing and highlighting that will not be present in the final UI.
+:::
 
 ^^^
 <video width="750" height="325" loop muted controls><source type="video/webm" src="/HTML/ui/ui-toolkit/ui-toolkit-debugger-picking.webm"></video>
@@ -123,7 +128,7 @@ In the **Styles** foldout you can override any style temporarily for the element
 
 ^^^  
 ![UI Toolkit Debugger - Styles](ui-toolkit-debugger-styles.png)  
-^^^ Directly adjusting the height of the example Slider.
+^^^ Directly adjusting the height of the example slider.
 
 Adjust the styles of your element, and surrounding elements under the control until you are happy with the outcome.
 
@@ -131,13 +136,21 @@ Adjust the styles of your element, and surrounding elements under the control un
 These adjustments are temporary, note down what adjustments you have made, or perform the next step in parallel.
 :::
 
-### Construct a USS rule that targets your element
+### Construct a USS rule
+#### Use selectors to target your element
 In your USS, reconstruct the work you have done in the debugger.  
 Often, you should anchor the styling to the root of the control, using the type, its name, or class. Take note of the preexisting **Matching Selectors** already present on your element for inspiration.
 
 ^^^  
 ![UI Toolkit Debugger - Matching selectors](ui-toolkit-debugger-matching-selector.png)  
 ^^^ A preexisting selector that has been used by UI Toolkit for our element.
+
+#### Use properties to style your selector's matches
+Once you've created a selector, use [USS properties](https://docs.unity3d.com/Manual/UIE-uss-properties.html) to style the elements it matches. Learning USS properties and syntax is beyond the scope of this guide, but note it has great similarity with CSS if you ever get lost with a certain style.  
+:::info
+The [USS property data types](https://docs.unity3d.com/Manual/UIE-USS-PropertyTypes.html) page is a specification applying to the [USS common properties](https://docs.unity3d.com/Manual/UIE-USS-SupportedProperties.html) page.  
+Apply the listed syntax rules to formulate a valid property.
+:::
 
 ::::note
 #### Example
@@ -153,8 +166,11 @@ Often, you should anchor the styling to the root of the control, using the type,
      and not contribute to layout by using absolute. */
   position: absolute;
   height: 10px;
+  top: auto;
   left: 0;
   right: 0;
+  /* Set the radius to match the "dragger" */
+  border-radius: 5px;
 }
 
 .unity-base-slider--horizontal .unity-base-slider__dragger {
@@ -169,8 +185,46 @@ Often, you should anchor the styling to the root of the control, using the type,
   width: 20px;
   margin-left: -2px;
 }
+
+/* Collapsable: Or, targeting the specific slider by name */
+/* Targeting the specific slider by name: */
+#the-uxml-slider .unity-base-slider__drag-container {
+  /* Make the parent "drag container" align its "dragger" child in the center of the cross-axis */
+  justify-content: center;
+}
+
+#the-uxml-slider.unity-base-slider--horizontal .unity-base-slider__tracker {
+  /* The "tracker" background can stretch across the slider (left 0 to right 0), 
+     and not contribute to layout by using absolute. */
+  position: absolute;
+  height: 10px;
+  top: auto;
+  left: 0;
+  right: 0;
+  /* Set the radius to match the "dragger" */
+  border-radius: 5px;
+}
+
+#the-uxml-slider.unity-base-slider--horizontal .unity-base-slider__dragger {
+  /* Make the "dragger" taller and remove previous alignment now it's centered */
+  margin-top: 0;
+  width: 16px;
+}
+
+#the-uxml-slider.unity-base-slider--horizontal .unity-base-slider__dragger-border {
+  /* Adjust the "dragger-border" to accomodate the new size of the "dragger". It's already absolute. */
+  height: 14px;
+  width: 20px;
+  margin-left: -2px;
+}
+
+/* End Collapsable */
 ```
-^^^ A descendent selector matching elements with the `unity-base-slider__tracker` class below elements with the `unity-base-slider--horizontal` class.
+^^^ Making a thicker slider via USS.
+
+^^^  
+![Thicker Slider](slider-thicker.png)  
+^^^ Thicker slider created by the above USS.  
 ::::
 
 
@@ -181,6 +235,7 @@ Often, you should anchor the styling to the root of the control, using the type,
   It can be tough to form an intuition about what styles across which elements will make the change you want to see. It just takes time.
 - Try to reduce the amount of overrides you have. The simpler you can achieve an outcome, the easier it will be to modify it and not make a mess in the process.  
   Understand the primary and secondary axes (main and cross), and what flex and justification rules apply to them, and don't overdo it.
+- [JetBrains Rider](https://www.jetbrains.com/rider/) supports USS syntax, if you have access to it I highly recommend it.
 
 
 ### Take a peek at the C# source code
@@ -226,10 +281,17 @@ public new static readonly string labelUssClassName = ussClassName + "__label";
 /// </summary>
 public new static readonly string inputUssClassName = ussClassName + "__input";
 ```
-^^^ The classes applied to Sliders as they are specified in C#.
+^^^ The classes applied to Slider as specified in C#.
 
 You can investigate further, look at the base class `BaseSlider`, follow along to find out what elements it creates and what classes it adds. As most of UI Toolkit is in C#, and doesn't rely on UnityEngine.Object, most of the work is done in constructors and should be very intuitive!  
 
-Sometimes you might find the code is applying a style inline. These styles cannot be overridden by USS. You'll be able to see this indicated in the debugger, but know you can poke around the code too!
+#### Inline styles
+Inline styles are indicated in the debugger. As mentioned previously, inline styles cannot be overridden by USS.
+In these cases you will have to override the style in code, know you can poke around the source code to see why and how something has been done.
+
+#### Complex styles
+Sometimes you might find a style isn't one of the [common USS properties](https://docs.unity3d.com/Manual/UIE-USS-Properties-Reference.html), and is instead implemented by [`CustomStyleProperty`](https://docs.unity3d.com/ScriptReference/UIElements.CustomStyleProperty_1.html).  
+A great example of this is `CurveField`, where the curve color is driven by a `CustomStyleProperty<Color>` called [`--unity-curve-color`](https://github.com/Unity-Technologies/UnityCsReference/blob/67d5d85abbea076e469a1642e04f3ab50a326bea/Editor/Mono/UIElements/Controls/CurveField.cs#L60), your USS can use this property[^2].
 
 [^1]: [Best practices for USS.](https://docs.unity3d.com/Manual/UIE-USS-WritingStyleSheets.html)
+[^2]: To override a custom style in code, find what member the custom style is written to (`m_CurveColor` in this case), and write to it in a [`CustomStyleResolvedEvent`](https://docs.unity3d.com/ScriptReference/UIElements.CustomStyleResolvedEvent.html) callback.
