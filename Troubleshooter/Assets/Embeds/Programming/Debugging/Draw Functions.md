@@ -32,13 +32,20 @@ Your version of Unity may not have the Queries tab, you would have to update to 
 
 ## Drawing packages
 ### Vertx.Debugging
-I've created a custom debug drawing package called [Vertx.Debugging](https://github.com/vertxxyz/Vertx.Debugging).  
+I've created a custom debug drawing package called [Vertx.Debugging](https://github.com/vertxxyz/Vertx.Debugging) for drawing wireframe shapes.  
 It has drop-in replacements for physics functions (casts, overlaps, hits, checks), many extra shapes, and can draw labels in the scene.  
 It is designed for editor debugging and most functions will be stripped when built.
 
 ^^^
 ![Vertx.Debugging](https://user-images.githubusercontent.com/21963717/194199755-a63d8ebc-0cc7-4268-9316-78f7d4fbea1a.mp4)
 ^^^ Visualised shapes and casts from [Vertx.Debugging](https://github.com/vertxxyz/Vertx.Debugging)
+
+### Unity Physics
+If you are using Entities (ECS), [Unity Physics](https://docs.unity3d.com/Packages/com.unity.physics@latest) (`com.unity.physics`) has `PhysicsDebugDisplaySystem`, which contains static helper methods for drawing wireframe shapes from jobs.  
+:::warning{.small}  
+If you do not understand what Entities is, you should not use this package for debugging.  
+:::  
+There is also the [Physics Debug Display](https://docs.unity3d.com/Packages/com.unity.physics@latest/index.html?subfolder=/manual/component-debug-display.html) authoring component that has toggles for similar debugging to the [Physics Debugger](#physics-debugger).
 
 ### Raycast Visualization
 [Raycast Visualization](https://github.com/nomnomab/RaycastVisualization) is a drop-in replacement for Physics queries.  
