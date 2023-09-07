@@ -1,6 +1,16 @@
 @use 'base';
 
 .mermaid {
+  margin: base.$block-container-margins;
+  
+  &:has(.statediagram) {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    margin: 15px 22px 15px 10px;
+    padding: 0 0 10px 0;
+  }
+  
   .flowchart-link {
     stroke: #D0D0D0 !important;
   }
@@ -9,16 +19,23 @@
     stroke: #D0D0D0 !important;
   }
 
-  .node rect, .node circle, .node ellipse, .node polygon, .node path {
-    fill: #282828 !important;
+  #flowchart-pointEnd,
+  #statediagram-barbEnd {
     stroke: #D0D0D0 !important;
+    fill: #D0D0D0 !important;
   }
 
-  .node.statediagram-note {
+  .node.statediagram-note, .node.statediagram-note rect {
     fill: base.$unity-colors-app_toolbar-background !important;
     font-size: 10pt !important;
     text-align: center !important;
     shape-rendering: crispedges !important;
+    stroke: none !important;
+  }
+
+  .node rect, .node circle, .node ellipse, .node polygon, .node path {
+    fill: #282828 !important;
+    stroke: #D0D0D0 !important;
   }
 
   .label text, span, p {
@@ -71,7 +88,8 @@
   }
 
   .node circle.state-end {
-    stroke-width: 1px !important;
+    stroke: none !important;
+    fill: #D0D0D0 !important;
   }
 
   .grid .tick text {

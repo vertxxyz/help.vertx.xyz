@@ -11,10 +11,12 @@ If you are seeing this error, you have probably referenced a prefab, and are try
 If the variable you are calling methods on is the same as your prefab, your setup is wrong.
 
 ::::note  
+#### Use the `Instantiate` overload that sets a parent
 [`Instantiate`](https://docs.unity3d.com/ScriptReference/Object.Instantiate.html) has an overload that takes a parent, use that instead.
 
 ```csharp
-[SerializeField] private PrefabComponentType _prefab;
+[SerializeField]
+private PrefabComponentType _prefab;
 private PrefabComponentType _instance;
 
 void SpawnAndParent(Transform parent)
@@ -24,12 +26,14 @@ void SpawnAndParent(Transform parent)
 }
 ```
 
-::::
-
+::::  
+**Or**  
 ::::note  
+#### Modify the return value from `Instantiate`
 [`Instantiate`](https://docs.unity3d.com/ScriptReference/Object.Instantiate.html) returns the instance it spawned. Store a reference to it and modify that instead.
 ```csharp
-[SerializeField] private PrefabComponentType _prefab;
+[SerializeField]
+private PrefabComponentType _prefab;
 private PrefabComponentType _instance;
 
 void SpawnAndParent(Transform parent)
@@ -64,3 +68,11 @@ var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
 // Save our changes.
 PrefabUtility.SavePrefabAsset(prefab);
 ```
+
+:::warning{.small}  
+This can damage your project when done incorrectly.  
+:::
+
+### Notes
+I like to add the suffixes `Prefab`/`Template`/`Asset` and `Instance` to make it clear what is being worked with.  
+Use consistent conventions (like the [C# naming conventions](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names#naming-conventions)) to reduce mistakes.

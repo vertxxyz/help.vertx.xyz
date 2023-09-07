@@ -12,7 +12,8 @@ If you are seeing this error, you have probably referenced a prefab, and are try
 If the variable you are calling `Destroy` on is the same as your prefab, your setup is wrong.
 
 ```csharp
-[SerializeField] private MyScript _prefab;
+[SerializeField]
+private MyScript _prefab;
 private MyScript _instance;
 
 void SpawnAndDestroyLater(float delay)
@@ -25,4 +26,11 @@ void SpawnAndDestroyLater(float delay)
 ```
 
 #### I know what I'm doing, and want to destroy an asset
-Use `DestroyImmediate`, and pass `true` as the final parameter. This can damage your project when done incorrectly.
+Use `DestroyImmediate`, and pass `true` as the final parameter.  
+:::warning{.small}  
+This can damage your project when done incorrectly.  
+:::
+
+### Notes
+I like to add the suffixes `Prefab`/`Template`/`Asset` and `Instance` to make it clear what is being worked with.  
+Use consistent conventions (like the [C# naming conventions](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names#naming-conventions)) to reduce mistakes.

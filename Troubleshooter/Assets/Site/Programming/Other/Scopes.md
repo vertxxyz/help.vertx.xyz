@@ -5,7 +5,7 @@ In C# (and most programming languages) variables are accessible in the section t
 Scopes are indicated by curly braces, <kbd>{</kbd> <kbd>}</kbd>.
 
 ### Access
-Scopes can access variables of other scopes they are nested in. Scopes cannot reach in to others to use their variables, as they may not be currently available, they may not be "in scope".
+Scopes can access variables of other scopes they are nested in.
 
 ```mermaid
 %%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
@@ -15,7 +15,7 @@ flowchart RL
     B -->D
 ```
 
-Only class scoped variables
+Only class-scoped variables can be reached from other scopes via properties or fields. Variables declared in methods or blocks cannot be accessed from others because they may not exist at that time, they may not be "in scope".
 
 ### Types of scope
 There are three main levels of scope:

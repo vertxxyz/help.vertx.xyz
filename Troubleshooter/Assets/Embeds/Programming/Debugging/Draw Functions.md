@@ -56,3 +56,6 @@ It is designed for editor debugging and most functions will be stripped when bui
 
 ### Shapes
 [Shapes](https://acegikmo.com/shapes/) is a paid alternative that is designed to draw good looking lines for editor and builds.
+
+## Drawing in Entities
+If you're trying to draw from jobs and 
