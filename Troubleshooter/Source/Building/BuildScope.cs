@@ -6,7 +6,7 @@ using Troubleshooter.Search;
 
 namespace Troubleshooter;
 
-public class BuildScope : IDisposable
+public sealed class BuildScope : IDisposable
 {
 	private readonly Arguments arguments;
 	private readonly bool _cleanup;

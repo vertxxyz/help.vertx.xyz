@@ -4,6 +4,9 @@ using JetBrains.Annotations;
 
 namespace Troubleshooter;
 
+/// <summary>
+/// Executes Katex on spans classed as math.
+/// </summary>
 [UsedImplicitly]
 public sealed partial class MathReplacement : IHtmlPostProcessor
 {

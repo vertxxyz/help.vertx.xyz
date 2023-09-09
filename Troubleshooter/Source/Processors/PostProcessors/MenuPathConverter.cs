@@ -3,6 +3,9 @@ using JetBrains.Annotations;
 
 namespace Troubleshooter;
 
+/// <summary>
+/// Converts **Path | To | Thing** to use a path separator character inside of a div.
+/// </summary>
 [UsedImplicitly]
 public sealed partial class MenuPathConverter : IHtmlPostProcessor
 {

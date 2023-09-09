@@ -138,19 +138,39 @@ function setPage(value, url, hash, pushHistory = true) {
 
 // Load Page is called from HTML
 // noinspection JSUnusedGlobalSymbols
-function loadPage(relativeLink) {
+function loadPage(link) {
     /*if(isLoading) {
         console.log('Ignored load page request because the previous was loading.');
         return;
     }*/
 
-    if (relativeLink == null || relativeLink === "") {
-        console.log('Ignored page load as button links to empty location');
+    if (link == null || link === "") {
+        console.error('Ignored page load as button links to empty location');
         return;
     }
-    if (relativeLink === main)
-        relativeLink = null;
-    loadPageFromLink(relativeLink, '', true, true);
+
+    let isRootLevel;
+    if (link[0] === '/') {
+        isRootLevel = true;
+        link = link.substring(1);
+    } else {
+        isRootLevel = false;
+    }
+
+    if (link === main)
+        link = null;
+
+    loadPageFromLink(link, '', true, !isRootLevel);
+}
+
+function loadPageNonRelative(absoluteLink) {
+    if (absoluteLink == null || absoluteLink === "") {
+        console.error('Ignored page load as button links to empty location');
+        return;
+    }
+    if (absoluteLink === main)
+        absoluteLink = null;
+    loadPageFromLink(absoluteLink, '', true, false);
 }
 
 // Load Hash is called from HTML

@@ -3,6 +3,9 @@ using JetBrains.Annotations;
 
 namespace Troubleshooter;
 
+/// <summary>
+/// Converts kbd tag content to separated tags instead of using the + separator.
+/// </summary>
 [UsedImplicitly]
 public sealed partial class CompoundShortcutConverter: IHtmlPostProcessor
 {

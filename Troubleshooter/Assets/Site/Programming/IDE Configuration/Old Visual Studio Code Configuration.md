@@ -38,3 +38,8 @@ VS Code support is [limited](https://forum.unity.com/threads/update-on-the-visua
 - New versions of Unity will not have the Visual Studio Code Editor (`com.unity.ide.vscode`) package installed by default.
 
 As VS Code is complex to configure, and is currently not receiving support for use with Unity, [Visual Studio](Visual%20Studio%20Code%20Configuration.md) or [JetBrains Rider](JetBrains%20Rider%20Configuration.md) are recommended instead.
+
+
+---
+
+[See the new configuration steps.](Visual%20Studio%20Code%20Configuration.md)

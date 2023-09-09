@@ -3,6 +3,9 @@ using JetBrains.Annotations;
 
 namespace Troubleshooter;
 
+/// <summary>
+/// Adds a proper foldable structure to spans containing a Collapsable code segment.
+/// </summary>
 [UsedImplicitly]
 public sealed partial class CollapsableCodeSegmentsReplacement : IHtmlPostProcessor
 {

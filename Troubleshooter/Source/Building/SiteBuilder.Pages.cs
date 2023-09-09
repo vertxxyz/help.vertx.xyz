@@ -65,14 +65,16 @@ public static partial class SiteBuilder
 					case PageResource.WriteStatus.Written:
 						builtPages++;
 						break;
+					default:
+						throw new ArgumentOutOfRangeException();
 				}
 			}
 
-			if (prevBuilt == allBuiltResources.Count)
-			{
-				var remainingResources = allResources.Select(r => r.Key).Where(p => !allBuiltResources.Contains(p));
-				throw new BuildException($"Build has soft-locked - infinite loop due to recursive embedding, or non-existent embed?\nRemaining resources: \n{remainingResources.ToElementsString(p => $"- \"{p}\"")}");
-			}
+			if (prevBuilt != allBuiltResources.Count)
+				continue;
+			
+			var remainingResources = allResources.Select(r => r.Key).Where(p => !allBuiltResources.Contains(p));
+			throw new BuildException($"Build has soft-locked - infinite loop due to recursive embedding, or non-existent embed?\nRemaining resources: \n{remainingResources.ToElementsString(p => $"- \"{p}\"")}");
 		}
 
 		arguments.VerboseLog($"{builtPages} pages written to disk. {skippedPages} were skipped as identical, and {ignoredPages} were embeds.");
@@ -80,9 +82,9 @@ public static partial class SiteBuilder
 		SourceIndex.GeneratePageSourceLookup(arguments, allResources);
 	}
 
-	private static PageResources CollectPages(Site site)
+	private static PageResourcesLookup CollectPages(Site site)
 	{
-		PageResources pages = new();
+		PageResourcesLookup pages = new();
 
 		// Collect Embedded Pages
 		foreach (var path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))
@@ -117,7 +119,7 @@ public static partial class SiteBuilder
 			}
 		}
 
-		//Returns true if a new page is created
+		// Returns true if a new page is created.
 		bool TryGetNewResource(string fullPath, ResourceLocation location, out PageResource? page)
 		{
 			if (pages.TryGetValue(fullPath, out page))
@@ -151,10 +153,10 @@ public static partial class SiteBuilder
 
 		void CollectGeneratedPages()
 		{
-			PageResources toAppend = new();
+			PageResourcesLookup toAppend = new();
 			foreach ((_, PageResource page) in pages)
 			{
-				foreach ((string key, PageResource value) in ProcessGenerator(site, pages, page))
+				foreach ((string key, PageResource value) in ProcessGenerators(site, pages, page))
 					toAppend.Add(key, value);
 			}
 
@@ -163,16 +165,24 @@ public static partial class SiteBuilder
 		}
 	}
 
-	[GeneratedRegex("\\[(.+?)\\]\\(([\\w%/-]+?)\\.md\\)", RegexOptions.Compiled)]
+	[GeneratedRegex(@"\[(.+?)\]\(([\w%/-]+?)\.md\)", RegexOptions.Compiled)]
 	private static partial Regex GeneratorLinkRegex();
 
-	[GeneratedRegex("//\\s*bypass\\s*$")]
+	[GeneratedRegex(@"//\s*bypass\s*$")]
 	private static partial Regex BypassRegex();
 
-	public static IEnumerable<(string key, PageResource value)> ProcessGenerator(Site site, PageResources? allResources, PageResource page)
+	public static IEnumerable<(string key, PageResource value)> ProcessGenerators(Site site, PageResourcesLookup? allResources, PageResource page)
 	{
 		// Generated markdown
 		if (page.FullPath.EndsWith("_sidebar.md.gen"))
+		{
+			foreach ((string key, PageResource value) valueTuple in GenerateSidebarPagesMarkdown())
+				yield return valueTuple;
+		}
+
+		yield break;
+
+		IEnumerable<(string key, PageResource value)> GenerateSidebarPagesMarkdown()
 		{
 			// Sidebar markdown
 			page.ProcessMarkdown(File.ReadAllText(page.FullPath), site, allResources);
@@ -223,10 +233,7 @@ public static partial class SiteBuilder
 				}
 
 				markdownText = markdownText.Replace(" // bypass", "");
-				PageResource resource = new(path, ResourceType.Markdown, page.Location)
-				{
-					MarkdownText = markdownText
-				};
+				PageResource resource = new(path, ResourceType.Markdown, page.Location) { MarkdownText = markdownText };
 				yield return (path.ToConsistentPath().ToUnTokenized(), resource);
 			}
 		}

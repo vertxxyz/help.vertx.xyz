@@ -9,4 +9,5 @@
 <<General/IDE Alternatives.md>>
 
 ---
+
 [Continue configuring a valid IDE.](../IDE%20Configuration.md)

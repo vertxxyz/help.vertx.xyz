@@ -3,6 +3,9 @@ using JetBrains.Annotations;
 
 namespace Troubleshooter;
 
+/// <summary>
+/// Removes the horizontal rule in the footnotes block.
+/// </summary>
 [UsedImplicitly]
 public sealed class FootnoteRuleRemoval : IHtmlPostProcessor
 {
@@ -12,8 +15,8 @@ public sealed class FootnoteRuleRemoval : IHtmlPostProcessor
 		if (footnoteIndex < 0)
 			return html;
 		const int length = 23; // "<div class=\"footnotes\">".Length;
-		if (html.Substring(footnoteIndex + length + 1, 6) != "<hr />")
-			return html;
-		return string.Concat(html[..(footnoteIndex + length)], html[(footnoteIndex + length + 7)..]);
+		return html.Substring(footnoteIndex + length + 1, 6) != "<hr />"
+			? html
+			: string.Concat(html[..(footnoteIndex + length)], html[(footnoteIndex + length + 7)..]);
 	}
 }

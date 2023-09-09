@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
@@ -11,23 +10,6 @@ using Troubleshooter.Constants;
 namespace Troubleshooter;
 
 /// <summary>
-/// Runs on HTML after it has been processed from markdown.
-/// </summary>
-public static class PageResourcesPostProcessors
-{
-	private static readonly IPageResourcesPostProcessor[] All =
-		typeof(IPageResourcesPostProcessor).Assembly.GetTypes()
-			.Where(t => typeof(IPageResourcesPostProcessor).IsAssignableFrom(t) && !t.IsAbstract)
-			.Select(t => (IPageResourcesPostProcessor)Activator.CreateInstance(t)!).ToArray();
-
-	public static void Process(PageResources pageResources, Site site)
-	{
-		foreach (IPageResourcesPostProcessor postProcessor in All)
-			postProcessor.Process(pageResources, site);
-	}
-}
-
-/// <summary>
 /// Generates sub pages from Main.md that have content from each of the subheaders.
 /// </summary>
 [UsedImplicitly]
@@ -35,39 +17,60 @@ public partial class MainResourceProducer : IPageResourcesPostProcessor
 {
 	private static readonly Regex s_FirstLineRegex = GetFirstLineRegex();
 	private static readonly Regex s_TitleRegex = GetTitleRegex();
+
+	// Note that this processor is a bit of a hack, links on pages are hackily replaced with root links. Presume that all main pages are at the root.
+	// If this changes then the script will need to be altered.
 	private static readonly ImmutableDictionary<string, string?> s_MainPages = new Dictionary<string, string?>
 	{
 		{ "Main.md", null },
 		{ "DOTS.md", "DOTS" }
 	}.ToImmutableDictionary();
 
-	public void Process(PageResources dictionary, Site site)
+	public void Process(PageResourcesLookup dictionary, Site site)
 	{
-		KeyValuePair<string,PageResource>[] resources = dictionary.ToArray();
+		KeyValuePair<string, PageResource>[] resources = dictionary.ToArray();
 		foreach ((string fullPath, PageResource main) in resources)
 		{
+			// Only operate on main pages.
 			if (!s_MainPages.TryGetValue(Path.GetFileName(fullPath), out string? destinationPath))
 				continue;
 
 			string directory = Path.GetDirectoryName(fullPath)!;
 			if (!string.IsNullOrEmpty(destinationPath))
 				directory = Path.Combine(directory, destinationPath);
-			
+
 			string allText = File.ReadAllText(main.FullPath);
 			string[] pages = s_TitleRegex.Split(allText);
+			// Iterate over all the pages in this main page (pages are the content between the titles we used to split) 
 			foreach (string page in pages.Skip(1))
 			{
 				string title = s_FirstLineRegex.Match(page).Groups[1].Value.Trim();
 				StringBuilder stringBuilder = new(page);
+				// Reduce the headers by moving them up a level
 				stringBuilder.Replace("##", "#");
 				stringBuilder.Replace("###", "##");
 				stringBuilder.Replace("####", "###");
+				// The title regex was used to split, we need to give the title back its header tag.
 				stringBuilder.Insert(0, "#");
+
+				// Change relative links to root-level links.
+				int start = 0;
+				while (true)
+				{
+					int index = stringBuilder.NextIndexOf("](", start);
+					if (index == -1)
+						break;
+					start = index + 3;
+					if (stringBuilder[index + 1] == '/') 
+						continue;
+					stringBuilder.Insert(index + 2, '/');
+				}
+
 				string destination = Path.Combine(directory, title);
 
 				if (!Directory.Exists(destination))
 					continue;
-				
+
 				destination += ".md";
 				var newPage = new PageResource(destination, ResourceType.Markdown, ResourceLocation.Site);
 				newPage.ProcessMarkdown(stringBuilder.ToString(), site, dictionary);

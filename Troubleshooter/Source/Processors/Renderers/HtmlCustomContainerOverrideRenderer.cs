@@ -21,7 +21,7 @@ public class HtmlCustomContainerOverrideRenderer : HtmlObjectRenderer<CustomCont
 		HtmlAttributes? attributes = obj.TryGetAttributes();
 		if (renderer.EnableHtmlForBlock)
 		{
-			if (attributes is { Classes: { } })
+			if (attributes is { Classes: not null })
 			{
 				// Convert divs with the correct classes into info boxes.
 				foreach ((string @class, string imageUrl, string alt) in _infoBoxes)

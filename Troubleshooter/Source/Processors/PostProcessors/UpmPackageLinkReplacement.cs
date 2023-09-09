@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace Troubleshooter;
 
 /// <summary>
-/// Replaces com.unity links with a deep link that can add the package via UMP
+/// Replaces com.unity links with a deep link that can add the package via UPM.
 /// </summary>
 [UsedImplicitly]
 public sealed partial class UpmPackageLinkReplacement : IHtmlPostProcessor

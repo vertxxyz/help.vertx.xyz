@@ -40,6 +40,8 @@
         <EmbeddedResource LogicalName="Prism" Include="Source\prism.js"/>
         <Content Remove="Source\katex-min.js" />
         <EmbeddedResource LogicalName="Katex" Include="Source\katex-min.js" />
+        <None Remove="Source\d3.v7.min.js" />
+        <EmbeddedResource LogicalName="D3" Include="Source\d3.v7.min.js" />
     </ItemGroup>
 
 </Project>

@@ -33,7 +33,12 @@ public enum ResourceLocation
 	Site
 }
 
-public partial class PageResource
+/// <summary>
+/// Full paths to Page Resources.
+/// </summary>
+public sealed class PageResourcesLookup : Dictionary<string, PageResource> { }
+
+public sealed partial class PageResource
 {
 	/// <summary>
 	/// Full path to the source file
@@ -51,7 +56,7 @@ public partial class PageResource
 	public readonly ResourceLocation Location;
 
 	/// <summary>
-	/// Processed output html
+	/// Processed markdown ready for building.
 	/// </summary>
 	public string? MarkdownText { get; set; }
 
@@ -93,17 +98,17 @@ public partial class PageResource
 
 	public void AddEmbeddedInto(string page)
 	{
-		EmbeddedInto ??= new();
+		EmbeddedInto ??= new HashSet<string>();
 		EmbeddedInto.Add(page);
 	}
 
 	public void AddEmbedded(string page)
 	{
-		Embedded ??= new();
+		Embedded ??= new HashSet<string>();
 		Embedded.Add(page);
 	}
 
-	public void BuildText(Site site, PageResources allResources, MarkdownPipeline markdownPipeline)
+	public void BuildText(Site site, PageResourcesLookup allResources, MarkdownPipeline markdownPipeline)
 	{
 		switch (Type)
 		{
@@ -111,7 +116,7 @@ public partial class PageResource
 				SetHtmlTextAsEmpty();
 				return;
 			case ResourceType.Markdown:
-				BuildMarkdown(site, allResources, markdownPipeline);
+				BuildMarkdownToHtml(site, allResources, markdownPipeline);
 				break;
 			case ResourceType.RichText:
 				try
@@ -146,9 +151,9 @@ public partial class PageResource
 	public void SetHtmlTextAsEmpty() => HtmlText = string.Empty;
 
 	/// <summary>
-	/// Builds page to <see cref="HtmlText"/> to be embedded in other content or written to disk
+	/// Builds page to <see cref="HtmlText"/> to be embedded in other content or written to disk.
 	/// </summary>
-	private void BuildMarkdown(Site site, PageResources allResources, MarkdownPipeline markdownPipeline)
+	private void BuildMarkdownToHtml(Site site, PageResourcesLookup allResources, MarkdownPipeline markdownPipeline)
 	{
 		if (MarkdownText == null)
 			ProcessMarkdown(File.ReadAllText(FullPath), site, allResources);
@@ -173,12 +178,6 @@ public partial class PageResource
 	{
 		string markdownPreProcessed = MarkdownPreProcessors.Process(markdown);
 
-		MarkdownPipeline GetPipeline()
-		{
-			var selfPipeline = pipeline.Extensions.Find<SelfPipelineExtension>();
-			return selfPipeline is not null ? selfPipeline.CreatePipelineFromInput(markdownPreProcessed) : pipeline;
-		}
-
 		pipeline = GetPipeline();
 
 		var document = MarkdownParser.Parse(markdownPreProcessed, pipeline);
@@ -188,9 +187,15 @@ public partial class PageResource
 		renderer.Render(document);
 		renderer.Writer.Flush();
 		return HtmlPostProcessors.Process(renderer.Writer.ToString() ?? string.Empty, fullPath);
+
+		MarkdownPipeline GetPipeline()
+		{
+			var selfPipeline = pipeline.Extensions.Find<SelfPipelineExtension>();
+			return selfPipeline is not null ? selfPipeline.CreatePipelineFromInput(markdownPreProcessed) : pipeline;
+		}
 	}
 
-	public void ProcessMarkdown(string text, Site site, PageResources? allResources)
+	public void ProcessMarkdown(string text, Site site, PageResourcesLookup? allResources)
 	{
 		string allText = text;
 		StringBuilder stringBuilder = new();
@@ -295,6 +300,7 @@ public partial class PageResource
 		{
 			case ResourceLocation.Site:
 				break;
+			case ResourceLocation.Embed:
 			default:
 				// Do not write to disk if this is not a part of the site.
 				return WriteStatus.Ignored;

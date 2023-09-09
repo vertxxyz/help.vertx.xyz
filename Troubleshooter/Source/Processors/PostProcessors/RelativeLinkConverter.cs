@@ -4,6 +4,9 @@ using JetBrains.Annotations;
 
 namespace Troubleshooter;
 
+/// <summary>
+/// Converts relative links to call onclick and load the link via Javascript.
+/// </summary>
 [UsedImplicitly]
 public sealed partial class RelativeLinkConverter : IHtmlPostProcessor
 {

@@ -14,7 +14,7 @@ public class MainContentToGrid : IHtmlPostProcessor
 	private static readonly ImmutableList<string> s_MainPages = ImmutableList.Create(
 	
 		@"Assets\Site\Main.md"
-		// @"Assets\Site\Programming\Entities.md"
+		// @"Assets\Site\DOTS.md"
 	);
 	
 	public string Process(string html, string fullPath)

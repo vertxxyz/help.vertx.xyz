@@ -64,7 +64,7 @@ public static partial class StringUtility
 		int index = start;
 		while (index >= 0 && stringBuilder[index] != character)
 			index--;
-		return index;
+		return index < 0 ? -1 : index;
 	}
 
 	public static int NextIndexOf(this StringBuilder stringBuilder, char character, int start)
@@ -72,6 +72,27 @@ public static partial class StringUtility
 		int index = start;
 		while (index >= 0 && index < stringBuilder.Length && stringBuilder[index] != character)
 			index++;
-		return index;
+		return index >= stringBuilder.Length ? -1 : index;
+	}
+
+	public static int NextIndexOf(this StringBuilder stringBuilder, string value, int start)
+	{
+		int index = start;
+		while (index >= 0 && index + value.Length <= stringBuilder.Length && !ContainsAt(stringBuilder, value, index))
+			index++;
+		return index + value.Length <= stringBuilder.Length ? index : -1;
+	}
+
+	private static bool ContainsAt(this StringBuilder stringBuilder, string value, int index)
+	{
+		for (int i = 0, j = index; i < value.Length; i++, j++)
+		{
+			if (j > stringBuilder.Length)
+				return false;
+			if (stringBuilder[j] != value[i])
+				return false;
+		}
+
+		return true;
 	}
 }

@@ -3,6 +3,9 @@ using JetBrains.Annotations;
 
 namespace Troubleshooter;
 
+/// <summary>
+/// Converts a slider div to have a complete hierarchy required for consistent styling.
+/// </summary>
 [UsedImplicitly]
 public sealed partial class SliderConverter : IHtmlPostProcessor
 {

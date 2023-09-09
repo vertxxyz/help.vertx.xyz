@@ -3,6 +3,9 @@ using JetBrains.Annotations;
 
 namespace Troubleshooter;
 
+/// <summary>
+/// Adds the class "link--external" to external links.
+/// </summary>
 [UsedImplicitly]
 public sealed partial class ExternalLinkConverter : IHtmlPostProcessor
 {

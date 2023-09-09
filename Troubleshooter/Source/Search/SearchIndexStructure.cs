@@ -4,7 +4,7 @@ using System.Linq;
 namespace Troubleshooter.Search;
 
 [System.Serializable]
-public class SearchIndexStructure
+public sealed class SearchIndexStructure
 {
 	public IList<string> FilePaths { get; private set; }
 	public IList<string> FileHeaders { get; private set; }

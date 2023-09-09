@@ -20,6 +20,10 @@ value = Mathf.Lerp(value, target, Time.deltaTime * speed);
 *Vague* is the takeaway from this usage.  
 If you don't need exact outcomes or durations and aren't too worried about differences across frame rates, applying lerp like this is a common creative way to smooth movement.  
 
+```d3
+graph-wrong-lerp
+```
+
 ### Improvement
 
 Using a more complex `t` can solve frame rate dependency problems.
@@ -37,6 +41,8 @@ If you are concerned about any of the downsides, consider alternatives like:
 - Using a tweening library.
 - Using [SmoothDamp](https://docs.unity3d.com/ScriptReference/Mathf.SmoothDamp.html).
 - Using [MoveTowards](https://docs.unity3d.com/ScriptReference/Vector3.MoveTowards.html).
+
+Certain libraries will have their own tweening libraries built-in. For example, UI Toolkit has [USS transitions](https://docs.unity3d.com/Manual/UIE-Transitions.html).
 
 ---  
 [Return to overview.](Overview.md)

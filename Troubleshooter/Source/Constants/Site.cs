@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Troubleshooter.Constants;
 
-public class Site
+public sealed class Site
 {
 	public readonly string
 		Root,

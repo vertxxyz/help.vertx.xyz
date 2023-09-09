@@ -20,7 +20,7 @@ public class PageData : IEnumerable<object[]>
 
 		foreach (string file in Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, "*.md.gen", SearchOption.AllDirectories))
 		{
-			foreach ((string path, PageResource value) in SiteBuilder.ProcessGenerator(TestUtility.TestSite, null,
+			foreach ((string path, PageResource value) in SiteBuilder.ProcessGenerators(TestUtility.TestSite, null,
 				         new PageResource(file, ResourceType.Generator, ResourceLocation.Site)))
 			{
 				string localPath = new System.Uri(path).LocalPath;

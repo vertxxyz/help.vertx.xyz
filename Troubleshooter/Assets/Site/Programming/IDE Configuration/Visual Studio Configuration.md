@@ -28,7 +28,7 @@ Follow the [configuration instructions](https://docs.microsoft.com/en-us/visuals
 Follow all of the instructions listed on [this page](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity).  
 ::::
 
-### Resolving configuration issues
+### If you are experiencing issues:
 
 - If you have compiler errors, if possible [comment out](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/comments) those files so Unity can compile code.
 - Ensure the [Visual Studio Editor](https://docs.unity3d.com/Manual/com.unity.ide.visualstudio.html) package is installed and updated in UPM (`com.unity.ide.visualstudio`).
@@ -38,3 +38,8 @@ Follow all of the instructions listed on [this page](https://docs.microsoft.com/
   1. Reopen VS via **Assets | Open C# Project**.
 - Regenerate project files via VS.
   - If an assembly in the Solution Explorer is marked as **(incompatible)**, right-click it and select **reload with dependencies**.
+
+
+---
+
+[Return to general IDE configuration.](../IDE%20Configuration.md)

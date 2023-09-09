@@ -10,16 +10,16 @@ using Markdig.Syntax;
 
 namespace Troubleshooter.Renderers;
 
-public static class PrismExtensions
+public static class CodeHighlightingExtensions
 {
-	public static MarkdownPipelineBuilder UsePrism(this MarkdownPipelineBuilder pipeline)
+	public static MarkdownPipelineBuilder UseCodeHighlighting(this MarkdownPipelineBuilder pipeline)
 	{
-		pipeline.Extensions.Add(new PrismExtension());
+		pipeline.Extensions.Add(new CodeHighlightingExtension());
 		return pipeline;
 	}
 }
 
-public class PrismExtension : IMarkdownExtension
+public class CodeHighlightingExtension : IMarkdownExtension
 {
 	public void Setup(MarkdownPipelineBuilder pipeline) { }
 
@@ -32,18 +32,19 @@ public class PrismExtension : IMarkdownExtension
 		CodeBlockRenderer? codeBlockRenderer = textRendererBase.ObjectRenderers.FindExact<CodeBlockRenderer>();
 		if (codeBlockRenderer != null)
 			textRendererBase.ObjectRenderers.Remove(codeBlockRenderer);
-		textRendererBase.ObjectRenderers.AddIfNotAlready(new PrismCodeBlockRenderer(codeBlockRenderer));
+		textRendererBase.ObjectRenderers.AddIfNotAlready(new OverrideCodeBlockRenderer(codeBlockRenderer));
 	}
 }
 
-public class PrismCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
+public class OverrideCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 {
-	private readonly CodeBlockRenderer codeBlockRenderer;
+	private readonly CodeBlockRenderer _codeBlockRenderer;
 	private readonly V8JsEngine _engine;
 
-	public PrismCodeBlockRenderer(CodeBlockRenderer? codeBlockRenderer)
+	public OverrideCodeBlockRenderer(CodeBlockRenderer? codeBlockRenderer)
 	{
-		this.codeBlockRenderer = codeBlockRenderer ?? new CodeBlockRenderer();
+		_codeBlockRenderer = codeBlockRenderer ?? new CodeBlockRenderer();
+		_codeBlockRenderer.BlocksAsDiv.Add("d3");
 		_engine = new V8JsEngine();
 		_engine.ExecuteResource("Prism", typeof(Program).Assembly);
 	}
@@ -51,10 +52,10 @@ public class PrismCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 	protected override void Write(HtmlRenderer renderer, CodeBlock node)
 	{
 		var fencedCodeBlock = node as FencedCodeBlock;
-		// Bypass prism if this block should just render as a div.
-		if (fencedCodeBlock?.Info != null && codeBlockRenderer.BlocksAsDiv.Contains(fencedCodeBlock.Info))
+		// Bypass code highlighting if this block should just render as a div.
+		if (fencedCodeBlock?.Info != null && _codeBlockRenderer.BlocksAsDiv.Contains(fencedCodeBlock.Info))
 		{
-			codeBlockRenderer.Write(renderer, node);
+			Render(renderer, node);
 			return;
 		}
 
@@ -65,7 +66,7 @@ public class PrismCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 	{
 		if (node is not FencedCodeBlock fencedCodeBlock || node.Parser is not FencedCodeBlockParser parser)
 		{
-			codeBlockRenderer.Write(renderer, node);
+			_codeBlockRenderer.Write(renderer, node);
 		}
 		else
 		{
@@ -74,22 +75,19 @@ public class PrismCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 			{
 				case "cs":
 				case "csharp":
-				{
 					Highlight(str, "csharp");
 					break;
-				}
 				case "diff":
-				{
 					Highlight(str, "diff");
 					break;
-				}
 				case "css":
-				{
 					Highlight(str, "css");
 					break;
-				}
+				case "d3":
+					D3.Plot(ExtractSourceCode(node), renderer);
+					break;
 				default:
-					codeBlockRenderer.Write(renderer, node);
+					_codeBlockRenderer.Write(renderer, node);
 					break;
 			}
 		}
@@ -116,13 +114,12 @@ public class PrismCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 		for (int index = 0; index < length; ++index)
 		{
 			StringSlice slice = lines[index].Slice;
-			if (slice.Text != null)
-			{
-				string str = slice.Text.Substring(slice.Start, slice.Length);
-				if (index > 0)
-					stringBuilder.AppendLine();
-				stringBuilder.Append(str);
-			}
+			if (slice.Text == null)
+				continue;
+			string str = slice.Text.Substring(slice.Start, slice.Length);
+			if (index > 0)
+				stringBuilder.AppendLine();
+			stringBuilder.Append(str);
 		}
 
 		return stringBuilder.ToString();

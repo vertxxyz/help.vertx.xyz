@@ -15,7 +15,7 @@ The new extension relies on the [C# Dev Kit](https://learn.microsoft.com/en-us/v
 1. [Install](https://code.visualstudio.com/docs/editor/extension-marketplace) the [Unity for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=visualstudiotoolsforunity.vstuc) extension.
 1. Set the **External Script Editor** dropdown in Unity's External Tools preferences (**Edit | Preferences | External Tools**) to Visual Studio Code.
 
-#### If you are experiencing issues:
+### If you are experiencing issues:
 - If you have compiler errors, if possible [comment out](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/comments) those files so Unity can compile code.
 - Check your C# and C# Dev Kit extensions are upgraded to the latest versions.
 - Install the [.NET SDK](https://dotnet.microsoft.com/download).
@@ -25,4 +25,5 @@ The new extension relies on the [C# Dev Kit](https://learn.microsoft.com/en-us/v
 
 ---
 
-See [old Visual Studio Code configuration](Old%20Visual%20Studio%20Code%20Configuration.md) for the steps for the old extension.
+- See [old Visual Studio Code configuration](Old%20Visual%20Studio%20Code%20Configuration.md) for the steps for the old extension.  
+- [Return to general IDE configuration.](../IDE%20Configuration.md)

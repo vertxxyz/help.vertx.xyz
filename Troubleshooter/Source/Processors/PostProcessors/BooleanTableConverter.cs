@@ -3,6 +3,9 @@ using JetBrains.Annotations;
 
 namespace Troubleshooter;
 
+/// <summary>
+/// Adds colors and tooltips to table cells containing Y/N/M characters.
+/// </summary>
 [UsedImplicitly]
 public sealed partial class BooleanTableConverter : IHtmlPostProcessor
 {
