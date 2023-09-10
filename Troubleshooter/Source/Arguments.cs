@@ -10,7 +10,7 @@ public enum LoggingLevel
 	Verbose
 }
 
-public readonly struct Arguments
+public class Arguments : IRootPathProvider
 {
 	/// <summary>
 	/// Output directory
@@ -27,13 +27,18 @@ public readonly struct Arguments
 	/// <summary>
 	/// Project root (Contains Assets and Source)
 	/// </summary>
-	public readonly string Root;
+	public string Root { get; }
+	/// <summary>
+	/// The localhost url that is running the project's testing environment.
+	/// </summary>
+	public string Host { get; init; }
 	public readonly LoggingLevel LoggingLevel;
 	public const string HtmlOutputDirectoryName = "HTML";
 	public const string JsonOutputDirectoryName = "Json";
 
 	public Arguments(IReadOnlyList<string> args)
 	{
+		Host = "";
 		Path = "";
 		LoggingLevel = LoggingLevel.Default;
 		Root = Directory.GetCurrentDirectory();

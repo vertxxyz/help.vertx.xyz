@@ -6,9 +6,16 @@ namespace Troubleshooter;
 
 internal sealed partial class D3
 {
-	public static void Plot(string key, HtmlRenderer renderer)
+	private readonly WebRenderer _webRenderer;
+
+	public D3(WebRenderer webRenderer)
 	{
-		WebDriver webDriver = WebRenderer.Driver;
+		_webRenderer = webRenderer;
+	}
+	
+	public void Plot(string key, HtmlRenderer renderer)
+	{
+		WebDriver webDriver = _webRenderer.Driver;
 		switch (key)
 		{
 			case "graph-wrong-lerp":

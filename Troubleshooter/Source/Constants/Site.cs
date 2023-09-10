@@ -1,7 +1,12 @@
 using System;
 using System.IO;
 
-namespace Troubleshooter.Constants;
+namespace Troubleshooter;
+
+public interface IRootPathProvider
+{
+	string Root { get; }
+}
 
 public sealed class Site
 {
@@ -11,9 +16,10 @@ public sealed class Site
 		Directory,
 		EmbedsDirectory,
 		ContentDirectory;
-	public Site(string root)
+	
+	public Site(IRootPathProvider arguments)
 	{
-		Root = root;
+		Root = arguments.Root;
 		AssetsRoot = Path.Combine(Root, "Assets");
 		Directory = Path.Combine(AssetsRoot, "Site");
 		EmbedsDirectory = Path.Combine(AssetsRoot, "Embeds");

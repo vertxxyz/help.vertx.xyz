@@ -12,15 +12,22 @@ namespace Troubleshooter.Renderers;
 
 public static class CodeHighlightingExtensions
 {
-	public static MarkdownPipelineBuilder UseCodeHighlighting(this MarkdownPipelineBuilder pipeline)
+	public static MarkdownPipelineBuilder UseCodeHighlighting(this MarkdownPipelineBuilder pipeline, WebRenderer webRenderer)
 	{
-		pipeline.Extensions.Add(new CodeHighlightingExtension());
+		pipeline.Extensions.Add(new CodeHighlightingExtension(webRenderer));
 		return pipeline;
 	}
 }
 
 public class CodeHighlightingExtension : IMarkdownExtension
 {
+	private readonly WebRenderer _webRenderer;
+
+	public CodeHighlightingExtension(WebRenderer webRenderer)
+	{
+		_webRenderer = webRenderer;
+	}
+
 	public void Setup(MarkdownPipelineBuilder pipeline) { }
 
 	public void Setup(MarkdownPipeline pipeline, IMarkdownRenderer renderer)
@@ -32,7 +39,7 @@ public class CodeHighlightingExtension : IMarkdownExtension
 		CodeBlockRenderer? codeBlockRenderer = textRendererBase.ObjectRenderers.FindExact<CodeBlockRenderer>();
 		if (codeBlockRenderer != null)
 			textRendererBase.ObjectRenderers.Remove(codeBlockRenderer);
-		textRendererBase.ObjectRenderers.AddIfNotAlready(new OverrideCodeBlockRenderer(codeBlockRenderer));
+		textRendererBase.ObjectRenderers.AddIfNotAlready(new OverrideCodeBlockRenderer(codeBlockRenderer, _webRenderer));
 	}
 }
 
@@ -40,9 +47,11 @@ public class OverrideCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 {
 	private readonly CodeBlockRenderer _codeBlockRenderer;
 	private readonly V8JsEngine _engine;
+	private readonly D3 _d3;
 
-	public OverrideCodeBlockRenderer(CodeBlockRenderer? codeBlockRenderer)
+	public OverrideCodeBlockRenderer(CodeBlockRenderer? codeBlockRenderer, WebRenderer webRenderer)
 	{
+		_d3 = new D3(webRenderer);
 		_codeBlockRenderer = codeBlockRenderer ?? new CodeBlockRenderer();
 		_codeBlockRenderer.BlocksAsDiv.Add("d3");
 		_engine = new V8JsEngine();
@@ -84,7 +93,7 @@ public class OverrideCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 					Highlight(str, "css");
 					break;
 				case "d3":
-					D3.Plot(ExtractSourceCode(node), renderer);
+					_d3.Plot(ExtractSourceCode(node), renderer);
 					break;
 				default:
 					_codeBlockRenderer.Write(renderer, node);

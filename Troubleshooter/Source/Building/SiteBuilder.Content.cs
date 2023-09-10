@@ -8,7 +8,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DartSassHost;
 using JavaScriptEngineSwitcher.V8;
-using Troubleshooter.Constants;
 using static Troubleshooter.IOUtility;
 
 namespace Troubleshooter;
@@ -18,9 +17,9 @@ public static partial class SiteBuilder
 	private static async Task BuildContent(Arguments arguments, Site site)
 	{
 		// Copy content to destination
-		CopyAll(new DirectoryInfo(site.ContentDirectory), new DirectoryInfo(arguments.Path!), fileProcessor: FileProcessor);
+		CopyAll(new DirectoryInfo(site.ContentDirectory), new DirectoryInfo(arguments.Path), fileProcessor: FileProcessor);
 
-		string indexOutputPath = Path.Combine(arguments.Path!, "index.html");
+		string indexOutputPath = Path.Combine(arguments.Path, "index.html");
 		await DownloadAndReplaceSourceFiles(indexOutputPath, arguments);
 
 		int siteContent = 0;
@@ -79,7 +78,7 @@ public static partial class SiteBuilder
 			if (!File.Exists(indexOutputPath))
 				throw new BuildException($"\"{indexOutputPath}\" was not found when generating 404 page.");
 			string indexText = File.ReadAllText(indexOutputPath);
-			CreateFileIfDifferent(Path.Combine(arguments.Path!, "404.html"), indexText);
+			CreateFileIfDifferent(Path.Combine(arguments.Path, "404.html"), indexText);
 		}
 	}
 
@@ -134,7 +133,7 @@ public static partial class SiteBuilder
 
 				Console.WriteLine(fileName);
 
-				string output = Path.Combine(arguments.Path!, "Scripts", fileName);
+				string output = Path.Combine(arguments.Path, "Scripts", fileName);
 				if (File.Exists(output))
 				{
 					RecordFakeFile(output);
@@ -169,7 +168,7 @@ public static partial class SiteBuilder
 
 		async Task<string> RequestFile(string uri, string fileName, HttpClient c)
 		{
-			string output = Path.Combine(arguments.Path!, "Scripts", fileName);
+			string output = Path.Combine(arguments.Path, "Scripts", fileName);
 			HttpResponseMessage message = await c.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
 			if (!message.IsSuccessStatusCode)
 				throw new BuildException($"\"{uri}\" was not found when replacing source files. {message.StatusCode}: {message.RequestMessage}");

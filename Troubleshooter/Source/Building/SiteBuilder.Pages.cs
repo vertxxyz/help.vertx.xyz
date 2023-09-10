@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Markdig;
-using Troubleshooter.Constants;
 using Troubleshooter.Issues;
 using static Troubleshooter.PageUtility;
 

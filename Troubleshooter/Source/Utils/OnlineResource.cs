@@ -100,7 +100,7 @@ public sealed class OnlineResource
 	}
 }
 
-public static class OnlineResources
+public class OnlineResources
 {
 	public static readonly OnlineResource Graphre = new("graphre", "graphre.js", SupportedCDNs.All);
 	public static readonly OnlineResource D3 = new("", "d3", SupportedCDNs.JsDelivr);
@@ -108,7 +108,7 @@ public static class OnlineResources
 	public static readonly OnlineResource Mermaid = new("mermaid", "mermaid.min.js", SupportedCDNs.All);
 	public static readonly OnlineResource KaTeX = new("katex", "katex.min.js", SupportedCDNs.All);
 
-	public static async Task LoadAll()
+	public async Task LoadAll()
 	{
 		Ping ping = new();
 

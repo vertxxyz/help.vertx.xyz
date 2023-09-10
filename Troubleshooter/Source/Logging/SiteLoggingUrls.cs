@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Linq;
-using Troubleshooter.Constants;
 
 namespace Troubleshooter;
 
@@ -9,7 +8,7 @@ public static class SiteLogging
 {
 	public static void LogAllExternalUrls(Arguments arguments)
 	{
-		Site site = new(arguments.Root);
+		Site site = new(arguments);
 		foreach (string file in Directory.EnumerateFiles(site.AssetsRoot, "*.md", SearchOption.AllDirectories))
 		{
 			string text = File.ReadAllText(file);

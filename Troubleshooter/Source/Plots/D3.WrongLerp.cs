@@ -7,7 +7,6 @@ internal sealed partial class D3
 {
 	private static void WrongLerpGraph(HtmlRenderer renderer, WebDriver webDriver)
 	{
-		webDriver.Url = "https://unity.huh.how/";
 		webDriver.ExecuteScript(OnlineResources.D3);
 		webDriver.ExecuteScript(OnlineResources.Plot);
 		string svg = (string)webDriver.ExecuteScript(

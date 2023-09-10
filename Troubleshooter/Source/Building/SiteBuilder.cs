@@ -3,28 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Markdig;
-using Troubleshooter.Constants;
-using Troubleshooter.Renderers;
 
 namespace Troubleshooter;
 
 public static partial class SiteBuilder
 {
-	public static async Task<(bool success, IEnumerable<string> paths)> Build(Arguments arguments, bool cleanup)
+	public static async Task<(bool success, IEnumerable<string> paths)> Build(Arguments arguments, Site site, MarkdownPipeline pipeline, bool cleanup)
 	{
-		var pipeline = new MarkdownPipelineBuilder()
-			.UseAdvancedExtensions()
-			.UseCodeHighlighting()
-			// TOC doesn't run properly on the second pass, requires debugging.
-			/*.UseTableOfContent(options =>
-			{
-				options.ContainerTag = "div";
-				options.ContainerClass = "table-of-contents";
-			})*/
-			.Build();
-
-		Site site = new(arguments.Root);
-
 		using var buildScope = new BuildScope(arguments, cleanup);
 		try
 		{
@@ -44,7 +29,7 @@ public static partial class SiteBuilder
 		
 	public static async Task ContentBuild(Arguments arguments)
 	{
-		Site site = new(arguments.Root);
+		Site site = new(arguments);
 		await BuildContent(arguments, site);
 	}
 }
