@@ -9,7 +9,7 @@ namespace Troubleshooter.Search;
 
 public static class SearchIndex
 {
-	public static string GetJsonFilePath(Arguments arguments) => Path.Combine(Path.Combine(arguments.Path!, "Json"), "search-index.json");
+	public static string GetJsonFilePath(Arguments arguments) => Path.Combine(Path.Combine(arguments.Path, "Json"), "search-index.json");
 
 	public static async Task Generate(Arguments arguments, IEnumerable<string> paths)
 	{

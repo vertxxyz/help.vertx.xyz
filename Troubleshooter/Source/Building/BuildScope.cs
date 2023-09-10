@@ -32,7 +32,7 @@ public sealed class BuildScope : IDisposable
 		HashSet<string> recordedFilePaths = new(IOUtility.RecordedPaths.Select(Path.GetFullPath));
 		HashSet<string> redundantFilePaths = new();
 			
-		foreach (var file in Directory.EnumerateFiles(arguments.Path!, "*", SearchOption.AllDirectories))
+		foreach (var file in Directory.EnumerateFiles(arguments.Path, "*", SearchOption.AllDirectories))
 		{
 			if(recordedFilePaths.Contains(file)) continue;
 			redundantFilePaths.Add(file);
@@ -41,7 +41,7 @@ public sealed class BuildScope : IDisposable
 		redundantFilePaths.Remove(SearchIndex.GetJsonFilePath(arguments));
 		redundantFilePaths.RemoveWhere(path =>
 		{
-			var remaining = path.AsSpan()[(arguments.Path!.Length + 1)..];
+			var remaining = path.AsSpan()[(arguments.Path.Length + 1)..];
 			return !remaining.Contains('\\') || remaining.StartsWith(".git\\", StringComparison.Ordinal);
 		});
 
@@ -70,7 +70,7 @@ public sealed class BuildScope : IDisposable
 		foreach (string filePath in redundantFilePaths)
 			File.Delete(filePath);
 			
-		DeleteEmptyDirectories(arguments.Path!);
+		DeleteEmptyDirectories(arguments.Path);
 			
 		Console.WriteLine("Files and folders cleaned.");
 	}

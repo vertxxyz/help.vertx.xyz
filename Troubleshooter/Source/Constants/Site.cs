@@ -10,17 +10,14 @@ public sealed class Site
 		AssetsRoot,
 		Directory,
 		EmbedsDirectory,
-		ContentDirectory,
-		Main;
-
-	public Site(string? root = null)
+		ContentDirectory;
+	public Site(string root)
 	{
-		Root = root ?? System.IO.Directory.GetCurrentDirectory();
+		Root = root;
 		AssetsRoot = Path.Combine(Root, "Assets");
 		Directory = Path.Combine(AssetsRoot, "Site");
 		EmbedsDirectory = Path.Combine(AssetsRoot, "Embeds");
 		ContentDirectory = Path.Combine(AssetsRoot, "Content");
-		Main = Path.Combine(Directory, "Main.md");
 			
 		RootIndex = GetSiteRootIndex(ResourceLocation.Site);
 		EmbedRootIndex = GetSiteRootIndex(ResourceLocation.Embed);

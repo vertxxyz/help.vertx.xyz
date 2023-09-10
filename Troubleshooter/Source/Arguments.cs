@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Troubleshooter;
@@ -14,7 +15,7 @@ public readonly struct Arguments
 	/// <summary>
 	/// Output directory
 	/// </summary>
-	public readonly string? Path;
+	public readonly string Path;
 	/// <summary>
 	/// Output directory + HTML folder
 	/// </summary>
@@ -26,20 +27,20 @@ public readonly struct Arguments
 	/// <summary>
 	/// Project root (Contains Assets and Source)
 	/// </summary>
-	public readonly string? TroubleshooterRoot;
+	public readonly string Root;
 	public readonly LoggingLevel LoggingLevel;
 	public const string HtmlOutputDirectoryName = "HTML";
 	public const string JsonOutputDirectoryName = "Json";
 
-	public Arguments(string[] args)
+	public Arguments(IReadOnlyList<string> args)
 	{
-		Path = null;
+		Path = "";
 		LoggingLevel = LoggingLevel.Default;
-		TroubleshooterRoot = null;
+		Root = Directory.GetCurrentDirectory();
 		HtmlOutputDirectory = null;
 		JsonOutputDirectory = null;
 
-		for (var i = 0; i < args.Length; i++)
+		for (var i = 0; i < args.Count; i++)
 		{
 			string arg = args[i].ToLower().TrimStart('-');
 
@@ -64,11 +65,11 @@ public readonly struct Arguments
 					if (!ValidatePath(param))
 						throw new ArgumentException($"\"{param}\" is not a valid path.");
 
-					Path = param;
-					HtmlOutputDirectory = System.IO.Path.Combine(Path!, HtmlOutputDirectoryName);
+					Path = param!;
+					HtmlOutputDirectory = System.IO.Path.Combine(Path, HtmlOutputDirectoryName);
 					Directory.CreateDirectory(HtmlOutputDirectory);
 
-					JsonOutputDirectory = System.IO.Path.Combine(Path!, JsonOutputDirectoryName);
+					JsonOutputDirectory = System.IO.Path.Combine(Path, JsonOutputDirectoryName);
 					Directory.CreateDirectory(JsonOutputDirectory);
 					break;
 				}
@@ -92,23 +93,13 @@ public readonly struct Arguments
 
 					break;
 				}
-				case "root-offset":
-				{
-					if (!TryGetParameter(out var param))
-					{
-						Console.WriteLine($"\"{args[i]}\" was not followed by a parameter.");
-						Console.WriteLine("A valid parameter is the extra path following the root Troubleshooter directory.");
-						continue;
-					}
-
-					TroubleshooterRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(Directory.GetCurrentDirectory(), param!));
-					break;
-				}
 			}
+
+			continue;
 
 			bool TryGetParameter(out string? param)
 			{
-				if (i + 1 >= args.Length)
+				if (i + 1 >= args.Count)
 				{
 					param = null;
 					return false;

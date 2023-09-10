@@ -13,8 +13,8 @@ function resize() {
 window.addEventListener('resize', resize);
 window.addEventListener('load', resize);
 
-// - Scroll redirect
 whenReady(() => {
+    // Scroll redirect.
     const container = document.querySelector(containerId);
     const contents = document.querySelector(contentsId);
     container?.addEventListener('wheel', function (e) {
@@ -26,6 +26,11 @@ whenReady(() => {
         });
         e.stopPropagation();
     });
+
+    // Developer tools.
+    if (window.location.host.startsWith("localhost:")) {
+        document.getElementById("local-developer-tools").classList.remove("hidden");
+    }
 })
 
 // -----------------
@@ -186,7 +191,7 @@ function loadHash(hash) {
 function processPageValue(value) {
     if (value === null)
         value = location.pathname.slice(1);
-    if (value == null || value === "")
+    if (value == null || value === "" || value === "index.html")
         return main;
     value = value.replace(/\.[^/.]+$/, "");
     value = value.replace('%20', "-");

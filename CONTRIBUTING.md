@@ -13,8 +13,7 @@ Rider's RTF copy functionality seems to produce incorrect colours, so HTML can a
 Code must be highlighted using the Rider Dark theme built-in to JetBrains Rider, and currently the [Copy With Style](https://plugins.jetbrains.com/plugin/8455-copywithstyle) plugin is used to generate HTML the site generation can handle.
 
 ## Rich Text
-Rich text processing is performed by [RtfPipe](https://github.com/erdomke/RtfPipe).  
-Code must be highlighted using the Rider Dark theme built-in to JetBrains Rider.
+Rich text is only present for legacy reasons.
 
 #### Embedding
 `<<Code/Example.rtf>>` - Embeds a built page using a path local to the Embeds folder.
@@ -36,11 +35,9 @@ Code must be highlighted using the Rider Dark theme built-in to JetBrains Rider.
 The above examples will embed boxes that look like the Debug.Log, LogWarning, and LogError messages in the Unity console window.
 
 ## Usage
-
-`Troubleshooter/BuildSite.bat` can be used to build the site to a directory once the solution has been built.
-You must edit the `path` parameter in the batch file before running it.
-
 To run from an IDE you must edit your Run/Debug configuration to pass in valid program arguments:  
-eg. `--root-offset "../../../" --path "C:/Example/Path"`  
-The `root-offset` parameter is an offset from the working directory to the Troubleshooter directory.  
+eg. `--path "C:/Example/Path"`  
 The `path` parameter is the output path for the site when built.
+
+The site will be hosted at `localhost:3000` when running from the IDE.
+A header is shown, which makes post requests to the app to rebuild.

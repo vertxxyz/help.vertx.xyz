@@ -1,110 +1,120 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
+using Troubleshooter;
 using Troubleshooter.Search;
 
-namespace Troubleshooter;
+const string RebuildAllKey = "rebuild-all";
+const string RebuildContentKey = "rebuild-content";
 
-class Program
+// Retrieve arguments.
+Arguments arguments = new(args);
+
+try
 {
-	static async Task Main(string[] args)
+	// Register this for RtfPipe.
+	Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+	// Load all the online resources before we proceed.
+	await OnlineResources.LoadAll();
+
+	await RebuildIfNotBuiltBefore(arguments);
+
+	var builder = WebApplication.CreateBuilder();
+	builder.Configuration.AddJsonFile("appsettings.json",
+		optional: true,
+		reloadOnChange: true);
+	string port = builder.Configuration["Port"] ?? "3000";
+	var app = builder.Build();
+
+	app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new List<string> { "index.html" }, FileProvider = new PhysicalFileProvider(arguments.Path) });
+	app.UseStaticFiles(new StaticFileOptions { FileProvider = new PhysicalFileProvider(arguments.Path) });
+
+	app.MapPost("/tools", Tools);
+
+	app.Run($"http://localhost:{port}");
+}
+catch (Exception e)
+{
+	LogExitException(e, "Loading online resources failed!");
+}
+
+return;
+
+async Task Tools(HttpContext context)
+{
+	if (context.Request.Form.TryGetValue("rebuild", out var value))
 	{
-		
-		try
+		switch (value[0])
 		{
-			// Retrieve arguments
-			Arguments arguments = new(args);
-			// Register this for RtfPipe
-			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-			
-			await MainLoop(arguments);
-		}
-		catch (Exception e)
-		{
-			LogExitException(e, "Startup failed!");
+			case RebuildAllKey:
+				await Build(arguments);
+				break;
+			case RebuildContentKey:
+				await BuildContent(arguments);
+				break;
+			default:
+				throw new ArgumentException($"{value[0]} not supported by tooling.");
 		}
 	}
 
-	private static async Task MainLoop(Arguments arguments)
-	{
-		try
-		{
-			await ProgramLoop();
-		}
-		catch (Exception e)
-		{
-			LogExitException(e, "Operation failed!");
-		}
+	Console.WriteLine(context);
+}
 
-		async Task ProgramLoop()
-		{
-			while (true)
-			{
-				Console.WriteLine("Press key to proceed:");
-				Console.WriteLine("  B - Build site");
-				Console.WriteLine("  C - Content build only");
-				Console.WriteLine("  U - Log external URLs");
-#if WINDOWS
-				Console.WriteLine("  R - Create rich-text embed from clipboard");
-#endif
-				Console.WriteLine("  Space - Clear");
-				Console.WriteLine("  Other - Exit");
-				Read:
-				var key = Console.ReadKey().Key;
-				Console.WriteLine();
-				Console.Clear();
-				switch (key)
-				{
-					case ConsoleKey.B:
-						// Build Site
-						(bool success, IEnumerable<string> paths) = await SiteBuilder.Build(arguments, false);
-						if (success)
-						{
-							Console.WriteLine("Successful build, generating search index.");
-							await SearchIndex.Generate(arguments, paths);
-							Console.WriteLine("Search index generated.");
-						}
-						else
-						{
-							Console.WriteLine("Build failed! Press key to continue.");
-							Console.ReadKey();
-							Console.Clear();
-						}
-						break;
-					case ConsoleKey.C:
-						// Content Build
-						await SiteBuilder.ContentBuild(arguments);
-						Console.WriteLine("Successful Content Build.");
-						break;
-					case ConsoleKey.U:
-						SiteLogging.LogAllExternalUrls(arguments);
-						break;
-#if WINDOWS
-					case ConsoleKey.R:
-						RtfClip.CreateRtfFile(arguments);
-						break;
-#endif
-					case ConsoleKey.Spacebar:
-						goto Read;
-					default:
-						return;
-				}
-			}
-		}
+static void LogExitException(Exception e, string message)
+{
+	Console.WriteLine("----------------");
+	Console.WriteLine(message);
+	Console.WriteLine("----------------");
+	Console.WriteLine(e.Message);
+	Console.WriteLine();
+	Console.WriteLine(e.StackTrace);
+	Console.WriteLine("----------------");
+
+	Console.WriteLine("Press any key to exit.");
+	Console.ReadKey();
+}
+
+static async Task Build(Arguments arguments)
+{
+	(bool success, IEnumerable<string> paths) = await SiteBuilder.Build(arguments, false);
+	if (success)
+	{
+		Console.WriteLine("Successful build, generating search index.");
+		await SearchIndex.Generate(arguments, paths);
+		Console.WriteLine("Search index generated.");
 	}
-
-	private static void LogExitException(Exception e, string message)
+	else
 	{
-		Console.WriteLine("----------------");
-		Console.WriteLine(message);
-		Console.WriteLine("----------------");
-		Console.WriteLine(e.Message);
-		Console.WriteLine();
-		Console.WriteLine(e.StackTrace);
-		Console.WriteLine("----------------");
-
-		Console.WriteLine("Press any key to exit.");
+		Console.WriteLine("Build failed! Press key to continue.");
 		Console.ReadKey();
+		Console.Clear();
 	}
 }
+
+static async Task BuildContent(Arguments arguments)
+{
+	// Content Build
+	await SiteBuilder.ContentBuild(arguments);
+	Console.WriteLine("Successful Content Build.");
+}
+
+static async Task RebuildIfNotBuiltBefore(Arguments arguments)
+{
+	string indexPath = Path.Combine(arguments.Path, "index.html");
+	if (File.Exists(indexPath))
+	{
+		if (File.ReadAllText(indexPath).Contains(RebuildAllKey))
+			return; // index.html already exists at path, and contains enough to rebuild the app.
+	}
+
+	Console.WriteLine("No site present at path. Building for the first time...");
+	await Build(arguments);
+}
+
+// static void LogExternalUrls(Arguments arguments) => SiteLogging.LogAllExternalUrls(arguments);

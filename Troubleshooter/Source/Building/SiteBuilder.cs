@@ -23,7 +23,7 @@ public static partial class SiteBuilder
 			})*/
 			.Build();
 
-		Site site = new(arguments.TroubleshooterRoot);
+		Site site = new(arguments.Root);
 
 		using var buildScope = new BuildScope(arguments, cleanup);
 		try
@@ -44,7 +44,7 @@ public static partial class SiteBuilder
 		
 	public static async Task ContentBuild(Arguments arguments)
 	{
-		Site site = new(arguments.TroubleshooterRoot);
+		Site site = new(arguments.Root);
 		await BuildContent(arguments, site);
 	}
 }

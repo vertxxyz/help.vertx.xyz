@@ -10,7 +10,7 @@ public static class SourceIndex
 	public static void GeneratePageSourceLookup(Arguments arguments, PageResourcesLookup pageResources)
 	{
 		// Gather file paths.
-		int trimIndex = arguments.TroubleshooterRoot!.Length;
+		int trimIndex = arguments.Root.Length;
 		Dictionary<string, string> sourceLookup = pageResources
 			.Where(pair =>
 				pair.Value is { Location: ResourceLocation.Site, Type: ResourceType.Markdown }
