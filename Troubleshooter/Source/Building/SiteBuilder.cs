@@ -8,12 +8,18 @@ namespace Troubleshooter;
 
 public static partial class SiteBuilder
 {
-	public static async Task<(bool success, IEnumerable<string> paths)> Build(Arguments arguments, Site site, MarkdownPipeline pipeline, MarkdownPreProcessors preProcessors, HtmlPostProcessors postProcessors, bool cleanup)
+	public static async Task<(bool success, IEnumerable<string> paths)> Build(
+		Arguments arguments,
+		Site site,
+		MarkdownPipeline pipeline,
+		IProcessorGroup processors,
+		bool cleanup
+	)
 	{
 		using var buildScope = new BuildScope(arguments, cleanup);
 		try
 		{
-			BuildPages(arguments, site, pipeline, preProcessors, postProcessors);
+			BuildPages(arguments, site, pipeline, processors);
 			await BuildContent(arguments, site);
 		}
 		catch (BuildException e)
@@ -26,7 +32,7 @@ public static partial class SiteBuilder
 
 		return (true, IOUtility.RecordedPaths);
 	}
-		
+
 	public static async Task ContentBuild(Arguments arguments)
 	{
 		Site site = new(arguments);

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Troubleshooter;
 
@@ -14,16 +15,19 @@ public interface IPageResourcesPostProcessor
 /// <summary>
 /// Runs on a PageResource after it has been processed from markdown.
 /// </summary>
-public static class PageResourcesPostProcessors
+public sealed class PageResourcesPostProcessors
 {
-	private static readonly IPageResourcesPostProcessor[] All =
-		typeof(IPageResourcesPostProcessor).Assembly.GetTypes()
-			.Where(t => typeof(IPageResourcesPostProcessor).IsAssignableFrom(t) && !t.IsAbstract)
-			.Select(t => (IPageResourcesPostProcessor)Activator.CreateInstance(t)!).ToArray();
+	private readonly IPageResourcesPostProcessor[] _all;
 
-	public static void Process(PageResourcesLookup pageResources, Site site)
+	public PageResourcesPostProcessors(IServiceProvider provider) =>
+		_all = typeof(IPageResourcesPostProcessor).Assembly.GetTypes()
+			.Where(t => typeof(IPageResourcesPostProcessor).IsAssignableFrom(t) && !t.IsAbstract)
+			.Select(t => (IPageResourcesPostProcessor)ActivatorUtilities.CreateInstance(provider, t))
+			.ToArray();
+
+	public void Process(PageResourcesLookup pageResources, Site site)
 	{
-		foreach (IPageResourcesPostProcessor postProcessor in All)
+		foreach (IPageResourcesPostProcessor postProcessor in _all)
 			postProcessor.Process(pageResources, site);
 	}
 }

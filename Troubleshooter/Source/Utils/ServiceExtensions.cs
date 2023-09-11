@@ -43,10 +43,20 @@ public static class ServiceExtensions
 					})*/
 				.Build()
 		);
+		
+		return services;
+	}
 
+	/// <summary>
+	/// Adds pre and post processors for the Markdown to HTML pipeline.
+	/// </summary>
+	// ReSharper disable once UnusedMethodReturnValue.Global
+	public static IServiceCollection AddProcessors(this IServiceCollection services)
+	{
 		services.AddSingleton(provider => new MarkdownPreProcessors(provider));
 		services.AddSingleton(provider => new HtmlPostProcessors(provider));
-		
+		services.AddSingleton(provider => new PageResourcesPostProcessors(provider));
+		services.AddSingleton<IProcessorGroup, ProcessorsGroup>();
 		return services;
 	}
 }

@@ -7,24 +7,30 @@ using Troubleshooter.Search;
 
 namespace Troubleshooter.Middleware;
 
+/// <summary>
+/// Responds /tools/{id} POST requests. The top level action that builds the site.
+/// </summary>
 public sealed class BuildSiteController : ControllerBase
 {
 	public const string RebuildAllKey = "rebuild-all";
 	const string RebuildContentKey = "rebuild-content";
-	
+
 	private readonly Arguments _arguments;
 	private readonly Site _site;
 	private readonly MarkdownPipeline _markdownPipeline;
-	private readonly HtmlPostProcessors _postProcessors;
-	private readonly MarkdownPreProcessors _preProcessors;
+	private readonly IProcessorGroup _processors;
 
-	public BuildSiteController(Arguments arguments, Site site, MarkdownPipeline markdownPipeline, MarkdownPreProcessors preProcessors, HtmlPostProcessors postProcessors)
+	public BuildSiteController(
+		Arguments arguments,
+		Site site,
+		MarkdownPipeline markdownPipeline,
+		IProcessorGroup processors
+	)
 	{
 		_arguments = arguments;
 		_site = site;
 		_markdownPipeline = markdownPipeline;
-		_preProcessors = preProcessors;
-		_postProcessors = postProcessors;
+		_processors = processors;
 	}
 
 	[HttpPost("/tools/{id}")]
@@ -33,7 +39,7 @@ public sealed class BuildSiteController : ControllerBase
 		switch (id)
 		{
 			case RebuildAllKey:
-				await Build(_arguments, _site, _markdownPipeline, _preProcessors, _postProcessors);
+				await Build(_arguments, _site, _markdownPipeline, _processors);
 				break;
 			case RebuildContentKey:
 				await BuildContent(_arguments);
@@ -41,14 +47,19 @@ public sealed class BuildSiteController : ControllerBase
 			default:
 				throw new ArgumentException($"{id} not supported by tooling.");
 		}
-		
+
 		return Ok();
 	}
 
 
-	public static async Task Build(Arguments arguments, Site site, MarkdownPipeline markdownPipeline, MarkdownPreProcessors preProcessors, HtmlPostProcessors postProcessors)
+	public static async Task Build(
+		Arguments arguments,
+		Site site,
+		MarkdownPipeline markdownPipeline,
+		IProcessorGroup processors
+	)
 	{
-		(bool success, IEnumerable<string> paths) = await SiteBuilder.Build(arguments, site, markdownPipeline, preProcessors, postProcessors, false);
+		(bool success, IEnumerable<string> paths) = await SiteBuilder.Build(arguments, site, markdownPipeline, processors, false);
 		if (success)
 		{
 			Console.WriteLine("Successful build, generating search index.");

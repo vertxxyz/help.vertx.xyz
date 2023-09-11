@@ -82,7 +82,7 @@ public sealed partial class PageResource
 
 	private string EmbedsDirectory =>
 		_embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").ToConsistentPath();
-	
+
 	private string ImagesDirectory =>
 		_embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Content", "Images").ToConsistentPath();
 
@@ -107,7 +107,12 @@ public sealed partial class PageResource
 		Embedded.Add(page);
 	}
 
-	public void BuildText(Site site, PageResourcesLookup allResources, MarkdownPipeline markdownPipeline, MarkdownPreProcessors preProcessors, HtmlPostProcessors postProcessors)
+	public void BuildText(
+		Site site,
+		PageResourcesLookup allResources,
+		MarkdownPipeline markdownPipeline,
+		IProcessorGroup processors
+	)
 	{
 		switch (Type)
 		{
@@ -115,7 +120,7 @@ public sealed partial class PageResource
 				SetHtmlTextAsEmpty();
 				return;
 			case ResourceType.Markdown:
-				BuildMarkdownToHtml(site, allResources, markdownPipeline, preProcessors, postProcessors);
+				BuildMarkdownToHtml(site, allResources, markdownPipeline, processors);
 				break;
 			case ResourceType.RichText:
 				try
@@ -152,7 +157,12 @@ public sealed partial class PageResource
 	/// <summary>
 	/// Builds page to <see cref="HtmlText"/> to be embedded in other content or written to disk.
 	/// </summary>
-	private void BuildMarkdownToHtml(Site site, PageResourcesLookup allResources, MarkdownPipeline markdownPipeline, MarkdownPreProcessors preProcessors, HtmlPostProcessors postProcessors)
+	private void BuildMarkdownToHtml(
+		Site site,
+		PageResourcesLookup allResources,
+		MarkdownPipeline markdownPipeline,
+		IProcessorGroup processors
+	)
 	{
 		if (MarkdownText == null)
 			ProcessMarkdown(File.ReadAllText(FullPath), site, allResources);
@@ -163,7 +173,7 @@ public sealed partial class PageResource
 				// Embeds are not fully processed into HTML until they are built when embedded into site content.
 				// This is done because something like Abbreviations requires the abbreviation target to be processed at the same time as the source.
 				MarkdownText!,
-			ResourceLocation.Site => ToHtml(MarkdownText!, markdownPipeline, preProcessors, postProcessors, FullPath),
+			ResourceLocation.Site => ToHtml(MarkdownText!, markdownPipeline, processors, FullPath),
 			_ => throw new ArgumentOutOfRangeException(nameof(Location), Location, "Location was not handled.")
 		};
 
@@ -173,9 +183,14 @@ public sealed partial class PageResource
 			HtmlText += text;
 	}
 
-	private static string ToHtml(string markdown, MarkdownPipeline pipeline, MarkdownPreProcessors preProcessors, HtmlPostProcessors postProcessors, string fullPath)
+	private static string ToHtml(
+		string markdown,
+		MarkdownPipeline pipeline,
+		IProcessorGroup processors,
+		string fullPath
+	)
 	{
-		string markdownPreProcessed = preProcessors.Process(markdown);
+		string markdownPreProcessed = processors.PreProcessors.Process(markdown);
 
 		pipeline = GetPipeline();
 
@@ -185,7 +200,7 @@ public sealed partial class PageResource
 
 		renderer.Render(document);
 		renderer.Writer.Flush();
-		return postProcessors.Process(renderer.Writer.ToString() ?? string.Empty, fullPath);
+		return processors.PostProcessors.Process(renderer.Writer.ToString() ?? string.Empty, fullPath);
 
 		MarkdownPipeline GetPipeline()
 		{
@@ -249,7 +264,7 @@ public sealed partial class PageResource
 			{
 				if (ApproximatelyStartsWith(group.Value, EmbedsDirectory, 2))
 					continue;
-				
+
 				if (group.Value.StartsWith("/Images/"))
 					continue;
 
@@ -316,13 +331,13 @@ public sealed partial class PageResource
 		OutputLinkPath ??= site.ConvertFullSitePathToLinkPath(FullPath);
 
 		OutputLinkPath = s_NumberRegex.Replace(OutputLinkPath, "/");
-		
+
 		string path = Path.Combine(arguments.HtmlOutputDirectory!, $"{OutputLinkPath}.html");
 		return IOUtility.CreateFileIfDifferent(path, HtmlText!) ? WriteStatus.Written : WriteStatus.Skipped;
 	}
 
 	private static readonly Regex s_NumberRegex = GetNumberRegex();
-	
+
 	[GeneratedRegex(@"/\d+-", RegexOptions.Compiled)]
 	private static partial Regex GetNumberRegex();
 }

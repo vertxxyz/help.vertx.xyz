@@ -11,10 +11,15 @@ namespace Troubleshooter;
 
 public static partial class SiteBuilder
 {
-	private static void BuildPages(Arguments arguments, Site site, MarkdownPipeline pipeline, MarkdownPreProcessors preProcessors, HtmlPostProcessors postProcessors)
+	private static void BuildPages(
+		Arguments arguments,
+		Site site,
+		MarkdownPipeline pipeline, 
+		IProcessorGroup processors
+	)
 	{
 		var allResources = CollectPages(site);
-		PageResourcesPostProcessors.Process(allResources, site);
+		processors.ResourceProcessors.Process(allResources, site);
 		var allBuiltResources = new HashSet<string>();
 
 		arguments.VerboseLog($"{allResources.Count} total un-processed pages");
@@ -45,7 +50,7 @@ public static partial class SiteBuilder
 
 				try
 				{
-					resource.BuildText(site, allResources, pipeline, preProcessors, postProcessors);
+					resource.BuildText(site, allResources, pipeline, processors);
 				}
 				catch (Exception e)
 				{

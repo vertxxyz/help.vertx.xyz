@@ -16,6 +16,7 @@ services.AddMemoryCache();
 services.AddLogging();
 
 await services.AddMarkdownPipelineAsync();
+services.AddProcessors();
 var app = builder.Build();
 
 var arguments = app.Services.GetRequiredService<Arguments>();
