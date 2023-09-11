@@ -469,7 +469,7 @@ kbd {
 /* Meta */
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .sidebar__button {

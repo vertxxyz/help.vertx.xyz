@@ -28,10 +28,10 @@ public sealed class Mermaid
 
 		// language=javascript
 		var js = $$"""
-		          var body = document.querySelector("body");
-		          body.innerHTML = `<pre id=\"mermaid\">{{HttpUtility.HtmlEncode(diagram.Trim())}}</pre>`;
+		          var contents = document.querySelector(".contents");
+		          contents.innerHTML = `<pre id=\"mermaid\">{{HttpUtility.HtmlEncode(diagram.Trim())}}</pre>`;
 		          await mermaid.run({ querySelector: "#mermaid" });
-		          return body.querySelector("#mermaid").innerHTML;
+		          return contents.querySelector("#mermaid").innerHTML;
 		          """;
 
 		_logger.Log(LogLevel.Debug, "\"\"\"\n{Js}\n\"\"\"", js);
