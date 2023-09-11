@@ -27,6 +27,6 @@ public sealed partial class D3
 			_ => throw new ArgumentOutOfRangeException(key, $"{key} is not yet supported by {nameof(D3)}.{nameof(Plot)}.")
 		};
 
-		renderer.Write("<div class=\"d3\">").Write(svg).Write("</code>").Write("</div>");
+		renderer.Write("<div class=\"d3\">").Write(svg).Write("</div>");
 	}
 }

@@ -1,5 +1,7 @@
 using System.Text;
 using System.Threading.Tasks;
+using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.V8;
 using Markdig;
 using Microsoft.Extensions.DependencyInjection;
 using Troubleshooter.Renderers;
@@ -15,6 +17,7 @@ public static class ServiceExtensions
 		services.AddSingleton(arguments);
 		services.AddSingleton<IRootPathProvider>(arguments);
 		services.AddSingleton<WebRenderer>();
+		services.AddSingleton<IJsEngine, V8JsEngine>();
 		services.AddSingleton<Site>();
 		return services;
 	}

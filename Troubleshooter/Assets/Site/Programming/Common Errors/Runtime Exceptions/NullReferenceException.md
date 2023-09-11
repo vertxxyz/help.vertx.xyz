@@ -3,7 +3,6 @@
 A `NullReferenceException` (NRE) occurs when code tries to access members of a variable which has no value assigned.  
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 #direction: right
 #.x: visual=none stroke=#f55 body=bold
 

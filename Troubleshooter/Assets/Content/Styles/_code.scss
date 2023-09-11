@@ -127,23 +127,6 @@ pre {
 		rx: 5px;
 		ry: 5px;
 	}
-	&:not(.processed-nomnoml) {
-		>svg {
-			display: none;
-		}
-		&::after {
-			@extend %code-container-base;
-			color: #e06e6e;
-			display: inline-block;
-			font-size: 0.75em;
-			line-height: 1.55em;
-			margin: 2px 10px 3px 0;
-			content: "Nomnoml diagram not loaded. Please report an issue with this page.";
-			padding: 6px 15px;
-			white-space: pre;
-			-webkit-box-decoration-break: clone;
-		}
-	}
 }
 
 .collapsable {

@@ -1,6 +1,6 @@
 using System;
 using System.Text;
-using JavaScriptEngineSwitcher.V8;
+using JavaScriptEngineSwitcher.Core;
 using Markdig;
 using Markdig.Helpers;
 using Markdig.Parsers;
@@ -42,8 +42,10 @@ public class CodeHighlightingExtension : IMarkdownExtension
 			textRendererBase.ObjectRenderers.Remove(codeBlockRenderer);
 		textRendererBase.ObjectRenderers.AddIfNotAlready(new OverrideCodeBlockRenderer(
 			codeBlockRenderer, 
+			_provider.GetRequiredService<IJsEngine>(),
 			ActivatorUtilities.CreateInstance<D3>(_provider),
-			ActivatorUtilities.CreateInstance<Mermaid>(_provider)
+			ActivatorUtilities.CreateInstance<Mermaid>(_provider),
+			ActivatorUtilities.CreateInstance<Nomnoml>(_provider)
 		));
 	}
 }
@@ -51,20 +53,23 @@ public class CodeHighlightingExtension : IMarkdownExtension
 public class OverrideCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 {
 	private readonly CodeBlockRenderer _codeBlockRenderer;
-	private readonly V8JsEngine _engine;
+	private readonly IJsEngine _engine;
 	private readonly D3 _d3;
 	private readonly Mermaid _mermaid;
+	private readonly Nomnoml _nomnoml;
 
-	public OverrideCodeBlockRenderer(CodeBlockRenderer? codeBlockRenderer, D3 d3, Mermaid mermaid)
+	public OverrideCodeBlockRenderer(CodeBlockRenderer? codeBlockRenderer, IJsEngine jsEngine, D3 d3, Mermaid mermaid, Nomnoml nomnoml)
 	{
 		_d3 = d3;
 		_mermaid = mermaid;
+		_nomnoml = nomnoml;
 		_codeBlockRenderer = codeBlockRenderer ?? new CodeBlockRenderer();
 		_codeBlockRenderer.BlocksAsDiv.Add("d3");
 		_codeBlockRenderer.BlocksAsDiv.Add("mermaid");
+		_codeBlockRenderer.BlocksAsDiv.Add("nomnoml");
 
 		// This is a local resource as it's configured using a specific setup before being downloaded.
-		_engine = new V8JsEngine();
+		_engine = jsEngine;
 		_engine.ExecuteResource("Prism", typeof(Program).Assembly);
 	}
 
@@ -107,6 +112,9 @@ public class OverrideCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 					break;
 				case "mermaid":
 					_mermaid.Plot(ExtractSourceCode(node), renderer);
+					break;
+				case "nomnoml":
+					_nomnoml.Plot(ExtractSourceCode(node), renderer);
 					break;
 				default:
 					_codeBlockRenderer.Write(renderer, node);

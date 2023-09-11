@@ -16,8 +16,6 @@ UI Toolkit comes with helpers for drawing entire UI hierarchies like [`Inspector
 <<Code/Editor/SerializedObject/Base.html>>  
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
-
 [ScriptableObject (Example)|targetObject: UnityEngine.Object|UpdateIfRequiredOrScript()
 ApplyModifiedProperties()
 ...]
@@ -70,7 +68,6 @@ private void OnEnable()
 ```
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 [ScriptableObject (Example)|]
 [<label>FindProperty("_data")]
 [<label>FindProperty("_values")]
@@ -128,7 +125,6 @@ private void OnEnable()
 ```
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 
 [<hidden>Data]
 [Data]->[SerializedProperty (_data)]
@@ -151,7 +147,6 @@ Once at a SerializedProperty that is at the bottom there are predefined *Value* 
 See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) Properties documentation to find the appropriate Value property; such as `floatValue`, `stringValue`, or `objectReferenceValue`.
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 #.red: stroke=#ccaa99
 
 [<hidden>A]
@@ -185,7 +180,6 @@ for (int i = 0; i < _values.arraySize; i++)
 ```
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 [<hidden>Data]
 [Data]->[SerializedProperty (_values)]
 [SerializedProperty (_values)|arraySize: int]
@@ -227,7 +221,6 @@ private void OnEnable()
 ```
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 
 [<hidden>Data]
 [Data]->[SerializedProperty (Configuration)]

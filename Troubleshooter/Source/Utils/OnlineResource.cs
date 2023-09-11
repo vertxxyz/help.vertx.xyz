@@ -25,14 +25,14 @@ public enum SupportedCDNs
 public sealed class OnlineResource
 {
 	public string UnpkgUri { get; }
-	
+
 	public string JsDelivrUri { get; }
-	
+
 	// ReSharper disable once InconsistentNaming
 	public SupportedCDNs CDNs { get; }
-	
+
 	public string FileContent { get; private set; }
-	
+
 	private readonly string _owner, _path;
 
 	public OnlineResource(string owner, string path, SupportedCDNs cdns)
@@ -86,13 +86,13 @@ public sealed class OnlineResource
 					FileContent = await message.Content.ReadAsStringAsync();
 					return;
 				}
+
 				Console.WriteLine($"\"{uri}\" was not found when attempting to load {nameof(OnlineResource)}, retrying. {message.StatusCode}: {message.RequestMessage}.");
 			}
 			catch (TimeoutException)
 			{
 				Console.WriteLine($"\"{uri}\" timed out when attempting to load {nameof(OnlineResource)}, retrying.");
 			}
-			
 		} while (retries++ < MaxRetries);
 
 		throw new BuildException($"{uri} could not be loaded.");
@@ -106,23 +106,34 @@ public class OnlineResources
 	public readonly OnlineResource Plot = new("", "@observablehq/plot", SupportedCDNs.JsDelivr);
 	public readonly OnlineResource Mermaid = new("mermaid", "mermaid.min.js", SupportedCDNs.All);
 	public readonly OnlineResource KaTeX = new("katex", "katex.min.js", SupportedCDNs.All);
+	public readonly OnlineResource Nomnoml = new("nomnoml", "nomnoml.js", SupportedCDNs.All);
 
 	public async Task LoadAll()
 	{
 		Ping ping = new();
+		
+		try
+		{
+			CDN chosenCdn = await GetFirstConnectedCDN();
 
-		CDN chosenCdn = await GetFirstConnectedCDN();
+			using var httpClient = new HttpClient();
 
-		using var httpClient = new HttpClient();
+			httpClient.Timeout = TimeSpan.FromSeconds(10);
+			await Task.WhenAll(
+				Graphre.RequestFileContent(httpClient, chosenCdn),
+				D3.RequestFileContent(httpClient, chosenCdn),
+				Plot.RequestFileContent(httpClient, chosenCdn),
+				Mermaid.RequestFileContent(httpClient, chosenCdn),
+				KaTeX.RequestFileContent(httpClient, chosenCdn),
+				Nomnoml.RequestFileContent(httpClient, chosenCdn)
+			);
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
 
-		httpClient.Timeout = TimeSpan.FromSeconds(10);
-		await Task.WhenAll(
-			Graphre.RequestFileContent(httpClient, chosenCdn),
-			D3.RequestFileContent(httpClient, chosenCdn),
-			Plot.RequestFileContent(httpClient, chosenCdn),
-			Mermaid.RequestFileContent(httpClient, chosenCdn),
-			KaTeX.RequestFileContent(httpClient, chosenCdn)
-		);
 		return;
 
 		async Task<CDN> GetFirstConnectedCDN()

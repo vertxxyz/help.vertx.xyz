@@ -17,7 +17,6 @@ When a value type is assigned to another, this copies by value.
 The value of `a`: `0`, was copied into `b`, and when `a` was incremented, `b` was unaffected.  
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 #direction: right
 
 [a]->[1]
@@ -39,7 +38,6 @@ int b = 500;
 ```  
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 #direction: right
 #.comp: fill=#8f8 stroke=#000
 [a]->[<comp>500 ᵃ]
@@ -61,7 +59,6 @@ The value of `a`: a location in memory (`0x7fca1dbff861` for example), is assign
 Incrementing a value in `a` will also affect `b`.
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 #direction: right
 
 [<reference>0x7fca1dbff861]
@@ -85,7 +82,6 @@ int[] b = {0, 1, 2};
 Although `a` and `b` may have the same value, they are not at the same place in memory, and are not equal.
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 #direction: right
 #.comp: fill=#f88 stroke=#000 dashed
 
@@ -106,7 +102,6 @@ Null is a reference that indicates a lack of an associated value. It has no loca
 Reference types can be assigned to null. This is the default state of a reference type. Trying to access a value that is null will cause that code to fail at runtime, throwing a [NullReferenceException](Common%20Errors/Runtime%20Exceptions/NullReferenceException.md).  
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 #direction: right
 #.x: visual=none stroke=#f55 body=bold
 
@@ -137,7 +132,6 @@ The implementation of this is a wrapper struct that contains the value: `value`,
 This setup means nullable types will have the same allocation behaviour as their original values.  
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 #direction: right
 
 [<label>hasValue]

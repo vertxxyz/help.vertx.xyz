@@ -31,14 +31,21 @@ public class Arguments : IRootPathProvider
 	/// <summary>
 	/// The localhost url that is running the project's testing environment.
 	/// </summary>
-	public string Host { get; init; }
+	public string Host
+	{
+		get => _host;
+		init => _host = value;
+	}
+	private string _host;
 	public readonly LoggingLevel LoggingLevel;
 	public const string HtmlOutputDirectoryName = "HTML";
 	public const string JsonOutputDirectoryName = "Json";
 
+	public void OverrideHost(string host) => _host = host;
+	
 	public Arguments(IReadOnlyList<string> args)
 	{
-		Host = "";
+		_host = "";
 		Path = "";
 		LoggingLevel = LoggingLevel.Default;
 		Root = Directory.GetCurrentDirectory();

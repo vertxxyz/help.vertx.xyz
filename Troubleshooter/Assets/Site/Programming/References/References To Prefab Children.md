@@ -14,7 +14,6 @@ Instead, create a script on the root of the prefab that contains the references.
 You can understand the root component as a manager, handling any interactions with its children. Create methods on this component to manage those objects, compartmentalising interactions instead of modifying things directly.
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 
 [In-Scene Component]->[Prefab|
 	[<hidden>]->[Children]

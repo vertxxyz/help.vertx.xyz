@@ -7,7 +7,6 @@ This directional diagram describes valid serialized references.
 :::{.nomnoml-group}
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 #title: ref_overview
 [Scene ᵃ]->[Project assets]
 [Scene ᵃ]->[Package assets]
@@ -20,7 +19,6 @@ This directional diagram describes valid serialized references.
 ```
 
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 #title: ref_assets
 #gutter: 6
 [<reference> Assets]
@@ -42,7 +40,6 @@ Hover or select elements for more information.
 :::note  
 #### Key
 ```nomnoml
-<<Nomnoml/shared.nomnoml>>
 #direction:right
 #leading: 1
 #fontSize: 10

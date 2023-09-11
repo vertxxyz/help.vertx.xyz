@@ -543,6 +543,7 @@ kbd {
     position: fixed;
     top: var(--combined-header-height);
     right: 0;
+    bottom: 0;
     width: base.$sidebar-width-mobile;
     z-index: 3;
     background-color: #383838;

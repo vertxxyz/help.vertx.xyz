@@ -42,8 +42,8 @@ figure {
     border: none;
   }
 
-  &:has(>.code-container),
-  &:has(>.mermaid) {
+  &.has-code-container,
+  &.has-mermaid {
     margin: base.$block-container-margins;
     inline-size: auto;
 
@@ -51,6 +51,10 @@ figure {
       margin: 0;
     }
   }
+}
+
+@supports not selector(:has(a, b)) {
+  // Fallback for browsers that don't support has.
 }
 
 %figcaption-help-box {

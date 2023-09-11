@@ -29,16 +29,16 @@ public sealed class Mermaid
 		// language=javascript
 		var js = $$"""
 		          var contents = document.querySelector(".contents");
-		          contents.innerHTML = `<pre id=\"mermaid\">{{HttpUtility.HtmlEncode(diagram.Trim())}}</pre>`;
+		          contents.innerHTML = `<pre id=\"mermaid\">{{HttpUtility.HtmlEncode(diagram.Trim().Replace(@"\", @"\\"))}}</pre>`;
 		          await mermaid.run({ querySelector: "#mermaid" });
 		          return contents.querySelector("#mermaid").innerHTML;
 		          """;
 
 		_logger.Log(LogLevel.Debug, "\"\"\"\n{Js}\n\"\"\"", js);
 
-		// Inject the diagram into the body of the page/
+		// Inject the diagram into the body of the page.
 		string svg = (string)driver.ExecuteScript(js);
 
-		renderer.Write("<div class=\"mermaid\">").Write(svg).Write("</code>").Write("</div>");
+		renderer.Write("<div class=\"mermaid\">").Write(svg).Write("</div>");
 	}
 }

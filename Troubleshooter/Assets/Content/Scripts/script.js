@@ -228,7 +228,6 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
 
                 // Anything that can affect layout
                 setupCodeSettings();
-                processNomnoml();
                 reloadScripts(valueToLoad);
                 // -------------------------------
                 setTimeout(() => scrollToHash(hash), 100); // Delay seems to be required in some cases.
@@ -380,24 +379,6 @@ function copyTextToClipboard(text) {
         return;
     }
     navigator.clipboard.writeText(text).catch();
-}
-
-function processNomnoml() {
-    function htmlDecode(input) {
-        const doc = new DOMParser().parseFromString(input, "text/html");
-        return doc.documentElement.textContent;
-    }
-
-    const graphs = document.getElementsByClassName('nomnoml');
-    for (let i = 0; i < graphs.length; i++) {
-        try {
-            graphs[i].innerHTML = nomnoml.renderSvg(htmlDecode(graphs[i].innerHTML));
-        } catch (e) {
-            (console.error || console.log).call(console, e.stack || e);
-            continue;
-        }
-        graphs[i].classList.add("processed-nomnoml");
-    }
 }
 
 function reloadScripts(value) {
