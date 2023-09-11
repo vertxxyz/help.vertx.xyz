@@ -15,12 +15,16 @@ public sealed class BuildSiteController : ControllerBase
 	private readonly Arguments _arguments;
 	private readonly Site _site;
 	private readonly MarkdownPipeline _markdownPipeline;
+	private readonly HtmlPostProcessors _postProcessors;
+	private readonly MarkdownPreProcessors _preProcessors;
 
-	public BuildSiteController(Arguments arguments, Site site, MarkdownPipeline markdownPipeline)
+	public BuildSiteController(Arguments arguments, Site site, MarkdownPipeline markdownPipeline, MarkdownPreProcessors preProcessors, HtmlPostProcessors postProcessors)
 	{
 		_arguments = arguments;
 		_site = site;
 		_markdownPipeline = markdownPipeline;
+		_preProcessors = preProcessors;
+		_postProcessors = postProcessors;
 	}
 
 	[HttpPost("/tools/{id}")]
@@ -29,7 +33,7 @@ public sealed class BuildSiteController : ControllerBase
 		switch (id)
 		{
 			case RebuildAllKey:
-				await Build(_arguments, _site, _markdownPipeline);
+				await Build(_arguments, _site, _markdownPipeline, _preProcessors, _postProcessors);
 				break;
 			case RebuildContentKey:
 				await BuildContent(_arguments);
@@ -42,9 +46,9 @@ public sealed class BuildSiteController : ControllerBase
 	}
 
 
-	public static async Task Build(Arguments arguments, Site site, MarkdownPipeline markdownPipeline)
+	public static async Task Build(Arguments arguments, Site site, MarkdownPipeline markdownPipeline, MarkdownPreProcessors preProcessors, HtmlPostProcessors postProcessors)
 	{
-		(bool success, IEnumerable<string> paths) = await SiteBuilder.Build(arguments, site, markdownPipeline, false);
+		(bool success, IEnumerable<string> paths) = await SiteBuilder.Build(arguments, site, markdownPipeline, preProcessors, postProcessors, false);
 		if (success)
 		{
 			Console.WriteLine("Successful build, generating search index.");

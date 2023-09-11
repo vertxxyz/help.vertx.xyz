@@ -107,7 +107,7 @@ public sealed partial class PageResource
 		Embedded.Add(page);
 	}
 
-	public void BuildText(Site site, PageResourcesLookup allResources, MarkdownPipeline markdownPipeline)
+	public void BuildText(Site site, PageResourcesLookup allResources, MarkdownPipeline markdownPipeline, MarkdownPreProcessors preProcessors, HtmlPostProcessors postProcessors)
 	{
 		switch (Type)
 		{
@@ -115,7 +115,7 @@ public sealed partial class PageResource
 				SetHtmlTextAsEmpty();
 				return;
 			case ResourceType.Markdown:
-				BuildMarkdownToHtml(site, allResources, markdownPipeline);
+				BuildMarkdownToHtml(site, allResources, markdownPipeline, preProcessors, postProcessors);
 				break;
 			case ResourceType.RichText:
 				try
@@ -152,7 +152,7 @@ public sealed partial class PageResource
 	/// <summary>
 	/// Builds page to <see cref="HtmlText"/> to be embedded in other content or written to disk.
 	/// </summary>
-	private void BuildMarkdownToHtml(Site site, PageResourcesLookup allResources, MarkdownPipeline markdownPipeline)
+	private void BuildMarkdownToHtml(Site site, PageResourcesLookup allResources, MarkdownPipeline markdownPipeline, MarkdownPreProcessors preProcessors, HtmlPostProcessors postProcessors)
 	{
 		if (MarkdownText == null)
 			ProcessMarkdown(File.ReadAllText(FullPath), site, allResources);
@@ -163,7 +163,7 @@ public sealed partial class PageResource
 				// Embeds are not fully processed into HTML until they are built when embedded into site content.
 				// This is done because something like Abbreviations requires the abbreviation target to be processed at the same time as the source.
 				MarkdownText!,
-			ResourceLocation.Site => ToHtml(MarkdownText!, markdownPipeline, FullPath),
+			ResourceLocation.Site => ToHtml(MarkdownText!, markdownPipeline, preProcessors, postProcessors, FullPath),
 			_ => throw new ArgumentOutOfRangeException(nameof(Location), Location, "Location was not handled.")
 		};
 
@@ -173,9 +173,9 @@ public sealed partial class PageResource
 			HtmlText += text;
 	}
 
-	private static string ToHtml(string markdown, MarkdownPipeline pipeline, string fullPath)
+	private static string ToHtml(string markdown, MarkdownPipeline pipeline, MarkdownPreProcessors preProcessors, HtmlPostProcessors postProcessors, string fullPath)
 	{
-		string markdownPreProcessed = MarkdownPreProcessors.Process(markdown);
+		string markdownPreProcessed = preProcessors.Process(markdown);
 
 		pipeline = GetPipeline();
 
@@ -185,7 +185,7 @@ public sealed partial class PageResource
 
 		renderer.Render(document);
 		renderer.Writer.Flush();
-		return HtmlPostProcessors.Process(renderer.Writer.ToString() ?? string.Empty, fullPath);
+		return postProcessors.Process(renderer.Writer.ToString() ?? string.Empty, fullPath);
 
 		MarkdownPipeline GetPipeline()
 		{

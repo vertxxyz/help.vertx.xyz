@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Troubleshooter;
 
@@ -11,12 +12,15 @@ public interface IMarkdownPreProcessor
 /// <summary>
 /// Runs on markdown before it is processed.
 /// </summary>
-public static class MarkdownPreProcessors
+public sealed class MarkdownPreProcessors
 {
-	private static readonly IMarkdownPreProcessor[] All =
-		typeof(IMarkdownPreProcessor).Assembly.GetTypes()
-			.Where(t => typeof(IMarkdownPreProcessor).IsAssignableFrom(t) && !t.IsAbstract)
-			.Select(t => (IMarkdownPreProcessor) Activator.CreateInstance(t)!).ToArray();
+	private readonly IMarkdownPreProcessor[] _all;
 
-	public static string Process(string html) => All.Aggregate(html, (current, processor) => processor.Process(current));
+	public MarkdownPreProcessors(IServiceProvider provider) =>
+		_all = typeof(IMarkdownPreProcessor).Assembly.GetTypes()
+			.Where(t => typeof(IMarkdownPreProcessor).IsAssignableFrom(t) && !t.IsAbstract)
+			.Select(t => (IMarkdownPreProcessor) ActivatorUtilities.CreateInstance(provider, t))
+			.ToArray();
+
+	public string Process(string html) => _all.Aggregate(html, (current, processor) => processor.Process(current));
 }

@@ -38,15 +38,6 @@
 
     <ItemGroup>
         <Content Remove="Source\prism.js" />
-        <EmbeddedResource Include="Source\JS\d3.v7.min.js">
-          <LogicalName>D3</LogicalName>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Source\JS\katex-min.js">
-          <LogicalName>Katex</LogicalName>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Source\JS\plot.js">
-          <LogicalName>Plot</LogicalName>
-        </EmbeddedResource>
         <Content Remove="Source\katex-min.js" />
         <EmbeddedResource Include="Source\JS\prism.js">
           <LogicalName>Prism</LogicalName>

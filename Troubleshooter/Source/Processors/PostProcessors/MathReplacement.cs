@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-using JavaScriptEngineSwitcher.V8;
+using JavaScriptEngineSwitcher.Core;
 using JetBrains.Annotations;
 
 namespace Troubleshooter;
@@ -17,12 +17,12 @@ public sealed partial class MathReplacement : IHtmlPostProcessor
 
 	private static readonly Regex s_MathRegex = GetMathRegex();
 
-	private readonly V8JsEngine _engine;
+	private readonly IJsEngine _engine;
 
-	public MathReplacement()
+	public MathReplacement(IJsEngine engine, OnlineResources onlineResources)
 	{
-		_engine = new V8JsEngine();
-		_engine.ExecuteResource("Katex", typeof(Program).Assembly);
+		_engine = engine;
+		_engine.Execute(onlineResources.KaTeX);
 	}
 
 	public string Process(string html, string fullPath)

@@ -14,12 +14,16 @@ public sealed class BuildOnStartup
 	private readonly Arguments _arguments;
 	private readonly Site _site;
 	private readonly MarkdownPipeline _pipeline;
+	private readonly HtmlPostProcessors _postProcessors;
+	private readonly MarkdownPreProcessors _preProcessors;
 
-	public BuildOnStartup(Arguments arguments, Site site, MarkdownPipeline pipeline)
+	public BuildOnStartup(Arguments arguments, Site site, MarkdownPipeline pipeline, MarkdownPreProcessors preProcessors, HtmlPostProcessors postProcessors)
 	{
 		_arguments = arguments;
 		_site = site;
 		_pipeline = pipeline;
+		_preProcessors = preProcessors;
+		_postProcessors = postProcessors;
 	}
 	
 	public async Task RebuildIfNotBuiltBefore()
@@ -32,7 +36,7 @@ public sealed class BuildOnStartup
 		// You can build just fine from the POST request.
 		_arguments.OverrideHost("https://unity.huh.how/");
 		
-		await BuildSiteController.Build(_arguments, _site, _pipeline);
+		await BuildSiteController.Build(_arguments, _site, _pipeline, _preProcessors, _postProcessors);
 		_arguments.OverrideHost(host);
 	}
 

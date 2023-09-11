@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Troubleshooter;
 
@@ -12,14 +13,16 @@ public interface IHtmlPostProcessor
 /// <summary>
 /// Runs on HTML after it has been processed from markdown.
 /// </summary>
-public static class HtmlPostProcessors
+public sealed class HtmlPostProcessors
 {
-	private static readonly IHtmlPostProcessor[] All =
-		typeof(IHtmlPostProcessor).Assembly.GetTypes()
+	private readonly IHtmlPostProcessor[] _all;
+
+	public HtmlPostProcessors(IServiceProvider provider) =>
+		_all = typeof(IHtmlPostProcessor).Assembly.GetTypes()
 			.Where(t => typeof(IHtmlPostProcessor).IsAssignableFrom(t) && !t.IsAbstract)
-			.Select(t => (IHtmlPostProcessor)Activator.CreateInstance(t)!)
+			.Select(t => (IHtmlPostProcessor)ActivatorUtilities.CreateInstance(provider, t))
 			.OrderBy(p => p.Order)
 			.ToArray();
 
-	public static string Process(string html, string fullPath) => All.Aggregate(html, (current, processor) => processor.Process(current, fullPath));
+	public string Process(string html, string fullPath) => _all.Aggregate(html, (current, processor) => processor.Process(current, fullPath));
 }

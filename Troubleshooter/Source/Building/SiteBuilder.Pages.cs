@@ -11,7 +11,7 @@ namespace Troubleshooter;
 
 public static partial class SiteBuilder
 {
-	private static void BuildPages(Arguments arguments, Site site, MarkdownPipeline pipeline)
+	private static void BuildPages(Arguments arguments, Site site, MarkdownPipeline pipeline, MarkdownPreProcessors preProcessors, HtmlPostProcessors postProcessors)
 	{
 		var allResources = CollectPages(site);
 		PageResourcesPostProcessors.Process(allResources, site);
@@ -45,7 +45,7 @@ public static partial class SiteBuilder
 
 				try
 				{
-					resource.BuildText(site, allResources, pipeline);
+					resource.BuildText(site, allResources, pipeline, preProcessors, postProcessors);
 				}
 				catch (Exception e)
 				{

@@ -43,6 +43,9 @@ public static class ServiceExtensions
 					})*/
 				.Build()
 		);
+
+		services.AddSingleton(provider => new MarkdownPreProcessors(provider));
+		services.AddSingleton(provider => new HtmlPostProcessors(provider));
 		
 		return services;
 	}
