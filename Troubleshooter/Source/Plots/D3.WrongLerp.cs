@@ -1,14 +1,11 @@
-using Markdig.Renderers;
 using OpenQA.Selenium;
 
 namespace Troubleshooter;
 
-internal sealed partial class D3
+public sealed partial class D3
 {
-	private static void WrongLerpGraph(HtmlRenderer renderer, WebDriver webDriver)
+	private static string WrongLerpGraph(IJavaScriptExecutor webDriver)
 	{
-		webDriver.ExecuteScript(OnlineResources.D3);
-		webDriver.ExecuteScript(OnlineResources.Plot);
 		string svg = (string)webDriver.ExecuteScript(
 			// language=javascript
 			"""
@@ -22,6 +19,6 @@ internal sealed partial class D3
 			"""
 		);
 
-		renderer.Write("<div class=\"d3\">").Write(svg).Write("</code>").Write("</div>");
+		return svg;
 	}
 }

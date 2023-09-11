@@ -231,7 +231,7 @@ Apply the listed syntax rules to formulate a valid property.
 #### Styling notes
 - Make careful adjustments to the combination of selectors you use to not override the styles of other elements that might use the classes.  
   If you see unwanted elements changing due to your style sheet, you will have to construct a more specific selector.
-- I find the complicated part about USS is not the selectors, but it is the layout, and ramifications layout in the hierarchy.  
+- I find the complicated part about USS is not the selectors, but the layout, and ramifications of layout in the hierarchy.  
   It can be tough to form an intuition about what styles across which elements will make the change you want to see. It just takes time.
 - Try to reduce the amount of overrides you have. The simpler you can achieve an outcome, the easier it will be to modify it and not make a mess in the process.  
   Understand the primary and secondary axes (main and cross), and what flex and justification rules apply to them, and don't overdo it.

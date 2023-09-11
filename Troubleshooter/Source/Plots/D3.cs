@@ -1,28 +1,32 @@
 using System;
+using JetBrains.Annotations;
 using Markdig.Renderers;
 using OpenQA.Selenium;
 
 namespace Troubleshooter;
 
-internal sealed partial class D3
+[UsedImplicitly]
+public sealed partial class D3
 {
 	private readonly WebRenderer _webRenderer;
 
-	public D3(WebRenderer webRenderer)
+	public D3(WebRenderer webRenderer, OnlineResources resources)
 	{
 		_webRenderer = webRenderer;
+		WebDriver webDriver = _webRenderer.Driver;
+		webDriver.ExecuteScript(resources.D3);
+		webDriver.ExecuteScript(resources.Plot);
 	}
 	
 	public void Plot(string key, HtmlRenderer renderer)
 	{
 		WebDriver webDriver = _webRenderer.Driver;
-		switch (key)
+		string svg = key switch
 		{
-			case "graph-wrong-lerp":
-				WrongLerpGraph(renderer, webDriver);
-				break;
-			default:
-				throw new ArgumentOutOfRangeException(key, $"{key} is not yet supported by {nameof(D3)}.{nameof(Plot)}.");
-		}
+			"graph-wrong-lerp" => WrongLerpGraph(webDriver),
+			_ => throw new ArgumentOutOfRangeException(key, $"{key} is not yet supported by {nameof(D3)}.{nameof(Plot)}.")
+		};
+
+		renderer.Write("<div class=\"d3\">").Write(svg).Write("</code>").Write("</div>");
 	}
 }

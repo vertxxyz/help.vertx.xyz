@@ -229,7 +229,6 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
                 // Anything that can affect layout
                 setupCodeSettings();
                 processNomnoml();
-                processMermaid();
                 reloadScripts(valueToLoad);
                 // -------------------------------
                 setTimeout(() => scrollToHash(hash), 100); // Delay seems to be required in some cases.
@@ -399,13 +398,6 @@ function processNomnoml() {
         }
         graphs[i].classList.add("processed-nomnoml");
     }
-}
-
-function processMermaid() {
-    mermaid.initialize({startOnLoad: false});
-    mermaid.run({
-        querySelector: '.mermaid',
-    });
 }
 
 function reloadScripts(value) {

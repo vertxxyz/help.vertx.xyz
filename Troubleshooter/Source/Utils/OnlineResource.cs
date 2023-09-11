@@ -77,10 +77,9 @@ public sealed class OnlineResource
 		int retries = 0;
 		do
 		{
-			HttpResponseMessage message;
 			try
 			{
-				message = await c.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
+				HttpResponseMessage message = await c.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
 				if (message.IsSuccessStatusCode)
 				{
 					Console.WriteLine($"\"{_owner}/{_path}\" loaded successfully.");
@@ -102,11 +101,11 @@ public sealed class OnlineResource
 
 public class OnlineResources
 {
-	public static readonly OnlineResource Graphre = new("graphre", "graphre.js", SupportedCDNs.All);
-	public static readonly OnlineResource D3 = new("", "d3", SupportedCDNs.JsDelivr);
-	public static readonly OnlineResource Plot = new("", "@observablehq/plot", SupportedCDNs.JsDelivr);
-	public static readonly OnlineResource Mermaid = new("mermaid", "mermaid.min.js", SupportedCDNs.All);
-	public static readonly OnlineResource KaTeX = new("katex", "katex.min.js", SupportedCDNs.All);
+	public readonly OnlineResource Graphre = new("graphre", "graphre.js", SupportedCDNs.All);
+	public readonly OnlineResource D3 = new("", "d3", SupportedCDNs.JsDelivr);
+	public readonly OnlineResource Plot = new("", "@observablehq/plot", SupportedCDNs.JsDelivr);
+	public readonly OnlineResource Mermaid = new("mermaid", "mermaid.min.js", SupportedCDNs.All);
+	public readonly OnlineResource KaTeX = new("katex", "katex.min.js", SupportedCDNs.All);
 
 	public async Task LoadAll()
 	{

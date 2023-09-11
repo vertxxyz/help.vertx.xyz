@@ -7,25 +7,26 @@ using Markdig.Parsers;
 using Markdig.Renderers;
 using Markdig.Renderers.Html;
 using Markdig.Syntax;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Troubleshooter.Renderers;
 
 public static class CodeHighlightingExtensions
 {
-	public static MarkdownPipelineBuilder UseCodeHighlighting(this MarkdownPipelineBuilder pipeline, WebRenderer webRenderer)
+	public static MarkdownPipelineBuilder UseCodeHighlighting(this MarkdownPipelineBuilder pipeline, IServiceProvider provider)
 	{
-		pipeline.Extensions.Add(new CodeHighlightingExtension(webRenderer));
+		pipeline.Extensions.Add(new CodeHighlightingExtension(provider));
 		return pipeline;
 	}
 }
 
 public class CodeHighlightingExtension : IMarkdownExtension
 {
-	private readonly WebRenderer _webRenderer;
+	private readonly IServiceProvider _provider;
 
-	public CodeHighlightingExtension(WebRenderer webRenderer)
+	public CodeHighlightingExtension(IServiceProvider provider)
 	{
-		_webRenderer = webRenderer;
+		_provider = provider;
 	}
 
 	public void Setup(MarkdownPipelineBuilder pipeline) { }
@@ -39,7 +40,11 @@ public class CodeHighlightingExtension : IMarkdownExtension
 		CodeBlockRenderer? codeBlockRenderer = textRendererBase.ObjectRenderers.FindExact<CodeBlockRenderer>();
 		if (codeBlockRenderer != null)
 			textRendererBase.ObjectRenderers.Remove(codeBlockRenderer);
-		textRendererBase.ObjectRenderers.AddIfNotAlready(new OverrideCodeBlockRenderer(codeBlockRenderer, _webRenderer));
+		textRendererBase.ObjectRenderers.AddIfNotAlready(new OverrideCodeBlockRenderer(
+			codeBlockRenderer, 
+			ActivatorUtilities.CreateInstance<D3>(_provider),
+			ActivatorUtilities.CreateInstance<Mermaid>(_provider)
+		));
 	}
 }
 
@@ -48,12 +53,17 @@ public class OverrideCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 	private readonly CodeBlockRenderer _codeBlockRenderer;
 	private readonly V8JsEngine _engine;
 	private readonly D3 _d3;
+	private readonly Mermaid _mermaid;
 
-	public OverrideCodeBlockRenderer(CodeBlockRenderer? codeBlockRenderer, WebRenderer webRenderer)
+	public OverrideCodeBlockRenderer(CodeBlockRenderer? codeBlockRenderer, D3 d3, Mermaid mermaid)
 	{
-		_d3 = new D3(webRenderer);
+		_d3 = d3;
+		_mermaid = mermaid;
 		_codeBlockRenderer = codeBlockRenderer ?? new CodeBlockRenderer();
 		_codeBlockRenderer.BlocksAsDiv.Add("d3");
+		_codeBlockRenderer.BlocksAsDiv.Add("mermaid");
+
+		// This is a local resource as it's configured using a specific setup before being downloaded.
 		_engine = new V8JsEngine();
 		_engine.ExecuteResource("Prism", typeof(Program).Assembly);
 	}
@@ -94,6 +104,9 @@ public class OverrideCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 					break;
 				case "d3":
 					_d3.Plot(ExtractSourceCode(node), renderer);
+					break;
+				case "mermaid":
+					_mermaid.Plot(ExtractSourceCode(node), renderer);
 					break;
 				default:
 					_codeBlockRenderer.Write(renderer, node);
