@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Markdig;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Troubleshooter.Search;
 
@@ -24,22 +23,19 @@ public sealed class BuildSiteController : ControllerBase
 		_markdownPipeline = markdownPipeline;
 	}
 
-	[HttpPost("/tools")]
-	public async Task<IActionResult> RunTools(HttpContext context)
+	[HttpPost("/tools/{id}")]
+	public async Task<IActionResult> RunTools(string id)
 	{
-		if (context.Request.Form.TryGetValue("rebuild", out var value))
+		switch (id)
 		{
-			switch (value[0])
-			{
-				case RebuildAllKey:
-					await Build(_arguments, _site, _markdownPipeline);
-					break;
-				case RebuildContentKey:
-					await BuildContent(_arguments);
-					break;
-				default:
-					throw new ArgumentException($"{value[0]} not supported by tooling.");
-			}
+			case RebuildAllKey:
+				await Build(_arguments, _site, _markdownPipeline);
+				break;
+			case RebuildContentKey:
+				await BuildContent(_arguments);
+				break;
+			default:
+				throw new ArgumentException($"{id} not supported by tooling.");
 		}
 		
 		return Ok();

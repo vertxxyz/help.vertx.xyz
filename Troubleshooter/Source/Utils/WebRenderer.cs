@@ -1,12 +1,10 @@
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting;
+using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
 
 namespace Troubleshooter;
 
-public class WebRenderer : IHostedService
+public class WebRenderer
 {
 	public Arguments Arguments { get; }
 	public WebDriver Driver { get; }
@@ -14,26 +12,13 @@ public class WebRenderer : IHostedService
 	public WebRenderer(Arguments arguments)
 	{
 		var options = new EdgeOptions();
-		// options.AddArgument("headless");
-		options.AddArgument("disable-extensions");
+		// options.AddArgument("--headless");
+		options.AddArguments("--disable-extensions", "--window-size=1920,1080");
 		Driver = new EdgeDriver(EdgeDriverService.CreateDefaultService(), options);
 		Arguments = arguments;
-	}
-
-
-	public Task StartAsync(CancellationToken cancellationToken)
-	{
-		// AppDomain.CurrentDomain.ProcessExit += (_, _) => { Driver.Quit(); };
 		
-		// Set the webdriver (the browser used to render diagrams) to point to our running host.
-		// Driver.Url = Arguments.Host;
-		Driver.Url = "https://unity.huh.how/";
-		return Task.CompletedTask;
-	}
-
-	public Task StopAsync(CancellationToken cancellationToken)
-	{
-		Driver.Quit();
-		return Task.CompletedTask;
+		Driver.Url = arguments.Host;
+		
+		AppDomain.CurrentDomain.ProcessExit += (_, _) => Driver.Quit();
 	}
 }

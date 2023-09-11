@@ -47,13 +47,10 @@
         </symbol>
     </svg>
 </div>
-<div id="local-developer-tools" class="header hidden">
-    <form action="/tools" method="post">
-        <button type="submit" name="rebuild" value="rebuild-all">Rebuild All</button>
-        <button type="submit" name="rebuild" value="rebuild-content">Rebuild Content Only</button>
-    </form>
+<div id="local-developer-tools" class="header dev-tools-header hidden">
+    <div class="interactive-button" onclick="postText('tools', 'rebuild-all')">Rebuild All</div>
+    <div class="interactive-button" onclick="postText('tools', 'rebuild-content')">Rebuild Content</div>
 </div>
-
 <div class="header">
     <div class="header__contents">
         <div class="header__title header__title--large">

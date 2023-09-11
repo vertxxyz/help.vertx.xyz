@@ -1,4 +1,5 @@
-﻿using System;
+﻿// #define FORCE_REBUILD
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -22,9 +23,10 @@ Arguments arguments = new(args) { Host = $"http://localhost:{port}" };
 IServiceCollection services = builder.Services;
 services.AddSingleton<Arguments>(_ => arguments);
 services.AddSingleton<IRootPathProvider, Arguments>(_ => arguments);
-services.AddHostedService<WebRenderer>();
+services.AddSingleton<WebRenderer>();
 services.AddSingleton<Site>();
 services.AddControllers();
+services.AddMemoryCache();
 
 try
 {
@@ -35,7 +37,6 @@ try
 	OnlineResources onlineResources = new OnlineResources();
 	await onlineResources.LoadAll();
 	services.AddSingleton<OnlineResources>(_ => onlineResources);
-	
 	services.AddSingleton<MarkdownPipeline>(provider =>
 	{
 		var webRenderer = provider.GetRequiredService<WebRenderer>();
@@ -88,7 +89,7 @@ static void LogExitException(Exception e, string message)
 static async Task RebuildIfNotBuiltBefore(IServiceProvider serviceProvider)
 {
 	var arguments = serviceProvider.GetRequiredService<Arguments>();
-
+#if !FORCE_REBUILD
 	string indexPath = Path.Combine(arguments.Path, "index.html");
 	if (File.Exists(indexPath))
 	{
@@ -97,6 +98,7 @@ static async Task RebuildIfNotBuiltBefore(IServiceProvider serviceProvider)
 	}
 
 	Console.WriteLine("No site present at path. Building for the first time...");
+#endif
 	await BuildSiteController.Build(arguments, serviceProvider.GetRequiredService<Site>(), serviceProvider.GetRequiredService<MarkdownPipeline>());
 }
 

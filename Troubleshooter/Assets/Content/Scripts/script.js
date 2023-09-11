@@ -468,3 +468,18 @@ function toggleCollapsedCode(button) {
         collapsable.classList.add(collapsed);
     }
 }
+
+function postText(key, value) {
+    fetch(`${window.location.origin}/${key}/${value}`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'text/plain',
+            'Content-Type': 'text/plain'
+        }
+    }).then(response => {
+        console.log(response);
+        if (response.status === 200) {
+            location.reload();
+        }
+    });
+}

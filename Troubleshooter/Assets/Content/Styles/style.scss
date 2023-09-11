@@ -37,6 +37,14 @@
   font-weight: normal;
 }
 
+body {
+  --combined-header-height: #{base.$header-height};
+}
+
+body:has(> #local-developer-tools:not(.hidden)) {
+  --combined-header-height: #{base.$header-height} * 2;
+}
+
 html, body {
   font-family: base.$font-family;
   -webkit-font-smoothing: antialiased;
@@ -136,7 +144,7 @@ p {
   margin-block-end: 1em;
   margin-inline-start: 0;
   margin-inline-end: 12px;
-  
+
   & > img:only-child:not(.emoji) {
     display: block;
   }
@@ -152,7 +160,7 @@ img {
     margin: 0;
     transform: translateY(4px);
   }
-  
+
   &.padded {
     margin: 0;
   }
@@ -241,7 +249,7 @@ iframe {
   @extend %gridarea-contents;
   flex-grow: 2;
   flex-basis: 0;
-  height: calc(var(--vh) - 30px - #{base.$bottom-padding} - #{base.$header-height});
+  height: calc(var(--vh) - 30px - #{base.$bottom-padding} - #{var(--combined-header-height)});
   overflow: auto;
   box-sizing: content-box;
 
@@ -257,7 +265,7 @@ iframe {
 .sidebar {
   grid-area: sidebar;
   position: relative;
-  height: calc(var(--vh) - #{base.$header-height});
+  height: calc(var(--vh) - #{var(--combined-header-height)});
   border-left: 1px solid base.$unity-colors-default-border;
 }
 
@@ -360,7 +368,7 @@ div.footnotes {
   margin-top: 40px;
   font-size: 11pt;
   filter: grayscale(40%);
-  
+
   &::before {
     display: block;
     content: "Footnotes";
@@ -414,7 +422,7 @@ div.note {
   > hr {
     margin-left: unset;
   }
-  
+
   > figure {
     margin-left: base.$block-container-margin-left-right;
   }
@@ -440,7 +448,8 @@ span.note {
   margin: 1em auto;
   text-align: center;
   max-width: 500px;
-  &>p {
+
+  & > p {
     margin: 0;
   }
 }
@@ -532,7 +541,7 @@ kbd {
 
   .sidebar {
     position: fixed;
-    top: base.$header-height;
+    top: var(--combined-header-height);
     right: 0;
     width: base.$sidebar-width-mobile;
     z-index: 3;
@@ -723,7 +732,7 @@ blockquote {
   box-shadow: inset 0 -1px 0 #6e768166;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
-  
+
   > .menu-path__separator {
     fill: base.$bold-color;
     user-select: none;
@@ -731,7 +740,24 @@ blockquote {
     width: 1em;
     height: 1em;
   }
+
   > .menu-path__item {
-    
+
+  }
+}
+
+.dev-tools-header {
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+  padding: 5px 20px;
+  border-bottom: 1px dashed white;
+  box-sizing: border-box;
+
+  > .interactive-button {
+    margin: 0 5px;
+    height: 100%;
+    max-height: 35px;
+    align-self: center;
   }
 }
