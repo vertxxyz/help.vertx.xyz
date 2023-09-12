@@ -3,7 +3,6 @@ using JetBrains.Annotations;
 using Markdig.Renderers;
 using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
-using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace Troubleshooter;
 
@@ -34,7 +33,7 @@ public sealed class Mermaid
 		          return contents.querySelector("#mermaid").innerHTML;
 		          """;
 
-		_logger.Log(LogLevel.Debug, "\"\"\"\n{Js}\n\"\"\"", js);
+		_logger.LogDebug("\"\"\"\n{Js}\n\"\"\"", js);
 
 		// Inject the diagram into the body of the page.
 		string svg = (string)driver.ExecuteScript(js);

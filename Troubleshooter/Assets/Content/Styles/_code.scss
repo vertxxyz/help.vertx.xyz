@@ -3,6 +3,7 @@
 %code-container-base {
 	font-family: 'JetBrains Mono', monospace;
 	background-color: var(--backgroundColor);
+	text-align: left;
 	color: #BDBDBD;
 	margin: base.$block-container-margins;
 	margin-block-start: 1em;
@@ -127,6 +128,10 @@ pre {
 		rx: 5px;
 		ry: 5px;
 	}
+}
+
+.d3 {
+	user-select: none;
 }
 
 .collapsable {

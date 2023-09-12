@@ -16,6 +16,8 @@ When the logs in `actions` are invoked after this loop there will be 10 logs of 
 #### Why is this?
 What the code really looks like when compiled is this:  
 ```csharp
+// Lowered C# code.
+
 [CompilerGenerated]
 private sealed class <>c__DisplayClass0_0
 {
@@ -38,9 +40,31 @@ public void ExampleA()
         <>c__DisplayClass0_.i++;
     }
 }
+
+// Lowered C# code ⚠️ manually simplified ⚠️
+
+private sealed class DisplayClass
+{
+    public int i;
+
+    internal void B() => Debug.Log(i);
+}
+
+public void ExampleA()
+{
+    var array = new Action[10];
+    DisplayClass displayClass = new();
+    displayClass.i = 0;
+    while (displayClass.i < 10)
+    {
+        array[displayClass.i] = new Action(displayClass.B);
+        displayClass.i++;
+    }
+    // displayClass.i is 10
+}
 ```
 
-Looking past all the fancy symbols, you can make out a DisplayClass whose variable `i` is used as the counter to our loop.  
+Looking past all the fancy symbols (see the manually simplified code), you can see a `DisplayClass` whose variable `i` is used as the counter to our loop.  
 That class is shared across all Actions we create, and `i` is increased to `10` over the loop's iterations.
 
 ### The fix
@@ -61,6 +85,8 @@ public void ExampleB()
 
 The new version of the compiled code looks like this:
 ```csharp
+// Lowered C# code.
+
 [CompilerGenerated]
 private sealed class <>c__DisplayClass0_0
 {
@@ -84,6 +110,46 @@ public void ExampleB()
         num++;
     }
 }
+
+// Lowered C# code ⚠️ manually simplified ⚠️
+
+private sealed class DisplayClass
+{
+    public int iLocal;
+
+    internal void B()
+    {
+        Debug.Log(iLocal);
+    }
+}
+
+public void ExampleB()
+{
+    var array = new Action[10];
+    int num = 0;
+    while (num < 10)
+    {
+        // A new DisplayClass is created in the loop, and iLocal is never increased.
+        DisplayClass displayClass = new();
+        displayClass.iLocal = num;
+        array[num] = new Action(displayClass.B);
+        num++;
+    }
+}
 ```
 
-As you can see, now a new DisplayClass is created in every iteration of the loop, and the counter is copied to that instance. Meaning only `num` is increased to `10`, and each `iLocal` is a copy of the state at a different iteration of the loop.
+As you can see, now a new `DisplayClass` is created in every iteration of the loop, and the counter is copied to that instance. Meaning only `num` is increased to `10`, and each `iLocal` is a copy of the state at a different iteration of the loop.
+
+---
+
+### Enforcing no closures
+This isn't always applicable, but certain methods like UI Toolkit's [`RegisterCallback`](https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.RegisterCallback.html) take in an args parameter, using generics to capture variables in pooled classes.  
+If you're using a delegate that expects not to capture variables, you can mark it with the `static` keyword (as of C# 9.0).
+
+#### Example
+```csharp
+field.RegisterCallback<ClickEvent, VisualElement>(
+    static (_, element) => element.Focus(),
+    otherElement
+);
+```

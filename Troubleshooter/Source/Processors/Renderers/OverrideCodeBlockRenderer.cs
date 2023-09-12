@@ -8,6 +8,7 @@ using Markdig.Renderers;
 using Markdig.Renderers.Html;
 using Markdig.Syntax;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Troubleshooter.Renderers;
 
@@ -45,7 +46,8 @@ public class CodeHighlightingExtension : IMarkdownExtension
 			_provider.GetRequiredService<IJsEngine>(),
 			ActivatorUtilities.CreateInstance<D3>(_provider),
 			ActivatorUtilities.CreateInstance<Mermaid>(_provider),
-			ActivatorUtilities.CreateInstance<Nomnoml>(_provider)
+			ActivatorUtilities.CreateInstance<Nomnoml>(_provider),
+			_provider.GetRequiredService<ILogger<OverrideCodeBlockRenderer>>()
 		));
 	}
 }
@@ -57,12 +59,14 @@ public class OverrideCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 	private readonly D3 _d3;
 	private readonly Mermaid _mermaid;
 	private readonly Nomnoml _nomnoml;
+	private readonly ILogger _logger;
 
-	public OverrideCodeBlockRenderer(CodeBlockRenderer? codeBlockRenderer, IJsEngine jsEngine, D3 d3, Mermaid mermaid, Nomnoml nomnoml)
+	public OverrideCodeBlockRenderer(CodeBlockRenderer? codeBlockRenderer, IJsEngine jsEngine, D3 d3, Mermaid mermaid, Nomnoml nomnoml, ILogger<OverrideCodeBlockRenderer> logger)
 	{
 		_d3 = d3;
 		_mermaid = mermaid;
 		_nomnoml = nomnoml;
+		_logger = logger;
 		_codeBlockRenderer = codeBlockRenderer ?? new CodeBlockRenderer();
 		_codeBlockRenderer.BlocksAsDiv.Add("d3");
 		_codeBlockRenderer.BlocksAsDiv.Add("mermaid");
@@ -94,18 +98,18 @@ public class OverrideCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 		}
 		else
 		{
-			string str = fencedCodeBlock.Info!.Replace(parser.InfoPrefix!, string.Empty);
-			switch (str)
+			string language = fencedCodeBlock.Info!.Replace(parser.InfoPrefix!, string.Empty);
+			switch (language)
 			{
 				case "cs":
 				case "csharp":
-					Highlight(str, "csharp");
+					Highlight(language, "csharp");
 					break;
 				case "diff":
-					Highlight(str, "diff");
-					break;
 				case "css":
-					Highlight(str, "css");
+				case "json":
+				case "cmake":
+					Highlight(language, language);
 					break;
 				case "d3":
 					_d3.Plot(ExtractSourceCode(node), renderer);
@@ -116,7 +120,11 @@ public class OverrideCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 				case "nomnoml":
 					_nomnoml.Plot(ExtractSourceCode(node), renderer);
 					break;
+				case "":
+					_codeBlockRenderer.Write(renderer, node);
+					break;
 				default:
+					_logger.LogWarning("{Language} was not highlighted or plotted, and isn't added as a default, was this a mistake?", language);
 					_codeBlockRenderer.Write(renderer, node);
 					break;
 			}

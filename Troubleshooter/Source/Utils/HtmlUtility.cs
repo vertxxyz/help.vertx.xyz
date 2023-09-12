@@ -126,7 +126,7 @@ public static partial class HtmlUtility
 			// Replace italic <span>s with <em> - Must occur before we replace inline styles
 			foreach (string style in italicStyles)
 			{
-				content = StringUtility.ReplaceMatch(content, new(@$"<(\w+) [\w ""_=]+{style}["" ][^<]+(</\w+>)"), (match, builder) =>
+				content = StringUtility.ReplaceMatch(content, new Regex($"""<(\w+) [\w "_=]+{style}[" ][^<]+(</\w+>)"""), (match, builder) =>
 				{
 					builder.Append("<em");
 					builder.Append(match.Value[(match.Groups[1].Index + match.Groups[1].Length - match.Index)..(match.Groups[2].Index - match.Index)]);
