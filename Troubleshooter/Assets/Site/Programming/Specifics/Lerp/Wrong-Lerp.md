@@ -2,14 +2,15 @@
 
 Lerp is **linear**, if `t` changes at a constant speed, so does the output.  
 Wrong-lerp is an application of lerp that produces smooth, yet imperfect movement towards a target value.  
-Accompanied by such phrases like:
-> 🤓 *"Your using Lerp wrong."*  
-
-This common hacky application easily creates smooth motion.  
 
 ```csharp
 value = Mathf.Lerp(value, target, Time.deltaTime * speed);
 ```
+
+Accompanied by such phrases like:
+> 🤓 *"Your using Lerp wrong."*  
+
+This common hacky application easily creates smooth motion.
 
 ### Downsides
 - `speed` isn't speed, it's a vague quickness.

@@ -1,14 +1,28 @@
 ## Resource paths
+Guidelines for paths used by the Resources API:
+- Paths are **local to the Resources folder** above the asset.  
+- **Don't include the file extension**.  
+- **Don't use back-slashes**.
 
-Paths used by the Resources API are **local to the Resources folder** above the asset.  
-Paths **do not include the file extension**.  
-Paths **cannot contain back-slashes**.  
-See [Resources.Load](https://docs.unity3d.com/ScriptReference/Resources.Load.html).
+See [`Resources.Load`](https://docs.unity3d.com/ScriptReference/Resources.Load.html) for more usage information.
 
-### Resolution
-Example:
-#### 🟢 Correct
-`"Missiles/PlasmaGun"`
+### Example
 
-#### 🔴 Incorrect
-`"Assets/Resources/Missiles/PlasmaGun.prefab"`
+```
+Assets/
+├── ...
+├── Resources/
+│   ├── Missiles/
+│   │   ├── PlasmaGun.prefab
+│   │   └── ...
+│   └── ...
+└── ...
+```
+
+```csharp
+// 🟢 Correct
+var plasmaGun = Resources.Load<GameObject>("Missiles/PlasmaGun");
+
+// 🔴 Incorrect
+var plasmaGun = Resources.Load<GameObject>("Assets/Resources/Missiles/PlasmaGun.prefab");
+```

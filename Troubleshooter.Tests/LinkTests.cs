@@ -18,7 +18,7 @@ public partial class LinkTests
 	{
 		string embedsRoot = TestUtility.TestSite.EmbedsDirectory;
 		foreach (string embeddedFile in Directory.EnumerateFiles(embedsRoot, "*", SearchOption.AllDirectories))
-			embeddedFiles.Add(embeddedFile[(embedsRoot.Length + 1)..].ToConsistentPath());
+			embeddedFiles.Add(embeddedFile[(embedsRoot.Length + 1)..].ToWorkingPath());
 	}
 
 	[Theory]
@@ -27,9 +27,22 @@ public partial class LinkTests
 	{
 		using var assertionScope = new AssertionScope();
 		string siteRoot = TestUtility.TestSite.Directory;
-		foreach ((string fullPath, _) in PageUtility.LinksAsFullPaths(text, path, siteRoot))
+		if (path.EndsWith(Constants.RedirectSuffix))
 		{
-			new FileInfo(fullPath).Should().Exist("{0} is missing a link", name);
+			foreach ((string fullPath, _) in PageUtility.GetLinkFullPathsFromMarkdownText(text, path, siteRoot))
+			{
+				if (Path.HasExtension(fullPath))
+					new FileInfo(fullPath).Should().Exist("{0} is missing a link", name);
+				else
+					new DirectoryInfo(fullPath).Should().Exist("{0} is missing a link", name);
+			}
+		}
+		else
+		{
+			foreach ((string fullPath, _) in PageUtility.GetLinkFullPathsFromMarkdownText(text, path, siteRoot))
+			{
+				new FileInfo(fullPath).Should().Exist("{0} is missing a link", name);
+			}
 		}
 	}
 
@@ -55,7 +68,7 @@ public partial class LinkTests
 	public void ValidateEmbeds(string name, string path, string text)
 	{
 		using var assertionScope = new AssertionScope();
-		foreach ((string localPath, _) in PageUtility.EmbedsAsLocalEmbedPaths(text))
+		foreach ((string localPath, _) in PageUtility.GetEmbedsAsLocalPathsFromMarkdownText(text))
 			embeddedFiles.Should().Contain(localPath, $"was not present in embedded files - \"{name}\"");
 	}
 
@@ -65,9 +78,9 @@ public partial class LinkTests
 	{
 		using var assertionScope = new AssertionScope();
 		string directory = Path.GetDirectoryName(path)!;
-		foreach ((string localPath, _) in PageUtility.LocalImagesAsRootPaths(text, false))
+		foreach ((string localPath, _) in PageUtility.GetImagesAsLocalPathsFromMarkdownText(text, false))
 		{
-			string fullPath = localPath.StartsWith('/') 
+			string fullPath = localPath.StartsWith('/') // path is not finalised
 				? Path.GetFullPath(Path.Combine(TestUtility.TestSite.ContentDirectory, localPath[1..])).ToUnTokenized() 
 				: Path.GetFullPath(Path.Combine(directory, localPath)).ToUnTokenized();
 

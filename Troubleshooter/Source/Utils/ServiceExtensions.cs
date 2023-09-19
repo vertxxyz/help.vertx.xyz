@@ -56,6 +56,7 @@ public static class ServiceExtensions
 		services.AddSingleton(provider => new MarkdownPreProcessors(provider));
 		services.AddSingleton(provider => new HtmlPostProcessors(provider));
 		services.AddSingleton(provider => new PageResourcesPostProcessors(provider));
+		services.AddSingleton(provider => new BuildPostProcessors(provider));
 		services.AddSingleton<IProcessorGroup, ProcessorsGroup>();
 		return services;
 	}

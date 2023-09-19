@@ -45,17 +45,26 @@ public sealed class Site
 		return siteRootIndex;
 	}
 		
+	/// <summary>
+	/// Converts a Full Path that is in the Site directory to a local path with the necessary text replacement to be link-appropriate. Removes extensions.
+	/// </summary>
 	public string ConvertFullSitePathToLinkPath(string fullPath)
 	{
 		string localPath = FinalisePathWithRootIndex(fullPath, RootIndex);
 		return Path.ChangeExtension(localPath, null);
 	}
 		
+	/// <summary>
+	/// Converts a Full Path that is in the Embeds directory to a local path with the necessary text replacement to be link-appropriate. Removes extensions.
+	/// </summary>
 	public string ConvertFullEmbedPathToLinkPath(string embed)
 	{
 		string localPath = FinalisePathWithRootIndex(embed, EmbedRootIndex);
 		return Path.ChangeExtension(localPath, null);
 	}
 		
-	public static string FinalisePathWithRootIndex(string fullPath, int rootIndex) => fullPath[rootIndex..].FinalisePath();
+	/// <summary>
+	/// Converts a Full Path that is in a directory at the rootIndex depth to a local path with the necessary text replacement to be link-appropriate.
+	/// </summary>
+	public static string FinalisePathWithRootIndex(string fullPath, int rootIndex) => fullPath[rootIndex..].ToFinalisedWorkingPath();
 }

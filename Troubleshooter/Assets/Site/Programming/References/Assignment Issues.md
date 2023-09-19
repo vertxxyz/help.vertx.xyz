@@ -3,8 +3,8 @@
 :::note  
 #### 1. Mismatched types
 You may be using a different type than is being assigned.
-- Using `Text` when using TextMeshPro objects. Use `TextMeshProUGUI` or `TMP_Text` instead.  
-  `Text` refers to the legacy UI text.
+- Using `Text` when using TextMeshPro objects. Use [`TextMeshProUGUI`](https://docs.unity3d.com/Packages/com.unity.textmeshpro@latest/index.html?subfolder=/api/TMPro.TextMeshProUGUI.html) or `TMP_Text` instead.  
+  `Text` refers to the legacy UI text[^1].
 - Using a type under an incorrect namespace. Hover over the type in your IDE and ensure it has the namespace you expect.
 
 :::  
@@ -19,3 +19,5 @@ If you have a script selected you are not looking at the correct location to ass
 Select a GameObject or asset (such as a prefab or scriptable object) and assign the [reference to an instance](Serializing%20Component%20References.md#reference-the-instance-in-the-inspector).
 
 :::
+
+[^1]: <<Code/Namespaces.md>>

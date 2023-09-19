@@ -17,7 +17,8 @@ public enum ResourceType
 	Markdown,
 	RichText,
 	Html,
-	Generator
+	Generator,
+	Redirection
 }
 
 public enum ResourceLocation
@@ -33,7 +34,7 @@ public enum ResourceLocation
 }
 
 /// <summary>
-/// Full paths to Page Resources.
+/// Full paths (C:\...) to Page Resources.
 /// </summary>
 public sealed class PageResourcesLookup : Dictionary<string, PageResource> { }
 
@@ -81,10 +82,10 @@ public sealed partial class PageResource
 	public HashSet<string>? EmbeddedInto { get; private set; }
 
 	private string EmbedsDirectory =>
-		_embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").ToConsistentPath();
+		_embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").ToWorkingPath();
 
 	private string ImagesDirectory =>
-		_embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Content", "Images").ToConsistentPath();
+		_embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Content", "Images").ToWorkingPath();
 
 	private string? _embedsDirectory;
 
@@ -147,8 +148,11 @@ public sealed partial class PageResource
 			case ResourceType.Generator:
 				// Generators are processed during the gather stage.
 				return;
+			case ResourceType.Redirection:
+				// Redirection is processed in RedirectBuildPostProcessor.
+				return;
 			default:
-				throw new ArgumentOutOfRangeException();
+				throw new ArgumentOutOfRangeException(nameof(Type), "Missing when building text.");
 		}
 	}
 
@@ -216,14 +220,14 @@ public sealed partial class PageResource
 
 		// Find and replace embed anchors with their content
 		{
-			var embeds = PageUtility.EmbedsAsLocalEmbedPaths(allText);
+			var embeds = PageUtility.GetEmbedsAsLocalPathsFromMarkdownText(allText);
 
 			int last = 0;
 			foreach ((string localPath, Group group) in embeds)
 			{
 				if (allResources == null)
 					throw new ArgumentException($"{nameof(allResources)} was null, and yet embeds were found.");
-				string fullPath = PageUtility.LocalEmbedToFullPath(localPath, site);
+				string fullPath = PageUtility.GetFullPathFromLocalEmbed(localPath, site);
 				if (!allResources.TryGetValue(fullPath, out var embeddedPage))
 					throw new LogicException(
 						$"\"{fullPath}\" is missing from {nameof(allResources)} while processing \"{FullPath}\".{nameof(embeds)}");
@@ -260,7 +264,7 @@ public sealed partial class PageResource
 			string directory = Path.GetDirectoryName(Site.FinalisePathWithRootIndex(FullPath, rootIndex))!;
 
 			int last = 0;
-			foreach ((string image, Group group) in PageUtility.LocalImagesAsRootPaths(allText, false))
+			foreach ((string image, Group group) in PageUtility.GetImagesAsLocalPathsFromMarkdownText(allText, false))
 			{
 				if (ApproximatelyStartsWith(group.Value, EmbedsDirectory, 2))
 					continue;
@@ -269,9 +273,9 @@ public sealed partial class PageResource
 					continue;
 
 				stringBuilder.Append(allText[last..group.Index]);
-				string imagePath = image.FinaliseDirectoryPathOnly(); // The path explicitly mentioned in the markdown
+				string imagePath = image.ToFinalisedWorkingPathDirectoryOnly(); // The path explicitly mentioned in the markdown
 				string combinedPath = Path.Combine(directoryRoot, directory, imagePath);
-				string finalPath = HttpUtility.UrlPathEncode(combinedPath).ToConsistentPath();
+				string finalPath = HttpUtility.UrlPathEncode(combinedPath).ToOutputPath();
 				if (finalPath[0] != '/')
 					stringBuilder.Append($"/{finalPath}");
 				else
@@ -320,9 +324,10 @@ public sealed partial class PageResource
 				return WriteStatus.Ignored;
 		}
 
-		if (Type == ResourceType.Generator)
+		if (Type is ResourceType.Generator or ResourceType.Redirection)
 		{
 			// Generators do not write, they only create other resources.
+			// Redirection moves other resources.
 			return WriteStatus.Ignored;
 		}
 

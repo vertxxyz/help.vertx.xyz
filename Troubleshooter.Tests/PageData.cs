@@ -9,28 +9,29 @@ public class PageData : IEnumerable<object[]>
 {
 	public IEnumerator<object[]> GetEnumerator()
 	{
-		foreach (object[] objects in Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, "*.md", SearchOption.AllDirectories)
-			         .Select(file => new object[]
-			         {
-				         Path.GetFileNameWithoutExtension(file),
-				         file,
-				         File.ReadAllText(file)
-			         }))
-			yield return objects;
-
-		foreach (string file in Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, "*.md.gen", SearchOption.AllDirectories))
+		foreach (string file in Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, "*.md", SearchOption.AllDirectories))
 		{
-			foreach ((string path, PageResource value) in SiteBuilder.ProcessGenerators(TestUtility.TestSite, null,
-				         new PageResource(file, ResourceType.Generator, ResourceLocation.Site)))
+			if (file.EndsWith(Constants.GeneratorSuffix))
 			{
-				string localPath = new System.Uri(path).LocalPath;
-				yield return new object[]
+				foreach ((string path, PageResource value) in SiteBuilder.ProcessGenerators(TestUtility.TestSite, null,
+					         new PageResource(file, ResourceType.Generator, ResourceLocation.Site)))
 				{
-					Path.GetFileNameWithoutExtension(localPath),
-					localPath,
-					value.MarkdownText!
-				};
+					string localPath = new System.Uri(path).LocalPath;
+					yield return new object[]
+					{
+						Path.GetFileNameWithoutExtension(localPath),
+						localPath,
+						value.MarkdownText!
+					};
+				}
 			}
+				         
+			yield return new object[]
+			{
+				Path.GetFileNameWithoutExtension(file),
+				file,
+				File.ReadAllText(file)
+			};
 		}
 	}
 
@@ -40,7 +41,7 @@ public class PageData : IEnumerable<object[]>
 public class SidebarData : IEnumerable<object[]>
 {
 	public IEnumerator<object[]> GetEnumerator() =>
-		Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, "*_sidebar.md", SearchOption.AllDirectories)
+		Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, $"*{Constants.SidebarSuffix}", SearchOption.AllDirectories)
 			.Select(file => new object[]
 			{
 				Path.GetFileNameWithoutExtension(file),
@@ -50,7 +51,7 @@ public class SidebarData : IEnumerable<object[]>
 
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
-	
+
 public class JavascriptData : IEnumerable<object[]>
 {
 	public IEnumerator<object[]> GetEnumerator() =>

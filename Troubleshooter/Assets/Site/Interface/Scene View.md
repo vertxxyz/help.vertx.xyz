@@ -12,3 +12,6 @@
 - [A tool or overlay is **hidden** and I cannot get it back.](Scene%20View/Enabling%20Overlays.md)
 - [A tool or overlay cannot be disabled.](Scene%20View/Disabling%20Overlays.md)
 - [A tool is stuck and can't be moved.](Scene%20View/Stuck%20Tool.md)
+
+### Objects
+- [I cannot drag and drop an object into the view.](Scene%20View/Drag%20And%20Drop.md)

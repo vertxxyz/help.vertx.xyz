@@ -79,11 +79,11 @@ Applications that are not embedded into an IDE. Alphabetical; see [Git - GUI cli
 #### Integrated
 These days most IDEs have an integrated Git client, consider using it if you're comfortable.
 
-| Name                                                                                                                | Description                                                                                         |
-|---------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| [JetBrains Rider](https://www.jetbrains.com/help/rider/Get_Started_with_Version_Control.html)                       | I am not a fan of the windowed approach and prefer a unified overview UI. You may feel differently. |
-| [Visual Studio Code](https://code.visualstudio.com/docs/sourcecontrol/overview)                                     | Minimal interface reliant on command palette may be confusing depending on your preferences.        |
-| [Visual Studio](https://learn.microsoft.com/en-us/visualstudio/version-control/git-with-visual-studio?view=vs-2022) | Nice visual separation, but a little clunky.                                                        |
+| Name                                                                                                                | Description                                                                                                                                              |
+|---------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [JetBrains Rider](https://www.jetbrains.com/help/rider/Get_Started_with_Version_Control.html)                       | I am not a fan of the windowed approach and prefer a unified overview UI. You may feel differently. I recommend enabling the non-modal commit interface. |
+| [Visual Studio Code](https://code.visualstudio.com/docs/sourcecontrol/overview)                                     | Minimal interface reliant on command palette may be confusing depending on your preferences.                                                             |
+| [Visual Studio](https://learn.microsoft.com/en-us/visualstudio/version-control/git-with-visual-studio?view=vs-2022) | Nice visual separation, but a little clunky.                                                                                                             |
 
 ### Clone your remote
 This will download the current contents of remote repository to your PC.

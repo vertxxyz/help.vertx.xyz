@@ -41,6 +41,22 @@ public static partial class StringUtility
 		stringBuilder.Append(text[last..]);
 		return stringBuilder.ToString();
 	}
+	
+	public static string ReplaceMatch(string text, MatchCollection matches, Action<Match, StringBuilder> matchRemap)
+	{
+		int last = 0;
+		StringBuilder stringBuilder = new();
+		for (int i = 0; i < matches.Count; i++)
+		{
+			Match match = matches[i];
+			stringBuilder.Append(text[last..match.Index]);
+			matchRemap.Invoke(match, stringBuilder);
+			last = match.Index + match.Length;
+		}
+
+		stringBuilder.Append(text[last..]);
+		return stringBuilder.ToString();
+	}
 
 
 	public static string ToLowerSnakeCase(string text)

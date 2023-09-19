@@ -1,4 +1,8 @@
 ## Common runtime exceptions
+Exceptions are a subset of runtime errors that can be cleared from the Console window.  
+When an exception is thrown execution redirected to the nearest `try`-`catch` block (often in Unity's code).
+This means that code placed directly after an exception-raising statement will not be executed.
+
 ### Exceptions
 
 :::code-block--no-background
@@ -11,6 +15,7 @@
 - [InvalidCastException](Runtime%20Exceptions/InvalidCastException.md)
 - [InvalidOperationException](Runtime%20Exceptions/InvalidOperationException.md)
 - [StackOverflowException](Runtime%20Exceptions/StackOverflowException.md)
+- [TypeLoadException](Runtime%20Exceptions/TypeLoadException.md)
 
 :::
 

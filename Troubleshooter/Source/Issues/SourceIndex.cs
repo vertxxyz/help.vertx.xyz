@@ -14,7 +14,7 @@ public static class SourceIndex
 		Dictionary<string, string> sourceLookup = pageResources
 			.Where(pair =>
 				pair.Value is { Location: ResourceLocation.Site, Type: ResourceType.Markdown }
-			).ToDictionary(pair => pair.Value.OutputLinkPath!, pair => pair.Key[trimIndex..].Replace('\\', '/'));
+			).ToDictionary(pair => pair.Value.OutputLinkPath!.ToOutputPath(), pair => pair.Key[trimIndex..].ToOutputPath());
 
 		// Serialize Json.
 		SourceIndexStructure structure = new(sourceLookup);

@@ -1,7 +1,9 @@
 ## Scene view overlays
 ### Global overlays
-Right-click on the Scene tab and select **Overlay Menu**, then enable the tool you would like to display.  
-You can also press the tilda key <kbd>`</kbd>, which is the default shortcut to bring up the menu.
+You can press the tilda key <kbd>`</kbd>, which is the default shortcut to bring up the menu.
+Alternatively, right-click on the Scene tab and select **Overlay Menu**, then enable the tool you would like to display.
+
+<kbd>Shift+`</kbd> toggles all the overlays for a Scene view.
 
 ### Tool overlays
 Certain overlays appear when certain objects are selected. The particle system overlay only appears when an object with a Particle System is selected. If your overlay is designed with specific types of objects in mind, try selecting one.  

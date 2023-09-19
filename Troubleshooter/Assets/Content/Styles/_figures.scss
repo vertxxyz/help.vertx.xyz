@@ -80,17 +80,17 @@ figcaption {
     @extend %figcaption-help-box;
   }
 
-  & > .info::before {
+  &.info:before, & > .info::before {
     @extend %figcaption-help-box;
     content: url("../Images/information.svg");
   }
 
-  & > .warning::before {
+  &.warning::before, & > .warning::before {
     @extend %figcaption-help-box;
     content: url("../Images/warning.svg");
   }
 
-  & > .error::before {
+  &.error::before, & > .error::before {
     @extend %figcaption-help-box;
     content: url("../Images/error.svg");
   }

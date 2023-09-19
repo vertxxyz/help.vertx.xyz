@@ -2,11 +2,13 @@
 
 As of Unity 2022.2, UI Toolkit is the default backend for the inspector, before then the Editor was implemented using IMGUI.
 
-### Resolution
+### Unity 2022.2 and above
 
-#### Unity 2022.2 and above
+Check your editor is being drawn with UI Toolkit by using the [UI Toolkit Debugger](https://docs.unity3d.com/Manual/UIE-ui-debugger.html) (**Window | UI Toolkit | Debugger**). Attempt to pick elements from the editor that contains your drawer, if you can select things beyond the root you are using UI Toolkit.
 
-Check your editor is being drawn with UI Toolkit by using the [UI Toolkit Debugger](https://docs.unity3d.com/Manual/UIE-ui-debugger.html) (**Window | UI Toolkit | Debugger**).  
+^^^
+<video width="750" height="325" loop muted controls><source type="video/webm" src="/HTML/ui/ui-toolkit/ui-toolkit-debugger-picking.webm"></video>
+^^^ Picking an element using the UI Toolkit Debugger.
 
 :::note  
 #### The editor is drawn with IMGUI
@@ -19,7 +21,7 @@ If you are trying to find these Editors in your project you can search for `[Cus
 You mustn't have properly implemented the [`CreatePropertyGUI`](https://docs.unity3d.com/ScriptReference/PropertyDrawer.CreatePropertyGUI.html) method.  
 :::
 
-#### Before Unity 2022.2
+### Before Unity 2022.2
 
 UI Toolkit property drawers cannot be drawn inside of an IMGUI context. Create a UI Toolkit [Editor](https://docs.unity3d.com/ScriptReference/Editor.html) for the components that draw this property.  
 

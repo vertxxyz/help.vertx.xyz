@@ -20,6 +20,7 @@ If you can't work with this, consider either:
 - Using another method to do what you want. Look into [vectors](https://docs.unity3d.com/Manual/VectorCookbook.html) and familiarise yourself with common operations like the [dot product](https://docs.unity3d.com/ScriptReference/Vector3.Dot.html).
 - Using a compound transform. Multiple nested transforms where each one isolates an axis of rotation you are using.
 
+Elaborating further: the inspector often displays user-authored rotations which have not undergone any transformation. You can set rotations beyond 180°, as what you see here is for authoring convenience. However, Quaternions don't over-rotate, and their representation is completely different though they both represent the same orientation.  
 :::
 
 ### Documentation

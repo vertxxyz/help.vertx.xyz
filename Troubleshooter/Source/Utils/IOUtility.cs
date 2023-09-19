@@ -1,3 +1,4 @@
+#define DONT_WRITE_FILES
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ public static class IOUtility
 			NotProcessed, // The file is to be copied
 			Processed // Processed to a FileResult
 		}
-			
+
 		public string Content { get; }
 		public string FileNameWithExtension { get; }
 
@@ -30,9 +31,10 @@ public static class IOUtility
 			FileNameWithExtension = fileNameWithExtension;
 		}
 	}
-		
+
 	public static void CopyAll(DirectoryInfo source, DirectoryInfo target, StringBuilder? log = null, FileProcessor? fileProcessor = null)
 	{
+#if !DONT_WRITE_FILES
 		if (string.Equals(source.FullName, target.FullName, StringComparison.Ordinal))
 			return;
 
@@ -71,6 +73,7 @@ public static class IOUtility
 				target.CreateSubdirectory(diSourceSubDir.Name);
 			CopyAll(diSourceSubDir, nextTargetSubDir, log, fileProcessor);
 		}
+#endif
 	}
 
 	public static bool AreFileContentsEqual(FileInfo fi1, FileInfo fi2) =>
@@ -84,10 +87,17 @@ public static class IOUtility
 	public static bool AreFileContentsEqual(string path1, FileInfo fi2) =>
 		AreFileContentsEqual(new FileInfo(path1), fi2);
 
+	public static bool IsFileTextEqual(string text, string destinationPath) =>
+		text.Length == 0 || text.SequenceEqual(File.ReadAllText(destinationPath));
+
 	public static bool CreateFileIfDifferent(string fullPath, string contents)
 	{
 		recordedPaths.TryAdd(fullPath, 0);
-			
+		
+#if DONT_WRITE_FILES
+		return false;
+#endif
+
 		string directory = Path.GetDirectoryName(fullPath)!;
 		Directory.CreateDirectory(directory);
 		if (File.Exists(fullPath) && string.Equals(File.ReadAllText(fullPath), contents, StringComparison.Ordinal))
@@ -95,11 +105,15 @@ public static class IOUtility
 		File.WriteAllText(fullPath, contents);
 		return true;
 	}
-	
+
 	public static async Task<bool> CreateFileIfDifferentAsync(string fullPath, string contents)
 	{
 		recordedPaths.TryAdd(fullPath, 0);
-			
+		
+#if DONT_WRITE_FILES
+		return false;
+#endif
+
 		string directory = Path.GetDirectoryName(fullPath)!;
 		Directory.CreateDirectory(directory);
 		if (File.Exists(fullPath) && string.Equals(await File.ReadAllTextAsync(fullPath), contents, StringComparison.Ordinal))
@@ -114,15 +128,34 @@ public static class IOUtility
 	public static void RecordFakeFile(string fullPath) => recordedPaths.TryAdd(fullPath, 0);
 
 	public static void ResetRecording() => recordedPaths.Clear();
-		
+
 	public static bool CopyFileIfDifferent(string destinationFullPath, FileInfo file)
 	{
 		recordedPaths.TryAdd(destinationFullPath, 0);
+		
+#if DONT_WRITE_FILES
+		return false;
+#endif
 
 		string directory = Path.GetDirectoryName(destinationFullPath)!;
 		Directory.CreateDirectory(directory);
 		if (File.Exists(destinationFullPath) && AreFileContentsEqual(destinationFullPath, file)) return false;
 		file.CopyTo(destinationFullPath, true);
+		return true;
+	}
+
+	public static bool WriteFileTextIfDifferent(string text, FileInfo from, string destinationFullPath)
+	{
+		recordedPaths.TryAdd(destinationFullPath, 0);
+		
+#if DONT_WRITE_FILES
+		return false;
+#endif
+
+		string directory = Path.GetDirectoryName(destinationFullPath)!;
+		Directory.CreateDirectory(directory);
+		if (File.Exists(destinationFullPath) && IsFileTextEqual(text, destinationFullPath)) return false;
+		from.CopyTo(destinationFullPath, true);
 		return true;
 	}
 }

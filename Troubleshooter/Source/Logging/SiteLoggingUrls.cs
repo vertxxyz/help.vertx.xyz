@@ -12,7 +12,7 @@ public static class SiteLogging
 		foreach (string file in Directory.EnumerateFiles(site.AssetsRoot, "*.md", SearchOption.AllDirectories))
 		{
 			string text = File.ReadAllText(file);
-			string[] urls = PageUtility.ExternalLinkUrls(text).Select(u => u.url).ToArray();
+			string[] urls = PageUtility.GetExternalLinkUrlsFromMarkdownText(text).Select(u => u.url).ToArray();
 			if (urls.Length == 0)
 				continue;
 

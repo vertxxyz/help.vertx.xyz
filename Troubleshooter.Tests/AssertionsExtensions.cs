@@ -22,6 +22,8 @@ internal static class AssertionExtensions
 
 	public static StringAssertionsExtensions Should(this string instance) => new(instance);
 	public static FileAssertions Should(this FileInfo instance) => new(instance);
+	
+	public static DirectoryAssertions Should(this DirectoryInfo instance) => new(instance);
 }
 
 internal class StringAssertionsExtensions : StringAssertions
@@ -158,6 +160,38 @@ internal class FileAssertions<TAssertions> : ReferenceTypeAssertions<FileInfo, T
 			.ForCondition(Subject.Exists)
 			.BecauseOf(because, becauseArgs)
 			.FailWith("Expected {0} to exist at {1}{reason}.", Subject.Name, Subject.DirectoryName);
+
+		return new AndConstraint<TAssertions>((TAssertions)this);
+	}
+}
+
+internal class DirectoryAssertions : DirectoryAssertions<DirectoryAssertions>
+{
+	public DirectoryAssertions(DirectoryInfo subject) : base(subject) { }
+}
+
+internal class DirectoryAssertions<TAssertions> : ReferenceTypeAssertions<DirectoryInfo, TAssertions>
+	where TAssertions : DirectoryAssertions<TAssertions>
+{
+	public DirectoryAssertions(DirectoryInfo subject) : base(subject) { }
+	protected override string Identifier => nameof(DirectoryInfo);
+		
+	/// <summary>
+	/// Asserts that a Directory exists.
+	/// </summary>
+	/// <param name="because">
+	/// A formatted phrase as is supported by <see cref="string.Format(string,object[])" /> explaining why the assertion
+	/// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+	/// </param>
+	/// <param name="becauseArgs">
+	/// Zero or more objects to format using the placeholders in <paramref name="because" />.
+	/// </param>
+	public AndConstraint<TAssertions> Exist(string because = "", params object[] becauseArgs)
+	{
+		Execute.Assertion
+			.ForCondition(Subject.Exists)
+			.BecauseOf(because, becauseArgs)
+			.FailWith("Expected {0} to exist {reason}.", Subject.Name);
 
 		return new AndConstraint<TAssertions>((TAssertions)this);
 	}

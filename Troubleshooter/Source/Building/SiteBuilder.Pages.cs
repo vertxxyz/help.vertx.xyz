@@ -14,7 +14,7 @@ public static partial class SiteBuilder
 	private static void BuildPages(
 		Arguments arguments,
 		Site site,
-		MarkdownPipeline pipeline, 
+		MarkdownPipeline pipeline,
 		IProcessorGroup processors
 	)
 	{
@@ -76,10 +76,12 @@ public static partial class SiteBuilder
 
 			if (prevBuilt != allBuiltResources.Count)
 				continue;
-			
+
 			var remainingResources = allResources.Select(r => r.Key).Where(p => !allBuiltResources.Contains(p));
 			throw new BuildException($"Build has soft-locked - infinite loop due to recursive embedding, or non-existent embed?\nRemaining resources: \n{remainingResources.ToElementsString(p => $"- \"{p}\"")}");
 		}
+
+		processors.BuildPostProcessors.Process(arguments, allResources, site);
 
 		arguments.VerboseLog($"{builtPages} pages written to disk. {skippedPages} were skipped as identical, and {ignoredPages} were embeds.");
 
@@ -90,12 +92,15 @@ public static partial class SiteBuilder
 	{
 		PageResourcesLookup pages = new();
 
+		// Collect symlink directories so files within those directories can be marked as links.
+		Dictionary<string, string> fileSymlinksFromTo = CollectNestedSymlinkedFiles(CollectSymlinkedDirectories(site.Directory));
+
 		// Collect Embedded Pages
-		foreach (var path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))
+		foreach (string path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))
 			DoProcessPath(path, ResourceLocation.Embed);
 
 		// Collect Site Pages
-		foreach (var path in Directory.EnumerateFiles(site.Directory, "*", SearchOption.AllDirectories).Where(p => p.EndsWith(".md") || p.EndsWith(".gen")))
+		foreach (string path in Directory.EnumerateFiles(site.Directory, "*", SearchOption.AllDirectories).Where(p => p.EndsWith(".md") || p.EndsWith(".gen")))
 			DoProcessPath(path, ResourceLocation.Site);
 
 		CollectGeneratedPages();
@@ -113,9 +118,9 @@ public static partial class SiteBuilder
 
 			// Collect all the links from this markdown page - and add them to the PageResources.
 			string text = File.ReadAllText(fullPath);
-			foreach (var embed in EmbedsAsLocalEmbedPaths(text))
+			foreach (var embed in GetEmbedsAsLocalPathsFromMarkdownText(text))
 			{
-				string fullEmbedPath = LocalEmbedToFullPath(embed.localPath, site);
+				string fullEmbedPath = GetFullPathFromLocalEmbed(embed.localPath, site);
 				page.AddEmbedded(fullEmbedPath);
 				if (!TryGetNewResource(fullEmbedPath, ResourceLocation.Embed, out PageResource? embeddedPage))
 					continue;
@@ -132,6 +137,12 @@ public static partial class SiteBuilder
 			string extension = Path.GetExtension(fullPath);
 			switch (extension)
 			{
+				case ".md" when fullPath.EndsWith(Constants.GeneratorSuffix):
+					page = new PageResource(fullPath, ResourceType.Generator, location);
+					break;
+				case ".md" when fullPath.EndsWith(Constants.RedirectSuffix):
+					page = new PageResource(fullPath, ResourceType.Redirection, location);
+					break;
 				case ".md":
 					page = new PageResource(fullPath, ResourceType.Markdown, location);
 					break;
@@ -169,6 +180,36 @@ public static partial class SiteBuilder
 		}
 	}
 
+	private static Dictionary<string, string> CollectNestedSymlinkedFiles(Dictionary<string, string> directorySymlinksFromTo)
+	{
+		Dictionary<string, string> fileSymlinksFromTo = new();
+		foreach ((string fromDirectory, string toDirectory) in directorySymlinksFromTo)
+		{
+			// All these files are nested under symlinks
+			foreach (string path in Directory.EnumerateFiles(fromDirectory, "*", SearchOption.AllDirectories))
+				fileSymlinksFromTo.Add(path, Path.Combine(toDirectory, Path.GetRelativePath(fromDirectory, path)));
+		}
+
+		return fileSymlinksFromTo;
+	}
+
+	private static Dictionary<string, string> CollectSymlinkedDirectories(string rootDirectory)
+	{
+		Dictionary<string, string> directorySymlinksFromTo = new();
+		foreach (string path in Directory.EnumerateDirectories(rootDirectory, "*", SearchOption.AllDirectories))
+		{
+			var directoryInfo = new DirectoryInfo(path);
+			string? linkTarget = directoryInfo.LinkTarget;
+			if (linkTarget == null)
+				continue;
+
+			// Is a symlink, add it to the list.
+			directorySymlinksFromTo.Add(path, linkTarget);
+		}
+
+		return directorySymlinksFromTo;
+	}
+
 	[GeneratedRegex(@"\[(.+?)\]\(([\w%/-]+?)\.md\)", RegexOptions.Compiled)]
 	private static partial Regex GeneratorLinkRegex();
 
@@ -178,7 +219,7 @@ public static partial class SiteBuilder
 	public static IEnumerable<(string key, PageResource value)> ProcessGenerators(Site site, PageResourcesLookup? allResources, PageResource page)
 	{
 		// Generated markdown
-		if (page.FullPath.EndsWith("_sidebar.md.gen"))
+		if (page.FullPath.EndsWith(Constants.SidebarGeneratorSuffix))
 		{
 			foreach ((string key, PageResource value) valueTuple in GenerateSidebarPagesMarkdown())
 				yield return valueTuple;
@@ -204,7 +245,7 @@ public static partial class SiteBuilder
 			 *- [General advice](General%20Advice.md)
 			 *- [Project reimport](Project%20Reimport.md)
 			 */
-			// E:\Projects\help.vertx.xyz\Troubleshooter\Assets\Site\Programming\Scripts\Loading\Script Loading_sidebar.md.gen
+			// E:\Projects\help.vertx.xyz\Troubleshooter\Assets\Site\Programming\Scripts\Loading\Script Loading_sidebar_generator.gen
 
 			// You can avoid adding the generated content to a sidebar match by adding: "// bypass"
 
@@ -215,7 +256,7 @@ public static partial class SiteBuilder
 			{
 				Match match = matches[i];
 				string relativeLink = match.Groups[2].Value;
-				string path = $"{Path.Combine(directory, relativeLink)}_sidebar.md";
+				string path = $"{Path.Combine(directory, relativeLink)}{Constants.SidebarSuffix}";
 
 				if (BypassRegex().IsMatch(StringUtility.LineAt(markdown, match.Index + match.Length)))
 					continue;
@@ -238,7 +279,7 @@ public static partial class SiteBuilder
 
 				markdownText = markdownText.Replace(" // bypass", "");
 				PageResource resource = new(path, ResourceType.Markdown, page.Location) { MarkdownText = markdownText };
-				yield return (path.ToConsistentPath().ToUnTokenized(), resource);
+				yield return (path.ToWorkingPath().ToUnTokenized(), resource);
 			}
 		}
 	}

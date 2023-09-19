@@ -22,7 +22,7 @@ If you're trying to receive events that don't match, consider using a [trigger](
 ^^^ You can read more about this and see a copy of this matrix in the Unity docs [here](https://docs.unity3d.com/Manual/CollidersOverview.html).
 
 :::info{.small}
-If you are using a Character Controller you may be looking for the [`OnControllerColliderHit`](https://docs.unity3d.com/ScriptReference/CharacterController.OnControllerColliderHit.html) message
+If you are using a [Character Controller](https://docs.unity3d.com/Manual/class-CharacterController.html) you may be looking for the [`OnControllerColliderHit`](https://docs.unity3d.com/ScriptReference/CharacterController.OnControllerColliderHit.html) message
 :::
 
 <<Programming/Physics Messages/Understanding3D.md>>
