@@ -24,4 +24,6 @@ public static class CollectionExtensions
 
 		return result.ToString();
 	}
+
+	public static IEnumerator<T> GetEnumerator<T>(this IEnumerator<T> enumerator) => enumerator;
 }

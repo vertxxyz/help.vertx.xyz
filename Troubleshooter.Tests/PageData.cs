@@ -7,21 +7,21 @@ namespace Troubleshooter.Tests;
 
 public class PageData : IEnumerable<object[]>
 {
-	private readonly HashSet<string> _symlinks;
+	protected readonly HashSet<string> Symlinks;
 	private readonly Site _site;
 
 	public PageData()
 	{
 		_site = TestUtility.TestSite;
-		_symlinks = PageUtility.GetAllSymlinkedFiles(_site.AssetsRoot);
+		Symlinks = PageUtility.GetAllSymlinkedFiles(_site.AssetsRoot);
 	}
 
-	public IEnumerator<object[]> GetEnumerator()
+	public virtual IEnumerator<object[]> GetEnumerator()
 	{
 		foreach (string file in Directory.EnumerateFiles(_site.AssetsRoot, "*.md", SearchOption.AllDirectories))
 		{
 			// Ignore symlinked files.
-			if (_symlinks.Contains(file))
+			if (Symlinks.Contains(file))
 				continue;
 
 			if (file.EndsWith(Constants.GeneratorSuffix))
@@ -30,37 +30,33 @@ public class PageData : IEnumerable<object[]>
 				         SiteBuilder.ProcessGenerators("", _site, null, new PageResource(file, ResourceType.Generator, ResourceLocation.Site, null, "", _site)))
 				{
 					string localPath = new System.Uri(path).LocalPath;
-					yield return new object[]
-					{
-						Path.GetFileNameWithoutExtension(localPath),
-						localPath,
-						value.MarkdownText!
-					};
+					yield return new object[] { Path.GetFileNameWithoutExtension(localPath), localPath, value.MarkdownText! };
 				}
 			}
 
-			yield return new object[]
-			{
-				Path.GetFileNameWithoutExtension(file),
-				file,
-				File.ReadAllText(file)
-			};
+			yield return new object[] { Path.GetFileNameWithoutExtension(file), file, File.ReadAllText(file) };
 		}
 	}
 
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
 
+public class PageDataWithSymlinks : PageData
+{
+	public override IEnumerator<object[]> GetEnumerator()
+	{
+		foreach (object[] objects in base.GetEnumerator())
+		{
+			yield return new[] { objects[0], objects[1], objects[2], Symlinks };
+		}
+	}
+}
+
 public class SidebarData : IEnumerable<object[]>
 {
 	public IEnumerator<object[]> GetEnumerator() =>
 		Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, $"*{Constants.SidebarSuffix}", SearchOption.AllDirectories)
-			.Select(file => new object[]
-			{
-				Path.GetFileNameWithoutExtension(file),
-				file,
-				File.ReadAllText(file)
-			}).GetEnumerator();
+			.Select(file => new object[] { Path.GetFileNameWithoutExtension(file), file, File.ReadAllText(file) }).GetEnumerator();
 
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
@@ -69,10 +65,7 @@ public class JavascriptData : IEnumerable<object[]>
 {
 	public IEnumerator<object[]> GetEnumerator() =>
 		Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, "*.js", SearchOption.AllDirectories)
-			.Select(file => new object[]
-			{
-				File.ReadAllText(file)
-			}).GetEnumerator();
+			.Select(file => new object[] { File.ReadAllText(file) }).GetEnumerator();
 
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

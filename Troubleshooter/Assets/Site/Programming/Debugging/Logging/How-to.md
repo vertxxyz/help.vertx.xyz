@@ -26,7 +26,7 @@ The second parameter, `context`, is extremely valuable. This object will be **pi
 
 ### Null references
 
-When dealing with null it's [access](../../Common%20Errors/Runtime%20Exceptions/NullReferenceException/Access.md) that will throw an exception, so if a long line is causing an NRE it's important to make individual logs for each access, or else the log will also throw an exception and not be printed.
+When dealing with null it's [access](../../../Runtime%20Exceptions/NullReferenceException/Access.md) that will throw an exception, so if a long line is causing an NRE it's important to make individual logs for each access, or else the log will also throw an exception and not be printed.
 
 <<Code/Logging/Logging 3.rtf>>
 

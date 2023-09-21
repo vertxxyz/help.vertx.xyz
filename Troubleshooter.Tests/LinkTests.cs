@@ -49,6 +49,18 @@ public partial class LinkTests
 	}
 
 	[Theory]
+	[ClassData(typeof(PageDataWithSymlinks))]
+	public void ValidateLinksAreNotToSymlink(string name, string path, string text, HashSet<string> symlinks)
+	{
+		using var assertionScope = new AssertionScope();
+		string siteRoot = TestUtility.TestSite.Directory;
+		foreach ((string fullPath, _) in PageUtility.GetLinkFullPathsFromMarkdownText(text, path, siteRoot))
+		{
+			symlinks.Should().NotContain(fullPath, "\"{0}\" shouldn't reference a symlink file", path);
+		}
+	}
+
+	[Theory]
 	[ClassData(typeof(PageData))]
 	public void ValidateEmbeds(string name, string path, string text)
 	{
