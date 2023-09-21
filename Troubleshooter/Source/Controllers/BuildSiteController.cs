@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Markdig;
 using Microsoft.AspNetCore.Mvc;
@@ -59,7 +59,7 @@ public sealed class BuildSiteController : ControllerBase
 		IProcessorGroup processors
 	)
 	{
-		(bool success, IEnumerable<string> paths) = await SiteBuilder.Build(arguments, site, markdownPipeline, processors, false);
+		(bool success, ReadOnlyDictionary<string, IOUtility.RecordType> paths) = await SiteBuilder.Build(arguments, site, markdownPipeline, processors, false);
 		if (success)
 		{
 			Console.WriteLine("Successful build, generating search index.");

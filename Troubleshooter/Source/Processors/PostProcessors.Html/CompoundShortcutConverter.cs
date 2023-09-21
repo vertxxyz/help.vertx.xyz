@@ -12,11 +12,11 @@ public sealed partial class CompoundShortcutConverter: IHtmlPostProcessor
 	[GeneratedRegex(@"<kbd>(.+?\+.+?)</kbd>", RegexOptions.Compiled)]
 	private static partial Regex GetCompoundKbdRegex();
 
-	private static readonly Regex s_CompoundKbdRegex = GetCompoundKbdRegex();
+	private static readonly Regex s_compoundKbdRegex = GetCompoundKbdRegex();
 
 	public string Process(string html, string fullPath)
 	{
-		return StringUtility.ReplaceMatch(html, s_CompoundKbdRegex, (match, builder) =>
+		return StringUtility.ReplaceMatch(html, s_compoundKbdRegex, (match, builder) =>
 		{
 			string[] strings = match.Split("+");
 			foreach (string s in strings)

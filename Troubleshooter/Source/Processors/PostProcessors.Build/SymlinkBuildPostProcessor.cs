@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 
 namespace Troubleshooter;
@@ -51,7 +52,41 @@ public sealed class SymlinkBuildPostProcessor : IBuildPostProcessor
 			                   "{from}" -> "{to}"
 			                   """);
 			// Make a copy of the file at the destination directory.
-			RedirectBuildUtilities.CopyFileIfDifferentAndRedirectInternalLinks(new FileInfo(from), to);
+			CopyFileIfDifferentAndRedirectInternalLinks(new FileInfo(from), to);
 		}
+	}
+
+	// ReSharper disable once UnusedMethodReturnValue.Local
+	private static bool CopyFileIfDifferentAndRedirectInternalLinks(FileInfo from, string to)
+	{
+		string text = File.ReadAllText(from.FullName);
+
+		MatchCollection matches = CommonRegex.LoadPage.Matches(text);
+
+		if (matches.Count > 0)
+		{
+			string toDirectory = Path.GetDirectoryName(to)!;
+			string fromDirectory = Path.GetDirectoryName(from.FullName)!;
+
+			// Redirect local site links so they redirect to the base resource.
+			text = StringUtility.ReplaceMatch(text, matches, (match, builder) =>
+			{
+				if (match.Groups[1].Value.StartsWith('/'))
+				{
+					builder.Append(match.Groups[0].ValueSpan);
+					return;
+				}
+
+				// Redirect local site links
+				string relativePath = Path.GetRelativePath(toDirectory, Path.GetFullPath(match.Groups[1].Value, fromDirectory)).ToOutputPath();
+				builder.Append("loadPage('");
+				builder.Append(relativePath);
+				builder.Append("')");
+			});
+		}
+
+
+		// TODO check if different via text. WriteFileTextIfDifferent
+		return IOUtility.WriteFileTextIfDifferent(text, to, IOUtility.RecordType.Duplicate);
 	}
 }

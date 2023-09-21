@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -11,20 +12,26 @@ public static class SearchIndex
 {
 	public static string GetJsonFilePath(Arguments arguments) => Path.Combine(Path.Combine(arguments.Path, "Json"), "search-index.json");
 
-	public static async Task Generate(Arguments arguments, IEnumerable<string> paths)
+	public static async Task Generate(Arguments arguments, ReadOnlyDictionary<string, IOUtility.RecordType> paths)
 	{
-		List<string> pathsIn = paths.ToList();
-		pathsIn.RemoveAll(f => !f.EndsWith(".html"));
+		List<string> pathsIn = paths
+			// Only process normal files as a part of the search index.
+			.Where(kvp =>
+			{
+				return kvp.Value switch
+				{
+					IOUtility.RecordType.Normal => true,
+					IOUtility.RecordType.Index => false,
+					IOUtility.RecordType.Duplicate => false,
+					_ => true
+				};
+			})
+			.Select(kvp => kvp.Key)
+			// Only html files can be searched
+			.Where(f => f.EndsWith(".html"))
+			.ToList();
 		(IList<string> filePaths, IList<string> fileHeaders, ImmutableSortedDictionary<string, Dictionary<int, int>> sortedWordsToFileIndexAndCount) =
 			await SearchGatherer.GenerateSearchResult(arguments.HtmlOutputDirectory!, pathsIn);
-		await Generate(arguments, sortedWordsToFileIndexAndCount, filePaths, fileHeaders);
-	}
-	
-	public static async Task Generate(Arguments arguments)
-	{
-		// Gather files.
-		(IList<string> filePaths, IList<string> fileHeaders, ImmutableSortedDictionary<string, Dictionary<int, int>> sortedWordsToFileIndexAndCount) =
-			await SearchGatherer.GenerateSearchResult(arguments.HtmlOutputDirectory!);
 		await Generate(arguments, sortedWordsToFileIndexAndCount, filePaths, fileHeaders);
 	}
 

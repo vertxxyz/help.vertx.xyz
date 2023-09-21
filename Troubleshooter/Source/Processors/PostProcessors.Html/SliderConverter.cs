@@ -12,11 +12,11 @@ public sealed partial class SliderConverter : IHtmlPostProcessor
 	[GeneratedRegex("<div.* class=\".*?slider\"></div>", RegexOptions.Compiled)]
 	private static partial Regex GetSliderRegex();
 
-	private static readonly Regex s_SliderRegex = GetSliderRegex();
+	private static readonly Regex s_sliderRegex = GetSliderRegex();
 
 	public string Process(string html, string fullPath)
 	{
-		return StringUtility.ReplaceMatch(html, s_SliderRegex, (group, stringBuilder) =>
+		return StringUtility.ReplaceMatch(html, s_sliderRegex, (group, stringBuilder) =>
 		{
 			stringBuilder.Append(group[..^6]);
 			{

@@ -14,12 +14,12 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public partial class MainResourceProducer : IPageResourcesPostProcessor
 {
-	private static readonly Regex s_FirstLineRegex = GetFirstLineRegex();
-	private static readonly Regex s_TitleRegex = GetTitleRegex();
+	private static readonly Regex s_firstLineRegex = GetFirstLineRegex();
+	private static readonly Regex s_titleRegex = GetTitleRegex();
 
 	// Note that this processor is a bit of a hack, links on pages are hackily replaced with root links. Presume that all main pages are at the root.
 	// If this changes then the script will need to be altered.
-	private static readonly ImmutableDictionary<string, string?> s_MainPages = new Dictionary<string, string?>
+	private static readonly ImmutableDictionary<string, string?> s_mainPages = new Dictionary<string, string?>
 	{
 		{ "Main.md", null },
 		{ "DOTS.md", "DOTS" }
@@ -31,21 +31,23 @@ public partial class MainResourceProducer : IPageResourcesPostProcessor
 		foreach ((string fullPath, PageResource main) in resources)
 		{
 			// Only operate on main pages.
-			if (!s_MainPages.TryGetValue(Path.GetFileName(fullPath), out string? destinationPath))
+			if (!s_mainPages.TryGetValue(Path.GetFileName(fullPath), out string? destinationPath))
 				continue;
 
 			if ((main.Flags & ResourceFlags.Symlink) != 0) throw new BuildException("Detected main page was a symlink");
+
+			main.MarkAsIndexPage();
 
 			string directory = Path.GetDirectoryName(fullPath)!;
 			if (!string.IsNullOrEmpty(destinationPath))
 				directory = Path.Combine(directory, destinationPath);
 
 			string allText = File.ReadAllText(main.FullPath);
-			string[] pages = s_TitleRegex.Split(allText);
-			// Iterate over all the pages in this main page (pages are the content between the titles we used to split) 
+			string[] pages = s_titleRegex.Split(allText);
+			// Iterate over all the pages in this main page (pages are the content between the titles we used to split)
 			foreach (string page in pages.Skip(1))
 			{
-				string title = s_FirstLineRegex.Match(page).Groups[1].Value.Trim();
+				string title = s_firstLineRegex.Match(page).Groups[1].Value.Trim();
 				StringBuilder stringBuilder = new(page);
 				// Reduce the headers by moving them up a level
 				stringBuilder.Replace("##", "#");
@@ -74,6 +76,7 @@ public partial class MainResourceProducer : IPageResourcesPostProcessor
 
 				destination += ".md";
 				var newPage = new PageResource(destination, ResourceType.Markdown, ResourceLocation.Site, null, arguments.HtmlOutputDirectory!, site);
+				newPage.MarkAsIndexPage();
 				newPage.ProcessMarkdown(stringBuilder.ToString(), site, dictionary);
 				dictionary.Add(destination, newPage);
 			}

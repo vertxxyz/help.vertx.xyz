@@ -25,8 +25,8 @@ public partial class SidebarTests
 			pageText.Should().Match(v => Regex.IsMatch(v, query, RegexOptions.IgnoreCase), $"\"#{link}\" anchor does not exist - \"{name}\"");
 		}
 	}
-		
-	private static readonly Regex anchorRegex = GetAnchorRegex();
+
+	private static readonly Regex s_anchorRegex = GetAnchorRegex();
 
 	[GeneratedRegex(@"]\(#([\w /%.]+)\)", RegexOptions.Compiled)]
 	private static partial Regex GetAnchorRegex();
@@ -38,7 +38,7 @@ public partial class SidebarTests
 	/// <returns></returns>
 	private static IEnumerable<string> AnchorLinksAsFullPaths(string text)
 	{
-		MatchCollection matches = anchorRegex.Matches(text);
+		MatchCollection matches = s_anchorRegex.Matches(text);
 		for (int i = 0; i < matches.Count; i++)
 		{
 			Group group = matches[i].Groups[1];

@@ -12,7 +12,7 @@ public sealed partial class RewritePagesTo : IRule
 	[GeneratedRegex(@"(?!.*\.)^.*$")]
 	private static partial Regex GetRegexWithNoExtensions();
 
-	private static readonly Regex s_RegexWithNoExtensions = GetRegexWithNoExtensions();
+	private static readonly Regex s_regexWithNoExtensions = GetRegexWithNoExtensions();
 
 	public RewritePagesTo(string redirectTo, bool skipRemainingRules)
 	{
@@ -27,7 +27,7 @@ public sealed partial class RewritePagesTo : IRule
 		if (request.Method != "GET")
 			return;
 
-		if (!s_RegexWithNoExtensions.IsMatch(request.Path))
+		if (!s_regexWithNoExtensions.IsMatch(request.Path))
 			return;
 
 		if (_skipRemainingRules)

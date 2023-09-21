@@ -22,8 +22,8 @@ public partial class ContentTests
 		text.Should().NotBeNullOrEmpty("Pages should have content");
 	}
 
-	private static readonly Regex footnoteRegex = FootnoteRegex();
-	private static readonly Regex incorrectFootnoteRegex = IncorrectFootnoteRegex();
+	private static readonly Regex s_footnoteRegex = FootnoteRegex();
+	private static readonly Regex s_incorrectFootnoteRegex = IncorrectFootnoteRegex();
 
 	[Flags]
 	private enum FootnotePair : byte
@@ -42,8 +42,8 @@ public partial class ContentTests
 	public void ValidateFootnotes(string name, string path, string text)
 	{
 		using var assertionScope = new AssertionScope(name);
-		Assert.DoesNotMatch(incorrectFootnoteRegex, text);
-		MatchCollection footnotes = footnoteRegex.Matches(text);
+		Assert.DoesNotMatch(s_incorrectFootnoteRegex, text);
+		MatchCollection footnotes = s_footnoteRegex.Matches(text);
 		Dictionary<string, FootnotePair> footnotePairs = new();
 		foreach (Match match in footnotes)
 		{
@@ -67,9 +67,9 @@ public partial class ContentTests
 			pair.Value.Should().Be(FootnotePair.Both, $"{pair.Value} does not make a pair of footnotes in {name}");
 		}
 	}
-	
-	private static readonly Regex incorrectPackageDocLink = IncorrectPackageDocLink();
-	
+
+	private static readonly Regex s_incorrectPackageDocLink = IncorrectPackageDocLink();
+
 	/// <summary>
 	/// Validates links to package docs, ensuring they have @latest links.
 	/// </summary>
@@ -78,15 +78,15 @@ public partial class ContentTests
 	public void ValidatePackageDocLinks(string name, string path, string text)
 	{
 		using var assertionScope = new AssertionScope(name);
-		Assert.DoesNotMatch(incorrectPackageDocLink, text);
+		Assert.DoesNotMatch(s_incorrectPackageDocLink, text);
 	}
-    
+
     [GeneratedRegex(@"\[\^(\d+)\]", RegexOptions.Compiled)]
     private static partial Regex FootnoteRegex();
-    
+
     [GeneratedRegex(@"\[\d+\^\]", RegexOptions.Compiled)]
     private static partial Regex IncorrectFootnoteRegex();
-    
+
     [GeneratedRegex(@"@[\d.]+?/(?:api|manual)/", RegexOptions.Compiled)]
     private static partial Regex IncorrectPackageDocLink();
 }

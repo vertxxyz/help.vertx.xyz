@@ -11,33 +11,33 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public sealed class TwemojiReplacement : IHtmlPostProcessor
 {
-	private static readonly TwemojiLib s_Twemoji = new();
+	private static readonly TwemojiLib s_twemoji = new();
 
-	private static readonly string[] s_DontReplace = { "⤴" };
-	private static (string value, string temp)[]? s_DontReplaceLookup;
+	private static readonly string[] s_dontReplace = { "⤴" };
+	private static (string value, string temp)[]? s_dontReplaceLookup;
 
 	public string Process(string html, string fullPath)
 	{
-		if (s_DontReplaceLookup == null)
+		if (s_dontReplaceLookup == null)
 		{
 			// Generate lookup.
-			s_DontReplaceLookup = new (string value, string temp)[s_DontReplace.Length];
-			for (var i = 0; i < s_DontReplace.Length; i++)
-				s_DontReplaceLookup[i] = (s_DontReplace[i], Guid.NewGuid().ToString());
+			s_dontReplaceLookup = new (string value, string temp)[s_dontReplace.Length];
+			for (var i = 0; i < s_dontReplace.Length; i++)
+				s_dontReplaceLookup[i] = (s_dontReplace[i], Guid.NewGuid().ToString());
 		}
 
 		// Just parse if there's no values to ignore in the html.
-		if (!s_DontReplace.Any(value => html.Contains(value)))
-			return s_Twemoji.Parse(html);
+		if (!s_dontReplace.Any(value => html.Contains(value)))
+			return s_twemoji.Parse(html);
 
 		// Replace with temporary values.
-		foreach ((string value, string temp) in s_DontReplaceLookup)
+		foreach ((string value, string temp) in s_dontReplaceLookup)
 			html = html.Replace(value, temp);
 
-		html = s_Twemoji.Parse(html);
+		html = s_twemoji.Parse(html);
 
 		// Replace values back.
-		foreach ((string value, string temp) in s_DontReplaceLookup)
+		foreach ((string value, string temp) in s_dontReplaceLookup)
 			html = html.Replace(temp, value);
 
 		return html;

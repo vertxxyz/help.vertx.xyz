@@ -11,17 +11,17 @@ public class MainContentToGrid : IHtmlPostProcessor
 {
 	public int Order => 999;
 
-	private static readonly ImmutableList<string> s_MainPages = ImmutableList.Create(
-	
+	private static readonly ImmutableList<string> s_mainPages = ImmutableList.Create(
+
 		@"Assets\Site\Main.md"
 		// @"Assets\Site\DOTS.md"
 	);
-	
+
 	public string Process(string html, string fullPath)
 	{
-		if(!s_MainPages.Any(page => fullPath.EndsWith(page, StringComparison.OrdinalIgnoreCase)))
+		if(!s_mainPages.Any(page => fullPath.EndsWith(page, StringComparison.OrdinalIgnoreCase)))
 			return html;
-		
+
 		HtmlDocument doc = new HtmlDocument();
 		doc.LoadHtml(html);
 

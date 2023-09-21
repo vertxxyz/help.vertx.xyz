@@ -20,6 +20,6 @@ public static class SourceIndex
 		SourceIndexStructure structure = new(sourceLookup);
 		string json = JsonSerializer.Serialize(structure, SourceIndexStructureJsonContext.Default.SourceIndexStructure);
 
-		IOUtility.CreateFileIfDifferent(Path.Combine(arguments.JsonOutputDirectory!, "source-index.json"), json);
+		IOUtility.CreateFileIfDifferent(Path.Combine(arguments.JsonOutputDirectory!, "source-index.json"), json, IOUtility.RecordType.Normal);
 	}
 }

@@ -32,7 +32,7 @@ public static class PathUtility
 	public static string ConvertMarkdownPathToSidebarPath(string path) => $"{Path.GetFileNameWithoutExtension(path)}{Constants.SidebarSuffix}";
 
 	/// <summary>
-	/// Returns a path where only the directory has been passed through <see cref="ToFinalisedWorkingPath"/>.
+	/// Returns a path where only the directory has been passed through <see cref="ToFinalisedWorkingPath(string)"/>.
 	/// </summary>
 	public static string ToFinalisedWorkingPathDirectoryOnly(this string path)
 	{

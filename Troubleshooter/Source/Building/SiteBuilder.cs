@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Markdig;
 
@@ -8,7 +8,10 @@ namespace Troubleshooter;
 
 public static partial class SiteBuilder
 {
-	public static async Task<(bool success, IEnumerable<string> paths)> Build(
+	/// <summary>
+	/// Builds the site and content, and returns a modal result and the written paths.
+	/// </summary>
+	public static async Task<(bool success, ReadOnlyDictionary<string, IOUtility.RecordType> paths)> Build(
 		Arguments arguments,
 		Site site,
 		MarkdownPipeline pipeline,
@@ -27,12 +30,15 @@ public static partial class SiteBuilder
 			Console.WriteLine();
 			Console.WriteLine(e);
 			buildScope.MarkBuildAsFailed();
-			return (false, Enumerable.Empty<string>());
+			return (false, new Dictionary<string, IOUtility.RecordType>().AsReadOnly());
 		}
 
-		return (true, IOUtility.RecordedPaths);
+		return (true, IOUtility.RecordedPathsLookup);
 	}
 
+	/// <summary>
+	/// Only builds the Assets/Content directory.
+	/// </summary>
 	public static async Task ContentBuild(Arguments arguments)
 	{
 		Site site = new(arguments);

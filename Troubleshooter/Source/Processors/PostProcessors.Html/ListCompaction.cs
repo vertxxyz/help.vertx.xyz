@@ -16,11 +16,11 @@ public sealed partial class ListCompaction : IHtmlPostProcessor
 	[GeneratedRegex("<li><span class=\"collapse\">collapse</span></li>\n</(ul|ol)>", RegexOptions.Compiled)]
 	private static partial Regex GetEmptyListRegex();
 
-	private static readonly Regex s_EmptyListRegex = GetEmptyListRegex();
+	private static readonly Regex s_emptyListRegex = GetEmptyListRegex();
 
 	public string Process(string html, string fullPath)
 	{
-		MatchCollection matches = s_EmptyListRegex.Matches(html);
+		MatchCollection matches = s_emptyListRegex.Matches(html);
 		if (matches.Count == 0) return html;
 		int last = 0;
 		StringBuilder builder = new();
@@ -48,11 +48,11 @@ public sealed partial class ListCompaction : IHtmlPostProcessor
 	[GeneratedRegex("<([\\w]+) *[\\w =\"-.]*>", RegexOptions.Compiled)]
 	private static partial Regex GetSimplifiedTagRegex();
 
-	private static readonly Regex s_SimplifiedTagRegex = GetSimplifiedTagRegex();
+	private static readonly Regex s_simplifiedTagRegex = GetSimplifiedTagRegex();
 
 	private static int GetClosingTagEnd(string remaining)
 	{
-		Match firstTag = s_SimplifiedTagRegex.Match(remaining);
+		Match firstTag = s_simplifiedTagRegex.Match(remaining);
 		string tagType = firstTag.Groups[1].Value;
 		int depth = 0;
 		string closing = $"</{tagType}>";

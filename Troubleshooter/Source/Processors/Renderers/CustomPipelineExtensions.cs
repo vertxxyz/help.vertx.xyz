@@ -8,11 +8,11 @@ namespace Troubleshooter.Renderers;
 
 public static class CustomPipelineExtensions
 {
-	private static HtmlRendererCache? _rendererCache;
+	private static HtmlRendererCache? s_rendererCache;
 
 	internal static RentedCustomHtmlRenderer RentCustomHtmlRenderer(this MarkdownPipeline pipeline)
 	{
-		var cache = _rendererCache ??= new HtmlRendererCache(pipeline);
+		var cache = s_rendererCache ??= new HtmlRendererCache(pipeline);
 		CustomHtmlRenderer renderer = cache.Get();
 		return new RentedCustomHtmlRenderer(cache, renderer);
 	}

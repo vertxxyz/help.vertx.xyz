@@ -16,7 +16,7 @@ public partial class LanguageTests
 	[Theory]
 	[ClassData(typeof(PageData))]
 	public void ValidateIncorrectLanguage(string name, string path, string text)
-	{	
+	{
 		using var assertionScope = new AssertionScope(name);
 		assertionScope.AddReportable("path", path);
 		text.Should().NotContain("compile error", StringComparison.OrdinalIgnoreCase, "we should use \"Compiler Error\"");
@@ -41,10 +41,10 @@ public partial class LanguageTests
 		text.Should().NotContain("project view", StringComparison.OrdinalIgnoreCase, "we should use \"Project window\"");
 	}
 
-	private static readonly Regex s_UnityRegex = GetUnityRegex();
-	private static readonly Regex s_UGuiRegex = GetUGuiRegex();
-	private static readonly Regex s_GameObjectRegex = GetGameObjectRegex();
-		
+	private static readonly Regex s_unityRegex = GetUnityRegex();
+	private static readonly Regex s_uGuiRegex = GetUGuiRegex();
+	private static readonly Regex s_gameObjectRegex = GetGameObjectRegex();
+
 	/// <summary>
 	/// Tests for common issues with capitalisation
 	/// </summary>
@@ -63,17 +63,17 @@ public partial class LanguageTests
 		text.Should().NotContain(".Net", StringComparison.Ordinal, "we should write \".NET\"");
 		text.Should().NotContain("assembly definition", StringComparison.Ordinal, "we should write \"Assembly Definition\"");
 		text.Should().NotContain("UI Toolkit debugger", StringComparison.Ordinal, "we should write \"UI Toolkit Debugger\"");
-		text.Should().NotMatchRegex(s_UGuiRegex, "we should write \"uGUI\"");
-		text.Should().NotMatchRegex(s_UnityRegex, "we should write \"Unity\"");
-		text.Should().NotMatchRegex(s_GameObjectRegex, "we should write \"GameObject\"");
+		text.Should().NotMatchRegex(s_uGuiRegex, "we should write \"uGUI\"");
+		text.Should().NotMatchRegex(s_unityRegex, "we should write \"Unity\"");
+		text.Should().NotMatchRegex(s_gameObjectRegex, "we should write \"GameObject\"");
 	}
 
     [GeneratedRegex(@"\sunity[\s.,]")]
     private static partial Regex GetUnityRegex();
-    
+
     [GeneratedRegex(@"\sgameobjects?[\s.,]")]
     private static partial Regex GetGameObjectRegex();
-    
+
     [GeneratedRegex(@"\sUGUI[\s.,]")]
     private static partial Regex GetUGuiRegex();
 }

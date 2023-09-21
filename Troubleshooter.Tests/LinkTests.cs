@@ -12,13 +12,13 @@ namespace Troubleshooter.Tests;
 [SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters")]
 public partial class LinkTests
 {
-	private readonly HashSet<string> embeddedFiles = new();
+	private readonly HashSet<string> _embeddedFiles = new();
 
 	public LinkTests()
 	{
 		string embedsRoot = TestUtility.TestSite.EmbedsDirectory;
 		foreach (string embeddedFile in Directory.EnumerateFiles(embedsRoot, "*", SearchOption.AllDirectories))
-			embeddedFiles.Add(embeddedFile[(embedsRoot.Length + 1)..].ToWorkingPath());
+			_embeddedFiles.Add(embeddedFile[(embedsRoot.Length + 1)..].ToWorkingPath());
 	}
 
 	[Theory]
@@ -34,14 +34,14 @@ public partial class LinkTests
 	[GeneratedRegex(@"(?<!!)\[.+?\]\((.+?)\)", RegexOptions.Compiled)]
 	private static partial Regex GetMarkdownLinkRegex();
 
-	private static readonly Regex markdownLink = GetMarkdownLinkRegex();
+	private static readonly Regex s_markdownLink = GetMarkdownLinkRegex();
 
 	[Theory]
 	[ClassData(typeof(PageData))]
 	public void ValidateLinkContent(string name, string path, string text)
 	{
 		using var assertionScope = new AssertionScope();
-		MatchCollection matches = markdownLink.Matches(text);
+		MatchCollection matches = s_markdownLink.Matches(text);
 		foreach (Match match in matches)
 		{
 			match.Groups[1].Value.Should().NotContain(' ', StringComparison.Ordinal);
@@ -54,7 +54,7 @@ public partial class LinkTests
 	{
 		using var assertionScope = new AssertionScope();
 		foreach ((string localPath, _) in PageUtility.GetEmbedsAsLocalPathsFromMarkdownText(text))
-			embeddedFiles.Should().Contain(localPath, $"was not present in embedded files - \"{name}\"");
+			_embeddedFiles.Should().Contain(localPath, $"was not present in embedded files - \"{name}\"");
 	}
 
 	[Theory]
@@ -66,7 +66,7 @@ public partial class LinkTests
 		foreach ((string localPath, _) in PageUtility.GetImagesAsLocalPathsFromMarkdownText(text, false))
 		{
 			string fullPath = localPath.StartsWith('/') // path is not finalised
-				? Path.GetFullPath(Path.Combine(TestUtility.TestSite.ContentDirectory, localPath[1..])).ToUnTokenized() 
+				? Path.GetFullPath(Path.Combine(TestUtility.TestSite.ContentDirectory, localPath[1..])).ToUnTokenized()
 				: Path.GetFullPath(Path.Combine(directory, localPath)).ToUnTokenized();
 
 			new FileInfo(fullPath).Should().Exist();

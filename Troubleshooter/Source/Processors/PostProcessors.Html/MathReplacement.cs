@@ -15,7 +15,7 @@ public sealed partial class MathReplacement : IHtmlPostProcessor
 	                """)]
 	private static partial Regex GetMathRegex();
 
-	private static readonly Regex s_MathRegex = GetMathRegex();
+	private static readonly Regex s_mathRegex = GetMathRegex();
 
 	private readonly IJsEngine _engine;
 
@@ -27,10 +27,10 @@ public sealed partial class MathReplacement : IHtmlPostProcessor
 
 	public string Process(string html, string fullPath)
 	{
-		if (!s_MathRegex.IsMatch(html))
+		if (!s_mathRegex.IsMatch(html))
 			return html;
 
-		MatchCollection matches = s_MathRegex.Matches(html);
+		MatchCollection matches = s_mathRegex.Matches(html);
 		foreach (Match match in matches)
 		{
 			_engine.SetVariableValue("text", match.Groups[1].Value);

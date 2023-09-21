@@ -26,13 +26,13 @@ public static partial class HtmlUtility
 		return text;
 	}
 
-	private static readonly Regex whitespaceRegex = GetWhitespaceRegex(); // Captures whitespace at the start or end of the line
-	private static readonly Regex colorRegex = GetColorRegex(); // Captures color information only
-	private static readonly Regex styleNameRegex = GetStyleNameRegex(); // Captures pure names (no _style_1:before, etc)
-	private static readonly Regex stylePlainRegex = GetStylePlainRegex(); // Captures style information for any unmatched styles
-	private static readonly Regex styleItalicRegex = GetStyleItalicRegex();
-	private static readonly Regex spanSpacesRegex = GetSpanSpacesRegex();
-	private static readonly Regex underlineRegex = GetUnderlineRegex(); //Captures the content used to underline errors
+	private static readonly Regex s_whitespaceRegex = GetWhitespaceRegex(); // Captures whitespace at the start or end of the line
+	private static readonly Regex s_colorRegex = GetColorRegex(); // Captures color information only
+	private static readonly Regex s_styleNameRegex = GetStyleNameRegex(); // Captures pure names (no _style_1:before, etc)
+	private static readonly Regex s_stylePlainRegex = GetStylePlainRegex(); // Captures style information for any unmatched styles
+	private static readonly Regex s_styleItalicRegex = GetStyleItalicRegex();
+	private static readonly Regex s_spanSpacesRegex = GetSpanSpacesRegex();
+	private static readonly Regex s_underlineRegex = GetUnderlineRegex(); //Captures the content used to underline errors
 
 	public static readonly Dictionary<string, string> ColorToClassLookup = new()
 	{
@@ -64,7 +64,7 @@ public static partial class HtmlUtility
 		// Collect inline style information
 		Dictionary<string, string> colorStylesToReplacement = new();
 		{
-			MatchCollection styles = colorRegex.Matches(styleContent);
+			MatchCollection styles = s_colorRegex.Matches(styleContent);
 			foreach (Match match in styles)
 			{
 				string color = match.Groups[1].Value.ToUpper();
@@ -81,7 +81,7 @@ public static partial class HtmlUtility
 
 		List<string> italicStyles = new();
 		{
-			MatchCollection styles = styleItalicRegex.Matches(styleContent);
+			MatchCollection styles = s_styleItalicRegex.Matches(styleContent);
 			foreach (Match match in styles)
 			{
 				if (!TryGetStyleNameMatchBeforeBlockData(match, styleContent, out var styleNameMatch))
@@ -93,14 +93,14 @@ public static partial class HtmlUtility
 
 		{
 			// Underlines
-			MatchCollection styles = underlineRegex.Matches(styleContent);
+			MatchCollection styles = s_underlineRegex.Matches(styleContent);
 			foreach (Match match in styles)
 			{
 				string color = match.Groups[1].Value.ToUpper();
 				if (!UnderlineColorToClassLookup.TryGetValue(color, out var replacementStyle))
 					continue;
 
-				if (!TryGetStyleNameMatchBeforeBlockData(match, styleContent, out var styleNameMatch, stylePlainRegex))
+				if (!TryGetStyleNameMatchBeforeBlockData(match, styleContent, out var styleNameMatch, s_stylePlainRegex))
 					continue;
 
 				colorStylesToReplacement.Add(styleNameMatch.Groups[0].Value, replacementStyle);
@@ -140,7 +140,7 @@ public static partial class HtmlUtility
 		}
 
 		// Remove all un-processed styles.
-		stringBuilder = new(stylePlainRegex.Replace(content, string.Empty));
+		stringBuilder = new(s_stylePlainRegex.Replace(content, string.Empty));
 		// Remove empty classes
 		stringBuilder.Replace(" class=\"\"", string.Empty);
 		stringBuilder.Replace(" class=\" \"", string.Empty);
@@ -149,14 +149,14 @@ public static partial class HtmlUtility
 		stringBuilder.Replace("</p>", string.Empty);
 
 		string html = stringBuilder.ToString();
-		html = whitespaceRegex.Replace(html, string.Empty);
+		html = s_whitespaceRegex.Replace(html, string.Empty);
 		html = html.Replace($"<span></span>{Environment.NewLine}", Environment.NewLine);
 		html = html.Replace($"{Environment.NewLine}{Environment.NewLine}", "<br>");
 		// Cleanup empty spaces in classes
 		html = html.Replace("\" >", "\">");
 		html = html.Replace(" \"", "\"");
 		// Replace spans containing only spaces with just the spaces.
-		html = StringUtility.ReplaceMatch(html, spanSpacesRegex, (s, builder) => builder.Append(s), 1);
+		html = StringUtility.ReplaceMatch(html, s_spanSpacesRegex, (s, builder) => builder.Append(s), 1);
 		// Surround with code-block setup
 		StringBuilder sb = AppendWithCodeBlockSetup(html);
 		// Console.WriteLine(styleContent);
@@ -167,7 +167,7 @@ public static partial class HtmlUtility
 	/// In a block like ._style_1{foo;bar;}, find "_style_1" from a match of either foo; or bar;
 	/// </summary>
 	private static bool TryGetStyleNameMatchBeforeBlockData(Match blockMatch, string content, out Match result)
-		=> TryGetStyleNameMatchBeforeBlockData(blockMatch, content, out result, styleNameRegex);
+		=> TryGetStyleNameMatchBeforeBlockData(blockMatch, content, out result, s_styleNameRegex);
 
 	/// <summary>
 	/// In a block like ._style_1{foo;bar;}, find "_style_1" from a match of either foo; or bar;

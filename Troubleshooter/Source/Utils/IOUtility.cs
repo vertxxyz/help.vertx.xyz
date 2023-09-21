@@ -1,7 +1,9 @@
 // #define DONT_WRITE_FILES
+
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -32,6 +34,22 @@ public static class IOUtility
 		}
 	}
 
+	public enum RecordType : byte
+	{
+		/// <summary>
+		/// A normal page.
+		/// </summary>
+		Normal,
+		/// <summary>
+		/// An index page, this is recorded to avoid considering them when generating the search index.
+		/// </summary>
+		Index,
+		/// <summary>
+		/// Pages that are duplicates of others (usually via a symlink).
+		/// </summary>
+		Duplicate
+	}
+
 	public static void CopyAll(DirectoryInfo source, DirectoryInfo target, StringBuilder? log = null, FileProcessor? fileProcessor = null)
 	{
 #if !DONT_WRITE_FILES
@@ -52,12 +70,12 @@ public static class IOUtility
 					continue; // Skipped, do not copy.
 				case FileResult.Validity.NotProcessed:
 					destination = Path.GetFullPath(Path.Combine(target.ToString(), fi.Name));
-					if (!CopyFileIfDifferent(destination, fi)) continue;
+					if (!CopyFileIfDifferent(destination, fi, RecordType.Normal)) continue;
 					break;
 				case FileResult.Validity.Processed:
 					destination = Path.GetFullPath(Path.Combine(target.ToString(), result!.FileNameWithExtension));
 					File.WriteAllText(destination, result.Content);
-					recordedPaths.TryAdd(destination, 0);
+					Record(destination, RecordType.Normal);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
@@ -76,24 +94,21 @@ public static class IOUtility
 #endif
 	}
 
-	public static bool AreFileContentsEqual(FileInfo fi1, FileInfo fi2) =>
+	private static bool AreFileContentsEqual(FileInfo fi1, FileInfo fi2) =>
 		fi1.Length == fi2.Length &&
 		(fi1.Length == 0 || File.ReadAllBytes(fi1.FullName).SequenceEqual(
 			File.ReadAllBytes(fi2.FullName)));
 
-	public static bool AreFileContentsEqual(string path1, string path2) =>
-		AreFileContentsEqual(new FileInfo(path1), new(path2));
-
-	public static bool AreFileContentsEqual(string path1, FileInfo fi2) =>
+	private static bool AreFileContentsEqual(string path1, FileInfo fi2) =>
 		AreFileContentsEqual(new FileInfo(path1), fi2);
 
-	public static bool IsFileTextEqual(string text, string destinationPath) =>
+	private static bool IsFileTextEqual(string text, string destinationPath) =>
 		text.Length == 0 || text.SequenceEqual(File.ReadAllText(destinationPath));
 
-	public static bool CreateFileIfDifferent(string fullPath, string contents)
+	public static bool CreateFileIfDifferent(string fullPath, string contents, RecordType type)
 	{
-		recordedPaths.TryAdd(fullPath, 0);
-		
+		Record(fullPath, type);
+
 #if DONT_WRITE_FILES
 		return false;
 #else
@@ -106,10 +121,10 @@ public static class IOUtility
 #endif
 	}
 
-	public static async Task<bool> CreateFileIfDifferentAsync(string fullPath, string contents)
+	public static async Task<bool> CreateFileIfDifferentAsync(string fullPath, string contents, RecordType type)
 	{
-		recordedPaths.TryAdd(fullPath, 0);
-		
+		Record(fullPath, type);
+
 #if DONT_WRITE_FILES
 		return false;
 #else
@@ -122,40 +137,60 @@ public static class IOUtility
 #endif
 	}
 
-	public static IEnumerable<string> RecordedPaths => recordedPaths.Keys;
-	private static readonly ConcurrentDictionary<string, byte> recordedPaths = new();
+	/// <summary>
+	/// A copy of the recorded paths.
+	/// </summary>
+	public static IEnumerable<string> RecordedPaths => s_recordedPaths.Keys;
+	private static readonly ConcurrentDictionary<string, RecordType> s_recordedPaths = new();
 
-	public static void RecordFakeFile(string fullPath) => recordedPaths.TryAdd(fullPath, 0);
+	/// <summary>
+	/// A copy of the recorded paths and their associated values.
+	/// </summary>
+	public static ReadOnlyDictionary<string, RecordType> RecordedPathsLookup => s_recordedPaths.ToDictionary(kvp => kvp.Key, kvp => kvp.Value).AsReadOnly();
 
-	public static void ResetRecording() => recordedPaths.Clear();
+	public static void ResetRecording() => s_recordedPaths.Clear();
 
-	public static bool CopyFileIfDifferent(string destinationFullPath, FileInfo file)
+	/// <summary>
+	/// Copy <see cref="File"/> to <see cref="path"/>, and mark it as <see cref="type"/>.
+	/// </summary>
+	/// <returns>True if the file was written to disk.</returns>
+	public static bool CopyFileIfDifferent(string path, FileInfo file, RecordType type)
 	{
-		recordedPaths.TryAdd(destinationFullPath, 0);
-		
+		Record(path, type);
+
 #if DONT_WRITE_FILES
 		return false;
 #else
-		string directory = Path.GetDirectoryName(destinationFullPath)!;
+		string directory = Path.GetDirectoryName(path)!;
 		Directory.CreateDirectory(directory);
-		if (File.Exists(destinationFullPath) && AreFileContentsEqual(destinationFullPath, file)) return false;
-		file.CopyTo(destinationFullPath, true);
+		if (File.Exists(path) && AreFileContentsEqual(path, file)) return false;
+		file.CopyTo(path, true);
 		return true;
 #endif
 	}
 
-	public static bool WriteFileTextIfDifferent(string text, string destinationFullPath)
+	/// <summary>
+	/// Copy <see cref="text"/> to <see cref="path"/>, and mark it as <see cref="type"/>.
+	/// </summary>
+	/// <returns>True if the file was written to disk.</returns>
+	public static bool WriteFileTextIfDifferent(string text, string path, RecordType type)
 	{
-		recordedPaths.TryAdd(destinationFullPath, 0);
-		
+		Record(path, type);
+
 #if DONT_WRITE_FILES
 		return false;
 #else
-		string directory = Path.GetDirectoryName(destinationFullPath)!;
+		string directory = Path.GetDirectoryName(path)!;
 		Directory.CreateDirectory(directory);
-		if (File.Exists(destinationFullPath) && IsFileTextEqual(text, destinationFullPath)) return false;
-		File.WriteAllText(destinationFullPath, text);
+		if (File.Exists(path) && IsFileTextEqual(text, path)) return false;
+		File.WriteAllText(path, text);
 		return true;
 #endif
+	}
+
+	private static void Record(string path, RecordType type)
+	{
+		if (!s_recordedPaths.TryAdd(path, type))
+			s_recordedPaths[path] = (RecordType)Math.Min((byte)type, (byte)s_recordedPaths[path]);
 	}
 }

@@ -9,10 +9,10 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public partial class ConstructionNote : IMarkdownPreProcessor
 {
-	private static readonly Regex regex = GetConstructionNoteRegex();
-		
-	public string Process(string text) => 
-		regex.Replace(text, ":::construction  \n$0  \n:::  ");
+	private static readonly Regex s_regex = GetConstructionNoteRegex();
+
+	public string Process(string text) =>
+		s_regex.Replace(text, ":::construction  \n$0  \n:::  ");
 
 	[GeneratedRegex(@"^🚧.+?🚧\r?$", RegexOptions.Compiled | RegexOptions.Multiline)]
 	private static partial Regex GetConstructionNoteRegex();

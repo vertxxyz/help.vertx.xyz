@@ -26,7 +26,8 @@ public enum ResourceFlags
 {
 	None,
 	Symlink = 1 << 0,
-	ExistsInOutput = 1 << 1
+	ExistsInOutput = 1 << 1,
+	IndexPage = 1 << 2
 }
 
 public enum ResourceLocation
@@ -87,7 +88,7 @@ public sealed partial class PageResource
 	/// Output url.
 	/// </summary>
 	public string OutputLink { get; }
-	
+
 	/// <summary>
 	/// Output file location. The file may not exist if <see cref="Flags"/> does not contain <see cref="ResourceFlags.ExistsInOutput"/>.
 	/// </summary>
@@ -105,9 +106,9 @@ public sealed partial class PageResource
 	public HashSet<string>? EmbeddedInto { get; private set; }
 
 	private List<PageResource>? _generatedChildren;
-	
+
 	public bool HasGeneratedChildren => _generatedChildren?.Count > 0;
-	
+
 	public IEnumerable<PageResource> GeneratedChildren => _generatedChildren ?? Enumerable.Empty<PageResource>();
 
 	public PageResource(string fullPath, ResourceType type, ResourceLocation location, string? symlinkTarget, string htmlOutputDirectory, Site site)
@@ -118,11 +119,13 @@ public sealed partial class PageResource
 		SymlinkFullPath = symlinkTarget;
 		Flags = symlinkTarget != null ? ResourceFlags.Symlink : ResourceFlags.None;
 		OutputLink ??= site.ConvertFullSitePathToLinkPath(FullPath);
-		OutputLink = s_NumberRegex.Replace(OutputLink, "/");
+		OutputLink = s_numberRegex.Replace(OutputLink, "/");
 		OutputFilePath = Path.Combine(htmlOutputDirectory, $"{OutputLink}.html").ToWorkingPath();
 	}
-	
+
 	public void AddGeneratedChild(PageResource pageResource) => (_generatedChildren ??= new List<PageResource>()).Add(pageResource);
+
+	public void MarkAsIndexPage() => Flags |= ResourceFlags.IndexPage;
 
 	public void AddEmbeddedInto(string page)
 	{
@@ -146,7 +149,7 @@ public sealed partial class PageResource
 		// Symlinks use the data built in their originating files.
 		if ((Flags & ResourceFlags.Symlink) != 0)
 			return;
-		
+
 		switch (Type)
 		{
 			case ResourceType.None:
@@ -341,7 +344,7 @@ public sealed partial class PageResource
 		Written
 	}
 
-	public WriteStatus WriteToDisk()
+	public WriteStatus WriteToDisk(IOUtility.RecordType recordType = IOUtility.RecordType.Normal)
 	{
 		switch (Location)
 		{
@@ -369,10 +372,10 @@ public sealed partial class PageResource
 		Flags |= ResourceFlags.ExistsInOutput;
 
 		// Check the previously built file to see whether it ought to be re-written.
-		return IOUtility.CreateFileIfDifferent(OutputFilePath, HtmlText!) ? WriteStatus.Written : WriteStatus.Skipped;
+		return IOUtility.CreateFileIfDifferent(OutputFilePath, HtmlText!, recordType) ? WriteStatus.Written : WriteStatus.Skipped;
 	}
 
-	private static readonly Regex s_NumberRegex = GetNumberRegex();
+	private static readonly Regex s_numberRegex = GetNumberRegex();
 
 	[GeneratedRegex(@"/\d+-", RegexOptions.Compiled)]
 	private static partial Regex GetNumberRegex();

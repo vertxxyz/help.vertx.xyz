@@ -9,12 +9,12 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public partial class LineBreakRepair : IMarkdownPreProcessor
 {
-	private static readonly Regex regex = GetLineBreakRegex();
-		
+	private static readonly Regex s_regex = GetLineBreakRegex();
+
 	public string Process(string text)
 	{
-		MatchCollection matchCollection = regex.Matches(text);
-		for (var i = 0; i < matchCollection.Count; i++)
+		MatchCollection matchCollection = s_regex.Matches(text);
+		for (int i = 0; i < matchCollection.Count; i++)
 		{
 			Match match = matchCollection[i];
 			Group group = match.Groups[1];

@@ -8,21 +8,21 @@ namespace Troubleshooter;
 
 public sealed class BuildScope : IDisposable
 {
-	private readonly Arguments arguments;
+	private readonly Arguments _arguments;
 	private readonly bool _cleanup;
-	private bool failedBuild;
+	private bool _failedBuild;
 	public BuildScope(Arguments arguments, bool cleanup)
 	{
-		this.arguments = arguments;
+		_arguments = arguments;
 		_cleanup = cleanup;
 		IOUtility.ResetRecording();
 	}
 
-	public void MarkBuildAsFailed() => failedBuild = true;
+	public void MarkBuildAsFailed() => _failedBuild = true;
 
 	public void Dispose()
 	{
-		if(!failedBuild && _cleanup)
+		if(!_failedBuild && _cleanup)
 			CleanupBuildOutput();
 		IOUtility.ResetRecording();
 	}
@@ -31,23 +31,23 @@ public sealed class BuildScope : IDisposable
 	{
 		HashSet<string> recordedFilePaths = new(IOUtility.RecordedPaths.Select(Path.GetFullPath));
 		HashSet<string> redundantFilePaths = new();
-			
-		foreach (var file in Directory.EnumerateFiles(arguments.Path, "*", SearchOption.AllDirectories))
+
+		foreach (var file in Directory.EnumerateFiles(_arguments.Path, "*", SearchOption.AllDirectories))
 		{
 			if(recordedFilePaths.Contains(file)) continue;
 			redundantFilePaths.Add(file);
 		}
 
-		redundantFilePaths.Remove(SearchIndex.GetJsonFilePath(arguments));
+		redundantFilePaths.Remove(SearchIndex.GetJsonFilePath(_arguments));
 		redundantFilePaths.RemoveWhere(path =>
 		{
-			var remaining = path.AsSpan()[(arguments.Path.Length + 1)..];
+			var remaining = path.AsSpan()[(_arguments.Path.Length + 1)..];
 			return !remaining.Contains('\\') || remaining.StartsWith(".git\\", StringComparison.Ordinal);
 		});
 
 		if (redundantFilePaths.Count <= 0)
 			return;
-			
+
 		Console.WriteLine();
 		Console.WriteLine($"Run cleaning step? {redundantFilePaths.Count} redundant files were found.");
 		Console.WriteLine("Examples:");
@@ -69,12 +69,12 @@ public sealed class BuildScope : IDisposable
 
 		foreach (string filePath in redundantFilePaths)
 			File.Delete(filePath);
-			
-		DeleteEmptyDirectories(arguments.Path);
-			
+
+		DeleteEmptyDirectories(_arguments.Path);
+
 		Console.WriteLine("Files and folders cleaned.");
 	}
-		
+
 	private static void DeleteEmptyDirectories(string startLocation)
 	{
 		foreach (var directory in Directory.GetDirectories(startLocation))

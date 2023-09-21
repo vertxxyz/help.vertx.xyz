@@ -39,13 +39,7 @@ public static partial class SearchGatherer
 		}
 	}
 
-	private static readonly Regex PreRegex = GetPreRegex();
-
-	public static async Task<Result> GenerateSearchResult(string rootDirectory)
-	{
-		IEnumerable<string> files = Directory.EnumerateFiles(rootDirectory, "*.html", SearchOption.AllDirectories);
-		return await GenerateSearchResult(rootDirectory, files);
-	}
+	private static readonly Regex s_preRegex = GetPreRegex();
 
 	public static async Task<Result> GenerateSearchResult(string rootDirectory, IEnumerable<string> files)
 	{
@@ -55,7 +49,6 @@ public static partial class SearchGatherer
 		{
 			if (EndsWithAny(s, SearchCommon.ExcludedFileEndings)) continue;
 			string localPath = s[(rootDirectory.Length + 1)..];
-			if (!localPath.Contains('/') && !localPath.Contains('\\')) continue; // Do not process root-level files. These files should not be searchable.
 			fileNameToIndex[s] = filePaths.Count;
 			filePaths.Add($"/{localPath.Replace('\\', '/')}");
 		}
@@ -114,7 +107,7 @@ public static partial class SearchGatherer
 	{
 		string html = await File.ReadAllTextAsync(path);
 		// Remove code
-		html = PreRegex.Replace(html, string.Empty);
+		html = s_preRegex.Replace(html, string.Empty);
 
 		string? headerText = GetHeaderText(html);
 		if (headerText != null)
@@ -130,7 +123,7 @@ public static partial class SearchGatherer
 
 		// Remove extremely common headers from search results
 		html = html.Replace(">Description<", "><").Replace(">Resolution<", "><").Replace(">Implementation<", "><");
-		
+
 		// Without this wrapping div Uglify fails to parse many forms of HTML.
 		UglifyResult result = Uglify.HtmlToText($"<div>{html}</div>", sourceFileName: path);
 		if (result.HasErrors)

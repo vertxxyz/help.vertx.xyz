@@ -22,21 +22,21 @@ internal static class AssertionExtensions
 
 	public static StringAssertionsExtensions Should(this string instance) => new(instance);
 	public static FileAssertions Should(this FileInfo instance) => new(instance);
-	
+
 	public static DirectoryAssertions Should(this DirectoryInfo instance) => new(instance);
 }
 
 internal class StringAssertionsExtensions : StringAssertions
 {
-	private const int _truncationLength = 100;
+	private const int TruncationLength = 100;
 	private readonly string _truncated;
 
 	public StringAssertionsExtensions(string value) : base(value)
 	{
-		if (string.IsNullOrEmpty(value)) 
+		if (string.IsNullOrEmpty(value))
 			_truncated = value;
 		else
-			_truncated = value.Length <= _truncationLength ? value : $"{value[..(_truncationLength - 3)]}...";
+			_truncated = value.Length <= TruncationLength ? value : $"{value[..(TruncationLength - 3)]}...";
 	}
 
 	/// <summary>
@@ -70,7 +70,7 @@ internal class StringAssertionsExtensions : StringAssertions
 
 		return new AndConstraint<StringAssertions>(this);
 	}
-	
+
 	/// <summary>
 	/// Asserts that a string does not contain another (fragment of a) string.
 	/// </summary>
@@ -99,9 +99,9 @@ internal class StringAssertionsExtensions : StringAssertions
 	}
 
 	private static bool Contains(string? actual, string? expected, StringComparison comparison) => (actual ?? string.Empty).Contains(expected ?? string.Empty, comparison);
-	
+
 	private static bool Contains(string? actual, char expected, StringComparison comparison) => (actual ?? string.Empty).Contains(expected, comparison);
-		
+
 	/// <summary>
 	/// Asserts that a string does not match the regex.
 	/// </summary>
@@ -116,7 +116,7 @@ internal class StringAssertionsExtensions : StringAssertions
 
 		return new AndConstraint<StringAssertions>(this);
 	}
-		
+
 	/// <summary>
 	/// Asserts that a string does matches the regex.
 	/// </summary>
@@ -143,7 +143,7 @@ internal class FileAssertions<TAssertions> : ReferenceTypeAssertions<FileInfo, T
 {
 	public FileAssertions(FileInfo subject) : base(subject) { }
 	protected override string Identifier => nameof(FileInfo);
-		
+
 	/// <summary>
 	/// Asserts that a File exists.
 	/// </summary>
@@ -175,7 +175,7 @@ internal class DirectoryAssertions<TAssertions> : ReferenceTypeAssertions<Direct
 {
 	public DirectoryAssertions(DirectoryInfo subject) : base(subject) { }
 	protected override string Identifier => nameof(DirectoryInfo);
-		
+
 	/// <summary>
 	/// Asserts that a Directory exists.
 	/// </summary>

@@ -8,11 +8,11 @@ namespace Troubleshooter;
 
 public static partial class RtfUtility
 {
-	private static readonly Regex fontSizeRegex = GetFontSizeRegex();
-	private static readonly Regex tabsRegex = GetTabsRegex();
-	private static readonly Regex backgroundRegex = GetBackgroundRegex();
-	private static readonly Regex marginsRegex = GetMarginsRegex();
-	private static readonly Regex colorRegex = GetColorRegex();
+	private static readonly Regex s_fontSizeRegex = GetFontSizeRegex();
+	private static readonly Regex s_tabsRegex = GetTabsRegex();
+	private static readonly Regex s_backgroundRegex = GetBackgroundRegex();
+	private static readonly Regex s_marginsRegex = GetMarginsRegex();
+	private static readonly Regex s_colorRegex = GetColorRegex();
 
 	public static string RtfToHtml(string rtf)
 	{
@@ -20,9 +20,9 @@ public static partial class RtfUtility
 		// Get closing index of font div
 		int closing = IndexOfClosingChar(html, 0, '<', '>');
 		html = html.Substring(closing + 1, html.Length - 6 - (closing + 1)); //6 is "</div>".Length
-		html = fontSizeRegex.Replace(html, string.Empty);
-		html = marginsRegex.Replace(html, string.Empty);
-		html = backgroundRegex.Replace(html, string.Empty);
+		html = s_fontSizeRegex.Replace(html, string.Empty);
+		html = s_marginsRegex.Replace(html, string.Empty);
+		html = s_backgroundRegex.Replace(html, string.Empty);
 		// Replace all paragraphs with spans
 		html = html.Replace(@"<p style=""", @"<span style=""");
 		html = html.Replace("</p>", "</span>");
@@ -38,7 +38,7 @@ public static partial class RtfUtility
 		// Replace explicit width with spaces
 		void ReplaceTabsHack()
 		{
-			html = StringUtility.ReplaceMatch(html, tabsRegex, (match, stringBuilder) =>
+			html = StringUtility.ReplaceMatch(html, s_tabsRegex, (match, stringBuilder) =>
 			{
 				stringBuilder.Append("<span>");
 				stringBuilder.Append(' ', (int)Math.Round(int.Parse(match) * 0.083f));
@@ -51,7 +51,7 @@ public static partial class RtfUtility
 		// Replace all the explicit colour styles with HTML instead
 		void ReplaceColorsHack()
 		{
-			html = StringUtility.ReplaceMatch(html, colorRegex, (match, stringBuilder) =>
+			html = StringUtility.ReplaceMatch(html, s_colorRegex, (match, stringBuilder) =>
 			{
 				if (HtmlUtility.ColorToClassLookup.TryGetValue(match.Groups[1].Value, out string? className))
 				{
@@ -85,20 +85,20 @@ public static partial class RtfUtility
 	{
 		int i;
 
-		// If index given is invalid and is not an opening bracket.  
+		// If index given is invalid and is not an opening bracket.
 		if (expression[index] != openChar)
 			throw new ArgumentOutOfRangeException($"Input index {index} into expression \"{expression}\" did not contain opening char {openChar}.");
 
-		// Stack to store opening brackets.  
+		// Stack to store opening brackets.
 		Stack<int> st = new();
 
-		// Traverse through string starting from given index.  
+		// Traverse through string starting from given index.
 		for (i = index; i < expression.Length; i++)
 		{
-			// If current character is an opening bracket push it in stack.  
+			// If current character is an opening bracket push it in stack.
 			if (expression[i] == openChar)
 				st.Push(expression[i]);
-			// If current character is 'closing', pop from stack. If stack is empty, then this is the required 'closing'.  
+			// If current character is 'closing', pop from stack. If stack is empty, then this is the required 'closing'.
 			else if (expression[i] == closeChar)
 			{
 				st.Pop();

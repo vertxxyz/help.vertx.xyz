@@ -7,7 +7,7 @@ namespace Troubleshooter.Renderers;
 
 public class HeadingOverrideRenderer : HeadingRenderer
 {
-	private static readonly string[] HeadingTexts = {
+	private static readonly string[] s_headingTexts = {
 		"h1",
 		"h2",
 		"h3",
@@ -21,8 +21,8 @@ public class HeadingOverrideRenderer : HeadingRenderer
 	protected override void Write(HtmlRenderer renderer, HeadingBlock obj)
 	{
 		int index = obj.Level - 1;
-		string headingText = (uint)index < (uint)HeadingTexts.Length
-			? HeadingTexts[index]
+		string headingText = (uint)index < (uint)s_headingTexts.Length
+			? s_headingTexts[index]
 			: $"h{obj.Level.ToString(CultureInfo.InvariantCulture)}";
 
 		if (renderer.EnableHtmlForBlock)
