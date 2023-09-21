@@ -38,4 +38,4 @@ If you want to correctly assign the object:
 
 :::
 
-[^1]: See [Unity null](../../../Other/Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.  
+[^1]: See [Unity null](../Programming/Other/Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.  

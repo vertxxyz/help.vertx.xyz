@@ -41,6 +41,6 @@ public static partial class CommonRegex
 	[GeneratedRegex("""!\[[^\]]*\]\((?!http)(.*?)\s*(".*[^"]")?\s*\)""", RegexOptions.Compiled)]
 	private static partial Regex GetLocalImagesRegex();
 	
-	[GeneratedRegex("""loadPage\('([\w\-]+?.md)'\)""", RegexOptions.Compiled)]
+	[GeneratedRegex("""loadPage\('([\w\-.\/]+?.md)'\)""", RegexOptions.Compiled)]
 	private static partial Regex GetLoadPageRegex();
 }

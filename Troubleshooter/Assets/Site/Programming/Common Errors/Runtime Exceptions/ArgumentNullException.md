@@ -20,4 +20,4 @@ Note that many errors from Unity Editor code can throw an `ArgumentNullException
 
 ---
 
-After understanding this page's content, visit [`NullReferenceException`](NullReferenceException.md) to further debug your issue.
+After understanding this page's content, visit [`NullReferenceException`](../../../NullReferenceException.md) to further debug your issue.

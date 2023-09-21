@@ -1,4 +1,4 @@
-#define DONT_WRITE_FILES
+// #define DONT_WRITE_FILES
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -96,14 +96,14 @@ public static class IOUtility
 		
 #if DONT_WRITE_FILES
 		return false;
-#endif
-
+#else
 		string directory = Path.GetDirectoryName(fullPath)!;
 		Directory.CreateDirectory(directory);
 		if (File.Exists(fullPath) && string.Equals(File.ReadAllText(fullPath), contents, StringComparison.Ordinal))
 			return false;
 		File.WriteAllText(fullPath, contents);
 		return true;
+#endif
 	}
 
 	public static async Task<bool> CreateFileIfDifferentAsync(string fullPath, string contents)
@@ -112,14 +112,14 @@ public static class IOUtility
 		
 #if DONT_WRITE_FILES
 		return false;
-#endif
-
+#else
 		string directory = Path.GetDirectoryName(fullPath)!;
 		Directory.CreateDirectory(directory);
 		if (File.Exists(fullPath) && string.Equals(await File.ReadAllTextAsync(fullPath), contents, StringComparison.Ordinal))
 			return false;
 		await File.WriteAllTextAsync(fullPath, contents);
 		return true;
+#endif
 	}
 
 	public static IEnumerable<string> RecordedPaths => recordedPaths.Keys;
@@ -135,27 +135,27 @@ public static class IOUtility
 		
 #if DONT_WRITE_FILES
 		return false;
-#endif
-
+#else
 		string directory = Path.GetDirectoryName(destinationFullPath)!;
 		Directory.CreateDirectory(directory);
 		if (File.Exists(destinationFullPath) && AreFileContentsEqual(destinationFullPath, file)) return false;
 		file.CopyTo(destinationFullPath, true);
 		return true;
+#endif
 	}
 
-	public static bool WriteFileTextIfDifferent(string text, FileInfo from, string destinationFullPath)
+	public static bool WriteFileTextIfDifferent(string text, string destinationFullPath)
 	{
 		recordedPaths.TryAdd(destinationFullPath, 0);
 		
 #if DONT_WRITE_FILES
 		return false;
-#endif
-
+#else
 		string directory = Path.GetDirectoryName(destinationFullPath)!;
 		Directory.CreateDirectory(directory);
 		if (File.Exists(destinationFullPath) && IsFileTextEqual(text, destinationFullPath)) return false;
-		from.CopyTo(destinationFullPath, true);
+		File.WriteAllText(destinationFullPath, text);
 		return true;
+#endif
 	}
 }

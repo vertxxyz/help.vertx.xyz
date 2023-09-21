@@ -1,11 +1,59 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Troubleshooter;
 
 public static class PageUtility
 {
+	public static HashSet<string> GetAllSymlinkedFiles(string rootDirectory)
+	{
+		// Collect nested files.
+		HashSet<string> files = CollectNestedSymlinkedFiles(CollectSymlinkedDirectories(rootDirectory)).Keys.ToHashSet();
+		
+		// Collect raw symlinks.
+		foreach (string path in Directory.EnumerateFiles(rootDirectory, "*", SearchOption.AllDirectories))
+		{
+			if (new FileInfo(path).LinkTarget == null)
+				continue;
+
+			files.Add(path);
+		}
+
+		return files;
+	}
+	
+	public static Dictionary<string, string> CollectNestedSymlinkedFiles(Dictionary<string, string> directorySymlinksFromTo)
+	{
+		Dictionary<string, string> fileSymlinksFromTo = new();
+		foreach ((string fromDirectory, string toDirectory) in directorySymlinksFromTo)
+		{
+			// All these files are nested under symlinks
+			foreach (string path in Directory.EnumerateFiles(fromDirectory, "*", SearchOption.AllDirectories))
+				fileSymlinksFromTo.Add(path, Path.GetFullPath(Path.GetRelativePath(fromDirectory, path), toDirectory));
+		}
+
+		return fileSymlinksFromTo;
+	}
+
+	public static Dictionary<string, string> CollectSymlinkedDirectories(string rootDirectory)
+	{
+		Dictionary<string, string> directorySymlinksFromTo = new();
+		foreach (string path in Directory.EnumerateDirectories(rootDirectory, "*", SearchOption.AllDirectories))
+		{
+			var directoryInfo = new DirectoryInfo(path);
+			string? linkTarget = directoryInfo.LinkTarget;
+			if (linkTarget == null)
+				continue;
+
+			// Is a symlink, add it to the list.
+			directorySymlinksFromTo.Add(path, Path.GetFullPath(linkTarget, Path.GetDirectoryName(path)!));
+		}
+
+		return directorySymlinksFromTo;
+	}
+	
 	/// <summary>
 	/// Parse markdown text looking for page links
 	/// </summary>

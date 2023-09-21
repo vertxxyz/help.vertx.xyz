@@ -20,7 +20,7 @@ You can double-check types by using IDE inspection, or via the [documentation](h
 ![Struct in the ScriptReference](struct-documentation.png)  
 ^^^ Documentation indicating `struct` inheritance.
 
-You can find a more detailed breakdown of value and reference types [here](../../../Value%20And%20Reference%20Types.md).
+You can find a more detailed breakdown of value and reference types [here](../Programming/Value%20And%20Reference%20Types.md).
 
 ---  
 

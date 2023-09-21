@@ -4,7 +4,7 @@
 Serialized references between objects cannot occur across scenes.
 :::
 
-Cross-scene references are disallowed as they cannot be saved in Scene files and will also cause [NullReferenceExceptions](../Common%20Errors/Runtime%20Exceptions/NullReferenceException.md) when both scenes are not loaded in the editor.
+Cross-scene references are disallowed as they cannot be saved in Scene files and will also cause [NullReferenceExceptions](../../NullReferenceException.md) when both scenes are not loaded in the editor.
 
 ### Resolution
 If you cannot change your architecture to avoid these references, consider constructing them in code, not serializing them directly.  

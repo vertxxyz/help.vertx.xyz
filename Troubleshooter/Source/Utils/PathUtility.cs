@@ -75,4 +75,14 @@ public static class PathUtility
 				return Path.Combine(directory.ToString().ToFinalisedWorkingPath(), Path.GetFileName(pathSpan).ToString());
 		}
 	}
+	
+	/// <summary>
+	/// The embeds directory as local to the HTML directory.
+	/// </summary>
+	public static readonly string EmbedsDirectory = Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").ToWorkingPath();
+	
+	/// <summary>
+	/// The embeds directory as local to the HTML directory in output (link) path format.
+	/// </summary>
+	public static readonly string EmbedsDirectoryLink = EmbedsDirectory.ToOutputPath();
 }

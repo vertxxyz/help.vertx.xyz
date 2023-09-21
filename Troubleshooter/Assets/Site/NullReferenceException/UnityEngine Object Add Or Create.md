@@ -10,5 +10,5 @@
 :::note
 #### 2. Do not use a modern null-checking operator
 Check that you are not using modern null-checking operator (`?.`, `??`, `??=`).  
-See [Unity null](../../../Other/Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.  
+See [Unity null](../Programming/Other/Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.  
 :::

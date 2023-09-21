@@ -27,23 +27,8 @@ public partial class LinkTests
 	{
 		using var assertionScope = new AssertionScope();
 		string siteRoot = TestUtility.TestSite.Directory;
-		if (path.EndsWith(Constants.RedirectSuffix))
-		{
-			foreach ((string fullPath, _) in PageUtility.GetLinkFullPathsFromMarkdownText(text, path, siteRoot))
-			{
-				if (Path.HasExtension(fullPath))
-					new FileInfo(fullPath).Should().Exist("{0} is missing a link", name);
-				else
-					new DirectoryInfo(fullPath).Should().Exist("{0} is missing a link", name);
-			}
-		}
-		else
-		{
-			foreach ((string fullPath, _) in PageUtility.GetLinkFullPathsFromMarkdownText(text, path, siteRoot))
-			{
-				new FileInfo(fullPath).Should().Exist("{0} is missing a link", name);
-			}
-		}
+		foreach ((string fullPath, _) in PageUtility.GetLinkFullPathsFromMarkdownText(text, path, siteRoot))
+			new FileInfo(fullPath).Should().Exist("{0} is missing a link", name);
 	}
 
 	[GeneratedRegex(@"(?<!!)\[.+?\]\((.+?)\)", RegexOptions.Compiled)]

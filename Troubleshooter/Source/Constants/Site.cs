@@ -51,7 +51,7 @@ public sealed class Site
 	public string ConvertFullSitePathToLinkPath(string fullPath)
 	{
 		string localPath = FinalisePathWithRootIndex(fullPath, RootIndex);
-		return Path.ChangeExtension(localPath, null);
+		return Path.ChangeExtension(localPath, null).ToOutputPath();
 	}
 		
 	/// <summary>

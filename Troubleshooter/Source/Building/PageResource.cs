@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -17,8 +18,15 @@ public enum ResourceType
 	Markdown,
 	RichText,
 	Html,
-	Generator,
-	Redirection
+	Generator
+}
+
+[Flags]
+public enum ResourceFlags
+{
+	None,
+	Symlink = 1 << 0,
+	ExistsInOutput = 1 << 1
 }
 
 public enum ResourceLocation
@@ -46,9 +54,19 @@ public sealed partial class PageResource
 	public readonly string FullPath;
 
 	/// <summary>
+	/// Full path to the source file if <see cref="ResourceFlags.Symlink"/> is true.
+	/// </summary>
+	public readonly string? SymlinkFullPath;
+
+	/// <summary>
 	/// What type of data this resource contains, markdown, rich text, etc.
 	/// </summary>
 	public readonly ResourceType Type;
+
+	/// <summary>
+	/// Specific info about this resource.
+	/// </summary>
+	public ResourceFlags Flags { get; private set; }
 
 	/// <summary>
 	/// Where the resource is - site content, embedded page content, etc.
@@ -66,9 +84,14 @@ public sealed partial class PageResource
 	public string? HtmlText { get; private set; }
 
 	/// <summary>
-	/// Output location. This is only processed after <see cref="WriteToDisk"/> is called.
+	/// Output url.
 	/// </summary>
-	public string? OutputLinkPath { get; private set; }
+	public string OutputLink { get; }
+	
+	/// <summary>
+	/// Output file location. The file may not exist if <see cref="Flags"/> does not contain <see cref="ResourceFlags.ExistsInOutput"/>.
+	/// </summary>
+	public string OutputFilePath { get; }
 
 	// -------- Unbuilt resources --------
 	/// <summary>
@@ -81,20 +104,25 @@ public sealed partial class PageResource
 	/// </summary>
 	public HashSet<string>? EmbeddedInto { get; private set; }
 
-	private string EmbedsDirectory =>
-		_embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").ToWorkingPath();
+	private List<PageResource>? _generatedChildren;
+	
+	public bool HasGeneratedChildren => _generatedChildren?.Count > 0;
+	
+	public IEnumerable<PageResource> GeneratedChildren => _generatedChildren ?? Enumerable.Empty<PageResource>();
 
-	private string ImagesDirectory =>
-		_embedsDirectory ??= Path.Combine(Arguments.HtmlOutputDirectoryName, "Content", "Images").ToWorkingPath();
-
-	private string? _embedsDirectory;
-
-	public PageResource(string fullPath, ResourceType type, ResourceLocation location)
+	public PageResource(string fullPath, ResourceType type, ResourceLocation location, string? symlinkTarget, string htmlOutputDirectory, Site site)
 	{
 		Type = type;
 		Location = location;
 		FullPath = fullPath;
+		SymlinkFullPath = symlinkTarget;
+		Flags = symlinkTarget != null ? ResourceFlags.Symlink : ResourceFlags.None;
+		OutputLink ??= site.ConvertFullSitePathToLinkPath(FullPath);
+		OutputLink = s_NumberRegex.Replace(OutputLink, "/");
+		OutputFilePath = Path.Combine(htmlOutputDirectory, $"{OutputLink}.html").ToWorkingPath();
 	}
+	
+	public void AddGeneratedChild(PageResource pageResource) => (_generatedChildren ??= new List<PageResource>()).Add(pageResource);
 
 	public void AddEmbeddedInto(string page)
 	{
@@ -115,6 +143,10 @@ public sealed partial class PageResource
 		IProcessorGroup processors
 	)
 	{
+		// Symlinks use the data built in their originating files.
+		if ((Flags & ResourceFlags.Symlink) != 0)
+			return;
+		
 		switch (Type)
 		{
 			case ResourceType.None:
@@ -147,9 +179,6 @@ public sealed partial class PageResource
 				break;
 			case ResourceType.Generator:
 				// Generators are processed during the gather stage.
-				return;
-			case ResourceType.Redirection:
-				// Redirection is processed in RedirectBuildPostProcessor.
 				return;
 			default:
 				throw new ArgumentOutOfRangeException(nameof(Type), "Missing when building text.");
@@ -251,7 +280,7 @@ public sealed partial class PageResource
 			{
 				case ResourceLocation.Embed:
 					rootIndex = site.EmbedRootIndex;
-					directoryRoot = EmbedsDirectory;
+					directoryRoot = PathUtility.EmbedsDirectory;
 					break;
 				case ResourceLocation.Site:
 					rootIndex = site.RootIndex;
@@ -266,7 +295,7 @@ public sealed partial class PageResource
 			int last = 0;
 			foreach ((string image, Group group) in PageUtility.GetImagesAsLocalPathsFromMarkdownText(allText, false))
 			{
-				if (ApproximatelyStartsWith(group.Value, EmbedsDirectory, 2))
+				if (ApproximatelyStartsWith(group.Value, PathUtility.EmbedsDirectoryLink, 2))
 					continue;
 
 				if (group.Value.StartsWith("/Images/"))
@@ -312,7 +341,7 @@ public sealed partial class PageResource
 		Written
 	}
 
-	public WriteStatus WriteToDisk(Arguments arguments, Site site)
+	public WriteStatus WriteToDisk()
 	{
 		switch (Location)
 		{
@@ -324,21 +353,23 @@ public sealed partial class PageResource
 				return WriteStatus.Ignored;
 		}
 
-		if (Type is ResourceType.Generator or ResourceType.Redirection)
+		if ((Flags & ResourceFlags.Symlink) != 0)
 		{
-			// Generators do not write, they only create other resources.
-			// Redirection moves other resources.
+			// Symlinks move other resources.
 			return WriteStatus.Ignored;
 		}
 
+		if (Type is ResourceType.Generator)
+		{
+			// Generators do not write, they only create other resources.
+			return WriteStatus.Ignored;
+		}
+
+		// The file is written/exists at this point.
+		Flags |= ResourceFlags.ExistsInOutput;
 
 		// Check the previously built file to see whether it ought to be re-written.
-		OutputLinkPath ??= site.ConvertFullSitePathToLinkPath(FullPath);
-
-		OutputLinkPath = s_NumberRegex.Replace(OutputLinkPath, "/");
-
-		string path = Path.Combine(arguments.HtmlOutputDirectory!, $"{OutputLinkPath}.html");
-		return IOUtility.CreateFileIfDifferent(path, HtmlText!) ? WriteStatus.Written : WriteStatus.Skipped;
+		return IOUtility.CreateFileIfDifferent(OutputFilePath, HtmlText!) ? WriteStatus.Written : WriteStatus.Skipped;
 	}
 
 	private static readonly Regex s_NumberRegex = GetNumberRegex();

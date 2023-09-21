@@ -6,7 +6,7 @@ This means that code placed directly after an exception-raising statement will n
 ### Exceptions
 
 :::code-block--no-background
-- [NullReferenceException](Runtime%20Exceptions/NullReferenceException.md)
+- [NullReferenceException](../../NullReferenceException.md)
 - [MissingReferenceException](Runtime%20Exceptions/MissingReferenceException.md)
 - [UnassignedReferenceException](Runtime%20Exceptions/UnassignedReferenceException.md)
 - [IndexOutOfRangeException](Runtime%20Exceptions/IndexOutOfRangeException.md)

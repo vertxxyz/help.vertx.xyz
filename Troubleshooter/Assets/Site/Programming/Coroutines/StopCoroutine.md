@@ -59,7 +59,7 @@ IEnumerator ExampleCoroutine()
 bool IsExampleCoroutineRunning() => _exampleCoroutine != null;
 /* End Collapsable */
 ```
-^^^ ::`StopCoroutine` will throw a [`NullReferenceException`](../Common%20Errors/Runtime%20Exceptions/NullReferenceException.md) if `null` is passed to it.::{.error}  
+^^^ ::`StopCoroutine` will throw a [`NullReferenceException`](../../NullReferenceException.md) if `null` is passed to it.::{.error}  
 ::::
 
 #### When disabling scripts

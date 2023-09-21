@@ -34,7 +34,7 @@ Null values will sometimes print nothing, so note if a log does not print detail
 
 A much less tedious way of discovering what values are null is to [use the debugger](../Debugger.md), where code execution is halted and values can be inspected directly.
 
-See [`NullReferenceException`](../../Common%20Errors/Runtime%20Exceptions/NullReferenceException.md) for more information.
+See [`NullReferenceException`](../../../NullReferenceException.md) for more information.
 
 ### Extra details
 #### Vectors

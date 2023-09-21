@@ -99,7 +99,7 @@ Often this should feel intuitive, when comparing complex structures you expect e
 ## Null
 Null is a reference that indicates a lack of an associated value. It has no location or members.
 ### Reference types
-Reference types can be assigned to null. This is the default state of a reference type. Trying to access a value that is null will cause that code to fail at runtime, throwing a [NullReferenceException](Common%20Errors/Runtime%20Exceptions/NullReferenceException.md).  
+Reference types can be assigned to null. This is the default state of a reference type. Trying to access a value that is null will cause that code to fail at runtime, throwing a [NullReferenceException](../NullReferenceException.md).  
 
 ```nomnoml
 #direction: right

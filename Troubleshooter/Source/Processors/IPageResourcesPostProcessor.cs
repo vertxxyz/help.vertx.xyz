@@ -9,7 +9,7 @@ namespace Troubleshooter;
 /// </summary>
 public interface IPageResourcesPostProcessor
 {
-	void Process(PageResourcesLookup dictionary, Site site);
+	void Process(PageResourcesLookup dictionary, Arguments arguments, Site site);
 }
 
 /// <summary>
@@ -25,9 +25,9 @@ public sealed class PageResourcesPostProcessors
 			.Select(t => (IPageResourcesPostProcessor)ActivatorUtilities.CreateInstance(provider, t))
 			.ToArray();
 
-	public void Process(PageResourcesLookup pageResources, Site site)
+	public void Process(PageResourcesLookup pageResources, Arguments arguments, Site site)
 	{
 		foreach (IPageResourcesPostProcessor postProcessor in _all)
-			postProcessor.Process(pageResources, site);
+			postProcessor.Process(pageResources, arguments, site);
 	}
 }

@@ -8,7 +8,7 @@ When logging to find null values it's important to make individual logs for each
 Null values will sometimes print nothing, so note if a log does not print details, it could be a `null` value.
 
 :::info
-A much less tedious way of discovering what values are null is to [use the debugger](../../../Debugging/Debugger.md), where code execution is halted and values can be inspected directly.
+A much less tedious way of discovering what values are null is to [use the debugger](../Programming/Debugging/Debugger.md), where code execution is halted and values can be inspected directly.
 :::
 
 ---  

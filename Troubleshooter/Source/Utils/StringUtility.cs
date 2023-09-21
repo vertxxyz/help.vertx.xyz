@@ -45,7 +45,7 @@ public static partial class StringUtility
 	public static string ReplaceMatch(string text, MatchCollection matches, Action<Match, StringBuilder> matchRemap)
 	{
 		int last = 0;
-		StringBuilder stringBuilder = new();
+		StringBuilder stringBuilder = new(text.Length);
 		for (int i = 0; i < matches.Count; i++)
 		{
 			Match match = matches[i];

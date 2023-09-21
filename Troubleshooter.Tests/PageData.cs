@@ -7,14 +7,27 @@ namespace Troubleshooter.Tests;
 
 public class PageData : IEnumerable<object[]>
 {
+	private readonly HashSet<string> _symlinks;
+	private readonly Site _site;
+
+	public PageData()
+	{
+		_site = TestUtility.TestSite;
+		_symlinks = PageUtility.GetAllSymlinkedFiles(_site.AssetsRoot);
+	}
+
 	public IEnumerator<object[]> GetEnumerator()
 	{
-		foreach (string file in Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, "*.md", SearchOption.AllDirectories))
+		foreach (string file in Directory.EnumerateFiles(_site.AssetsRoot, "*.md", SearchOption.AllDirectories))
 		{
+			// Ignore symlinked files.
+			if (_symlinks.Contains(file))
+				continue;
+
 			if (file.EndsWith(Constants.GeneratorSuffix))
 			{
-				foreach ((string path, PageResource value) in SiteBuilder.ProcessGenerators(TestUtility.TestSite, null,
-					         new PageResource(file, ResourceType.Generator, ResourceLocation.Site)))
+				foreach ((string path, PageResource value) in
+				         SiteBuilder.ProcessGenerators("", _site, null, new PageResource(file, ResourceType.Generator, ResourceLocation.Site, null, "", _site)))
 				{
 					string localPath = new System.Uri(path).LocalPath;
 					yield return new object[]
@@ -25,7 +38,7 @@ public class PageData : IEnumerable<object[]>
 					};
 				}
 			}
-				         
+
 			yield return new object[]
 			{
 				Path.GetFileNameWithoutExtension(file),

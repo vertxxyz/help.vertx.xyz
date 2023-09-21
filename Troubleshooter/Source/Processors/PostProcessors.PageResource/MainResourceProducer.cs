@@ -25,7 +25,7 @@ public partial class MainResourceProducer : IPageResourcesPostProcessor
 		{ "DOTS.md", "DOTS" }
 	}.ToImmutableDictionary();
 
-	public void Process(PageResourcesLookup dictionary, Site site)
+	public void Process(PageResourcesLookup dictionary, Arguments arguments, Site site)
 	{
 		KeyValuePair<string, PageResource>[] resources = dictionary.ToArray();
 		foreach ((string fullPath, PageResource main) in resources)
@@ -33,6 +33,8 @@ public partial class MainResourceProducer : IPageResourcesPostProcessor
 			// Only operate on main pages.
 			if (!s_MainPages.TryGetValue(Path.GetFileName(fullPath), out string? destinationPath))
 				continue;
+
+			if ((main.Flags & ResourceFlags.Symlink) != 0) throw new BuildException("Detected main page was a symlink");
 
 			string directory = Path.GetDirectoryName(fullPath)!;
 			if (!string.IsNullOrEmpty(destinationPath))
@@ -60,7 +62,7 @@ public partial class MainResourceProducer : IPageResourcesPostProcessor
 					if (index == -1)
 						break;
 					start = index + 3;
-					if (stringBuilder[index + 1] == '/') 
+					if (stringBuilder[index + 1] == '/')
 						continue;
 					stringBuilder.Insert(index + 2, '/');
 				}
@@ -71,7 +73,7 @@ public partial class MainResourceProducer : IPageResourcesPostProcessor
 					continue;
 
 				destination += ".md";
-				var newPage = new PageResource(destination, ResourceType.Markdown, ResourceLocation.Site);
+				var newPage = new PageResource(destination, ResourceType.Markdown, ResourceLocation.Site, null, arguments.HtmlOutputDirectory!, site);
 				newPage.ProcessMarkdown(stringBuilder.ToString(), site, dictionary);
 				dictionary.Add(destination, newPage);
 			}

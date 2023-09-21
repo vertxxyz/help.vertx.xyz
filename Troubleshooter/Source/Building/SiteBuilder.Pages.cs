@@ -18,8 +18,8 @@ public static partial class SiteBuilder
 		IProcessorGroup processors
 	)
 	{
-		var allResources = CollectPages(site);
-		processors.ResourceProcessors.Process(allResources, site);
+		var allResources = CollectPages(arguments, site);
+		processors.ResourceProcessors.Process(allResources, arguments, site);
 		var allBuiltResources = new HashSet<string>();
 
 		arguments.VerboseLog($"{allResources.Count} total un-processed pages");
@@ -58,7 +58,7 @@ public static partial class SiteBuilder
 				}
 
 				allBuiltResources.Add(path);
-				switch (resource.WriteToDisk(arguments, site))
+				switch (resource.WriteToDisk())
 				{
 					case PageResource.WriteStatus.Ignored:
 						ignoredPages++;
@@ -88,8 +88,10 @@ public static partial class SiteBuilder
 		SourceIndex.GeneratePageSourceLookup(arguments, allResources);
 	}
 
-	private static PageResourcesLookup CollectPages(Site site)
+	private static PageResourcesLookup CollectPages(Arguments arguments, Site site)
 	{
+		string htmlOutputDirectory = arguments.HtmlOutputDirectory!;
+
 		PageResourcesLookup pages = new();
 
 		// Collect symlink directories so files within those directories can be marked as links.
@@ -134,27 +136,40 @@ public static partial class SiteBuilder
 			if (pages.TryGetValue(fullPath, out page))
 				return true;
 
+			string? symlinkTo = null;
+			if (location != ResourceLocation.Embed)
+			{
+				if (!fileSymlinksFromTo.TryGetValue(fullPath, out symlinkTo))
+				{
+					FileInfo fileInfo = new(fullPath);
+					string? linkTarget = fileInfo.LinkTarget;
+					if (linkTarget != null)
+					{
+						string linkTargetFullPath = Path.GetFullPath(linkTarget, Path.GetDirectoryName(fullPath)!);
+						fileSymlinksFromTo.Add(fullPath, linkTargetFullPath);
+						symlinkTo = linkTargetFullPath;
+					}
+				}
+			}
+			
 			string extension = Path.GetExtension(fullPath);
 			switch (extension)
 			{
 				case ".md" when fullPath.EndsWith(Constants.GeneratorSuffix):
-					page = new PageResource(fullPath, ResourceType.Generator, location);
-					break;
-				case ".md" when fullPath.EndsWith(Constants.RedirectSuffix):
-					page = new PageResource(fullPath, ResourceType.Redirection, location);
+					page = new PageResource(fullPath, ResourceType.Generator, location, symlinkTo, htmlOutputDirectory, site);
 					break;
 				case ".md":
-					page = new PageResource(fullPath, ResourceType.Markdown, location);
+					page = new PageResource(fullPath, ResourceType.Markdown, location, symlinkTo, htmlOutputDirectory, site);
 					break;
 				case ".gen":
-					page = new PageResource(fullPath, ResourceType.Generator, location);
+					page = new PageResource(fullPath, ResourceType.Generator, location, symlinkTo, htmlOutputDirectory, site);
 					break;
 				case ".rtf":
-					page = new PageResource(fullPath, ResourceType.RichText, location);
+					page = new PageResource(fullPath, ResourceType.RichText, location, symlinkTo, htmlOutputDirectory, site);
 					break;
 				case ".html":
 				case ".nomnoml":
-					page = new PageResource(fullPath, ResourceType.Html, location);
+					page = new PageResource(fullPath, ResourceType.Html, location, symlinkTo, htmlOutputDirectory, site);
 					break;
 				default:
 					// Ignore content that is not buildable page content.
@@ -171,43 +186,16 @@ public static partial class SiteBuilder
 			PageResourcesLookup toAppend = new();
 			foreach ((_, PageResource page) in pages)
 			{
-				foreach ((string key, PageResource value) in ProcessGenerators(site, pages, page))
+				foreach ((string key, PageResource value) in ProcessGenerators(htmlOutputDirectory, site, pages, page))
+				{
 					toAppend.Add(key, value);
+					page.AddGeneratedChild(value);
+				}
 			}
 
 			foreach (KeyValuePair<string, PageResource> pair in toAppend)
 				pages.Add(pair.Key, pair.Value);
 		}
-	}
-
-	private static Dictionary<string, string> CollectNestedSymlinkedFiles(Dictionary<string, string> directorySymlinksFromTo)
-	{
-		Dictionary<string, string> fileSymlinksFromTo = new();
-		foreach ((string fromDirectory, string toDirectory) in directorySymlinksFromTo)
-		{
-			// All these files are nested under symlinks
-			foreach (string path in Directory.EnumerateFiles(fromDirectory, "*", SearchOption.AllDirectories))
-				fileSymlinksFromTo.Add(path, Path.Combine(toDirectory, Path.GetRelativePath(fromDirectory, path)));
-		}
-
-		return fileSymlinksFromTo;
-	}
-
-	private static Dictionary<string, string> CollectSymlinkedDirectories(string rootDirectory)
-	{
-		Dictionary<string, string> directorySymlinksFromTo = new();
-		foreach (string path in Directory.EnumerateDirectories(rootDirectory, "*", SearchOption.AllDirectories))
-		{
-			var directoryInfo = new DirectoryInfo(path);
-			string? linkTarget = directoryInfo.LinkTarget;
-			if (linkTarget == null)
-				continue;
-
-			// Is a symlink, add it to the list.
-			directorySymlinksFromTo.Add(path, linkTarget);
-		}
-
-		return directorySymlinksFromTo;
 	}
 
 	[GeneratedRegex(@"\[(.+?)\]\(([\w%/-]+?)\.md\)", RegexOptions.Compiled)]
@@ -216,8 +204,11 @@ public static partial class SiteBuilder
 	[GeneratedRegex(@"//\s*bypass\s*$")]
 	private static partial Regex BypassRegex();
 
-	public static IEnumerable<(string key, PageResource value)> ProcessGenerators(Site site, PageResourcesLookup? allResources, PageResource page)
+	public static IEnumerable<(string key, PageResource value)> ProcessGenerators(string htmlOutputDirectory, Site site, PageResourcesLookup? allResources, PageResource page)
 	{
+		if ((page.Flags & ResourceFlags.Symlink) != 0)
+			yield break;
+		
 		// Generated markdown
 		if (page.FullPath.EndsWith(Constants.SidebarGeneratorSuffix))
 		{
@@ -278,7 +269,7 @@ public static partial class SiteBuilder
 				}
 
 				markdownText = markdownText.Replace(" // bypass", "");
-				PageResource resource = new(path, ResourceType.Markdown, page.Location) { MarkdownText = markdownText };
+				PageResource resource = new(path, ResourceType.Markdown, page.Location, page.SymlinkFullPath, htmlOutputDirectory, site) { MarkdownText = markdownText };
 				yield return (path.ToWorkingPath().ToUnTokenized(), resource);
 			}
 		}
