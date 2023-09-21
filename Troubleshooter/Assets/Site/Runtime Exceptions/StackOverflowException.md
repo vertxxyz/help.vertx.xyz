@@ -1,12 +1,12 @@
 ## StackOverflowException
 
-A StackOverflowException most often occurs in recursive cases, where code is calling itself in an infinite loop.  
+A StackOverflowException most often occurs in recursive cases, where code is calling itself in an infinite loop.
 In this case the stack—a place where memory local to a scope is allocated—grows until there is no more space to contain it.
 
 ### Resolution
-Fix the recursive loop.  
+Fix the recursive loop.
 
-The [stack trace](../../Stack%20Traces.md) should give a very good indicator of the path of the recursive loop. Look for repetition in the trace, and look to remove the cause of the loop.
+The [stack trace](../Programming/Stack%20Traces.md) should give a very good indicator of the path of the recursive loop. Look for repetition in the trace, and look to remove the cause of the loop.
 
 :::note
 #### Recursive methods
@@ -22,8 +22,8 @@ public void DoSomethingRecursively(int iteration)
 }
 ```
 
-In some other cases recursive loops can hit the limit of the stack without the loop being infinite. In these cases you may have to switch the logic to be a more standard loop—like a while loop—so the stack doesn't grow on each loop iteration.  
-:::  
+In some other cases recursive loops can hit the limit of the stack without the loop being infinite. In these cases you may have to switch the logic to be a more standard loop—like a while loop—so the stack doesn't grow on each loop iteration.
+:::
 
 :::note
 #### Recursive properties

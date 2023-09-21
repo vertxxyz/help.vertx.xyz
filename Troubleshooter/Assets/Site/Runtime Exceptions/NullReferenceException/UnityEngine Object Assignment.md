@@ -1,5 +1,5 @@
 ## NullReferenceException: UnityEngine.Object
-If you want to handle the case where the object is unassigned:  
+If you want to handle the case where the object is unassigned:
 :::note
 #### Check the reference isn't null before trying to access it
 - Exit early if `null`.
@@ -17,14 +17,14 @@ If you want to handle the case where the object is unassigned:
     {
         // Code that uses example.
     }
-    ```  
-  
-::::warning{.small}  
-Do not use modern null-checking operators[^1] (`?.`, `??`, `??=`) to check for null.  
-::::  
+    ```
+
+::::warning{.small}
+Do not use modern null-checking operators[^1] (`?.`, `??`, `??=`) to check for null.
+::::
 :::
 
-If you want to correctly assign the object:  
+If you want to correctly assign the object:
 :::note
 #### Find the cause of `null` values
 - [I am serializing a reference in the inspector.](UnityEngine%20Object%20Serialized.md)
@@ -38,4 +38,4 @@ If you want to correctly assign the object:
 
 :::
 
-[^1]: See [Unity null](../Programming/Other/Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.  
+[^1]: See [Unity null](../../Programming/Other/Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.

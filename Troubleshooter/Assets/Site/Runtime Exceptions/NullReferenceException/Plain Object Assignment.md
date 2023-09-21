@@ -3,14 +3,14 @@ To resolve a `NullReferenceException` caused by plain C# objects choose one of t
 
 ### First
 :::note
-#### Assign a value (choose one)  
-- [Serialize the field](../Programming/Serialization/Serializing%20A%20Field%201.md) where appropriate.
-- Assign the reference using [`new`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator). This can be done inline or in a method like [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) or [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html).  
+#### Assign a value (choose one)
+- [Serialize the field](../../Programming/Serialization/Serializing%20A%20Field%201.md) where appropriate.
+- Assign the reference using [`new`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator). This can be done inline or in a method like [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) or [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html).
 
-:::  
+:::
 ### Then
 :::note
-#### Check the value isn't `null` before you access it (choose one)  
+#### Check the value isn't `null` before you access it (choose one)
 - Exit early if `null`:
     ```csharp
     if (example == null)
@@ -32,8 +32,8 @@ To resolve a `NullReferenceException` caused by plain C# objects choose one of t
     example?.Do(); // Example of null-conditional member access.
     ```
 
-:::  
-**Or:**  
+:::
+**Or:**
 :::note
 #### Ensure nothing assigns the reference to `null` before you access it.
 :::

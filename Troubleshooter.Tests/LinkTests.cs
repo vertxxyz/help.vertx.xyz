@@ -28,7 +28,7 @@ public partial class LinkTests
 		using var assertionScope = new AssertionScope();
 		string siteRoot = TestUtility.TestSite.Directory;
 		foreach ((string fullPath, _) in PageUtility.GetLinkFullPathsFromMarkdownText(text, path, siteRoot))
-			new FileInfo(fullPath).Should().Exist("{0} is missing a link", name);
+			new FileInfo(fullPath).Should().Exist("\"{0}\" is missing a link", path);
 	}
 
 	[GeneratedRegex(@"(?<!!)\[.+?\]\((.+?)\)", RegexOptions.Compiled)]

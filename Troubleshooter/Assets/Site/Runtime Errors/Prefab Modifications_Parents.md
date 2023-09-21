@@ -10,7 +10,7 @@ Prefab assets are GameObjects in your Project. You do not want to modify them, t
 If you are seeing this error, you have probably referenced a prefab, and are trying to modify it instead of the instance.
 If the variable you are calling methods on is the same as your prefab, your setup is wrong.
 
-::::note  
+::::note
 #### Use the `Instantiate` overload that sets a parent
 [`Instantiate`](https://docs.unity3d.com/ScriptReference/Object.Instantiate.html) has an overload that takes a parent, use that instead.
 
@@ -26,9 +26,9 @@ void SpawnAndParent(Transform parent)
 }
 ```
 
-::::  
-**Or**  
-::::note  
+::::
+**Or**
+::::note
 #### Modify the return value from `Instantiate`
 [`Instantiate`](https://docs.unity3d.com/ScriptReference/Object.Instantiate.html) returns the instance it spawned. Store a reference to it and modify that instead.
 ```csharp
@@ -45,9 +45,9 @@ void SpawnAndParent(Transform parent)
 }
 ```
 
-::::  
+::::
 
-If you're confused by the above code, see [referencing prefabs from scenes](../../References/References%20To%20Prefabs.md).
+If you're confused by the above code, see [referencing prefabs from scenes](../Programming/References/References%20To%20Prefabs.md).
 
 #### I know what I'm doing, and want to modify a prefab asset
 
@@ -69,10 +69,10 @@ var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
 PrefabUtility.SavePrefabAsset(prefab);
 ```
 
-:::warning{.small}  
-This can damage your project when done incorrectly.  
+:::warning{.small}
+This can damage your project when done incorrectly.
 :::
 
 ### Notes
-I like to add the suffixes `Prefab`/`Template`/`Asset` and `Instance` to make it clear what is being worked with.  
+I like to add the suffixes `Prefab`/`Template`/`Asset` and `Instance` to make it clear what is being worked with.
 Use consistent conventions (like the [C# naming conventions](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names#naming-conventions)) to reduce mistakes.

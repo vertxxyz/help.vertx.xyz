@@ -4,4 +4,4 @@ If you're being spammed with this exception, compilation may have failed and the
 
 ### Resolution
 
-Perform a [partial project reimport](../../Scripts/Loading%20Issues/Project%20Reimport.md) by regenerating the script assemblies.
+Perform a [partial project reimport](../Programming/Scripts/Loading%20Issues/Project%20Reimport.md) by regenerating the script assemblies.

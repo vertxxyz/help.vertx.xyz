@@ -1,6 +1,6 @@
 ## ArgumentNullException
 
-An `ArgumentNullException` is thrown when what is passed to a method is `null`.  
+An `ArgumentNullException` is thrown when what is passed to a method is `null`.
 
 ```csharp
 Foo bar = null;
@@ -8,7 +8,7 @@ Foo bar = null;
 Method(bar);
 ```
 
-The **parameter name** listed in the error, and the [stack trace](../../Stack%20Traces.md), are both clues to what is `null`.
+The **parameter name** listed in the error, and the [stack trace](../Programming/Stack%20Traces.md), are both clues to what is `null`.
 
 #### Extension methods
 Be aware that [extension methods](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods) can throw this exception when the object you invoke the method on is invalid or `null`.
@@ -20,4 +20,4 @@ Note that many errors from Unity Editor code can throw an `ArgumentNullException
 
 ---
 
-After understanding this page's content, visit [`NullReferenceException`](../../../NullReferenceException.md) to further debug your issue.
+After understanding this page's content, visit [`NullReferenceException`](NullReferenceException.md) to further debug your issue.
