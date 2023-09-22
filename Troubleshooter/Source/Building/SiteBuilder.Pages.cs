@@ -151,7 +151,7 @@ public static partial class SiteBuilder
 					}
 				}
 			}
-			
+
 			string extension = Path.GetExtension(fullPath);
 			switch (extension)
 			{
@@ -208,7 +208,7 @@ public static partial class SiteBuilder
 	{
 		if ((page.Flags & ResourceFlags.Symlink) != 0)
 			yield break;
-		
+
 		// Generated markdown
 		if (page.FullPath.EndsWith(Constants.SidebarGeneratorSuffix))
 		{
@@ -243,7 +243,7 @@ public static partial class SiteBuilder
 			string markdown = page.MarkdownText!;
 			MatchCollection matches = GeneratorLinkRegex().Matches(markdown);
 			string directory = Path.GetDirectoryName(page.FullPath)!;
-			for (var i = 0; i < matches.Count; i++)
+			for (int i = 0; i < matches.Count; i++)
 			{
 				Match match = matches[i];
 				string relativeLink = match.Groups[2].Value;

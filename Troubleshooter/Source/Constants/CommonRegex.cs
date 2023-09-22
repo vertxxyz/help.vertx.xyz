@@ -8,17 +8,17 @@ public static partial class CommonRegex
 	/// Regex for links: [$1]($2)
 	/// </summary>
 	public static readonly Regex InternalLinks = GetInternalLinkRegex();
-	
+
 	/// <summary>
 	/// Regex for external links: ...]($1)
 	/// </summary>
 	public static readonly Regex ExternalLink = GetExternalLinkRegex();
-	
+
 	/// <summary>
 	/// Regex for embeds: &lt;&lt;$1&gt;&gt;
 	/// </summary>
 	public static readonly Regex Embeds = GetEmbedsRegex();
-	
+
 	/// <summary>
 	/// Regex for local image links: ![]($1)
 	/// </summary>
@@ -28,8 +28,8 @@ public static partial class CommonRegex
 	/// Regex for page load calls: loadPage('$1')
 	/// </summary>
 	public static readonly Regex LoadPage = GetLoadPageRegex();
-	
-	[GeneratedRegex(@"(?<!!)\[(.+?)\]\(([\w /%.]+)\)", RegexOptions.Compiled)]
+
+	[GeneratedRegex(@"(?<!!)\[(.+?)\]\(([\w /%.#]+)\)", RegexOptions.Compiled)]
 	private static partial Regex GetInternalLinkRegex();
 
 	[GeneratedRegex(@"]\((https?://[\w/%#?.@_+~=&()]+)\)", RegexOptions.Compiled)]
@@ -40,7 +40,7 @@ public static partial class CommonRegex
 
 	[GeneratedRegex("""!\[[^\]]*\]\((?!http)(.*?)\s*(".*[^"]")?\s*\)""", RegexOptions.Compiled)]
 	private static partial Regex GetLocalImagesRegex();
-	
+
 	[GeneratedRegex("""loadPage\('([\w\-.\/]+?.md)'\)""", RegexOptions.Compiled)]
 	private static partial Regex GetLoadPageRegex();
 }

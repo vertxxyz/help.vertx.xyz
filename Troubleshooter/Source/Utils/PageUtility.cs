@@ -11,7 +11,7 @@ public static class PageUtility
 	{
 		// Collect nested files.
 		HashSet<string> files = CollectNestedSymlinkedFiles(CollectSymlinkedDirectories(rootDirectory)).Keys.ToHashSet();
-		
+
 		// Collect raw symlinks.
 		foreach (string path in Directory.EnumerateFiles(rootDirectory, "*", SearchOption.AllDirectories))
 		{
@@ -23,7 +23,7 @@ public static class PageUtility
 
 		return files;
 	}
-	
+
 	public static Dictionary<string, string> CollectNestedSymlinkedFiles(Dictionary<string, string> directorySymlinksFromTo)
 	{
 		Dictionary<string, string> fileSymlinksFromTo = new();
@@ -53,14 +53,14 @@ public static class PageUtility
 
 		return directorySymlinksFromTo;
 	}
-	
+
 	/// <summary>
 	/// Parse markdown text looking for page links
 	/// </summary>
 	/// <param name="markdownText">The markdown</param>
 	/// <param name="path">The file path</param>
 	/// <param name="contentRoot">The root of the site's content</param>
-	/// <returns></returns>
+	/// <returns>The full path (without anchor links)</returns>
 	public static IEnumerable<(string fullPath, Group group)> GetLinkFullPathsFromMarkdownText(string markdownText, string path, string contentRoot)
 	{
 		string directory = Path.GetDirectoryName(path) ?? string.Empty;
@@ -69,11 +69,13 @@ public static class PageUtility
 		{
 			Group group = matches[i].Groups[2];
 			string match = group.Value.ToWorkingPath().ToUnTokenized();
+			if (match.Contains('#'))
+				match = match[..match.IndexOf('#')];
 			string fullPath = match.StartsWith('\\') ? Path.GetFullPath(match[1..], contentRoot) : Path.GetFullPath(Path.Combine(directory, match));
 			yield return (fullPath, group);
 		}
 	}
-	
+
 	/// <summary>
 	/// Converts a link's path to a full path. <see cref="contentRoot"/> is only used for paths starting with a slash. <see cref="directory"/> is the root of the link.
 	/// </summary>
