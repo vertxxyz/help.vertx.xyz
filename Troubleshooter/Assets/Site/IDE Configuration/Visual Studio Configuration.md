@@ -2,30 +2,30 @@
 ## ![Visual Studio](/Images/visualstudio.svg) Visual Studio configuration
 ### Installation and configuration
 #### Visual Studio was installed with the Unity Hub
-Visual Studio will have the Unity workload installed.  
-Follow the [configuration instructions](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#configure-unity-to-use-visual-studio) to configure the remaining setup.  
+Visual Studio will have the Unity workload installed.
+Follow the [configuration instructions](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#configure-unity-to-use-visual-studio) to configure the remaining setup.
 
 #### Visual Studio was installed manually
 Follow the [configuration instructions](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#install-unity-support-for-visual-studio), including installation of the Unity workload.
 
 #### Installing Visual Studio for the first time
-::::note  
+::::note
 #### Install Visual Studio via the Unity Hub
 Installing Visual Studio via the Unity Hub means it's mostly ready for use with Unity.
 
 :::note
 #### No Unity versions are installed
-Tick **Microsoft Visual Studio Community** during the installation process in the Unity Hub. (**Installs | Install Editor**)  
-:::  
-:::note  
+Tick **Microsoft Visual Studio Community** during the installation process in the Unity Hub. (**Installs | Install Editor**)
+:::
+:::note
 #### A Unity version is installed
-See [Unity Hub: Module installation](../../Unity%20Hub/Module%20Installation.md) and install **Microsoft Visual Studio Community**.  
-:::  
-Follow the [configuration instructions](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#configure-unity-to-use-visual-studio) to check the remaining setup.  
-::::  
-::::note  
+See [Unity Hub: Module installation](../Unity%20Hub/Module%20Installation.md) and install **Microsoft Visual Studio Community**.
+:::
+Follow the [configuration instructions](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#configure-unity-to-use-visual-studio) to check the remaining setup.
+::::
+::::note
 #### I want to install Visual Studio manually
-Follow all of the instructions listed on [this page](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity).  
+Follow all of the instructions listed on [this page](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity).
 ::::
 
 ### If you are experiencing issues:

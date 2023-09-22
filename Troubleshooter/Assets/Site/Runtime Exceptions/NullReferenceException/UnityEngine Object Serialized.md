@@ -1,7 +1,7 @@
 ## NullReferenceException: UnityEngine.Object — Serialized
 :::note
 #### 1. Assign all references
-Check that all references have been [assigned in the inspector](../../Programming/References/Serializing%20Component%20References.md).
+Check that all references have been [assigned in the inspector](../../References/Serializing%20Component%20References.md).
 ^^^
 <video width="750" height="200" autoplay loop muted controls><source type="video/webm" src="https://unity.huh.how/Video/inspector-references.webm"></video>
 ^^^ Assigning a serialized reference
@@ -20,5 +20,5 @@ Logs can also be made to ping objects they reference using the [context paramete
 :::note
 #### 3. Do not use a modern null-checking operator
 Check that you are not using modern null-checking operator (`?.`, `??`, `??=`).
-See [Unity null](../../Programming/Other/Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.
+See [Unity null](../../Unity%20Null.md) to learn about the specifics surrounding null and UnityEngine.Object types.
 :::

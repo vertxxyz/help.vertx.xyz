@@ -24,7 +24,7 @@ The ::file name::{.context-a}, ::line number::{.context-b}, ::column number::{.c
 ::descriptions::{.context-e} provide important context to the error code, explaining what specifically may be wrong.
 
 :::info
-If your error isn't ::underlined in red::{.error-underline} in your IDE, [configure it correctly](../Programming/IDE%20Configuration.md).
+If your error isn't ::underlined in red::{.error-underline} in your IDE, [configure it correctly](../IDE%20Configuration.md).
 Compiler errors should be underlined, and you should see autocompleted suggestions as you type.
 :::
 

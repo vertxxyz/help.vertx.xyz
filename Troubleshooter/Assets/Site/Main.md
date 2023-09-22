@@ -1,4 +1,4 @@
-:::{#main-page--content}  
+:::{#main-page--content}
 ## General
 ### Interface
 - [Scene view](Interface/Scene%20View.md)
@@ -17,8 +17,8 @@
 
 ## Programming
 ### General
-- [IDE configuration](Programming/IDE%20Configuration.md)
-- [References](Programming/References.md)
+- [IDE configuration](IDE%20Configuration.md)
+- [References](References.md)
 - [Variables](Programming/Variables.md)
 - [Scripts](Programming/Scripts.md)
 - [Debugging](Programming/Debugging.md)
@@ -68,7 +68,7 @@
 
 ## UI
 - [Unity UI (uGUI)](UI/UGUI.md)
-- [UI Toolkit](UI/UI%20Toolkit.md) 
+- [UI Toolkit](UI/UI%20Toolkit.md)
 - [TextMesh Pro](UI/TextMesh%20Pro.md)
 
 ## Physics
@@ -108,4 +108,4 @@
 ## Testing
 - [Test Runner](Testing/Test%20Runner.md)
 
-:::  
+:::

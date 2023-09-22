@@ -1,8 +1,8 @@
 ## Common errors
-### [Compiler errors](Common%20Errors/Compiler%20Errors.md)
-Compiler errors stop you from compiling or playing your game.  
-### [Runtime exceptions](Common%20Errors/Runtime%20Exceptions.md)
-Exceptions are errors that can be cleared from the Console window.  
+### [Compiler errors](../Compiler%20Errors.md)
+Compiler errors stop you from compiling or playing your game.
+### [Runtime exceptions](../Runtime%20Exceptions.md)
+Exceptions are errors that can be cleared from the Console window.
 They are thrown from executing code—the runtime—not the compiler.
 ### [Build errors](../Building/Build%20Errors.md)
 Errors that are thrown when trying to build a game.

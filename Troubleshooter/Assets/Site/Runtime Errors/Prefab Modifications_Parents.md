@@ -47,7 +47,7 @@ void SpawnAndParent(Transform parent)
 
 ::::
 
-If you're confused by the above code, see [referencing prefabs from scenes](../Programming/References/References%20To%20Prefabs.md).
+If you're confused by the above code, see [referencing prefabs from scenes](../References/References%20To%20Prefabs.md).
 
 #### I know what I'm doing, and want to modify a prefab asset
 

@@ -1,6 +1,6 @@
 ## GetComponent methods
 [`GetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html), [`TryGetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.TryGetComponent.html),
-[`GetComponentInChildren`](https://docs.unity3d.com/ScriptReference/Component.GetComponentInChildren.html), and other similar methods are perfect for dynamic runtime references like those gathered in a physics message or query.  
+[`GetComponentInChildren`](https://docs.unity3d.com/ScriptReference/Component.GetComponentInChildren.html), and other similar methods are perfect for dynamic runtime references like those gathered in a physics message or query.
 
 It's preferable to use [serialized references](Serialized%20References.md) where possible.
 
@@ -48,7 +48,7 @@ public interface IDamageable
 
 ### Garbage collection
 #### GetComponent
-Due to [Unity null](../Other/Unity%20Null.md), `GetComponent` will always allocate in the editor, whereas using `TryGetComponent` will not.
+Due to [Unity null](../Unity%20Null.md), `GetComponent` will always allocate in the editor, whereas using `TryGetComponent` will not.
 #### Collection pools
 Unity provides various collection pool classes (introduced in 2021.1) that can be used in combination with the multi-object `GetComponent` functions. Do note that pooled collections can last the lifetime of your application, and care must be taken when allocating them.
 ```csharp

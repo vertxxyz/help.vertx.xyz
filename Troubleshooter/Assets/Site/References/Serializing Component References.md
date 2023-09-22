@@ -33,7 +33,7 @@ Do not directly reference the script asset. The target component must be an inst
 
 ^^^
 <video width="750" height="200" autoplay loop muted controls><source type="video/webm" src="https://unity.huh.how/Video/inspector-references.webm"></video>
-^^^ ::Drag a **Component** into the slot or you will get an [`UnassignedReferenceException`](../../Runtime%20Exceptions/UnassignedReferenceException.md).::{.error}
+^^^ ::Drag a **Component** into the slot or you will get an [`UnassignedReferenceException`](../Runtime%20Exceptions/UnassignedReferenceException.md).::{.error}
 
 Dragging a GameObject from the [Hierarchy](https://docs.unity3d.com/Manual/Hierarchy.html) into the field will reference the first matching Component found on the object.
 
@@ -54,7 +54,7 @@ _target.Method();
 If you don't have autocomplete, [configure your IDE](../IDE%20Configuration.md) to easily find member names and get error highlighting.
 :::
 
-The usage must be at a [method or block level scope](../Other/Scopes.md).
+The usage must be at a [method or block level scope](../Programming/Other/Scopes.md).
 ::::
 
 ### Notes

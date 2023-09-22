@@ -38,7 +38,7 @@ public PrefabComponentType Prefab;
 
 ^^^
 <video width="750" height="200" autoplay loop muted controls><source type="video/webm" src="https://unity.huh.how/Video/prefab-references.webm"></video>
-^^^ ::Drag the prefab asset into the slot or you will get an [`UnassignedReferenceException`](../../Runtime%20Exceptions/UnassignedReferenceException.md).::{.error}
+^^^ ::Drag the prefab asset into the slot or you will get an [`UnassignedReferenceException`](../Runtime%20Exceptions/UnassignedReferenceException.md).::{.error}
 
 Dragging a prefab from the [Project window](https://docs.unity3d.com/Manual/ProjectView.html) into the field will reference the first matching Component found on the root of the object.
 

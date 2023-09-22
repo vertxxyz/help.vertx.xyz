@@ -1,5 +1,5 @@
 ## NullReferenceException: UnityEngine.Object — Find
-Find is an expensive method, see [alternatives](../../Programming/References.md).
+Find is an expensive method, see [alternatives](../../References.md).
 
 ::::note
 #### [`GameObject.Find`](https://docs.unity3d.com/ScriptReference/GameObject.Find.html)

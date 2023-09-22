@@ -9,7 +9,7 @@ if (Physics.Raycast(origin, direction, out hit, layerMask))
 
 :::error{.small}
 The 4th parameter for this overload is `maxDistance`, not a mask.
-:::  
+:::
 ::::
 
 ### Resolution
@@ -19,10 +19,10 @@ Check the parameters used in overloads of your query using [the documentation](h
 ```csharp
 if (Physics.Raycast(origin, direction, out hit, distance, layerMask))
 ```
-:::  
-:::error  
-Parameters should be listed as you type, making this mistake should be difficult.  
-If this is an issue you must [configure your IDE](../IDE%20Configuration.md) to get proper intellisense support.  
+:::
+:::error
+Parameters should be listed as you type, making this mistake should be difficult.
+If this is an issue you must [configure your IDE](../../IDE%20Configuration.md) to get proper intellisense support.
 :::
 
 #### Example signatures

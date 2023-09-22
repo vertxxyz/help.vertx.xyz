@@ -49,7 +49,7 @@ while (true)
 
 :::note
 #### Logic errors in loops
-A [functioning IDE](../Programming/IDE%20Configuration.md) can autocomplete `for` loops by typing <kbd>for</kbd> and pressing tab/enter.
+A [functioning IDE](../IDE%20Configuration.md) can autocomplete `for` loops by typing <kbd>for</kbd> and pressing tab/enter.
 Reverse `for` loops can be created with <kbd>forr</kbd>. This helps prevent basic typing mistakes.
 
 ```csharp
