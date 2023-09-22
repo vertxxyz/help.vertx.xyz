@@ -15,11 +15,10 @@ public static partial class SiteBuilder
 		Arguments arguments,
 		Site site,
 		MarkdownPipeline pipeline,
-		IProcessorGroup processors,
-		bool cleanup
+		IProcessorGroup processors
 	)
 	{
-		using var buildScope = new BuildScope(arguments, cleanup);
+		using var buildScope = new BuildScope();
 		try
 		{
 			BuildPages(arguments, site, pipeline, processors);
@@ -29,7 +28,6 @@ public static partial class SiteBuilder
 		{
 			Console.WriteLine();
 			Console.WriteLine(e);
-			buildScope.MarkBuildAsFailed();
 			return (false, new Dictionary<string, IOUtility.RecordType>().AsReadOnly());
 		}
 
