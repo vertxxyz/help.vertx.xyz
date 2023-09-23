@@ -165,7 +165,16 @@ function loadPage(link) {
     if (link === main)
         link = null;
 
-    loadPageFromLink(link, '', true, !isRootLevel);
+    let hash = '';
+    if(link != null) {
+        const hashIndex = link.indexOf("#");
+        if (hashIndex >= 0) {
+            hash = link.substring(hashIndex);
+            link = link.substring(0, hashIndex);
+        }
+    }
+
+    loadPageFromLink(link, hash, true, !isRootLevel);
 }
 
 function loadPageNonRelative(absoluteLink) {
