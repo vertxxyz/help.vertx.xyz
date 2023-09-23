@@ -34,4 +34,4 @@ for (var i = 0; i < normals.Length; i++)
 
 ---
 
-If you are still having issues with your triangles, perhaps the vertex normals are correct, but you have duplicated triangles. Do some [visual debugging](../Debugging/Draw%20Functions.md) and check that the [winding order](Winding%20Order.md) of your triangles are correct.
+If you are still having issues with your triangles, perhaps the vertex normals are correct, but you have duplicated triangles. Do some [visual debugging](../../Debugging/Draw%20Functions.md) and check that the [winding order](Winding%20Order.md) of your triangles are correct.

@@ -1,7 +1,7 @@
 ## Bitmasks and LayerMasks
 
-A bit is a `0` or a `1`. `int` is a 32 bit value, 32 different `0`'s or `1`'s.  
-In a bitmask `0` is an inactive layer, and a `1` is active.  
+A bit is a `0` or a `1`. `int` is a 32 bit value, 32 different `0`'s or `1`'s.
+In a bitmask `0` is an inactive layer, and a `1` is active.
 This means we can represent 32 layer toggles with a single `int` value.
 
 The [`LayerMask`](https://docs.unity3d.com/ScriptReference/LayerMask.html) struct describes bitmasks used in by physics
@@ -11,7 +11,7 @@ bitmask operations and physics methods.
 
 :::::note{#layermask-diagram}
 #### Interactive diagram
-<script type="module" src="/Scripts/Interactive/Bitmasks/layerMaskDropdown.js?v=1.0.1"></script>  
+<script type="module" src="/Scripts/Interactive/Bitmasks/layerMaskDropdown.js?v=1.0.1"></script>
 ::::{.inspector-root}
 :::{.control-root}
 <div class="control-label">Bitmask</div>
@@ -45,9 +45,9 @@ The information below shows how to manually define author and manage masks entir
 
 To create a bitmask with a single layer
 enabled, [shift](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators#left-shift-operator-)
-a single bit over to the position in the mask that matches the layer index.  
+a single bit over to the position in the mask that matches the layer index.
 For example, to create a mask with layer **5** active, create `int` with a the first bit enabled, a `1`, then shift that
-bit over 5 places to the 6th index (layers are **0 indexed** so this is layer 5).  
+bit over 5 places to the 6th index (layers are **0 indexed** so this is layer 5).
 It's worth noting that the first bit (the least significant bit) is the rightmost bit, similar to a decimal integer.
 
 ```csharp
@@ -59,8 +59,8 @@ int mask = 1 << 5;
 ### Combining masks
 
 To combine a mask we perform
-a [logical or](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-or-operator-).  
-If a bit is enabled (`1`) in either one mask **or** the other, it will be in our result.  
+a [logical or](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-or-operator-).
+If a bit is enabled (`1`) in either one mask **or** the other, it will be in our result.
 This example creates a mask where both layer **5** and **8** are enabled.
 
 ```csharp
@@ -107,6 +107,6 @@ if ((mask & (1 << layer)) != 0)
     ...
 ```
 
----  
+---
 
-General information relating to bitmasks (unrelated to `LayerMask`) can be found [here](../../Info/Bitmasks.md).
+General information relating to bitmasks (unrelated to `LayerMask`) can be found [here](Info/Bitmasks.md).

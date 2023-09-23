@@ -21,7 +21,7 @@
 - [References](References.md)
 - [Variables](Programming/Variables.md)
 - [Scripts](Programming/Scripts.md)
-- [Debugging](Programming/Debugging.md)
+- [Debugging](Debugging.md)
 ### Errors & warnings
 - [Errors](Programming/Common%20Errors.md)
 - [Warnings](Programming/Common%20Warnings.md)
@@ -33,8 +33,8 @@
 - [Custom inspectors](Programming/Editor%20Extensions/Custom%20Inspectors.md)
 - [Editor windows](Programming/Editor%20Extensions/Editor%20Windows.md)
 ### Physics
-- [Physics messages](Programming/Physics%20Messages.md)
-- [Physics queries](Programming/Physics%20Queries.md)
+- [Physics messages](Physics%20Messages.md)
+- [Physics queries](Physics%20Queries.md)
 - [Character Controller](Programming/Physics/Character%20Controller.md)
 ### Assets
 - [Resources](Programming/Resources.md)
@@ -47,7 +47,7 @@
 - [Vectors](Programming/Vectors.md)
 - [Quaternions](Programming/Quaternions.md)
 - [Color](Programming/Specifics/Color.md)
-- [LayerMasks and bitmasks](Programming/Physics/Bitmasks.md)
+- [LayerMasks and bitmasks](Bitmasks.md)
 - [UnityEvents](Interface/Unity%20Events.md)
 ### Utility functions
 - [Lerp](Programming/Specifics/Lerp.md)

@@ -17,7 +17,7 @@ Click on an error in the Console to see the full stack trace.
 
 #### Error locations
 You can usually double-click an error to be taken to the location, but this may not always be correct. Code changes can cause a location mismatch, as can miscellaneous reporting issues. Errors may also be thrown deeper than the cause itself, for example an [ArgumentException](../Runtime%20Exceptions/ArgumentException.md) may be reported inside a method, when it's the invalid argument that matters.
-If you have a runtime error, you can [debug the issue](Debugging.md) to narrow down the issue further.
+If you have a runtime error, you can [debug the issue](../Debugging.md) to narrow down the issue further.
 
 ### Details
 #### Compiler errors

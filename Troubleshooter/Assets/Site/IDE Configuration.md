@@ -12,7 +12,7 @@ If your IDE isn't providing autocomplete suggestions or underlining errors in re
 
 ### Why use an IDE?
 
-IDEs evaluate your code as it is typed, giving you autocomplete, warnings, and errors. IDEs may also give you tips and suggest improvements to your code. They also come with a [debugger](Programming/Debugging/Debugger.md), allowing you to see the state of your code as it evaluates.
+IDEs evaluate your code as it is typed, giving you autocomplete, warnings, and errors. IDEs may also give you tips and suggest improvements to your code. They also come with a [debugger](Debugging/Debugger.md), allowing you to see the state of your code as it evaluates.
 Coding without these tools wastes your time, and the time of anyone looking to help you.
 
 ^^^

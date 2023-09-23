@@ -1,12 +1,12 @@
 ## Bitmasks
 
-A bit is a `0` or a `1`. `int` is a 32 bit value, 32 different `0`'s or `1`'s.  
-In a bitmask `0` is an inactive layer, and a `1` is active.  
+A bit is a `0` or a `1`. `int` is a 32 bit value, 32 different `0`'s or `1`'s.
+In a bitmask `0` is an inactive layer, and a `1` is active.
 This means we can represent 32 layer toggles with a single `int` value.
 
 ### Creating masks from layers
-To create a bitmask with a single layer enabled, [shift](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators#left-shift-operator-) a single bit over to the position in the mask that matches the layer index.  
-For example, to create a mask with layer **5** active, create `int` with a the first bit enabled, a `1`, then shift that bit over 5 places to the 6th index (layers are **0 indexed** so this is layer 5).  
+To create a bitmask with a single layer enabled, [shift](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators#left-shift-operator-) a single bit over to the position in the mask that matches the layer index.
+For example, to create a mask with layer **5** active, create `int` with a the first bit enabled, a `1`, then shift that bit over 5 places to the 6th index (layers are **0 indexed** so this is layer 5).
 It's worth noting that the first bit (the least significant bit) is the rightmost bit, similar to normal numbers.
 ```csharp
 int mask = 1 << 5;
@@ -18,15 +18,15 @@ int mask = 1 << 5;
 Generally Masks are declared as enums so they can be easily referenced by name.
 The [Flags Attribute](https://docs.microsoft.com/en-us/dotnet/api/system.flagsattribute) is used to indicate this is a bitmask. The attribute also modifies [`ToString`](https://docs.microsoft.com/en-us/dotnet/api/system.enum.tostring) to print more relevant values.
 
-Enums are `int` values by default, but any [integral numeric type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types) can be used when defining an enum.  
+Enums are `int` values by default, but any [integral numeric type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types) can be used when defining an enum.
 :::warning
 In this example we use a `byte`, as the range is known to be less than 8 layers.
-:::  
+:::
 
 <<Code/Bitmasks/Declaring.rtf>>
 
 ### Combining masks
-To combine or add to a mask we perform a [logical or](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-or-operator-).  
+To combine or add to a mask we perform a [logical or](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-or-operator-).
 If a bit is enabled (`1`) in either one mask **or** the other, it will be in our result.
 
 <<Code/Bitmasks/Combining.rtf>>
@@ -81,6 +81,6 @@ var weekendCorrectedMask = mask ^ ((setOn ? ~mask : mask) & Days.Weekend);
 // weekendCorrectedMask : 00001001
 ```
 
----  
+---
 
-Similar information relating to LayerMasks used in Unity's Physics can be found [here](../Programming/Physics/Bitmasks.md).
+Similar information relating to LayerMasks used in Unity's Physics can be found [here](../Bitmasks.md).

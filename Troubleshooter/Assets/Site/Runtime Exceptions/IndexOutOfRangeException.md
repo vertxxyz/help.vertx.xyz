@@ -14,7 +14,7 @@ Common mistakes include:
 - An improperly written `for` or `while` loop.
 - Using an index from a different loop, `i` instead of `j` for example.
 
-You can use the [debugger](../Programming/Debugging/Debugger.md) to step over your code, inspecting variables and execution to assess what is wrong.
+You can use the [debugger](../Debugging/Debugger.md) to step over your code, inspecting variables and execution to assess what is wrong.
 :::
 
 :::note

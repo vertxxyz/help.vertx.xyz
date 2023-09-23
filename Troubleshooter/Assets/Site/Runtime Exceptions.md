@@ -32,7 +32,7 @@ This means that code placed directly after an exception-raising statement will n
 - [Destroying assets is not permitted to avoid data loss.](Runtime%20Errors/Destroying%20Assets.md)
 - [Coroutine couldn't be started because the the game object 'X' is inactive!](Programming/Coroutines/Inactive%20Objects.md)
 - [Setting the parent of a transform which resides in a Prefab Asset is disabled to prevent data corruption.](Runtime%20Errors/Prefab%20Modifications_Parents.md)
-- [Script error: OnCollisionEnter.](Programming/Physics%20Messages/2%20Collision%20Messages%202D.md)
+- [Script error: OnCollisionEnter.](Physics%20Messages/2%20Collision%20Messages%202D.md)
 
 :::
 

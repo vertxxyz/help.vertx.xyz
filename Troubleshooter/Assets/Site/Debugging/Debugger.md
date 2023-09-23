@@ -3,7 +3,7 @@
 The debugger is a tool that can halt code execution. Values can be inspected, lines of code can be stepped over, and sometimes even modified.
 This does not require recompiling your code, or exiting Play Mode.
 
-A functioning IDE is required, so first check [IDE configuration](../../IDE%20Configuration.md) if you are experiencing basic issues.
+A functioning IDE is required, so first check [IDE configuration](../IDE%20Configuration.md) if you are experiencing basic issues.
 
 ### ![Rider attach](debug_dark.svg) Attaching
 Your IDE needs to target a running application to start debugging. Usually this functionality is found in one of the top utility bars in an IDE's interface.

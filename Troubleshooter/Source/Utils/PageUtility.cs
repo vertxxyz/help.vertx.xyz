@@ -69,8 +69,16 @@ public static class PageUtility
 		{
 			Group group = matches[i].Groups[2];
 			string match = group.Value.ToWorkingPath().ToUnTokenized();
-			if (match.Contains('#'))
-				match = match[..match.IndexOf('#')];
+			int hashIndex = match.IndexOf('#');
+			switch (hashIndex)
+			{
+				case 0:
+					continue;
+				case > 0:
+					match = match[..hashIndex];
+					break;
+			}
+
 			string fullPath = match.StartsWith('\\') ? Path.GetFullPath(match[1..], contentRoot) : Path.GetFullPath(Path.Combine(directory, match));
 			yield return (fullPath, group);
 		}

@@ -22,7 +22,7 @@ if (Physics.Raycast(origin, direction, out hit, distance, layerMask))
 :::
 :::error
 Parameters should be listed as you type, making this mistake should be difficult.
-If this is an issue you must [configure your IDE](../../IDE%20Configuration.md) to get proper intellisense support.
+If this is an issue you must [configure your IDE](../IDE%20Configuration.md) to get proper intellisense support.
 :::
 
 #### Example signatures
