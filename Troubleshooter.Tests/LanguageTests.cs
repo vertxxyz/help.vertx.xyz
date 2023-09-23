@@ -54,6 +54,7 @@ public partial class LanguageTests
 	{
 		using var assertionScope = new AssertionScope(name);
 		text.Should().NotContain("Game View", StringComparison.Ordinal, "we should write \"Game view\"");
+		text.Should().NotContain("game view", StringComparison.Ordinal, "we should write \"Game view\"");
 		text.Should().NotContain("Scene View", StringComparison.Ordinal, "we should write \"Scene view\"");
 		text.Should().NotContain("Project Window", StringComparison.Ordinal, "we should write \"Project window\"");
 		text.Should().NotContain("play mode", StringComparison.Ordinal, "we should write \"Play Mode\"");
