@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Enumeration;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -7,52 +8,72 @@ namespace Troubleshooter;
 
 public static class PageUtility
 {
-	public static HashSet<string> GetAllSymlinkedFiles(string rootDirectory)
-	{
-		// Collect nested files.
-		HashSet<string> files = CollectNestedSymlinkedFiles(CollectSymlinkedDirectories(rootDirectory)).Keys.ToHashSet();
-
-		// Collect raw symlinks.
-		foreach (string path in Directory.EnumerateFiles(rootDirectory, "*", SearchOption.AllDirectories))
-		{
-			if (new FileInfo(path).LinkTarget == null)
-				continue;
-
-			files.Add(path);
-		}
-
-		return files;
-	}
-
-	public static Dictionary<string, string> CollectNestedSymlinkedFiles(Dictionary<string, string> directorySymlinksFromTo)
+	public static Dictionary<string, string> CollectSymlinkedFilesLookup(string rootDirectory)
 	{
 		Dictionary<string, string> fileSymlinksFromTo = new();
-		foreach ((string fromDirectory, string toDirectory) in directorySymlinksFromTo)
-		{
-			// All these files are nested under symlinks
-			foreach (string path in Directory.EnumerateFiles(fromDirectory, "*", SearchOption.AllDirectories))
-				fileSymlinksFromTo.Add(path, Path.GetFullPath(Path.GetRelativePath(fromDirectory, path), toDirectory));
-		}
 
-		return fileSymlinksFromTo;
-	}
-
-	public static Dictionary<string, string> CollectSymlinkedDirectories(string rootDirectory)
-	{
-		Dictionary<string, string> directorySymlinksFromTo = new();
-		foreach (string path in Directory.EnumerateDirectories(rootDirectory, "*", SearchOption.AllDirectories))
+		// For every symlink directory, iterate the file entries.
+		foreach (string directory in Directory.EnumerateDirectories(rootDirectory, "*", SearchOption.AllDirectories))
 		{
-			var directoryInfo = new DirectoryInfo(path);
-			string? linkTarget = directoryInfo.LinkTarget;
+			string? linkTarget = new DirectoryInfo(directory).LinkTarget;
 			if (linkTarget == null)
 				continue;
 
-			// Is a symlink, add it to the list.
-			directorySymlinksFromTo.Add(path, Path.GetFullPath(linkTarget, Path.GetDirectoryName(path)!));
+			// Iterate to destination
+			string path = directory;
+			string? testLinkTarget = linkTarget;
+			do
+			{
+				linkTarget = Path.GetFullPath(testLinkTarget, Path.GetDirectoryName(path)!);
+				testLinkTarget = new FileInfo(linkTarget).LinkTarget;
+				path = linkTarget;
+			} while (testLinkTarget != null);
+
+			foreach (string file in Directory.EnumerateFiles(linkTarget, "*", SearchOption.AllDirectories))
+			{
+				(string from, string to) = AppendEntryFileEntryIfRequired(file) ?? (file, file);
+				from = Path.GetFullPath(Path.GetRelativePath(linkTarget, from), directory);
+				if (fileSymlinksFromTo.TryAdd(from, to))
+					continue;
+
+				if (fileSymlinksFromTo[from] != to)
+					throw new BuildException($"{from}->{to} does not match previously added ->{fileSymlinksFromTo[from]}");
+			}
 		}
 
-		return directorySymlinksFromTo;
+		// Get straight-forward file-based symlinks.
+		foreach (string file in Directory.EnumerateFiles(rootDirectory, "*", SearchOption.AllDirectories))
+		{
+			if (fileSymlinksFromTo.ContainsKey(file)) continue;
+
+			(string from, string to)? result = AppendEntryFileEntryIfRequired(file);
+			if (result.HasValue)
+				fileSymlinksFromTo.Add(result.Value.from, result.Value.to);
+		}
+
+		return fileSymlinksFromTo;
+
+		(string from, string to)? AppendEntryFileEntryIfRequired(string file)
+		{
+			string? linkTarget = new FileInfo(file).LinkTarget;
+			if (linkTarget == null)
+				return null;
+
+			// Iterate to destination
+			string path = file;
+			string? testLinkTarget = linkTarget;
+			do
+			{
+				linkTarget = Path.GetFullPath(testLinkTarget, Path.GetDirectoryName(path)!);
+				testLinkTarget = new FileInfo(linkTarget).LinkTarget;
+				path = linkTarget;
+			} while (testLinkTarget != null);
+
+			return (file, linkTarget);
+		}
 	}
+
+	public static HashSet<string> GetAllSymlinkedFiles(string rootDirectory) => CollectSymlinkedFilesLookup(rootDirectory).Keys.ToHashSet();
 
 	/// <summary>
 	/// Parse markdown text looking for page links

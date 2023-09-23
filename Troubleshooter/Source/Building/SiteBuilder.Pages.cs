@@ -95,7 +95,7 @@ public static partial class SiteBuilder
 		PageResourcesLookup pages = new();
 
 		// Collect symlink directories so files within those directories can be marked as links.
-		Dictionary<string, string> fileSymlinksFromTo = CollectNestedSymlinkedFiles(CollectSymlinkedDirectories(site.Directory));
+		Dictionary<string, string> fileSymlinksFromTo = CollectSymlinkedFilesLookup(site.Directory);
 
 		// Collect Embedded Pages
 		foreach (string path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))
