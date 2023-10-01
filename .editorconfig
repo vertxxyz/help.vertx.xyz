@@ -12,6 +12,10 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
+# Markdown files
+[*.md]
+trim_trailing_whitespace = false
+
 # C# files
 [*.cs]
 # Preferences override to tabs.

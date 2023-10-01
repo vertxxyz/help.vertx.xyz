@@ -6,19 +6,16 @@ using System.Text.RegularExpressions;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Troubleshooter.Tests;
 
 [SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters")]
 public partial class LinkTests
 {
-	private readonly ITestOutputHelper _testOutputHelper;
 	private readonly HashSet<string> _embeddedFiles = new();
 
-	public LinkTests(ITestOutputHelper testOutputHelper)
+	public LinkTests()
 	{
-		_testOutputHelper = testOutputHelper;
 		string embedsRoot = TestUtility.TestSite.EmbedsDirectory;
 		foreach (string embeddedFile in Directory.EnumerateFiles(embedsRoot, "*", SearchOption.AllDirectories))
 			_embeddedFiles.Add(embeddedFile[(embedsRoot.Length + 1)..].ToWorkingPath());
@@ -32,20 +29,6 @@ public partial class LinkTests
 		string siteRoot = TestUtility.TestSite.Directory;
 		foreach ((string fullPath, _) in PageUtility.GetLinkFullPathsFromMarkdownText(text, path, siteRoot))
 			new FileInfo(fullPath).Should().Exist("\"{0}\" is missing a link", path);
-	}
-
-	[Fact]
-	public void ValidateCollectedSymlinks()
-	{
-		Dictionary<string,string> lookup = PageUtility.CollectSymlinkedFilesLookup(TestUtility.TestSite.Directory);
-		using var assertionScope = new AssertionScope();
-		foreach ((string from, string to) in lookup)
-		{
-			new FileInfo(from).Should().Exist("\"from\" is missing");
-			new FileInfo(to).Should().Exist("\"to\" is missing");
-		}
-
-		_testOutputHelper.WriteLine(lookup.ToElementsString(kvp => $"\"{kvp.Key}\" -> \"{kvp.Value}\""));
 	}
 
 	[GeneratedRegex(@"(?<!!)\[.+?\]\((.+?)\)", RegexOptions.Compiled)]

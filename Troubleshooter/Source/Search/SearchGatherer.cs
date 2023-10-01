@@ -100,7 +100,7 @@ public static partial class SearchGatherer
 
 
 		ImmutableSortedDictionary<string, Dictionary<int, int>> sortedWordsToFileIndexAndCount = wordsToFileIndexAndCount.ToImmutableSortedDictionary();
-		return new(filePaths, fileHeaders, sortedWordsToFileIndexAndCount);
+		return new Result(filePaths, fileHeaders, sortedWordsToFileIndexAndCount);
 	}
 
 	private static async Task<IEnumerable<string>> ConstructSearchTermsAsync(string path, int index, ConcurrentDictionary<int, string> indexToHeaderText)
@@ -109,7 +109,7 @@ public static partial class SearchGatherer
 		// Remove code
 		html = s_preRegex.Replace(html, string.Empty);
 
-		string? headerText = GetHeaderText(html);
+		string? headerText = GetHeaderText(html, path);
 		if (headerText != null)
 		{
 			indexToHeaderText.TryAdd(index, headerText);
@@ -139,13 +139,17 @@ public static partial class SearchGatherer
 		return GetWords(text).Select(word => word.ToLower());
 	}
 
-	private static string? GetHeaderText(string html)
+	private static string? GetHeaderText(string html, string context)
 	{
-		int headerTextIndex = html.IndexOf(HeadingOverrideRenderer.HeaderTextTag, StringComparison.Ordinal) + HeadingOverrideRenderer.HeaderTextTag.Length;
+		int headerTextIndex = html.IndexOf(HeadingOverrideRenderer.HeaderTextTag, StringComparison.Ordinal);
 
 		if (headerTextIndex < 0)
 			return null;
+		headerTextIndex += HeadingOverrideRenderer.HeaderTextTag.Length;
 		int headerTextEnding = html.IndexOf("</span>", headerTextIndex, StringComparison.Ordinal);
+
+		if (headerTextEnding < 0)
+			throw new BuildException($"Header text is not properly terminated in \"{context}\".");
 
 		ReadOnlySpan<char> headerText = html.AsSpan()[headerTextIndex..headerTextEnding];
 
@@ -228,9 +232,11 @@ public static partial class SearchGatherer
 			yield return text[start..^1];
 		}
 
-		bool IsWordCharacter(char c) => char.IsLetterOrDigit(c) || c == '\'';
-		bool IsStartWordCharacter(char c) => char.IsLetterOrDigit(c);
-		bool IsEndWordCharacter(char c) => char.IsLetterOrDigit(c);
+		yield break;
+
+		static bool IsWordCharacter(char c) => char.IsLetterOrDigit(c) || c == '\'';
+		static bool IsStartWordCharacter(char c) => char.IsLetterOrDigit(c);
+		static bool IsEndWordCharacter(char c) => char.IsLetterOrDigit(c);
 	}
 
     [GeneratedRegex("""<pre(?: class="\w*?")>.+?</pre>""", RegexOptions.Compiled | RegexOptions.Singleline)]

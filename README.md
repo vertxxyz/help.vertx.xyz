@@ -4,6 +4,9 @@ A troubleshooting website for Unity.
 ## Contributing
 This is a personal project, it exists to give me a maintainable resource to help people on the [Unity Discord](https://discord.gg/SZy459n7) among other places, and isn't going to be exhaustive any time soon!
 
+> **Warning**  
+> This project uses symlinks. Make sure Git has been configured to handle them.
+
 Please [create an issue](https://github.com/vertxxyz/help.vertx.xyz/issues) before contributing. Contributions must adhere to the [style guide](STYLEGUIDE.md).
 
 > **Note**  

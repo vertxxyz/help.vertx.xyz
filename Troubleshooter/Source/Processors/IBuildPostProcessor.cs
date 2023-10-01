@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Troubleshooter;
 
@@ -9,7 +10,7 @@ namespace Troubleshooter;
 /// </summary>
 public interface IBuildPostProcessor
 {
-	void Process(Arguments arguments, PageResourcesLookup resources, Site site);
+	void Process(Arguments arguments, PageResourcesLookup resources, Site site, ILogger logger);
 }
 
 /// <summary>
@@ -18,15 +19,19 @@ public interface IBuildPostProcessor
 public sealed class BuildPostProcessors
 {
 	private readonly IBuildPostProcessor[] _all;
-	public BuildPostProcessors(IServiceProvider provider) =>
+	private readonly ILogger<BuildPostProcessors> _logger;
+	public BuildPostProcessors(IServiceProvider provider)
+	{
 		_all = typeof(IBuildPostProcessor).Assembly.GetTypes()
 			.Where(t => typeof(IBuildPostProcessor).IsAssignableFrom(t) && !t.IsAbstract)
 			.Select(t => (IBuildPostProcessor)ActivatorUtilities.CreateInstance(provider, t))
 			.ToArray();
+		_logger = provider.GetRequiredService<ILogger<BuildPostProcessors>>();
+	}
 
 	public void Process(Arguments arguments, PageResourcesLookup resources, Site site)
 	{
 		foreach (IBuildPostProcessor postProcessor in _all)
-			postProcessor.Process(arguments, resources, site);
+			postProcessor.Process(arguments, resources, site, _logger);
 	}
 }

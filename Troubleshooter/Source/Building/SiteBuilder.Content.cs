@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DartSassHost;
 using JavaScriptEngineSwitcher.V8;
@@ -28,14 +27,23 @@ public static partial class SiteBuilder
 			{
 				case ".md": // Ignore pages
 				case ".gen": // Ignore generated content
+				case "": // Ignore files that lack an extension.
 					continue;
 			}
 
+
 			string fullPath = Path.GetFullPath(path);
+
+			FileInfo originFile = new(fullPath);
+
+			// Don't copy symlinks.
+			if (originFile.LinkTarget != null)
+				continue;
+
 			string outputPath = ConvertRootFullSitePathToLinkPath(fullPath, extension, site, arguments);
 
 			totalContent++;
-			if (CopyFileIfDifferent(outputPath, new FileInfo(fullPath), RecordType.Normal))
+			if (CopyFileIfDifferent(outputPath, originFile, RecordType.Normal))
 				siteContent++;
 		}
 
@@ -86,35 +94,25 @@ public static partial class SiteBuilder
 				result = null;
 				return FileResult.Validity.Skipped;
 			case ".scss":
-			{
-				try
 				{
-					CompilationOptions options = new()
+					try
 					{
-						IncludePaths = file.Directory!.GetFiles("_*.scss").Select(f => f.FullName).ToList(),
-						IndentType = IndentType.Tab, IndentWidth = 1
-					};
+						CompilationOptions options = new() { IncludePaths = file.Directory!.GetFiles("_*.scss").Select(f => f.FullName).ToList(), IndentType = IndentType.Tab, IndentWidth = 1 };
 
-					using SassCompiler sassCompiler = new(new V8JsEngineFactory(), options);
-					CompilationResult compilationResult = sassCompiler.CompileFile(file.FullName);
-					result = new FileResult(compilationResult.CompiledContent, Path.ChangeExtension(file.Name, "css"));
-				}
-				catch (Exception e)
-				{
-					throw new BuildException(e, "SCSS failure");
-				}
+						using SassCompiler sassCompiler = new(new V8JsEngineFactory(), options);
+						CompilationResult compilationResult = sassCompiler.CompileFile(file.FullName);
+						result = new FileResult(compilationResult.CompiledContent, Path.ChangeExtension(file.Name, "css"));
+					}
+					catch (Exception e)
+					{
+						throw new BuildException(e, "SCSS failure");
+					}
 
-				return FileResult.Validity.Processed;
-			}
+					return FileResult.Validity.Processed;
+				}
 			default:
 				result = null;
 				return FileResult.Validity.NotProcessed;
 		}
 	}
-
-	[GeneratedRegex("<script src=\"(//unpkg\\.com/.+?.js)\"></script>")]
-	private static partial Regex GetUnpkgRegex();
-
-	[GeneratedRegex("@([\\d.]+?)/")]
-	private static partial Regex GetReleaseVersionRegex();
 }

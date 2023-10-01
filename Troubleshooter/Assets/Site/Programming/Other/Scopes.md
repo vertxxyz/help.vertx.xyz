@@ -89,7 +89,6 @@ public void Foo()
     {
         float scope1 = 1;
         
-        // You can make block-level scopes without an attached statement to control access
         {
             float scope2 = 2;
             // 🟢 "method0", "scope1", and "scope2" are accessible here.

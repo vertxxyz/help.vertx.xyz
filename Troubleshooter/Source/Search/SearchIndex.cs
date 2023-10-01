@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
@@ -12,27 +13,37 @@ public static class SearchIndex
 {
 	public static string GetJsonFilePath(Arguments arguments) => Path.Combine(Path.Combine(arguments.Path, "Json"), "search-index.json");
 
-	public static async Task Generate(Arguments arguments, ReadOnlyDictionary<string, IOUtility.RecordType> paths)
+	public static async Task<bool> Generate(Arguments arguments, ReadOnlyDictionary<string, IOUtility.RecordType> paths)
 	{
-		List<string> pathsIn = paths
-			// Only process normal files as a part of the search index.
-			.Where(kvp =>
-			{
-				return kvp.Value switch
+		try
+		{
+			List<string> pathsIn = paths
+				// Only process normal files as a part of the search index.
+				.Where(kvp =>
 				{
-					IOUtility.RecordType.Normal => true,
-					IOUtility.RecordType.Index => false,
-					IOUtility.RecordType.Duplicate => false,
-					_ => true
-				};
-			})
-			.Select(kvp => kvp.Key)
-			// Only html files can be searched
-			.Where(f => f.EndsWith(".html"))
-			.ToList();
-		(IList<string> filePaths, IList<string> fileHeaders, ImmutableSortedDictionary<string, Dictionary<int, int>> sortedWordsToFileIndexAndCount) =
-			await SearchGatherer.GenerateSearchResult(arguments.HtmlOutputDirectory!, pathsIn);
-		await Generate(arguments, sortedWordsToFileIndexAndCount, filePaths, fileHeaders);
+					return kvp.Value switch
+					{
+						IOUtility.RecordType.Normal => true,
+						IOUtility.RecordType.Index => false,
+						IOUtility.RecordType.Duplicate => false,
+						_ => true
+					};
+				})
+				.Select(kvp => kvp.Key)
+				// Only html files can be searched
+				.Where(f => f.EndsWith(".html"))
+				.ToList();
+			(IList<string> filePaths, IList<string> fileHeaders, ImmutableSortedDictionary<string, Dictionary<int, int>> sortedWordsToFileIndexAndCount) =
+				await SearchGatherer.GenerateSearchResult(arguments.HtmlOutputDirectory!, pathsIn);
+			await Generate(arguments, sortedWordsToFileIndexAndCount, filePaths, fileHeaders);
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			return false;
+		}
+
+		return true;
 	}
 
 	private static async Task Generate(Arguments arguments, ImmutableSortedDictionary<string, Dictionary<int, int>> sortedWordsToFileIndexAndCount, IList<string> filePaths, IList<string> fileHeaders)

@@ -4,7 +4,7 @@ The scale slider at the top of the Game view represents the Game view scaling re
 
 ^^^
 ![Game view zoom slider](game-view-scale.png)
-^^^ The Game view is displayed at 70% of 1920x1080
+^^^ The Game view is displayed at 70% of the rendered 1920x1080 resolution
 
 
 If you can't change the scale to **1x**, make sure **low resolution aspect ratios** is unchecked in the resolution/aspect ratio dropdown.

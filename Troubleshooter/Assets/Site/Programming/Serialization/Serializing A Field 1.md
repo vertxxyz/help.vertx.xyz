@@ -24,10 +24,10 @@ public float Value { get; private set; }
 The property must have a `set` accessor, and cannot be `static`.
 :::
 
-#### Reasons to avoid serializing backing fields
+#### Reasons to avoid serializing compiler-generated backing fields
 - The field will be serialized as `<PropertyName>k__BackingField` which adds complexity in editor extensions.
 - Refactoring auto-properties into properties and fields occurs quite often, requiring the attribute be moved, and [`FormerlySerializedAs`](https://docs.unity3d.com/ScriptReference/Serialization.FormerlySerializedAsAttribute.html) targeting the annoying name.
-- Certain cases can be appear ambiguous when multiple Attributes are targeting the backing field or property which one is being targeted.
+- Certain cases can be appear ambiguous when multiple Attributes are targeting the backing field or property.
 
 ---  
 

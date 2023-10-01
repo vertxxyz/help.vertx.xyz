@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
+using Microsoft.Extensions.Logging;
 
 namespace Troubleshooter;
 
@@ -13,7 +14,7 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public sealed class SymlinkBuildPostProcessor : IBuildPostProcessor
 {
-	public void Process(Arguments arguments, PageResourcesLookup resources, Site site)
+	public void Process(Arguments arguments, PageResourcesLookup resources, Site site, ILogger logger)
 	{
 		foreach ((string context, PageResource resource) in resources.Where(r => (r.Value.Flags & ResourceFlags.Symlink) != 0))
 		{
@@ -25,7 +26,7 @@ public sealed class SymlinkBuildPostProcessor : IBuildPostProcessor
 			string sourceOutput = source.OutputFilePath; // The path of the source file we're copying.
 			string resourceOutput = resource.OutputFilePath; // The destination path.
 			if ((source.Flags & ResourceFlags.ExistsInOutput) != 0) // Check that the source was actually written.
-				RedirectFile(sourceOutput, resourceOutput);
+				RedirectFile(sourceOutput, resourceOutput, logger);
 
 			// Redirect resources generated from the base resource if they exist...
 			if (!source.HasGeneratedChildren)
@@ -40,17 +41,21 @@ public sealed class SymlinkBuildPostProcessor : IBuildPostProcessor
 				string childResourceOutput = Path.GetFullPath(Path.GetRelativePath(sourceDirectory, childSourceOutput), resourceDirectory); // The destination path.
 				// string childSourceDirectory = Path.GetDirectoryName(childSourceOutput)!; // The directory of the source file we're copying.
 				if ((child.Flags & ResourceFlags.ExistsInOutput) != 0)
-					RedirectFile(childSourceOutput, childResourceOutput);
+					RedirectFile(childSourceOutput, childResourceOutput, logger);
 			}
 		}
 
 		return;
 
-		static void RedirectFile(string from, string to)
+		static void RedirectFile(string from, string to, ILogger logger)
 		{
-			Console.WriteLine($"""
-			                   "{from}" -> "{to}"
-			                   """);
+			logger.LogDebug(
+				"""
+				"{from}" -> "{to}"
+				""",
+				from,
+				to
+			);
 			// Make a copy of the file at the destination directory.
 			CopyFileIfDifferentAndRedirectInternalLinks(new FileInfo(from), to);
 		}

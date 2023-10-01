@@ -63,15 +63,16 @@ public sealed class BuildSiteController : ControllerBase
 		if (success)
 		{
 			Console.WriteLine("Successful build, generating search index.");
-			await SearchIndex.Generate(arguments, paths);
-			Console.WriteLine("Search index generated.");
+			success = await SearchIndex.Generate(arguments, paths);
+			if (success)
+			{
+				Console.WriteLine("Search index generated.");
+				return;
+			}
 		}
-		else
-		{
-			Console.WriteLine("Build failed! Press key to continue.");
-			Console.ReadKey();
-			Console.Clear();
-		}
+		Console.WriteLine("Build failed! Press key to continue.");
+		Console.ReadKey();
+		Console.Clear();
 	}
 
 	private async Task BuildContent(Arguments arguments)

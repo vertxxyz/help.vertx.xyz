@@ -14,9 +14,11 @@ foreach (var item in collection)
 ### Resolution
 
 #### I am using a `List`:
-- [I am **removing** items.](Collection%20Was%20Modified/List%20Removal.md)
-- [I am **adding** items.](Collection%20Was%20Modified/List%20Addition.md)
+- [I am **removing** items.](List%20Removal.md)
+- [I am **adding** items.](List%20Addition.md)
+- [I am **setting** items.](List%20Set.md)
 
 #### I am using another collection type:
-- [I am **removing** items.](Collection%20Was%20Modified/Collection%20Removal.md)
-- [I am **adding** items.](Collection%20Was%20Modified/Collection%20Addition.md)
+- [I am **removing** items.](Collection%20Removal.md)
+- [I am **adding** items.](Collection%20Addition.md)
+- [I am **setting** items.](Collection%20Set.md)

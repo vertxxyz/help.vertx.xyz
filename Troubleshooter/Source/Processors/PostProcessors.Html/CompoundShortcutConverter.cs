@@ -9,7 +9,7 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public sealed partial class CompoundShortcutConverter: IHtmlPostProcessor
 {
-	[GeneratedRegex(@"<kbd>(.+?\+.+?)</kbd>", RegexOptions.Compiled)]
+	[GeneratedRegex(@"<kbd>([^<]+?\+[^<]+?)</kbd>", RegexOptions.Compiled)]
 	private static partial Regex GetCompoundKbdRegex();
 
 	private static readonly Regex s_compoundKbdRegex = GetCompoundKbdRegex();
