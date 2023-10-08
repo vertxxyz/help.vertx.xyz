@@ -2,7 +2,7 @@
 Assembly definitions that are marked as Editor-only will cause the current folder and all sub-folders to become an Editor context.  
 
 ^^^
-![Editor Assembly Definition](../../../Building/editor-asmdef.png)
+![Editor Assembly Definition](../Building/editor-asmdef.png)
 ^^^ Editor-only Assembly Definition
 
 Having runtime scripts in an editor context is invalid.  

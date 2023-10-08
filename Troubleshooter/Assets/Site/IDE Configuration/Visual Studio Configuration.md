@@ -38,7 +38,7 @@ Follow all of the instructions listed on [this page](https://docs.microsoft.com/
   1. Reopen VS via **Assets | Open C# Project**.
 - Regenerate project files via VS.
   - If an assembly in the Solution Explorer is marked as **(incompatible)**, right-click it and select **reload with dependencies**.
-
+- Restart your computer.
 
 ---
 

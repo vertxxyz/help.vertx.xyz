@@ -8,3 +8,5 @@ If the **Edit | Preferences | External Tools | External Script Editor** setting 
 1. Change the **external script editor** setting.
 1. Close Unity and the Unity Hub.
 1. Relaunch the Hub and Unity as normal.
+
+If this still doesn't work, restart your computer and try again.

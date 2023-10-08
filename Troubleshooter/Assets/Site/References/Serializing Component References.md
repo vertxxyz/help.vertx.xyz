@@ -26,8 +26,8 @@ The [field](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/cl
 This example uses the `Transform` type, it will need to be replaced with the target type.
 :::
 
-::::
-::::note
+::::  
+::::note  
 #### 2. Reference the target component in the Inspector
 Do not directly reference the script asset. The target component must be an instance [added to an object in the scene](https://docs.unity3d.com/Manual/UsingComponents.html).
 
@@ -54,7 +54,7 @@ _target.Method();
 If you don't have autocomplete, [configure your IDE](../IDE%20Configuration.md) to easily find member names and get error highlighting.
 :::
 
-The usage must be at a [method or block level scope](../Programming/Other/Scopes.md).
+The usage must be at a [method or block level scope](../Programming/Other/Scopes.md).  
 ::::
 
 ### Notes

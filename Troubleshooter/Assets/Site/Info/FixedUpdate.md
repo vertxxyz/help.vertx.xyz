@@ -54,6 +54,7 @@ You can use the **timeline** view of the [Unity Profiler](https://docs.unity3d.c
 You can see an expanded version of a frame in the Unity documentation: [order of execution for event functions](https://docs.unity3d.com/Manual/ExecutionOrder.html).  
 :::
 
+
 ### Fixed Update diagram
 :::note{.center}  
 Start at the top right dot, and follow the 🔷 choices until the diagram exits.  

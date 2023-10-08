@@ -1,6 +1,6 @@
 ## Error dialogs
 
-- [Can't add script.](../Programming/Scripts/Loading%20Issues.md)  
+- [Can't add script.](../Script%20Loading%20Issues.md)  
   The script don't inherit a native class that can manage a script  
 - [Enter Safe Mode?](Safe%20Mode.md)  
   The project you are opening contains compilation errors.

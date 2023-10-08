@@ -22,6 +22,7 @@ The new extension relies on the [C# Dev Kit](https://learn.microsoft.com/en-us/v
   - Logout or restart Windows.
 - Restart VS Code.
 - Open the project from Unity's **Assets | Open C# Project** menu.
+- Restart your computer.
 
 ---
 

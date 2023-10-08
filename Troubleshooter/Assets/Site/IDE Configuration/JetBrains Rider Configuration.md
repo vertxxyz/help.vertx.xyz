@@ -6,7 +6,7 @@
 3. Install the bundled Unity Support plugin **in Rider** (**File | Settings | Plugins**).
 4. Follow any configuration prompts Rider may show in the bottom right of the editor.
 
-
+If you still have issues, restart your computer.
 
 ---
 

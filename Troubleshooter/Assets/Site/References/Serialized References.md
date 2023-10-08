@@ -5,6 +5,7 @@
 - [Referring **to prefab assets**, and instancing them.](References%20To%20Prefabs.md)
 - [Referring to objects in the scene **from prefab assets**.](Prefabs%20Referencing%20Components.md)
 - [Referring to **children of a prefabs**.](References%20To%20Prefab%20Children.md)
+- [Referring to many instances.](Referencing%20Many%20Instances.md)
 
 For a visual representation of valid serialized references see [this diagram](Valid%20References.md).
 ### Issues

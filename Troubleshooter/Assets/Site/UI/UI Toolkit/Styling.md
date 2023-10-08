@@ -24,7 +24,7 @@ We choose not to use direct inline styles via C#. Inline styles override all oth
 [//]: # ([TOC]  )
 
 ### Learn selector rules
-Go through the [USS selectors](https://docs.unity3d.com/Manual/UIE-USS-Selectors.html) documentation to learn how to construct uss queries against your hierarchy.  
+Go through the [USS selectors](https://docs.unity3d.com/Manual/UIE-USS-Selectors.html) documentation to learn how to construct USS queries against your hierarchy.  
 #### Examples
 This example lists selectors commonly used for basic styling.
 

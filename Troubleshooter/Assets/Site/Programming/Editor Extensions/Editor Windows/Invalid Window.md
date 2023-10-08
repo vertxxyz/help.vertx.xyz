@@ -4,4 +4,4 @@ This error is thrown either because the editor has entered a strange state, or b
 
 ### Resolution
 - [Reset the editor layout.](../../../Interface/Windows/Resetting%20Layout.md)
-- [Follow the naming requirements.](../../Scripts/Loading%20Issues.md)  
+- [Follow the naming requirements.](../../../Script%20Loading%20Issues.md)  

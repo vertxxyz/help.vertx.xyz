@@ -44,6 +44,7 @@ public partial class LanguageTests
 	private static readonly Regex s_unityRegex = GetUnityRegex();
 	private static readonly Regex s_uGuiRegex = GetUGuiRegex();
 	private static readonly Regex s_gameObjectRegex = GetGameObjectRegex();
+	private static readonly Regex s_ussRegex = GetUssRegex();
 
 	/// <summary>
 	/// Tests for common issues with capitalisation
@@ -67,6 +68,7 @@ public partial class LanguageTests
 		text.Should().NotMatchRegex(s_uGuiRegex, "we should write \"uGUI\"");
 		text.Should().NotMatchRegex(s_unityRegex, "we should write \"Unity\"");
 		text.Should().NotMatchRegex(s_gameObjectRegex, "we should write \"GameObject\"");
+		text.Should().NotMatchRegex(s_ussRegex, "we should write \"USS\"");
 	}
 
     [GeneratedRegex(@"\sunity[\s.,]")]
@@ -77,4 +79,7 @@ public partial class LanguageTests
 
     [GeneratedRegex(@"\sUGUI[\s.,]")]
     private static partial Regex GetUGuiRegex();
+
+    [GeneratedRegex(@"\suss[\s.,]")]
+    private static partial Regex GetUssRegex();
 }

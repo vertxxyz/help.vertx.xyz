@@ -35,7 +35,7 @@ If you use source control, go back and find where the issue began, and compare w
 ### Check that the editor or project state are not the issue
 Sometimes, things the editor itself can break, or the data generated from importing assets or scripts can become invalidated or incorrect. You must be aware of it to avoid endlessly chasing non-existent problems.
 1. Restarting Unity may fix issues, it's a simple place to start.
-1. If the issue persists, try a [project reimport](../Programming/Scripts/Loading%20Issues/Project%20Reimport.md) (deleting the Library folder).
+1. If the issue persists, try a [project reimport](../Script%20Loading%20Issues/Project%20Reimport.md) (deleting the Library folder).
 
 
 ---
