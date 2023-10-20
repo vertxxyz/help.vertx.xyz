@@ -1,5 +1,5 @@
 ## Burst build tools
-AoT Burst requires external compilers and SDKs to function. The error mentions what is required to make a build.  
+AoT Burst requires external compilers and SDKs to function. The error mentions what's required to make a build.  
 - [Windows 10 SDK.](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk/)
 - [Visual Studio C++ Build Tools.](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16)
 

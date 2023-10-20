@@ -19,7 +19,11 @@ await services.AddMarkdownPipelineAsync();
 services.AddProcessors();
 var app = builder.Build();
 
+await ActivatorUtilities.CreateInstance<BuildOnStartup>(app.Services).RebuildIfNotBuiltBefore();
+
 var arguments = app.Services.GetRequiredService<Arguments>();
+
+ActivatorUtilities.CreateInstance<SymlinkFunctions>(app.Services).PortAndRepairSymlinks();
 
 app.UseRewriter(new RewriteOptions().Add(new RewritePagesTo("/404.html", true)));
 

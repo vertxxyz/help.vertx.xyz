@@ -1,3 +1,7 @@
+---
+title: "Unity, huh, how?"
+---
+
 :::{#main-page--content}
 ## General
 ### Interface
@@ -5,7 +9,7 @@
 - [Game view](Interface/Game%20View.md)
 - [Windows](Interface/Windows.md)
 - [Gizmos](Interface/Gizmos.md)
-- [UnityEvents](Interface/Unity%20Events.md)
+- [UnityEvents](Unity%20Events.md)
 ### Unity Hub
 - [Editor installation instructions](Unity%20Hub/Editor%20Installation.md)
 - [Editor installation issues](Unity%20Hub/Editor%20Installation%20Issues.md)
@@ -48,7 +52,7 @@
 - [Quaternions](Programming/Quaternions.md)
 - [Color](Programming/Specifics/Color.md)
 - [LayerMasks and bitmasks](Bitmasks.md)
-- [UnityEvents](Interface/Unity%20Events.md)
+- [UnityEvents](Unity%20Events.md)
 ### Utility functions
 - [Lerp](Programming/Specifics/Lerp.md)
 - [ScreenToWorldPoint](Programming/Specifics/ScreenToWorldPoint.md)

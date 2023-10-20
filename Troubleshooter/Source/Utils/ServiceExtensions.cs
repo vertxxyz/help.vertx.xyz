@@ -21,19 +21,20 @@ public static class ServiceExtensions
 		services.AddSingleton<Site>();
 		return services;
 	}
-	
+
 	// ReSharper disable once UnusedMethodReturnValue.Global
 	public static async Task<IServiceCollection> AddMarkdownPipelineAsync(this IServiceCollection services)
 	{
 		// Register this for RtfPipe.
 		Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 		// Load all the online resources before we proceed.
-		OnlineResources onlineResources = new OnlineResources();
+		var onlineResources = new OnlineResources();
 		await onlineResources.LoadAll();
 		services.AddSingleton(onlineResources);
 		services.AddSingleton<MarkdownPipeline>(
 			provider => new MarkdownPipelineBuilder()
 				.UseAdvancedExtensions()
+				.UseYamlFrontMatter()
 				.UseCodeHighlighting(provider)
 				// TOC doesn't run properly on the second pass, requires debugging.
 				/*.UseTableOfContent(options =>
@@ -43,7 +44,7 @@ public static class ServiceExtensions
 					})*/
 				.Build()
 		);
-		
+
 		return services;
 	}
 

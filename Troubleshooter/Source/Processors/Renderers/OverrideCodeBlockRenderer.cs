@@ -42,7 +42,7 @@ public class CodeHighlightingExtension : IMarkdownExtension
 		if (codeBlockRenderer != null)
 			textRendererBase.ObjectRenderers.Remove(codeBlockRenderer);
 		textRendererBase.ObjectRenderers.AddIfNotAlready(new OverrideCodeBlockRenderer(
-			codeBlockRenderer, 
+			codeBlockRenderer,
 			_provider.GetRequiredService<IJsEngine>(),
 			ActivatorUtilities.CreateInstance<D3>(_provider),
 			ActivatorUtilities.CreateInstance<Mermaid>(_provider),
@@ -146,7 +146,7 @@ public class OverrideCodeBlockRenderer : HtmlObjectRenderer<CodeBlock>
 
 	private static string ExtractSourceCode(LeafBlock node)
 	{
-		StringBuilder stringBuilder = new StringBuilder();
+		StringBuilder stringBuilder = new();
 		StringLine[] lines = node.Lines.Lines;
 		int length = lines.Length;
 		for (int index = 0; index < length; ++index)

@@ -15,6 +15,7 @@ public sealed class BuildOnStartup
 	private readonly Site _site;
 	private readonly MarkdownPipeline _pipeline;
 	private readonly IProcessorGroup _processors;
+	private readonly string _indexOutputPath;
 
 	public BuildOnStartup(Arguments arguments, Site site, MarkdownPipeline pipeline, IProcessorGroup processors)
 	{
@@ -22,30 +23,41 @@ public sealed class BuildOnStartup
 		_site = site;
 		_pipeline = pipeline;
 		_processors = processors;
+		_indexOutputPath = Path.Combine(_arguments.Path, "index.html");
 	}
-	
-	public async Task RebuildIfNotBuiltBefore()
+
+	private async Task WriteTemporaryIndex()
+	{
+		string indexOriginPath = Path.Combine(_site.ContentDirectory, "index.html");
+		string text = await File.ReadAllTextAsync(indexOriginPath);
+		const string replace = "<!-- page content -->";
+		text = text.Replace(replace, "Page must be manually rebuilt.");
+		await File.WriteAllTextAsync(_indexOutputPath, text);
+	}
+
+	public Task RebuildIfNotBuiltBefore()
 	{
 		if (!IsBuildRequired())
-			return; // index.html already exists at path, and contains enough to rebuild the app.
+			return Task.CompletedTask; // index.html already exists at path, and contains enough to rebuild the app.
 
-		var host = _arguments.Host;
+		return WriteTemporaryIndex();
+
+		/*var host = _arguments.Host;
 		// TODO can't make this build from localhost yet. Presumably the app hasn't fully started yet when this runs?
 		// You can build just fine from the POST request.
 		_arguments.OverrideHost("https://unity.huh.how/");
-		
+
 		await BuildSiteController.Build(_arguments, _site, _pipeline, _processors);
-		_arguments.OverrideHost(host);
+		_arguments.OverrideHost(host);*/
 	}
 
 	// ReSharper disable once MemberCanBeMadeStatic.Local
 	private bool IsBuildRequired()
 	{
 #if !FORCE_REBUILD
-		string indexPath = Path.Combine(_arguments.Path, "index.html");
-		if (File.Exists(indexPath))
+		if (File.Exists(_indexOutputPath))
 		{
-			if (File.ReadAllText(indexPath).Contains(BuildSiteController.RebuildAllKey))
+			if (File.ReadAllText(_indexOutputPath).Contains(BuildSiteController.RebuildAllKey))
 				return false;
 		}
 

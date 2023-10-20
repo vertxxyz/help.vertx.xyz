@@ -10,6 +10,25 @@ function resize() {
     document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
 }
 
+String.prototype.trimEndChars = function (characters) {
+    let result = this;
+    let lastIndex = result.length;
+    for (; lastIndex > 0; lastIndex--) {
+        let found = false;
+        for (let i = 0; i < characters.length; i++) {
+            if (result[lastIndex - 1] === characters[i]) {
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+            break;
+    }
+    if (lastIndex < result.length)
+        result = result.substring(0, lastIndex);
+    return result;
+}
+
 window.addEventListener('resize', resize);
 window.addEventListener('load', resize);
 
@@ -136,9 +155,9 @@ function setPage(value, url, hash, pushHistory = true) {
         url += hash;
     // State Object, Page Name, URL
     if (pushHistory)
-        window.history.pushState({pathParameter: value, hashParameter: hash}, document.title, url);
+        window.history.pushState({pathParameter: value, hashParameter: hash}, "", url);
     else
-        window.history.replaceState({pathParameter: value, hashParameter: hash}, document.title, url);
+        window.history.replaceState({pathParameter: value, hashParameter: hash}, "", url);
 }
 
 // Load Page is called from HTML
@@ -166,7 +185,7 @@ function loadPage(link) {
         link = null;
 
     let hash = '';
-    if(link != null) {
+    if (link != null) {
         const hashIndex = link.indexOf("#");
         if (hashIndex >= 0) {
             hash = link.substring(hashIndex);
@@ -241,6 +260,7 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
                 // -------------------------------
                 setTimeout(() => scrollToHash(hash), 100); // Delay seems to be required in some cases.
                 setupHeaders();
+                renameTitle(url);
             }, load404);
             document.getElementById('page-search').value = "";
             const sidebarContents = document.querySelector('.sidebar-contents');
@@ -297,6 +317,12 @@ function setupHeaders() {
             e.addEventListener("mouseleave", () => e.querySelector(".header-permalink")?.classList.remove("show"));
         }
     );
+}
+
+function renameTitle(url) {
+    const newTitle = (document.querySelector("h1") ?? document.querySelector("h2"))?.textContent.trim().trimEndChars('#');
+    if (newTitle != null)
+        document.title = newTitle;
 }
 
 function setupCodeSettings() {

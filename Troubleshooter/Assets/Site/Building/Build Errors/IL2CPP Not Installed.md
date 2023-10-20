@@ -10,6 +10,6 @@ If this is your first time installing IL2CPP support you may also have to follow
 
 ---
 
-If this has not fixed your issue, be extra certain your project is running on the Unity version you modified.
+If this has not fixed your issue, double-check your project is running on the Unity version you modified.
 
 [^1]: If you cannot add modules to an install, it may have been installed manually. Re-run the installer.

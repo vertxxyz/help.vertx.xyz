@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 using Xunit.Abstractions;
@@ -13,9 +14,17 @@ public class SymlinkTests
 	public SymlinkTests(ITestOutputHelper testOutputHelper) => _testOutputHelper = testOutputHelper;
 
 	[Fact]
-	public void ValidateCollectedSymlinks()
+	public void CheckForSymlinksInMainSite()
 	{
 		Dictionary<string,string> lookup = PageUtility.CollectSymlinkedFilesLookup(TestUtility.TestSite.Directory);
+		using var assertionScope = new AssertionScope();
+		lookup.Should().BeEmpty("the main \"Site\" directory should not contain any symlinks. The \"Site Redirects\" directory contains these redirects.");
+	}
+
+	[Fact]
+	public void ValidateCollectedSymlinks()
+	{
+		Dictionary<string,string> lookup = PageUtility.CollectSymlinkedFilesLookup(TestUtility.TestSite.RedirectsDirectory);
 		using var assertionScope = new AssertionScope();
 		foreach ((string from, string to) in lookup)
 		{
@@ -29,7 +38,7 @@ public class SymlinkTests
 	[Fact]
 	public void CheckForDestroyedSymlinks()
 	{
-		foreach (string entry in Directory.EnumerateFileSystemEntries(TestUtility.TestSite.Directory, "*", SearchOption.AllDirectories))
+		foreach (string entry in Directory.EnumerateFileSystemEntries(TestUtility.TestSite.RedirectsDirectory, "*", SearchOption.AllDirectories))
 		{
 			string extension = Path.GetExtension(entry);
 			if (extension == "")

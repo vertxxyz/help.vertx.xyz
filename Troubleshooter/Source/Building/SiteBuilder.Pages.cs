@@ -94,32 +94,41 @@ public static partial class SiteBuilder
 
 		PageResourcesLookup pages = new();
 
-		// Collect symlink directories so files within those directories can be marked as links.
-		Dictionary<string, string> fileSymlinksFromTo = CollectSymlinkedFilesLookup(site.Directory);
-
 		// Collect Embedded Pages
 		foreach (string path in Directory.EnumerateFiles(site.EmbedsDirectory, "*", SearchOption.AllDirectories))
-			DoProcessPath(path, ResourceLocation.Embed);
+			DoProcessPath(path, ResourceLocation.Embed, null);
 
 		// Collect Site Pages
 		foreach (string path in Directory.EnumerateFiles(site.Directory, "*", SearchOption.AllDirectories).Where(p => p.EndsWith(".md") || p.EndsWith(".gen")))
-			DoProcessPath(path, ResourceLocation.Site);
+			DoProcessPath(path, ResourceLocation.Site, null);
+
+		// Collect symlink directories so files within those directories can be marked as links.
+		foreach ((string fromInRedirectDirectory, string to) in CollectSymlinkedFilesLookup(site.RedirectsDirectory))
+		{
+			string from = $"{site.Directory}{fromInRedirectDirectory[site.RedirectsDirectory.Length..]}";
+			DoProcessPath(from, ResourceLocation.Site, to);
+		}
 
 		CollectGeneratedPages();
 
 		return pages;
 
-		void DoProcessPath(string path, ResourceLocation location)
+		void DoProcessPath(string path, ResourceLocation location, string? symlinkTo)
 		{
 			string fullPath = Path.GetFullPath(path);
-			if (!TryGetNewResource(fullPath, location, out var page))
+			if (!TryGetNewResource(fullPath, location, out var page, symlinkTo))
 				return;
 
 			if (page!.Type != ResourceType.Markdown)
 				return;
 
+			string realSourceFile = symlinkTo ?? fullPath;
+
+			if (!File.Exists(realSourceFile))
+				throw new BuildException($"\"{realSourceFile}\" was not found. Likely a symlink-related bug.");
+
 			// Collect all the links from this markdown page - and add them to the PageResources.
-			string text = File.ReadAllText(fullPath);
+			string text = File.ReadAllText(realSourceFile);
 			foreach (var embed in GetEmbedsAsLocalPathsFromMarkdownText(text))
 			{
 				string fullEmbedPath = GetFullPathFromLocalEmbed(embed.localPath, site);
@@ -131,26 +140,10 @@ public static partial class SiteBuilder
 		}
 
 		// Returns true if a new page is created.
-		bool TryGetNewResource(string fullPath, ResourceLocation location, out PageResource? page)
+		bool TryGetNewResource(string fullPath, ResourceLocation location, out PageResource? page, string? symlinkTo = null)
 		{
 			if (pages.TryGetValue(fullPath, out page))
 				return true;
-
-			string? symlinkTo = null;
-			if (location != ResourceLocation.Embed)
-			{
-				if (!fileSymlinksFromTo.TryGetValue(fullPath, out symlinkTo))
-				{
-					FileInfo fileInfo = new(fullPath);
-					string? linkTarget = fileInfo.LinkTarget;
-					if (linkTarget != null)
-					{
-						string linkTargetFullPath = Path.GetFullPath(linkTarget, Path.GetDirectoryName(fullPath)!);
-						fileSymlinksFromTo.Add(fullPath, linkTargetFullPath);
-						symlinkTo = linkTargetFullPath;
-					}
-				}
-			}
 
 			string extension = Path.GetExtension(fullPath);
 			switch (extension)

@@ -14,17 +14,19 @@ public sealed class Site
 		Root,
 		AssetsRoot,
 		Directory,
+		RedirectsDirectory,
 		EmbedsDirectory,
 		ContentDirectory;
-	
+
 	public Site(IRootPathProvider arguments)
 	{
 		Root = arguments.Root;
 		AssetsRoot = Path.Combine(Root, "Assets");
 		Directory = Path.Combine(AssetsRoot, "Site");
+		RedirectsDirectory = Path.Combine(AssetsRoot, "Site Redirects");
 		EmbedsDirectory = Path.Combine(AssetsRoot, "Embeds");
 		ContentDirectory = Path.Combine(AssetsRoot, "Content");
-			
+
 		RootIndex = GetSiteRootIndex(ResourceLocation.Site);
 		EmbedRootIndex = GetSiteRootIndex(ResourceLocation.Embed);
 	}
@@ -44,7 +46,7 @@ public sealed class Site
 		int siteRootIndex = rootDirectory.Length + 1;
 		return siteRootIndex;
 	}
-		
+
 	/// <summary>
 	/// Converts a Full Path that is in the Site directory to a local path with the necessary text replacement to be link-appropriate. Removes extensions.
 	/// </summary>
@@ -53,7 +55,7 @@ public sealed class Site
 		string localPath = FinalisePathWithRootIndex(fullPath, RootIndex);
 		return Path.ChangeExtension(localPath, null).ToOutputPath();
 	}
-		
+
 	/// <summary>
 	/// Converts a Full Path that is in the Embeds directory to a local path with the necessary text replacement to be link-appropriate. Removes extensions.
 	/// </summary>
@@ -62,7 +64,7 @@ public sealed class Site
 		string localPath = FinalisePathWithRootIndex(embed, EmbedRootIndex);
 		return Path.ChangeExtension(localPath, null);
 	}
-		
+
 	/// <summary>
 	/// Converts a Full Path that is in a directory at the rootIndex depth to a local path with the necessary text replacement to be link-appropriate.
 	/// </summary>

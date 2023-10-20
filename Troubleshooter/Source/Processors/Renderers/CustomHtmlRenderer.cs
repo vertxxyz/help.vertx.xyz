@@ -1,5 +1,6 @@
 using System.IO;
 using Markdig.Extensions.CustomContainers;
+using Markdig.Extensions.Yaml;
 using Markdig.Renderers;
 using Markdig.Renderers.Html;
 
@@ -7,11 +8,14 @@ namespace Troubleshooter.Renderers;
 
 public class CustomHtmlRenderer : HtmlRenderer
 {
-	public CustomHtmlRenderer(TextWriter writer) : base(writer) { }
+	public CustomHtmlRenderer(TextWriter writer) : base(writer)
+	{
+		ObjectRenderers.Add(new YamlFrontMatterHtmlOverrideRenderer());
+	}
 
 	public void Setup()
 	{
-		for (int i = 0; i < ObjectRenderers.Count; i++)
+		for (int i = ObjectRenderers.Count - 1; i >= 0; i--)
 		{
 			switch (ObjectRenderers[i])
 			{
@@ -20,6 +24,9 @@ public class CustomHtmlRenderer : HtmlRenderer
 					break;
 				case HtmlCustomContainerRenderer:
 					ObjectRenderers[i] = new HtmlCustomContainerOverrideRenderer();
+					break;
+				case YamlFrontMatterHtmlRenderer:
+					ObjectRenderers.RemoveAt(i);
 					break;
 				default:
 					continue;
