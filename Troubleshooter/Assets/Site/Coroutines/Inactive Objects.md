@@ -20,7 +20,7 @@ if (gameObject.activeInHierarchy)
 Or
 ::::note
 #### Start the coroutine on another object that is active
-[Reference](../../References/Serialized%20References.md) another component that is in an active hierarchy and start the coroutine on it instead.
+[Reference](../References/Serialized%20References.md) another component that is in an active hierarchy and start the coroutine on it instead.
 ```csharp
 _otherComponent.StartCoroutine(MyCoroutine());
 ```

@@ -29,7 +29,7 @@ IEnumerator DoMoveTo(Vector3 destination, float duration = 1)
 }
 ```
 
-Remember to use [`StopCoroutine`](../Programming/Coroutines/StopCoroutine.md) if you're calling this function while it's already running.  
+Remember to use [`StopCoroutine`](../Coroutines/StopCoroutine.md) if you're calling this function while it's already running.  
 Similar logic can be applied to all lerp variations, and is commonly used in tweening libraries.
 
 The result is a linear movement from one value to another. If you want to add **easing**, either [`Evaluate`](https://docs.unity3d.com/ScriptReference/AnimationCurve.Evaluate.html) your `t` value with an [`AnimationCurve`](https://docs.unity3d.com/ScriptReference/AnimationCurve.html) (you can configure one via the inspector), or pass it through an [easing function](https://easings.net).
