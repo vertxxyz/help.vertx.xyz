@@ -49,7 +49,7 @@ while (true)
 
 :::note
 #### Logic errors in loops
-A [functioning IDE](../IDE%20Configuration.md) can autocomplete `for` loops by typing <kbd>for</kbd> and pressing tab/enter.
+A [functioning IDE](IDE%20Configuration.md) can autocomplete `for` loops by typing <kbd>for</kbd> and pressing tab/enter.
 Reverse `for` loops can be created with <kbd>forr</kbd>. This helps prevent basic typing mistakes.
 
 ```csharp
@@ -70,7 +70,7 @@ Modifying the iterator of a loop, or appending to a collection during loop itera
 
 :::note
 #### Recursive properties
-Calling a property inside of itself can cause an infinite recursive loop that will most often result in a [StackOverflowException](../Runtime%20Exceptions/StackOverflowException.md), but can produce an infinite loop.
+Calling a property inside of itself can cause an infinite recursive loop that will most often result in a [StackOverflowException](Runtime%20Exceptions/StackOverflowException.md), but can produce an infinite loop.
 ```csharp
 private float _example;
 public float Example

@@ -1,5 +1,5 @@
 ## Positions and directions
-It's important to distinguish positions and vectors, and the various spaces they are relative to. Without understanding this you can easily mistake a position for a direction, leading to various unexplainable interactions.
+It's important to distinguish positions and directions, and the various spaces they are relative to. Without understanding this you can easily mistake a position for a direction, leading to various unexplainable interactions.
 
 Picture a map where treasure is buried on an island.
 
@@ -45,8 +45,8 @@ The local space position of our X is relative to a chosen object.
 
 <canvas id="vectors-map__x--local" width="500" height="500"></canvas>
 
-Note how both positions are vectors, vectors that have no meaning without a frame of reference.
-If you're given the value of a position you can't know where it is without knowing what space it was provided in.
+Take note that while the position is the same, the vectors are different. All vectors have no meaning without a frame of reference.
+If you're given the value of a position you can't know where it is without knowing the space it was provided in.
 
 ### Directions
 Think of directions as an arrow. A direction is just a position from the origin of its frame of reference.
@@ -74,7 +74,7 @@ Vector3 direction = treasurePosition;
 :::
 ::: {.vectors-code__positions--origin-local_space .hidden}
 ```csharp
-// The local space direction relative to the world is the same as world space.
+// The local space direction relative to the world is the same as in world space.
 Vector3 direction = treasurePosition;
 ```
 :::
@@ -89,7 +89,7 @@ Vector3 direction = treasurePosition - boatTransform.position;
 ```csharp
 // InverseTransformDirection converts a world space direction to a local one.
 Vector3 direction = boatTransform.InverseTransformDirection(treasurePosition - boatTransform.position);
-// This is the same as transforming the world space position into local space considering the transform position.
+// This is the same as transforming the world space position into local space while considering the transform position.
 Vector3 direction = boatTransform.InverseTransformVector(treasurePosition);
 ```
 :::
@@ -100,7 +100,7 @@ Note how no matter where we are on the island, north is always the same vector. 
 
 🚧 Diagram under construction 🚧
 
-<canvas id="vectors-map__relative" width="500" height="500"></canvas>
+[//]: # (<canvas id="vectors-map__relative" width="500" height="500"></canvas>)
 
 #### Normalisation
 A direction can have a magnitude (a length), or be normalised. A normalised direction has a magnitude of 1, and can be multiplied with a value to be scaled to that length.
@@ -110,4 +110,4 @@ This is very helpful, because we can scale the vector based on various things to
 
 🚧 This page is currently under construction 🚧
 
-See [draw functions](../../Debugging/Draw%20Functions.md) to learn how to visualise these vectors in Unity.
+See [draw functions](Debugging/Draw%20Functions.md) to learn how to visualise these vectors in Unity.

@@ -31,7 +31,7 @@
 - [Collision action matrix](Info/Collision%20Matrix.md)
 - [Bitmasks](Info/Bitmasks.md)
 - [Quaternions](Info/Quaternions.md)
-- [Lerp](Programming/Specifics/Lerp/Overview.md)
+- [Lerp](Lerp/Overview.md)
 - [SerializedObject](Programming/Editor%20Extensions/Serialisation/SerializedObject%20How-to.md)
 - [Using Git with Unity](Info/Git.md)
   

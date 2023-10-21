@@ -4,26 +4,26 @@ using System;
 using System.IO;
 #endif
 using System.Threading.Tasks;
-using Markdig;
+// using Markdig;
 using Troubleshooter.Middleware;
 
 namespace Troubleshooter;
 
 public sealed class BuildOnStartup
 {
-	private readonly Arguments _arguments;
+	// private readonly Arguments _arguments;
 	private readonly Site _site;
-	private readonly MarkdownPipeline _pipeline;
-	private readonly IProcessorGroup _processors;
+	// private readonly MarkdownPipeline _pipeline;
+	// private readonly IProcessorGroup _processors;
 	private readonly string _indexOutputPath;
 
-	public BuildOnStartup(Arguments arguments, Site site, MarkdownPipeline pipeline, IProcessorGroup processors)
+	public BuildOnStartup(Arguments arguments, Site site/*, MarkdownPipeline pipeline, IProcessorGroup processors*/)
 	{
-		_arguments = arguments;
+		// _arguments = arguments;
 		_site = site;
-		_pipeline = pipeline;
-		_processors = processors;
-		_indexOutputPath = Path.Combine(_arguments.Path, "index.html");
+		// _pipeline = pipeline;
+		// _processors = processors;
+		_indexOutputPath = Path.Combine(arguments.Path, "index.html");
 	}
 
 	private async Task WriteTemporaryIndex()

@@ -45,10 +45,9 @@ public class PageDataWithSymlinks : PageData
 {
 	public override IEnumerator<object[]> GetEnumerator()
 	{
-		foreach (object[] objects in base.GetEnumerator())
-		{
+		using IEnumerator<object[]> enumerator = base.GetEnumerator();
+		foreach (object[] objects in enumerator)
 			yield return new[] { objects[0], objects[1], objects[2], Symlinks };
-		}
 	}
 }
 

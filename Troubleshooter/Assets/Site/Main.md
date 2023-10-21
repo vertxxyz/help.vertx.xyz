@@ -16,8 +16,8 @@ title: "Unity, huh, how?"
 - [Editor module installation issues](Unity%20Hub/Module%20Installation%20Issues.md)
 ### Functionality
 - [Error dialogs](Editor/Error%20Dialogs.md)
-- [Freezes, crashes, and pauses](Functionality/Freezes%20Crashes%20and%20Pauses.md)
-- [Play mode](Functionality/Play%20Mode.md)
+- [Freezes, crashes, and pauses](Freezes%20Crashes%20and%20Pauses.md)
+- [Play mode](Play%20Mode.md)
 
 ## Programming
 ### General
@@ -39,7 +39,7 @@ title: "Unity, huh, how?"
 ### Physics
 - [Physics messages](Physics%20Messages.md)
 - [Physics queries](Physics%20Queries.md)
-- [Character Controller](Programming/Physics/Character%20Controller.md)
+- [Character Controller](Character%20Controller.md)
 ### Assets
 - [Resources](Programming/Resources.md)
 - [AssetDatabase](Programming/Editor%20Extensions/AssetDatabase.md)
@@ -48,19 +48,19 @@ title: "Unity, huh, how?"
 - [Input System package](Programming/Input/Input%20System.md)
 ### Utility types
 - [Random](Programming/Specifics/Random.md)
-- [Vectors](Programming/Vectors.md)
+- [Vectors](Vectors.md)
 - [Quaternions](Programming/Quaternions.md)
 - [Color](Programming/Specifics/Color.md)
 - [LayerMasks and bitmasks](Bitmasks.md)
 - [UnityEvents](Unity%20Events.md)
 ### Utility functions
-- [Lerp](Programming/Specifics/Lerp.md)
-- [ScreenToWorldPoint](Programming/Specifics/ScreenToWorldPoint.md)
+- [Lerp](Lerp.md)
+- [ScreenToWorldPoint](ScreenToWorldPoint.md)
 ### Implementation
 - [Coroutines](Programming/Coroutines.md)
 - [Async/await](Programming/Async.md)
 - [Parsing input strings](Programming/Specifics/Parsing.md)
-- [Player movement](Programming/Player%20Movement.md)
+- [Player movement](Player%20Movement.md)
 - [Mesh generation](Programming/Mesh%20Generation.md)
 
 ## Data-Oriented Technology Stack (DOTS)
@@ -77,7 +77,7 @@ title: "Unity, huh, how?"
 
 ## Physics
 - [Physics issues](Physics/Physics%20Issues.md)
-- [Character Controller](Physics/Character%20Controller.md)
+- [Character Controller](Character%20Controller.md)
 
 ## Graphics
 ### Assets
