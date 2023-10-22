@@ -23,7 +23,7 @@ Correctly create a layer mask:
 
 ::::note
 #### 🟢 Serialize a `LayerMask`
-If bitmasks are confusing, a simple option is to [expose](../Programming/Serialization/Serializing%20A%20Field%201.md) a [`LayerMask`](https://docs.unity3d.com/ScriptReference/LayerMask.html) and configure it via the [Inspector](https://docs.unity3d.com/Manual/UsingTheInspector.html).
+If bitmasks are confusing, a simple option is to [expose](../Serialization/Serializing%20A%20Field%201.md) a [`LayerMask`](https://docs.unity3d.com/ScriptReference/LayerMask.html) and configure it via the [Inspector](https://docs.unity3d.com/Manual/UsingTheInspector.html).
 ```csharp
 public LayerMask ExampleMask;
 ```

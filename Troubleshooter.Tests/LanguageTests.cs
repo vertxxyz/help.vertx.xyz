@@ -60,6 +60,7 @@ public partial class LanguageTests
 		text.Should().NotContain("Project Window", StringComparison.Ordinal, "we should write \"Project window\"");
 		text.Should().NotContain("play mode", StringComparison.Ordinal, "we should write \"Play Mode\"");
 		text.Should().NotContain("edit mode", StringComparison.Ordinal, "we should write \"Edit Mode\"");
+		text.Should().NotContain("Debug Mode", StringComparison.Ordinal, "we should write \"Debug mode\"");
 		text.Should().NotContain("the hub", StringComparison.Ordinal, "we should write \"the Hub\"");
 		text.Should().NotContain("Unity hub", StringComparison.Ordinal, "we should write \"Unity Hub\"");
 		text.Should().NotContain(".Net", StringComparison.Ordinal, "we should write \".NET\"");

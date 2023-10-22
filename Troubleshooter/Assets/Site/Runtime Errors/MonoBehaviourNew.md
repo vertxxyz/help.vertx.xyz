@@ -24,4 +24,4 @@ gameObject.AddComponent<Example>();
 
 #### Using a plain class
 Instead of inheriting from `MonoBehaviour` you can create a class that doesn't!
-A plain class lives on its own and is garbage collected when it's no longer referenced. You may also be able to [serialize](../Programming/Serialization/Custom%20Types.md) it with the inspector.
+A plain class lives on its own and is garbage collected when it's no longer referenced. You may also be able to [serialize](../Serialization/Custom%20Types.md) it with the inspector.

@@ -15,4 +15,4 @@ If you continue to have issues with this function, simplify your logic and draw 
 In some specific cases you may find that the camera position has been overridden for a small portion of the frame time. An issue like this will not appear in the Scene view, but can affect camera functions for that period of the frame. Drawing rays will indicate whether this is the case.
 
 ---
-See [vectors: positions and directions](Positions%20And%20Directions.md) for more info on spaces and vectors.
+See [vectors: positions and directions](Vectors/Positions%20And%20Directions.md) for more info on spaces and vectors.

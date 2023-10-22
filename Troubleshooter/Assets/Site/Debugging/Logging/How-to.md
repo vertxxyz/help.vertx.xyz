@@ -38,7 +38,7 @@ See [`NullReferenceException`](../../Runtime%20Exceptions/NullReferenceException
 
 ### Extra details
 #### Vectors
-The `ToString` implementation for vectors have very little precision, so when logging it is best to use `.ToString("F7")` to display a suitable amount of decimal places.
+The [`ToString`](https://docs.unity3d.com/ScriptReference/Vector3.ToString.html) implementation for vectors shows very little precision, when logging you should use a format string to show an appropriate number of decimal places. See [vector equality](../../Vectors/Equality.md) for more information.
 #### Print
 The [`print`](https://docs.unity3d.com/ScriptReference/MonoBehaviour-print.html) function is only inherited from `MonoBehaviour` and indirectly calls `Debug.Log`. It also does not take the context parameter, and so should generally be avoided.
 #### Logs, Warnings, and Errors

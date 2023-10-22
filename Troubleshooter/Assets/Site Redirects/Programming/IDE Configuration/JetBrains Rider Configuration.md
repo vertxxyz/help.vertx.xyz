@@ -1,0 +1,1 @@
+../../../Site/IDE Configuration/JetBrains Rider.md

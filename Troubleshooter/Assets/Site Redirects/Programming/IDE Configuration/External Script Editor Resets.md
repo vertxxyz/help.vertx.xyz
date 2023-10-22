@@ -1,0 +1,1 @@
+../../../Site/IDE Configuration/External Script Editor Resets.md

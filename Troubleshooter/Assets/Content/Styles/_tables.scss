@@ -31,7 +31,7 @@ td {
   &.tableYes,&.tableMaybe {
     color: base.$dark-color;
   }
-  
+
   &.tableYes {
     background-color: rgba(124, 220, 54, 0.8);
     &.highlight {
@@ -58,6 +58,7 @@ td {
 tr {
   td:first-child:has(> strong:only-child):not(.highlight) {
     background-color: base.$unity-colors-default-background;
+    text-align: right;
     &>strong {
       color:inherit;
     }
@@ -118,7 +119,7 @@ td.highlight {
       margin-block-end: 0;
       margin-bottom: 0;
     }
-    
+
     > ul {
       padding-inline-start: 18px;
     }

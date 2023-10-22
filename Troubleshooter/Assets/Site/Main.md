@@ -23,29 +23,29 @@ title: "Unity, huh, how?"
 ### General
 - [IDE configuration](IDE%20Configuration.md)
 - [References](References.md)
-- [Variables](Programming/Variables.md)
-- [Scripts](Programming/Scripts.md)
+- [Variables](Variables.md)
+- [Scripts](Scripts.md)
 - [Debugging](Debugging.md)
 ### Errors & warnings
-- [Errors](Programming/Common%20Errors.md)
-- [Warnings](Programming/Common%20Warnings.md)
+- [Errors](Common%20Errors.md)
+- [Warnings](Common%20Warnings.md)
 - [Error dialogs](Editor/Error%20Dialogs.md)
 ### Editor extensions
-- [General](Programming/Editor%20Extensions.md)
-- [Property drawers](Programming/Editor%20Extensions/Property%20Drawers.md)
-- [Property decorators](Programming/Editor%20Extensions/Property%20Decorators.md)
-- [Custom inspectors](Programming/Editor%20Extensions/Custom%20Inspectors.md)
-- [Editor windows](Programming/Editor%20Extensions/Editor%20Windows.md)
+- [General](Editor%20Extensions.md)
+- [Property drawers](Editor%20Extensions/Property%20Drawers.md)
+- [Property decorators](Editor%20Extensions/Property%20Decorators.md)
+- [Custom inspectors](Editor%20Extensions/Custom%20Inspectors.md)
+- [Editor windows](Editor%20Extensions/Editor%20Windows.md)
 ### Physics
 - [Physics messages](Physics%20Messages.md)
 - [Physics queries](Physics%20Queries.md)
 - [Character Controller](Character%20Controller.md)
 ### Assets
 - [Resources](Programming/Resources.md)
-- [AssetDatabase](Programming/Editor%20Extensions/AssetDatabase.md)
+- [AssetDatabase](Editor%20Extensions/AssetDatabase.md)
 ### Input
-- [Built-in Input Manager](Programming/Input/Built-In%20Input.md)
-- [Input System package](Programming/Input/Input%20System.md)
+- [Built-in Input Manager](Input/Built-In%20Input.md)
+- [Input System package](Input/Input%20System.md)
 ### Utility types
 - [Random](Programming/Specifics/Random.md)
 - [Vectors](Vectors.md)
@@ -92,7 +92,7 @@ title: "Unity, huh, how?"
 - [Particle System](Graphics/Particle%20System.md)
 - [Line Renderer](Graphics/Line%20Renderer.md)
 ### Systems
-- [Lighting](Graphics/Lighting.md)
+- [Lighting](Lighting.md)
 - [Occlusion culling](Graphics/Occlusion%20Culling.md)
 
 ## Animation

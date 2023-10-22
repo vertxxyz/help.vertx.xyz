@@ -8,7 +8,7 @@ Foo bar = null;
 Method(bar);
 ```
 
-The **parameter name** listed in the error, and the [stack trace](../Programming/Stack%20Traces.md), are both clues to what is `null`.
+The **parameter name** listed in the error, and the [stack trace](../Stack%20Traces.md), are both clues to what is `null`.
 
 #### Extension methods
 Be aware that [extension methods](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods) can throw this exception when the object you invoke the method on is invalid or `null`.

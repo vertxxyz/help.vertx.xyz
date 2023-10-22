@@ -28,7 +28,7 @@ If the menu item is not present, enable the debugger in **Edit | Project Setting
 - [Input issues.](UI%20Toolkit/Input%20Issues.md)
 
 #### Editor
-- [Issues with PropertyDrawers.](../Programming/Editor%20Extensions/Property%20Drawers/UI%20Toolkit%20PropertyDrawer.md)
+- [Issues with PropertyDrawers.](../Editor%20Extensions/Property%20Drawers/UI%20Toolkit%20PropertyDrawer.md)
 
 #### Complex
 - [Issues with generateVisualContent.](UI%20Toolkit/generateVisualContent.md)

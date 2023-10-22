@@ -4,10 +4,10 @@ If your IDE isn't providing autocomplete suggestions or underlining errors in re
 :::
 
 ### I need help configuring:
-- [Visual Studio](IDE%20Configuration/Visual%20Studio%20Configuration.md)
-- [Visual Studio Code](IDE%20Configuration/Visual%20Studio%20Code%20Configuration.md)
-- [JetBrains Rider](IDE%20Configuration/JetBrains%20Rider%20Configuration.md)
-- [MonoDevelop](IDE%20Configuration/MonoDevelop%20Configuration.md)
+- [Visual Studio](IDE%20Configuration/Visual%20Studio.md)
+- [Visual Studio Code](IDE%20Configuration/Visual%20Studio%20Code.md)
+- [JetBrains Rider](IDE%20Configuration/JetBrains%20Rider.md)
+- [MonoDevelop](IDE%20Configuration/MonoDevelop.md)
 - [Other](IDE%20Configuration/General%20IDE%20Configuration.md)
 
 ### Why use an IDE?

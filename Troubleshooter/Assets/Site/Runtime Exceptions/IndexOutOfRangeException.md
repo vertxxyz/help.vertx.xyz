@@ -7,7 +7,7 @@ C#'s indices are **zero-indexed**. This means that indices begin at 0, and go up
 ### Resolution
 :::note
 #### In local scopes
-Ensure that the line pointed to by the [stack trace](../Programming/Stack%20Traces.md) is accessing an index that is within the limits of the collection.
+Ensure that the line pointed to by the [stack trace](../Stack%20Traces.md) is accessing an index that is within the limits of the collection.
 The index needs to be 0 or above, and less than the length of the collection.
 Common mistakes include:
 - Accessing an empty collection (`.Length` or `.Count` is `0`).

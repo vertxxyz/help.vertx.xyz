@@ -120,10 +120,11 @@
 	&.tag,
 	&.constant,
 	&.symbol,
-	&.deleted {
+	&.deleted,
+    &.inserted {
 		color: var(--textColor);
 	}
-	
+
 	&.number {
 		color: var(--numberColor);
 	}
@@ -132,8 +133,7 @@
 	&.attr-name,
 	&.string,
 	&.char,
-	&.builtin,
-	&.inserted {
+	&.builtin {
 		color: var(--stringColor);
 	}
 
@@ -189,7 +189,7 @@
 	&.entity {
 		cursor: help;
 	}
-	
+
 	&.deleted-sign.deleted {
 		background-color: #612722;
 	}

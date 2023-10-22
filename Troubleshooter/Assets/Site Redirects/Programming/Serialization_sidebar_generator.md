@@ -1,0 +1,1 @@
+../../Site/Serialization_sidebar_generator.md
