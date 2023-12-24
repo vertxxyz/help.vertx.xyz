@@ -49,8 +49,8 @@ title: "Unity, huh, how?"
 ### Utility types
 - [Random](Programming/Specifics/Random.md)
 - [Vectors](Vectors.md)
-- [Quaternions](Programming/Quaternions.md)
-- [Color](Programming/Specifics/Color.md)
+- [Quaternions](Quaternions.md)
+- [Color](Color.md)
 - [LayerMasks and bitmasks](Bitmasks.md)
 - [UnityEvents](Unity%20Events.md)
 ### Utility functions
@@ -71,9 +71,9 @@ title: "Unity, huh, how?"
 - [Player or build-only issues](Player/Issues.md)
 
 ## UI
-- [Unity UI (uGUI)](UI/UGUI.md)
-- [UI Toolkit](UI/UI%20Toolkit.md)
-- [TextMesh Pro](UI/TextMesh%20Pro.md)
+- [Unity UI (uGUI)](UGUI.md)
+- [UI Toolkit](UI%20Toolkit.md)
+- [TextMesh Pro](TextMesh%20Pro.md)
 
 ## Physics
 - [Physics issues](Physics/Physics%20Issues.md)

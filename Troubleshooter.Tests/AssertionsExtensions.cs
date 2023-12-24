@@ -10,7 +10,7 @@ namespace Troubleshooter.Tests;
 internal static class AssertionExtensions
 {
 	[AttributeUsage(AttributeTargets.Parameter)]
-	private sealed class ValidatedNotNullAttribute : Attribute { }
+	private sealed class ValidatedNotNullAttribute : Attribute;
 
 	public static void ThrowIfArgumentIsNull<T>([ValidatedNotNull] T obj, string paramName, string message)
 	{

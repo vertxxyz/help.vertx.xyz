@@ -30,9 +30,9 @@
 ### Resources
 - [Collision action matrix](Info/Collision%20Matrix.md)
 - [Bitmasks](Info/Bitmasks.md)
-- [Quaternions](Info/Quaternions.md)
+- [Quaternions](Quaternions.md)
 - [Lerp](Lerp/Overview.md)
-- [SerializedObject](Programming/Editor%20Extensions/Serialisation/SerializedObject%20How-to.md)
+- [SerializedObject](Editor%20Extensions/Serialisation/SerializedObject%20How-to.md)
 - [Using Git with Unity](Info/Git.md)
   
 ### External resources

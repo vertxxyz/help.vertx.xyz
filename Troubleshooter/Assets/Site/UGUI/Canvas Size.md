@@ -9,7 +9,7 @@ You can press <kbd>F</kbd> with an object selected to quickly refocus the camera
 
 #### Hiding the canvas or making it unselectable
 Sometimes you want to get the canvas out of the way so you can work on other objects in the scene. 
-See [Scene view visibility](../../Interface/Scene%20View/Visibility.md) and [Scene view selection](../../Interface/Scene%20View/Selection.md) to learn how to toggle visiblity/selection for Scene view objects.
+See [Scene view visibility](../Interface/Scene%20View/Visibility.md) and [Scene view selection](../Interface/Scene%20View/Selection.md) to learn how to toggle visiblity/selection for Scene view objects.
 
 #### Making the canvas a prefab
 If you [create a prefab](https://docs.unity3d.com/Manual/CreatingPrefabs.html) out of a Canvas the prefab environment can be a great way to work on UI in a manner isolated from the scene.

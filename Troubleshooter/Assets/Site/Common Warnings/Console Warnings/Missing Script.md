@@ -19,7 +19,7 @@ If the script is no longer relevant, remove the placeholder component from the G
 
 If you're unsure what script it was, you may have luck looking at the [YAML](https://docs.unity3d.com/Manual/FormatDescription.html) of the scene or asset. Attempt to identify recognisable features like variables names, then use them to search your project for the missing script.
 
-If you can't actually remove the component from the object, you can run [`GameObjectUtility.RemoveMonoBehavioursWithMissingScript`]() to get rid of them[^1].
+If you can't actually remove the component from the object, you can run [`GameObjectUtility.RemoveMonoBehavioursWithMissingScript`](https://docs.unity3d.com/ScriptReference/GameObjectUtility.RemoveMonoBehavioursWithMissingScript.html) to get rid of them[^1].
 
 #### Fixing issues with an existing script
 If the script is in the project but can't be added to an object, follow [these steps](../../Script%20Loading%20Issues.md) to correct those issues.  

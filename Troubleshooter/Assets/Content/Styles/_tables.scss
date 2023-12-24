@@ -56,12 +56,14 @@ td {
 }
 
 tr {
-  td:first-child:has(> strong:only-child):not(.highlight) {
-    background-color: base.$unity-colors-default-background;
-    text-align: right;
-    &>strong {
-      color:inherit;
-    }
+  td:first-child:has(> strong:only-child) {
+      text-align: right;
+      &:not(.highlight) {
+          background-color: base.$unity-colors-default-background;
+          &>strong {
+              color:inherit;
+          }
+      }
   }
 }
 

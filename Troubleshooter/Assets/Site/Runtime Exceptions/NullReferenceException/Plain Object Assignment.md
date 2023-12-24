@@ -1,16 +1,19 @@
 ## NullReferenceException: Plain C# objects
-To resolve a `NullReferenceException` caused by plain C# objects choose one of the following options:
+To resolve a `NullReferenceException` caused by plain C# objects make sure you've assigned a value, and either don't unassign it, or check that's the case.
 
-### First
+### 1. Assign a value (choose one)
 :::note
-#### Assign a value (choose one)
 - [Serialize the field](../../Serialization/Serializing%20A%20Field%201.md) where appropriate.
 - Assign the reference using [`new`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator). This can be done inline or in a method like [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) or [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html).
 
 :::
-### Then
+### 2. Check for null, or ensure null is never assigned
 :::note
-#### Check the value isn't `null` before you access it (choose one)
+#### Ensure nothing assigns `null` to the reference before you access it.
+:::  
+**Or:**  
+:::note  
+#### Check the reference isn't `null` before you access it (choose one)
 - Exit early if `null`:
     ```csharp
     if (example == null)
@@ -32,8 +35,4 @@ To resolve a `NullReferenceException` caused by plain C# objects choose one of t
     example?.Do(); // Example of null-conditional member access.
     ```
 
-:::
-**Or:**
-:::note
-#### Ensure nothing assigns the reference to `null` before you access it.
 :::

@@ -77,7 +77,7 @@ void OnDisable() => StopExample();
 
 #### Alternatives
 
-An alternative is to use the [`StopAllCoroutines`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.StopAllCoroutines.html) method that halts all running coroutines on a `MonoBehaviour`.
+Use [`StopAllCoroutines`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.StopAllCoroutines.html) to halt all running coroutines on a `MonoBehaviour`.
 
 ### Stopping coroutines from within
 `yield break` will exit a coroutine early.

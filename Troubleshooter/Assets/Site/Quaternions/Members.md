@@ -16,7 +16,7 @@ Read from [`localEulerAngles`](https://docs.unity3d.com/ScriptReference/Transfor
 #### Note
 Angles read in code may differ from those displayed in the Inspector, this is because they are derived from the internal representation, which is a `Quaternion`.  
 If you can't work with this, consider either:
-- Keeping track of your own set of angles which you update the transform with.
+- Keeping track of your own set of angles which you use to update the transform.
 - Using another method to do what you want. Look into [vectors](https://docs.unity3d.com/Manual/VectorCookbook.html) and familiarise yourself with common operations like the [dot product](https://docs.unity3d.com/ScriptReference/Vector3.Dot.html).
 - Using a compound transform. Multiple nested transforms where each one isolates an axis of rotation you are using.
 
@@ -34,4 +34,4 @@ Elaborating further: the inspector often displays user-authored rotations which 
 
 ---
 
-See [Quaternion overview](../../Info/Quaternions.md) for more information.
+See [Quaternion overview](../Quaternions.md) for more information.

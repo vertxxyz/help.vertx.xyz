@@ -7,4 +7,4 @@ namespace Troubleshooter.Search;
 	PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase
 )]
 [JsonSerializable(typeof(SearchIndexStructure))]
-internal sealed partial class SearchIndexStructureJsonContext : JsonSerializerContext { }
+internal sealed partial class SearchIndexStructureJsonContext : JsonSerializerContext;

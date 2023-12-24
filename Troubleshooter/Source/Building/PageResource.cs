@@ -45,7 +45,7 @@ public enum ResourceLocation
 /// <summary>
 /// Full paths (C:\...) to Page Resources.
 /// </summary>
-public sealed class PageResourcesLookup : Dictionary<string, PageResource> { }
+public sealed class PageResourcesLookup : Dictionary<string, PageResource>;
 
 public sealed partial class PageResource
 {

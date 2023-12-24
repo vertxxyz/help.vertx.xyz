@@ -5,11 +5,12 @@ public static class SearchCommon
 	public static readonly string[] ExcludedFileEndings =
 	{
 		"\\index.html",
+		"\\main.html",
 		"\\404.html",
 		"_sidebar.html",
 		"gen.html"
 	};
-		
+
 	public static readonly string[] CommonValues =
 	{
 		"that",

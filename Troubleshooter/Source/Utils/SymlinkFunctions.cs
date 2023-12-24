@@ -101,7 +101,7 @@ public class SymlinkFunctions
 				Directory.CreateSymbolicLink(from, Path.GetRelativePath(from, to));
 			}
 
-			_logger.LogInformation("Directory: {from} to {to}", from, to);
+			_logger.LogInformation("Directory: {From} to {To}", from, to);
 		}
 	}
 }

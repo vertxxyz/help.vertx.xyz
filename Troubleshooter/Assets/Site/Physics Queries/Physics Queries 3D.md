@@ -9,7 +9,8 @@ Make sure you understand this, or instead, use the static method [`Physics.Rayca
 - Raycasting requires [colliders](https://docs.unity3d.com/Manual/CollidersOverview.html) to work. 2D colliders will not by hit by `Physics` queries.  
 You cannot query against raw meshes using `Physics` functions.
 - If you are using a Mesh Collider, be aware that changing the MeshFilter's mesh will not update the Mesh Collider.
-- Mesh colliders are single-sided. Check that you are casting against the front face.
+- Mesh Colliders are single-sided. Check that you are casting against the front face.
+- Mesh Collider Meshes must be marked as read/write under certain circumstances (see [limitations](https://docs.unity3d.com/Manual/class-MeshCollider.html)), this may only affect builds.
 
 ### Issues with setup
 Check the documentation for the function use are using. Many have notes on edge cases where behavior may be undefined or default.

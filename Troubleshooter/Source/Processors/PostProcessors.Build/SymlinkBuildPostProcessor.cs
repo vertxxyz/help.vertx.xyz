@@ -50,7 +50,7 @@ public sealed class SymlinkBuildPostProcessor : IBuildPostProcessor
 		{
 			logger.LogDebug(
 				"""
-				"{from}" -> "{to}"
+				"{From}" -> "{To}"
 				""",
 				from,
 				to

@@ -39,10 +39,10 @@ If you want to reclaim memory on Destroyed objects you need to additionally ensu
 Usually, an NRE is thrown whenever a `null` object is accessed, but seeing as a Unity Object can be fake-null, members that do not perform lifetime checks can still be accessed and function in this state.
 
 #### Newing Unity objects
-If you create a `UnityEngine.Object` via the `new` operator, this will subtly fail in the majority of cases (there are valid situations like `GameObject`), where the native portion of the object was never created, and so you have an improperly initialised Unity-null object.
+If you create a Unity Object via the `new` operator, this will subtly fail in the majority of cases (there are valid situations like `GameObject`), where the native portion of the object was never created, and so you have an improperly initialised Unity-null object.
 
 #### Using interfaces or `object`
-Testing destroyed or missing UnityEngine Objects that are casted as interfaces or `object` will fail to work. They will use the default object equality.
+Testing destroyed or missing Unity Objects that are casted as interfaces or `object` will fail to work. They will use the default object equality.
 Either consider an alternative that safely checks for null, or cast to `UnityEngine.Object`.
 
 ```csharp
@@ -53,6 +53,27 @@ if (example != null) { }
 if ((UnityEngine.Object)example != null) { }
 // 🟢 Correct
 if (TryGetComponent<IExample>(out example)) { }
+```
+
+#### Using generics
+Unconstrained generic types won't use the Unity Object equality.
+
+```csharp
+// 🔴 Incorrect, this will fail to detect destroyed or missing objects.
+public class NullTest<T>
+{
+    public bool IsNull { get; }
+    
+    public NullTest(T value) => IsNull = value == null;
+}
+
+// 🟢 Correct
+public class NullTest<T> where T : UnityEngine.Object
+{
+    public bool IsNull { get; }
+    
+    public NullTest(T value) => IsNull = value == null;
+}
 ```
 
 ### Read more

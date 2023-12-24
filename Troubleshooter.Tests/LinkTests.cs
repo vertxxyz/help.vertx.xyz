@@ -71,6 +71,14 @@ public partial class LinkTests
 
 	[Theory]
 	[ClassData(typeof(PageData))]
+	public void ValidateEmptyLinks(string name, string path, string text)
+	{
+		using var assertionScope = new AssertionScope();
+		text.Should().NotContain("]()", "\"{0}\" contained an empty link", path);
+	}
+
+	[Theory]
+	[ClassData(typeof(PageData))]
 	public void ValidateImages(string name, string path, string text)
 	{
 		using var assertionScope = new AssertionScope();

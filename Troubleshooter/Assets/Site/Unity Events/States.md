@@ -13,4 +13,4 @@ Switch it to **Editor and Runtime** if you're looking to invoke the event in Edi
 ---  
 
 If the UnityEvent is still not invoking, then ensure it is properly called.  
-If the UnityEvent resides on a UI component, see [UI - Input Issues](../UI/UGUI/Input%20Issues.md).
+If the UnityEvent resides on a UI component, see [UI - Input Issues](../UGUI/Input%20Issues.md).

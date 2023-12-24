@@ -390,7 +390,7 @@ div.footnotes {
   }
 }
 
-div.note {
+div.note,details {
   border: 1px rgba(255, 255, 255, 0.14) solid;
   margin-right: base.$right-margin;
   margin-top: 1em;
@@ -426,6 +426,20 @@ div.note {
   > figure {
     margin-left: base.$block-container-margin-left-right;
   }
+}
+
+details > summary {
+    user-select: none;
+    h1,h2,h3,h4 {
+        display: inline-block;
+        margin-top: 0;
+    }
+}
+
+details:not([open]) > summary {
+    h1,h2,h3,h4 {
+        margin-bottom: 0;
+    }
 }
 
 div.note.center {

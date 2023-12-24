@@ -7,4 +7,4 @@ namespace Troubleshooter.Issues;
 	PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase
 )]
 [JsonSerializable(typeof(SourceIndexStructure))]
-internal partial class SourceIndexStructureJsonContext : JsonSerializerContext { }
+internal partial class SourceIndexStructureJsonContext : JsonSerializerContext;
