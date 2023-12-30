@@ -10,4 +10,4 @@ Certain overlays appear when certain objects are selected. The particle system o
 If the Inspector has been [locked](https://docs.unity3d.com/Manual/InspectorOptions.html) it may prevent new objects being inspected for the overlay.
 
 ---
-In rare cases you may need to [reset the window](../../Interface/Windows/Resetting%20Windows.md) or [layout](../../Interface/Windows/Resetting%20Layout.md) to get the overlay back.
+In rare cases you may need to [reset the window](../Windows/Resetting%20Windows.md) or [layout](../Windows/Resetting%20Layout.md) to get the overlay back.

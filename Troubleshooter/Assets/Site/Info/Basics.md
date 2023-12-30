@@ -8,7 +8,7 @@ When you have an issue, there are some common steps that are often applicable to
 ### Check the object setup is correct
 If you are using MonoBehaviours, there are some basics that should be checked:
 1. Make sure the component has been [added to a GameObject in the scene.](https://docs.unity3d.com/Manual/UsingComponents.html)
-1. [Search the scene](../Interface/Scene%20View/Searching.md) to check for accidentally duplicated objects if they could interfere with your issue.
+1. [Search the scene](../Scene%20View/Searching.md) to check for accidentally duplicated objects if they could interfere with your issue.
 
 ### Check the code you have written is actually being run
 If you are writing code, make sure your code has compiled and is running.

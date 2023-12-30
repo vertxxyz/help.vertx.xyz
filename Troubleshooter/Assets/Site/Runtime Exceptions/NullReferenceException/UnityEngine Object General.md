@@ -19,7 +19,7 @@ Check that all references have been [assigned in the inspector](../../References
 
 #### Check for duplicate objects
 Search the Scene (`t:ExampleComponent` for example) when the error occurs, ensuring there aren't duplicate components causing the issue.
-Logs can also be made to ping objects they reference using the [context parameter](../../Programming/Debugging/Logging/How-to.md), this helps find the exact object.
+Logs can also be made to ping objects they reference using the [context parameter](../../Debugging/Logging/How-to.md), this helps find the exact object.
 :::
 
 :::note

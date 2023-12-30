@@ -5,10 +5,10 @@ title: "Unity, huh, how?"
 :::{#main-page--content}
 ## General
 ### Interface
-- [Scene view](Interface/Scene%20View.md)
-- [Game view](Interface/Game%20View.md)
-- [Windows](Interface/Windows.md)
-- [Gizmos](Interface/Gizmos.md)
+- [Scene view](Scene%20View.md)
+- [Game view](Game%20View.md)
+- [Windows](Windows.md)
+- [Gizmos](Gizmos.md)
 - [UnityEvents](Unity%20Events.md)
 ### Unity Hub
 - [Editor installation instructions](Unity%20Hub/Editor%20Installation.md)

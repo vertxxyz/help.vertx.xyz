@@ -13,4 +13,4 @@ Many functions will not take arguments for rotation, and instead [Gizmos.matrix]
 
 To display gizmos in the Scene or Game view, toggles for each must be enabled.
 
-![Scene view gizmo toggle](../Interface/Scene%20View/scene-view-gizmo-toggle.png)
+![Scene view gizmo toggle](../Scene%20View/scene-view-gizmo-toggle.png)
