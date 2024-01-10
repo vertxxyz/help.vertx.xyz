@@ -29,7 +29,7 @@
 
 ### Resources
 - [Collision action matrix](Info/Collision%20Matrix.md)
-- [Bitmasks](Info/Bitmasks.md)
+- [Bitmasks](Bitmasks.md)
 - [Quaternions](Quaternions.md)
 - [Lerp](Lerp/Overview.md)
 - [SerializedObject](Editor%20Extensions/Serialisation/SerializedObject%20How-to.md)

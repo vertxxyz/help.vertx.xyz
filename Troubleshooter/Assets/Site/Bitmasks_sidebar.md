@@ -1,0 +1,17 @@
+#### Bitmasks and LayerMasks
+- [Top](#bitmasks-and-layermasks)
+- [Creating masks](#creating-masks)
+- [Declaring custom masks](#declaring-custom-masks)
+- [Combining masks](#combining-masks)
+- [Inverting a mask](#inverting-a-mask)
+- [Removing from a mask](#removing-from-a-mask)
+- [Checking if a mask...](#checking-if-a-mask)
+  - [Contains a layer](#contains-a-layer)
+  - [Contains another mask](#contains-another-mask)
+- [Toggling mask values](#toggling-mask-values)
+- [Creating a mask with all values enabled](#creating-a-mask-with-all-values-enabled)
+- [Setting a mask using another mask](#setting-a-mask-using-another-mask)
+#### Logic tables
+- [& • Logical AND operator](#logical-and-operator)
+- [| • Logical OR operator](#logical-or-operator)
+- [^ • Logical exclusive OR operator](#logical-exclusive-or-operator)

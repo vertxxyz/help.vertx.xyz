@@ -43,6 +43,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Assets\Embeds\Programming\Input\" />
       <Folder Include="Assets\Site\UI\" />
     </ItemGroup>
 

@@ -39,12 +39,14 @@ public partial class LanguageTests
 		text.Should().NotContain("double check", StringComparison.OrdinalIgnoreCase, "we should use \"double-check\"");
 		text.Should().NotContain("text mesh pro", StringComparison.OrdinalIgnoreCase, "we should use \"TextMesh Pro\"");
 		text.Should().NotContain("project view", StringComparison.OrdinalIgnoreCase, "we should use \"Project window\"");
+		text.Should().NotMatchRegex(s_macRegex, "we should write \"macOS\"");
 	}
 
 	private static readonly Regex s_unityRegex = GetUnityRegex();
 	private static readonly Regex s_uGuiRegex = GetUGuiRegex();
 	private static readonly Regex s_gameObjectRegex = GetGameObjectRegex();
 	private static readonly Regex s_ussRegex = GetUssRegex();
+	private static readonly Regex s_macRegex = GetMacRegex();
 
 	/// <summary>
 	/// Tests for common issues with capitalisation
@@ -66,21 +68,25 @@ public partial class LanguageTests
 		text.Should().NotContain(".Net", StringComparison.Ordinal, "we should write \".NET\"");
 		text.Should().NotContain("assembly definition", StringComparison.Ordinal, "we should write \"Assembly Definition\"");
 		text.Should().NotContain("UI Toolkit debugger", StringComparison.Ordinal, "we should write \"UI Toolkit Debugger\"");
+		text.Should().NotContain("MacOS", StringComparison.Ordinal, "we should write \"macOS\"");
 		text.Should().NotMatchRegex(s_uGuiRegex, "we should write \"uGUI\"");
 		text.Should().NotMatchRegex(s_unityRegex, "we should write \"Unity\"");
 		text.Should().NotMatchRegex(s_gameObjectRegex, "we should write \"GameObject\"");
 		text.Should().NotMatchRegex(s_ussRegex, "we should write \"USS\"");
 	}
 
-    [GeneratedRegex(@"\sunity[\s.,]")]
+    [GeneratedRegex(@"\b(?<!(com\.|\*\.))unity(?!(\.com|yaml|\.huh|\.html))[\s.,]")]
     private static partial Regex GetUnityRegex();
 
-    [GeneratedRegex(@"\sgameobjects?[\s.,]")]
+    [GeneratedRegex(@"\bgameobjects?(?!\.html)[\s.,]")]
     private static partial Regex GetGameObjectRegex();
 
-    [GeneratedRegex(@"\sUGUI[\s.,]")]
+    [GeneratedRegex(@"\bUGUI(?!\.md)[\s.,]")]
     private static partial Regex GetUGuiRegex();
 
-    [GeneratedRegex(@"\suss[\s.,]")]
+    [GeneratedRegex(@"\buss[\s.,]")]
     private static partial Regex GetUssRegex();
+
+    [GeneratedRegex(@"\bmac[\s.,]", RegexOptions.IgnoreCase)]
+    private static partial Regex GetMacRegex();
 }

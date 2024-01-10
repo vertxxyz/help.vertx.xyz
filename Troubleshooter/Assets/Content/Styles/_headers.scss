@@ -1,109 +1,118 @@
 @use 'base';
 
 h1 {
-  color: base.$header-color;
-  font-size: 2em;
-  line-height: 1em;
-  font-weight: 700;
+    color: base.$header-color;
+    font-size: 2em;
+    line-height: 1em;
+    font-weight: 700;
 }
 
 h2 {
-  color: base.$header-color;
-  background-color: base.$dark-color;
-  padding: 5px 15px 6px base.$left-padding;
-  margin-left: base.$left-padding-negative;
-  font-size: 1.5em;
-  line-height: 1em;
-  font-weight: 700;
-  position: relative;
+    color: base.$header-color;
+    background-color: base.$dark-color;
+    padding: 5px 15px 6px base.$left-padding;
+    margin-left: base.$left-padding-negative;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    font-size: 1.5em;
+    line-height: 1em;
+    font-weight: 700;
+    position: relative;
 
-  img,.emoji {
-    vertical-align: middle;
-    margin: 0 6px 0 0;
-    height: 32px;
-  }
-  .emoji {
-    width: 32px;
-  }
+    img, .emoji {
+        vertical-align: middle;
+        margin: 0 6px 0 0;
+        height: 32px;
+    }
+
+    .emoji {
+        width: 32px;
+    }
 }
 
 %h3-shared {
-  font-size: 1.1em;
-  font-weight: 500;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+h2 + h3 {
+    margin-block-start: 1em;
 }
 
 h3 {
-  @extend %h3-shared;
-  color: base.$header-color;
-  background: base.$unity-colors-inspector_titlebar-background;
-  padding: 6px 8px 6px base.$left-padding;
-  margin-left: base.$left-padding-negative;
-  line-height: 1em;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  border-top: 1px solid base.$unity-colors-inspector_titlebar-border;
-  border-bottom: 1px solid base.$unity-colors-inspector_titlebar-border_accent;
+    @extend %h3-shared;
+    color: base.$header-color;
+    background: base.$unity-colors-inspector_titlebar-background;
+    padding: 6px 8px 6px base.$left-padding;
+    margin-left: base.$left-padding-negative;
+    line-height: 1em;
+    margin-block-start: 2em;
+    margin-block-end: 1em;
+    border-top: 1px solid base.$unity-colors-inspector_titlebar-border;
+    border-bottom: 1px solid base.$unity-colors-inspector_titlebar-border_accent;
 
-  img,.emoji {
-    vertical-align: middle;
-    height: 18px;
-    transform: translateY(-5px);
-    margin: 0 0 -5px;
-  }
-  .emoji {
-    width: 18px;
-  }
+    img, .emoji {
+        vertical-align: middle;
+        height: 18px;
+        transform: translateY(-5px);
+        margin: 0 0 -5px;
+    }
+
+    .emoji {
+        width: 18px;
+    }
 }
 
 .note {
-  > h3 {
-    margin-left: -(base.$note-padding);
-    margin-right: -(base.$note-padding);
-  }
-  
-  &:has(h3:first-child){
-    border-color: base.$unity-colors-inspector_titlebar-border;
-  }
+    > h3 {
+        margin-left: -(base.$note-padding);
+        margin-right: -(base.$note-padding);
+    }
+
+    &:has(h3:first-child) {
+        border-color: base.$unity-colors-inspector_titlebar-border;
+    }
 }
 
 h4 {
-  color: base.$header-color;
-  padding: 0 8px 0 0;
-  font-size: 1.05em;
-  line-height: 1em;
-  font-weight: 500;
-  margin-block-start: 1.6em;
-  margin-block-end: 0.8em;
+    color: base.$header-color;
+    padding: 0 8px 0 0;
+    font-size: 1.05em;
+    line-height: 1em;
+    font-weight: 500;
+    margin-block-start: 1.6em;
+    margin-block-end: 0.8em;
 
-  img,.emoji {
-    height: 20px;
-    margin: 0;
-    transform: translateY(2px);
-  }
-  .emoji {
-    width: 20px;
-  }
+    img, .emoji {
+        height: 20px;
+        margin: 0;
+        transform: translateY(2px);
+    }
+
+    .emoji {
+        width: 20px;
+    }
 }
 
 h5, h6 {
-  color: base.$header-color;
-  font-weight: 500;
-  line-height: 1em;
-  font-size: 1em;
+    color: base.$header-color;
+    font-weight: 500;
+    line-height: 1em;
+    font-size: 1em;
 }
 
 a.header-permalink {
-  opacity: 0;
-  transition: opacity .15s;
-  margin-left: 4px;
-  color: #bbbbbb;
+    opacity: 0;
+    transition: opacity .15s;
+    margin-left: 4px;
+    color: #bbbbbb;
 }
 
 a.header-permalink.show {
-  opacity: 1;
+    opacity: 1;
 }
 
 .home-header {
-  @extend %h3-shared;
-  margin-top: 5px;
+    @extend %h3-shared;
+    margin-top: 5px;
 }

@@ -35,7 +35,7 @@ for (int i = 0; i < values.Length; i++)
     values[i].onClick.AddListener(() => values[iLocal].enabled = false);
 }
 ```
-See [anonymous methods and closures](../Programming/Specifics/Anonymous%20Methods%20and%20Closures.md) for more information.
+See [anonymous methods and closures](../Anonymous%20Methods%20and%20Closures.md) for more information.
 :::
 
 ### Notes

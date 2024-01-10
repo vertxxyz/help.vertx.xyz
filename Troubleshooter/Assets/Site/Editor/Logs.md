@@ -6,7 +6,7 @@ To view the Player log, open a [Console window](https://docs.unity3d.com/Manual/
 | Operating system | Player log location                      |
 |------------------|------------------------------------------|
 | Windows          | `%LOCALAPPDATA%\Unity\Editor\Editor.log` |
-| MacOS            | `~/Library/Logs/Unity/Editor.log`        |
+| macOS            | `~/Library/Logs/Unity/Editor.log`        |
 | Linux            | `~/.config/unity3d/Editor.log`           |
 ^^^ You can see this table in the [documentation](https://docs.unity3d.com/Manual/LogFiles.html)
 

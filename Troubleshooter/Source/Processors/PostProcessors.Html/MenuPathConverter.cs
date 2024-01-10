@@ -20,7 +20,7 @@ public sealed partial class MenuPathConverter : IHtmlPostProcessor
 			stringBuilder.Append("<span class=\"menu-path\">");
 			{
 				string[] pathElements = group.Split(" | ");
-				for (var i = 0; i < pathElements.Length; i++)
+				for (int i = 0; i < pathElements.Length; i++)
 				{
 					string element = pathElements[i];
 					stringBuilder.Append("<span class=\"menu-path__item\">");

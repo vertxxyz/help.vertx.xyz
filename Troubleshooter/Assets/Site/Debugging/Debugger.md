@@ -5,6 +5,26 @@ This does not require recompiling your code, or exiting Play Mode.
 
 A functioning IDE is required, so first check [IDE configuration](../IDE%20Configuration.md) if you are experiencing basic issues.
 
+:::note
+
+- The debugger
+  - [Attaching](#rider-attach-attaching)
+  - [Breakpoints](#rider-breakpoint-breakpoints)
+    - [Managing breakpoints](#managing-breakpoints)
+    - [Muting breakpoints](#muting-breakpoints)
+    - [Conditional breakpoints](#conditional-breakpoints)
+    - [Tracepoints (logging breakpoints)](#tracepoints-logging-breakpoints)
+  - [Variable inspection](#rider-data-variable-inspection)
+  - [Stepping](#rider-step-over-stepping)
+  - [Pausing](#rider-pause-pausing)
+- [Usage](#usage)
+  - [Visual Studio](#vs-visual-studio)
+  - [Visual Studio Code](#vs-code-visual-studio-code)
+  - [JetBrains Rider](#rider-jetbrains-rider)
+- [Debugging builds](#debugging-builds)
+
+:::
+
 ### ![Rider attach](debug_dark.svg) Attaching
 Your IDE needs to target a running application to start debugging. Usually this functionality is found in one of the top utility bars in an IDE's interface.
 
@@ -62,14 +82,16 @@ Execution can be manually halted similar to a breakpoint, this is very helpful w
 
 ## Usage
 ### ![VS](/Images/visualstudio.svg) Visual Studio
-VS has a great rundown of their debugger found [here](https://docs.microsoft.com/en-us/visualstudio/debugger/debugger-feature-tour). Instructions about configuration are not specific to Unity and can be ignored.
+VS has a great rundown of their debugger found [here](https://docs.microsoft.com/en-us/visualstudio/debugger/debugger-feature-tour). Instructions about configuration are not specific to Unity and can be ignored, instead Unity has written a [how-to guide](https://unity.com/how-to/debugging-with-microsoft-visual-studio-2022).
 If you're looking for video tutorials, [this video series](https://www.youtube.com/playlist?list=PLReL099Y5nRdW8KEd59B5KkGeqWFao34n) is a fantastic overview of using the debugger with Unity.
+Combining the above resources should give you complete confidence to debug using Visual Studio.
+
 
 ### ![VS Code](/Images/vscode.svg) Visual Studio Code
-VSC does not come with a debugger built-in, and [the extension](https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug) needs to be manually installed.
+VSC does not come with a debugger built-in, the [Unity extension](../IDE%20Configuration/Visual%20Studio%20Code.md) needs to be manually installed.
 How-to instructions for debugging can be found [here](https://code.visualstudio.com/docs/editor/debugging) with Debug actions, and Breakpoints being the most relevant information. Instructions about configuration are not specific to Unity and can be ignored.
 
-### ![VS](/Images/jetbrains_rider.svg) JetBrains Rider
+### ![Rider](/Images/jetbrains_rider.svg) JetBrains Rider
 Rider has detailed information about debugging Unity applications [here](https://www.jetbrains.com/help/rider/Debugging_Unity_Applications.html) and [here](https://www.jetbrains.com/help/rider/Using_Breakpoints.html).
 Rider also has [pausepoints](https://blog.jetbrains.com/dotnet/2020/06/11/introducing-unity-pausepoints-for-rider/), the ability to pause ([`Debug.Break`](https://docs.unity3d.com/ScriptReference/Debug.Break.html)) Unity at the end of a frame once a pausepoint is hit.
 

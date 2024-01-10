@@ -65,6 +65,6 @@ Debug.Log($"The problematic character is U+{(int)text[index]:X4}");
 | `\u200b`          | U+200B | Zero-width space[^1] | ZWSP      |
 
 
-`\r\n`, or CRLF is a common combination to denote a new line on Windows. Mac and Unix both use `\n`, LF.
+`\r\n`, or CRLF is a common combination to denote a new line on Windows. macOS and Unix both use `\n`, LF.
 
 [^1]: See the first resolution on this page if you are encountering a zero width space.

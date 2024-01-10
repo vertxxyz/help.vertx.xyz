@@ -47,7 +47,7 @@ title: "Unity, huh, how?"
 - [Built-in Input Manager](Input/Built-In%20Input.md)
 - [Input System package](Input/Input%20System.md)
 ### Utility types
-- [Random](Programming/Specifics/Random.md)
+- [Random](Random.md)
 - [Vectors](Vectors.md)
 - [Quaternions](Quaternions.md)
 - [Color](Color.md)
@@ -59,7 +59,7 @@ title: "Unity, huh, how?"
 ### Implementation
 - [Coroutines](Coroutines.md)
 - [Async/await](Programming/Async.md)
-- [Parsing input strings](Programming/Specifics/Parsing.md)
+- [Parsing input strings](Parsing.md)
 - [Player movement](Player%20Movement.md)
 - [Mesh generation](Programming/Mesh%20Generation.md)
 

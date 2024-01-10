@@ -12,12 +12,14 @@ function addOrRemoveFromElement(element, add) {
     const index = indexOfChild(element);
     const row = parent.children[0];
     const column = parent.closest('table').querySelectorAll('th')[index];
-    if(add) {
-        el.classList.add('highlight');
+    if (add) {
+        el?.classList.add('highlight');
+        if (column == null || row == null) return;
         row.classList.add('highlight');
         column.classList.add('highlight');
     } else {
-        el.classList.remove('highlight');
+        el?.classList.remove('highlight');
+        if (column == null || row == null) return;
         row.classList.remove('highlight');
         column.classList.remove('highlight');
     }

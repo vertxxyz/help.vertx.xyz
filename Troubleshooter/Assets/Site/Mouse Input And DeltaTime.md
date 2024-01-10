@@ -1,3 +1,4 @@
+## Mouse input and deltaTime
 
 :::error  
 Don't scale mouse input by [`Time.deltaTime`](https://docs.unity3d.com/ScriptReference/Time-deltaTime.html)!  
@@ -75,3 +76,10 @@ The total is different to the previous scenario, this makes no sense ☹️
 
 [This article](https://www.kinematicsoup.com/news/2016/8/9/rrypp5tkubynjwxhxjzd42s3o034o8) details the appearance of jitter in relation to the movement of physics bodies (which can include the player character).  
 Generally, applying interpolation to rigidbodies that require a level of visual accuracy is advised.
+
+### Details regarding the Input System package
+
+When using the Input System package, InputActions [accumulate this delta](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest/index.html?subfolder=/api/UnityEngine.InputSystem.Pointer.html#UnityEngine_InputSystem_Pointer_delta) (see `delta`) in such a way that means values during this accumulation may not be what you expect. Using the last read value in an Update should give you an appropriate value for that frame. More complex sub-frame sampling may require more custom handling of this data with that in mind.
+
+**Edit | Project Settings | Input System Package** has important settings for when input is processed.  
+**Update Mode** should be set to Dynamic Update to process input at the rate of Update. If this is set to Fixed Update then input may not appear accurate at high frame rates.

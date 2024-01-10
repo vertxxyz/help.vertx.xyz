@@ -16,9 +16,20 @@ figure:has(>table) {
   margin-left: 0;
 }
 
-table, th, td {
+table {
+  border-collapse: collapse;
+}
+
+th, td {
   border: 1px solid base.$unity-colors-inspector_titlebar-border;
   border-collapse: collapse;
+}
+
+.tables--centered {
+    td {
+        min-width: 36px;
+        text-align: center;
+    }
 }
 
 th {

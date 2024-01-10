@@ -19,7 +19,7 @@ See [the new configuration steps](Visual%20Studio%20Code.md) if you aren't stuck
 
 :::  
 :::note  
-#### MacOS/Linux
+#### macOS/Linux
 1. Install the [.NET SDK](https://dotnet.microsoft.com/download).
 1. Install the [.NET Framework 4.7.1 **Developer Pack**](https://dotnet.microsoft.com/download/dotnet-framework/net471).
 1. Install [Mono with MSBuild](https://www.mono-project.com/download/preview/).
