@@ -15,4 +15,4 @@
 - [The material is clipped by a Sprite Renderer's settings.](Shader%20Graph/Sprite%20Renderer%20Setup.md)
 
 ---
-See [common material issues](Materials.md) for general shader troubleshooting.
+See [common material issues](../Materials.md) for general shader troubleshooting.

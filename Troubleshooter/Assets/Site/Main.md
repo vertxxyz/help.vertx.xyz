@@ -81,9 +81,9 @@ title: "Unity, huh, how?"
 
 ## Graphics
 ### Assets
-- [Materials](Graphics/Materials.md)
-- [Models](Graphics/Models.md)
-- [Textures](Graphics/Textures.md)
+- [Materials](Materials.md)
+- [Models](Models.md)
+- [Textures](Textures.md)
 - [Sprites](Graphics/Sprites.md)
 ### Effects
 - [Post-processing](Graphics/Post-processing.md)
