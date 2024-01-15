@@ -90,6 +90,11 @@ public sealed partial class PageResource
 	public string OutputLink { get; }
 
 	/// <summary>
+	/// Output Path/HTML file location. The file may not exist if <see cref="Flags"/> does not contain <see cref="ResourceFlags.ExistsInOutput"/>.
+	/// </summary>
+	public string OutputContentFilePath { get; }
+
+	/// <summary>
 	/// Output file location. The file may not exist if <see cref="Flags"/> does not contain <see cref="ResourceFlags.ExistsInOutput"/>.
 	/// </summary>
 	public string OutputFilePath { get; }
@@ -111,7 +116,15 @@ public sealed partial class PageResource
 
 	public IEnumerable<PageResource> GeneratedChildren => _generatedChildren ?? Enumerable.Empty<PageResource>();
 
-	public PageResource(string fullPath, ResourceType type, ResourceLocation location, string? symlinkTarget, string htmlOutputDirectory, Site site)
+	public PageResource(
+		string fullPath,
+		ResourceType type,
+		ResourceLocation location,
+		string? symlinkTarget,
+		string outputDirectory,
+		string htmlOutputDirectory,
+		Site site
+	)
 	{
 		Type = type;
 		Location = location;
@@ -120,7 +133,8 @@ public sealed partial class PageResource
 		Flags = symlinkTarget != null ? ResourceFlags.Symlink : ResourceFlags.None;
 		OutputLink ??= site.ConvertFullSitePathToLinkPath(FullPath);
 		OutputLink = s_numberRegex.Replace(OutputLink, "/");
-		OutputFilePath = Path.Combine(htmlOutputDirectory, $"{OutputLink}.html").ToWorkingPath();
+		OutputFilePath = Path.Combine(outputDirectory, $"{OutputLink}.html").ToWorkingPath();
+		OutputContentFilePath = Path.Combine(htmlOutputDirectory, $"{OutputLink}.html").ToWorkingPath();
 	}
 
 	public void AddGeneratedChild(PageResource pageResource) => (_generatedChildren ??= new List<PageResource>()).Add(pageResource);
@@ -372,7 +386,7 @@ public sealed partial class PageResource
 		Flags |= ResourceFlags.ExistsInOutput;
 
 		// Check the previously built file to see whether it ought to be re-written.
-		return IOUtility.CreateFileIfDifferent(OutputFilePath, HtmlText!, recordType) ? WriteStatus.Written : WriteStatus.Skipped;
+		return IOUtility.CreateFileIfDifferent(OutputContentFilePath, HtmlText!, recordType) ? WriteStatus.Written : WriteStatus.Skipped;
 	}
 
 	private static readonly Regex s_numberRegex = GetNumberRegex();

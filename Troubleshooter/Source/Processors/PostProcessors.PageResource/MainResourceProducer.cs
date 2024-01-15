@@ -75,7 +75,7 @@ public partial class MainResourceProducer : IPageResourcesPostProcessor
 					continue;
 
 				destination += ".md";
-				var newPage = new PageResource(destination, ResourceType.Markdown, ResourceLocation.Site, null, arguments.HtmlOutputDirectory!, site);
+				var newPage = new PageResource(destination, ResourceType.Markdown, ResourceLocation.Site, null, arguments.Path, arguments.HtmlOutputDirectory!, site);
 				newPage.MarkAsIndexPage();
 				newPage.ProcessMarkdown(stringBuilder.ToString(), site, dictionary);
 				dictionary.Add(destination, newPage);

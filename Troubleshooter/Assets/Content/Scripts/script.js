@@ -102,9 +102,9 @@ const storage = window.localStorage;
 let codeSettings = new CodeSettings(storage);
 
 let pageParam = getPageParameter();
-//Don't push a history state for this change.
+// Don't push a history state for this change.
 if (pageParam === main) {
-    //If we've landed on the index then we should set our location as "Main".
+    // If we've landed on the index then we should set our location as "Main".
     setPage('', '', getHash(), false);
     pageParam = null;
 } else {
@@ -162,7 +162,7 @@ function setPage(value, url, hash, pushHistory = true) {
 
 // Load Page is called from HTML
 // noinspection JSUnusedGlobalSymbols
-function loadPage(link) {
+function loadPage(link, replaceState = false) {
     /*if(isLoading) {
         console.log('Ignored load page request because the previous was loading.');
         return;
@@ -193,7 +193,7 @@ function loadPage(link) {
         }
     }
 
-    loadPageFromLink(link, hash, true, !isRootLevel);
+    loadPageFromLink(link, hash, true, !isRootLevel, replaceState);
 }
 
 function loadPageNonRelative(absoluteLink) {
@@ -235,7 +235,7 @@ function fireCallbackIfPageIsCurrent(callback) {
     });
 }
 
-function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory = true) {
+function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory = true, replaceState = false) {
     isLoading = true;
     value = processPageValue(value);
     if (value.length > 0 && value[0] === '/')
@@ -250,9 +250,15 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
         try {
             // Load the page
             load(contents, `/HTML/${valueToLoad}.html`, () => {
+                if (tryRedirect(contents))
+                    return;
+
                 currentDirectory = valueToLoad.replace(/\/*[^/]+$/, "");
-                if (setParameter)
-                    setPage(valueToLoad, url, hash);
+                if (setParameter) {
+                    if (!useCurrentDirectory && url.length > 0 && url[0] !== '/')
+                        url = `/${url}`;
+                    setPage(valueToLoad, url, hash, !replaceState);
+                }
 
                 // Anything that can affect layout
                 setupCodeSettings();
@@ -323,6 +329,13 @@ function renameTitle(url) {
     const newTitle = (document.querySelector("h1") ?? document.querySelector("h2"))?.textContent.trim().trimEndChars('#');
     if (newTitle != null)
         document.title = newTitle;
+}
+
+function tryRedirect(contents) {
+    const forceRedirect = contents.querySelector("#force-redirect");
+    if (!forceRedirect) return false;
+    loadPage(forceRedirect.innerHTML, true);
+    return true;
 }
 
 function setupCodeSettings() {

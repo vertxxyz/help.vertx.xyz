@@ -91,6 +91,7 @@ public static partial class SiteBuilder
 	private static PageResourcesLookup CollectPages(Arguments arguments, Site site)
 	{
 		string htmlOutputDirectory = arguments.HtmlOutputDirectory!;
+		string outputDirectory = arguments.Path;
 
 		PageResourcesLookup pages = new();
 
@@ -149,20 +150,20 @@ public static partial class SiteBuilder
 			switch (extension)
 			{
 				case ".md" when fullPath.EndsWith(Constants.GeneratorSuffix):
-					page = new PageResource(fullPath, ResourceType.Generator, location, symlinkTo, htmlOutputDirectory, site);
+					page = new PageResource(fullPath, ResourceType.Generator, location, symlinkTo, outputDirectory, htmlOutputDirectory, site);
 					break;
 				case ".md":
-					page = new PageResource(fullPath, ResourceType.Markdown, location, symlinkTo, htmlOutputDirectory, site);
+					page = new PageResource(fullPath, ResourceType.Markdown, location, symlinkTo, outputDirectory, htmlOutputDirectory, site);
 					break;
 				case ".gen":
-					page = new PageResource(fullPath, ResourceType.Generator, location, symlinkTo, htmlOutputDirectory, site);
+					page = new PageResource(fullPath, ResourceType.Generator, location, symlinkTo, outputDirectory, htmlOutputDirectory, site);
 					break;
 				case ".rtf":
-					page = new PageResource(fullPath, ResourceType.RichText, location, symlinkTo, htmlOutputDirectory, site);
+					page = new PageResource(fullPath, ResourceType.RichText, location, symlinkTo, outputDirectory, htmlOutputDirectory, site);
 					break;
 				case ".html":
 				case ".nomnoml":
-					page = new PageResource(fullPath, ResourceType.Html, location, symlinkTo, htmlOutputDirectory, site);
+					page = new PageResource(fullPath, ResourceType.Html, location, symlinkTo, outputDirectory, htmlOutputDirectory, site);
 					break;
 				default:
 					// Ignore content that is not buildable page content.
@@ -179,7 +180,7 @@ public static partial class SiteBuilder
 			PageResourcesLookup toAppend = new();
 			foreach ((_, PageResource page) in pages)
 			{
-				foreach ((string key, PageResource value) in ProcessGenerators(htmlOutputDirectory, site, pages, page))
+				foreach ((string key, PageResource value) in ProcessGenerators(outputDirectory, htmlOutputDirectory, site, pages, page))
 				{
 					toAppend.Add(key, value);
 					page.AddGeneratedChild(value);
@@ -197,7 +198,7 @@ public static partial class SiteBuilder
 	[GeneratedRegex(@"//\s*bypass\s*$")]
 	private static partial Regex BypassRegex();
 
-	public static IEnumerable<(string key, PageResource value)> ProcessGenerators(string htmlOutputDirectory, Site site, PageResourcesLookup? allResources, PageResource page)
+	public static IEnumerable<(string key, PageResource value)> ProcessGenerators(string outputDirectory, string htmlOutputDirectory, Site site, PageResourcesLookup? allResources, PageResource page)
 	{
 		if ((page.Flags & ResourceFlags.Symlink) != 0)
 			yield break;
@@ -262,7 +263,7 @@ public static partial class SiteBuilder
 				}
 
 				markdownText = markdownText.Replace(" // bypass", "");
-				PageResource resource = new(path, ResourceType.Markdown, page.Location, page.SymlinkFullPath, htmlOutputDirectory, site) { MarkdownText = markdownText };
+				PageResource resource = new(path, ResourceType.Markdown, page.Location, page.SymlinkFullPath, outputDirectory, htmlOutputDirectory, site) { MarkdownText = markdownText };
 				yield return (path.ToWorkingPath().ToUnTokenized(), resource);
 			}
 		}

@@ -17,6 +17,12 @@ Alternatively, you can use the **scroll wheel** while holding the **right mouse 
 Click the center of the [Scene gizmo](https://docs.unity3d.com/Manual/SceneViewNavigation.html) or the label below the gizmo to toggle between **Perspective** and **Orthographic** views. Change it to **Perspective**.  
 ![Scene gizmo](scene-view-trumpets.png)
 
+### Unlock the camera's perspective
+Make sure the [Scene gizmo](https://docs.unity3d.com/Manual/SceneViewNavigation.html) is not locked (the small icon in the top right).
+
+### Reset the Scene view window
+[Reset the Scene view window](../Windows/Resetting%20Windows.md) or the [editor layout](../Windows/Resetting%20Layout.md).
+
 ---
 
 [Return to Scene view issues.](../Scene%20View.md)
