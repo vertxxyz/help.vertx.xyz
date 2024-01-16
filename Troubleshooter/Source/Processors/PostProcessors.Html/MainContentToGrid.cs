@@ -13,7 +13,7 @@ public class MainContentToGrid : IHtmlPostProcessor
 
 	private static readonly ImmutableList<string> s_mainPages = ImmutableList.Create(
 
-		@"Assets\Site\Main.md"
+		@"Assets\Site\Index.md"
 		// @"Assets\Site\DOTS.md"
 	);
 
@@ -27,7 +27,7 @@ public class MainContentToGrid : IHtmlPostProcessor
 
 		HtmlNode node = doc.GetElementbyId("main-page--content");
 		if (node == null)
-			throw new BuildException("Main.md did not have #main-page--content root!");
+			throw new BuildException("Index.md did not have #main-page--content root!");
 
 		ProcessH3ToTables(node);
 

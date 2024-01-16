@@ -4,25 +4,16 @@ using Microsoft.Extensions.Logging;
 
 namespace Troubleshooter;
 
-public class SymlinkFunctions
+public class SymlinkFunctions(Site site, ILogger<SymlinkFunctions> logger)
 {
-	private readonly Site _site;
-	private readonly ILogger<SymlinkFunctions> _logger;
-
-	public SymlinkFunctions(Site site, ILogger<SymlinkFunctions> logger)
-	{
-		_site = site;
-		_logger = logger;
-	}
-
 	/// <summary>
 	/// Moves any symlinks that were created in the Site directory to the Site Redirects directory.<br/>
 	/// Also makes sure that any fully-qualified symlink paths are modified to relative paths.
 	/// </summary>
 	public void PortAndRepairSymlinks()
 	{
-		string siteDirectory = _site.Directory;
-		string siteRedirectsDirectory = _site.RedirectsDirectory;
+		string siteDirectory = site.Directory;
+		string siteRedirectsDirectory = site.RedirectsDirectory;
 
 		// Force symlinks to relative links.
 		foreach (string entry in Directory.EnumerateDirectories(siteRedirectsDirectory, "*", SearchOption.AllDirectories))
@@ -101,7 +92,7 @@ public class SymlinkFunctions
 				Directory.CreateSymbolicLink(from, Path.GetRelativePath(from, to));
 			}
 
-			_logger.LogInformation("Directory: {From} to {To}", from, to);
+			logger.LogInformation("Directory: {From} to {To}", from, to);
 		}
 	}
 }

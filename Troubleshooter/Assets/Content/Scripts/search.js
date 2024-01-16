@@ -28,7 +28,7 @@ whenReady(function () {
 function focusChange(e) {
     if (e.target.value?.length === 0)
         return;
-    
+
     if (!sidebar?.classList.contains("sidebar--open")) {
         sidebar?.classList.add("sidebar--open");
         overlay?.classList.add("nav_overlay--open");
@@ -63,10 +63,7 @@ function resetPage() {
     const sidebarContents = document.querySelector('.sidebar-contents');
     if (sidebarContents.length === 0) return;
     const value = processPageValue(getPageParameter());
-    load(sidebarContents, `/HTML/${value}_sidebar.html`, (response) => {
-        if (response.startsWith("<!DOCTYPE html>"))
-            sidebarContents.replaceChildren();
-    });
+    load(null, sidebarContents, null, "#sidebar-contents", `/${value}.html`);
 }
 
 function performSearch(text) {
@@ -126,12 +123,12 @@ function displayResults(results) {
                 loadPageFromLink(url, '', true, false);
             };
             link.onclick = select;
-            link.addEventListener("keyup", function(event) {
+            link.addEventListener("keyup", function (event) {
                 event.preventDefault();
                 if (event.code === 'Enter')
                     select();
             });
-            
+
             searchResultDiv.append(link);
 
             searchResultDiv.append(document.createElement("br"));

@@ -7,14 +7,15 @@ namespace Troubleshooter.Renderers;
 
 public class HeadingOverrideRenderer : HeadingRenderer
 {
-	private static readonly string[] s_headingTexts = {
+	private static readonly string[] s_headingTexts =
+	[
 		"h1",
 		"h2",
 		"h3",
 		"h4",
 		"h5",
-		"h6",
-	};
+		"h6"
+	];
 
 	public const string HeaderTextTag = "<span class =\"header-text\">";
 

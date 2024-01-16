@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 
 namespace Troubleshooter;
@@ -28,8 +27,7 @@ public static class PathUtility
 	/// </summary>
 	public static string ToFinalisedWorkingPath(this string path)
 		=> StringUtility.ToLowerSnakeCase(path.Replace("&", "and").ToWorkingPath());
-	
-	public static string ConvertMarkdownPathToSidebarPath(string path) => $"{Path.GetFileNameWithoutExtension(path)}{Constants.SidebarSuffix}";
+
 
 	/// <summary>
 	/// Returns a path where only the directory has been passed through <see cref="ToFinalisedWorkingPath(string)"/>.
@@ -43,44 +41,11 @@ public static class PathUtility
 		return Path.Combine(directory.ToFinalisedWorkingPath(), fileName).ToWorkingPath();
 	}
 
-	public static string ToFinalisedWorkingPath(string path, int safeRootIndex)
-	{
-		ReadOnlySpan<char> pathSpan = path.AsSpan();
-		ReadOnlySpan<char> extension = Path.GetExtension(pathSpan);
-
-		if (safeRootIndex > 0)
-		{
-			ReadOnlySpan<char> pathFromHtmlRoot = pathSpan[safeRootIndex..];
-			ReadOnlySpan<char> rootPath = pathSpan[..safeRootIndex];
-			switch (extension)
-			{
-				case "":
-				case ".html":
-				case ".md":
-					return Path.Combine(rootPath.ToString(), pathFromHtmlRoot.ToString().ToFinalisedWorkingPath());
-				default:
-					ReadOnlySpan<char> directory = Path.GetDirectoryName(pathFromHtmlRoot);
-					return Path.Combine(rootPath.ToString(), directory.ToString().ToFinalisedWorkingPath(), Path.GetFileName(pathFromHtmlRoot).ToString());
-			}
-		}
-		
-		switch (extension)
-		{
-			case "":
-			case ".html":
-			case ".md":
-				return pathSpan.ToString().ToFinalisedWorkingPath();
-			default:
-				ReadOnlySpan<char> directory = Path.GetDirectoryName(pathSpan);
-				return Path.Combine(directory.ToString().ToFinalisedWorkingPath(), Path.GetFileName(pathSpan).ToString());
-		}
-	}
-	
 	/// <summary>
 	/// The embeds directory as local to the HTML directory.
 	/// </summary>
-	public static readonly string EmbedsDirectory = Path.Combine(Arguments.HtmlOutputDirectoryName, "Embeds").ToWorkingPath();
-	
+	public static readonly string EmbedsDirectory = "Embeds";
+
 	/// <summary>
 	/// The embeds directory as local to the HTML directory in output (link) path format.
 	/// </summary>

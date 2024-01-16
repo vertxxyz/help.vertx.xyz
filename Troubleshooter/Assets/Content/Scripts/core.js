@@ -14,7 +14,18 @@ function indexOfChild(child) {
     return Array.prototype.indexOf.call(parent.children, child);
 }
 
-function load(element, content, callback, error) {
+function load(
+    // Elements
+    element,
+    sidebarElement,
+    // Ids
+    contentsId,
+    sidebarContentsId,
+    // Request and callbacks
+    content,
+    callback,
+    error
+) {
     if (error === undefined) {
         error = e => console.log(e);
     }
@@ -26,16 +37,27 @@ function load(element, content, callback, error) {
         })
         .then(html => {
             const nodes = new DOMParser().parseFromString(html, 'text/html');
-            const body = nodes.querySelector('body');
-            element.replaceChildren(...body.childNodes);
-            // Recreate all script tags so they actually load.
-            element.querySelectorAll("script").forEach(scriptElement => {
-                const parent = scriptElement.parentNode;
-                const functionalScript = document.createElement("script");
-                functionalScript.src = scriptElement.src;
-                functionalScript.type = scriptElement.type;
-                parent.replaceChild(functionalScript, scriptElement);
-            });
+
+            // Load contents
+            if (element) {
+                const contents = nodes.querySelector(contentsId);
+                element.replaceChildren(...contents.childNodes);
+
+                // Recreate all script tags so they actually load.
+                element.querySelectorAll("script").forEach(scriptElement => {
+                    const parent = scriptElement.parentNode;
+                    const functionalScript = document.createElement("script");
+                    functionalScript.src = scriptElement.src;
+                    functionalScript.type = scriptElement.type;
+                    parent.replaceChild(functionalScript, scriptElement);
+                });
+            }
+
+            // Load sidebar contents
+            if (sidebarElement) {
+                const sidebarContents = nodes.querySelector(sidebarContentsId);
+                sidebarElement.replaceChildren(...sidebarContents.childNodes);
+            }
 
             return html;
         })

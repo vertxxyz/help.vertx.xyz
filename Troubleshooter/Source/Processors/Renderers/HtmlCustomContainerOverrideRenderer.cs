@@ -7,12 +7,12 @@ namespace Troubleshooter.Renderers;
 
 public class HtmlCustomContainerOverrideRenderer : HtmlObjectRenderer<CustomContainer>
 {
-	private readonly List<(string @class, string imageUrl, string alt)> _infoBoxes = new()
-	{
+	private readonly List<(string @class, string imageUrl, string alt)> _infoBoxes =
+	[
 		("info", "https://unity.huh.how/Images/information.svg", "information"),
 		("warning", "https://unity.huh.how/Images/warning.svg", "warning"),
 		("error", "https://unity.huh.how/Images/error.svg", "error")
-	};
+	];
 
 	protected override void Write(HtmlRenderer renderer, CustomContainer obj)
 	{

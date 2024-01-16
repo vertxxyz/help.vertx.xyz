@@ -34,7 +34,7 @@ public static class SearchIndex
 				.Where(f => f.EndsWith(".html"))
 				.ToList();
 			(IList<string> filePaths, IList<string> fileHeaders, ImmutableSortedDictionary<string, Dictionary<int, int>> sortedWordsToFileIndexAndCount) =
-				await SearchGatherer.GenerateSearchResult(arguments.HtmlOutputDirectory!, pathsIn);
+				await SearchGatherer.GenerateSearchResult(arguments.Path, pathsIn);
 			await Generate(arguments, sortedWordsToFileIndexAndCount, filePaths, fileHeaders);
 		}
 		catch (Exception e)

@@ -13,7 +13,7 @@ public sealed class TwemojiReplacement : IHtmlPostProcessor
 {
 	private static readonly TwemojiLib s_twemoji = new();
 
-	private static readonly string[] s_dontReplace = { "⤴" };
+	private static readonly string[] s_dontReplace = ["⤴"];
 	private static (string value, string temp)[]? s_dontReplaceLookup;
 
 	public string Process(string html, string fullPath)

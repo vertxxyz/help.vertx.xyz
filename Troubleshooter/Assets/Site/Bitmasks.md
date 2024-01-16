@@ -41,8 +41,7 @@ To create a bitmask with a specific layer enabled, [shift](https://docs.microsof
 :::note  
 To create a mask with layer **5** active:
 1. Create `int` with a the first bit enabled, a `1`.
-2. Shift that bit over **5** places to the 6th index.  
-   Layers are 0 indexed so this is layer 5.
+2. Shift that bit over **5** places to the 6th index (layers are 0 indexed so this is layer 5).
 
 ^^^
 ```csharp

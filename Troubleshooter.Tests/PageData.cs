@@ -27,7 +27,7 @@ public class PageData : IEnumerable<object[]>
 			if (file.EndsWith(Constants.GeneratorSuffix))
 			{
 				foreach ((string path, PageResource value) in
-				         SiteBuilder.ProcessGenerators("", "", _site, null, new PageResource(file, ResourceType.Generator, ResourceLocation.Site, null, "", "", _site)))
+				         SiteBuilder.ProcessGenerators("", _site, null, new PageResource(file, ResourceType.Generator, ResourceLocation.Site, null, "", _site)))
 				{
 					string localPath = new System.Uri(path).LocalPath;
 					yield return [Path.GetFileNameWithoutExtension(localPath), localPath, value.MarkdownText!];

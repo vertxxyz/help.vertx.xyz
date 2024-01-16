@@ -10,7 +10,7 @@ public static partial class SiteBuilder
 	private static string ConvertRootFullSitePathToLinkPath(string fullPath, string extension, Site site, Arguments arguments)
 	{
 		(string fileNameWithoutExtension, string fullPathWithoutFileName) = ProcessPath(fullPath, extension);
-		string outputPath = Path.Combine(arguments.HtmlOutputDirectory!, site.ConvertFullSitePathToLinkPath(fullPathWithoutFileName), $"{fileNameWithoutExtension}{extension}");
+		string outputPath = Path.Combine(arguments.Path, site.ConvertFullSitePathToLinkPath(fullPathWithoutFileName), $"{fileNameWithoutExtension}{extension}");
 		return outputPath;
 	}
 
@@ -20,7 +20,7 @@ public static partial class SiteBuilder
 	private static string ConvertFullEmbedPathToLinkPath(string fullPath, string extension, Site site, Arguments arguments)
 	{
 		(string fileNameWithoutExtension, string fullPathWithoutFileName) = ProcessPath(fullPath, extension);
-		string outputPath = Path.Combine(arguments.HtmlOutputDirectory!, "Embeds", site.ConvertFullEmbedPathToLinkPath(fullPathWithoutFileName), $"{fileNameWithoutExtension}{extension}");
+		string outputPath = Path.Combine(arguments.Path, "Embeds", site.ConvertFullEmbedPathToLinkPath(fullPathWithoutFileName), $"{fileNameWithoutExtension}{extension}");
 		return outputPath;
 	}
 

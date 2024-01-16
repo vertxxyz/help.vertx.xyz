@@ -25,7 +25,20 @@ var arguments = app.Services.GetRequiredService<Arguments>();
 
 ActivatorUtilities.CreateInstance<SymlinkFunctions>(app.Services).PortAndRepairSymlinks();
 
-app.UseRewriter(new RewriteOptions().Add(new RewritePagesTo("/404.html", true)));
+app.UseRewriter(new RewriteOptions()
+	.Add(new AddHtmlExtension(true))
+	// .Add(new RewritePagesTo("/404.html", true))
+);
+
+app.Use(async (ctx, next) =>
+{
+	await next();
+	if (ctx.Response is { StatusCode: 404, HasStarted: false })
+	{
+		ctx.Request.Path = "/404.html";
+		await next();
+	}
+});
 
 app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new List<string> { "index.html" }, FileProvider = new PhysicalFileProvider(arguments.Path) });
 app.UseStaticFiles(new StaticFileOptions { FileProvider = new PhysicalFileProvider(arguments.Path) });

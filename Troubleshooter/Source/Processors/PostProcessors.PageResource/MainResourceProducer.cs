@@ -21,7 +21,7 @@ public partial class MainResourceProducer : IPageResourcesPostProcessor
 	// If this changes then the script will need to be altered.
 	private static readonly ImmutableDictionary<string, string?> s_mainPages = new Dictionary<string, string?>
 	{
-		{ "Main.md", null },
+		{ "Index.md", null },
 		{ "DOTS.md", "DOTS" }
 	}.ToImmutableDictionary();
 
@@ -75,7 +75,7 @@ public partial class MainResourceProducer : IPageResourcesPostProcessor
 					continue;
 
 				destination += ".md";
-				var newPage = new PageResource(destination, ResourceType.Markdown, ResourceLocation.Site, null, arguments.Path, arguments.HtmlOutputDirectory!, site);
+				var newPage = new PageResource(destination, ResourceType.Markdown, ResourceLocation.Site, null, arguments.Path, site);
 				newPage.MarkAsIndexPage();
 				newPage.ProcessMarkdown(stringBuilder.ToString(), site, dictionary);
 				dictionary.Add(destination, newPage);

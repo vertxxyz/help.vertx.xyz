@@ -17,10 +17,6 @@ public class Arguments : IRootPathProvider
 	/// </summary>
 	public readonly string Path;
 	/// <summary>
-	/// Output directory + HTML folder
-	/// </summary>
-	public readonly string? HtmlOutputDirectory;
-	/// <summary>
 	/// Output directory + Json folder
 	/// </summary>
 	public readonly string? JsonOutputDirectory;
@@ -38,18 +34,16 @@ public class Arguments : IRootPathProvider
 	}
 	private string _host;
 	public readonly LoggingLevel LoggingLevel;
-	public const string HtmlOutputDirectoryName = "HTML";
 	public const string JsonOutputDirectoryName = "Json";
 
 	public void OverrideHost(string host) => _host = host;
-	
+
 	public Arguments(IReadOnlyList<string> args)
 	{
 		_host = "";
 		Path = "";
 		LoggingLevel = LoggingLevel.Default;
 		Root = Directory.GetCurrentDirectory();
-		HtmlOutputDirectory = null;
 		JsonOutputDirectory = null;
 
 		for (var i = 0; i < args.Count; i++)
@@ -78,9 +72,6 @@ public class Arguments : IRootPathProvider
 						throw new ArgumentException($"\"{param}\" is not a valid path.");
 
 					Path = param!;
-					HtmlOutputDirectory = System.IO.Path.Combine(Path, HtmlOutputDirectoryName);
-					Directory.CreateDirectory(HtmlOutputDirectory);
-
 					JsonOutputDirectory = System.IO.Path.Combine(Path, JsonOutputDirectoryName);
 					Directory.CreateDirectory(JsonOutputDirectory);
 					break;

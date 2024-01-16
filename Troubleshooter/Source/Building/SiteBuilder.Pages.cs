@@ -35,6 +35,10 @@ public static partial class SiteBuilder
 				if (allBuiltResources.Contains(path))
 					continue;
 
+				// If this page has a sidebar page that's not yet built, then we cannot safely build it.
+				if (resource.Sidebar != null && !allBuiltResources.Contains(resource.Sidebar.FullPath))
+					continue;
+
 				// If this page has something un-built embedded in it then we cannot safely build it.
 				if (!resource.Embedded?.IsSubsetOf(allBuiltResources) ?? false)
 					continue;
@@ -90,7 +94,6 @@ public static partial class SiteBuilder
 
 	private static PageResourcesLookup CollectPages(Arguments arguments, Site site)
 	{
-		string htmlOutputDirectory = arguments.HtmlOutputDirectory!;
 		string outputDirectory = arguments.Path;
 
 		PageResourcesLookup pages = new();
@@ -111,6 +114,8 @@ public static partial class SiteBuilder
 		}
 
 		CollectGeneratedPages();
+
+		CollectAssociatedSidebarPages();
 
 		return pages;
 
@@ -140,7 +145,7 @@ public static partial class SiteBuilder
 			}
 		}
 
-		// Returns true if a new page is created.
+		// Returns true if a page will be created for the path.
 		bool TryGetNewResource(string fullPath, ResourceLocation location, out PageResource? page, string? symlinkTo = null)
 		{
 			if (pages.TryGetValue(fullPath, out page))
@@ -150,20 +155,20 @@ public static partial class SiteBuilder
 			switch (extension)
 			{
 				case ".md" when fullPath.EndsWith(Constants.GeneratorSuffix):
-					page = new PageResource(fullPath, ResourceType.Generator, location, symlinkTo, outputDirectory, htmlOutputDirectory, site);
+					page = new PageResource(fullPath, ResourceType.Generator, location, symlinkTo, outputDirectory, site);
 					break;
 				case ".md":
-					page = new PageResource(fullPath, ResourceType.Markdown, location, symlinkTo, outputDirectory, htmlOutputDirectory, site);
+					page = new PageResource(fullPath, ResourceType.Markdown, location, symlinkTo, outputDirectory, site);
 					break;
 				case ".gen":
-					page = new PageResource(fullPath, ResourceType.Generator, location, symlinkTo, outputDirectory, htmlOutputDirectory, site);
+					page = new PageResource(fullPath, ResourceType.Generator, location, symlinkTo, outputDirectory, site);
 					break;
 				case ".rtf":
-					page = new PageResource(fullPath, ResourceType.RichText, location, symlinkTo, outputDirectory, htmlOutputDirectory, site);
+					page = new PageResource(fullPath, ResourceType.RichText, location, symlinkTo, outputDirectory, site);
 					break;
 				case ".html":
 				case ".nomnoml":
-					page = new PageResource(fullPath, ResourceType.Html, location, symlinkTo, outputDirectory, htmlOutputDirectory, site);
+					page = new PageResource(fullPath, ResourceType.Html, location, symlinkTo, outputDirectory, site);
 					break;
 				default:
 					// Ignore content that is not buildable page content.
@@ -180,7 +185,7 @@ public static partial class SiteBuilder
 			PageResourcesLookup toAppend = new();
 			foreach ((_, PageResource page) in pages)
 			{
-				foreach ((string key, PageResource value) in ProcessGenerators(outputDirectory, htmlOutputDirectory, site, pages, page))
+				foreach ((string key, PageResource value) in ProcessGenerators(outputDirectory, site, pages, page))
 				{
 					toAppend.Add(key, value);
 					page.AddGeneratedChild(value);
@@ -190,6 +195,40 @@ public static partial class SiteBuilder
 			foreach (KeyValuePair<string, PageResource> pair in toAppend)
 				pages.Add(pair.Key, pair.Value);
 		}
+
+		void CollectAssociatedSidebarPages()
+		{
+			foreach ((string key, PageResource page) in pages)
+			{
+				if (page.Location == ResourceLocation.Embed)
+					continue;
+
+				if (key.EndsWith(Constants.SidebarGeneratorSuffix, StringComparison.Ordinal))
+				{
+					foreach (PageResource child in page.GeneratedChildren)
+					{
+						string childKey = child.FullPath;
+						string contentPagePath = $"{childKey.Remove(childKey.Length - Constants.SidebarSuffix.Length)}.md";
+						if (!pages.TryGetValue(contentPagePath, out var contentPage))
+							throw new BuildException($"Generated sidebar page: \"{childKey}\" (source: \"{key}\") did not have associated content page at \"{contentPagePath}\".");
+
+						contentPage.Sidebar = child;
+						child.IsSidebar = true;
+					}
+
+					page.IsSidebar = true;
+				}
+				else if (key.EndsWith(Constants.SidebarSuffix, StringComparison.Ordinal))
+				{
+					string contentPagePath = $"{key.Remove(key.Length - Constants.SidebarSuffix.Length)}.md";
+					if (!pages.TryGetValue(contentPagePath, out var contentPage))
+						throw new BuildException($"Sidebar page: \"{key}\" did not have associated content page at \"{contentPagePath}\".");
+
+					contentPage.Sidebar = page;
+					page.IsSidebar = true;
+				}
+			}
+		}
 	}
 
 	[GeneratedRegex(@"\[(.+?)\]\(([\w%/-]+?)\.md\)", RegexOptions.Compiled)]
@@ -198,7 +237,7 @@ public static partial class SiteBuilder
 	[GeneratedRegex(@"//\s*bypass\s*$")]
 	private static partial Regex BypassRegex();
 
-	public static IEnumerable<(string key, PageResource value)> ProcessGenerators(string outputDirectory, string htmlOutputDirectory, Site site, PageResourcesLookup? allResources, PageResource page)
+	public static IEnumerable<(string key, PageResource value)> ProcessGenerators(string outputDirectory, Site site, PageResourcesLookup? allResources, PageResource page)
 	{
 		if ((page.Flags & ResourceFlags.Symlink) != 0)
 			yield break;
@@ -263,8 +302,9 @@ public static partial class SiteBuilder
 				}
 
 				markdownText = markdownText.Replace(" // bypass", "");
-				PageResource resource = new(path, ResourceType.Markdown, page.Location, page.SymlinkFullPath, outputDirectory, htmlOutputDirectory, site) { MarkdownText = markdownText };
-				yield return (path.ToWorkingPath().ToUnTokenized(), resource);
+				path = path.ToWorkingPath().ToUnTokenized();
+				PageResource resource = new(path, ResourceType.Markdown, page.Location, page.SymlinkFullPath, outputDirectory, site) { MarkdownText = markdownText };
+				yield return (path, resource);
 			}
 		}
 	}

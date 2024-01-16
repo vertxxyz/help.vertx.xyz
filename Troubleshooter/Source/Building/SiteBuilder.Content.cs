@@ -15,7 +15,6 @@ public static partial class SiteBuilder
 		// Copy content to destination
 		CopyAll(new DirectoryInfo(site.ContentDirectory), new DirectoryInfo(arguments.Path), fileProcessor: FileProcessor);
 
-		string indexOutputPath = Path.Combine(arguments.Path, "index.html");
 		int siteContent = 0;
 		int totalContent = 0;
 
@@ -76,13 +75,19 @@ public static partial class SiteBuilder
 
 		return Task.CompletedTask;
 
-		void Generate404()
-		{
-			if (!File.Exists(indexOutputPath))
-				throw new BuildException($"\"{indexOutputPath}\" was not found when generating 404 page.");
-			string indexText = File.ReadAllText(indexOutputPath);
-			CreateFileIfDifferent(Path.Combine(arguments.Path, "404.html"), indexText, RecordType.Index);
-		}
+		void Generate404() =>
+			CreateFileIfDifferent(
+				Path.Combine(arguments.Path, "404.html"),
+				IndexHtml.GetWithContent(
+					// language=html
+					"""
+					<h1>404</h1>
+					<p>This page does not exist.</p>
+					<p><a href="/">Return Home</a></p>
+					"""
+				),
+				RecordType.Index
+			);
 	}
 
 	private static FileResult.Validity FileProcessor(FileInfo file, out FileResult? result)

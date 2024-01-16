@@ -90,11 +90,6 @@ public sealed partial class PageResource
 	public string OutputLink { get; }
 
 	/// <summary>
-	/// Output Path/HTML file location. The file may not exist if <see cref="Flags"/> does not contain <see cref="ResourceFlags.ExistsInOutput"/>.
-	/// </summary>
-	public string OutputContentFilePath { get; }
-
-	/// <summary>
 	/// Output file location. The file may not exist if <see cref="Flags"/> does not contain <see cref="ResourceFlags.ExistsInOutput"/>.
 	/// </summary>
 	public string OutputFilePath { get; }
@@ -110,11 +105,17 @@ public sealed partial class PageResource
 	/// </summary>
 	public HashSet<string>? EmbeddedInto { get; private set; }
 
+	/// <summary>
+	/// An associated sidebar page (if one exists).
+	/// </summary>
+	public PageResource? Sidebar { get; set; }
+
 	private List<PageResource>? _generatedChildren;
 
 	public bool HasGeneratedChildren => _generatedChildren?.Count > 0;
 
 	public IEnumerable<PageResource> GeneratedChildren => _generatedChildren ?? Enumerable.Empty<PageResource>();
+	public bool IsSidebar { get; set; }
 
 	public PageResource(
 		string fullPath,
@@ -122,7 +123,6 @@ public sealed partial class PageResource
 		ResourceLocation location,
 		string? symlinkTarget,
 		string outputDirectory,
-		string htmlOutputDirectory,
 		Site site
 	)
 	{
@@ -134,7 +134,6 @@ public sealed partial class PageResource
 		OutputLink ??= site.ConvertFullSitePathToLinkPath(FullPath);
 		OutputLink = s_numberRegex.Replace(OutputLink, "/");
 		OutputFilePath = Path.Combine(outputDirectory, $"{OutputLink}.html").ToWorkingPath();
-		OutputContentFilePath = Path.Combine(htmlOutputDirectory, $"{OutputLink}.html").ToWorkingPath();
 	}
 
 	public void AddGeneratedChild(PageResource pageResource) => (_generatedChildren ??= new List<PageResource>()).Add(pageResource);
@@ -301,7 +300,7 @@ public sealed partial class PageResource
 					break;
 				case ResourceLocation.Site:
 					rootIndex = site.RootIndex;
-					directoryRoot = Arguments.HtmlOutputDirectoryName;
+					directoryRoot = "";
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
@@ -370,6 +369,12 @@ public sealed partial class PageResource
 				return WriteStatus.Ignored;
 		}
 
+		if (IsSidebar)
+		{
+			// Sidebars are embedded in other pages, we don't write them to disc.
+			return WriteStatus.Ignored;
+		}
+
 		if ((Flags & ResourceFlags.Symlink) != 0)
 		{
 			// Symlinks move other resources.
@@ -386,7 +391,7 @@ public sealed partial class PageResource
 		Flags |= ResourceFlags.ExistsInOutput;
 
 		// Check the previously built file to see whether it ought to be re-written.
-		return IOUtility.CreateFileIfDifferent(OutputContentFilePath, HtmlText!, recordType) ? WriteStatus.Written : WriteStatus.Skipped;
+		return IOUtility.CreateFileIfDifferent(OutputFilePath, IndexHtml.GetWithContent(HtmlText!, Sidebar?.HtmlText), recordType) ? WriteStatus.Written : WriteStatus.Skipped;
 	}
 
 	private static readonly Regex s_numberRegex = GetNumberRegex();

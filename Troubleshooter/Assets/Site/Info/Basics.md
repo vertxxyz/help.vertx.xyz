@@ -43,4 +43,4 @@ consider updating your project to the latest patch release for your Unity versio
 
 
 ---
-[Check other resources on this site.](../Main.md)
+[Check other resources on this site.](../Index.md)

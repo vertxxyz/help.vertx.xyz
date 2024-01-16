@@ -1,7 +1,8 @@
 const pageParameterKey = 'page';
 const contentsId = '#contents';
+const sidebarContentsId = '#sidebar-contents';
 const containerId = '#container';
-const main = 'main';
+const root = 'index';
 let currentDirectory = "";
 let isLoading = false;
 
@@ -103,8 +104,8 @@ let codeSettings = new CodeSettings(storage);
 
 let pageParam = getPageParameter();
 // Don't push a history state for this change.
-if (pageParam === main) {
-    // If we've landed on the index then we should set our location as "Main".
+if (pageParam === root) {
+    // If we've landed on the index then we should set our location as such.
     setPage('', '', getHash(), false);
     pageParam = null;
 } else {
@@ -173,15 +174,7 @@ function loadPage(link, replaceState = false) {
         return;
     }
 
-    let isRootLevel;
-    if (link[0] === '/') {
-        isRootLevel = true;
-        link = link.substring(1);
-    } else {
-        isRootLevel = false;
-    }
-
-    if (link === main)
+    if (link === root)
         link = null;
 
     let hash = '';
@@ -193,7 +186,7 @@ function loadPage(link, replaceState = false) {
         }
     }
 
-    loadPageFromLink(link, hash, true, !isRootLevel, replaceState);
+    loadPageFromLink(link, hash, true, true, replaceState);
 }
 
 function loadPageNonRelative(absoluteLink) {
@@ -201,7 +194,7 @@ function loadPageNonRelative(absoluteLink) {
         console.error('Ignored page load as button links to empty location');
         return;
     }
-    if (absoluteLink === main)
+    if (absoluteLink === root)
         absoluteLink = null;
     loadPageFromLink(absoluteLink, '', true, false);
 }
@@ -220,7 +213,7 @@ function processPageValue(value) {
     if (value === null)
         value = location.pathname.slice(1);
     if (value == null || value === "" || value === "index.html")
-        return main;
+        return root;
     value = value.replace(/\.[^/.]+$/, "");
     value = value.replace('%20', "-");
     return value.toLowerCase();
@@ -238,8 +231,11 @@ function fireCallbackIfPageIsCurrent(callback) {
 function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory = true, replaceState = false) {
     isLoading = true;
     value = processPageValue(value);
-    if (value.length > 0 && value[0] === '/')
+    if (value.length > 0 && value[0] === '/') {
         useCurrentDirectory = false;
+        value = value.substring(1);
+    }
+
     let valueToLoad = value;
     if (useCurrentDirectory && currentDirectory !== "")
         valueToLoad = absolute(`${currentDirectory}/`, value)
@@ -247,9 +243,10 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
 
     whenReady(function () {
         const contents = document.querySelector(contentsId);
+        const sidebarContents = document.querySelector(sidebarContentsId);
         try {
             // Load the page
-            load(contents, `/HTML/${valueToLoad}.html`, () => {
+            load(contents, sidebarContents, contentsId, sidebarContentsId, `/${valueToLoad}.html`, () => {
                 if (tryRedirect(contents))
                     return;
 
@@ -269,15 +266,6 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
                 renameTitle(url);
             }, load404);
             document.getElementById('page-search').value = "";
-            const sidebarContents = document.querySelector('.sidebar-contents');
-            load(sidebarContents, `/HTML/${valueToLoad}_sidebar.html`, response => {
-                if (response.startsWith("<!DOCTYPE html>"))
-                    sidebarContents.replaceChildren();
-            }, e => {
-                if (e === 404)
-                    console.log(`No sidebar found for ${valueToLoad}.`);
-                sidebarContents.replaceChildren();
-            });
         } catch {
             load404();
         } finally {
@@ -465,7 +453,7 @@ function reportIssue() {
     fetch("/Json/source-index.json")
         .then(response => response.json())
         .then(json => {
-            if (page === null) page = "main";
+            if (page === null) page = root;
             let source = json.pageToSourcePath[page];
             let currentLoc = encodeURIComponent(window.location.href);
             if (source === 'undefined') {
