@@ -20,9 +20,13 @@ When logging it is important to place your log **behind** any error that can occ
 <<Code/Logging/Logging 1.rtf>>
 
 #### The context parameter
-The second parameter, `context`, is extremely valuable. This object will be **pinged** when the log is selected. You can use this to check whether there are multiple instances of a script producing a log.
+The **second** parameter, `context`, is extremely valuable. This object will be **pinged** in the Hierarchy or Project window when the log is selected in the Console window.
 
-<<Code/Logging/Logging 2.rtf>>
+```csharp
+Debug.Log(..., gameObject);
+```
+
+You can use this to check whether there are multiple instances of a script producing a log.
 
 ### Null references
 

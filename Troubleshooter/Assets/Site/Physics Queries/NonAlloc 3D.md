@@ -1,8 +1,6 @@
 ## Physics queries (3D): NonAlloc
 
-If you are using non-allocating versions of `Physics` queries, do not read results that are outside of the returned range as they are invalid.
-
-Do not read results that are outside of the returned range as they are invalid.
+If you are using non-allocating versions of `Physics` queries, don't read results that are outside of the returned range as they are invalid.
 
 ```csharp    
 // 🔴 Incorrect, the return value is never read.

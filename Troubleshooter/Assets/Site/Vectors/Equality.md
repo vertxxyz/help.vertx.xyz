@@ -5,13 +5,13 @@ Despite the Vector [`==` operator](https://docs.unity3d.com/ScriptReference/Vect
 ### Resolution
 When logging vectors, provide enough precision with a format string[^1].
 ```diff
-- Debug.Log(vector);
-+ Debug.Log(vector.ToString("F7"));
+-Debug.Log(vector);
++Debug.Log(vector.ToString("F7"));
 ```
 You can also provide a format in interpolated strings:
 ```diff
-- Debug.Log($"the position is: {position}");
-+ Debug.Log($"the position is: {position:F7}");
+-Debug.Log($"the position is: {position}");
++Debug.Log($"the position is: {position:F7}");
 ```
 
 ### Alternatives

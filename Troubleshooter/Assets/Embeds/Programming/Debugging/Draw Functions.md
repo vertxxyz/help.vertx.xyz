@@ -30,6 +30,8 @@ If you trying to debug physics queries (overlap, check, cast), you can use the p
 Your version of Unity may not have the Queries tab, you would have to update to draw queries using built-in functionality.
 :::
 
+You can show collision geometry in the scene by enabling its visibility from the overlay in the bottom right of the Scene view window. This may help if it's unclear what's being hit.
+
 ## Drawing packages
 ### Vertx.Debugging
 I've created a custom debug drawing package called [Vertx.Debugging](https://github.com/vertxxyz/Vertx.Debugging) for drawing wireframe shapes.  

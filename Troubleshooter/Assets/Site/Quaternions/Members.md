@@ -10,17 +10,26 @@ Do not read the individual components from a `Quaternion`.
 ### Resolution
 
 #### Read from Euler angles
-Read from [`localEulerAngles`](https://docs.unity3d.com/ScriptReference/Transform-localEulerAngles.html) or [`eulerAngles`](https://docs.unity3d.com/ScriptReference/Transform-eulerAngles.html) instead of a `Quaternion` like [`transform.rotation`](https://docs.unity3d.com/ScriptReference/Transform-rotation.html). These are `Vector3` properties that represent the traditional XYZ rotations you are likely familiar with.
+Read from [`localEulerAngles`](https://docs.unity3d.com/ScriptReference/Transform-localEulerAngles.html) or [`eulerAngles`](https://docs.unity3d.com/ScriptReference/Transform-eulerAngles.html) instead of a `Quaternion` like [`transform.rotation`](https://docs.unity3d.com/ScriptReference/Transform-rotation.html).  
+These are `Vector3` properties that represent the traditional XYZ rotations you are likely familiar with.
+
+```diff
+-transform.rotation.x
++transform.eulerAngles.x
+-transform.localRotation.x
++transform.localEulerAngles.x
+```
 
 :::note
 #### Note
-Angles read in code may differ from those displayed in the Inspector, this is because they are derived from the internal representation, which is a `Quaternion`.  
+Angles read in code may differ from those displayed in the Inspector because they are derived from the internal representation, which is a `Quaternion`.  
 If you can't work with this, consider either:
 - Keeping track of your own set of angles which you use to update the transform.
 - Using another method to do what you want. Look into [vectors](https://docs.unity3d.com/Manual/VectorCookbook.html) and familiarise yourself with common operations like the [dot product](https://docs.unity3d.com/ScriptReference/Vector3.Dot.html).
-- Using a compound transform. Multiple nested transforms where each one isolates an axis of rotation you are using.
+- Using a compound transform; multiple nested transforms, where each one isolates an axis of rotation you are using.
 
-Elaborating further: the inspector often displays user-authored rotations which have not undergone any transformation. You can set rotations beyond 180°, as what you see here is for authoring convenience. However, Quaternions don't over-rotate, and their representation is completely different though they both represent the same orientation.  
+The inspector often displays user-authored rotations, where you can set rotations beyond 180° for authoring convenience.
+However, Quaternions don't over-rotate, and when storing Euler angles as a Quaternion that information is lost. Although, the same orientation is represented in the end.  
 :::
 
 ### Documentation

@@ -138,7 +138,7 @@ Removing Wednesday from a mask.
 :::
 
 ### Checking if a mask...
-#### Contains a layer
+#### Contains a layer (contains any)
 If a mask contains a layer, it **and** a mask describing that layer mustn't be 0.
 1. [Create a mask](#creating-masks) with our layer.
 1. Perform a [logical and](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-and-operator-).
@@ -155,7 +155,7 @@ if ((mask & (1 << layer)) != 0)
 
 This logic can be used to conservatively check if values are in a mask. 
 
-#### Contains another mask
+#### Contains another mask (contains all)
 If a mask contains all the values of another mask, the values in it **and** the other mask must be the mask you expect.
 1. Perform a [logical and](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-and-operator-).
 1. Compare the result with the mask you expect.

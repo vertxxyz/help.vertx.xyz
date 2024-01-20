@@ -6,11 +6,11 @@ Don't decorate variables that aren't serialized, a property for example; instead
 That is a field that is marked with `[SerializeField]`, or is `public`.  
 
 ```diff
-- [Header("Example")]
-- public Example Value { get; private set; }
+-[Header("Example")]
+-public Example Value { get; private set; }
 
-+ [Header("Example")]
-+ [SerializeField] private Example _value;
++[Header("Example")]
++[SerializeField] private Example _value;
 ```
 
 ---

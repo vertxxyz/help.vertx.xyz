@@ -5,26 +5,6 @@ This does not require recompiling your code, or exiting Play Mode.
 
 A functioning IDE is required, so first check [IDE configuration](../IDE%20Configuration.md) if you are experiencing basic issues.
 
-:::note
-
-- The debugger
-  - [Attaching](#rider-attach-attaching)
-  - [Breakpoints](#rider-breakpoint-breakpoints)
-    - [Managing breakpoints](#managing-breakpoints)
-    - [Muting breakpoints](#muting-breakpoints)
-    - [Conditional breakpoints](#conditional-breakpoints)
-    - [Tracepoints (logging breakpoints)](#tracepoints-logging-breakpoints)
-  - [Variable inspection](#rider-data-variable-inspection)
-  - [Stepping](#rider-step-over-stepping)
-  - [Pausing](#rider-pause-pausing)
-- [Usage](#usage)
-  - [Visual Studio](#vs-visual-studio)
-  - [Visual Studio Code](#vs-code-visual-studio-code)
-  - [JetBrains Rider](#rider-jetbrains-rider)
-- [Debugging builds](#debugging-builds)
-
-:::
-
 ### ![Rider attach](debug_dark.svg) Attaching
 Your IDE needs to target a running application to start debugging. Usually this functionality is found in one of the top utility bars in an IDE's interface.
 
@@ -56,9 +36,9 @@ Right-click a breakpoint and after adding a condition based on in-scope variable
 ![Conditional breakpoint in Rider](conditional-breakpoint-rider.png)
 ^^^A conditional breakpoint in Rider
 
-#### Tracepoints (logging breakpoints)
-Disable the breakpoint's suspend execution setting in the right-click menu so it becomes a ![Rider tracepoint](breakpointUnsuspendent_dark.svg){.inline} **tracepoint**, navigate to more settings and add logging. The logs will print to the **IDE's debug console**, not Unity.
-This makes a great substitution for [manual logging](Logging/How-to.md), avoiding unnecessary recompilation.
+### ![Rider tracepoint](breakpointUnsuspendent_dark.svg) Tracepoints (logging breakpoints)
+Disable the suspend execution setting of a ![Rider breakpoint](breakpoint_dark.svg){.inline} [breakpoint](#rider-breakpoint-breakpoints) via the right-click menu so it becomes a ![Rider tracepoint](breakpointUnsuspendent_dark.svg){.inline} **tracepoint**, navigate to more settings and add logging. The logs will print to the **IDE's debug console**, not Unity[^1].  
+Tracepoints are a great substitution for [manual logging](Logging/How-to.md), avoiding unnecessary recompilation and play-mode changes.
 
 ### ![Rider data](binaryData_dark.svg) Variable inspection
 Hovering over an initialised variable during debugging will provide you with a view of its internals. This lets you discover faulty logic or uninitialised values.
@@ -98,3 +78,5 @@ Rider also has [pausepoints](https://blog.jetbrains.com/dotnet/2020/06/11/introd
 ## Debugging builds
 Builds require **Development Build** and **Script Debugging** to be enabled in the build settings (**File | Build Settings**) to debug script code. When attaching the debugger attach to the built Player and not the Unity Editor.
 More information can be found [here](https://docs.unity3d.com/Manual/ManagedCodeDebugging.html), including the debugging of mobile devices.
+
+[^1]: JetBrains Rider now prints tracepoints to Unity's Console. Note that you can also view the Unity Console output in Rider.

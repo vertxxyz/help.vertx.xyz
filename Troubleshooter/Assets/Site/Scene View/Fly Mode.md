@@ -23,6 +23,10 @@ Make sure the [Scene gizmo](https://docs.unity3d.com/Manual/SceneViewNavigation.
 ### Reset the Scene view window
 [Reset the Scene view window](../Windows/Resetting%20Windows.md) or the [editor layout](../Windows/Resetting%20Layout.md).
 
+### Check for errors and warnings
+Open the [Console window](https://docs.unity3d.com/Manual/Console.html) (**Window | General | Console**, <kbd>Ctrl+Shift+C</kbd>) and address any errors.    
+If errors or warnings are constantly printing they may be related to the Scene view.
+
 ---
 
 [Return to Scene view issues.](../Scene%20View.md)

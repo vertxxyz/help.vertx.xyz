@@ -3,16 +3,16 @@
 There are various ways to create a reference between one object and another:
 
 ### Serialized references
-Serialized references are exposed via the inspector and are defined per-instance. They are fast and configurable.
+Serialized references are exposed via the inspector and are defined per-instance. They are fast and configurable.  
 [Learn more.](References/Serialized%20References.md)
 
 ### Singletons
-Singletons are referenced in code and require **only one instance** of the target type.
+Singletons are referenced in code and require **only one instance** of the target type.  
 [Learn more.](References/Singletons.md)
 
 ### GetComponent methods
 Prefer serialized references for their speed and configurability. [`GetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html), [`TryGetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.TryGetComponent.html),
-[`GetComponentInChildren`](https://docs.unity3d.com/ScriptReference/Component.GetComponentInChildren.html), and other similar methods are perfect for dynamic runtime references, like those resolved during collisions and scene queries.
+[`GetComponentInChildren`](https://docs.unity3d.com/ScriptReference/Component.GetComponentInChildren.html), and other similar methods are perfect for dynamic runtime references, like those resolved during collisions and scene queries.  
 [Learn more.](References/GetComponent%20Methods.md)
 
 ### Find methods
@@ -23,7 +23,7 @@ Prefer [serialized references](References/Serialized%20References.md), [singleto
 If you are referencing objects you spawned at runtime, add them to a collection (like a [List](https://learn.unity.com/tutorial/lists-and-dictionaries)) when they are created, and reference that object to get your instances instead.
 
 ### Dependency injection
-Dependency injection (DI) is simply the process of having a reference passed to an object. [Serialized references](References/Serialized%20References.md) are already a simple form of DI, but you can apply the concept yourself and inject references from managers to other objects under their control.
+Dependency injection (DI) is simply the process of having a reference passed to an object. [Serialized references](References/Serialized%20References.md) are already a simple form of DI, but you can apply the concept yourself and inject references from managers to other objects under their control.  
 [Learn more.](References/Simple%20Dependency%20Injection.md)
 
 ### Alternate methods
