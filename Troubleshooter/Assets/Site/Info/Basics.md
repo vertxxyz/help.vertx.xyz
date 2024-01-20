@@ -18,7 +18,7 @@ If you are writing code, make sure your code has compiled and is running.
 
 ### Inspect the problem
 There are powerful tools that will help you get a detailed look at problems. Learn them, as even cursory understanding of their output can produce valuable insights.  
-- For code proboems, use the [Debugger](../Debugging/Debugger.md).  
+- For code problems, use the [Debugger](../Debugging/Debugger.md).  
 - For performance issues, the [Profiler](https://docs.unity3d.com/Manual/Profiler.html) is invaluable.
 - For graphical issues, the [Frame Debugger](https://docs.unity3d.com/Manual/frame-debugger-window.html) can sometimes help.
 - For issues with UI Toolkit, there's the [UI Toolkit Debugger](https://docs.unity3d.com/Manual/UIE-ui-debugger.html) and the [Event Debugger](../UI%20Toolkit/Input%20Issues.md).
