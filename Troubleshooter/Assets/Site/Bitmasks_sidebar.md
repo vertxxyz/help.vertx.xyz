@@ -1,5 +1,6 @@
 #### Bitmasks and LayerMasks
-- [Top](#bitmasks-and-layermasks)
+- [Bitmasks](#bitmasks)
+- [LayerMasks](#layermasks)
 - [Creating masks](#creating-masks)
 - [Declaring custom masks](#declaring-custom-masks)
 - [Combining masks](#combining-masks)

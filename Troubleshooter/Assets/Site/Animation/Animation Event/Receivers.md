@@ -8,7 +8,7 @@ You can either add a receiver, or if the event isn't required or displays other 
 :::note
 #### Adding a valid receiver
 1. Add a component to the GameObject with the Animator on it.
-1. Make a public method matching the name of the event. The method must not have a return value.
+1. Make a **public** method matching the name of the event. The method must not have a return value.
 1. The method's parameter must match the event. Animation Events can have `float`, `int`, `string`, `Object`, `AnimationEvent`, or no parameters.
 
 :::

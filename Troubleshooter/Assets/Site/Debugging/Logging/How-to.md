@@ -28,6 +28,8 @@ Debug.Log(..., gameObject);
 
 You can use this to check whether there are multiple instances of a script producing a log.
 
+If no object is pinged it generally means it no longer exists in the Hierarchy or Project view. This usually means it was just destroyed.
+
 ### Null references
 
 When dealing with null it's [access](../../Runtime%20Exceptions/NullReferenceException/Access.md) that will throw an exception, so if a long line is causing an NRE it's important to make individual logs for each access, or else the log will also throw an exception and not be printed.

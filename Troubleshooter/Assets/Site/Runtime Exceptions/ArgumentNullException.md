@@ -13,6 +13,16 @@ The **parameter name** listed in the error, and the [stack trace](../Stack%20Tra
 #### Extension methods
 Be aware that [extension methods](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods) can throw this exception when the object you invoke the method on is invalid or `null`.
 - [`Texture2D.EncodeToPNG();`](https://docs.unity3d.com/ScriptReference/ImageConversion.EncodeToPNG.html) will throw an exception if `Texture2D` is `null`.
+
+#### Crossover with Unity-null
+You can run methods on [unity-null](../Unity%20Null.md) objects because they actually still exist. If the method doesn't implement internal checks as expected, this can manifest as an `ArgumentNullException` instead of a typical `NullReferenceException`.
+ 
+```csharp
+AudioSource source = GetComponent<AudioSource>();
+// If source was null it will throw an ArgumentNullException.
+source.PlayOneShot(clip, 1);
+``` 
+
 - [`AudioSource.PlayOneShot()`](https://docs.unity3d.com/ScriptReference/AudioSource.PlayOneShot.html) and [`AudioSource.Play()`](https://docs.unity3d.com/ScriptReference/AudioSource.Play.html) will throw an exception if `AudioSource` is `null`.
 
 #### From internal Unity code

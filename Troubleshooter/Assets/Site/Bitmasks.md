@@ -1,12 +1,20 @@
 ## Bitmasks and LayerMasks
-A bit is a `0` or a `1`. In a bitmask `0` is an inactive layer, and a `1` is active.  
-`int` is a 32 bit value, which can represent 32 toggleable layers with a single `int`.
+### Bitmasks
+A bitmask is a representation of many states using a single value.
 
+A bit is a `0` or a `1`. In a bitmask `0` is an inactive layer, and a `1` is active.  
+As `int` is a 32 bit value, it can be used to represent 32 toggleable layers.
+
+### LayerMasks
 The [`LayerMask`](https://docs.unity3d.com/ScriptReference/LayerMask.html) struct describes a bitmask of [layers](https://docs.unity3d.com/Manual/Layers.html) used by physics and rendering APIs in Unity.
 It's implicitly converted to `int` when using physics methods.
 
+:::info{.small}
+Because a `LayerMask` is a bitmask, it shouldn't be treated as a single layer.
+:::
+
 :::::note{#layermask-diagram}
-#### Interactive LayerMask diagram
+#### Interactive diagram
 <script type="module" src="/Scripts/Interactive/Bitmasks/layerMaskDropdown.js?v=1.0.1"></script>
 ::::{.inspector-root}
 :::{.control-root}
@@ -52,7 +60,7 @@ int mask = 1 << 5;
 ^^^::Note that the first bit (the least significant bit) is the rightmost bit, similar to a decimal integer.::{.info}
 :::
 
-A `LayerMask` can be exposed in the inspector to easily author masks based on Unity's [layers](https://docs.unity3d.com/Manual/Layers.html).  
+A `LayerMask` can be [serialized](Serialization/Serializing%20A%20Field%201.md) to easily author masks in the [Inspector](https://docs.unity3d.com/Manual/UsingTheInspector.html) based on Unity's [layers](https://docs.unity3d.com/Manual/Layers.html).  
 :::note
 ```csharp
 [SerializeField] private LayerMask _mask;
@@ -74,7 +82,7 @@ Enums are `int` values by default, but any [integral numeric type](https://docs.
 
 ^^^
 <<Code/Bitmasks/Declaring.rtf>>
-^^^ ::In this example we use a `byte`, as the range is known to be less than 8 layers.::{.warning}
+^^^ ::In this example we use an underlying type of `byte`, as the range is known to be less than 8 layers.::{.warning}
 
 :::
 
