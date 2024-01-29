@@ -15,7 +15,7 @@ public static class IOUtility
 {
 	public delegate FileResult.Validity FileProcessor(FileInfo file, out FileResult? result);
 
-	public class FileResult
+	public class FileResult(string content, string fileNameWithExtension)
 	{
 		public enum Validity
 		{
@@ -24,14 +24,8 @@ public static class IOUtility
 			Processed // Processed to a FileResult
 		}
 
-		public string Content { get; }
-		public string FileNameWithExtension { get; }
-
-		public FileResult(string content, string fileNameWithExtension)
-		{
-			Content = content;
-			FileNameWithExtension = fileNameWithExtension;
-		}
+		public string Content { get; } = content;
+		public string FileNameWithExtension { get; } = fileNameWithExtension;
 	}
 
 	public enum RecordType : byte

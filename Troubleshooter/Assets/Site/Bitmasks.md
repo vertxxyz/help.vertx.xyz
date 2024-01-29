@@ -71,6 +71,8 @@ public LayerMask Mask;
 ```
 :::
 
+You can also create a LayerMask in code with [`LayerMask.GetMask`](https://docs.unity3d.com/ScriptReference/LayerMask.GetMask.html).
+
 ### Declaring custom masks
 Generally masks are declared as an [enum](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum) so they can be easily referenced and manipulated by name.  
 The [`Flags` attribute](https://docs.microsoft.com/en-us/dotnet/api/system.flagsattribute) indicates the enum is a bitmask, and modifies [`ToString`](https://docs.microsoft.com/en-us/dotnet/api/system.enum.tostring) to return more relevant values.

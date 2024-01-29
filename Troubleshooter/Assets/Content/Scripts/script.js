@@ -4,7 +4,6 @@ const sidebarContentsId = '#sidebar-contents';
 const containerId = '#container';
 const root = 'index';
 let currentDirectory = "";
-let isLoading = false;
 
 // ------ WOW ------
 function resize() {
@@ -51,7 +50,24 @@ whenReady(() => {
     if (window.location.host.startsWith("localhost:")) {
         document.getElementById("local-developer-tools").classList.remove("hidden");
     }
-})
+});
+
+// Declare early.
+function postText(key, value) {
+    fetch(`${window.location.origin}/${key}/${value}`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'text/plain',
+            'Content-Type': 'text/plain'
+        }
+    }).then(response => {
+        console.log(response);
+        if (response.status === 200) {
+            location.reload();
+        }
+    });
+}
+
 
 // -----------------
 
@@ -112,7 +128,7 @@ if (pageParam === root) {
     setPage(pageParam, pageParam, getHash(), false);
 }
 
-loadPageFromLink(pageParam, getHash(), false);
+loadPageWithoutLink(pageParam, getHash());
 
 
 /*************** CALLBACKS ****************/
@@ -123,9 +139,12 @@ window.addEventListener("popstate", loadPageFromState);
 function loadPageFromState(e) {
     // page reload
     if (e.state) {
-        loadPageFromLink(e.state.pathParameter, e.state.hashParameter, false, false);
+        loadPageFromLink(e.state.pathParameter, e.state.hashParameter, {
+            setParameter: false,
+            useCurrentDirectory: false
+        });
     } else {
-        loadPageFromLink(getPageParameter(), getHash(), false, false);
+        loadPageFromLink(getPageParameter(), getHash(), {setParameter: false, useCurrentDirectory: false});
     }
 }
 
@@ -150,7 +169,7 @@ function getHash() {
 }
 
 function setPage(value, url, hash, pushHistory = true) {
-    url = url == null || url === "" ? window.location.pathname : url;
+    url = url == null || url === "" ? window.location.pathname.replace(/^\/\//, "") : url;
 
     if (hash !== '')
         url += hash;
@@ -164,11 +183,6 @@ function setPage(value, url, hash, pushHistory = true) {
 // Load Page is called from HTML
 // noinspection JSUnusedGlobalSymbols
 function loadPage(link, replaceState = false) {
-    /*if(isLoading) {
-        console.log('Ignored load page request because the previous was loading.');
-        return;
-    }*/
-
     if (link == null || link === "") {
         console.error('Ignored page load as button links to empty location');
         return;
@@ -186,7 +200,7 @@ function loadPage(link, replaceState = false) {
         }
     }
 
-    loadPageFromLink(link, hash, true, true, replaceState);
+    loadPageFromLink(link, hash, {replaceState: replaceState});
 }
 
 function loadPageNonRelative(absoluteLink) {
@@ -196,7 +210,7 @@ function loadPageNonRelative(absoluteLink) {
     }
     if (absoluteLink === root)
         absoluteLink = null;
-    loadPageFromLink(absoluteLink, '', true, false);
+    loadPageFromLink(absoluteLink, '', {useCurrentDirectory: false});
 }
 
 // Load Hash is called from HTML
@@ -228,8 +242,7 @@ function fireCallbackIfPageIsCurrent(callback) {
     });
 }
 
-function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory = true, replaceState = false) {
-    isLoading = true;
+function loadPageFromLink(value, hash, {setParameter = true, useCurrentDirectory = true, replaceState = false}) {
     value = processPageValue(value);
     if (value.length > 0 && value[0] === '/') {
         useCurrentDirectory = false;
@@ -247,31 +260,58 @@ function loadPageFromLink(value, hash, setParameter = true, useCurrentDirectory 
         try {
             // Load the page
             load(contents, sidebarContents, contentsId, sidebarContentsId, `/${valueToLoad}.html`, () => {
-                if (tryRedirect(contents))
-                    return;
-
-                currentDirectory = valueToLoad.replace(/\/*[^/]+$/, "");
-                if (setParameter) {
-                    if (!useCurrentDirectory && url.length > 0 && url[0] !== '/')
-                        url = `/${url}`;
-                    setPage(valueToLoad, url, hash, !replaceState);
-                }
-
-                // Anything that can affect layout
-                setupCodeSettings();
-                reloadScripts(valueToLoad);
-                // -------------------------------
-                setTimeout(() => scrollToHash(hash), 100); // Delay seems to be required in some cases.
-                setupHeaders();
-                renameTitle(url);
+                performPageSetup(valueToLoad, url, hash, {
+                    setParameter: setParameter,
+                    useCurrentDirectory: useCurrentDirectory,
+                    replaceState: replaceState
+                })
             }, load404);
             document.getElementById('page-search').value = "";
         } catch {
             load404();
-        } finally {
-            isLoading = false;
         }
     });
+}
+
+function loadPageWithoutLink(value, hash) {
+    let useCurrentDirectory = true;
+    value = processPageValue(value);
+    if (value.length > 0 && value[0] === '/') {
+        useCurrentDirectory = false;
+        value = value.substring(1);
+    }
+
+    whenReady(function () {
+        let valueToLoad = value;
+        if (useCurrentDirectory && currentDirectory !== "")
+            valueToLoad = absolute(`${currentDirectory}/`, value)
+        performPageSetup(valueToLoad, value, hash, {
+            setParameter: false,
+            useCurrentDirectory: useCurrentDirectory,
+            replaceState: false
+        })
+    });
+}
+
+function performPageSetup(valueToLoad, url, hash, {
+    setParameter = true,
+    useCurrentDirectory = true,
+    replaceState = false
+}) {
+    currentDirectory = valueToLoad.replace(/\/*[^/]+$/, "");
+    if (setParameter) {
+        if (!useCurrentDirectory && url.length > 0 && url[0] !== '/')
+            url = `/${url}`;
+        setPage(valueToLoad, url, hash, !replaceState);
+    }
+
+    // Anything that can affect layout
+    setupCodeSettings();
+    reloadScripts(valueToLoad);
+    // -------------------------------
+    setTimeout(() => scrollToHash(hash), 100); // Delay seems to be required in some cases.
+    setupHeaders();
+    renameTitle(url);
 }
 
 function absolute(base, relative) {
@@ -291,7 +331,7 @@ function absolute(base, relative) {
 }
 
 function load404() {
-    loadPageFromLink(`404`, '', false, false);
+    loadPageFromLink(`404`, '', {setParameter: false, useCurrentDirectory: false});
 }
 
 function scrollToHash(hash) {
@@ -301,29 +341,47 @@ function scrollToHash(hash) {
     }
     const hashElement = document.getElementById(hash.substring(1));
     if (hashElement == null) return;
+
+    resize(); // Call to forcibly set --vh
+    const container = document.querySelector(containerId);
+    const contents = document.querySelector(contentsId);
+
+    // The padding needs to equal the height of the container minus the distance to the bottom of the hash element.
+    let computedStyle = window.getComputedStyle(contents);
+    const containerHeight = container.clientHeight - parseFloat(computedStyle.paddingTop);
+    const distToElementBottom = getDistanceFromTopToBottom(hashElement, contents.lastElementChild);
+    if (distToElementBottom < containerHeight) {
+        let padding = containerHeight - distToElementBottom;
+        document.body.style.setProperty("--bottom-padding", `${padding}px`);
+    } else {
+        document.body.style.removeProperty("--bottom-padding",);
+    }
+
     hashElement.scrollIntoView();
 }
 
+function getDistanceFromTopToBottom(from, to) {
+    const fromRect = from.getBoundingClientRect();
+    const toRect = to.getBoundingClientRect();
+    return toRect.bottom - fromRect.top;
+}
+
 function setupHeaders() {
-    document.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(
+    document.querySelector(contentsId).querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(
         e => {
             e.addEventListener("mouseenter", () => e.querySelector(".header-permalink")?.classList.add("show"));
             e.addEventListener("mouseleave", () => e.querySelector(".header-permalink")?.classList.remove("show"));
         }
     );
+    let sidebar = document.querySelector(sidebarContentsId);
+    sidebar?.querySelectorAll(".header-permalink").forEach(e => e.remove());
+    sidebar?.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(e => e.removeAttribute("id"));
 }
 
 function renameTitle(url) {
     const newTitle = (document.querySelector("h1") ?? document.querySelector("h2"))?.textContent.trim().trimEndChars('#');
     if (newTitle != null)
         document.title = newTitle;
-}
-
-function tryRedirect(contents) {
-    const forceRedirect = contents.querySelector("#force-redirect");
-    if (!forceRedirect) return false;
-    loadPage(forceRedirect.innerHTML, true);
-    return true;
 }
 
 function setupCodeSettings() {
@@ -476,19 +534,4 @@ function toggleCollapsedCode(button) {
         collapsable.classList.remove(expanded);
         collapsable.classList.add(collapsed);
     }
-}
-
-function postText(key, value) {
-    fetch(`${window.location.origin}/${key}/${value}`, {
-        method: 'POST',
-        headers: {
-            'Accept': 'text/plain',
-            'Content-Type': 'text/plain'
-        }
-    }).then(response => {
-        console.log(response);
-        if (response.status === 200) {
-            location.reload();
-        }
-    });
 }

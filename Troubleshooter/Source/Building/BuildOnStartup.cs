@@ -9,9 +9,8 @@ using Troubleshooter.Middleware;
 
 namespace Troubleshooter;
 
-public sealed class BuildOnStartup(Arguments arguments, Site site)
+public sealed class BuildOnStartup(Arguments arguments)
 {
-	private readonly Site _site = site;
 	private readonly string _indexOutputPath = Path.Combine(arguments.Path, "index.html");
 
 	public Task RebuildIfNotBuiltBefore()

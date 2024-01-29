@@ -21,7 +21,7 @@ public static class IndexHtml
 		            <meta name="robots" content="noai, noimageai">
 		            <title>Unity, huh, how?</title>
 		            <!--suppress HtmlUnknownTarget -->
-		            <link rel="stylesheet" href="/Styles/style.css?v=2.4.2">
+		            <link rel="stylesheet" href="/Styles/style.css?v=2.5.0">
 		            <!--suppress HtmlUnknownTarget -->
 		            <link rel="stylesheet" href="/Styles/code-highlighting.css?v=1.0.3">
 		            <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,7 +32,7 @@ public static class IndexHtml
 		            <link rel="icon" type="image/png" href="/Images/favicon-32x32.png" sizes="32x32">
 		            <link rel="icon" type="image/png" href="/Images/favicon-96x96.png" sizes="96x96">
 		            <script src="/Scripts/core.js?v=1.2.0"></script>
-		            <script src="/Scripts/script.js?v=1.6.0"></script>
+		            <script src="/Scripts/script.js?v=1.7.0"></script>
 		            <script src="/Scripts/sidebar.js?v=1.2.0"></script>
 		            <script src="/Scripts/search.js?v=1.3.0"></script>
 		            <script src="/Scripts/tableHighlighter.js?v=1.0.1"></script>

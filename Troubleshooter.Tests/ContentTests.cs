@@ -28,9 +28,8 @@ public partial class ContentTests
 	[Flags]
 	private enum FootnotePair : byte
 	{
-		None,
-		Source,
-		Destination,
+		Source = 1 << 0,
+		Destination = 1 << 1,
 		Both = Source | Destination
 	}
 
@@ -55,7 +54,7 @@ public partial class ContentTests
 			else
 				pair = FootnotePair.Source;
 
-			var value = match.Groups[1].Value;
+			string value = match.Groups[1].Value;
 			if (!footnotePairs.TryGetValue(value, out FootnotePair oldPair))
 				footnotePairs.Add(value, pair);
 			else
@@ -78,7 +77,7 @@ public partial class ContentTests
 	public void ValidatePackageDocLinks(string name, string path, string text)
 	{
 		using var assertionScope = new AssertionScope(name);
-		Assert.DoesNotMatch(s_incorrectPackageDocLink, text);
+		text.Should().NotMatchRegex(s_incorrectPackageDocLink);
 	}
 
     [GeneratedRegex(@"\[\^(\d+)\]", RegexOptions.Compiled)]

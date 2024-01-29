@@ -39,6 +39,7 @@
 
 body {
   --combined-header-height: #{base.$header-height};
+  --bottom-padding: #{base.$bottom-padding};
 }
 
 body:has(> #local-developer-tools:not(.hidden)) {
@@ -76,7 +77,7 @@ $large: 1920px;
 
 %gridarea-contents {
   grid-area: contents;
-  padding: 30px base.$right-padding base.$bottom-padding base.$left-padding;
+  padding: 30px base.$right-padding var(--bottom-padding) base.$left-padding;
   margin-left: functions.between(0, 200px, $small, $large);
 }
 
@@ -249,7 +250,7 @@ iframe {
   @extend %gridarea-contents;
   flex-grow: 2;
   flex-basis: 0;
-  height: calc(var(--vh) - 30px - #{base.$bottom-padding} - #{var(--combined-header-height)});
+  height: calc(var(--vh) - 30px - #{var(--bottom-padding)} - #{var(--combined-header-height)});
   overflow: auto;
   box-sizing: content-box;
 
