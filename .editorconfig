@@ -63,6 +63,14 @@ dotnet_naming_symbols.constant_fields.applicable_kinds   = field
 dotnet_naming_symbols.constant_fields.required_modifiers = const
 dotnet_naming_style.pascal_case_style.capitalization = pascal_case
 
+# name all constant locals using camelCase
+dotnet_naming_rule.constant_local_should_be_pascal_case.severity = error
+dotnet_naming_rule.constant_local_should_be_pascal_case.symbols = constant_locals
+dotnet_naming_symbols.constant_locals.applicable_kinds   = local
+dotnet_naming_symbols.constant_locals.required_modifiers = const
+dotnet_naming_rule.constant_local_should_be_pascal_case.style = camel_case_style
+dotnet_naming_style.camel_case_style.capitalization = camel_case
+
 # static fields should have s_ prefix
 dotnet_naming_rule.static_fields_should_have_prefix.severity = error
 dotnet_naming_rule.static_fields_should_have_prefix.symbols  = static_fields

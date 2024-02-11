@@ -38,7 +38,7 @@ Right-click a breakpoint and after adding a condition based on in-scope variable
 
 ### ![Rider tracepoint](breakpointUnsuspendent_dark.svg) Tracepoints (logging breakpoints)
 Disable the suspend execution setting of a ![Rider breakpoint](breakpoint_dark.svg){.inline} [breakpoint](#rider-breakpoint-breakpoints) via the right-click menu so it becomes a ![Rider tracepoint](breakpointUnsuspendent_dark.svg){.inline} **tracepoint**, navigate to more settings and add logging. The logs will print to the **IDE's debug console**, not Unity[^1].  
-Tracepoints are a great substitution for [manual logging](Logging/How-to.md), avoiding unnecessary recompilation and play-mode changes.
+Tracepoints are a great substitution for [manual logging](Logging/How-to.md), avoiding unnecessary recompilation and Play Mode changes.
 
 ### ![Rider data](binaryData_dark.svg) Variable inspection
 Hovering over an initialised variable during debugging will provide you with a view of its internals. This lets you discover faulty logic or uninitialised values.
@@ -60,6 +60,11 @@ Stepping through code is a way to continue execution line by line, optionally st
 ### ![Rider pause](pause_dark.svg) Pausing
 Execution can be manually halted similar to a breakpoint, this is very helpful when debugging freezes caused by infinite loops. Just pause execution when the freeze occurs, and the debugger should lead you to the relevant section of code.
 
+### ![Rider watch](watch_dark.svg) Watches
+Watches are tracked variables that persist across debugging sessions. While execution is halted via a breakpoint or pause, you can monitor the state of variables via the Watch window, similar to [variable inspection](#rider-data-variable-inspection).
+
+You can add any variable or expression that is in scope as a watch, and it will be tracked while you debug.
+
 ## Usage
 ### ![VS](/Images/visualstudio.svg) Visual Studio
 VS has a great rundown of their debugger found [here](https://docs.microsoft.com/en-us/visualstudio/debugger/debugger-feature-tour). Instructions about configuration are not specific to Unity and can be ignored, instead Unity has written a [how-to guide](https://unity.com/how-to/debugging-with-microsoft-visual-studio-2022).
@@ -73,7 +78,10 @@ How-to instructions for debugging can be found [here](https://code.visualstudio.
 
 ### ![Rider](/Images/jetbrains_rider.svg) JetBrains Rider
 Rider has detailed information about debugging Unity applications [here](https://www.jetbrains.com/help/rider/Debugging_Unity_Applications.html) and [here](https://www.jetbrains.com/help/rider/Using_Breakpoints.html).
-Rider also has [pausepoints](https://blog.jetbrains.com/dotnet/2020/06/11/introducing-unity-pausepoints-for-rider/), the ability to pause ([`Debug.Break`](https://docs.unity3d.com/ScriptReference/Debug.Break.html)) Unity at the end of a frame once a pausepoint is hit.
+Rider also has:
+- [Pausepoints](https://blog.jetbrains.com/dotnet/2020/06/11/introducing-unity-pausepoints-for-rider/), the ability to pause ([`Debug.Break`](https://docs.unity3d.com/ScriptReference/Debug.Break.html)) Unity at the end of a frame once a pausepoint is hit.
+- ![Rider watch](watch_dark.svg) Inline watches, add variables or expressions to the inline preview by right-clicking a line and choosing **Add Inline Watch**.
+
 
 ## Debugging builds
 Builds require **Development Build** and **Script Debugging** to be enabled in the build settings (**File | Build Settings**) to debug script code. When attaching the debugger attach to the built Player and not the Unity Editor.

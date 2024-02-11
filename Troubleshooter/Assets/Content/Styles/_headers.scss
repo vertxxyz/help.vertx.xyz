@@ -20,6 +20,10 @@ h2 {
     font-weight: 700;
     position: relative;
 
+    &:not(:first-child) {
+        margin-block-start: 2em;
+    }
+
     img, .emoji {
         vertical-align: middle;
         margin: 0 6px 0 0;

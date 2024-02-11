@@ -28,7 +28,7 @@ Debug.Log(..., gameObject);
 
 You can use this to check whether there are multiple instances of a script producing a log.
 
-If no object is pinged it generally means it no longer exists in the Hierarchy or Project view. This usually means it was just destroyed.
+If no object is pinged it generally means it no longer exists in the Hierarchy or Project window. This usually means it was just destroyed.
 
 ### Null references
 

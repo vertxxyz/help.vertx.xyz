@@ -1,4 +1,0 @@
-## Editor references
-
-- [I am **not** using Assembly Definitions](Editor%20Assemblies.md) (Default).
-- [I am using Assembly Definitions.](Assembly%20Definitions.md)

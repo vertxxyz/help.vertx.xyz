@@ -25,4 +25,4 @@ These are warnings.
 
 - [Return to build errors.](../Build%20Errors.md)
 - [See common compiler errors.](../../Compiler%20Errors.md)
-    - [CS0246](../Editor%20References.md)
+    - [CS0246](../CS0246.md)

@@ -1,4 +1,10 @@
 ## Common physics issues
-- [Colliders tunnelling through surfaces.](Object%20Tunnelling.md)
-- [Issues with physics messages.](../Physics%20Messages.md)
-- [I can't assign my Physics Material via the inspector.](Physics%20Material%20Differences.md)
+### Interactions
+- [Colliders are tunnelling through surfaces.](Object%20Tunnelling.md)
+
+### Programming
+- [I don't receive a physics message.](../Physics%20Messages.md)
+
+### Interface
+- [I can't assign a Physics Material via the Inspector.](Physics%20Material%20Differences.md)
+- [I can't see Rigidbody **info** via the Inspector.](Rigidbody%20Info.md)

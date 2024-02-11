@@ -19,12 +19,12 @@ If you're passing two positions to this function the results will be unexpected.
 
 <<Code/Drawing/Draw Functions 2.rtf>>
 
-## Physics debugger
-If you trying to debug physics queries (overlap, check, cast), you can use the physics debugger (**Window | Analysis | Physics Debugger**).
+## Physics Debugger
+If you trying to debug physics queries (overlap, check, cast), you can use the Physics Debugger (**Window | Analysis | Physics Debugger**).
 
 ^^^
-![Physics debugger showing queries](physics-debugger.png)
-^^^ Physics debugger showing queries in the Scene view
+![Physics Debugger showing queries](physics-debugger.png)
+^^^ Physics Debugger showing queries in the Scene view
 
 :::warning  
 Your version of Unity may not have the Queries tab, you would have to update to draw queries using built-in functionality.

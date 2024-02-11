@@ -27,6 +27,7 @@ using UnityEditor;
 The result when the preprocessor is stripped must also be valid code to compile.  
 
 #### Replacing UnityEditor code
-If you are finding a need to include editor code in a build then you are abusing the Editor APIs. There is likely a runtime API that will achieve the same outcome, albeit sometimes with completely different methods. Research what you're trying to achieve and implement a solution that does not involve Editor APIs.  
+If you are finding a need to include editor code in a build then you are abusing the Editor APIs. There is likely a runtime API that will achieve the same outcome, though often requiring completely different methods. Research what you're trying to achieve and implement a solution that does not involve Editor APIs.  
+
 For example, [SceneAsset](https://docs.unity3d.com/ScriptReference/SceneAsset.html) is in UnityEditor. Referring to Scenes directly via their asset in runtime code is incorrect. The correct ways to refer to scenes are via their names (a `string`), their build index (an `int`), or by loading them with a wrapper like [Addressables](https://docs.unity3d.com/Packages/com.unity.addressables@latest/index.html?subfolder=/manual/LoadSceneAsync.html).  
-There are also third-party solutions like [this one](https://github.com/JohannesMP/unity-scene-reference) that allow indirect references to scenes via their assets using the inspector.  
+There are also third-party solutions like [this one](https://github.com/starikcetin/Eflatun.SceneReference) that allow indirect references to scenes via their assets using the inspector.  
