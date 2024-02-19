@@ -10,25 +10,6 @@ function resize() {
     document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
 }
 
-String.prototype.trimEndChars = function (characters) {
-    let result = this;
-    let lastIndex = result.length;
-    for (; lastIndex > 0; lastIndex--) {
-        let found = false;
-        for (let i = 0; i < characters.length; i++) {
-            if (result[lastIndex - 1] === characters[i]) {
-                found = true;
-                break;
-            }
-        }
-        if (!found)
-            break;
-    }
-    if (lastIndex < result.length)
-        result = result.substring(0, lastIndex);
-    return result;
-}
-
 window.addEventListener('resize', resize);
 window.addEventListener('load', resize);
 
@@ -288,7 +269,8 @@ function loadPageWithoutLink(value, hash) {
         performPageSetup(valueToLoad, value, hash, {
             setParameter: false,
             useCurrentDirectory: useCurrentDirectory,
-            replaceState: false
+            replaceState: false,
+            scriptReload: false
         })
     });
 }
@@ -296,7 +278,8 @@ function loadPageWithoutLink(value, hash) {
 function performPageSetup(valueToLoad, url, hash, {
     setParameter = true,
     useCurrentDirectory = true,
-    replaceState = false
+    replaceState = false,
+    scriptReload = true
 }) {
     currentDirectory = valueToLoad.replace(/\/*[^/]+$/, "");
     if (setParameter) {
@@ -307,7 +290,8 @@ function performPageSetup(valueToLoad, url, hash, {
 
     // Anything that can affect layout
     setupCodeSettings();
-    reloadScripts(valueToLoad);
+    if (scriptReload)
+        reloadScripts(valueToLoad);
     // -------------------------------
     setTimeout(() => scrollToHash(hash), 100); // Delay seems to be required in some cases.
     setupHeaders();
@@ -379,9 +363,12 @@ function setupHeaders() {
 }
 
 function renameTitle(url) {
-    const newTitle = (document.querySelector("h1") ?? document.querySelector("h2"))?.textContent.trim().trimEndChars('#');
-    if (newTitle != null)
+    let newTitle = (document.querySelector("h1") ?? document.querySelector("h2"))?.textContent.trim();
+    if (newTitle != null) {
+        if (newTitle.endsWith('#')) // Only trim once
+            newTitle = newTitle.substring(0, newTitle.length - 1);
         document.title = newTitle;
+    }
 }
 
 function setupCodeSettings() {

@@ -4,25 +4,13 @@ In C# (and most programming languages) variables are accessible in the section t
 
 Scopes are indicated by curly braces, <kbd>{</kbd> <kbd>}</kbd>.
 
-### Access
-Scopes can access variables of other scopes they are nested in.
-
-```mermaid
-%%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
-flowchart RL
-    A[Nested block scopes] -.->B[Block scope] -->C[Method scope] -->D[Class scope]
-    A -.->C & D
-    B -->D
-```
-
-Only class-scoped variables can be reached from other scopes via properties or fields. Variables declared in methods or blocks cannot be accessed from others because they may not exist at that time, they may not be "in scope".
-
 ### Types of scope
 There are three main levels of scope:
-1. Class scope
-1. Method scope
-1. Block-level scope
+1. [Class scope](#class-scope)
+1. [Method scope](#method-scope)
+1. [Block-level scope](#block-level-scope)
 
+::::note  
 #### Class scope
 
 Note where a `class` is declared, and view anything at the level of its braces (its scope) as at the class scope.
@@ -42,6 +30,8 @@ namespace Baz
 
 The class scope is somewhat unique, because its members are accessible from other scopes.  
 
+::::  
+::::note
 #### Method scope
 
 Statements inside a method scope can access the class scope, but cannot access nested block-level scopes.
@@ -59,6 +49,8 @@ public class Example : MonoBehaviour
 }
 ```
 
+---
+
 Variables declared within method scopes will override those declared in the parent class. Not all scopes can redeclare variables.
 
 ```csharp
@@ -75,8 +67,11 @@ public void Example()
 }
 ```
 
+:::info
 C# uses pascal case (<kbd>PascalCase</kbd>) as its [naming convention](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names#naming-conventions) for public variables, and camel case with an underscore `_` prefix (<kbd>_camelCase</kbd>) for private variables. If you follow convention, it's rare to override variables like this.  
-
+:::
+::::  
+::::note  
 #### Block-level scope
 Statements inside a block-level scope can access the class scope, the method scope they're declared in, and any scope that they're nested within.
 
@@ -104,12 +99,14 @@ Certain single-line statements do not need curly braces to identify scope.
 ```csharp
 public bool Foo()
 {
-    // Because there are no curly braces, the following statement is the only statement in the block.
+    // Because there are no curly braces, the statement following the if is the only statement in the block.
     if (UseScope1())
         return false;
     return true;
 }
 ```
+
+---
 
 If you want use a variable that was assigned in multiple block-level scopes, declare it outside them first.
 
@@ -124,9 +121,26 @@ public void Foo()
         method0 = Scope2Result();
     else
         method0 = Scope3Result();
+    
     Debug.Log($"Result is {method0}");
 }
 ```
+::::
+
+### Access
+Scopes can access variables of other scopes they are nested in.
+
+```mermaid
+%%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
+flowchart RL
+    A[Nested block scopes] -->B[Block scope] -->C[Method scope] -->D[Class scope]
+    A -->C & D
+    B -->D
+```
+
+Only class-scoped variables can be reached from other scopes via properties or fields.  
+Variables declared in methods or blocks cannot be accessed from others because they may not exist at that time, they may not be "in scope".
+
 
 🚧 Under Construction 🚧
 

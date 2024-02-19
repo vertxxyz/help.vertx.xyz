@@ -1,6 +1,6 @@
 ## Lifetime of async functions
 Unlike coroutines, async functions are not tied to the lifetime of a UnityEngine object.
-This not only means that they will continue when an object is destroyed, but also across Play mode boundaries and into Edit mode.
+This not only means that they will continue when an object is destroyed, but also across Play Mode boundaries and into Edit mode.
 
 ### Resolution
 Use a [`CancellationToken`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken) to exit out of the async function early.  

@@ -1,98 +1,96 @@
 @use 'base';
 
 .mermaid {
-  margin: base.$block-container-margins;
-  
-  &:has(.statediagram) {
-    display: flex;
-    flex-grow: 1;
-    justify-content: center;
-    margin: 15px 22px 15px 10px;
-    padding: 0 0 10px 0;
-  }
-  
-  .flowchart-link {
-    stroke: #D0D0D0 !important;
-  }
+    margin: base.$block-container-margins;
 
-  .transition {
-    stroke: #D0D0D0 !important;
-  }
-
-  #flowchart-pointEnd,
-  #statediagram-barbEnd {
-    stroke: #D0D0D0 !important;
-    fill: #D0D0D0 !important;
-  }
-
-  .node.statediagram-note, .node.statediagram-note rect {
-    fill: base.$unity-colors-app_toolbar-background !important;
-    font-size: 10pt !important;
-    text-align: center !important;
-    shape-rendering: crispedges !important;
-    stroke: none !important;
-  }
-
-  .node rect, .node circle, .node ellipse, .node polygon, .node path {
-    fill: #282828 !important;
-    stroke: #D0D0D0 !important;
-  }
-
-  .label text, span, p {
-    fill: #D0D0D0 !important;
-    color: #D0D0D0 !important;
-  }
-
-  .edgeLabel .label rect,
-  .edgeLabel {
-    fill: base.$unity-colors-window-background !important;
-    background-color: base.$unity-colors-window-background !important;
-  }
-
-  a {
-    label text, span, p {
-      color: base.$link-color !important;
+    &:has(.statediagram) {
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+        margin: 15px 22px 15px 10px;
+        padding: 0 0 10px 0;
     }
 
-    &:hover {
-      label text, span, p {
-        color: base.$link-color-hover !important;
-      }
+    .marker,
+    .transition,
+    .flowchart-link {
+        stroke: #D0D0D0 !important;
     }
 
-    .nodeLabel::after {
-      margin-left: 4px;
-      content: "\2197";
-      font-family: 'JetBrains Mono', monospace;
+    #flowchart-pointEnd,
+    #statediagram-barbEnd {
+        stroke: #D0D0D0 !important;
+        fill: #D0D0D0 !important;
     }
-  }
 
-  /* Gantt */
-  .section0 {
-    fill: rgb(255 255 255 / 49%) !important;
-  }
+    .node.statediagram-note, .node.statediagram-note rect {
+        fill: base.$unity-colors-app_toolbar-background !important;
+        font-size: 10pt !important;
+        text-align: center !important;
+        shape-rendering: crispedges !important;
+        stroke: none !important;
+    }
 
-  .section1 {
-    fill: white !important;
-  }
+    .node rect, .node circle, .node ellipse, .node polygon, .node path {
+        fill: #282828 !important;
+        stroke: #D0D0D0 !important;
+    }
 
-  .sectionTitle {
-    fill: #D0D0D0 !important;
-  }
+    .label text, span, p {
+        fill: #D0D0D0 !important;
+        color: #D0D0D0 !important;
+    }
 
-  .task {
-    stroke-width: 1px !important;
-    shape-rendering: crispedges !important;
-    fill: base.$unity-colors-app_toolbar-background !important;
-    stroke: white !important;
-  }
+    .edgeLabel .label rect,
+    .edgeLabel {
+        fill: base.$unity-colors-window-background !important;
+        background-color: base.$unity-colors-window-background !important;
+    }
 
-  .node circle.state-end {
-    stroke: none !important;
-    fill: #D0D0D0 !important;
-  }
+    a {
+        label text, span, p {
+            color: base.$link-color !important;
+        }
 
-  .grid .tick text {
-    fill: base.$body-color !important;
-  }
+        &:hover {
+            label text, span, p {
+                color: base.$link-color-hover !important;
+            }
+        }
+
+        .nodeLabel::after {
+            margin-left: 4px;
+            content: "\2197";
+            font-family: 'JetBrains Mono', monospace;
+        }
+    }
+
+    /* Gantt */
+    .section0 {
+        fill: rgb(255 255 255 / 49%) !important;
+    }
+
+    .section1 {
+        fill: white !important;
+    }
+
+    .sectionTitle {
+        fill: #D0D0D0 !important;
+    }
+
+    .task {
+        stroke-width: 1px !important;
+        shape-rendering: crispedges !important;
+        fill: base.$unity-colors-app_toolbar-background !important;
+        stroke: white !important;
+    }
+
+    .node circle.state-end {
+        stroke: none !important;
+        fill: #D0D0D0 !important;
+    }
+
+    .grid .tick text {
+        fill: base.$body-color !important;
+    }
 }

@@ -17,7 +17,7 @@ title: "Unity, huh, how?"
 ### Functionality
 - [Error dialogs](Editor/Error%20Dialogs.md)
 - [Freezes, crashes, and pauses](Freezes%20Crashes%20and%20Pauses.md)
-- [Play mode](Play%20Mode.md)
+- [Play Mode](Play%20Mode.md)
 
 ## Programming
 ### General

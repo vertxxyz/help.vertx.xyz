@@ -25,14 +25,14 @@ While source control is a powerful and necessary presence in your project, it ca
 | Remote         | A location on a server.                                                                                                                                      |
 | Origin         | Another name for the remote repository.                                                                                                                      |
 | Clone          | Downloading a remote repository from scratch.                                                                                                                |
-| Commit         | A saved state, a snapshot of your project.<br/>Also a verb, the act of storing that state.                                                                   |
+| Commit         | A saved state, a snapshot of your project.<br/>Also a verb, the act of storing that state.<br/>Your repository is a collection of commits.                   |
 | Stage          | Moving files to a state that previews a commit. Un-staged files will not be committed.<br/>Staged files can be considered a half-way state towards a commit. |
 | Push           | Uploading the local repository to the remote so it matches.                                                                                                  |
 | Pull           | Downloading the remote repository locally so it matches.                                                                                                     |
 | Fetch          | Downloading the remote repository locally, but not updating it to match.                                                                                     |
 | Tracked        | Files that have been committed or staged.                                                                                                                    |
 | Discard        | Destructively throw away changes so they match the currently tracked commit.                                                                                 |
-| Branch         | An independent line of commits separate from another.<br/>The default branch is often called `main` or `master`.                                             |
+| Branch         | An independent line of commits separate from another.<br/>The default branch is often called `main` (or `master`[^1]).                                       |
 | Merge conflict | When pulling or pushing a merge conflict occurs when the remote and local don't match.                                                                       |
 | Merge          | The act of combining branches or fixing a merge conflict.                                                                                                    |
 | Checkout       | Setting the state to a certain commit, can be used to temporarily visit older states or other branches.                                                      |
@@ -197,7 +197,10 @@ Some less necessary terms to learn:
 | Pull request | A request to merge a branch (often on a fork) into another. This is often done in open source repos and controlled professional settings. |
 | Blame        | A tool that looks at history and associates changes per-line to the user who committed them.                                              |
 | Diff         | The changes (the difference) between two files or states.                                                                                 |
+| The index    | The location changes are registered to when they are staged.                                                                              |
 
 ---
 
 This page may be incomplete, if you can help please <<report-issue.html>> so this page can be improved.  
+
+[^1]: Master is [generally being phased out](https://sfconservancy.org/news/2020/jun/23/gitbranchname/), but due to the nature of Git, you'll find legacy repos still using the name.
