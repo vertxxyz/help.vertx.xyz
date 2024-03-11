@@ -12,7 +12,7 @@ namespace Troubleshooter.Tests;
 [SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters")]
 public partial class LinkTests
 {
-	private readonly HashSet<string> _embeddedFiles = new();
+	private readonly HashSet<string> _embeddedFiles = [];
 
 	public LinkTests()
 	{

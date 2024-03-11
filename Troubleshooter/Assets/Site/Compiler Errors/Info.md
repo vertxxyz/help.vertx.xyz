@@ -2,7 +2,7 @@
 ## Compiler Errors
 
 Compiler errors describe issues with code that will stop it from being compiled and used.
-These errors are accompanied with [warning messages](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/), error codes that detail what failed.
+These errors are accompanied by [warning messages](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/), error codes that detail what failed.
 
 ### Usage
 When assessing compiler errors, clear the console and work top-down to resolve the first reported error before all others.

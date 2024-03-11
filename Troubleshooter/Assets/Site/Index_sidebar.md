@@ -13,7 +13,7 @@
     - [Utility types](#utility-types)
     - [Utility functions](#utility-functions)
     - [Implementation](#implementation)
-- [Data-Oriented Technology Stack](#data-oriented-technology-stack)
+- [Data-Oriented Technology Stack](#data-oriented-technology-stack-dots)
 - [Building](#building)
 - [UI](#ui)
 - [Physics](#physics-1)

@@ -1,5 +1,5 @@
 ## Serialization depth limit
-Unity serializes C# types by value. This means that even with [reference types](../Programming/Value%20And%20Reference%20Types.md#reference-types) it will not serialize `null`.
+Unity serializes C# types by value. This means that even with [reference types](../Value%20And%20Reference%20Types.md#reference-types) it will not serialize `null`.
 Value types in C# cannot have circular references (references to themselves within themselves), and the same goes for by value serialization. Unity cannot prevent serializable classes referencing themselves, so to prevent an infinite loop it implements a serialization depth limit.
 
 ### Resolution

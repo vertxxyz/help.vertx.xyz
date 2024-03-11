@@ -22,6 +22,6 @@ public sealed partial class RelativeLinkConverter : IHtmlPostProcessor
 			string insert = group.Replace("&amp;", "and");
 			insert = insert.Replace("&", "and");
 			insert = StringUtility.ToLowerSnakeCase(insert);
-			stringBuilder.Append($"onclick=\"loadPage(\'{insert}\')\"");
+			stringBuilder.Append($"onclick=\"loadPage(\'{insert}\')\" class=\"link--internal\"");
 		}, 1);
 }

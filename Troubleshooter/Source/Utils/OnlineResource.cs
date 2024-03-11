@@ -73,7 +73,7 @@ public sealed class OnlineResource
 			_ => throw new ArgumentOutOfRangeException(nameof(cdn), cdn, null)
 		};
 
-		const int MaxRetries = 4;
+		const int maxRetries = 4;
 		int retries = 0;
 		do
 		{
@@ -93,7 +93,7 @@ public sealed class OnlineResource
 			{
 				Console.WriteLine($"\"{uri}\" timed out when attempting to load {nameof(OnlineResource)}, retrying.");
 			}
-		} while (retries++ < MaxRetries);
+		} while (retries++ < maxRetries);
 
 		throw new BuildException($"{uri} could not be loaded.");
 	}
@@ -111,7 +111,7 @@ public class OnlineResources
 	public async Task LoadAll()
 	{
 		Ping ping = new();
-		
+
 		try
 		{
 			CDN chosenCdn = await GetFirstConnectedCDN();

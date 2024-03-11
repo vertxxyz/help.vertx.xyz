@@ -21,4 +21,4 @@ Define an identical layer in the Tags and Layers Settings, and either directly u
 A [`LayerMask`](https://docs.unity3d.com/ScriptReference/LayerMask.html) is not the same as a layer. Do not assign a mask to the `layer` property of a GameObject.
 
 If the error still appears, ensure the console has been cleared. Then log the GameObject and its layer before you assign it to validate your logic.
-See [logging: how-to](../../Debugging/Logging/Logging%20How-to.md) for more information.
+See [logging: how-to](../Debugging/Logging/How-to.md) for more information.

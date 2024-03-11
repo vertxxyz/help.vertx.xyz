@@ -80,7 +80,7 @@ How-to instructions for debugging can be found [here](https://code.visualstudio.
 Rider has detailed information about debugging Unity applications [here](https://www.jetbrains.com/help/rider/Debugging_Unity_Applications.html) and [here](https://www.jetbrains.com/help/rider/Using_Breakpoints.html).
 Rider also has:
 - [Pausepoints](https://blog.jetbrains.com/dotnet/2020/06/11/introducing-unity-pausepoints-for-rider/), the ability to pause ([`Debug.Break`](https://docs.unity3d.com/ScriptReference/Debug.Break.html)) Unity at the end of a frame once a pausepoint is hit.
-- ![Rider watch](watch_dark.svg) Inline watches, add variables or expressions to the inline preview by right-clicking a line and choosing **Add Inline Watch**.
+- ![Rider watch](watch_dark.svg){.inline} Inline watches, add variables or expressions to the inline preview by right-clicking a line and choosing **Add Inline Watch**.
 
 
 ## Debugging builds

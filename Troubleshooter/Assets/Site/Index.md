@@ -41,7 +41,7 @@ title: "Unity, huh, how?"
 - [Physics queries](Physics%20Queries.md)
 - [Character Controller](Character%20Controller.md)
 ### Assets
-- [Resources](Programming/Resources.md)
+- [Resources](Resources.md)
 - [AssetDatabase](Editor%20Extensions/AssetDatabase.md)
 ### Input
 - [Built-in Input Manager](Input/Built-In%20Input.md)
