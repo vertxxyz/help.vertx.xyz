@@ -1,0 +1,25 @@
+﻿# ChatGPT
+User-agent: GPTBot
+User-agent: ChatGPT-User
+# Google Bard
+User-agent: Google-Extended
+# Google Images
+User-agent: Googlebot-Image
+# Anthropic
+User-agent: anthropic-ai
+# Cohere
+User-agent: cohere-ai
+# Webz.io crap, sold to LLMs
+User-agent: Omgilibot
+
+Disallow: /
+
+# Else
+User-agent: *
+Allow: /
+Disallow: /Embeds/
+Disallow: /Images/
+Disallow: /Json/
+Disallow: /Scripts/
+Disallow: /Styles/
+Sitemap: https://unity.huh.how/sitemap.txt

@@ -11,6 +11,8 @@ namespace Troubleshooter;
 public interface IBuildPostProcessor
 {
 	void Process(Arguments arguments, PageResourcesLookup resources, Site site, ILogger logger);
+
+	int Order => 0;
 }
 
 /// <summary>
@@ -25,6 +27,7 @@ public sealed class BuildPostProcessors
 		_all = typeof(IBuildPostProcessor).Assembly.GetTypes()
 			.Where(t => typeof(IBuildPostProcessor).IsAssignableFrom(t) && !t.IsAbstract)
 			.Select(t => (IBuildPostProcessor)ActivatorUtilities.CreateInstance(provider, t))
+			.OrderBy(t => t.Order)
 			.ToArray();
 		_logger = provider.GetRequiredService<ILogger<BuildPostProcessors>>();
 	}

@@ -88,8 +88,6 @@ public static partial class SiteBuilder
 		processors.BuildPostProcessors.Process(arguments, allResources, site);
 
 		arguments.VerboseLog($"{builtPages} pages written to disk. {skippedPages} were skipped as identical, and {ignoredPages} were embeds.");
-
-		SourceIndex.GeneratePageSourceLookup(arguments, allResources);
 	}
 
 	private static PageResourcesLookup CollectPages(Arguments arguments, Site site)

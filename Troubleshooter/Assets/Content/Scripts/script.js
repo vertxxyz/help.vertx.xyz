@@ -505,7 +505,7 @@ function reportIssue() {
                 window.location.href = `https://github.com/vertxxyz/help.vertx.xyz/issues/new?title=&body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Document%20Details%0A%0A%E2%9A%A0%20*Do%20not%20edit%20this%20section.*%0A%0A*%20Content%3A%20%5B${page}%5D(${currentLoc})%0A*%20Content%20Source%3A%20Unknown&labels=content`;
             } else {
                 source = encodeURIComponent(source);
-                window.location.href = `https://github.com/vertxxyz/help.vertx.xyz/issues/new?title=&body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Document%20Details%0A%0A%E2%9A%A0%20*Do%20not%20edit%20this%20section.*%0A%0A*%20Content%3A%20%5B${page}%5D(${currentLoc})%0A*%20Content%20Source%3A%20%5B${source}%5D(https://github.com/vertxxyz/help.vertx.xyz/tree/main/Troubleshooter/${source})&labels=content`;
+                window.location.href = `https://github.com/vertxxyz/help.vertx.xyz/issues/new?title=&body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Document%20Details%0A%0A%E2%9A%A0%20*Do%20not%20edit%20this%20section.*%0A%0A*%20Content%3A%20%5B${page}%5D(${currentLoc})%0A*%20Content%20Source%3A%20%5B${source}%5D(https://github.com/vertxxyz/help.vertx.xyz/tree/main/Troubleshooter${source})&labels=content`;
             }
         });
 }
