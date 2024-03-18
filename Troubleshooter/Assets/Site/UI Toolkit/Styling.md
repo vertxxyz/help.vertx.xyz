@@ -115,7 +115,7 @@ The UI Builder adds extra elements for resizing and highlighting that will not b
 
 Now the element has been selected (or something close to it), you can see a hierarchy of all the elements it's made of, their names, and their classes. The text in the hierarchy follows the [selector rules](#learn-selector-rules) we learned earlier.
 
-You can hover over the elements and they will highlight in the window you are inspecting.
+You can hover over the elements, which will be highlighted in the window you are inspecting.
 
 #### The inspector
 ![UI Toolkit Debugger - Inspector](ui-toolkit-debugger-inspector.png){.padded}

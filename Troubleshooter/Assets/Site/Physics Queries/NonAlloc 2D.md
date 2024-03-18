@@ -21,4 +21,4 @@ for (int i = 0; i < hitCount; i++)
 
 ---
 
-[I am still having problems with my query.](Visual%20Debugging.md)
+[I am still having problems with my query.](Visual%20Debugging%202D.md)

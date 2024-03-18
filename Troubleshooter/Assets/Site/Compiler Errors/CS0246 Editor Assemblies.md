@@ -7,12 +7,12 @@ The type or namespace name 'Foo' could not be found (are you missing a using dir
 
 Unity has a number of [special folders](https://docs.unity3d.com/Manual/ScriptCompileOrderFolders.html) that are reserved for various purposes. A few of these control which assemblies scripts end up in.
 
-| Phase | Assembly name                    | Script files                                                                                                                                |
-|-------|----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| 1     | Assembly-CSharp-firstpass        | Runtime scripts in folders called Standard Assets, Pro Standard Assets and Plugins.                                                         |
-| 2     | Assembly-CSharp-Editor-firstpass | Editor scripts in folders called Editor that are anywhere inside top-level folders called Standard Assets, Pro Standard Assets and Plugins. |
-| 3     | Assembly-CSharp                  | All other scripts that are not inside a folder called Editor.                                                                               |
-| 4     | Assembly-CSharp-Editor           | All remaining scripts (those that are inside a folder called Editor).                                                                       |
+| Phase | Assembly name                    | Script files                                                                                                                                                |
+|-------|----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1     | Assembly-CSharp-firstpass        | Runtime scripts in folders called **Standard Assets**, **Pro Standard Assets** and **Plugins**.                                                             |
+| 2     | Assembly-CSharp-Editor-firstpass | Editor scripts in folders called **Editor** that are anywhere inside top-level folders called **Standard Assets**, **Pro Standard Assets** and **Plugins**. |
+| 3     | Assembly-CSharp                  | All other scripts that are not inside a folder called Editor.                                                                                               |
+| 4     | Assembly-CSharp-Editor           | All remaining scripts (those that are inside a folder called **Editor**).                                                                                   |
 
 :::warning{.small}  
 Anything that is compiled in a phase after the current one cannot be referenced.

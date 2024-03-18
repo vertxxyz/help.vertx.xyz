@@ -11,15 +11,23 @@ Save, and check if there are compiler errors in Unity, if there are no errors li
 1. If it's present, select **regenerate project files** in **Edit | Preferences | External Tools**.
 1. Restart your IDE.
 
-::::
+::::  
+
 ::::note
 #### You have misspelt the type or namespace
-Make sure you follow the autocomplete suggestions of your IDE and do not type things manually.
+Make sure you follow the autocomplete suggestions of your IDE and do not type things manually.  
 :::info{.small}
-If your IDE isn't showing errors, you will need to [configure your IDE](../IDE%20Configuration.md).
+If your IDE isn't showing errors, you will need to [configure your IDE](../IDE%20Configuration.md).  
 :::
 
+::::  
+
+::::note
+#### You are missing the full path to the type
+If the type is nested in another class you must specify the outer class to access the inner.
+`OuterClass.InnerClass` for example.  
 ::::
+
 ::::note
 #### The type doesn't exist
 The type may have changed name, or doesn't exist in the version of Unity or the package you are trying to reference.

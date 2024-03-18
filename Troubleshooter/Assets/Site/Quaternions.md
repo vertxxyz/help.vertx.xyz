@@ -1,7 +1,8 @@
 ## [Quaternions](https://docs.unity3d.com/ScriptReference/Quaternion.html)
 ### What are they?
-Nobody using them practically really needs to know.  
-They're compact fancy four dimensional values that can be easily interpolated between values. That is, to rotate to another orientation via the most direct rotation.
+Quaternions are compact four dimensional values that can be easily interpolated between values (to rotate to another orientation via the most direct rotation).
+
+To use them practically you don't need to understand them beyond that simplified description.
 
 ### What aren't they?
 **Quaternions are not [Euler angles](https://docs.unity3d.com/ScriptReference/Transform-eulerAngles.html)**.  
@@ -17,17 +18,17 @@ Confusingly just as a `Vector3` can represent a position or a direction, a quate
 An orientation is a rotational placement, similar to position. `transform.rotation` is the global orientation of a transform.  
 A rotation is a manipulation of another orientation or rotation, similar to a movement vector.
 
-Sadly, just to confuse everyone rotation is a general term and is used to describe both orientation and rotation.
+Sadly, rotation is a general term and is used to describe both orientations and rotations.
 
 ### The API
-#### Rotation Construction
+#### Rotation construction
 - [Quaternion.identity](Quaternions/Identity.md)
 - [Quaternion.Euler](Quaternions/Euler.md)
 - [Quaternion.AngleAxis](Quaternions/AngleAxis.md)
 - [Quaternion.LookRotation](Quaternions/LookRotation.md)
 - [Quaternion.FromToRotation](Quaternions/FromToRotation.md)
 
-#### Rotation Modification and Application
+#### Rotation modification and application
 - [* (Multiplication)](Quaternions/Multiplication.md)
 - [Quaternion.Inverse](Quaternions/Inverse.md)
 

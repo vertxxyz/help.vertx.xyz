@@ -4,17 +4,9 @@
 - [How to style elements.](UI%20Toolkit/Styling.md)
 
 ### Issues
-::::note
-#### Use the debuggers
-Use the [UI Toolkit Debugger](https://docs.unity3d.com/Manual/UIE-ui-debugger.html) to inspect issues with your panels, including their rects, styles, and hierarchy. If you've used browser dev tools this should be familiar to you.
-
-You can find the debugger at **Window | UI Toolkit | Debugger** or **Window | Analysis | UIElements Debugger** depending on Unity version; right-click on an inspector tab and select it, or press <kbd>Ctrl+F5</kbd>.
-
-The UI Toolkit Events Debugger (**Window | UI Toolkit | Event Debugger**) can help debug issues with element interactions.
-:::info{.small}  
-If the menu item is not present, enable the debugger in **Edit | Project Settings | UI Toolkit | Enable Event Debugger**.
+:::info  
+Use [UI Toolkit's debuggers](UI%20Toolkit/Debugging.md) to inspect issues with your elements, or the events they receive.  
 :::
-::::
 
 #### UI Builder
 - [I cannot use Editor elements.](UI%20Toolkit/Editor%20Elements.md)

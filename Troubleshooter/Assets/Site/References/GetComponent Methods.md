@@ -38,6 +38,17 @@ public interface IDamageable
 {
 	void Damage(int amount);
 }
+
+/// <summary>
+/// Our player can receive damage from <see cref="IDamageable"/> sources.
+/// </summary>
+public class Player : MonoBehaviour, IDamagable
+{
+	public void Damage(int amount)
+	{
+		// ...
+	}
+}
 ```
 
 ### Notes

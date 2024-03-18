@@ -50,18 +50,23 @@ var reload = () => {
 }
 
 var redraw = () => {
-    reloadCanvasByName('vectors-map', drawMap);
+    // reloadCanvasByName('vectors-map', drawMap);
     reloadCanvasByName('vectors-map__global', drawMap__global);
     reloadCanvasByName('vectors-map__local', drawMap__local);
     reloadCanvasByName('vectors-map__local--multi', drawMap__localMulti);
     reloadCanvasByName('vectors-map__x--global', drawMap__xGlobal);
     reloadCanvasByName('vectors-map__x--local', drawMap__xLocal);
     reloadCanvasByName('vectors-map__positions', drawMap__positions);
-    reloadCanvasByName('vectors-map__relative', drawMap__relative);
+    // reloadCanvasByName('vectors-map__relative', drawMap__relative);
 }
 
 function reloadCanvasByName(name, callback) {
     const swp_canvas = document.getElementById(name);
+    if (swp_canvas == null) {
+       console.log(`Canvas with name ${name} was not found.`)
+       return;
+    }
+
     const swp_ctx = swp_canvas.getContext('2d');
 
     // Handle clicking on the canvas
@@ -266,7 +271,7 @@ function drawMap__relative(ctx, pos) {
     ctx.translate(0, 500);
     drawGrid(ctx, {min: 0, max: 10});
     ctx.resetTransform();
-    
+
     // TODO draw moored boat
     // TODO draw wandering north arrow
 }

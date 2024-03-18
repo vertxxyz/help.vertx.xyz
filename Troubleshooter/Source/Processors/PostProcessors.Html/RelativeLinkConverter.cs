@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 
@@ -22,6 +23,7 @@ public sealed partial class RelativeLinkConverter : IHtmlPostProcessor
 			string insert = group.Replace("&amp;", "and");
 			insert = insert.Replace("&", "and");
 			insert = StringUtility.ToLowerSnakeCase(insert);
-			stringBuilder.Append($"onclick=\"loadPage(\'{insert}\')\" class=\"link--internal\"");
+			string insertHref = Path.HasExtension(insert) ? Path.ChangeExtension(insert, ".html") : insert;
+			stringBuilder.Append($"href=\"{insertHref}\" onclick=\"loadPage(\'{insert}\');return false;\" class=\"link--internal\"");
 		}, 1);
 }
