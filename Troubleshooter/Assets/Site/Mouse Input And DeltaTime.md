@@ -6,15 +6,15 @@ Don't scale mouse input by [`Time.deltaTime`](https://docs.unity3d.com/ScriptRef
 
 If you are using combined input with a joystick, only scale the joystick portion of this input.  
 
-:::info{.small}
-You will need to reduce the sensitivity to compensate for this change.
+:::warning  
+You will need to reduce the sensitivity to compensate for this change.  
 :::  
 
 ### Why?
 Mouse input is already a delta (a rate of change).  
 > How many units the mouse travelled this frame
 
-It is already dependent on the time between frames.
+It is *already* dependent on the time between frames.
 
 DeltaTime scaling will make the value **frame rate dependent**. If your game has hitches, you will feel it as jumpiness, as a longer frame-time will give you more time to move your mouse, which you then incorrectly scale again with a larger `deltaTime` value.
 
@@ -31,7 +31,7 @@ If the returned value is dependent on the length of a frame, or isn't constantly
 
 ### Comparing approaches
 :::note  
-#### Scenario 1: You move your mouse 100px over a 20ms frame and 200px over a 40ms frame
+#### Scenario 1: You move your mouse 100px over a 20ms frame, and then 200px over a 40ms frame
 ##### 🟢 Not scaling by deltaTime
 
 | Frame | Frame time | Movement | Added | Total   |
@@ -51,7 +51,7 @@ The value we added on the frame 2 was twice as large as frame 1, this makes sens
 The value we added on frame 2 was four times as large as frame 1, this makes no sense ☹️
 :::  
 :::note  
-#### Scenario 2: You move mouse 200px over a 20ms frame and 100px over a 40ms frame
+#### Scenario 2: You move mouse 200px over a 20ms frame, and then 100px over a 40ms frame
 ##### 🟢 Not scaling by deltaTime
 
 | Frame | Frame time | Movement | Added | Total   |

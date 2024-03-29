@@ -27,4 +27,8 @@ Some programs may only do this to a distance seen as sufficient, flooding the re
 ### Resolution
 Ignore the RGB representation of the image, and feed the Alpha (A) channel from the sampler into the Alpha output of the graph.
 
-If you do want to see a version of the RGB where transparency is black, multiply the RGB channels with the A channel. It is best not to use this as the output as it may introduce transparency artifacts, but you can feed it into a Preview node.
+If you do want to see a version of the RGB where transparency is black, multiply the RGB channels with the A channel. It is best not to use this as the output as it may introduce transparency artifacts, but you can feed it into a [Preview Node](https://docs.unity3d.com/Packages/com.unity.shadergraph@latest/index.html?subfolder=/manual/Preview-Node.html).
+
+:::info
+To only use the A channel, you cannot directly pass RGBA to a node, you must use a [Split Node](https://docs.unity3d.com/Packages/com.unity.shadergraph@latest/index.html?subfolder=/manual/Split-Node.html) to get the Alpha value instead of the first Red channel.
+:::

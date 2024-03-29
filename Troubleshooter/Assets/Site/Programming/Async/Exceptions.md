@@ -3,7 +3,7 @@ The [`Task`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks
 
 ### Resolution
 When you create a `Task` or `Awaitable` by calling an async function that returns one, you **must** `await` that call.  
-In Unity exceptions will be caught by the engine if they are raised at a top-level function, so you don't need to catch in an async `void`-returning function.
+In Unity, exceptions will be caught by the engine if they are raised at a top-level function, so you don't need to catch in an async `void`-returning function.
 
 In practice this means that top-level "fire-and-forget" functions that do not need to be waited for are `async void`, and all functions that are waited on are `async Task` or `async Awaitable` (or their generic versions).
 
@@ -27,7 +27,7 @@ public async void WaitAndPerformAction(float delay, Action callback)
 // Never call this async Awaitable without awaiting it.
 private async Awaitable WaitAndPerformActionAsync(float delay, Action callback, CancellationToken cancellationToken)
 {
-    // Awaitable functions also return an Awaitable, so it should be awaited (of course it also won't wait if not awaited)
+    // Awaitable's methods also return an Awaitable, and must be awaited (of course it also won't wait if not awaited)!
     await Awaitable.WaitForSecondsAsync(delay, cancellationToken);
     callback();
 }

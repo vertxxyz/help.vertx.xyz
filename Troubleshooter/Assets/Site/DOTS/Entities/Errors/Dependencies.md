@@ -5,8 +5,9 @@ Systems take dependencies in, and output them. Collections should not be accesse
 
 ### Resolution
 
-:::warning
-Other exceptions may lead to dependency errors, so be careful to resolve the easiest ones first!
+:::warning  
+Other exceptions may lead to dependency errors, so be careful to resolve the easiest ones first!  
+Errors thrown immediately *after* this error can be the root cause.  
 :::
 
 #### Utilise JobHandles

@@ -4,6 +4,7 @@
 - [Baking.](DOTS/Entities/Baking.md)  
 - [Systems.](DOTS/Entities/Systems.md)  
 - [Transforms.](DOTS/Entities/Transforms.md)
+- [Physics.](DOTS/Entities/Physics.md)
 - [Common errors.](DOTS/Entities/Common%20Errors.md)
 
 [//]: # (- [Miscellaneous build-only issues.]&#40;DOTS/Entities/Build-Only.md&#41;)

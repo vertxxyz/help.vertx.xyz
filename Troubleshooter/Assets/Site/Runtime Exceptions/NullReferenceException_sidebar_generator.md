@@ -11,4 +11,5 @@
     - [Find](NullReferenceException/UnityEngine%20Object%20Find.md)
     - [Add or Create](NullReferenceException/UnityEngine%20Object%20Add%20Or%20Create.md)
     - [Camera.main](NullReferenceException/UnityEngine%20Object%20Camera%20Main.md)
+    - [Singletons](NullReferenceException/UnityEngine%20Object%20Singletons.md)
   - [Plain C# objects](NullReferenceException/Plain%20Object%20Assignment.md)
