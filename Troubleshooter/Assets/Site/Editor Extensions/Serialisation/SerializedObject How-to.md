@@ -193,7 +193,7 @@ for (int i = 0; i < _values.arraySize; i++)
 Adding elements to the end of the array
 ```csharp
 // Increase the size of the array
-_values.arraySize#;
+_values.arraySize++;
 // Unity has initialised lastElement to default values
 SerializedProperty lastElement = _values.GetArrayElementAtIndex(_values.arraySize - 1);
 ```

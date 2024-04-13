@@ -48,9 +48,9 @@ int b = 500;
 `class`, `interface`, `delegate`, and `record` types are reference types.
 
 ```csharp
-int[] a = {0, 1, 2};
+int[] a = { 0, 1, 2 };
 int[] b = a;
-a[0]#;
+a[0]++;
 // a == b
 ```
 
@@ -64,7 +64,7 @@ Incrementing a value in `a` will also affect `b`.
 [<reference>0x7fca1dbff861]
 [a]->[0x7fca1dbff861]
 [b]->[0x7fca1dbff861]
-[0x7fca1dbff861]->[{1, 1, 2}]
+[0x7fca1dbff861]->[{ 1, 1, 2 }]
 ```
 
 ### Methods
@@ -75,8 +75,8 @@ This can trip up programmers who expect them to be different when their values w
 Most[^1] reference types have complete reference semantics, and different variables can reference the same data.
 When two reference types are compared, the references are compared, not the values:
 ```csharp
-int[] a = {0, 1, 2};
-int[] b = {0, 1, 2};
+int[] a = { 0, 1, 2 };
+int[] b = { 0, 1, 2 };
 // a != b
 ```
 Although `a` and `b` may have the same value, they are not at the same place in memory, and are not equal.
@@ -89,8 +89,8 @@ Although `a` and `b` may have the same value, they are not at the same place in 
 [<comp>0xf058bcf5d100]
 [a]->[0x7fca1dbff861]
 [b]->[0xf058bcf5d100]
-[0x7fca1dbff861]->[{0, 1, 2} ᵃ]
-[0xf058bcf5d100]->[{0, 1, 2} ᵇ]
+[0x7fca1dbff861]->[{ 0, 1, 2 } ᵃ]
+[0xf058bcf5d100]->[{ 0, 1, 2 } ᵇ]
 ```
 
 Not all reference types are compared this way, strings are compared by value.

@@ -37,7 +37,7 @@ public void ExampleA()
     while (<>c__DisplayClass0_.i < 10)
     {
         array[<>c__DisplayClass0_.i] = new Action(<>c__DisplayClass0_.<ExampleA>b__0);
-        <>c__DisplayClass0_.i#;
+        <>c__DisplayClass0_.i++;
     }
 }
 
@@ -58,7 +58,7 @@ public void ExampleA()
     while (displayClass.i < 10)
     {
         array[displayClass.i] = new Action(displayClass.B);
-        displayClass.i#;
+        displayClass.i++;
     }
     // displayClass.i is 10
 }
@@ -74,7 +74,7 @@ Redeclare a local version of the counter, using it in the delegate:
 public void ExampleB()
 {
     var actions = new Action[10];
-    for (int i = 0; i < 10; i#)
+    for (int i = 0; i < 10; i++)
     {
         int iLocal = i;
         actions[i] = () => Debug.Log(iLocal);
@@ -108,7 +108,7 @@ public void ExampleB()
         <>c__DisplayClass0_0 <>c__DisplayClass0_ = new <>c__DisplayClass0_0();
         <>c__DisplayClass0_.iLocal = num;
         array[num] = new Action(<>c__DisplayClass0_.<ExampleB>b__0);
-        num#;
+        num++;
     }
 }
 
@@ -134,7 +134,7 @@ public void ExampleB()
         DisplayClass displayClass = new();
         displayClass.iLocal = num;
         array[num] = new Action(displayClass.B);
-        num#;
+        num++;
     }
 }
 ```
