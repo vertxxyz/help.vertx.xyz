@@ -21,7 +21,7 @@ You can use the [debugger](../Debugging/Debugger.md) to step over your code, ins
 ### Inside lambdas
 If you have code like this:
 ```csharp
-for (int i = 0; i < values.Length; i#)
+for (int i = 0; i < values.Length; i++)
 {
     values[i].onClick.AddListener(() => values[i].enabled = false);
 }
@@ -29,7 +29,7 @@ for (int i = 0; i < values.Length; i#)
 The `i` in the delegate is not copied inside the for loop, it is created before it, reused, and increased as the counter of the loop. The value in the listener will increase to `values.Length` at the end of the loop.
 To fix this, declare a local version of the counter that is used in the delegate:
 ```csharp
-for (int i = 0; i < values.Length; i#)
+for (int i = 0; i < values.Length; i++)
 {
     int iLocal = i;
     values[i].onClick.AddListener(() => values[iLocal].enabled = false);

@@ -12,7 +12,7 @@ foreach (RaycastHit hit in results)
 
 // 🟢 Correct, the return value is used in a for loop.
 int hitCount = Physics.SphereCastNonAlloc(ray, radius, results);
-for (int i = 0; i < hitCount; i#)
+for (int i = 0; i < hitCount; i++)
 {
     RaycastHit hit = results[i];
     // ...    

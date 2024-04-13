@@ -172,7 +172,7 @@ See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/Serialized
 ### Iteration & access
 Members in arrays are SerializedProperties themselves, you can iterate an array using the `arraySize` limit, eg:
 ```csharp
-for (int i = 0; i < _values.arraySize; i#)
+for (int i = 0; i < _values.arraySize; i++)
 {
     SerializedProperty element = _values.GetArrayElementAtIndex(i);
     // element.floatValue is now accessible

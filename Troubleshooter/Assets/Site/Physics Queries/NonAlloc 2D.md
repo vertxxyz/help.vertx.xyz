@@ -12,7 +12,7 @@ foreach (RaycastHit2D hit in results)
 
 // 🟢 Correct, the return value is used in a for loop.
 int hitCount = Physics2D.CircleCast(origin, radius, direction, filter, results);
-for (int i = 0; i < hitCount; i#)
+for (int i = 0; i < hitCount; i++)
 {
     RaycastHit2D hit = results[i];
     // ...    

@@ -10,7 +10,7 @@ Value types have value semantics, and each variable has its own copy of the data
 ```csharp
 int a = 0;
 int b = a;
-a#;
+a++;
 // a != b
 ```
 When a value type is assigned to another, this copies by value.

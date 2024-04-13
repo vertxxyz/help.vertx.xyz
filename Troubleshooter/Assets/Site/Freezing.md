@@ -53,12 +53,12 @@ A [functioning IDE](IDE%20Configuration.md) can autocomplete `for` loops by typi
 Reverse `for` loops can be created with <kbd>forr</kbd>. This helps prevent basic typing mistakes.
 
 ```csharp
-for (int x = 0; x < 10; x#)
+for (int x = 0; x < 10; x++)
 {
-    // 🔴 This is an infinite loop because this inner for loop uses x# instead of y#.
+    // 🔴 This is an infinite loop because this inner for loop uses x++ instead of y++.
     // "y" will never reach the condition, and the for loop will never exit.
     // Try to use IDE refactoring tools to rename variables instead of doing it manually.
-    for (int y = 0; y < 10; x#)
+    for (int y = 0; y < 10; x++)
     {
         DoSomething();
     }
