@@ -1,7 +1,7 @@
-## NullReferenceException: UnityEngine.Object — GetComponent
+# NullReferenceException: UnityEngine.Object — GetComponent
 Expand the function you use and confirm you use it correctly:
 
-#### [`GetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) or [`TryGetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.TryGetComponent.html){.foldout}
+### [`GetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) or [`TryGetComponent`](https://docs.unity3d.com/ScriptReference/GameObject.TryGetComponent.html){.foldout}
 
 A component of the target type must be attached to the same GameObject the function is called on. If the value is `null` after calling, then this assumption is wrong.
 1. The **same** GameObject has a component matching the argument.
@@ -13,7 +13,7 @@ A component of the target type must be attached to the same GameObject the funct
 You can use the [`RequireComponent`](https://docs.unity3d.com/ScriptReference/RequireComponent.html) attribute to automatically add component dependencies when adding new components in the editor.
 :::
 
-#### [`GetComponentInChildren`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponentInChildren.html){.foldout}
+### [`GetComponentInChildren`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponentInChildren.html){.foldout}
 
 Only components on active GameObjects are returned unless the `includeInactive` argument is `true`.
 1. Either the same object or a child has a matching component.
@@ -22,7 +22,7 @@ Only components on active GameObjects are returned unless the `includeInactive` 
 1. If the component is on an inactive child, provide the `includeInactive` argument as `true`.
 1. Assignment must occur before access. Often you would use [`Awake`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) to get, and [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) to use.
 
-#### [`GetComponentInParent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponentInParent.html){.foldout}
+### [`GetComponentInParent`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponentInParent.html){.foldout}
 
 Only components on active GameObjects are returned unless the `includeInactive` argument is `true`.
 1. Either the same object or a parent has a matching component.

@@ -1,18 +1,18 @@
-## Using Git with Unity
+# Using Git with Unity
 Git is a popular form of source control used with Unity. Source control allows you to roll back or recover changes made to files in your project.  
 This resource is not exhaustive, but it should get beginners off the ground and using Git.  
 
-#### Other guides
+### Other guides
 If you get stuck using this guide there are similar alternatives that you can search for.
 - [Hextant Studios - Using Git for Unity Projects](https://hextantstudios.com/unity-using-git/)
 - [Unity at Scale - How to set up a Unity project in GitHub.](https://unityatscale.com/unity-version-control-guide/how-to-setup-unity-project-on-github/)
 
 I advise having a look over other resources to prevent misunderstandings, and to understand alternative steps.
 
-#### Alternative steps
+### Alternative steps
 There are also alternate ways to perform most steps. One notable difference is choosing to initialise a local repository on a pre-existing project and linking an empty origin to that project. I chose not avoid this way because it may be harder to learn based on a chosen GUI. Some people also may enjoy an entirely command line approach.
 
-### Familiarise yourself with the terms
+## Familiarise yourself with the terms
 There are a lot of terms to get used to when using Git, and understanding them is key to not overriding your work.  
 While source control is a powerful and necessary presence in your project, it can destroy work when terms are misunderstood and warnings are overlooked.
 
@@ -43,10 +43,10 @@ While source control is a powerful and necessary presence in your project, it ca
 | GUI            | A Graphical User Interface for interacting with Git.                                                                                                         |
 ^^^ See [more terms](#more-terms) below.
 
-### Create your Unity project
+## Create your Unity project
 If you haven't already created a project, create one!
 
-### Create a new remote repository
+## Create a new remote repository
 1. Choose a host for your remote, and create an account.  
    Popular services include [GitHub](https://github.com), [GitLab](https://gitlab.com), and [Bitbucket](https://bitbucket.org).
 1. Create a new repository using your service.
@@ -60,10 +60,10 @@ If you haven't already created a project, create one!
    Choose **private** visibility unless you are confident that you want your project to be public, and have the appropriate licenses to do so.  
    :::
 
-### Choose a Git GUI
+## Choose a Git GUI
 The command line can be finicky and unfamiliar to work with, I recommend a using a Git GUI to interact with your repository.  
 
-#### Standalone
+### Standalone
 Applications that are not embedded into an IDE. Alphabetical; see [Git - GUI clients](https://git-scm.com/downloads/guis) for a more exhaustive list.
 
 | Name                                             | Cost                                                                                                       | Platforms             | Description                                                                                          |
@@ -76,7 +76,7 @@ Applications that are not embedded into an IDE. Alphabetical; see [Git - GUI cli
 | [Sourcetree](https://www.sourcetreeapp.com)      | Free.                                                                                                      | Windows, macOS        | Fine, nothing stand-out.                                                                             |
 | [Sublime Merge](https://www.sublimemerge.com)    | Free to evaluate, $99 for 3 years of updates.                                                              | Windows, macOS, Linux | Minimal interface may be confusing depending on your preferences.                                    |
 
-#### Integrated
+### Integrated
 These days most IDEs have an integrated Git client, consider using it if you're comfortable.
 
 | Name                                                                                                                | Description                                                                                                                                              |
@@ -85,7 +85,7 @@ These days most IDEs have an integrated Git client, consider using it if you're 
 | [Visual Studio Code](https://code.visualstudio.com/docs/sourcecontrol/overview)                                     | Minimal interface reliant on command palette may be confusing depending on your preferences.                                                             |
 | [Visual Studio](https://learn.microsoft.com/en-us/visualstudio/version-control/git-with-visual-studio?view=vs-2022) | Nice visual separation, but a little clunky.                                                                                                             |
 
-### Clone your remote
+## Clone your remote
 This will download the current contents of remote repository to your PC.
 1. Temporarily rename your Unity project to something else so you can clone to an empty directory with the name of your project.
 1. Find out how to clone using your chosen GUI. This may be: **File | Clone**, **Git | Clone**, or similar.  
@@ -95,13 +95,13 @@ This will download the current contents of remote repository to your PC.
 
 A local git repository is represented by a hidden folder in the directory, named `.git`. This folder contains a structure representing the files tracked by git.
 
-### Copy over your project
+## Copy over your project
 1. Open the directory of the project that you renamed in the previous step.
 1. Copy the entire contents of that directory to your local repository's folder.  
    This should be the files and folders at the level of **Assets**, **Library**, **Packages**, and so on.
 1. You can delete the old renamed project after you've confirmed the project in the Git folder functions correctly.
 
-### Set up LFS
+## Set up LFS
 LFS is included in many Git GUI clients, if you have previously [installed git](https://git-scm.com) it may be also be installed.
 
 1. [Download and run LFS.](https://git-lfs.com)
@@ -118,7 +118,7 @@ LFS is included in many Git GUI clients, if you have previously [installed git](
    :::  
    Changes to this file require files be re-staged if staged already.  
 
-### Set up your gitignore
+## Set up your gitignore
 1. If you didn't set up a Unity gitignore file earlier, [GitHub provides a popular one](https://github.com/github/gitignore/blob/main/Unity.gitignore).  
    Place this file at the root of your repository (under the root folder).  
    :::warning{.small}  
@@ -129,7 +129,7 @@ LFS is included in many Git GUI clients, if you have previously [installed git](
 1. Check that the **Library** folder's contents is not present in the staged files. If is is, your gitignore is incorrectly configured.  
    The contents of **Temp**, **UserSettings**, and **Logs**, or files with `.csproj` or `.sln` extensions, should also not be present.
 
-### Commit and push
+## Commit and push
 :::error  
 Do not commit things before you have checked the changes.  
 [It is hard to undo commits, and it is even harder to undo pushed changes.](https://sethrobertson.github.io/GitFixUm/fixup.html)  
@@ -139,26 +139,26 @@ Do not commit things before you have checked the changes.
 1. Push your commit to origin (the remote repository).  
   You may have to sign in to Git, configure ssh keys, or authenticate via other means to push your changes.
 
-### Repeat!
+## Repeat!
 1. Make changes to your project.
 1. Commit your staged changes.
 1. Push and commit to origin.
 
 If you lose your local changes you can discard that change, reverting things back to the state that is in your currently tracked commit.
 
-### Have others use your repository
+## Have others use your repository
 Users with access to your remote repository should be able to clone it.
 
 When two users are committing to the same location there may be merges, and with merges can come conflicts.  
 It's good practice to commit and pull often.
 
-## Other considerations
+# Other considerations
 
-### Configure smart merge
+## Configure smart merge
 [Smart merge](https://docs.unity3d.com/Manual/SmartMerge.html) (UnityYAMLMerge) merges Unity's [YAML](https://docs.unity3d.com/Manual/UnityYAML.html) serialization format in a semantically correct way.  
 This means it can automatically merge some complex scenarios while avoiding merging things that create an incorrect output. Without this, assets like scenes and prefabs can prove extremely difficult to merge.
 
-#### Configure your Git GUI to use UnityYAMLMerge
+### Configure your Git GUI to use UnityYAMLMerge
 
 1. I recommend moving your `UnityYAMLMerge.exe` file to a fixed location so you don't have to change settings when you update Unity. This merge tool very rarely changes, so it should not be an issue.  
    The executable is present inside your Unity install under `Unity\Editor\Data\Tools\UnityYAMLMerge.exe` on windows, `Unity.app/Contents/Tools/UnityYAMLMerge` on macOS.  
@@ -177,14 +177,14 @@ This means it can automatically merge some complex scenarios while avoiding merg
       ```  
      Making sure your UnityYAMLMerge path is correct.
 
-#### Install a fallback diff/merge tool
+### Install a fallback diff/merge tool
 1. I recommend installing [P4Merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge), you do not need to create an account.
 1. In Unity, select **P4Merge** from **Edit | Preferences | External Tools | Revision Control Diff/Merge**.  
    If this option is not listed, restart Unity, or find the install manually.  
    Once configured here it should be a fallback when smart merge fails to merge correctly.
 
 
-### More terms
+## More terms
 Some less necessary terms to learn:
 
 | Term         | Description                                                                                                                               |

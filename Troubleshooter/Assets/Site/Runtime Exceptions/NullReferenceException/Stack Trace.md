@@ -1,4 +1,4 @@
-## NullReferenceException: Stack trace
+# NullReferenceException: Stack trace
 Stack traces are reports of the path code took to get to an execution point.
 You must understand stack traces before solving runtime exceptions.  
 

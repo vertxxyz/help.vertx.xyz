@@ -1,4 +1,4 @@
-## Coroutines: Waiting
+# Coroutines: Waiting
 
 Starting a coroutine does not cause your code to wait for the coroutine to finish running, it is not blocking.  
 
@@ -6,8 +6,8 @@ When a coroutine is started execution runs until the first `yield`, then executi
 
 Waiting only affects code running inside the coroutine, or another that yields for it.  
 
-### Resolution
-#### 🔴 Instead of
+## Resolution
+### 🔴 Instead of
 ```csharp
 public void Example()
 {
@@ -23,7 +23,7 @@ private IEnumerator MyCoroutine(float waitTime)
     yield new WaitForSeconds(waitTime);
 }
 ```
-#### 🟢 Move your code inside the coroutine
+### 🟢 Move your code inside the coroutine
 ```csharp
 public void Example()
 {

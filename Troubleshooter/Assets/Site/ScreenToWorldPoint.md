@@ -1,9 +1,9 @@
-## [ScreenToWorldPoint](https://docs.unity3d.com/ScriptReference/Camera.ScreenToWorldPoint.html)
+# [ScreenToWorldPoint](https://docs.unity3d.com/ScriptReference/Camera.ScreenToWorldPoint.html)
 
 `ScreenToWorldPoint` takes a `Vector3` argument, where the first two values are screen coordinates, and the third is the distance from the camera.  
 Providing distance is important when using a **perspective camera**, as `0` distance will return the world space camera position.
 
-### Resolution
+## Resolution
 Provide a distance in the z coordinate of the screen position.
 
 <<Code/Specific/ScreenToWorldPoint.rtf>>
@@ -12,7 +12,7 @@ Provide a distance in the z coordinate of the screen position.
 If appropriate, switch your camera to **Orthographic** projection. This is the correct approach when making entirely 2D games.
 :::  
 
-#### Interactive Diagram
+### Interactive Diagram
 
 :::note{.center}
 Drag the point to modify mouse position, move the slider to change the distance.
@@ -26,8 +26,8 @@ Drag the point to modify mouse position, move the slider to change the distance.
 :::slider {#screen_to_world_point_slider}
 :::
 
-### Alternate methods
-#### Using a Plane
+## Alternate methods
+### Using a Plane
 
 Using a [`Plane`](https://docs.unity3d.com/ScriptReference/Plane.html) and [`ScreenPointToRay`](https://docs.unity3d.com/ScriptReference/Camera.ScreenPointToRay.html) avoids having to calculate an appropriate distance from the camera. When the result is on a fixed plane in space, this can be a suitable approach.  
 
@@ -35,7 +35,7 @@ Using a [`Plane`](https://docs.unity3d.com/ScriptReference/Plane.html) and [`Scr
 <<Code/Specific/Plane Raycast.rtf>>
 ^^^ ::You must provide your own plane. Note that the [`Plane` constructor](https://docs.unity3d.com/ScriptReference/Plane-ctor.html) is `normal, point`.::{.warning}
 
-#### Using Physics
+### Using Physics
 Using a [`Raycast`](https://docs.unity3d.com/ScriptReference/Physics.Raycast.html) and [`ScreenPointToRay`](https://docs.unity3d.com/ScriptReference/Camera.ScreenPointToRay.html) avoids having to calculate an appropriate distance from the camera. When the result is meant to be on the surface of colliders, this is the correct approach.
 
 ```csharp

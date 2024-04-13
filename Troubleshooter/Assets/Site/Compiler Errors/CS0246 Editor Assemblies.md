@@ -1,4 +1,4 @@
-## [CS0246](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0246): Editor assemblies
+# [CS0246](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0246): Editor assemblies
 
 ```
 The type or namespace name 'Foo' could not be found (are you missing a using directive or an assembly reference?)
@@ -20,11 +20,11 @@ Anything that is compiled in a phase after the current one cannot be referenced.
 
 You can bypass these rules and set up your on assemblies using [Assembly Definitions](https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html).
 
-### Resolution
+## Resolution
 
 Make sure you're not breaking the reference rules listed in the above description. For example, code outside of an Editor folder cannot reference code inside one, because the editor assembly is compiled after the runtime one.  
 
-#### Common mistakes
+### Common mistakes
 - `PropertyAttribute` and `PropertyDrawer`
   - The `PropertyAttribute` should be in the runtime assembly so it can be referenced by runtime code.
   - The `PropertyDrawer` remains in the Editor assembly.

@@ -1,18 +1,18 @@
-## Input in Fixed Update
+# Input in Fixed Update
 
 **Instantaneous** [`Input`](https://docs.unity3d.com/ScriptReference/Input.html) functions ([`GetKeyDown`](https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html), [`GetMouseButtonDown`](https://docs.unity3d.com/ScriptReference/Input.GetMouseButtonDown.html), and others) will trigger inconsistently when used in `FixedUpdate` or any physics message function like `OnCollisionEnter`.  
 
-#### Why?
+### Why?
 Physics is run at a fixed rate, with physics sometimes  updating multiple times a frame or not at all. If input occurs on a frame where `FixedUpdate` isn't run, it won't be processed by your code.  
 See [`FixedUpdate`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html) for more information.  
 
-### Resolution
+## Resolution
 
 :::note  
-#### I am using FixedUpdate
+### I am using FixedUpdate
 Cache values in [`Update`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html), and consume them in `FixedUpdate`.
 
-#### Example
+### Example
 ```csharp
 private bool _jump;
 
@@ -35,10 +35,10 @@ void FixedUpdate()
 :::  
 
 :::note
-#### I am using a physics message callback
+### I am using a physics message callback
 When using physics callbacks and not calling physics functions, you may be able to move your logic to `Update`.
 
-#### Example
+### Example
 
 ```csharp
 private bool _triggerIsOccupied;

@@ -1,4 +1,4 @@
-## Restart Unity
+# Restart Unity
 
 Restart Unity then [check for console errors](Console%20Errors.md) again.
 

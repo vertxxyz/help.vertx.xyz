@@ -1,14 +1,14 @@
-## BroadcastMessage: No receiver
+# BroadcastMessage: No receiver
 ```
 BroadcastMessage X has no receiver!
 ```
 
-### Check your function is in the class scope
+## Check your function is in the class scope
 ::::note  
 Make sure you have declared the function in the correct scope.  
 Message functions cannot be called if they are local functions.
 
-#### Example
+### Example
 ```csharp
 public class Example : MonoBehaviour
 {
@@ -34,11 +34,11 @@ public class Example : MonoBehaviour
 
 ::::  
 
-### Where possible, use nameof
+## Where possible, use nameof
 ::::note  
 Using `nameof` makes it so your IDE can protect you against spelling mistakes.  
 If you do not have access to `nameof` because 
-#### Example
+### Example
 ```csharp
 public class Example : MonoBehaviour
 {
@@ -56,7 +56,7 @@ public class Example : MonoBehaviour
 
 ::::  
 
-### Don't require a receiver
+## Don't require a receiver
 ::::note  
 You can pass [`SendMessageOptions.DontRequireReceiver`](https://docs.unity3d.com/ScriptReference/SendMessageOptions.DontRequireReceiver.html) to [`BroadcastMessage`](https://docs.unity3d.com/ScriptReference/GameObject.BroadcastMessage.html) so it won't print an error when there is no receiver present on the target.
 
@@ -66,7 +66,7 @@ gameObject.BroadcastMessage(nameof(MessageFunction), SendMessageOptions.DontRequ
 
 ::::  
 
-### Avoid using BroadcastMessage entirely
+## Avoid using BroadcastMessage entirely
 ::::note  
 [`BroadcastMessage`](https://docs.unity3d.com/ScriptReference/GameObject.BroadcastMessage.html) is an expensive and brittle way to send messages between objects.  
 Consider using the [`GetComponents`](https://docs.unity3d.com/ScriptReference/GameObject.GetComponents.html) overload that takes a list (avoiding allocating a new array), getting an [interface](https://learn.unity.com/tutorial/interfaces) that defines your message function. Then loop over the results, calling your function.  

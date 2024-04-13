@@ -1,4 +1,4 @@
-## Physics queries: Ignore Raycast layer
+# Physics queries: Ignore Raycast layer
 
 When you do not use a layer mask in a physics query it will use the [`Physics.DefaultRaycastLayers`](https://docs.unity3d.com/ScriptReference/Physics.DefaultRaycastLayers.html) mask, which excludes the **Ignore Raycast** layer.
 

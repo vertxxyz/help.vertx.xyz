@@ -1,4 +1,4 @@
-## CollisionFilter
+# CollisionFilter
 
 Because colliders bake their Collision Filters from the Layer Collision Matrix, and queries also use a Collision Filter, unlike normal LayerMask-based physics queries, Unity Physics queries end up relying on the matrix.
 
@@ -10,7 +10,7 @@ See **Edit | Project Settings | Physics | Settings**, and the **Layer Collision 
 
 Both object's `BelongsTo` and `CollidesWith` must match to successfully interact.
 
-### Filtering logic
+## Filtering logic
 
 ^^^
 :::note
@@ -36,7 +36,10 @@ public static bool IsCollisionEnabled(CollisionFilter filterA, CollisionFilter f
 :::
 ^^^ From the [Filtering](https://docs.unity3d.com/Packages/com.unity.physics@latest/index.html?subfolder=/manual/collision-queries.html#filtering) section of the Collision Queries documentation.
 
-### Looking at the data
+This means that even when `BelongsTo` is `~0u` (all bits enabled), the target's `CollidesWith` must not be `0`. There must be a layer enabled in the Layer Collision Matrix.  
+This also means you can set a collider's `CollidesWith` to `0` to deny queries from hitting it momentarily.
+
+## Looking at the data
 
 You can check the **Physics Collider | Collision Filter** or **Physics Collider | Geometry | Child | Collision Filter** of the objects you expect to interact with, and validate that your collision filter matches.
 Note that the drawer may display 0-indexed layers, not the raw bitmask value.

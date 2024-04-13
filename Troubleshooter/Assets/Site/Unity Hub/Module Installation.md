@@ -1,4 +1,4 @@
-## Unity Hub: Module installation
+# Unity Hub: Module installation
 You must download and install the [Unity Hub](https://unity.com/download) to install the a module.
 
 1. [Install a version of the Unity Editor.](Editor%20Installation.md)

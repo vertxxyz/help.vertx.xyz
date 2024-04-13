@@ -1,4 +1,4 @@
-## Field alignment in UI Toolkit
+# Field alignment in UI Toolkit
 Elements in the inspector must use the `alignedFieldUssClassName` class (a field on any class inheriting from `BaseField<T>`) to receive the styling that aligns their labels to the same depth.
 
 Add the class to the root VisualElement field that contains your label and control.

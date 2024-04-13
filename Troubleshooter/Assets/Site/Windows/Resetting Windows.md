@@ -1,4 +1,4 @@
-## Resetting windows
+# Resetting windows
 Closing and reopening windows can fix issues with them.  
 1. Right-click on a tab and click **Close Tab**
 2. Reopen the window  

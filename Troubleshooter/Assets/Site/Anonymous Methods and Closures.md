@@ -1,10 +1,10 @@
-## Anonymous methods and closures
+# Anonymous methods and closures
 Say you have the code:
 ```csharp
 public void ExampleA()
 {
     var actions = new Action[10];
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 10; i#)
     {
         actions[i] = () => Debug.Log(i);
     }
@@ -12,7 +12,7 @@ public void ExampleA()
 ```
 When the logs in `actions` are invoked after this loop there will be 10 logs of `10`.  
 
-#### Why does this occur?{.foldout}
+### Why does this occur?{.foldout}
 
 What the code really looks like when compiled is this:  
 ```csharp
@@ -37,7 +37,7 @@ public void ExampleA()
     while (<>c__DisplayClass0_.i < 10)
     {
         array[<>c__DisplayClass0_.i] = new Action(<>c__DisplayClass0_.<ExampleA>b__0);
-        <>c__DisplayClass0_.i++;
+        <>c__DisplayClass0_.i#;
     }
 }
 
@@ -58,7 +58,7 @@ public void ExampleA()
     while (displayClass.i < 10)
     {
         array[displayClass.i] = new Action(displayClass.B);
-        displayClass.i++;
+        displayClass.i#;
     }
     // displayClass.i is 10
 }
@@ -68,13 +68,13 @@ Looking past the fancy symbols (see the manually simplified code), you can see a
 That class is shared across all Actions we create, and `i` is increased to `10` over the loop's iterations.  
 When the delegate is invoked after the loop, that value, `10`, is used.
 
-### Resolution
+## Resolution
 Redeclare a local version of the counter, using it in the delegate:
 ```csharp
 public void ExampleB()
 {
     var actions = new Action[10];
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 10; i#)
     {
         int iLocal = i;
         actions[i] = () => Debug.Log(iLocal);
@@ -82,7 +82,7 @@ public void ExampleB()
 }
 ```
 
-#### Why does this work?{.foldout}
+### Why does this work?{.foldout}
 
 The new version of the compiled code looks like this:
 ```csharp
@@ -108,7 +108,7 @@ public void ExampleB()
         <>c__DisplayClass0_0 <>c__DisplayClass0_ = new <>c__DisplayClass0_0();
         <>c__DisplayClass0_.iLocal = num;
         array[num] = new Action(<>c__DisplayClass0_.<ExampleB>b__0);
-        num++;
+        num#;
     }
 }
 
@@ -134,7 +134,7 @@ public void ExampleB()
         DisplayClass displayClass = new();
         displayClass.iLocal = num;
         array[num] = new Action(displayClass.B);
-        num++;
+        num#;
     }
 }
 ```
@@ -148,11 +148,11 @@ If you use [JetBrains Rider](https://www.jetbrains.com/lp/dotnet-unity/) you can
 Captured variable is modified in the outer scope
 :::
 
-### How to enforce no closures
+## How to enforce no closures
 This isn't always applicable, but certain methods like UI Toolkit's [`RegisterCallback`](https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.RegisterCallback.html) take in an args parameter, using generics to capture variables in pooled classes.  
 If you're using a delegate that expects not to capture variables, you can mark it with the `static` keyword (as of C# 9.0).
 
-#### Example
+### Example
 ```csharp
 field.RegisterCallback<ClickEvent, VisualElement>(
     static (_, element) => element.Focus(),

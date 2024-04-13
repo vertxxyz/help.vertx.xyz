@@ -1,4 +1,4 @@
-## Understanding FixedUpdate
+# Understanding FixedUpdate
 
 Fixed Update is run when it's required, it is not run every frame, sometimes it's run multiple times a frame.  
 
@@ -11,7 +11,7 @@ It is run repeatedly until fixed time catches up with real time, and the result 
 You can read Unity's version of this description in the [Important Classes - Time](https://docs.unity3d.com/Manual/TimeFrameManagement.html) section of the scripting manual.  
 :::
 
-### Frame diagram
+## Frame diagram
 
 Do not visualise core logic in a project using MonoBehaviours as parallel, because it is completely linear.  
 Background threads do work, including scheduling rendering, performing parallel tasks, and so on. But the execution of your `Update`/`FixedUpdate` code is linear.
@@ -55,7 +55,7 @@ You can see an expanded version of a frame in the Unity documentation: [order of
 :::
 
 
-### Fixed Update diagram
+## Fixed Update diagram
 :::note{.center}  
 Start at the top right dot, and follow the 🔷 choices until the diagram exits.  
 :::
@@ -83,11 +83,11 @@ stateDiagram-v2
 ```  
 ^^^ ::This logic is simplified for consumption. Unity provide their own [time logic diagram](https://docs.unity3d.com/Manual/TimeFrameManagement.html#:~:text=higher%20CPU%20load.-,Unity%E2%80%99s%20Time%20Logic,-The%20following%20flowchart).<br>The native Unity source is not public, so we can't see the code. Entities implements similar logic in [`RateUtils.FixedRateCatchUpManager`](https://github.com/needle-mirror/com.unity.entities/blob/4687de6a32cbcd99443282806fa6393f1ab1ca35/Unity.Entities/RateUtils.cs#L140).::{.info}
 
-### Notes
-#### Input in `FixedUpdate`
+## Notes
+### Input in `FixedUpdate`
 Because `FixedUpdate` is not guaranteed to run every frame, this makes it a very poor place to poll instantaneous input.
 
-#### Maximum delta time
+### Maximum delta time
 [`Time.maximumDeltaTime`](https://docs.unity3d.com/ScriptReference/Time-maximumDeltaTime.html) bounds the number of times fixed update can run due to a this limit on the amount of time that can pass in one frame[^2]. 
 This helps prevent a fixed update cascade, where the cost of running many fixed updates to catch up causes the frame time to rise, which in turn causes more fixed updates.
 

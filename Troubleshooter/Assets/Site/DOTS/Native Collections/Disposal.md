@@ -1,4 +1,4 @@
-## Native collections: Disposal issues
+# Native collections: Disposal issues
 ```
 ObjectDisposedException: The collection has been deallocated, it is not allowed to access it
 ```
@@ -7,7 +7,7 @@ ObjectDisposedException: The collection has been deallocated, it is not allowed 
 InvalidOperationException: The X YJob.Value has been deallocated. All containers must be valid when scheduling a job.
 ```
 
-### Resolution
+## Resolution
 
 1. Check that you have allocated the native collection using a non-default constructor, the constructor must take an [`Allocator`](https://docs.unity3d.com/ScriptReference/Unity.Collections.Allocator.html).
 1. Check that you have not prematurely called `Dispose` on your native collection.

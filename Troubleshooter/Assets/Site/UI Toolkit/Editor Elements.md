@@ -1,4 +1,4 @@
-## UI Builder: Editor extension authoring
+# UI Builder: Editor extension authoring
 To enable Editor extension authoring for the current UXML document in the UI Builder, either:
 
 :::note

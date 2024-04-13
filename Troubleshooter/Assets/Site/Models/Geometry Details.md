@@ -1,4 +1,4 @@
-## Geometry details in Unity
+# Geometry details in Unity
 Different applications store vertex attributes in different ways.
 
 Unity needs separate vertices for different attributes. Which can be colours, normal information for smoothness/hard edges, UVs, and so on.  

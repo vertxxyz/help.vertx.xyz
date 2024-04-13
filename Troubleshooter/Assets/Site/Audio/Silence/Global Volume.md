@@ -1,4 +1,4 @@
-## Global volume
+# Global volume
 **Global volume** should not be zero in **Edit | Project Settings | Audio**.
 
 ---

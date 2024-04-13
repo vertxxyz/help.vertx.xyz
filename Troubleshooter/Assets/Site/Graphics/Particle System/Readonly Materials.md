@@ -1,10 +1,10 @@
-## Readonly materials
+# Readonly materials
 
 
 Materials can be readonly when imported from models or provided in readonly sources like packages.  
 A particle system's default material is from built-in resources, and cannot be modified.
 
-### Resolution
+## Resolution
 1. A new material should be created using the shader used by the material you want to replicate.  
 ![Material Inspector | Shader dropdown](../../Materials/material-shader.png)  
 You can also create a material from a shader by right-clicking on the shader and creating the material via the context menu.  

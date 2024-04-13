@@ -1,12 +1,12 @@
-## [CS0246](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0246): Other considerations
+# [CS0246](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0246): Other considerations
 
 ```
 The type or namespace name 'Foo' could not be found (are you missing a using directive or an assembly reference?)
 ```
 
-### Either
+## Either
 ::::note
-#### You have an IDE issue
+### You have an IDE issue
 Save, and check if there are compiler errors in Unity, if there are no errors listed, then the issue isn't a real issue and your IDE needs to be refreshed.
 1. If it's present, select **regenerate project files** in **Edit | Preferences | External Tools**.
 1. Restart your IDE.
@@ -14,7 +14,7 @@ Save, and check if there are compiler errors in Unity, if there are no errors li
 ::::  
 
 ::::note
-#### You have misspelt the type or namespace
+### You have misspelt the type or namespace
 Make sure you follow the autocomplete suggestions of your IDE and do not type things manually.  
 :::info{.small}
 If your IDE isn't showing errors, you will need to [configure your IDE](../IDE%20Configuration.md).  
@@ -23,13 +23,13 @@ If your IDE isn't showing errors, you will need to [configure your IDE](../IDE%2
 ::::  
 
 ::::note
-#### You are missing the full path to the type
+### You are missing the full path to the type
 If the type is nested in another class you must specify the outer class to access the inner.
 `OuterClass.InnerClass` for example.  
 ::::
 
 ::::note
-#### The type doesn't exist
+### The type doesn't exist
 The type may have changed name, or doesn't exist in the version of Unity or the package you are trying to reference.
 Check the documentation, ensuring you are looking at the correct version.
 

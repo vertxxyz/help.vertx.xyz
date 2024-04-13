@@ -1,4 +1,4 @@
-### [Script loading issues](Script%20Loading%20Issues.md)
+## [Script loading issues](Script%20Loading%20Issues.md)
 - [Class and file names](Script%20Loading%20Issues/Script%20Name.md)
 - [Console errors](Script%20Loading%20Issues/Console%20Errors.md)
 - [Checking inheritance](Script%20Loading%20Issues/Base%20Type.md)

@@ -1,10 +1,10 @@
-## [Quaternion.identity](https://docs.unity3d.com/ScriptReference/Quaternion-identity.html)
-### Declaration
+# [Quaternion.identity](https://docs.unity3d.com/ScriptReference/Quaternion-identity.html)
+## Declaration
 ```csharp
 Quaternion.identity
 ```
 
-### Description
+## Description
 Identity is the zero rotation. `(0, 0, 0, 1)`.
 
 :::note

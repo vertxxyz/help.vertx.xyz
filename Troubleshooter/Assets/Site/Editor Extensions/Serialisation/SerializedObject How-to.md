@@ -1,17 +1,17 @@
-## SerializedObject: How-to
+# SerializedObject: How-to
 
 [`SerializedObject`](https://docs.unity3d.com/ScriptReference/SerializedObject.html) is a window into Unity's serialized datastructures. It exposes a [`SerializedProperty`](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) structure, objects used to access items in the serialization hierarchy.  
 
 `SerializedObject` and `SerializedProperty` are the best way to access and modify Unity-serialized structures; with automatic undo support, multi-object editing, and simplified functions for Editor UI.  
 
-### Preamble
+## Preamble
 Don't try to create complex Editors by drawing each element individually unless you absolutely require it. A series of [Property Drawers](https://docs.unity3d.com/ScriptReference/PropertyDrawer.html) is almost always preferable to reduce uniquely authored content, and increase usability.  
 
 This guide only attempts to communicate how to access values, and not how to write entire editors. For the sake of linearity these examples use [IMGUI](https://docs.unity3d.com/Manual/GUIScriptingGuide.html), but I would recommend using [UI Toolkit](https://docs.unity3d.com/Manual/UIElements.html), which also supports UI binding by path name.
 
 UI Toolkit comes with helpers for drawing entire UI hierarchies like [`InspectorElement.FillDefaultInspector`](https://docs.unity3d.com/ScriptReference/UIElements.InspectorElement.FillDefaultInspector.html), which can allow you to easily draw an object's entire editor inline with minimal code. Styling can be shared using USS, and generally you reduce the code quantity when making complex Editors.
 
-### Example structure
+## Example structure
 
 <<Code/Editor/SerializedObject/Base.html>>  
 
@@ -44,7 +44,7 @@ ApplyModifiedProperties()
 [SerializedProperty (Configuration)|objectReferenceValue: UnityEngine.Object]
 ```
 
-### SerializedObject in Editors
+## SerializedObject in Editors
 
 ```csharp
 [CustomEditor(typeof(Example))]
@@ -109,7 +109,7 @@ public override void OnInspectorGUI()
 Changes made in a [PropertyDrawer](https://docs.unity3d.com/ScriptReference/PropertyDrawer.html) will persist if the editor that draws them performs the logic.
 :::  
 
-### Sub-properties
+## Sub-properties
 Going levels deeper requires [`FindPropertyRelative`](https://docs.unity3d.com/ScriptReference/SerializedProperty.FindPropertyRelative.html).
 
 ```csharp
@@ -140,7 +140,7 @@ private void OnEnable()
 [SerializedProperty (Configuration)|]
 ```
 
-### Values
+## Values
 
 You **cannot** retrieve the C# instance associated with a SerializedProperty that isn't the bottom of the serialization hierarchy. So, in our example, we cannot retrieve the value for `_data` from its SerializedProperty, we can only go deeper and get the value of the last descendants.  
 Once at a SerializedProperty that is at the bottom there are predefined *Value* properties that can be used to access the value Unity has serialized.  
@@ -168,11 +168,11 @@ See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/Serialized
 [<red>SerializedProperty (_data)|]
 ```
 
-### Arrays
-#### Iteration & access
+## Arrays
+### Iteration & access
 Members in arrays are SerializedProperties themselves, you can iterate an array using the `arraySize` limit, eg:
 ```csharp
-for (int i = 0; i < _values.arraySize; i++)
+for (int i = 0; i < _values.arraySize; i#)
 {
     SerializedProperty element = _values.GetArrayElementAtIndex(i);
     // element.floatValue is now accessible
@@ -189,23 +189,23 @@ for (int i = 0; i < _values.arraySize; i++)
 [SerializedProperty (_values\[0..arraySize\])|]
 ```
 
-#### Adding elements
+### Adding elements
 Adding elements to the end of the array
 ```csharp
 // Increase the size of the array
-_values.arraySize++;
+_values.arraySize#;
 // Unity has initialised lastElement to default values
 SerializedProperty lastElement = _values.GetArrayElementAtIndex(_values.arraySize - 1);
 ```
 
 Inserting elements into the array is achieved with [`InsertArrayElementAtIndex`](https://docs.unity3d.com/ScriptReference/SerializedProperty.InsertArrayElementAtIndex.html).
-#### Removing elements
+### Removing elements
 Use [`DeleteArrayElementAtIndex`](https://docs.unity3d.com/ScriptReference/SerializedProperty.DeleteArrayElementAtIndex.html) to remove an element at an array index.  
 If the type is Object Reference you may need to set [`objectReferenceValue`](https://docs.unity3d.com/ScriptReference/SerializedProperty-objectReferenceValue.html) to null beforehand, or else a call to this method will nullify the reference and not remove the element.  
 
 
 
-### Objects
+## Objects
 Every new `UnityEngine.Object` type in the serialization hierarchy is a new `SerializedObject`. This means that using `FindPropertyRelative` will not iterate its children, as the children are a part of a different hierarchy.  
 To iterate the children of another object you need to instance a new SerializedObject.
 
@@ -298,7 +298,7 @@ private void OnDisable()
 }
 ```
 
-### Manual property iteration
+## Manual property iteration
 Serialized Property is actually an iterator, and in more advanced setups can be used as a part of a loop to retrieve all children of a property.  
 
 ```csharp

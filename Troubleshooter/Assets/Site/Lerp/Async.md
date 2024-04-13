@@ -1,4 +1,4 @@
-## Lerp: Async await
+# Lerp: Async await
 
 You can create async functions that move between two values over a period of time by incrementing a timer, and normalising the value to `0->1` by dividing by the duration.
 
@@ -6,7 +6,7 @@ You can create async functions that move between two values over a period of tim
 This requires [`Awaitable`](https://docs.unity3d.com/2023.1/Documentation/ScriptReference/Awaitable.html) which was introduced in 2023.1.
 :::  
 
-### Example
+## Example
 
 ```csharp
 async void MoveTo(Vector3 destination, float duration = 1)

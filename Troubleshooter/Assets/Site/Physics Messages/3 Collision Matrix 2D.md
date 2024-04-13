@@ -1,4 +1,4 @@
-## Collision matrix (2D)
+# Collision matrix (2D)
 
 If your two colliders don't match in the matrix you **will not** get collision messages.  
 If you're trying to receive events that don't match, consider using a [trigger](3%20Trigger%20Matrix%202D.md) event instead, note that they have a [different method signature](2%20Trigger%20Messages%202D.md).

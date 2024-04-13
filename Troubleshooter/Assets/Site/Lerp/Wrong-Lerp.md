@@ -1,4 +1,4 @@
-## Wrong-lerp
+# Wrong-lerp
 
 Lerp is **linear**, if `t` changes at a constant speed, so does the output.  
 Wrong-lerp is an application of lerp that produces smooth, yet imperfect movement towards a target value.  
@@ -12,7 +12,7 @@ Accompanied by such phrases like:
 
 This common hacky application easily creates smooth motion.
 
-### Downsides
+## Downsides
 - `speed` isn't speed, it's a vague quickness.
 - `target` is approached, it isn't reached. This moves a vague proportion towards it instead.
 - The result depends on the frame rate.  
@@ -22,7 +22,7 @@ This common hacky application easily creates smooth motion.
 If you don't need exact outcomes or durations and aren't too worried about differences across frame rates, applying lerp like this is a common creative way to smooth movement.  
 
 :::note{.center}
-#### Graph
+### Graph
 
 ```d3
 graph-wrong-lerp
@@ -34,7 +34,7 @@ value = Mathf.Lerp(value, 1, Time.deltaTime * 10);
 
 :::
 
-### Improvement
+## Improvement
 
 Using a more complex `t` can solve frame rate dependency problems.
 
@@ -45,7 +45,7 @@ value = Mathf.Lerp(value, target, 1 - Mathf.Pow(fraction, Time.deltaTime));
 Where `fraction` is a `0->1` factor that defines a percentage of smoothing. `0` gets you the target (no smoothing), `1` is the source (so smoothed it's useless).  
 
 :::note{.center}
-#### Graph
+### Graph
 
 ```d3
 graph-improved-wrong-lerp
@@ -57,7 +57,7 @@ value = Mathf.Lerp(value, target, 1 - Mathf.Pow(fraction, Time.deltaTime * 10));
 ```
 :::
 
-### Conclusion
+## Conclusion
 
 If you are concerned about any of the downsides, consider alternatives like:
 - [Using Lerp in a Coroutine](Coroutines.md), or applying similar logic in Update.

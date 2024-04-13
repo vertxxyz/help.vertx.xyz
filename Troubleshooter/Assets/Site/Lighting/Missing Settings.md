@@ -1,4 +1,4 @@
-## Missing Light settings
+# Missing Light settings
 
 Some settings (like **Filter and Temperature**) are dependent on various project configuration settings.
 

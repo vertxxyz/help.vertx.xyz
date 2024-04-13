@@ -1,4 +1,4 @@
-### Resources
+## Resources
 [Documentation](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest)  
 [Forums](https://forum.unity.com/forums/input-system.103/)  
 [Github](https://github.com/Unity-Technologies/InputSystem)  

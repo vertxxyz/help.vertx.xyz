@@ -1,14 +1,14 @@
-## [Quaternion.LookRotation](https://docs.unity3d.com/ScriptReference/Quaternion.LookRotation.html)
-### Declaration
+# [Quaternion.LookRotation](https://docs.unity3d.com/ScriptReference/Quaternion.LookRotation.html)
+## Declaration
 <<Code/Info/Quaternions/LookRotation 1.html>>
 
-### Description
+## Description
 Creates a rotation with ::`forward`::{.quaternion-forward} and ::`upwards`::{.quaternion-up}.  
 ::`upwards`::{.quaternion-up} is used to guide the orientation, and ::`right`::{.quaternion-right} becomes the cross-product between it and ::`forward`::{.quaternion-forward}.  
 
 Combined with [`Vector3.Cross`](https://docs.unity3d.com/ScriptReference/Vector3.Cross.html) this function is a staple for creating orientations.
 
-### Interactive diagram
+## Interactive diagram
 
 :::note{.center}
 Drag the sphere near ::`forward`::{.quaternion-forward} or ::`upwards`::{.quaternion-up} to modify their direction.
@@ -20,7 +20,7 @@ Drag the sphere near ::`forward`::{.quaternion-forward} or ::`upwards`::{.quater
 
 <<Code/Info/Quaternions/LookRotation 3.html>>
 
-### In use
+## In use
 
 When setting [`transform.forward`](https://docs.unity3d.com/ScriptReference/Transform-forward.html), `LookRotation` is used[^1]:  
 <<Code/Info/Quaternions/LookRotation 2.html>>  

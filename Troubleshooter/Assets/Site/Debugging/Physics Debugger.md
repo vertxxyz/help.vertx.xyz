@@ -1,7 +1,7 @@
-## Physics Debugger
+# Physics Debugger
 You can open the Physics Debugger via **Window | Analysis | Physics Debugger**.
 
-### Visualising queries
+## Visualising queries
 If you're trying to debug **3D** physics queries (overlap, check, cast) via the Queries tab.
 
 ^^^
@@ -14,7 +14,7 @@ Your version of Unity may not have the Queries tab, you would have to update to 
 
 You can [visualise collision geometry](#visualising-collision-geometry) if it's unclear what's being hit by a query.
 
-### Visualising collision geometry
+## Visualising collision geometry
 You can show collision geometry in the scene by enabling its visibility from the overlay in the bottom right of the Scene view window.
 
 ---

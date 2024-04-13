@@ -1,4 +1,4 @@
-## Unity Hub: Module installation issues
+# Unity Hub: Module installation issues
 
 :::warning  
 Manually installed editor versions cannot be modified via the Unity Hub.  

@@ -42,6 +42,12 @@
 		background-color: transparent;
 		display: contents;
 	}
+
+    h3.code-block--no-background {
+        font-size: 0.94em;
+        display: block;
+        padding-left: 0;
+    }
 }
 
 pre {
@@ -109,7 +115,7 @@ pre {
 			height: 26px;
 		}
 	}
-	
+
 	.dropdown-caret {
 		margin-top: -3px;
 	}
@@ -148,14 +154,14 @@ pre {
 			fill: #bdbdbd;
 		}
 	}
-	
+
 	&.collapsable--collapsed {
 		user-select: none;
-		
+
 		> .collapsable__icon {
 			transform: rotate(270deg) translate(-3px, 0);
 		}
-		
+
 		> .collapsable__contents {
 			display: none;
 		}
@@ -163,12 +169,12 @@ pre {
 
 	&.collapsable--expanded {
 		&::before { }
-		
-		> .collapsable__description { 
+
+		> .collapsable__description {
 			display: none;
 		}
 	}
-	
+
 	> .collapsable__description {
 		color: #787878;
 		background-color: #303030;

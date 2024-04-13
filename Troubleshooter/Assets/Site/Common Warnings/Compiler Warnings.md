@@ -1,4 +1,4 @@
-## Common compiler warnings
+# Common compiler warnings
 :::code-block--no-background  
 
 - [CS0414](Compiler%20Warnings/CS0414.md): The field 'foo' is assigned to but its value is never used

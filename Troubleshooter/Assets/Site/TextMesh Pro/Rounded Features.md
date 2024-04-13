@@ -1,9 +1,9 @@
-## TextMesh Pro: Rounded features
+# TextMesh Pro: Rounded features
 
 TextMesh Pro typically uses signed distance fields to cheaply represent fonts well at multiple distances.  
 Distance fields work best with smooth features due to their typically low resolution.
 
-### Resolution
+## Resolution
 Increase the **Atlas Resolution** or **Sampling Point Size** until the quality of the text has reached a threshold you are happy with.  
 
 :::warning{.small}

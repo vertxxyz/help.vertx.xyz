@@ -1,4 +1,4 @@
-## Getting data out of jobs
+# Getting data out of jobs
 
 Data can only be retrieved from jobs via [native collections](https://docs.unity3d.com/Packages/com.unity.collections@latest/index.html?subfolder=/manual/index.html).
 
@@ -9,10 +9,10 @@ This means you need to:
 1. Read the results present in the collection.
 1. Dispose of the collection when you're finished with it.
 
-### Choosing a native collection
+## Choosing a native collection
 See [collection types](https://docs.unity3d.com/Packages/com.unity.collections@latest/index.html?subfolder=/manual/collection-types.html) for a complete overview of native collections.
 
-#### Retrieving multiple values
+### Retrieving multiple values
 
 | Type                                                                                                                                                                                                                                                                                                                                                                      | Description                                                     | Requires capacity | Supports parallel writes |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|-------------------|--------------------------|
@@ -27,10 +27,10 @@ For situations requiring parallel writing either the capacity must be specified 
 
 Many custom structures exist that act as native bridges. You can search sources like GitHub for custom native collections such as native trees.
 
-#### Retrieving one value
+### Retrieving one value
 The [`NativeReference`](https://docs.unity3d.com/Packages/com.unity.collections@latest/index.html?subfolder=/api/Unity.Collections.NativeReference-1.html) is the same as a `NativeArray` of length `1`, but it semantically implies a single value.
 
-### Example
+## Example
 
 ```csharp
 
@@ -68,7 +68,7 @@ public struct MyJob : IJob
         /* Collapsable: Example usage */
         // --- Example usage ---
         int length = Output.Length;
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i < length; i#)
         {
             Output[i] = i * Multiplier;
         }

@@ -1,4 +1,4 @@
-## Scene view: Selection
+# Scene view: Selection
 Check that Scene pickability isn't disabled for the object's layer.
 
 ![Scene view pickability](scene-view-pickability.png)  

@@ -1,4 +1,4 @@
-## Shared vertices and smooth shading
+# Shared vertices and smooth shading
 Due to Unity's [representation of geometry](../../Models/Geometry%20Details.md) there must be separate vertices for different attributes. These may be be colours, normal information for smoothness/hard edges, UVs, and so on.
 Without different vertices then the values in the shared vertex contribute to both triangles, and often cannot properly represent them individually.
 

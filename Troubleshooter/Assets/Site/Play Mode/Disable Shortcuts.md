@@ -1,4 +1,4 @@
-## Disable shortcuts
+# Disable shortcuts
 You can disable Unity's shortcuts in the Game view via the Unity Shortcuts button in the toolbar.
 
 ^^^

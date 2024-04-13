@@ -1,8 +1,8 @@
-## Value and reference types
+# Value and reference types
 
 This is a short overview of value and reference behaviour. This description does not go over other topics like boxing, heap and stack memory, or tuples.
 
-### Value types
+## Value types
 `bool`, `char`, `float` and other [floating-point numeric types](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types), `int` and other [integral numeric types](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types), and `struct` types are value types.
 
 Value types have value semantics, and each variable has its own copy of the data.
@@ -10,7 +10,7 @@ Value types have value semantics, and each variable has its own copy of the data
 ```csharp
 int a = 0;
 int b = a;
-a++;
+a#;
 // a != b
 ```
 When a value type is assigned to another, this copies by value.
@@ -23,12 +23,12 @@ The value of `a`: `0`, was copied into `b`, and when `a` was incremented, `b` wa
 [b]->[0]
 ```
 
-#### Methods
+### Methods
 When a value type is returned via a method or property this is also a copy.
 Directly modifying the return value of these statements will not modify the original value. The compiler will throw a warning when you attempt this, because the logic performed is useless (see [CS1612](Compiler%20Errors/CS1612.md)).
 This behaviour can be modified in certain contexts with the [`ref`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/ref) or [`in`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-parameter-modifier) keywords.
 
-#### Comparisons
+### Comparisons
 When two value types are compared, they are done so by value:
 
 ```csharp
@@ -44,13 +44,13 @@ int b = 500;
 [b]->[<comp>500 ᵇ]
 ```
 
-### Reference types
+## Reference types
 `class`, `interface`, `delegate`, and `record` types are reference types.
 
 ```csharp
 int[] a = {0, 1, 2};
 int[] b = a;
-a[0]++;
+a[0]#;
 // a == b
 ```
 
@@ -67,11 +67,11 @@ Incrementing a value in `a` will also affect `b`.
 [0x7fca1dbff861]->[{1, 1, 2}]
 ```
 
-#### Methods
+### Methods
 When a reference type is returned or passed to a method or property this is also a copy of the reference.
 This can trip up programmers who expect them to be different when their values were never copied.
 
-#### Comparisons
+### Comparisons
 Most[^1] reference types have complete reference semantics, and different variables can reference the same data.
 When two reference types are compared, the references are compared, not the values:
 ```csharp
@@ -96,9 +96,9 @@ Although `a` and `b` may have the same value, they are not at the same place in 
 Not all reference types are compared this way, strings are compared by value.
 Often this should feel intuitive, when comparing complex structures you expect each instance to be different even when identical, when comparing simple types you expect them to be the same.
 
-## Null
+# Null
 Null is a reference that indicates a lack of an associated value. It has no location or members.
-### Reference types
+## Reference types
 Reference types can be assigned to null. This is the default state of a reference type. Trying to access a value that is null will cause that code to fail at runtime, throwing a [NullReferenceException](Runtime%20Exceptions/NullReferenceException.md).
 
 ```nomnoml
@@ -111,7 +111,7 @@ Reference types can be assigned to null. This is the default state of a referenc
 [null]-->[?]
 ```
 
-### Value types
+## Value types
 By default, value types cannot be null, because they are always pointing directly to a value.
 Value types can be made to be nullable by appending `?` to the type. See [nullable value types](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types).
 

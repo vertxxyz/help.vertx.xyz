@@ -1,13 +1,13 @@
-## Generating normals
+# Generating normals
 
 [`RecalculateNormals`](https://docs.unity3d.com/ScriptReference/Mesh.RecalculateNormals.html) is not robust when double-sided meshes that share vertices between front and back faces are used. It cannot properly determine which triangles should be used to generate the vertex normals in that case.
 
-### Implementation
+## Implementation
 
 To properly calculate normals when multiple triangles share the same vertices you must selectively generate the normals based on the triangles you care about.
 
 Inigo Quilez has a nice article on [generating mesh normals](https://iquilezles.org/articles/normals/) that I recommend reading. However, you can calculate normals using the example code listed below.
-#### Example
+### Example
 
 ```csharp
 normals = new Vector3[vertices.Length];
@@ -28,7 +28,7 @@ for (int t = 0; t < triangleLength; t += 3)
     normals[i2] += n;
 }
 
-for (var i = 0; i < normals.Length; i++)
+for (var i = 0; i < normals.Length; i#)
     normals[i].Normalize();
 ```
 

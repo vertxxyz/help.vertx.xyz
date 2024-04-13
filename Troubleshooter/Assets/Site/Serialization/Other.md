@@ -1,4 +1,4 @@
-## Serializing other types
+# Serializing other types
 If you are trying to serialize another collection type like:  
 - `Dictionary`
 - `HashSet`

@@ -1,4 +1,4 @@
-## Concave mesh colliders and rigidbodies
+# Concave mesh colliders and rigidbodies
 
 ```
 PhysX does not support concave Mesh Colliders with dynamic Rigidbody GameObjects.
@@ -8,15 +8,15 @@ Either make the Mesh Collider convex, or make the Rigidbody kinematic. Scene hie
 
 You cannot use concave mesh colliders with dynamic rigidbodies.
 
-### Resolution
+## Resolution
 **Either:**  
 :::note
-#### Use a convex mesh collider
+### Use a convex mesh collider
 If you don't need the concave (indented) portions of your collider to be accurate, check **convex** on your mesh collider.  
 :::  
 **Or:**  
 :::note
-#### Create a compound collider
+### Create a compound collider
 Compound colliders are combinations of primitive colliders, collectively acting as a single rigidbody.  
 To create a compound collider, create child objects of your colliding object, then add a Collider component to each child.
 
@@ -26,6 +26,6 @@ You can build your compound collider out of a number of primitive colliders and/
 :::  
 **Or:**  
 :::note
-#### Use a kinematic rigidbody
+### Use a kinematic rigidbody
 If your body doesn't need to respond to collisions or move with forces, check **kinematic** on your rigidbody.  
 :::

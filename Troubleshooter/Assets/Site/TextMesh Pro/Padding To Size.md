@@ -1,8 +1,8 @@
-## TextMesh Pro: Padding to sampling point size
+# TextMesh Pro: Padding to sampling point size
 
 If there isn't enough padding surrounding text then features will blur together when viewed at a distance due to the nature of TextMesh Pro's signed distance field font representation.
 
-### Resolution
+## Resolution
 Adjust the **padding** on the Font Asset through the Update Atlas Texture button or the Font Atlas Creator.  
 
 Typically the ratio of **padding** to **sampling point size** should be **1:10**. For example, a sampling point size of `90` would have a padding of `9`. Adjust the padding as required. A larger **atlas resolution** may be needed to accomodate these changes.  

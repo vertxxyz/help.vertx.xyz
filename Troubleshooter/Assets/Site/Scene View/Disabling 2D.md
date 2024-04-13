@@ -1,4 +1,4 @@
-## Disabling 2D-mode
+# Disabling 2D-mode
 
 Disable the 2D toggle in the [Scene view control bar](https://docs.unity3d.com/Manual/ViewModes.html).  
 ![2D Scene view Toggle](scene-view-2d-toggle.png)  

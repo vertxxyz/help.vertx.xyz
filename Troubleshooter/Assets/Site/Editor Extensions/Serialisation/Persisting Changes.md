@@ -1,11 +1,11 @@
-## Persisting changes
+# Persisting changes
 
 If you're modifying something from an editor context it needs to be dirtied.  
 If something is changed and not dirtied, that change is transient and will be wiped.
 
-### Options in order of preference:
+## Options in order of preference:
 ::::note
-#### 1. SerializedObject and SerializedProperty
+### 1. SerializedObject and SerializedProperty
 :::note
 Although daunting at first, [`SerializedObject`](https://docs.unity3d.com/ScriptReference/SerializedObject.html) is a powerful system to record changes and automatically display extendable UI through property drawers. To learn how to access serialized fields and sub-objects, see [SerializedObject: how-to](SerializedObject%20How-to.md).
 :::
@@ -16,13 +16,13 @@ This will also record an undo; if you don't want an undo, use [`ApplyModifiedPro
 If your Object can be modified externally, you should call [`Update`](https://docs.unity3d.com/ScriptReference/SerializedObject.Update.html) before drawing the fields to synchronise the SerializedObject with the base object.  
 ::::
 ::::note
-#### 2. Undo.RecordObject
+### 2. Undo.RecordObject
 Call [`RecordObject`](https://docs.unity3d.com/ScriptReference/Undo.RecordObject.html) **before** directly making changes to an Object to apply persistent changes[^1].  
 
 To correctly handle prefab changes, call [`RecordPrefabInstancePropertyModifications`](https://docs.unity3d.com/ScriptReference/PrefabUtility.RecordPrefabInstancePropertyModifications.html) after `RecordObject`.
 ::::
 ::::note
-#### 3. EditorUtility.SetDirty
+### 3. EditorUtility.SetDirty
 The final option for recording modifications is [`SetDirty`](https://docs.unity3d.com/ScriptReference/EditorUtility.SetDirty.html). This will not record undo states.
 ::::
 

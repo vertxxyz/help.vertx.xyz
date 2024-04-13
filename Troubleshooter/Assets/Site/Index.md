@@ -2,7 +2,7 @@
 title: "Unity, huh, how?"
 ---
 
-:::{#main-page--content}
+:::{#main-page--content .title-page}
 ## General
 ### Interface
 - [Scene view](Scene%20View.md)

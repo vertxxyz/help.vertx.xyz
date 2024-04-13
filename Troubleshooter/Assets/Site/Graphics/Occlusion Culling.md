@@ -1,6 +1,6 @@
-## Common Occlusion Culling issues
+# Common Occlusion Culling issues
 
-### Troubleshooting
+## Troubleshooting
 The following resources are all present in the same blog post:  
 - [Visualisations](https://blog.unity.com/technology/occlusion-culling-in-unity-4-3-troubleshooting)  
   - Camera Volumes  
@@ -13,7 +13,7 @@ The following resources are all present in the same blog post:
 - [Baking is too slow.](https://blog.unity.com/technology/occlusion-culling-in-unity-4-3-troubleshooting)
 - [Occlusion Data is too large.](https://blog.unity.com/technology/occlusion-culling-in-unity-4-3-troubleshooting)
 
-### Errors
+## Errors
 - [No asset directory.](Occlusion%20Culling/No%20Asset%20Directory.md)
 - [No Renderers that are marked static were found in the scene.  
 Please mark all renderers that will never move as static in the inspector.](Occlusion%20Culling/Occlusion%20Setup.md)

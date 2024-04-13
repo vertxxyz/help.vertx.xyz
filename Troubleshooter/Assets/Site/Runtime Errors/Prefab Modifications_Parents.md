@@ -1,17 +1,17 @@
-## Prefab modifications: Parents
+# Prefab modifications: Parents
 ```
 Setting the parent of a transform which resides in a Prefab Asset is disabled to prevent data corruption.
 ```
 
 Prefab assets are GameObjects in your Project. You do not want to modify them, this would cause permanent modifications to your project.
 
-### Resolution
-#### I do not want to modify a prefab asset
+## Resolution
+### I do not want to modify a prefab asset
 If you are seeing this error, you have probably referenced a prefab, and are trying to modify it instead of the instance.
 If the variable you are calling methods on is the same as your prefab, your setup is wrong.
 
 ::::note
-#### Use the `Instantiate` overload that sets a parent
+### Use the `Instantiate` overload that sets a parent
 [`Instantiate`](https://docs.unity3d.com/ScriptReference/Object.Instantiate.html) has an overload that takes a parent, use that instead.
 
 ```csharp
@@ -29,7 +29,7 @@ void SpawnAndParent(Transform parent)
 ::::
 **Or**
 ::::note
-#### Modify the return value from `Instantiate`
+### Modify the return value from `Instantiate`
 [`Instantiate`](https://docs.unity3d.com/ScriptReference/Object.Instantiate.html) returns the instance it spawned. Store a reference to it and modify that instead.
 ```csharp
 [SerializeField]
@@ -49,7 +49,7 @@ void SpawnAndParent(Transform parent)
 
 If you're confused by the above code, see [referencing prefabs from scenes](../References/References%20To%20Prefabs.md).
 
-#### I know what I'm doing, and want to modify a prefab asset
+### I know what I'm doing, and want to modify a prefab asset
 
 ```csharp
 // Load the content of the Prefab asset so we can modify it.
@@ -73,6 +73,6 @@ PrefabUtility.SavePrefabAsset(prefab);
 This can damage your project when done incorrectly.
 :::
 
-### Notes
+## Notes
 I like to add the suffixes `Prefab`/`Template`/`Asset` and `Instance` to make it clear what is being worked with.
 Use consistent conventions (like the [C# naming conventions](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names#naming-conventions)) to reduce mistakes.

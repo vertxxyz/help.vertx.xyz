@@ -1,4 +1,4 @@
-## Restart
+# Restart
 Restart your computer. Audio drivers can rarely become laggy, causing playback issues.
 
 ---

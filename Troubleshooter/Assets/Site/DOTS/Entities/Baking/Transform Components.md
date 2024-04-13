@@ -1,15 +1,15 @@
-## Baking Transform components
+# Baking Transform components
 The final transform components are driven by calls to `GetEntity`.
 `GetEntity` takes a `TransformUsageFlags` which defines which components are added to objects. If you manually add components, unless the provided flags are `TransformUsageFlags.ManualOverride`, they will be removed if they don't match the setup.
 
-### Resolution
+## Resolution
 If you are missing a component, make sure you are using a `TransformUsageFlags` flag with `GetEntity` that will include it.
 Or use `ManualOverride` and manually add all the components you need.
-#### Notes
+### Notes
 - A GameObject's [static flags](Static%20Entities.md) may override flags, which in turn overrides the final components.
 - Prefabs retrieved by `GetEntity` are given the `Dynamic` flag by default.
 
-### Table
+## Table
 This table shows the outcome if you only specified a single `TransformUsageFlags` flag with one baker.  
 - **Green** areas mean the component will be added.  
 - **Orange** areas mean the component may be added based on what's specified.  
@@ -26,6 +26,6 @@ This table shows the outcome if you only specified a single `TransformUsageFlags
 | **NonUniformScale** | M Has dynamic parent | Y                    | Y                                                  | M Has dynamic parent                | M Has dynamic child               |
 ^^^ ::Note that [static flags](Static%20Entities.md) may override your flags and prefabs retrieved via `GetEntity` are given the `Dynamic` flag by default.::{.warning}
 
-### Combined flags
+## Combined flags
 Multiple bakers will combine their flags, specifying all that is needed, and in some cases this can be quite complicated.  
 For example if a `Renderer` with one submesh is present, then the transform will gain a `Renderable` tag. If there are multiple submeshes then additional entities will be generated, and the root entity will not get flagged as `Renderable`.

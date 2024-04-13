@@ -1,6 +1,6 @@
-## Layer Collision Matrix (2D)
+# Layer Collision Matrix (2D)
 
-### Global
+## Global
 Unity's layer-based collision can exclude colliders and triggers from interacting with each other at all.  
 Check that the toggles matching the colliders layers are enabled in the project settings.
 
@@ -13,7 +13,7 @@ See **Edit | Project Settings | Physics 2D**, and the **Layer Collision Matrix**
 
 See [Layer-based collision detection](https://docs.unity3d.com/Manual/LayerBasedCollision.html) for more information.  
 
-### Local
+## Local
 Individual rigidbody components have **layer overrides** that are merged with the global settings.  
 By default, **include layers** and **exclude layers** should both be set to **nothing**.  
 If you are using these settings, be aware of their impact.

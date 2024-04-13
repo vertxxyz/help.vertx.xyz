@@ -1,7 +1,7 @@
-## Shader Graph: Sprite Renderer setup
+# Shader Graph: Sprite Renderer setup
 If Shader Graphs are improperly configured, sprites won't update when the Sprite Renderer is changed, and the sprites may become clipped by the current settings.
 
-### Resolution
+## Resolution
 
 1. Sprite values should be set via the [Sprite Renderer](https://docs.unity3d.com/Manual/class-SpriteRenderer.html).
 1. Use a Sprite Shader Graph (Lit or Unlit)  if it is available to you.

@@ -1,5 +1,5 @@
-## Serializing simple types
-### Check the type is correct.
+# Serializing simple types
+## Check the type is correct.
 Hover over the type in your IDE to find the namespace[^1], then check the documentation to make sure its namespace is identical.
 Common improperly referenced namespaces include: `System`, `System.Numerics`, and `UnityEngine.UIElements`. If you referenced one of these namespaces and do not understand why, it's likely the first place to look!
 
@@ -8,7 +8,7 @@ You can always resolve namespaces by manually specifying them when you use a typ
 using Object = UnityEngine.Object;
 ```
 
-### Check you are editing the inspected object.
+## Check you are editing the inspected object.
 Are you *sure* the inspected object is the type that contains the variable you are declaring? 👀
 Check that your Component or Scriptable Object is the same.
 

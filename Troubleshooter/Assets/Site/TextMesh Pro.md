@@ -1,4 +1,4 @@
-## TextMesh Pro issues
+# TextMesh Pro issues
 - [Text is **blurry**, or **surrounded by blur**, often when viewed at a distance.](TextMesh%20Pro/Padding%20To%20Size.md)
 - [Text is **surrounded by a faint box**.](TextMesh%20Pro/Padding%20To%20Size.md)
 - [Text has **lines** encroaching into its whitespace.](TextMesh%20Pro/Padding%20To%20Size.md)

@@ -1,4 +1,4 @@
-## Physics Material differences
+# Physics Material differences
 
 The Physics Materials for 3D and 2D are different. One cannot be assigned to a field that takes the other.  
 

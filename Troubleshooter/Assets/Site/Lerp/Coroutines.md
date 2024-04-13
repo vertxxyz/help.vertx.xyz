@@ -1,8 +1,8 @@
-## Lerp: Coroutines
+# Lerp: Coroutines
 
 You can create coroutines that move between two values over a period of time by incrementing a timer, and normalising the value to `0->1` by dividing by the duration.
 
-### Example
+## Example
 
 ```csharp
 public void MoveTo(Vector3 destination)

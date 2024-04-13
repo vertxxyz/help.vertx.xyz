@@ -1,4 +1,4 @@
-## General IDE configuration
+# General IDE configuration
 :::error
 The only[^1] 3 IDEs you should be using are **Visual Studio**, **JetBrains Rider**, or **Visual Studio Code**.
 :::

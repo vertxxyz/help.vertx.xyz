@@ -1,15 +1,15 @@
-## Android NDK not found
+# Android NDK not found
 ```
 Android NDK not found or invalid. Please, fix it in Edit / Unity -> Preferences -> External tools
 ```
 
-### Resolution
-#### If the NDK has not been installed
+## Resolution
+### If the NDK has not been installed
 1. Navigate to the Unity Hub and [install the Android SDK & NDK Tools module](../../Unity%20Hub/Module%20Installation.md) under Android Build Support.  
    Make sure that the Unity version you install the module for is the version you are using.
 1. Navigate to **Edit | Preferences | External Tools | Android** in Unity and tick **Android NDK Install with Unity**.
 
-#### If the NDK was already installed
+### If the NDK was already installed
 1. Open [Android Studio](https://developer.android.com/studio) (install it if you do not have it).
 1. Select **⚙️ Configure** from the bottom right of the welcome page.
 1. Select **SDK Manager**.

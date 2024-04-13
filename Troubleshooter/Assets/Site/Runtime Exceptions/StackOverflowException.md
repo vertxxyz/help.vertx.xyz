@@ -1,15 +1,15 @@
-## StackOverflowException
+# StackOverflowException
 
 A StackOverflowException most often occurs in recursive cases, where code is calling itself in an infinite loop.
 In this case the stack—a place where memory local to a scope is allocated—grows until there is no more space to contain it.
 
-### Resolution
+## Resolution
 Fix the recursive loop.
 
 The [stack trace](../Stack%20Traces.md) should give a very good indicator of the path of the recursive loop. Look for repetition in the trace, and look to remove the cause of the loop.
 
 :::note
-#### Recursive methods
+### Recursive methods
 Recursion is a helpful tool, but as with any loop can easily introduce logic errors, causing it to run infinitely.
 ```csharp
 public void DoSomethingRecursively(int iteration)
@@ -26,7 +26,7 @@ In some other cases recursive loops can hit the limit of the stack without the l
 :::
 
 :::note
-#### Recursive properties
+### Recursive properties
 Calling a property inside of itself can cause an infinite recursive loop.
 ```csharp
 private float _example;
@@ -44,5 +44,5 @@ public float Example
 ```
 :::
 
-### Notes
+## Notes
 Extracting stack traces can become extremely costly in recursive situations as the size grows. Note that logging with stack traces enabled can become a bottleneck in these situations.

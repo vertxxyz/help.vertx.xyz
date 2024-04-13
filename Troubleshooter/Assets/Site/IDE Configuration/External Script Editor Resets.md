@@ -1,4 +1,4 @@
-## IDE configuration: External script editor
+# IDE configuration: External script editor
 
 If the **Edit | Preferences | External Tools | External Script Editor** setting resets itself on startup, consider the following steps:
 

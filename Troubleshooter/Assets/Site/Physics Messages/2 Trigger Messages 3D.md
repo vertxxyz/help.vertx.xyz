@@ -1,9 +1,9 @@
-## Trigger messages (3D)
+# Trigger messages (3D)
 
 Ensure your functions use the correct **types**, **spelling**, and **capitalisation** as below.  
-The variable `collision` can be renamed, and [access modifiers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers) are not important. The parameters are optional if you are not using them.
+The variable `collider` can be renamed, and [access modifiers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers) are not important. The parameters are optional if you are not using them.
 
-### [`OnTriggerEnter`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter.html)
+## [`OnTriggerEnter`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter.html)
 ```csharp
 void OnTriggerEnter(Collider collider)
 {
@@ -11,7 +11,7 @@ void OnTriggerEnter(Collider collider)
 }
 ```
 
-### [`OnTriggerStay`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerStay.html)
+## [`OnTriggerStay`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerStay.html)
 ```csharp
 void OnTriggerStay(Collider collider)
 {
@@ -19,7 +19,7 @@ void OnTriggerStay(Collider collider)
 }
 ```
 
-### [`OnTriggerExit`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerExit.html)
+## [`OnTriggerExit`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerExit.html)
 ```csharp
 void OnTriggerExit(Collider collider)
 {

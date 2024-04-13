@@ -1,3 +1,5 @@
+::::title-page
+
 # Data-Oriented Technology Stack (DOTS)
 ## Entities
 - [Authoring.](DOTS/Authoring.md)
@@ -19,3 +21,5 @@
 ## Native collections
 - [Common errors.](DOTS/Native%20Collections/Common%20Errors.md)
 - [Finding and resolving leaks.](DOTS/Native%20Collections/Leaks.md)
+
+::::

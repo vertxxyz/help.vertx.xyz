@@ -1,10 +1,14 @@
-## Script loading issues
+# Script loading issues
 ```
 Can't add script component 'Foo' because the script class cannot be found.
 Make sure that there are no compiler errors and the file name and class name match.
 ```
 
-### Troubleshooting steps
+```
+'Foo' is missing the class attribute 'ExtensionOfNativeClass'!
+```
+
+## Troubleshooting steps
 Make sure your script is saved, then follow these steps:
 
 1. [Class and file names](Script%20Loading%20Issues/Script%20Name.md)

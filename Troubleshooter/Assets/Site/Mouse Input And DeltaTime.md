@@ -1,4 +1,4 @@
-## Mouse input and deltaTime
+# Mouse input and deltaTime
 
 :::error  
 Don't scale mouse input by [`Time.deltaTime`](https://docs.unity3d.com/ScriptReference/Time-deltaTime.html)!  
@@ -10,7 +10,7 @@ If you are using combined input with a joystick, only scale the joystick portion
 You will need to reduce the sensitivity to compensate for this change.  
 :::  
 
-### Why?
+## Why?
 Mouse input is already a delta (a rate of change).  
 > How many units the mouse travelled this frame
 
@@ -19,7 +19,7 @@ It is *already* dependent on the time between frames.
 DeltaTime scaling will make the value **frame rate dependent**. If your game has hitches, you will feel it as jumpiness, as a longer frame-time will give you more time to move your mouse, which you then incorrectly scale again with a larger `deltaTime` value.
 
 
-#### When to use deltaTime:
+### When to use deltaTime:
 Most input is multiplied by `Time.deltaTime`, this translates their **fixed value**:
 > How far is the joystick tilted?  
 
@@ -29,10 +29,10 @@ To a **delta**:
 Anything that returns a fixed value when evaluated should be scaled by deltaTime. For example, joysticks, held key presses (like WSAD movement), and constants.  
 If the returned value is dependent on the length of a frame, or isn't constantly evaluated, then no scaling should be applied. For example, mouse delta, scroll-wheel delta, and button presses.
 
-### Comparing approaches
+## Comparing approaches
 :::note  
-#### Scenario 1: You move your mouse 100px over a 20ms frame, and then 200px over a 40ms frame
-##### 🟢 Not scaling by deltaTime
+### Scenario 1: You move your mouse 100px over a 20ms frame, and then 200px over a 40ms frame
+#### 🟢 Not scaling by deltaTime
 
 | Frame | Frame time | Movement | Added | Total   |
 |-------|------------|----------|-------|---------|
@@ -41,7 +41,7 @@ If the returned value is dependent on the length of a frame, or isn't constantly
 
 The value we added on the frame 2 was twice as large as frame 1, this makes sense 🙂  
 
-##### 🔴 Scaling by deltaTime
+#### 🔴 Scaling by deltaTime
 
 | Frame | Frame time | Movement | Added | Total  |
 |-------|------------|----------|-------|--------|
@@ -51,8 +51,8 @@ The value we added on the frame 2 was twice as large as frame 1, this makes sens
 The value we added on frame 2 was four times as large as frame 1, this makes no sense ☹️
 :::  
 :::note  
-#### Scenario 2: You move mouse 200px over a 20ms frame, and then 100px over a 40ms frame
-##### 🟢 Not scaling by deltaTime
+### Scenario 2: You move mouse 200px over a 20ms frame, and then 100px over a 40ms frame
+#### 🟢 Not scaling by deltaTime
 
 | Frame | Frame time | Movement | Added | Total   |
 |-------|------------|----------|-------|---------|
@@ -61,7 +61,7 @@ The value we added on frame 2 was four times as large as frame 1, this makes no 
 
 The total is the same as the previous scenario, this makes sense 🙂
 
-##### 🔴 Scaling by deltaTime
+#### 🔴 Scaling by deltaTime
 
 | Frame | Frame time | Movement | Added | Total |
 |-------|------------|----------|-------|-------|
@@ -72,12 +72,12 @@ The total is different to the previous scenario, this makes no sense ☹️
 
 :::  
 
-### Jitter with moving rigidbodies
+## Jitter with moving rigidbodies
 
 [This article](https://www.kinematicsoup.com/news/2016/8/9/rrypp5tkubynjwxhxjzd42s3o034o8) details the appearance of jitter in relation to the movement of physics bodies (which can include the player character).  
 Generally, applying interpolation to rigidbodies that require a level of visual accuracy is advised.
 
-### Details regarding the Input System package
+## Details regarding the Input System package
 
 When using the Input System package, InputActions [accumulate this delta](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest/index.html?subfolder=/api/UnityEngine.InputSystem.Pointer.html#UnityEngine_InputSystem_Pointer_delta) (see `delta`) in such a way that means values during this accumulation may not be what you expect. Using the last read value in an Update should give you an appropriate value for that frame. More complex sub-frame sampling may require more custom handling of this data with that in mind.
 

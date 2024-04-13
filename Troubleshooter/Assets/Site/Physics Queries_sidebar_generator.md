@@ -1,4 +1,4 @@
-### [Physics queries](Physics%20Queries.md)
+## [Physics queries](Physics%20Queries.md)
 - [LayerMasks](Physics%20Queries/Layer%20Masks.md)
 - [GameObject layers](Physics%20Queries/GameObject%20Layers.md)
 - [Ignore Raycast](Physics%20Queries/Ignore%20Raycast.md)

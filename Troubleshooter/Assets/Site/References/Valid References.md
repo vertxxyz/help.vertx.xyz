@@ -1,4 +1,4 @@
-## Valid references diagram
+# Valid references diagram
 
 <script type="module" src="/Scripts/Interactive/References/validReferences.js?v=1.0.2"></script>  
 
@@ -38,7 +38,7 @@ Hover or select elements for more information.
 :::
 
 :::note  
-#### Key
+### Key
 ```nomnoml
 #direction:right
 #leading: 1
@@ -141,18 +141,18 @@ See Scene/Project/Package diagram for location specifics
 :::::
 
 
-#### Scene
+### Scene
 Any content in the hierarchy of a [scene](https://docs.unity3d.com/Manual/CreatingScenes.html).
-#### Project assets
+### Project assets
 Any content in the [project](https://docs.unity3d.com/Manual/ProjectView.html). This is any asset in the Assets or Project Settings directories.
-#### Package assets
+### Package assets
 Any content in a [package](https://docs.unity3d.com/Manual/PackagesList.html). These are assets that appear in the Packages directory in the [Project window](https://docs.unity3d.com/Manual/ProjectView.html). Assets from Unity's Asset Store may use the Package Manager but are not installed as packages.
-#### Prefab assets
+### Prefab assets
 GameObjects in the project packages. Prefab instances in scenes refer to prefab assets, but are not assets themselves.
-#### Prefab asset children
+### Prefab asset children
 GameObjects under the root of prefab assets.
-#### Assets and sub-assets
+### Assets and sub-assets
 Project or package assets that are not prefabs.
 
-### How-to
+## How-to
 If you're unsure how to reference one location from another, refer to the [how-to](Serialized%20References.md#how-to) section.

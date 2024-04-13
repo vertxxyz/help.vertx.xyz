@@ -1,5 +1,5 @@
-## Post-processing: Built-in
-### Resolution
+# Post-processing: Built-in
+## Resolution
 1. Install the [Post-Processing Stack v2](https://docs.unity3d.com/Packages/com.unity.postprocessing@latest/index.html?subfolder=/manual/Installation.html).
 2. Follow the [getting started](https://docs.unity3d.com/Packages/com.unity.postprocessing@latest/index.html?subfolder=/manual/Quick-start.html) instructions.
 3. Set the **Post-process Layer**'s **layer** to the layer of the game object the **Post-process Volume** is on.

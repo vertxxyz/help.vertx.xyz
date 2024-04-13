@@ -1,10 +1,10 @@
-## Scene view drag and drop
+# Scene view drag and drop
 Only certain types of object support dragging into the scene.
 
 All supported objects must be dragged from the [Project window](https://docs.unity3d.com/Manual/ProjectView.html). You cannot drag external assets into the scene without importing them into the project first.
 
 :::note  
-#### List of supported types
+### List of supported types
 
 ^^^  
 

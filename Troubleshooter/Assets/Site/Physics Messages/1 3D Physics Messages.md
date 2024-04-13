@@ -1,11 +1,11 @@
-## Physics messages (3D)
+# Physics messages (3D)
 There are two types of physics messages, collisions and triggers.  
 Decide which type of interaction you want before implementing a message.  
 Physics messages are sent to scripts attached to both bodies.
 
-### Collisions
+## Collisions
 Collisions are physical interactions between two solid bodies.
-### Triggers
+## Triggers
 Triggers can be passed through. Trigger messages are sent when two bodies touch where at least one is non-solid.
 
 ---

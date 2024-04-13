@@ -1,4 +1,4 @@
-## Positions and directions
+# Positions and directions
 It's important to distinguish between **positions** and **directions**, and the various spaces they are relative to.  
 Common mistakes relating to these concepts include:
 - Using a position where a direction is asked for, resulting in large incorrect movements further from the origin.
@@ -7,7 +7,7 @@ Common mistakes relating to these concepts include:
 
 So let's learn how to use vectors, and how to avoid using them incorrectly.
 
-### Vectors
+## Vectors
 First, understand that a vector is just a series of numbers.
 ```csharp
 // (0, 100)
@@ -20,15 +20,15 @@ Maybe these are **positions** in space, but maybe they're **directions** to move
 
 <script type="module" src="/Scripts/Interactive/Vectors/vectors.js?v=1.0.0"></script>
 
-### Frames of reference
+## Frames of reference
 Picture a map where treasure is buried on an island.
 
-#### World space
+### World space
 In our example, world space can be interpreted as the entire map, centered on its origin (bottom left in our example), with up aligned north, and right aligned east.
 
 <canvas id="vectors-map__global" width="500" height="500"></canvas>
 
-#### Local space
+### Local space
 If we instead center the coordinate system on our island, this is an example of a local space.
 
 <canvas id="vectors-map__local" width="500" height="500"></canvas>
@@ -46,16 +46,16 @@ There can be many different local spaces, it's a frame of reference aligned to a
 
 <canvas id="vectors-map__local--multi" width="500" height="500"></canvas>
 
-### Positions
+## Positions
 Think of positions as an **X**, as in **X** marks the spot.
 
 Positions are only useful with a frame of reference.
-#### World space
+### World space
 The world space position of our **X** is relative to the map.
 
 <canvas id="vectors-map__x--global" width="500" height="500"></canvas>
 
-#### Local space
+### Local space
 The local space position of our **X** is relative to a chosen object.
 
 <canvas id="vectors-map__x--local" width="500" height="500"></canvas>
@@ -63,10 +63,10 @@ The local space position of our **X** is relative to a chosen object.
 Take note that while the position appears to be the same, the vectors are different. All vectors have no meaning without a frame of reference.
 If you're given a position you can't know where it is without knowing the space it was provided in.
 
-### Directions
+## Directions
 Think of directions as an arrow. A direction is just a position from the origin of its frame of reference.
 
-#### Directions towards positions
+### Directions towards positions
 A direction towards something has no meaning without a space and an origin to be relative to. If you applied the same arrow to another position on the map you would not find the treasure.
 
 :::::{.interactive-content}
@@ -115,7 +115,7 @@ Vector3 direction = boatTransform.InverseTransformVector(map.TreasurePosition);
 ```
 :::
 
-#### Relative directions
+### Relative directions
 What if we found the treasure, but lost our map! Using our compass we can head north to find the edge of the island the boat is moored on.
 Note how no matter where we are on the island, north is always the same vector. It does not need an origin to be relative to.
 
@@ -127,7 +127,7 @@ Note how no matter where we are on the island, north is always the same vector. 
 
 
 
-#### Normalisation
+### Normalisation
 A direction can have a magnitude (a length), or be normalised. A normalised direction has a magnitude of 1, and can be multiplied with a value to be scaled to that length.
 This is very helpful, because we can scale the vector based on various things to move at a certain speed, or to place something a specific distance away.
 Without normalisation, the length of the scaled vector would vary wildly based on the magnitude of the original.

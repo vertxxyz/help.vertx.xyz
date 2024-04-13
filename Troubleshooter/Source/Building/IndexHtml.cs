@@ -92,7 +92,7 @@ public static class IndexHtml
 		                    {sidebarContent}
 		                </div>
 		                <div class="sidebar-bottom">
-		                    <a id="report-link" class="report-link light-link link--external" onclick="reportIssue()">Report an issue
+		                    <a id="report-link" class="report-link light-link link--external" onclick="reportIssue()" target="_blank">Report an issue
 		                        with this page</a>
 		                    <a href="https://ko-fi.com/vertx" id="kofi-link" class="light-link link--external">Support me on Ko-fi</a>
 		                </div>

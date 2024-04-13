@@ -1,4 +1,4 @@
-## Player logs
+# Player logs
 To view the Player log, open a [Console window](https://docs.unity3d.com/Manual/Console.html) (**Window | General | Console**) and select **⋮ | Open Player Log** from the window menu. You can also navigate to the following folder:
 
 ^^^

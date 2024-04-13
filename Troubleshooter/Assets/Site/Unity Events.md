@@ -1,4 +1,4 @@
-## UnityEvents
+# UnityEvents
 
 - [A UnityEvent displays options for **MonoScript**.](Unity%20Events/Incorrect%20Assignment.md)
 - [A **component** does not appear in the list.](Unity%20Events/Incorrect%20Assignment.md)

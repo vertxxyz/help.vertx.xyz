@@ -1,4 +1,4 @@
-## Undefined Layer
+# Undefined Layer
 
 ```
 A game object can only be in one layer. The layer needs to be in the range [0...31]
@@ -16,7 +16,7 @@ If you're seeing this error you have either not defined the layer in the first p
 **Identical** includes capitalisation and spaces
 :::
 
-### Resolution
+## Resolution
 Define an identical layer in the Tags and Layers Settings, and either directly use the index, or use [`LayerMask.NameToLayer`](https://docs.unity3d.com/ScriptReference/LayerMask.NameToLayer.html) to get the index, then assign it to the GameObject.  
 A [`LayerMask`](https://docs.unity3d.com/ScriptReference/LayerMask.html) is not the same as a layer. Do not assign a mask to the `layer` property of a GameObject.
 

@@ -1,4 +1,4 @@
-## Resetting layout
+# Resetting layout
 Selecting a layout resets the editor windows to match.  
 There are two methods to do this.  
 

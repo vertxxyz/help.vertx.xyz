@@ -1,4 +1,4 @@
-## Exporting FBX files from Blender
+# Exporting FBX files from Blender
 
 In the Transform section of the FBX export, use the following settings to export a correctly oriented and scaled mesh:
 

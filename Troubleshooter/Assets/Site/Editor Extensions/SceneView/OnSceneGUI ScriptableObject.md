@@ -1,8 +1,8 @@
-## OnSceneGUI not called: Scriptable Object
+# OnSceneGUI not called: Scriptable Object
 
 [Editor.OnSceneGUI](https://docs.unity3d.com/ScriptReference/Editor.OnSceneGUI.html) isn't called for editors of ScriptableObjects.
 
-### Resolution
+## Resolution
 Subscribe to the [duringSceneGui](https://docs.unity3d.com/ScriptReference/SceneView-duringSceneGui.html) callback (formerly onSceneGUIDelegate).  
 
 <<Code/Editor/DuringSceneGUI.rtf>>

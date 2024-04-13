@@ -1,13 +1,13 @@
-## Unity Hub: Editor installation issues
-### Make space on your primary drive
+# Unity Hub: Editor installation issues
+## Make space on your primary drive
 You need space on your primary (C:) drive as the Unity Hub will cache downloads there during installations.
 
 Modern versions of the Hub allow you to change these locations (**Preferences ⚙️ | Installs**), but space on the primary drive is still necessary for certain components.
 
-### Antivirus
+## Antivirus
 Check that the Hub is not being blocked by antivirus/security programs, and attempt to whitelist the Hub.
 
-### Logging locations
+## Logging locations
 Check the logs, looking for setup issues close to the bottom of the output:
 
 ^^^
@@ -21,20 +21,20 @@ Check the logs, looking for setup issues close to the bottom of the output:
 
 You can also get to this location via the account dropdown in the top left of the Hub **▾ | Troubleshooting | Open log folder**.
 
-### Different installation locations
+## Different installation locations
 Try installing into a different location using the settings (**Preferences ⚙️ | Installs | Installs Location**).
 
 If you are using macOS, you should check that the Unity Hub has write permissions in the **Privacy and Security | Files and Folders** preferences for the folder you are using (if present).
 
-### Permissions
+## Permissions
 Don't launch the Hub with Administrator privileges as it may prompt you to avoid doing so. Proper configuration and application permissions should be applied normally.
 
-### Restart
+## Restart
 1. Restart your computer.
 1. When the Hub next opens, install any updates it may have.
 
 
-### Ask about it on the forums
+## Ask about it on the forums
 **Check the pinned messages** 📌, and search the [Unity Hub forums](https://forum.unity.com/forums/unity-hub.142/) for your issue, and then make a post there if you cannot find a resolution.
 
 ---

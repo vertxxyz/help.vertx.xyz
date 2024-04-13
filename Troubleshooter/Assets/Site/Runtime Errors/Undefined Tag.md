@@ -1,4 +1,4 @@
-## Undefined Tag
+# Undefined Tag
 
 ```
 Tag: Example is not defined.
@@ -14,7 +14,7 @@ If you're seeing this error you have either not defined one in the first place, 
 **Identical** includes capitalisation and spaces
 :::
 
-### Resolution
+## Resolution
 Define an identical tag in the Tags and Layers Settings and apply it to the GameObject that is being referenced.  
 
 ![Tag Dropdown](tag-dropdown.png)  

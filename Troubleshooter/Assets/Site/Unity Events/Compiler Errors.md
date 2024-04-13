@@ -1,10 +1,10 @@
-## UnityEvent debugging
-#### 1. Save your script
+# UnityEvent debugging
+### 1. Save your script
 :::note
 It may sound basic, but please check!
 :::
 
-#### 2. Check for compiler errors
+### 2. Check for compiler errors
 :::note
 <<General/Console Window.md>>
 <<General/Errors.md>>

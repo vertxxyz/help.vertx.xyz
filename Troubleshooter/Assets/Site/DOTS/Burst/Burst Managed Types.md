@@ -1,4 +1,4 @@
-## Managed allocations in Jobs
+# Managed allocations in Jobs
 
 ```
 Burst error BC1016: The managed function `Foo.Bar()` is not supported.
@@ -11,7 +11,7 @@ Burst's [language restrictions](https://docs.unity3d.com/Packages/com.unity.burs
 but certain Unity-provided structures are provided to work within these restrictions.
 
 
-### Resolution
+## Resolution
 Allocating managed memory in jobs is incredibly slow, and the job isn't able to make use of the Unity Burst compiler to improve performance. So in almost all cases removing this allocation is the way forward.  
 
 When using arrays or lists in Jobs you should be using NativeArray or NativeList, there are many different alternative collection types that can be found in the [Unity Collections Package](https://docs.unity3d.com/Packages/com.unity.collections@latest).  
@@ -22,4 +22,4 @@ When performing many maths functions that may have managed allocations in certai
 As a last resort, not Burst compiling a job will allow for allocation and use of managed types.  
 
 ---  
-You can read more about this decision in the blog ["On DOTS: C++ & C#"](https://blog.unity.com/technology/on-dots-c-c)
+You can read more about this decision in the blog ["On DOTS: C# & C#"](https://blog.unity.com/technology/on-dots-c-c)

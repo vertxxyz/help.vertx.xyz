@@ -1,13 +1,13 @@
 <<Abbreviations/IDE.md>>
-## Compiler Errors
+# Compiler Errors
 
 Compiler errors describe issues with code that will stop it from being compiled and used.
 These errors are accompanied by [warning messages](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/), error codes that detail what failed.
 
-### Usage
+## Usage
 When assessing compiler errors, clear the console and work top-down to resolve the first reported error before all others.
 
-#### Overview
+### Overview
 
 :::code-context
 :::error
@@ -28,7 +28,7 @@ If your error isn't ::underlined in red::{.error-underline} in your IDE, [config
 Compiler errors should be underlined, and you should see autocompleted suggestions as you type.
 :::
 
-### Details
-#### Errors in packages
+## Details
+### Errors in packages
 If errors are appearing from a package, and not Assets, then either the package isn't valid for your version of Unity, or it is corrupted.
 Go to the Package Manager (**Window | Package Manager**), expand the dropdown for the package having issues, and [upgrade or downgrade versions](https://docs.unity3d.com/Manual/upm-ui-update.html) until you no longer have errors in the project.

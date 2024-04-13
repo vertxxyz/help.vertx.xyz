@@ -1,10 +1,10 @@
-## OpenUPM
+# OpenUPM
 
 
 OpenUPM is a package registry that enables developers to easily host and update packages from git.  
 Users can add scopes, and simply add and update packages as if they were hosted officially.  
 
-### Adding packages
+## Adding packages
 
 - Open **Edit | Project Settings | Package Manager**.
 - Add a new Scoped Registry:
@@ -24,5 +24,5 @@ Users can add scopes, and simply add and update packages as if they were hosted 
 - Enter the package name (`com.company.package`{.link--exclude} for example).
 - Select **Add**.
 
-### Updating packages
+## Updating packages
 OpenUPM packages can be updated as normal through the package manager interface.

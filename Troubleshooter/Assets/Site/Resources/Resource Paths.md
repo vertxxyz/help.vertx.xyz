@@ -1,4 +1,4 @@
-## Resource paths
+# Resource paths
 Guidelines for paths used by the Resources API:
 - Paths are **local to the Resources folder** above the asset.  
 - **Don't include the file extension**.  
@@ -6,7 +6,7 @@ Guidelines for paths used by the Resources API:
 
 See [`Resources.Load`](https://docs.unity3d.com/ScriptReference/Resources.Load.html) for more usage information.
 
-### Example
+## Example
 
 ```
 Assets/

@@ -1,14 +1,14 @@
 <<Abbreviations/UPM.md>>
-## ![Visual Studio Code](/Images/vscode.svg) Old Visual Studio Code configuration
+# ![Visual Studio Code](/Images/vscode.svg) Old Visual Studio Code configuration
 
 :::error  
 As of August 2023 Microsoft has released a new version of the Unity extension for VS Code.  
 See [the new configuration steps](Visual%20Studio%20Code.md) if you aren't stuck on an old version of Unity.  
 :::
 
-### Steps
+## Steps
 :::note  
-#### Windows
+### Windows
 1. Install the [.NET SDK](https://dotnet.microsoft.com/download).
     1. Logout or restart Windows.
 1. Install the [.NET Framework 4.7.1 **Developer Pack**](https://dotnet.microsoft.com/download/dotnet-framework/net471).
@@ -19,7 +19,7 @@ See [the new configuration steps](Visual%20Studio%20Code.md) if you aren't stuck
 
 :::  
 :::note  
-#### macOS/Linux
+### macOS/Linux
 1. Install the [.NET SDK](https://dotnet.microsoft.com/download).
 1. Install the [.NET Framework 4.7.1 **Developer Pack**](https://dotnet.microsoft.com/download/dotnet-framework/net471).
 1. Install [Mono with MSBuild](https://www.mono-project.com/download/preview/).
@@ -31,7 +31,7 @@ See [the new configuration steps](Visual%20Studio%20Code.md) if you aren't stuck
 2. Install and update the [Visual Studio Code Editor](https://docs.unity3d.com/Manual/com.unity.ide.vscode.html) package in UPM (`com.unity.ide.vscode`).  
    As a last resort to troubleshooting setup try rolling back the package as some versions have introduced issues. You can always update it again if that fails.
 
-### ⚠️ Warning
+## ⚠️ Warning
 
 VS Code support is [limited](https://forum.unity.com/threads/update-on-the-visual-studio-code-package.1302621/).
 - It's [debugger extension](https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug) has been marked as deprecated.

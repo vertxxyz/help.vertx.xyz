@@ -47,6 +47,7 @@ public partial class LanguageTests
 	private static readonly Regex s_gameObjectRegex = GetGameObjectRegex();
 	private static readonly Regex s_ussRegex = GetUssRegex();
 	private static readonly Regex s_macRegex = GetMacRegex();
+	private static readonly Regex s_playModeRegex = GetPlayModeRegex();
 
 	/// <summary>
 	/// Tests for common issues with capitalisation
@@ -60,8 +61,8 @@ public partial class LanguageTests
 		text.Should().NotContain("game view", StringComparison.Ordinal, "we should write \"Game view\"");
 		text.Should().NotContain("Scene View", StringComparison.Ordinal, "we should write \"Scene view\"");
 		text.Should().NotContain("Project Window", StringComparison.Ordinal, "we should write \"Project window\"");
-		text.Should().NotContain("play mode", StringComparison.Ordinal, "we should write \"Play Mode\"");
 		text.Should().NotContain("Play mode", StringComparison.Ordinal, "we should write \"Play Mode\"");
+		text.Should().NotMatchRegex(s_playModeRegex, "we should write \"Play Mode\""); // Display mode is a thing, so regex is required.
 		text.Should().NotContain("edit mode", StringComparison.Ordinal, "we should write \"Edit Mode\"");
 		text.Should().NotContain("Debug Mode", StringComparison.Ordinal, "we should write \"Debug mode\"");
 		text.Should().NotContain("the hub", StringComparison.Ordinal, "we should write \"the Hub\"");
@@ -84,6 +85,9 @@ public partial class LanguageTests
 
     [GeneratedRegex(@"\bUGUI(?!\.md)[\s.,]")]
     private static partial Regex GetUGuiRegex();
+
+    [GeneratedRegex(@"\bplay mode[\s.,]")]
+    private static partial Regex GetPlayModeRegex();
 
     [GeneratedRegex(@"\buss[\s.,]")]
     private static partial Regex GetUssRegex();

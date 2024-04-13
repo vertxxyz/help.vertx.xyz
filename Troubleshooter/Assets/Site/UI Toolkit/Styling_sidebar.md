@@ -1,4 +1,4 @@
-### Contents
+## Contents
 - [Learn selector rules](#learn-selector-rules)
 - [Understand USS precedence](#understand-uss-precedence)
 - [Create your element](#create-your-element)

@@ -1,4 +1,4 @@
-## Styling elements in UI Toolkit
+# Styling elements in UI Toolkit
 
 This guide describes how to create USS selectors to style complex elements.  
 
@@ -7,7 +7,7 @@ To do this, you must learn USS. USS is a query system similar to CSS that allows
 We choose not to use direct inline styles via C#. Inline styles override all other styling, require recompilation to adjust, and must be specified every time an element is created.
 
 ::::note
-#### Steps taken when styling an element
+### Steps taken when styling an element
 - Learn selector rules to target classes below objects in the hierarchy.
 - Understand USS precedence.
 - Create your element so it's ready for styling.
@@ -16,16 +16,16 @@ We choose not to use direct inline styles via C#. Inline styles override all oth
   + Preview style adjustments of your elements.
 - Construct a USS rule that targets your element.
 
-#### Additionally
+### Additionally
 - Take a peek at the C# source code that actually constructed your control.
 
 ::::
 
 [//]: # ([TOC]  )
 
-### Learn selector rules
+## Learn selector rules
 Go through the [USS selectors](https://docs.unity3d.com/Manual/UIE-USS-Selectors.html) documentation to learn how to construct USS queries against your hierarchy.  
-#### Examples
+### Examples
 This example lists selectors commonly used for basic styling.
 
 ^^^
@@ -71,34 +71,34 @@ Button, .example, #example { ... }
 ```
 ^^^ See the [complete list of supported pseudo-classes](https://docs.unity3d.com/Manual/UIE-USS-Selectors-Pseudo-Classes.html).
 
-### Understand USS precedence
+## Understand USS precedence
 There are a few levels to how styling is prioritised.  
 1. Understand [selector precedence](https://docs.unity3d.com/Manual/UIE-uss-selector-precedence.html).  
 2. If you are using [Theme Style Sheet](https://docs.unity3d.com/Manual/UIE-tss.html), note that style sheets lower in the list are applied over those above.
 
-### Create your element
+## Create your element
 We actually need to see an element to see how to style it. Create an element using the UI Builder or via code.  
 
 Elements should generally not be styled directly via C#'s inline styles. Inline styles override all other styling, require recompilation to adjust, and must be specified every time an element is created.
 
-#### Use BEM when choosing class names
+### Use BEM when choosing class names
 [Block Element Modifier](https://getbem.com) (BEM) is a naming convention that is also used by UI Toolkit[^1]. You can remain consistent with the built-in controls, and keep consistency with others by using it too.
 
 ::::note  
-#### Example
+### Example
 For our styling example we will be styling a Slider. The example will use one from the UI Toolkit Samples **Window | UI Toolkit | Samples**.
 
 ![UI Toolkit Samples - Slider](samples-slider.png){.padded}
 
 ::::
 
-### Use the UI Toolkit Debugger to inspect your element
+## Use the UI Toolkit Debugger to inspect your element
 
 Use the [UI Toolkit Debugger](https://docs.unity3d.com/Manual/UIE-ui-debugger.html) to inspect the styles, types, names, classes, and hierarchy of your element. If you've used browser dev tools this should be familiar to you.
 
 You can find the debugger at **Window | UI Toolkit | Debugger** or **Window | Analysis | UIElements Debugger** depending on Unity version; right-click on an inspector tab and select it, or press <kbd>Ctrl+F5</kbd>.
 
-#### Inspecting your element
+### Inspecting your element
 Select the correct window from the top left of the debugger, and select **Pick Element**. Hover your element until the portion you wish to work with is highlighted, and select it.  
 
 :::error
@@ -110,20 +110,20 @@ The UI Builder adds extra elements for resizing and highlighting that will not b
 <video width="750" height="325" loop muted controls><source type="video/webm" src="/HTML/ui/ui-toolkit/ui-toolkit-debugger-picking.webm"></video>
 ^^^ Picking the background sliding bar of the Slider.
 
-#### The hierarchy
+### The hierarchy
 ![UI Toolkit Debugger - Hierarchy](ui-toolkit-debugger-hierarchy.png){.padded}
 
 Now the element has been selected (or something close to it), you can see a hierarchy of all the elements it's made of, their names, and their classes. The text in the hierarchy follows the [selector rules](#learn-selector-rules) we learned earlier.
 
 You can hover over the elements, which will be highlighted in the window you are inspecting.
 
-#### The inspector
+### The inspector
 ![UI Toolkit Debugger - Inspector](ui-toolkit-debugger-inspector.png){.padded}
 
 Here you can see the layout, stylesheets and the order they are applied, matched selectors and their precedence, state, applied classes, styles and how they are matched, and a dump of the UXML.
 
 
-#### Preview style adjustments of your elements
+### Preview style adjustments of your elements
 In the **Styles** foldout you can override any style temporarily for the element (reload the window or reset its content to reset it).
 
 ^^^  
@@ -136,8 +136,8 @@ Adjust the styles of your element, and surrounding elements under the control un
 These adjustments are temporary, note down what adjustments you have made, or perform the next step in parallel.
 :::
 
-### Construct a USS rule
-#### Use selectors to target your element
+## Construct a USS rule
+### Use selectors to target your element
 In your USS, reconstruct the work you have done in the debugger.  
 Often, you should anchor the styling to the root of the control, using the type, its name, or class. Take note of the preexisting **Matching Selectors** already present on your element for inspiration.
 
@@ -145,7 +145,7 @@ Often, you should anchor the styling to the root of the control, using the type,
 ![UI Toolkit Debugger - Matching selectors](ui-toolkit-debugger-matching-selector.png)  
 ^^^ A preexisting selector that has been used by UI Toolkit for our element.
 
-#### Use properties to style your selector's matches
+### Use properties to style your selector's matches
 Once you've created a selector, use [USS properties](https://docs.unity3d.com/Manual/UIE-uss-properties.html) to style the elements it matches. Learning USS properties and syntax is beyond the scope of this guide, but note it has great similarity with CSS if you ever get lost with a certain style.  
 :::info
 The [USS property data types](https://docs.unity3d.com/Manual/UIE-USS-PropertyTypes.html) page is a specification applying to the [USS common properties](https://docs.unity3d.com/Manual/UIE-USS-SupportedProperties.html) page.  
@@ -153,7 +153,7 @@ Apply the listed syntax rules to formulate a valid property.
 :::
 
 ::::note
-#### Example
+### Example
 ^^^  
 ```css
 .unity-base-slider__drag-container {
@@ -228,7 +228,7 @@ Apply the listed syntax rules to formulate a valid property.
 ::::
 
 
-#### Styling notes
+### Styling notes
 - Make careful adjustments to the combination of selectors you use to not override the styles of other elements that might use the classes.  
   If you see unwanted elements changing due to your style sheet, you will have to construct a more specific selector.
 - I find the complicated part about USS is not the selectors, but the layout, and ramifications of layout in the hierarchy.  
@@ -238,7 +238,7 @@ Apply the listed syntax rules to formulate a valid property.
 - [JetBrains Rider](https://www.jetbrains.com/rider/) supports USS syntax, if you have access to it I highly recommend it.
 
 
-### Take a peek at the C# source code
+## Take a peek at the C# source code
 It's generally good practice to take a look at the [Unity C# reference source code](https://github.com/Unity-Technologies/UnityCsReference/) to see how something works. I keep a copy downloaded to my computer so I can browse it as I work.
 
 In my example, I've been working with a Slider, searching for it in the `UIElements` namespace you can find [the file](https://github.com/Unity-Technologies/UnityCsReference/blob/67d5d85abbea076e469a1642e04f3ab50a326bea/Modules/UIElements/Core/Controls/Slider.cs) **Modules | UIElements | Core | Controls | Slider.cs**.  
@@ -285,11 +285,11 @@ public new static readonly string inputUssClassName = ussClassName + "__input";
 
 You can investigate further, look at the base class `BaseSlider`, follow along to find out what elements it creates and what classes it adds. As most of UI Toolkit is in C#, and doesn't rely on UnityEngine.Object, most of the work is done in constructors and should be very intuitive!  
 
-#### Inline styles
+### Inline styles
 Inline styles are indicated in the debugger. As mentioned previously, inline styles cannot be overridden by USS.
 In these cases you will have to override the style in code, know you can poke around the source code to see why and how something has been done.
 
-#### Complex styles
+### Complex styles
 Sometimes you might find a style isn't one of the [common USS properties](https://docs.unity3d.com/Manual/UIE-USS-Properties-Reference.html), and is instead implemented by [`CustomStyleProperty`](https://docs.unity3d.com/ScriptReference/UIElements.CustomStyleProperty_1.html).  
 A great example of this is `CurveField`, where the curve color is driven by a `CustomStyleProperty<Color>` called [`--unity-curve-color`](https://github.com/Unity-Technologies/UnityCsReference/blob/67d5d85abbea076e469a1642e04f3ab50a326bea/Editor/Mono/UIElements/Controls/CurveField.cs#L60), your USS can use this property[^2].
 

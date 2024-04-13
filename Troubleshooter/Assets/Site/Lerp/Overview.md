@@ -1,4 +1,4 @@
-## Linear interpolation
+# Linear interpolation
 
 Linear interpolation or "[`Lerp`](https://docs.unity3d.com/ScriptReference/Mathf.Lerp.html)", is a simple function that returns a straight-line value between two points (`a` and `b`) based on a normalised value (`t`).  
 
@@ -9,7 +9,7 @@ public static float Lerp(float a, float b, float t)
 }
 ```
 
-### "Huh?"
+## "Huh?"
 **It's simple!**
 
 - When `t` is `<= 0`, `Lerp` will return `a`.
@@ -25,12 +25,12 @@ public static float Lerp(float a, float b, float t)
 - `t = 0.5f`, `value` is `75`.
 - `t = 0.8f`, `value` is `90`.
 
-### Vector2, Vector3, Color, Quaternion...
+## Vector2, Vector3, Color, Quaternion...
 
 All lerp functions are linear, and return the in-between values based on a `0->1` `t` value.  
 Their usage is the same, even though the applications are varied.
 
-### Interactive diagram
+## Interactive diagram
 :::note{.center}
 Drag the slider to modify `t`, edit `a` and `b` in the code below.
 :::
@@ -41,6 +41,6 @@ Drag the slider to modify `t`, edit `a` and `b` in the code below.
 :::
 <<Code/Specific/Lerp/Lerp.html>>  
 
-### Usage
+## Usage
 - [Coroutines](Coroutines.md)
 - [Wrong-lerp](Wrong-Lerp.md)

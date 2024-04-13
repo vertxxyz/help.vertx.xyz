@@ -1,12 +1,12 @@
-## [Quaternion.FromToRotation](https://docs.unity3d.com/ScriptReference/Quaternion.FromToRotation.html)
-### Declaration
+# [Quaternion.FromToRotation](https://docs.unity3d.com/ScriptReference/Quaternion.FromToRotation.html)
+## Declaration
 <<Code/Info/Quaternions/FromToRotation 1.html>>
 
-### Description
+## Description
 Creates a rotation from one direction to another. This will be the most direct rotation.  
 When applied as an orientation, the ::`fromDirection`::{.quaternion-from} axis is rotated to point in ::`toDirection`::{.quaternion-to}.
 
-### Interactive diagram
+## Interactive diagram
 
 :::note{.center}
 Drag the sphere near ::`fromDirection`::{.quaternion-from} or ::`toDirection`::{.quaternion-to} to modify their direction.
@@ -24,7 +24,7 @@ There is an equivalence to [`AngleAxis`](AngleAxis.md) here, axis is the ::`cros
 Note that the rotation angle is scalar—though defined by ::`fromDirection`::{.quaternion-from}, it does not start at the visualised position.
 :::  
 
-### In use
+## In use
 
 Setting [`transform.right`](https://docs.unity3d.com/ScriptReference/Transform-right.html) and [`transform.up`](https://docs.unity3d.com/ScriptReference/Transform-up.html) uses FromToRotation[^1].  
 <<Code/Info/Quaternions/FromToRotation 2.html>>  

@@ -1,8 +1,8 @@
-## Enable toggle: Lifetime functions
+# Enable toggle: Lifetime functions
 
 Disabling a script only affects a few functions implemented by that component. Some of those functions are required to enable the toggle in the component inspector.
 
-### Resolution
+## Resolution
 Add any of the listed functions:
 
 - [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html)

@@ -1,13 +1,17 @@
 @use 'base';
 
-h1 {
+%largest {
     color: base.$header-color;
+    background-color: unset;
     font-size: 2em;
     line-height: 1em;
     font-weight: 700;
+    scroll-margin-top: unset;
+    margin-block-start: unset;
+    margin-block-end: unset;
 }
 
-h2 {
+%large {
     color: base.$header-color;
     background-color: base.$dark-color;
     padding: 5px 15px 6px base.$left-padding;
@@ -19,6 +23,8 @@ h2 {
     line-height: 1em;
     font-weight: 700;
     position: relative;
+    border-top: unset;
+    border-bottom: unset;
 
     &:not(:first-child) {
         margin-block-start: 2em;
@@ -35,18 +41,9 @@ h2 {
     }
 }
 
-%h3-shared {
+%default {
     font-size: 1.1em;
     font-weight: 500;
-}
-
-h2 + h3 {
-    scroll-margin-top: 1em;
-    margin-block-start: 1em;
-}
-
-h3 {
-    @extend %h3-shared;
     color: base.$header-color;
     background: base.$unity-colors-inspector_titlebar-background;
     padding: 6px 8px 6px base.$left-padding;
@@ -70,18 +67,7 @@ h3 {
     }
 }
 
-.note {
-    > h3 {
-        margin-left: -(base.$note-padding);
-        margin-right: -(base.$note-padding);
-    }
-
-    &:has(h3:first-child) {
-        border-color: base.$unity-colors-inspector_titlebar-border;
-    }
-}
-
-h4 {
+%small {
     color: base.$header-color;
     padding: 0 8px 0 0;
     font-size: 1.05em;
@@ -102,7 +88,7 @@ h4 {
     }
 }
 
-h5, h6 {
+%smallest {
     color: base.$header-color;
     font-weight: 500;
     line-height: 1em;
@@ -120,7 +106,71 @@ a.header-permalink.show {
     opacity: 1;
 }
 
-.home-header {
-    @extend %h3-shared;
-    margin-top: 5px;
+h1 {
+    @extend %large;
+}
+
+h2 {
+    @extend %default;
+}
+
+h3 {
+    @extend %small;
+}
+
+h4 {
+    @extend %smallest;
+}
+
+h5, h6 {
+    @extend %smallest;
+}
+
+h1 + h2 {
+    scroll-margin-top: 1em;
+    margin-block-start: 1em;
+}
+
+.note {
+    > h2 {
+        margin-left: -(base.$note-padding);
+        margin-right: -(base.$note-padding);
+    }
+
+    &:has(h2:first-child) {
+        border-color: base.$unity-colors-inspector_titlebar-border;
+    }
+}
+
+
+.title-page {
+    box-sizing: content-box;
+    > :first-child {
+        margin-block-start: 0;
+    }
+
+    h1 {
+        @extend %largest;
+    }
+
+    h2 {
+        @extend %large;
+    }
+
+    h2 + h3 {
+        scroll-margin-top: 1em;
+        margin-block-start: 1em;
+    }
+
+    h3 {
+        @extend %default;
+    }
+
+    h4 {
+        @extend %small;
+    }
+
+    h5, h6 {
+        @extend %smallest;
+    }
 }

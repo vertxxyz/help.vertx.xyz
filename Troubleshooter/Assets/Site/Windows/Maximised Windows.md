@@ -1,4 +1,4 @@
-## Maximised windows
+# Maximised windows
 You can un-maximise a window via one of the following options:
 
 - Right-click on a tab and uncheck **Maximise**.

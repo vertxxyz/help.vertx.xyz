@@ -1,11 +1,11 @@
-## Other considerations for 3D physics messages
+# Other considerations for 3D physics messages
 
-### Correct Colliders
+## Correct Colliders
 Ensure the dimension of the colliders and rigidbodies are 3D.  
 Don't mix different types of colliders and messages.  
 2D and 3D collision systems are separate, and do not interact with each other.
 
-### The obvious
+## The obvious
 1. Your script must be attached to one of the objects involved in the collision.
 1. The colliders on your objects must be enabled.
 1. Mesh colliders must have meshes assigned.

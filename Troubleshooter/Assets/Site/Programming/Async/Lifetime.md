@@ -1,12 +1,12 @@
-## Lifetime of async functions
+# Lifetime of async functions
 Unlike coroutines, async functions are not tied to the lifetime of a UnityEngine object.
 This not only means that they will continue when an object is destroyed, but also across Play Mode boundaries and into Edit mode.
 
-### Resolution
+## Resolution
 Use a [`CancellationToken`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken) to exit out of the async function early.  
 Unity provides [`destroyCancellationToken`](https://docs.unity3d.com/ScriptReference/MonoBehaviour-destroyCancellationToken.html), which is raised when a MonoBehaviour is destroyed. This gives you similar behaviour to a Coroutine's lifetime.
 
-#### Example
+### Example
 ```csharp
 public async void WaitAndPerformAction(float delay, Action callback)
 {
@@ -31,7 +31,7 @@ private async Awaitable WaitAndPerformActionAsync(float delay, Action callback, 
 }
 ```
 
-### Details
+## Details
 If you wanted to exit your function if cancellationToken was raised, you can call `cancellationToken.ThrowIfCancellationRequested();`.  
 If you just want to check whether it has been raised, you can check `cancellationToken.IsCancellationRequested`.  
 

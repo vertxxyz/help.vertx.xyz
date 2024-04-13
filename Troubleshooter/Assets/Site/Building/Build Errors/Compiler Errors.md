@@ -1,9 +1,9 @@
-## Building: Compiler errors
+# Building: Compiler errors
 ```
 Error building Player because scripts had compiler errors
 ```
 
-### Resolution
+## Resolution
 
 This message informs you that the build has failed and that there are other errors.  
 The **compiler errors above this error** are stopping the build.
@@ -11,7 +11,7 @@ The **compiler errors above this error** are stopping the build.
 Open the [Console window](https://docs.unity3d.com/Manual/Console.html) (**Window | General | Console**, <kbd>Ctrl+Shift+C</kbd>) and address them.
 
 
-#### Reminder
+### Reminder
 
 :::error
 These are errors.

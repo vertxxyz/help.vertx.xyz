@@ -1,7 +1,7 @@
-## NullReferenceException: UnityEngine.Object
+# NullReferenceException: UnityEngine.Object
 If you want to handle the case where the object is unassigned:
 :::note
-#### Check the reference isn't null before trying to access it
+### Check the reference isn't null before trying to access it
 - Exit early if `null`.
     ```csharp
     if (example == null)
@@ -26,7 +26,7 @@ Do not use modern null-checking operators[^1] (`?.`, `??`, `??=`) to check for n
 
 If you want to correctly assign the object:
 :::note
-#### Find the cause of `null` values
+### Find the cause of `null` values
 - [I am serializing a reference in the inspector.](UnityEngine%20Object%20Serialized.md)
 - [I am using `GetComponent` or its variants.](UnityEngine%20Object%20GetComponent.md)
 - [I am using `Find` or its variants.](UnityEngine%20Object%20Find.md)

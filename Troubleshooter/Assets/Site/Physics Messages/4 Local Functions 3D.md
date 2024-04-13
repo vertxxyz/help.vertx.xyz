@@ -1,9 +1,9 @@
-## Local functions
+# Local functions
 
 Make sure you have declared the function in the correct scope.  
 Message functions cannot be called if they are local functions.
 
-#### Example  
+### Example  
 ```csharp
 public class Example : MonoBehaviour
 {

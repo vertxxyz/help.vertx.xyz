@@ -1,4 +1,4 @@
-## Console errors
+# Console errors
 
 <<General/Console Window.md>>  
 <<General/Errors.md>>  

@@ -1,4 +1,4 @@
-## Class and file names
+# Class and file names
 
 The name of your class must be **identical** to its file name.  
 
@@ -11,7 +11,7 @@ In this example if your script isn't named ::![Script Icon](script-icon.svg){.in
 This includes **capitalisation** and **spaces**.  
 :::  
 
-### Notes
+## Notes
 - There should only be one `MonoBehaviour` or `ScriptableObject` in a file due to this restriction.  
 - C# uses pascal case (<kbd>PascalCase</kbd>) as its [naming convention](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names#naming-conventions) for types. If your class is lowercase, it's not following this convention.
 - Unity will hide the file extension, but it should be `.cs`.

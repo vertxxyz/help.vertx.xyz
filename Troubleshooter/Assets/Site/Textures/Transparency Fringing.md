@@ -1,9 +1,9 @@
-## Transparency fringing
+# Transparency fringing
 
 Values right outside the border of transparent regions may be saved as white, with image authoring applications varying on their handling of regions in full transparency.
 With different resolutions and padding, this area of unwanted values can bleed into the edges of transparency, causing fringing artifacts.
 
-### Resolution
+## Resolution
 If you're importing a **PSD**, try enabling **Remove Matte** in the [Texture Import settings](https://docs.unity3d.com/Manual/class-TextureImporter.html) for the source asset in the [Project window](https://docs.unity3d.com/Manual/ProjectView.html).
 
 Playing with the **Mip Maps Preserve Coverage** settings may improve the fringing when viewing textures smaller than their authored resolution.

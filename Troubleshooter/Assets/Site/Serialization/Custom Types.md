@@ -1,10 +1,10 @@
-## Serializing custom types
-### I am trying to serialize a built-in type
+# Serializing custom types
+## I am trying to serialize a built-in type
 Various other non-primitive types provided by Unity are serializable.  
 Common examples of these include: `UnityEvent`, `Bounds`,   
 Serializable Unity types should appear in [debug mode](Debug%20Mode.md); look for examples of them appearing in built-in components.
 
-### I am trying to serialize my own type
+## I am trying to serialize my own type
 1. Custom structs and classes should be marked with the `[System.Serializable]` attribute.
 1. ::collapse::{.collapse}
 ::::

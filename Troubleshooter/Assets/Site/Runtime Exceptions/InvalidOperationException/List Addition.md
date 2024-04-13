@@ -1,5 +1,5 @@
-## InvalidOperationException: Collection was modified
-### List addition
+# InvalidOperationException: Collection was modified
+## List addition
 Use a reverse for loop. Because the loop is done in reverse, the elements added to the end are not iterated when you add them, because the index approaches 0. 
 ```csharp
 for (int i = list.Count - 1; i >= 0; i--)

@@ -1,4 +1,4 @@
-## ArgumentException: Unknown Type
+# ArgumentException: Unknown Type
 
 1. If you are trying to use aspects in a `WithAll` you should use `WithAspect` instead.
 1. Aspects may not be compatible with `WithChangeFilter`, target the individual components instead.

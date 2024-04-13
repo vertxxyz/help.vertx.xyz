@@ -1,4 +1,4 @@
-### Contents
+## Contents
 - [General](#general)
     - [Interface](#interface)
     - [Unity Hub](#unity-hub)
@@ -27,7 +27,7 @@
 - [Package Manager](#package-manager)
 - [Testing](#testing)
 
-### Resources
+## Resources
 - [Collision action matrix](Info/Collision%20Matrix.md)
 - [Bitmasks](Bitmasks.md)
 - [Quaternions](Quaternions.md)
@@ -35,7 +35,7 @@
 - [SerializedObject](Editor%20Extensions/Serialisation/SerializedObject%20How-to.md)
 - [Using Git with Unity](Info/Git.md)
   
-### External resources
+## External resources
 - [Unity Learn](http://learn.unity.com/)
 - [Unity Manual](https://docs.unity3d.com/Manual/)
 - [API Scripting Reference](https://docs.unity3d.com/ScriptReference/index.html)
@@ -44,6 +44,6 @@
 - [Unity C# reference source code](https://github.com/Unity-Technologies/UnityCsReference/)
 - [Developer Notes 💬](https://github.com/Developer-Notes-Extension)
 
-### Contributing
+## Contributing
 - [Github](https://github.com/vertxxyz/help.vertx.xyz)  
 - [Ko-fi](https://ko-fi.com/vertx)

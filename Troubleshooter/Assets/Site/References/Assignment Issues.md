@@ -1,7 +1,7 @@
-## Assignment issues with serialized fields
-### Common mistakes
+# Assignment issues with serialized fields
+## Common mistakes
 :::note  
-#### 1. Mismatched types
+### 1. Mismatched types
 You may be using a different type than is being assigned.
 - Using `Text` when using TextMeshPro objects. Use [`TextMeshProUGUI`](https://docs.unity3d.com/Packages/com.unity.textmeshpro@latest/index.html?subfolder=/api/TMPro.TextMeshProUGUI.html) or `TMP_Text` instead.  
   `Text` refers to the legacy UI text[^1].
@@ -9,12 +9,12 @@ You may be using a different type than is being assigned.
 
 :::  
 :::note
-#### 2. References between invalid locations
+### 2. References between invalid locations
 See the [valid references diagram](Valid%20References.md) to understand what locations can reference each other.  
 If you're unsure how to reference one location from another, refer to the [how-to](Serialized%20References.md#how-to) section.  
 :::  
 :::note
-#### 3. Attempting to assign to default references
+### 3. Attempting to assign to default references
 If you have a script selected you are not looking at the correct location to assign references.  
 Select a GameObject or asset (such as a prefab or scriptable object) and assign the [reference to an instance](Serializing%20Component%20References.md#reference-the-instance-in-the-inspector).
 

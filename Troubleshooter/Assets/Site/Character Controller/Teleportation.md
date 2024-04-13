@@ -1,7 +1,7 @@
-## Character Controller teleportation
+# Character Controller teleportation
 To teleport a [Character Controller](https://docs.unity3d.com/Manual/class-CharacterController.html) it must be disabled.
 
-#### Example
+### Example
 ```csharp
 // Disable the CharacterController.
 _characterController.enabled = false;

@@ -1,4 +1,4 @@
-## Debugging
+# Debugging
 - [Logging](Debugging/Logging.md)  
 - [Debugger](Debugging/Debugger.md)  
 - [Visual debugging](Debugging/Visual%20Debugging.md)  

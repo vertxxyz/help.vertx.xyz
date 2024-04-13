@@ -1,15 +1,15 @@
-## Common lighting issues
+# Common lighting issues
 
-### Real-time lighting
+## Real-time lighting
 - [Only some of the lights on a surface are visible.](Lighting/Light%20Limits/Choose%20Pipeline.md)
 - [Some sides of my objects are completely black.](Lighting/Environment%20Lighting/Lighting%20Settings.md)  
 
-### Lightmaps
+## Lightmaps
 - [Official lightmapping troubleshooting guide.](https://forum.unity.com/threads/lightmapping-troubleshooting-guide.1340936/)
 - [Steps to bake lighting.](Lightmapping.md)
 
-### Shadows - Realtime
+## Shadows - Realtime
 - [A light is not casting shadows.](Lighting/Shadows/Missing%20Shadows.md)
 
-### Inspector
+## Inspector
 - [Some Light settings are missing.](Lighting/Missing%20Settings.md)

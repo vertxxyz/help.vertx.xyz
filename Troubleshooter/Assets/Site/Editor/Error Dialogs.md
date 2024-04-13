@@ -1,4 +1,4 @@
-## Error dialogs
+# Error dialogs
 
 - [Can't add script.](../Script%20Loading%20Issues.md)  
   The script don't inherit a native class that can manage a script  

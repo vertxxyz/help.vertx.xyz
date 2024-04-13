@@ -1,7 +1,7 @@
-## Superluminal
+# Superluminal
 [Superluminal](https://superluminal.eu/unity/) is a sampling profiler, it halts the CPU at 8-40khz (depending on platform) and reads the state of the stack. So more data is better data, and looking at individual traces might not produce *extremely* accurate results like a traditional instrumentation profiler. So when you're looking at timings note that while you can use it like Unity's profiler, you'll likely get better results by selecting a large range of the capture that you think contains the issue.
 
-### Setup
+## Setup
 1. Install Superluminal and note where you installed it.
 1. In the Unity Hub use the dropdown next to the project to **Add Command line arguments**. Add `-monoProfiler superluminal`
 1. Copy the mono profiling dll from Superluminal to Unity:

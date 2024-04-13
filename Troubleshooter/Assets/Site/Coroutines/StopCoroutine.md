@@ -1,10 +1,10 @@
-## StopCoroutine
+# StopCoroutine
 
 :::error
 [`StopCoroutine`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.StopCoroutine.html) must be paired with an argument generated from the [`StartCoroutine`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html) call.
 :::
 
-### Stopping coroutines from outside
+## Stopping coroutines from outside
 To stop a coroutine, cache the `Coroutine` object returned by the original `StartCoroutine` call, and pass it to `StopCoroutine`.
 
 ```csharp
@@ -14,7 +14,7 @@ StopCoroutine(_exampleCoroutine);
 ```
 
 ::::note
-#### Example
+### Example
 ^^^
 ```csharp
 // Create a field to cache a reference to our coroutine.
@@ -62,7 +62,7 @@ bool IsExampleCoroutineRunning() => _exampleCoroutine != null;
 ^^^ ::`StopCoroutine` will throw a [`NullReferenceException`](../Runtime%20Exceptions/NullReferenceException.md) if `null` is passed to it.::{.error}
 ::::
 
-#### When disabling scripts
+### When disabling scripts
 
 :::info
 When a **GameObject** is deactivated its coroutine will be stopped, but if the **script** is disabled they will continue.
@@ -75,11 +75,11 @@ You may want to stop the coroutine in [`OnDisable`](https://docs.unity3d.com/Scr
 void OnDisable() => StopExample();
 ```
 
-#### Alternatives
+### Alternatives
 
 Use [`StopAllCoroutines`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.StopAllCoroutines.html) to halt all running coroutines on a `MonoBehaviour`.
 
-### Stopping coroutines from within
+## Stopping coroutines from within
 `yield break` will exit a coroutine early.
 
 Coroutines will naturally stop when execution reaches the end of the function.

@@ -1,4 +1,4 @@
-### Contents
+## Contents
 - [Description](SerializedObject%20How-to.md)
 - [Example structure](#example-structure)
 - [SerializedObject in Editors](#serializedobject-in-editors)

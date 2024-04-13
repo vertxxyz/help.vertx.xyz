@@ -1,4 +1,4 @@
-## NullReferenceException: Reference types
+# NullReferenceException: Reference types
 Now we understand [stack traces](Stack%20Trace.md), we know what line is throwing the `NullReferenceException`.
 
 On this line, only **reference types** can be `null`:  

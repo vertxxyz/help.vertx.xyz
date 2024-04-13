@@ -1,17 +1,17 @@
-## Scopes in C#
+# Scopes in C#
 
 In C# (and most programming languages) variables are accessible in the section they are declared. These sections are known as scopes.
 
 Scopes are indicated by curly braces, <kbd>{</kbd> <kbd>}</kbd>.
 
-### Types of scope
+## Types of scope
 There are three main levels of scope:
 1. [Class scope](#class-scope)
 1. [Method scope](#method-scope)
 1. [Block-level scope](#block-level-scope)
 
 ::::note  
-#### Class scope
+### Class scope
 
 Note where a `class` is declared, and view anything at the level of its braces (its scope) as at the class scope.
 
@@ -32,7 +32,7 @@ The class scope is somewhat unique, because its members are accessible from othe
 
 ::::  
 ::::note
-#### Method scope
+### Method scope
 
 Statements inside a method scope can access the class scope, but cannot access nested block-level scopes.
 
@@ -72,7 +72,7 @@ C# uses pascal case (<kbd>PascalCase</kbd>) as its [naming convention](https://l
 :::
 ::::  
 ::::note  
-#### Block-level scope
+### Block-level scope
 Statements inside a block-level scope can access the class scope, the method scope they're declared in, and any scope that they're nested within.
 
 ```csharp
@@ -127,7 +127,7 @@ public void Foo()
 ```
 ::::
 
-### Access
+## Access
 Scopes can access variables of other scopes they are nested in.
 
 ```mermaid

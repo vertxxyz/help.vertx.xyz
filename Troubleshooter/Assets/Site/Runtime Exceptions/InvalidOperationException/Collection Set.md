@@ -1,10 +1,10 @@
-## InvalidOperationException: Collection was modified
-### Setting values in collections
+# InvalidOperationException: Collection was modified
+## Setting values in collections
 
 There are a couple of options for modifying collections when iterating.
 
 ::::note
-#### Create a temporary copy of the collection before iterating over the copy.
+### Create a temporary copy of the collection before iterating over the copy.
 ```csharp
 var copy = new CollectionType(collection);
 foreach (var item in copy)
@@ -21,7 +21,7 @@ foreach (var item in copy)
 **Or:**
 
 ::::note
-#### Create a temporary collection used to set values after the loop.
+### Create a temporary collection used to set values after the loop.
 ```csharp
 var modifications = new List<(KeyType key, ItemType value)>();
 foreach (var item in collection)

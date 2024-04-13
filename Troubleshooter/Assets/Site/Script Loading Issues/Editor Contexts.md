@@ -1,4 +1,4 @@
-## Editor contexts
+# Editor contexts
 
 Scripts in Editor contexts (Editor folders, Editor-only Assembly Definitions) will only function in the Editor.  
 This means that attaching them to runtime objects is invalid.

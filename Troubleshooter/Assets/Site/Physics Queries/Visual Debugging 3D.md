@@ -1,4 +1,4 @@
-## Physics queries: Visual debugging
+# Physics queries: Visual debugging
 
 You can utilise the [Physics Debugger](../Debugging/Physics%20Debugger.md) to visualise your queries in the Scene view.
 

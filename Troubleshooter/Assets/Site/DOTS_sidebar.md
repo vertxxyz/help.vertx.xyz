@@ -1,4 +1,4 @@
-### Documentation
+## Documentation
 - [Entities](https://docs.unity3d.com/Packages/com.unity.entities@latest) - [Changelog](https://docs.unity3d.com/Packages/com.unity.entities@latest/index.html?subfolder=/changelog/CHANGELOG.html)
 - [Mathematics](https://docs.unity3d.com/Packages/com.unity.mathematics@latest) - [Changelog](https://docs.unity3d.com/Packages/com.unity.mathematics@latest/index.html?subfolder=/changelog/CHANGELOG.html)
 - [Burst](https://docs.unity3d.com/Packages/com.unity.burst@latest) - [Changelog](https://docs.unity3d.com/Packages/com.unity.burst@latest/index.html?subfolder=/changelog/CHANGELOG.html)
@@ -8,12 +8,12 @@
 - [Collections](https://docs.unity3d.com/Packages/com.unity.collections@latest) - [Changelog](https://docs.unity3d.com/Packages/com.unity.collections@latest/index.html?subfolder=/changelog/CHANGELOG.html)
 - [Graphics (formerly Hybrid)](https://docs.unity3d.com/Packages/com.unity.entities.graphics@latest) - [Changelog](https://docs.unity3d.com/Packages/com.unity.entities.graphics@latest/index.html?subfolder=/changelog/CHANGELOG.html)
 - [Netcode](https://docs.unity3d.com/Packages/com.unity.netcode@latest) - [Changelog](https://docs.unity3d.com/Packages/com.unity.netcode@latest/index.html?subfolder=/changelog/CHANGELOG.html)
-### Resources
+## Resources
 - [Guide](https://github.com/Unity-Technologies/EntityComponentSystemSamples/#learning-dots)
 - [Samples](https://github.com/Unity-Technologies/EntityComponentSystemSamples)
 - [Website](https://unity.com/dots)
 - [Roadmap](https://unity.com/roadmap/unity-platform/dots)
-### Forums
+## Forums
 - [DOTS](https://forum.unity.com/forums/data-oriented-technology-stack.147/)
   - [Physics](https://forum.unity.com/forums/dots-physics.422/)
   - [Netcode](https://forum.unity.com/forums/dots-netcode.425/)

@@ -1,4 +1,4 @@
-## Unity Hub logs
+# Unity Hub logs
 To view the Unity Hub logs select the account dropdown in the top left of the Hub and navigate to **▾ | Troubleshooting | Open log folder**.
 ^^^
 

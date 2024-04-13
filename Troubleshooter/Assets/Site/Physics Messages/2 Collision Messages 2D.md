@@ -1,9 +1,9 @@
-## Collision messages (2D)
+# Collision messages (2D)
 
 Ensure your functions use the correct **types**, **spelling**, and **capitalisation** as below.  
 The variable `collision` can be renamed, and [access modifiers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers) are not important. The parameters are optional if you are not using them.
 
-### [`OnCollisionEnter2D`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionEnter2D.html)
+## [`OnCollisionEnter2D`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionEnter2D.html)
 ```csharp
 void OnCollisionEnter2D(Collision2D collision)
 {
@@ -11,7 +11,7 @@ void OnCollisionEnter2D(Collision2D collision)
 }
 ```
 
-### [`OnCollisionStay2D`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionStay2D.html)
+## [`OnCollisionStay2D`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionStay2D.html)
 ```csharp
 void OnCollisionStay2D(Collision2D collision)
 {
@@ -19,7 +19,7 @@ void OnCollisionStay2D(Collision2D collision)
 }
 ```
 
-### [`OnCollisionExit2D`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionExit2D.html)
+## [`OnCollisionExit2D`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionExit2D.html)
 ```csharp
 void OnCollisionExit2D(Collision2D collision)
 {

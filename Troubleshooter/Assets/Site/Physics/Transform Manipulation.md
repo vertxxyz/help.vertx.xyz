@@ -1,4 +1,4 @@
-## Transform manipulation
+# Transform manipulation
 If you are moving dynamic rigidbodies via their transforms they are likely **not** interacting with the physics engine, and depending on the implementation may *only* resolve penetrations.
 
 Using `transform.position` to move objects bypasses the physics simulation step.  

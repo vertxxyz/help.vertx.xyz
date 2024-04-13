@@ -1,8 +1,8 @@
-## Texture wrap mode: Repeat
+# Texture wrap mode: Repeat
 
 <<Graphics/Wrap Mode.md>>
 
-### Resolution
+## Resolution
 Navigate to the source asset in the [Project window](https://docs.unity3d.com/Manual/ProjectView.html), and switch the **Wrap Mode** to **Repeat**.  
 
 ![Wrap Mode Dropdown](wrap-mode.png)  

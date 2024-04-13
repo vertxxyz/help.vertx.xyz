@@ -1,3 +1,3 @@
-## No Asset directory
-### Resolution
+# No Asset directory
+## Resolution
 Save the Scene before attempting to bake occlusion.

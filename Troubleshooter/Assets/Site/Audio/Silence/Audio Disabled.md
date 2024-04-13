@@ -1,4 +1,4 @@
-## Unity audio is disabled
+# Unity audio is disabled
 Check that **Disable Unity audio** isn't checked in **Edit | Project Settings | Audio**.
 
 ---

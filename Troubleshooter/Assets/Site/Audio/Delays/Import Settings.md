@@ -1,8 +1,8 @@
-## Audio: Import settings
+# Audio: Import settings
 Some settings can delay the moment audio is played. If disabled this may cause frame hitches.  
 These delays are one time only, only causing issues on the first play.
 
-### Resolution
+## Resolution
 The per-clip **Load in Background** and **Preload Audio Data** settings have direct effects on each other. Please consider the table below:
 
 | Load in background | Preload audio data | Outcome                                                                                                                                                                                                                                                                                                                                                                                                                                                       |

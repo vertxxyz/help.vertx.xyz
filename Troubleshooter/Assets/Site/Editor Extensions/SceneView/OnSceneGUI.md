@@ -1,4 +1,4 @@
-## OnSceneGUI not called
+# OnSceneGUI not called
 
 **The Editor targets:**
 - [A subclass of ScriptableObject.](OnSceneGUI%20ScriptableObject.md)

@@ -1,4 +1,4 @@
-## Unity gitattributes file
+# Unity gitattributes file
 Place this file at the root of your repository (under the root folder).  
 
 :::warning  

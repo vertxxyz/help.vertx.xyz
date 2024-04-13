@@ -1,4 +1,4 @@
-### Understanding this matrix:
+## Understanding this matrix:
 Your two colliders are described by an element in a row and in a column, the intersection of these two shows whether this type of event will be fired.  
 If the event is not green, consider changing your setup, or switching event type.
 

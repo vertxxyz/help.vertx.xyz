@@ -1,4 +1,4 @@
-#### Bitmasks and LayerMasks
+### Bitmasks and LayerMasks
 - [Bitmasks](#bitmasks)
 - [LayerMasks](#layermasks)
 - [Creating masks](#creating-masks)
@@ -12,7 +12,7 @@
 - [Toggling mask values](#toggling-mask-values)
 - [Creating a mask with all values enabled](#creating-a-mask-with-all-values-enabled)
 - [Setting a mask using another mask](#setting-a-mask-using-another-mask)
-#### Logic tables
+### Logic tables
 - [& • Logical AND operator](#logical-and-operator)
 - [| • Logical OR operator](#logical-or-operator)
 - [^ • Logical exclusive OR operator](#logical-exclusive-or-operator)

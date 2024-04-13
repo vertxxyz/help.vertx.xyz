@@ -1,5 +1,5 @@
 <<Abbreviations/IDE.md>>
-## Prefab assets referencing in-Scene Components
+# Prefab assets referencing in-Scene Components
 
 :::warning
 Assets cannot directly refer to Objects in Scenes
@@ -9,11 +9,11 @@ Prefab assets cannot refer to components in the Scene, their instances can be co
 
 If your prefab is already in the scene it is a prefab **instance** and treated like [any other object in the scene](Serializing%20Component%20References.md), it just has overrides for authoring purposes.
 
-### Implementation
+## Implementation
 The in-scene component that instances your prefab can reference other in-Scene components, so have it pass your instance that reference.
 
 ::::note  
-#### Follow these steps to configure a prefab instance with a reference:
+### Follow these steps to configure a prefab instance with a reference:
 Refer to the table to understand the terms used in the following steps.
 
 | Term             | Description                                                    |
@@ -30,8 +30,8 @@ Refer to the table to understand the terms used in the following steps.
 1. Assign the target component to your new root component instance.  
 
 ::::
-### Example
-#### Spawner component
+## Example
+### Spawner component
 ```csharp
 using UnityEngine;
 
@@ -55,7 +55,7 @@ public class SpawnerExample : MonoBehaviour
 }
 ```
 
-#### Prefab root component
+### Prefab root component
 ```csharp
 using UnityEngine;
 
@@ -94,11 +94,11 @@ You must change the types and variables used in this example to match yours:
 You can choose to set members directly, or customise your `Initialise` method to take more parameters.  
 :::
 
-### Notes
-#### Awake
+## Notes
+### Awake
 `Awake` is called as soon as an object is created; in this case, don't attempt to use the references in `Awake` as they haven't been assigned by the spawner.
 
-#### Assigning references without manually instantiating prefabs
+### Assigning references without manually instantiating prefabs
 If your prefab is being spawned outside of your control, you can delegate the target component assignment to a [singleton](Singletons.md).
 1. [Reference the target component](Serializing%20Component%20References.md) from your singleton.
 1. In [`Start`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) on a component in your prefab, register the instance ([`this`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/this)) to your singleton.

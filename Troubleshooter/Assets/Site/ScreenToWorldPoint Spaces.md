@@ -1,11 +1,11 @@
-## ScreenToWorldPoint: Spaces
+# ScreenToWorldPoint: Spaces
 
 ScreenToWorldPoint will transform a position from **Screen Space** to **World Space**.
 This world space position is generated with the Camera, but is relative to the origin.
 
 If the position returned by a correct `ScreenToWorldPoint` call isn't expected, confirm that the target is actually intended to be in world space.
 
-### Resolution
+## Resolution
 [Draw a ray](Debugging/Draw%20Functions.md) at the position returned by `ScreenToWorldPoint` to familiarise yourself with the position it returns.
 
 Compare that position with the object you are positioning. For example, if your object is parented under a [Canvas](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/UICanvas.html) that is **Screen Space - Overlay**, then that canvas may already be in Screen Space, and using the original mouse position values may do (a [Canvas Scaler](https://docs.unity3d.com/Packages/com.unity.ugui@latest/index.html?subfolder=/manual/script-CanvasScaler.html) may scale this space).

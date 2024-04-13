@@ -1,4 +1,4 @@
-## Physics queries: GameObject layers
+# Physics queries: GameObject layers
 
 Check the layers of the gameObjects with colliders you are expecting to hit.
 

@@ -1,14 +1,14 @@
-## Referencing many instances
+# Referencing many instances
 To reference many instances, you must create a collection to hold them in. It's useful to understand:
 - [Arrays](https://learn.unity.com/tutorial/arrays-9o); a fixed-size collection.
 - [Lists](https://learn.unity.com/tutorial/lists-and-dictionaries-1); a resizable collection.
 - [Dictionaries](https://learn.unity.com/tutorial/lists-and-dictionaries-1); a collection that associates each value to a unique key.
 
-### Serialized references
+## Serialized references
 You can only serialize Arrays and Lists. Dictionaries are not serializable without extra work.  
 
 ::::
-#### 1. Expose a serialized reference to a collection containing the target component
+### 1. Expose a serialized reference to a collection containing the target component
 The [field](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields) must be marked with [`SerializeField`](https://docs.unity3d.com/ScriptReference/SerializeField.html):
 ```csharp
 [SerializeField] private Transform[] _targets;
@@ -22,7 +22,7 @@ public Transform[] Targets;
 This example uses the `Transform` type, it will need to be replaced with the target type.
 :::  
 
-#### Choosing to serialize Arrays or Lists
+### Choosing to serialize Arrays or Lists
 As serialized references are set in the inspector, it's a good to *only* set them there to avoid confusion. With this in mind, serializing Arrays instead of Lists reduces the ways code can modify the data.
 
 Some people suggest *only* using Lists to avoid thinking about which is which.
@@ -31,7 +31,7 @@ The practical differences are few, and a good IDE will make it easy to work with
 
 ::::  
 ::::note  
-#### 2. Reference the target component in the Inspector
+### 2. Reference the target component in the Inspector
 Do not directly reference the script asset. The target component must be an instance [added to an object in the scene](https://docs.unity3d.com/Manual/UsingComponents.html).
 
 ^^^
@@ -43,7 +43,7 @@ Dragging a GameObject from the [Hierarchy](https://docs.unity3d.com/Manual/Hiera
 You can drag multiple instances into the array at a time by either locking the inspector, or by opening a temporary inspector via the **Properties...** menu in the Component's context menu.  
 ::::  
 ::::note  
-#### 3. Access the member you care about
+### 3. Access the member you care about
 `public` members on the individual instances can be accessed via a loop. Or by directly indexing into the collection.
 ```csharp
 foreach (var target in _targets)
@@ -63,9 +63,9 @@ If you don't have autocomplete, [configure your IDE](../IDE%20Configuration.md) 
 The usage must be at a [method or block level scope](../Programming/Other/Scopes.md).  
 ::::  
 
-### Referencing instantiated objects
+## Referencing instantiated objects
 
-#### Using a List
+### Using a List
 Use a list when you have a number of instances to spawn, and don't need to look up individual instances.
 
 ^^^
@@ -91,7 +91,7 @@ public void SpawnNewTarget(Vector3 position)
 ```
 ^^^ Don't forget to initialise the List or you will get a [NullReferenceException](../Runtime%20Exceptions/NullReferenceException.md).
 
-#### Using a Dictionary
+### Using a Dictionary
 Use a dictionary when your instances must be associated with a key. Dictionaries provide a fast lookup, avoiding loops when trying to find data.
 
 ^^^

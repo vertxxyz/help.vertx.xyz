@@ -1,4 +1,4 @@
-## Transparent materials
+# Transparent materials
 Rendering in game engines often involves two passes, an opaque, and a transparent pass.  
 Opaque objects are rendered to the [depth buffer](https://en.wikipedia.org/wiki/Z-buffering), which is used to accurately determine what object is on top of another as rendering progresses.  
 The transparent pass often does not have this luxury, as if they were to write to this buffer they would block out other objects that should be seen through them.  
