@@ -2,6 +2,11 @@
 Editor code isn't accessible in a build. Unity has multiple methods to separate and not include this code.
 
 ## Resolution
+- If you're writing Editor scripts (code only intended to run in the Editor) you should use [Editor Folders](#editor-folders).
+- If you're using Editor code in a build-ready script you should use [Preprocessor directives](#preprocessor-directives).
+- If you're trying to write code for a build-ready script you may want to [replace the Editor-only code](#replacing-unityeditor-code).
+
+
 ::::note
 ### Editor folders
 Code placed in a folder named **Editor** will be compiled into an editor assembly. These folders can be placed anywhere in your project.  

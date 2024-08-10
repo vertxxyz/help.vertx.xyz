@@ -44,7 +44,7 @@ public static partial class SearchGatherer
 	public static async Task<Result> GenerateSearchResult(string rootDirectory, IEnumerable<string> files)
 	{
 		Dictionary<string, int> fileNameToIndex = new();
-		List<string> filePaths = new();
+		List<string> filePaths = [];
 		foreach (string s in files)
 		{
 			if (EndsWithAny(s, SearchCommon.ExcludedFileEndings)) continue;
@@ -132,7 +132,7 @@ public static partial class SearchGatherer
 			foreach (UglifyError uglifyError in result.Errors)
 				Console.WriteLine($"{uglifyError.Message} at ({uglifyError.StartLine}:{uglifyError.StartColumn})");
 
-			return Enumerable.Empty<string>();
+			return [];
 		}
 
 		string text = result.Code;

@@ -2,13 +2,17 @@
 Animation Events are callbacks that fire during an animation's playback.
 These events require a component with the correct method signature to be attached to the GameObject with the Animator.
 
+:::warning  
+When blending, Animation Events won't trigger when the blend weight of the animation is 50% or less.  
+:::
+
 ## Resolution
 You can either add a receiver, or if the event isn't required or displays other warnings, remove it entirely.
 
 :::note
 ### Adding a valid receiver
 1. Add a component to the GameObject with the Animator on it.
-1. Make a **public** method matching the name of the event. The method must not have a return value.
+1. Make a method matching the name of the event. The method must **not have a return value**.
 1. The method's parameter must match the event. Animation Events can have `float`, `int`, `string`, `Object`, `AnimationEvent`, or no parameters.
 
 :::

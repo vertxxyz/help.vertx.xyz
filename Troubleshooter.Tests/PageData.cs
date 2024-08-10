@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace Troubleshooter.Tests;
 
@@ -53,18 +54,22 @@ public class PageDataWithSymlinks : PageData
 
 public class SidebarData : IEnumerable<object[]>
 {
+	[MustDisposeResource]
 	public IEnumerator<object[]> GetEnumerator() =>
 		Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, $"*{Constants.SidebarSuffix}", SearchOption.AllDirectories)
 			.Select(file => new object[] { Path.GetFileNameWithoutExtension(file), file, File.ReadAllText(file) }).GetEnumerator();
 
+	[MustDisposeResource]
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
 
 public class JavascriptData : IEnumerable<object[]>
 {
+	[MustDisposeResource]
 	public IEnumerator<object[]> GetEnumerator() =>
 		Directory.EnumerateFiles(TestUtility.TestSite.AssetsRoot, "*.js", SearchOption.AllDirectories)
 			.Select(file => new object[] { File.ReadAllText(file) }).GetEnumerator();
 
+	[MustDisposeResource]
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

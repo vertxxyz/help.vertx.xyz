@@ -2,7 +2,7 @@
 
 Layer masks are [bitmasks](../Bitmasks.md) that describe which layers are active or otherwise.
 :::info{.small}
-Active layers will be hit by the query.
+Active layers in the mask will be hit by the query.
 :::
 A layer mask may be an `int`, but it doesn't represent a single layer.
 

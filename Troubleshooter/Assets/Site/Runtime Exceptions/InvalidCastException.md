@@ -28,14 +28,15 @@ If you are using a foreach with `Transform` then you must use the `Transform` ty
 
 ```csharp
 // 🔴 Incorrect, Example is not a Transform type.
-foreach(Example item in transform)
+foreach (Example item in transform)
     ...
 
 // 🟢 Correct, the type used is Transform
-foreach(Transform item in transform)
+foreach (Transform item in transform)
     ...
 ```
 
+Foreach across other collections may have similar issues if you attempt to cast to a type unsupported by the usage.
 :::  
 
 ---

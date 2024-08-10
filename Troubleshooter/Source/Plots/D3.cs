@@ -23,27 +23,27 @@ public sealed partial class D3
 		webDriver.ExecuteScript(resources.D3);
 		webDriver.ExecuteScript(resources.Plot);
 	}
-	
+
 	public void Plot(string key, HtmlRenderer renderer)
 	{
 		WebDriver webDriver = _webRenderer.Driver;
 		string svg = key switch
 		{
 			"graph-wrong-lerp" => WrongLerpGraph(webDriver, _logger),
-			"graph-improved-wrong-lerp" => ImprovedWrongLerpGraph(webDriver, _logger),
+			"graph-improved-wrong-lerp" => ImprovedWrongLerpGraphExp(webDriver, _logger),
 			_ => throw new ArgumentOutOfRangeException(key, $"{key} is not yet supported by {nameof(D3)}.{nameof(Plot)}.")
 		};
 
 		renderer.Write("<div class=\"d3\">").Write(svg).Write("</div>");
 	}
-	
+
 	private readonly struct TimeToValue
 	{
 		public const string KeyTime = "Time";
 		public const string KeyValue = "Value";
 		public readonly float Time;
 		public readonly float Value;
-		
+
 		public TimeToValue(float time, float value)
 		{
 			Time = time;
@@ -58,7 +58,7 @@ public sealed partial class D3
 	{
 		if (values.Count == 0)
 			return $"{name} = [];";
-		
+
 		StringBuilder builder = new(name.Length + 6 + (values[0].ToString().Length + 5) * values.Count + 6);
 		builder.Append(name);
 		builder.AppendLine(" = [");

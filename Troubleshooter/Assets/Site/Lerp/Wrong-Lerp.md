@@ -29,7 +29,8 @@ graph-wrong-lerp
 ```
 
 ```csharp
-value = Mathf.Lerp(value, 1, Time.deltaTime * 10);
+// speed: 10
+value = Mathf.Lerp(value, 1, Time.deltaTime * speed);
 ```
 
 :::
@@ -38,34 +39,49 @@ value = Mathf.Lerp(value, 1, Time.deltaTime * 10);
 
 Using a more complex `t` can solve frame rate dependency problems.
 
+^^^
 ```csharp
-value = Mathf.Lerp(value, target, 1 - Mathf.Pow(fraction, Time.deltaTime));
+static float ExponentialDecay(float value, float target, float decay, float deltaTime)
+    => Mathf.Lerp(value, target, Mathf.Exp(-decay * deltaTime));
 ```
-
-Where `fraction` is a `0->1` factor that defines a percentage of smoothing. `0` gets you the target (no smoothing), `1` is the source (so smoothed it's useless).  
+^^^ Where `decay` is `0->∞`. `0` is constant, and larger values approach the target faster.
 
 :::note{.center}
 ### Graph
-
 ```d3
 graph-improved-wrong-lerp
 ```
 
 ```csharp
-fraction = 0.3;
-value = Mathf.Lerp(value, target, 1 - Mathf.Pow(fraction, Time.deltaTime * 10));
+// decay: 10
+value = ExponentialDecay(value, target, decay, Time.deltaTime);
 ```
 :::
+
+### See also: Fractional approach{.foldout}
+^^^
+```csharp
+// Using a "fraction" or "remainder" as input.
+static float FractionalDamping(float value, float target, float fraction, float deltaTime)
+    => Mathf.Lerp(value, target, 1 - Mathf.Pow(fraction, deltaTime));
+```
+^^^ Where `fraction` is a `0->1` smoothing factor.<br/>`0` gets you the target (no smoothing), `1` is the source (so smoothed it's pointless).
+
+Using `Pow` is a more expensive approach, so consider your use cases.
 
 ## Conclusion
 
 If you are concerned about any of the downsides, consider alternatives like:
+- Using a tweening library*.
 - [Using Lerp in a Coroutine](Coroutines.md), or applying similar logic in Update.
-- Using a tweening library.
 - Using [SmoothDamp](https://docs.unity3d.com/ScriptReference/Mathf.SmoothDamp.html).
 - Using [MoveTowards](https://docs.unity3d.com/ScriptReference/Vector3.MoveTowards.html).
 
-Certain libraries will have their own tweening libraries built-in. For example, UI Toolkit has [USS transitions](https://docs.unity3d.com/Manual/UIE-Transitions.html).
+*Certain libraries will have their own tweening libraries built-in. For example, UI Toolkit has [USS transitions](https://docs.unity3d.com/Manual/UIE-Transitions.html).
 
+## Other resources
+
+- **Rory Driscoll:** [Frame rate independent damping using Lerp](https://www.rorydriscoll.com/2016/03/07/frame-rate-independent-damping-using-lerp/)
+- **Freya Holmér:** [Lerp smoothing is broken - a journey of decay and delta time](https://www.youtube.com/watch?v=LSNQuFEDOyQ)
 ---  
 [Return to overview.](Overview.md)
