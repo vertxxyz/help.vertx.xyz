@@ -21,8 +21,8 @@ public sealed partial class D3
 		const float destination = 1;
 		const int maxIterations = 100000;
 		// rates in ms. 100, 50, 20, 10
-		ReadOnlySpan<int> frameRates = stackalloc int[] { (int)FrameRates.Fps100, (int)FrameRates.Fps50, (int)FrameRates.Fps20, (int)FrameRates.Fps10 };
-		ReadOnlySpan<float> deltaTimes = stackalloc float[] { 1 / (float)FrameRates.Fps100, 1 / (float)FrameRates.Fps50, 1 / (float)FrameRates.Fps20, 1 / (float)FrameRates.Fps10 };
+		ReadOnlySpan<int> frameRates = [(int)FrameRates.Fps100, (int)FrameRates.Fps50, (int)FrameRates.Fps20, (int)FrameRates.Fps10];
+		ReadOnlySpan<float> deltaTimes = [1 / (float)FrameRates.Fps100, 1 / (float)FrameRates.Fps50, 1 / (float)FrameRates.Fps20, 1 / (float)FrameRates.Fps10];
 
 		// value = Lerp(value, destination, rate);
 

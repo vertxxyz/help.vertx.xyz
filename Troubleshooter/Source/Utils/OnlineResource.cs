@@ -35,15 +35,16 @@ public sealed class OnlineResource
 
 	private readonly string _owner, _path;
 
-	public OnlineResource(string owner, string path, SupportedCDNs cdns)
+	public OnlineResource(string owner, string path, SupportedCDNs cdns, string? versionOverride = null)
 	{
+		string version = versionOverride ?? "latest";
 		_owner = owner;
 		_path = path;
-		UnpkgUri = $"https://unpkg.com/{owner}@latest/dist/{path}";
+		UnpkgUri = $"https://unpkg.com/{owner}@{version}/dist/{path}";
 		JsDelivrUri =
 			string.IsNullOrEmpty(owner)
-				? $"https://cdn.jsdelivr.net/npm/{path}@latest"
-				: $"https://cdn.jsdelivr.net/npm/{owner}@latest/dist/{path}";
+				? $"https://cdn.jsdelivr.net/npm/{path}@{version}"
+				: $"https://cdn.jsdelivr.net/npm/{owner}@{version}/dist/{path}";
 		CDNs = cdns;
 		FileContent = "";
 	}
@@ -104,7 +105,7 @@ public class OnlineResources
 	public readonly OnlineResource Graphre = new("graphre", "graphre.js", SupportedCDNs.All);
 	public readonly OnlineResource D3 = new("", "d3", SupportedCDNs.JsDelivr);
 	public readonly OnlineResource Plot = new("", "@observablehq/plot", SupportedCDNs.JsDelivr);
-	public readonly OnlineResource Mermaid = new("mermaid", "mermaid.min.js", SupportedCDNs.All);
+	public readonly OnlineResource Mermaid = new("mermaid", "mermaid.js", SupportedCDNs.All, "10.9.1");
 	public readonly OnlineResource KaTeX = new("katex", "katex.min.js", SupportedCDNs.All);
 	public readonly OnlineResource Nomnoml = new("nomnoml", "nomnoml.js", SupportedCDNs.All);
 

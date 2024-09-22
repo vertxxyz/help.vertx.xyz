@@ -1,15 +1,24 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
+using System.Text.RegularExpressions;
+using Troubleshooter.Renderers;
+
 namespace Troubleshooter;
 
-public static class IndexHtml
+public static partial class IndexHtml
 {
+	[GeneratedRegex($"""<h\d.*?>{HeadingOverrideRenderer.HeaderTextTag}([^<]*?)<\/span>.*?<\/h\d>""")]
+	private static partial Regex GetTitleRegex();
+
 	public static string GetWithContent(
 		string content,
 		string? sidebarContent = null
 	)
 	{
+		Match titleMatch = GetTitleRegex().Match(content);
+		string title = titleMatch.Success ? titleMatch.Groups[1].Value : "Unity, huh, how?";
+
 		sidebarContent ??= "<!-- sidebar content -->";
 		// language=html
 		return $"""
@@ -19,7 +28,7 @@ public static class IndexHtml
 		            <meta charset="utf-8">
 		            <meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1,maximum-scale=1">
 		            <meta name="robots" content="noai, noimageai">
-		            <title>Unity, huh, how?</title>
+		            <title>{title}</title>
 		            <!--suppress HtmlUnknownTarget -->
 		            <link rel="stylesheet" href="/Styles/style.css?v=2.6.0">
 		            <!--suppress HtmlUnknownTarget -->

@@ -228,7 +228,7 @@ public static partial class SiteBuilder
 		}
 	}
 
-	[GeneratedRegex(@"\[(.+?)\]\(([\w%/-]+?)\.md\)", RegexOptions.Compiled)]
+	[GeneratedRegex(@"\[(.+?)\]\(([\w%/-]+?)\.md\)")]
 	private static partial Regex GeneratorLinkRegex();
 
 	[GeneratedRegex(@"//\s*bypass\s*$")]

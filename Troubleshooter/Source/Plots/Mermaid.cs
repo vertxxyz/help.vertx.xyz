@@ -18,9 +18,9 @@ public sealed class Mermaid
 		_logger = logger;
 		_webRenderer.Driver.ExecuteScript(resources.Mermaid);
 		// language=javascript
-		_webRenderer.Driver.ExecuteScript("mermaid.initialize({startOnLoad: false});");
+		_webRenderer.Driver.ExecuteScript("mermaid.initialize({startOnLoad: false, securityLevel: 'loose'});");
 	}
-	
+
 	public void Plot(string diagram, HtmlRenderer renderer)
 	{
 		WebDriver driver = _webRenderer.Driver;

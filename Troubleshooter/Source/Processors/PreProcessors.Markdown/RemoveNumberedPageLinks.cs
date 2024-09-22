@@ -14,6 +14,6 @@ public partial class RemoveNumberedPageLinks : IMarkdownPreProcessor
 
 	public string Process(string text) => s_regex.Replace(text, "$1");
 
-	[GeneratedRegex(@"(]\(|\/)\d+%20", RegexOptions.Compiled)]
+	[GeneratedRegex(@"(]\(|\/)\d+%20")]
 	private static partial Regex GetNumberRegex();
 }

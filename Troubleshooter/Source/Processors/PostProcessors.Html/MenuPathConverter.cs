@@ -9,7 +9,7 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public sealed partial class MenuPathConverter : IHtmlPostProcessor
 {
-	[GeneratedRegex(@"<strong>([^|<]+ \| [^<]+?)</strong>", RegexOptions.Compiled)]
+	[GeneratedRegex(@"<strong>([^|<]+ \| [^<]+?)</strong>")]
 	private static partial Regex GetMenuPathRegex();
 
 	private static readonly Regex s_menuPathRegex = GetMenuPathRegex();

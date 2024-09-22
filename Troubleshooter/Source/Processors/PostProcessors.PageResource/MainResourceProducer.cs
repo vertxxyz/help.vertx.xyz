@@ -83,9 +83,9 @@ public partial class MainResourceProducer : IPageResourcesPostProcessor
 		}
 	}
 
-	[GeneratedRegex("(?<!#)##(?!#)", RegexOptions.Compiled)]
+	[GeneratedRegex("(?<!#)##(?!#)")]
 	private static partial Regex GetTitleRegex();
 
-	[GeneratedRegex("^ *(.+)", RegexOptions.Compiled)]
+	[GeneratedRegex("^ *(.+)")]
 	private static partial Regex GetFirstLineRegex();
 }

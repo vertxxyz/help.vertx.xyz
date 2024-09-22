@@ -24,6 +24,6 @@ public partial class LineBreakRepair : IMarkdownPreProcessor
 		return text;
 	}
 
-	[GeneratedRegex(@"(?<!\r\n)\r\n(---)(?:\s|$)", RegexOptions.Compiled)]
+	[GeneratedRegex(@"(?<!\r\n)\r\n(---)(?:\s|$)")]
 	private static partial Regex GetLineBreakRegex();
 }

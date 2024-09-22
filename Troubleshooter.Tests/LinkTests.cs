@@ -31,7 +31,7 @@ public partial class LinkTests
 			new FileInfo(fullPath).Should().Exist("\"{0}\" is missing a link", path);
 	}
 
-	[GeneratedRegex(@"(?<!!)\[.+?\]\((.+?)\)", RegexOptions.Compiled)]
+	[GeneratedRegex(@"(?<!!)\[.+?\]\((.+?)\)")]
 	private static partial Regex GetMarkdownLinkRegex();
 
 	private static readonly Regex s_markdownLink = GetMarkdownLinkRegex();

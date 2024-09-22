@@ -14,6 +14,6 @@ public partial class ConstructionNote : IMarkdownPreProcessor
 	public string Process(string text) =>
 		s_regex.Replace(text, ":::construction  \n$0  \n:::  ");
 
-	[GeneratedRegex(@"^🚧.+?🚧\r?$", RegexOptions.Compiled | RegexOptions.Multiline)]
+	[GeneratedRegex(@"^🚧.+?🚧\r?$", RegexOptions.Multiline)]
 	private static partial Regex GetConstructionNoteRegex();
 }

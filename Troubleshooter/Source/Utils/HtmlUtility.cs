@@ -253,21 +253,21 @@ public static partial class HtmlUtility
 	[GeneratedRegex("(^ +)|( +$)", RegexOptions.Multiline | RegexOptions.Compiled)]
 	private static partial Regex GetWhitespaceRegex();
 
-	[GeneratedRegex("[{;]color:(#\\w{6});", RegexOptions.Compiled)]
+	[GeneratedRegex("[{;]color:(#\\w{6});")]
 	private static partial Regex GetColorRegex();
 
-	[GeneratedRegex("_style_\\d+([{^]|$)", RegexOptions.Compiled)]
+	[GeneratedRegex("_style_\\d+([{^]|$)")]
 	private static partial Regex GetStyleNameRegex();
 
-	[GeneratedRegex("_style_\\d+", RegexOptions.Compiled)]
+	[GeneratedRegex("_style_\\d+")]
 	private static partial Regex GetStylePlainRegex();
 
-	[GeneratedRegex("font-style:oblique;", RegexOptions.Compiled)]
+	[GeneratedRegex("font-style:oblique;")]
 	private static partial Regex GetStyleItalicRegex();
 
-	[GeneratedRegex("<span>( +)</span>", RegexOptions.Compiled)]
+	[GeneratedRegex("<span>( +)</span>")]
 	private static partial Regex GetSpanSpacesRegex();
 
-	[GeneratedRegex("color:(#\\w{6});content:\"~{500}\"", RegexOptions.Compiled)]
+	[GeneratedRegex("color:(#\\w{6});content:\"~{500}\"")]
 	private static partial Regex GetUnderlineRegex();
 }

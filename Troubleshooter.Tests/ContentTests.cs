@@ -80,12 +80,12 @@ public partial class ContentTests
 		text.Should().NotMatchRegex(s_incorrectPackageDocLink);
 	}
 
-    [GeneratedRegex(@"\[\^(\d+)\]", RegexOptions.Compiled)]
+    [GeneratedRegex(@"\[\^(\d+)\]")]
     private static partial Regex FootnoteRegex();
 
-    [GeneratedRegex(@"\[\d+\^\]", RegexOptions.Compiled)]
+    [GeneratedRegex(@"\[\d+\^\]")]
     private static partial Regex IncorrectFootnoteRegex();
 
-    [GeneratedRegex(@"@[\d.]+?/(?:api|manual)/", RegexOptions.Compiled)]
+    [GeneratedRegex(@"@[\d.]+?/(?:api|manual)/")]
     private static partial Regex IncorrectPackageDocLink();
 }

@@ -142,13 +142,13 @@ public sealed partial class PageResource
 
 	public void AddEmbeddedInto(string page)
 	{
-		EmbeddedInto ??= new HashSet<string>();
+		EmbeddedInto ??= [];
 		EmbeddedInto.Add(page);
 	}
 
 	public void AddEmbedded(string page)
 	{
-		Embedded ??= new HashSet<string>();
+		Embedded ??= [];
 		Embedded.Add(page);
 	}
 
@@ -396,6 +396,6 @@ public sealed partial class PageResource
 
 	private static readonly Regex s_numberRegex = GetNumberRegex();
 
-	[GeneratedRegex(@"/\d+-", RegexOptions.Compiled)]
+	[GeneratedRegex(@"/\d+-")]
 	private static partial Regex GetNumberRegex();
 }

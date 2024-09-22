@@ -28,7 +28,7 @@ public partial class SidebarTests
 
 	private static readonly Regex s_anchorRegex = GetAnchorRegex();
 
-	[GeneratedRegex(@"]\(#([\w /%.]+)\)", RegexOptions.Compiled)]
+	[GeneratedRegex(@"]\(#([\w /%.]+)\)")]
 	private static partial Regex GetAnchorRegex();
 
 	/// <summary>

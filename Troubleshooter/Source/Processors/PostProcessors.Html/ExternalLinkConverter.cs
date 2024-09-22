@@ -9,7 +9,7 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public sealed partial class ExternalLinkConverter : IHtmlPostProcessor
 {
-	[GeneratedRegex("(?<=<a )href=\"https?://[.\\w/\\-%#?=@_]+\"", RegexOptions.Compiled)]
+	[GeneratedRegex("(?<=<a )href=\"https?://[.\\w/\\-%#?=@_]+\"")]
 	private static partial Regex GetExternalLinkRegex();
 
 	private static readonly Regex s_externalLinkRegex = GetExternalLinkRegex();

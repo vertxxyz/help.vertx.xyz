@@ -12,7 +12,7 @@ public sealed partial class RelativeLinkConverter : IHtmlPostProcessor
 {
 	[GeneratedRegex("""
 	                (?<=<a )href="([^"]+?\.md(?:#[^"]+?)?)"
-	                """, RegexOptions.Compiled)]
+	                """)]
 	private static partial Regex GetRelativeLinkRegex();
 
 	private static readonly Regex s_relativeLinkRegex = GetRelativeLinkRegex();

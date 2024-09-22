@@ -110,18 +110,18 @@ public static partial class RtfUtility
 		return -1;
 	}
 
-	[GeneratedRegex("font-size:\\d+pt;", RegexOptions.Compiled)]
+	[GeneratedRegex("font-size:\\d+pt;")]
 	private static partial Regex GetFontSizeRegex();
 
-	[GeneratedRegex("<span style=\"display:inline-block;width:(\\d+)px\"></span>", RegexOptions.Compiled)]
+	[GeneratedRegex("<span style=\"display:inline-block;width:(\\d+)px\"></span>")]
 	private static partial Regex GetTabsRegex();
 
-	[GeneratedRegex("background:#\\w{6};", RegexOptions.Compiled)]
+	[GeneratedRegex("background:#\\w{6};")]
 	private static partial Regex GetBackgroundRegex();
 
-	[GeneratedRegex("margin:\\d+;", RegexOptions.Compiled)]
+	[GeneratedRegex("margin:\\d+;")]
 	private static partial Regex GetMarginsRegex();
 
-	[GeneratedRegex("color:(#\\w{6});", RegexOptions.Compiled)]
+	[GeneratedRegex("color:(#\\w{6});")]
 	private static partial Regex GetColorRegex();
 }

@@ -13,7 +13,7 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public sealed partial class ListCompaction : IHtmlPostProcessor
 {
-	[GeneratedRegex("<li><span class=\"collapse\">collapse</span></li>\n</(ul|ol)>", RegexOptions.Compiled)]
+	[GeneratedRegex("<li><span class=\"collapse\">collapse</span></li>\n</(ul|ol)>")]
 	private static partial Regex GetEmptyListRegex();
 
 	private static readonly Regex s_emptyListRegex = GetEmptyListRegex();
@@ -45,7 +45,7 @@ public sealed partial class ListCompaction : IHtmlPostProcessor
 		return builder.ToString();
 	}
 
-	[GeneratedRegex("<([\\w]+) *[\\w =\"-.]*>", RegexOptions.Compiled)]
+	[GeneratedRegex("<([\\w]+) *[\\w =\"-.]*>")]
 	private static partial Regex GetSimplifiedTagRegex();
 
 	private static readonly Regex s_simplifiedTagRegex = GetSimplifiedTagRegex();

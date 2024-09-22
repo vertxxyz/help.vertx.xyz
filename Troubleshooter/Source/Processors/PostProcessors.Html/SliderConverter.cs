@@ -9,7 +9,7 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public sealed partial class SliderConverter : IHtmlPostProcessor
 {
-	[GeneratedRegex("<div.* class=\".*?slider\"></div>", RegexOptions.Compiled)]
+	[GeneratedRegex("<div.* class=\".*?slider\"></div>")]
 	private static partial Regex GetSliderRegex();
 
 	private static readonly Regex s_sliderRegex = GetSliderRegex();

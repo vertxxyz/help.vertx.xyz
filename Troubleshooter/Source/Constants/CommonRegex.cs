@@ -24,15 +24,15 @@ public static partial class CommonRegex
 	/// </summary>
 	public static readonly Regex LocalImages = GetLocalImagesRegex();
 
-	[GeneratedRegex(@"(?<!!)\[(.+?)\]\(([\w /%.#-]+)\)", RegexOptions.Compiled)]
+	[GeneratedRegex(@"(?<!!)\[(.+?)\]\(([\w /%.#-]+)\)")]
 	private static partial Regex GetInternalLinkRegex();
 
-	[GeneratedRegex(@"]\((https?://[\w/%#?.@_+~=&()]+)\)", RegexOptions.Compiled)]
+	[GeneratedRegex(@"]\((https?://[\w/%#?.@_+~=&()]+)\)")]
 	private static partial Regex GetExternalLinkRegex();
 
-	[GeneratedRegex(@"<<([A-Za-z0-9\-/ ]+?\.[a-zA-z]+?)>>", RegexOptions.Compiled)]
+	[GeneratedRegex(@"<<([A-Za-z0-9\-/ ]+?\.[a-zA-z]+?)>>")]
 	private static partial Regex GetEmbedsRegex();
 
-	[GeneratedRegex("""!\[[^\]]*\]\((?!http)(.*?)\s*(".*[^"]")?\s*\)""", RegexOptions.Compiled)]
+	[GeneratedRegex("""!\[[^\]]*\]\((?!http)(.*?)\s*(".*[^"]")?\s*\)""")]
 	private static partial Regex GetLocalImagesRegex();
 }

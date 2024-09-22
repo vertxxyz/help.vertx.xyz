@@ -239,6 +239,6 @@ public static partial class SearchGatherer
 		static bool IsEndWordCharacter(char c) => char.IsLetterOrDigit(c);
 	}
 
-    [GeneratedRegex("""<pre(?: class="\w*?")>.+?</pre>""", RegexOptions.Compiled | RegexOptions.Singleline)]
+    [GeneratedRegex("""<pre(?: class="\w*?")>.+?</pre>""", RegexOptions.Singleline)]
     private static partial Regex GetPreRegex();
 }
