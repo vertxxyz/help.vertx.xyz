@@ -10,46 +10,38 @@ public static class CustomPipelineExtensions
 {
 	private static HtmlRendererCache? s_rendererCache;
 
-	internal static RentedCustomHtmlRenderer RentCustomHtmlRenderer(this MarkdownPipeline pipeline)
+	internal static CustomHtmlRendererScope RentCustomHtmlRenderer(this MarkdownPipeline pipeline)
 	{
 		var cache = s_rendererCache ??= new HtmlRendererCache(pipeline);
 		CustomHtmlRenderer renderer = cache.Get();
-		return new RentedCustomHtmlRenderer(cache, renderer);
+		return new CustomHtmlRendererScope(cache, renderer);
 	}
 
-	internal sealed class HtmlRendererCache : ObjectCache<CustomHtmlRenderer>
+	internal sealed class HtmlRendererCache(MarkdownPipeline pipeline) : ObjectCache<CustomHtmlRenderer>
 	{
 		private const int InitialCapacity = 1024;
 
-		private readonly MarkdownPipeline _pipeline;
-
-		public HtmlRendererCache(MarkdownPipeline pipeline)
-		{
-			_pipeline = pipeline;
-		}
+		private readonly MarkdownPipeline _pipeline = pipeline;
 
 		protected override CustomHtmlRenderer NewInstance()
 		{
-			var writer = new StringWriter(new StringBuilder(InitialCapacity));
-			var renderer = new CustomHtmlRenderer(writer);
+			var bodyWriter = new StringWriter(new StringBuilder(InitialCapacity)) { NewLine = "\n" };
+			var headWriter = new StringWriter(new StringBuilder(InitialCapacity)) { NewLine = "\n" };
+			var renderer = new CustomHtmlRenderer(headWriter, bodyWriter);
 			_pipeline.Setup(renderer);
 			renderer.Setup();
 			return renderer;
 		}
 
-		protected override void Reset(CustomHtmlRenderer instance)
-		{
-			instance.DoReset();
-			((StringWriter)instance.Writer).GetStringBuilder().Length = 0;
-		}
+		protected override void Reset(CustomHtmlRenderer instance) => instance.DoReset();
 	}
 
-	internal readonly struct RentedCustomHtmlRenderer : IDisposable
+	internal readonly struct CustomHtmlRendererScope : IDisposable
 	{
 		private readonly HtmlRendererCache _cache;
 		public readonly CustomHtmlRenderer Instance;
 
-		internal RentedCustomHtmlRenderer(HtmlRendererCache cache, CustomHtmlRenderer renderer)
+		internal CustomHtmlRendererScope(HtmlRendererCache cache, CustomHtmlRenderer renderer)
 		{
 			_cache = cache;
 			Instance = renderer;

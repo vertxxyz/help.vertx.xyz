@@ -1,5 +1,8 @@
 ---
 title: "Unity, huh, how?"
+description: "Unity troubleshooting wiki"
+image: "index.png"
+url: "https://unity.huh.how"
 ---
 
 :::{#main-page--content .title-page}

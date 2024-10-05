@@ -11,8 +11,7 @@ public sealed class WebRenderer
 	public WebRenderer(Arguments arguments)
 	{
 		var options = new EdgeOptions();
-		options.AddArgument("--headless");
-		options.AddArguments("--disable-extensions", "--window-size=2560,1440");
+		options.AddArguments("headless", "disable-extensions", "window-size=2560,1440");
 		Driver = new EdgeDriver(EdgeDriverService.CreateDefaultService(), options);
 
 		Driver.Url = arguments.Host;

@@ -22,4 +22,7 @@ Disallow: /Images/
 Disallow: /Json/
 Disallow: /Scripts/
 Disallow: /Styles/
+Allow: /Images/favicon-16x16.png
+Allow: /Images/favicon-32x32.png
+Allow: /Images/favicon-96x96.png
 Sitemap: https://unity.huh.how/sitemap.txt

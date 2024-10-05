@@ -11,7 +11,8 @@ public static partial class IndexHtml
 	[GeneratedRegex($"""<h\d.*?>{HeadingOverrideRenderer.HeaderTextTag}([^<]*?)<\/span>.*?<\/h\d>""")]
 	private static partial Regex GetTitleRegex();
 
-	public static string GetWithContent(
+	public static string Create(
+		string? headTags,
 		string content,
 		string? sidebarContent = null
 	)
@@ -29,14 +30,16 @@ public static partial class IndexHtml
 		            <meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1,maximum-scale=1">
 		            <meta name="robots" content="noai, noimageai">
 		            <title>{title}</title>
+		            {headTags}
+		            <meta name="theme-color" content="#F19020">
 		            <!--suppress HtmlUnknownTarget -->
-		            <link rel="stylesheet" href="/Styles/style.css?v=2.6.0">
+		            <link rel="stylesheet" href="/Styles/style.css?v=2.6.1">
 		            <!--suppress HtmlUnknownTarget -->
 		            <link rel="stylesheet" href="/Styles/code-highlighting.css?v=1.0.3">
 		            <link rel="preconnect" href="https://fonts.googleapis.com">
 		            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&subset=latin,latin-ext&display=swap" rel="stylesheet">
-		            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+		            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
 		            <link rel="icon" type="image/png" href="/Images/favicon-16x16.png" sizes="16x16">
 		            <link rel="icon" type="image/png" href="/Images/favicon-32x32.png" sizes="32x32">
 		            <link rel="icon" type="image/png" href="/Images/favicon-96x96.png" sizes="96x96">
@@ -72,15 +75,15 @@ public static partial class IndexHtml
 		        </div>
 		        <div class="header">
 		            <div class="header__contents">
-		                <div class="header__title header__title--large">
+		                <h1 class="header__title header__title--large">
 		                    <a class="" href="/"><img class="emoji" draggable="false" alt="🤔"
 		                                              src="/Images/favicon-96x96.png">
 		                        Unity, huh, how?
-		                    </a></div>
-		                <div class="header__title header__title--small">
+		                    </a></h1>
+		                <h1 class="header__title header__title--small">
 		                    <a class="" href="/"><img class="emoji" draggable="false" alt="🤔"
 		                                              src="/Images/favicon-96x96.png"></a>
-		                </div>
+		                </h1>
 		            </div>
 		            <div class="header__sidebar">
 		                <input class="header__search" id="page-search" type="text" placeholder="Search...">

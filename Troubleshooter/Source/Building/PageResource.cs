@@ -36,6 +36,7 @@ public enum ResourceLocation
 	/// Content is embedded in other pages and is never root content in the output
 	/// </summary>
 	Embed,
+
 	/// <summary>
 	/// Content is root content in the html output
 	/// </summary>
@@ -80,9 +81,14 @@ public sealed partial class PageResource
 	public string? MarkdownText { get; set; }
 
 	/// <summary>
-	/// Processed output html
+	/// Processed output html used within the head block.
 	/// </summary>
-	public string? HtmlText { get; private set; }
+	public string? HeadHtmlText { get; private set; }
+
+	/// <summary>
+	/// Processed output html used within the body block.
+	/// </summary>
+	public string? BodyHtmlText { get; private set; }
 
 	/// <summary>
 	/// Output url.
@@ -174,7 +180,7 @@ public sealed partial class PageResource
 			case ResourceType.RichText:
 				try
 				{
-					HtmlText = RtfUtility.RtfToHtml(File.ReadAllText(FullPath));
+					BodyHtmlText = RtfUtility.RtfToHtml(File.ReadAllText(FullPath));
 				}
 				catch (Exception e)
 				{
@@ -185,7 +191,7 @@ public sealed partial class PageResource
 			case ResourceType.Html:
 				try
 				{
-					HtmlText = HtmlUtility.Parse(File.ReadAllText(FullPath));
+					BodyHtmlText = HtmlUtility.Parse(File.ReadAllText(FullPath));
 				}
 				catch (Exception e)
 				{
@@ -201,10 +207,10 @@ public sealed partial class PageResource
 		}
 	}
 
-	public void SetHtmlTextAsEmpty() => HtmlText = string.Empty;
+	public void SetHtmlTextAsEmpty() => BodyHtmlText = string.Empty;
 
 	/// <summary>
-	/// Builds page to <see cref="HtmlText"/> to be embedded in other content or written to disk.
+	/// Builds page to <see cref="BodyHtmlText"/> to be embedded in other content or written to disk.
 	/// </summary>
 	private void BuildMarkdownToHtml(
 		Site site,
@@ -216,40 +222,52 @@ public sealed partial class PageResource
 		if (MarkdownText == null)
 			ProcessMarkdown(File.ReadAllText(FullPath), site, allResources);
 
-		string text = Location switch
+		(string? head, string text) = Location switch
 		{
 			ResourceLocation.Embed =>
 				// Embeds are not fully processed into HTML until they are built when embedded into site content.
 				// This is done because something like Abbreviations requires the abbreviation target to be processed at the same time as the source.
-				MarkdownText!,
-			ResourceLocation.Site => ToHtml(MarkdownText!, markdownPipeline, processors, FullPath),
+				(null, MarkdownText!),
+			ResourceLocation.Site => ToHtml(site, markdownPipeline, processors),
 			_ => throw new ArgumentOutOfRangeException(nameof(Location), Location, "Location was not handled.")
 		};
 
-		if (HtmlText == null)
-			HtmlText = text;
+		if (head != null)
+		{
+			if (HeadHtmlText == null)
+				HeadHtmlText = head;
+			else
+				HeadHtmlText += head;
+		}
+
+		if (BodyHtmlText == null)
+			BodyHtmlText = text;
 		else
-			HtmlText += text;
+			BodyHtmlText += text;
 	}
 
-	private static string ToHtml(
-		string markdown,
+	private (string? head, string body) ToHtml(
+		Site site,
 		MarkdownPipeline pipeline,
-		IProcessorGroup processors,
-		string fullPath
+		IProcessorGroup processors
 	)
 	{
-		string markdownPreProcessed = processors.PreProcessors.Process(markdown);
+		string markdownPreProcessed = processors.PreProcessors.Process(MarkdownText!);
 
 		pipeline = GetPipeline();
 
 		var document = MarkdownParser.Parse(markdownPreProcessed, pipeline);
-		using var rentedRenderer = pipeline.RentCustomHtmlRenderer();
-		CustomHtmlRenderer renderer = rentedRenderer.Instance;
-
+		using var rendererScope = pipeline.RentCustomHtmlRenderer();
+		CustomHtmlRenderer renderer = rendererScope.Instance;
+		renderer.Site = site;
+		renderer.CurrentResource = this;
 		renderer.Render(document);
-		renderer.Writer.Flush();
-		return processors.PostProcessors.Process(renderer.Writer.ToString() ?? string.Empty, fullPath);
+		var html = renderer.ToHtml();
+		return
+		(
+			html.head,
+			processors.PostProcessors.Process(html.body, FullPath)
+		);
 
 		MarkdownPipeline GetPipeline()
 		{
@@ -275,10 +293,11 @@ public sealed partial class PageResource
 				string fullPath = PageUtility.GetFullPathFromLocalEmbed(localPath, site);
 				if (!allResources.TryGetValue(fullPath, out var embeddedPage))
 					throw new LogicException(
-						$"\"{fullPath}\" is missing from {nameof(allResources)} while processing \"{FullPath}\".{nameof(embeds)}");
+						$"\"{fullPath}\" is missing from {nameof(allResources)} while processing \"{FullPath}\".{nameof(embeds)}"
+					);
 
 				stringBuilder.Append(allText[last..(group.Index - 2)]);
-				stringBuilder.Append(embeddedPage.HtmlText);
+				stringBuilder.Append(embeddedPage.BodyHtmlText);
 				last = group.Index + group.Length + 2;
 			}
 
@@ -391,7 +410,17 @@ public sealed partial class PageResource
 		Flags |= ResourceFlags.ExistsInOutput;
 
 		// Check the previously built file to see whether it ought to be re-written.
-		return IOUtility.CreateFileIfDifferent(OutputFilePath, IndexHtml.GetWithContent(HtmlText!, Sidebar?.HtmlText), recordType) ? WriteStatus.Written : WriteStatus.Skipped;
+		return IOUtility.CreateFileIfDifferent(
+			OutputFilePath,
+			IndexHtml.Create(
+				HeadHtmlText,
+				BodyHtmlText!,
+				Sidebar?.BodyHtmlText
+			),
+			recordType
+		)
+			? WriteStatus.Written
+			: WriteStatus.Skipped;
 	}
 
 	private static readonly Regex s_numberRegex = GetNumberRegex();

@@ -78,7 +78,8 @@ public static partial class SiteBuilder
 		void Generate404() =>
 			CreateFileIfDifferent(
 				Path.Combine(arguments.Path, "404.html"),
-				IndexHtml.GetWithContent(
+				IndexHtml.Create(
+					null,
 					// language=html
 					"""
 					<h1>404</h1>

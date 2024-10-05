@@ -4,7 +4,7 @@
 By drawing in the Scene and Game view you can validate assumptions about your code.
 
 ## Usage
-Gizmos can only be drawn from two message functions provided by `MonoBehaviour`, [`OnDrawGizmos`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnDrawGizmos.html) and [`OnDrawGizmosSelected`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnDrawGizmosSelected.html).
+Gizmos can only be drawn from two message functions provided by `MonoBehaviour`, [`OnDrawGizmos`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnDrawGizmos.html), and [`OnDrawGizmosSelected`](https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnDrawGizmosSelected.html).
 `OnDrawGizmosSelected` will run when the GameObject containing your component is selected.
 
 You can also draw gizmos from a static callback decorated with the [`DrawGizmo`](https://docs.unity3d.com/ScriptReference/DrawGizmo.html) attribute. This separates gizmo-drawing code from the runtime components and builds.

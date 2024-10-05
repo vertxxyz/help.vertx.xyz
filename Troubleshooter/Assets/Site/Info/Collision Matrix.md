@@ -1,6 +1,6 @@
 # Collision action matrix
 
-If your two colliders don't match in the matrix you **will not** get collision messages.
+If your two colliders don't match in the matrix you **will not** get collision messages (see [3D](../Physics%20Messages/2%20Collision%20Messages%203D.md) or [2D](../Physics%20Messages/2%20Collision%20Messages%202D.md) collision messages).
 
 +-------------------------------+--------+-----------+---------------------+----------------+-------------------+-----------------------------+
 |                               | Static | Rigidbody | Kinematic Rigidbody | Static Trigger | Rigidbody Trigger | Kinematic Rigidbody Trigger |
@@ -20,7 +20,7 @@ If your two colliders don't match in the matrix you **will not** get collision m
 
 # Trigger action matrix
 
-If your two colliders don't match in the matrix you **will not** get trigger messages.
+If your two colliders don't match in the matrix you **will not** get trigger messages (see [3D](../Physics%20Messages/2%20Trigger%20Messages%203D.md) or [2D](../Physics%20Messages/2%20Trigger%20Messages%202D.md) trigger messages).
 
 +-------------------------------+--------+-----------+---------------------+----------------+-------------------+-----------------------------+
 |                               | Static | Rigidbody | Kinematic Rigidbody | Static Trigger | Rigidbody Trigger | Kinematic Rigidbody Trigger |

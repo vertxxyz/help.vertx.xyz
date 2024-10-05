@@ -89,15 +89,15 @@ public sealed class SymlinkBuildPostProcessor : IBuildPostProcessor
 				 </div>
 				 <div class="header">
 				     <div class="header__contents">
-				         <div class="header__title header__title--large">
+				         <h1 class="header__title header__title--large">
 				             <a class="" href="/"><img class="emoji" draggable="false" alt="🤔"
 				                                       src="https://twemoji.maxcdn.com/v/13.0.1/72x72/1f914.png">
 				                 Unity, huh, how?
-				             </a></div>
-				         <div class="header__title header__title--small">
+				             </a></h1>
+				         <h1 class="header__title header__title--small">
 				             <a class="" href="/"><img class="emoji" draggable="false" alt="🤔"
 				                                       src="https://twemoji.maxcdn.com/v/13.0.1/72x72/1f914.png"></a>
-				         </div>
+				         </h1>
 				     </div>
 				 </div>
 				 <div id="container" class="container">

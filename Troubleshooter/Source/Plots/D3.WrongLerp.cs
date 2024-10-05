@@ -91,6 +91,6 @@ public sealed partial class D3
 
 	private static string WrongLerpGraph(IJavaScriptExecutor webDriver, ILogger logger) => TimeToValueGraph(webDriver, i => Maths.LerpUnclamped(i.value, 1, i.deltaTime * 10), (0, 0.5f), logger);
 
-	private static string ImprovedWrongLerpGraphPow(IJavaScriptExecutor webDriver, ILogger logger) => TimeToValueGraph(webDriver, i => Maths.FractionalDamping(i.value, 1, 0.0001f, i.deltaTime), (0, 0.5f), logger);
+	// private static string ImprovedWrongLerpGraphPow(IJavaScriptExecutor webDriver, ILogger logger) => TimeToValueGraph(webDriver, i => Maths.FractionalDamping(i.value, 1, 0.0001f, i.deltaTime), (0, 0.5f), logger);
 	private static string ImprovedWrongLerpGraphExp(IJavaScriptExecutor webDriver, ILogger logger) => TimeToValueGraph(webDriver, i => Maths.ExponentialDecay(i.value, 1, 10, i.deltaTime), (0, 0.5f), logger);
 }

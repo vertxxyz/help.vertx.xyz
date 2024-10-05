@@ -1,6 +1,11 @@
+---
+title: "NullReferenceException"
+description: "A NullReferenceException (NRE) occurs when code tries to access a member of an unassigned variable."
+---
+
 # NullReferenceException
 
-A `NullReferenceException` (NRE) occurs when code tries to access members of a variable which has no value assigned.  
+A `NullReferenceException` (NRE) occurs when code tries to access a member of an unassigned variable.  
 
 ```nomnoml
 #direction: right

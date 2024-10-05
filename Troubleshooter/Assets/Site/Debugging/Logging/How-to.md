@@ -7,7 +7,7 @@ Code can pass any object to the log and it will be converted to a `string` and d
 :::note
 <<General/Console Window Short.md>>
 
-Also be aware when **Collapse** is enabled in the same toolbar, which will merge identical logs.
+Be aware when **Collapse** is enabled in the same toolbar, which will merge identical logs.
 :::
 
 ### String interpolation

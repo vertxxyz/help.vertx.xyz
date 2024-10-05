@@ -68,5 +68,13 @@ public sealed class Site
 	/// <summary>
 	/// Converts a Full Path that is in a directory at the rootIndex depth to a local path with the necessary text replacement to be link-appropriate.
 	/// </summary>
-	public static string FinalisePathWithRootIndex(string fullPath, int rootIndex) => fullPath[rootIndex..].ToFinalisedWorkingPath();
+	public static string FinalisePathWithRootIndex(string fullPath, int rootIndex)
+	{
+		if (rootIndex > fullPath.Length)
+		{
+			Console.Error.WriteLine($"{fullPath} failed:");
+		}
+
+		return fullPath[rootIndex..].ToFinalisedWorkingPath();
+	}
 }
