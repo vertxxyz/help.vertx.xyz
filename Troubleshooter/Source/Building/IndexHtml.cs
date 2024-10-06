@@ -30,7 +30,7 @@ public static partial class IndexHtml
 		            <meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1,maximum-scale=1">
 		            <meta name="robots" content="noai, noimageai">
 		            <title>{title}</title>
-		            {headTags}
+		        {headTags}
 		            <meta name="theme-color" content="#F19020">
 		            <!--suppress HtmlUnknownTarget -->
 		            <link rel="stylesheet" href="/Styles/style.css?v=2.6.1">

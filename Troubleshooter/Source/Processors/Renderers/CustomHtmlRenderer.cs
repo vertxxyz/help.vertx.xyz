@@ -67,6 +67,7 @@ public sealed class HeadProducer(StringWriter writer)
 	public void SetVideo(in ReadOnlySpan<char> value)
 		=> _writer.WriteLine($"""    <meta property="og:video" content="{value}" />""");
 
+	// You must reset this value in Reset().
 	private bool _siteName, _title, _type, _url, _image;
 
 	// ReSharper disable once ReplaceWithPrimaryConstructorParameter
@@ -87,7 +88,7 @@ public sealed class HeadProducer(StringWriter writer)
 
 	public void Reset()
 	{
-		_title = _type = _url = _image = false;
+		_siteName = _title = _type = _url = _image = false;
 		_writer.GetStringBuilder().Length = 0;
 	}
 }
