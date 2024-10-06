@@ -1,3 +1,7 @@
+---
+title: "Common Scene view issues"
+description: "A shortlist of issues in or with the Scene view and how to solve them."
+---
 # Scene view
 ## View
 
@@ -15,4 +19,5 @@
 - [A tool is stuck and can't be moved.](Scene%20View/Stuck%20Tool.md)
 
 ## Objects
+- [An object's pivot is incorrect.](Scene%20View/Pivot%20Mode.md)
 - [I cannot drag and drop an object into the view.](Scene%20View/Drag%20And%20Drop.md)

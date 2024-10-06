@@ -1,3 +1,7 @@
+---
+title: "Collision action matrix"
+description: "If your two colliders don't match in the matrix you won't get physics messages."
+---
 # Collision action matrix
 
 If your two colliders don't match in the matrix you **will not** get collision messages (see [3D](../Physics%20Messages/2%20Collision%20Messages%203D.md) or [2D](../Physics%20Messages/2%20Collision%20Messages%202D.md) collision messages).

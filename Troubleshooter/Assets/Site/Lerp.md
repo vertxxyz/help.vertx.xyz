@@ -1,3 +1,7 @@
+---
+title: "Lerp"
+description: "Overview and common issues with Lerp."
+---
 # Lerp
 ## General
 - [Overview of Lerp](Lerp/Overview.md)

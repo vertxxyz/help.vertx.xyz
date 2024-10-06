@@ -62,7 +62,8 @@ public sealed class BuildSiteController : ControllerBase
 		(bool success, ReadOnlyDictionary<string, IOUtility.RecordType> paths) = await SiteBuilder.Build(arguments, site, markdownPipeline, processors);
 		if (success)
 		{
-			Console.WriteLine("Successful build, generating search index.");
+			Console.WriteLine("Successful build.");
+			Console.WriteLine("Generating search index...");
 			success = await SearchIndex.Generate(arguments, paths);
 			if (success)
 			{

@@ -1,9 +1,13 @@
+---
+title: "Basic debugging"
+description: "Common steps applicable to most problems."
+---
 # Basic debugging
 
 > it doesn't work
 > 😢 pls help!
 
-When you have an issue, there are some common steps that are often applicable to every problem. Internalising these and making sure they're covered when you encounter problems, will allow you to quickly solve issues alone.
+When you have an issue, there are common steps applicable to most problems. Internalising these and covering them when you encounter problems, allows you to quickly solve issues alone.
 
 ## Check the object setup is correct
 If you are using MonoBehaviours, there are some basics that should be checked:
@@ -31,6 +35,8 @@ Check whether the issue can be recreated in an empty scene, reduce the amount of
 
 If you use source control, go back and find where the issue began, and compare what's changed. If you don't use source control, consider it!
 For issues manifesting over the course of a long period, Git has tools like Bisect to narrow down the problematic commit.
+
+By repeatedly reducing the problem space in half, you can quickly discard potential issues. This is known as a binary search.
 
 ## Check that the editor or project state are not the issue
 Sometimes, things the editor itself can break, or the data generated from importing assets or scripts can become invalidated or incorrect. You must be aware of it to avoid endlessly chasing non-existent problems.

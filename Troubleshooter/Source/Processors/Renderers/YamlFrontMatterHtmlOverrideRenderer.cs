@@ -57,6 +57,10 @@ public class YamlFrontMatterHtmlOverrideRenderer : HtmlObjectRenderer<YamlFrontM
 			{
 				headRenderer.HeadWriter.SetVideo(ToAbsoluteUrl(video));
 			}
+			if (GetContentMatching(text, "site-name", out var siteName))
+			{
+				headRenderer.HeadWriter.SetSiteName(siteName);
+			}
 
 			continue;
 

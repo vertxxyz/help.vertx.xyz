@@ -1,3 +1,7 @@
+---
+title: "Using Git with Unity"
+description: "Source control is necessary to avoid data loss, and provides powerful tools like project history."
+---
 # Using Git with Unity
 Git is a popular form of source control used with Unity. Source control allows you to roll back or recover changes made to files in your project.  
 This resource is not exhaustive, but it should get beginners off the ground and using Git.  

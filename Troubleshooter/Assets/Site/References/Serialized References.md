@@ -1,3 +1,7 @@
+---
+title: "Serialized references"
+description: "Learn how to configure references between objects."
+---
 # Serialized references
 ## How-to
 - [Referring to objects **from the scene**.](Serializing%20Component%20References.md)

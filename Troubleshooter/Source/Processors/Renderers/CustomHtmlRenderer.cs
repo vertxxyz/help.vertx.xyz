@@ -15,6 +15,12 @@ public interface IHeadRenderer
 
 public sealed class HeadProducer(StringWriter writer)
 {
+	public void SetSiteName(in ReadOnlySpan<char> value)
+	{
+		_siteName = true;
+		_writer.WriteLine($"""    <meta property="og:site_name" content="{value}" />""");
+	}
+
 	public void SetTitle(in ReadOnlySpan<char> value)
 	{
 		_title = true;
@@ -61,7 +67,7 @@ public sealed class HeadProducer(StringWriter writer)
 	public void SetVideo(in ReadOnlySpan<char> value)
 		=> _writer.WriteLine($"""    <meta property="og:video" content="{value}" />""");
 
-	private bool _title, _type, _url, _image;
+	private bool _siteName, _title, _type, _url, _image;
 
 	// ReSharper disable once ReplaceWithPrimaryConstructorParameter
 	private readonly StringWriter _writer = writer;
@@ -72,7 +78,8 @@ public sealed class HeadProducer(StringWriter writer)
 		// Write nothing if no metadata was specified.
 		if (stringBuilder.Length == 0)
 			return;
-		if (!_title) SetTitle("Unity, Huh, How?");
+		if (!_siteName) SetSiteName("🤔 Unity, Huh, How?");
+		if (!_title) SetTitle("🤔 Unity, Huh, How?");
 		if (!_type) SetType("website");
 		if (!_url) SetUrl($"https://unity.huh.how/{url}");
 		if (!_image) SetImage("", "");

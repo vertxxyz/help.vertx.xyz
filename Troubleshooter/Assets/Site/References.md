@@ -1,3 +1,7 @@
+---
+title: "Referring to members in other scripts"
+description: "Choose the best way to refer to other variables."
+---
 # Referring to members in other scripts
 
 There are various ways to create a reference between one object and another:

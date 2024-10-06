@@ -1,4 +1,5 @@
 ---
+site-name: ""
 title: "Unity, huh, how?"
 description: "Unity troubleshooting wiki"
 image: "index.png"

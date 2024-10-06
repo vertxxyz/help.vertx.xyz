@@ -1,6 +1,10 @@
+---
+title: "Bitmasks and LayerMasks"
+description: "A bitmask is a representation of many states as a single value."
+---
 # Bitmasks and LayerMasks
 ## Bitmasks
-A bitmask is a representation of many states using a single value.
+A bitmask is a representation of many states as a single value.
 
 A bit is a `0` or a `1`. In a bitmask `0` is an inactive layer, and a `1` is active.  
 As `int` is a 32 bit value, it can be used to represent 32 toggleable layers.
