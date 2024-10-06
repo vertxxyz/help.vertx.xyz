@@ -295,7 +295,6 @@ function performPageSetup(valueToLoad, url, hash, {
     // -------------------------------
     setTimeout(() => scrollToHash(hash), 100); // Delay seems to be required in some cases.
     setupHeaders();
-    renameTitle(url);
 }
 
 function absolute(base, relative) {
@@ -360,15 +359,6 @@ function setupHeaders() {
     let sidebar = document.querySelector(sidebarContentsId);
     sidebar?.querySelectorAll(".header-permalink").forEach(e => e.remove());
     sidebar?.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(e => e.removeAttribute("id"));
-}
-
-function renameTitle(url) {
-    let newTitle = (document.querySelector("h1") ?? document.querySelector("h2"))?.textContent.trim();
-    if (newTitle != null) {
-        if (newTitle.endsWith('#')) // Only trim once
-            newTitle = newTitle.substring(0, newTitle.length - 1);
-        document.title = newTitle;
-    }
 }
 
 function setupCodeSettings() {

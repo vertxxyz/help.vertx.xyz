@@ -27,7 +27,6 @@ public class YamlFrontMatterHtmlOverrideRenderer : HtmlObjectRenderer<YamlFrontM
 
 			if (GetContentMatching(text, "title", out var title))
 			{
-				renderer.Write($"""<div class="hidden"><h1>{HeadingOverrideRenderer.HeaderTextTag}{title}</span></h1></div>""");
 				headRenderer.HeadWriter.SetTitle(title);
 			}
 			else if (GetContentMatching(text, "type", out var type))

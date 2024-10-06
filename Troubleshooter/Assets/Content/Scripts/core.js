@@ -40,6 +40,8 @@ function load(
 
             // Load contents
             if (element) {
+                document.title = nodes.title ?? "Unity, huh, how?";
+
                 const contents = nodes.querySelector(contentsId);
                 element.replaceChildren(...contents.childNodes);
 

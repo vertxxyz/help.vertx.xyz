@@ -1,6 +1,7 @@
 ---
 title: "NullReferenceException"
 description: "A NullReferenceException (NRE) occurs when code tries to access a member of an unassigned variable."
+image: "nullreferenceexception.png"
 ---
 
 # NullReferenceException

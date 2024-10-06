@@ -1,3 +1,9 @@
+---
+title: "Troubleshooting physics messages"
+description: "Steps taken to debug Unity physics callbacks."
+image: "physics-messages.png"
+---
+
 # Physics messages
 Physics messages are sent between [`Physics`](https://docs.unity3d.com/ScriptReference/Physics.html) or [`Physics2D`](https://docs.unity3d.com/ScriptReference/Physics2D.html) bodies when their colliders interact.
 
