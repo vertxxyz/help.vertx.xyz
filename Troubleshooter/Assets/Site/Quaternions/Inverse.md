@@ -1,3 +1,7 @@
+---
+title: "Quaternion.Inverse"
+description: "Returns the opposite rotation."
+---
 # [Quaternion.Inverse](https://docs.unity3d.com/ScriptReference/Quaternion.Inverse.html)
 ## Declaration
 ```csharp

@@ -1,10 +1,14 @@
+---
+title: "Quaternion members"
+description: "Don't read the individual components of a Quaternion. xyz and w are for advanced use cases only."
+---
 # Quaternion members
 
 [Quaternions](https://docs.unity3d.com/Manual/class-Quaternion.html) are not [Euler angles](https://en.wikipedia.org/wiki/Euler_angles), they are **not** a 3-axis system and should not be considered rotations about `xyz`.
 
 :::error  
-Do not read the individual components from a `Quaternion`.  
-`xyz`, and `w` are for advanced use cases only.  
+Don't read the individual components of a `Quaternion`.  
+`xyz` and `w` are for advanced use cases only.  
 :::
 
 ## Resolution

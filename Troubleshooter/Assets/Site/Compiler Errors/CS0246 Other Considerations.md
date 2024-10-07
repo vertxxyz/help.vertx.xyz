@@ -1,3 +1,7 @@
+---
+title: "CS0246: Other considerations"
+description: "The type or namespace name 'Foo' could not be found (are you missing a using directive or an assembly reference?)"
+---
 # [CS0246](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0246): Other considerations
 
 ```

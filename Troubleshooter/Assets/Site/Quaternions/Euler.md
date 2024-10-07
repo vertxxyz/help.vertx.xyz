@@ -1,3 +1,7 @@
+---
+title: "Quaternion.Euler"
+description: "A Quaternion rotation about the X, Y, and Z axes."
+---
 # [Quaternion.Euler](https://docs.unity3d.com/ScriptReference/Quaternion.Euler.html)
 ## Declaration
 ```csharp

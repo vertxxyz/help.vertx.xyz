@@ -1,3 +1,8 @@
+---
+title: "ScreenToWorldPoint"
+description: "Common ScreenToWorldPoint issues, and similar alternatives that may be better."
+image: "screentoworldpoint.png"
+---
 # [ScreenToWorldPoint](https://docs.unity3d.com/ScriptReference/Camera.ScreenToWorldPoint.html)
 
 `ScreenToWorldPoint` takes a `Vector3` argument, where the first two values are screen coordinates, and the third is the distance from the camera.  

@@ -8,17 +8,19 @@ namespace Troubleshooter;
 
 public static partial class IndexHtml
 {
-	[GeneratedRegex($"""<h\d.*?>{HeadingOverrideRenderer.HeaderTextTag}([^<]*?)<\/span>.*?<\/h\d>""")]
+	[GeneratedRegex("""<meta property="og:title" content="([^"]+?)" />""")]
 	private static partial Regex GetTitleRegex();
 
+	[GeneratedRegex($"""<h\d.*?>{HeadingOverrideRenderer.HeaderTextTag}([^<]*?)<\/span>.*?<\/h\d>""")]
+	private static partial Regex GetTitleFallbackRegex();
+
 	public static string Create(
-		string? headTags,
+		string headTags,
 		string content,
 		string? sidebarContent = null
 	)
 	{
-		Match titleMatch = GetTitleRegex().Match(content);
-		string title = titleMatch.Success ? titleMatch.Groups[1].Value : "Unity, huh, how?";
+		string title = GetTitle();
 
 		sidebarContent ??= "<!-- sidebar content -->";
 		// language=html
@@ -113,5 +115,19 @@ public static partial class IndexHtml
 		        </body>
 		        </html>
 		        """;
+
+		string GetTitle()
+		{
+			Match titleMatch;
+			if (!string.IsNullOrEmpty(headTags))
+			{
+				titleMatch = GetTitleRegex().Match(headTags);
+				if (titleMatch.Success)
+					return titleMatch.Groups[1].Value;
+			}
+
+			titleMatch = GetTitleFallbackRegex().Match(content);
+			return titleMatch.Success ? titleMatch.Groups[1].Value : "Unity, huh, how?";
+		}
 	}
 }

@@ -1,3 +1,7 @@
+---
+title: "Quaternion.identity"
+description: "Identity is the zero rotation. (0, 0, 0) in Euler angles."
+---
 # [Quaternion.identity](https://docs.unity3d.com/ScriptReference/Quaternion-identity.html)
 ## Declaration
 ```csharp

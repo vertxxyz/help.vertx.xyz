@@ -79,7 +79,7 @@ public static partial class SiteBuilder
 			CreateFileIfDifferent(
 				Path.Combine(arguments.Path, "404.html"),
 				IndexHtml.Create(
-					null,
+					"",
 					// language=html
 					"""
 					<h1>404</h1>

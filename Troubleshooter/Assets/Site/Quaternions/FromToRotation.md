@@ -1,3 +1,7 @@
+---
+title: "Quaternion.FromToRotation"
+description: "Creates a rotation from one direction to another. This will be the most direct rotation."
+---
 # [Quaternion.FromToRotation](https://docs.unity3d.com/ScriptReference/Quaternion.FromToRotation.html)
 ## Declaration
 <<Code/Info/Quaternions/FromToRotation 1.html>>

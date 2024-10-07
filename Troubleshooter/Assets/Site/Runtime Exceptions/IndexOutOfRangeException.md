@@ -1,3 +1,7 @@
+---
+title: "IndexOutOfRangeException"
+description: "Resolving issues with collection access."
+---
 # [IndexOutOfRangeException](https://docs.microsoft.com/en-us/dotnet/api/system.indexoutofrangeexception)
 
 Collections are accessed via indices using the indexer syntax: `[value]`.

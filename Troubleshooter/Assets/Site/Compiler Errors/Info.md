@@ -1,7 +1,11 @@
+---
+title: "Compiler Errors"
+description: "Compiler errors describe issues with code that stops it from being compiled and used."
+---
 <<Abbreviations/IDE.md>>
 # Compiler Errors
 
-Compiler errors describe issues with code that will stop it from being compiled and used.
+Compiler errors describe issues with code that stops it from being compiled and used.
 These errors are accompanied by [warning messages](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/), error codes that detail what failed.
 
 ## Usage

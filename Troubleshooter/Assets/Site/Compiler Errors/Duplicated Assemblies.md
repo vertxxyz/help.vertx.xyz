@@ -1,3 +1,7 @@
+---
+title: "Duplicated assemblies"
+description: "Assembly with name 'X' already exists (.../X.asmdef)"
+---
 # Duplicated assemblies
 ```
 Assembly with name 'X' already exists (.../X.asmdef)

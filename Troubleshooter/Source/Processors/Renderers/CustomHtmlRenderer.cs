@@ -1,10 +1,12 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Web;
 using Markdig.Extensions.CustomContainers;
 using Markdig.Extensions.Yaml;
 using Markdig.Renderers;
 using Markdig.Renderers.Html;
+using static System.Web.HttpUtility;
 
 namespace Troubleshooter.Renderers;
 
@@ -18,31 +20,31 @@ public sealed class HeadProducer(StringWriter writer)
 	public void SetSiteName(in ReadOnlySpan<char> value)
 	{
 		_siteName = true;
-		_writer.WriteLine($"""    <meta property="og:site_name" content="{value}" />""");
+		_writer.WriteLine($"""    <meta property="og:site_name" content="{HtmlEncode(value.ToString())}" />""");
 	}
 
 	public void SetTitle(in ReadOnlySpan<char> value)
 	{
 		_title = true;
-		_writer.WriteLine($"""    <meta property="og:title" content="{value}" />""");
+		_writer.WriteLine($"""    <meta property="og:title" content="{HtmlEncode(value.ToString())}" />""");
 	}
 
 	public void SetType(in ReadOnlySpan<char> value)
 	{
 		_type = true;
-		_writer.WriteLine($"""    <meta property="og:type" content="{value}" />""");
+		_writer.WriteLine($"""    <meta property="og:type" content="{HtmlEncode(value.ToString())}" />""");
 	}
 
 	public void SetUrl(in ReadOnlySpan<char> value)
 	{
 		_url = true;
-		_writer.WriteLine($"""    <meta property="og:url" content="{value}" />""");
+		_writer.WriteLine($"""    <meta property="og:url" content="{HtmlEncode(value.ToString())}" />""");
 	}
 
 	public void SetImage(in ReadOnlySpan<char> value, in ReadOnlySpan<char> alt)
 	{
 		_image = true;
-		_writer.WriteLine($"""    <meta property="og:image" content="{value}" />""");
+		_writer.WriteLine($"""    <meta property="og:image" content="{HtmlEncode(value.ToString())}" />""");
 		if (!value.IsEmpty && !alt.IsEmpty)
 			SetImageAlt(alt);
 	}
@@ -50,22 +52,23 @@ public sealed class HeadProducer(StringWriter writer)
 	public void SetLargeImage(in ReadOnlySpan<char> value, in ReadOnlySpan<char> alt)
 	{
 		_writer.WriteLine("""    <meta name="twitter:card" content="summary_large_image">""");
-		_writer.WriteLine($"""    <meta property="twitter:image:src" content="{value}" />""");
+		_writer.WriteLine($"""    <meta property="twitter:image:src" content="{HtmlEncode(value.ToString())}" />""");
 		if (!value.IsEmpty && !alt.IsEmpty)
 			SetImageAlt(alt);
 	}
 
 	public void SetImageAlt(in ReadOnlySpan<char> value)
-		=> _writer.WriteLine($"""    <meta property="og:image:alt" content="{value}" />""");
+		=> _writer.WriteLine($"""    <meta property="og:image:alt" content="{HtmlEncode(value.ToString())}" />""");
 
 	public void SetDescription(in ReadOnlySpan<char> value)
 	{
-		_writer.WriteLine($"""    <meta property="og:description" content="{value}" />""");
-		_writer.WriteLine($"""    <meta property="description" content="{value}" />""");
+		string encodedValue = HtmlEncode(value.ToString());
+		_writer.WriteLine($"""    <meta property="og:description" content="{encodedValue}" />""");
+		_writer.WriteLine($"""    <meta property="description" content="{encodedValue}" />""");
 	}
 
 	public void SetVideo(in ReadOnlySpan<char> value)
-		=> _writer.WriteLine($"""    <meta property="og:video" content="{value}" />""");
+		=> _writer.WriteLine($"""    <meta property="og:video" content="{HtmlEncode(value.ToString())}" />""");
 
 	// You must reset this value in Reset().
 	private bool _siteName, _title, _type, _url, _image;

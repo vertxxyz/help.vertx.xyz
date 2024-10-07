@@ -1,3 +1,7 @@
+---
+title: "Quaternion.LookRotation"
+description: "Creates a rotation with the provided forward and upwards directions."
+---
 # [Quaternion.LookRotation](https://docs.unity3d.com/ScriptReference/Quaternion.LookRotation.html)
 ## Declaration
 <<Code/Info/Quaternions/LookRotation 1.html>>

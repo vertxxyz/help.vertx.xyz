@@ -1,3 +1,7 @@
+---
+title: "Quaternions"
+description: "Quaternions are not Euler angles (XYZ). Use their helper functions and don't be frightened."
+---
 # [Quaternions](https://docs.unity3d.com/ScriptReference/Quaternion.html)
 ## What are they?
 Quaternions are compact four dimensional values that can be easily interpolated between values (to rotate to another orientation via the most direct rotation).

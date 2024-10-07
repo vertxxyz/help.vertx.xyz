@@ -1,3 +1,7 @@
+---
+title: "Quaternion multiplication"
+description: "Multiplication rotates an orientation or point, combining them in sequence. A * B, A rotates B."
+---
 # [Quaternion: Multiplication](https://docs.unity3d.com/ScriptReference/Quaternion-operator_multiply.html)
 ## Declaration
 ```csharp

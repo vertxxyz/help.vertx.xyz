@@ -1,6 +1,6 @@
 ---
 title: "Troubleshooting physics messages"
-description: "Steps taken to debug Unity physics callbacks."
+description: "Steps to debug Unity physics callbacks."
 image: "physics-messages.png"
 ---
 

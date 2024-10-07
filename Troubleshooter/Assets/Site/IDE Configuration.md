@@ -1,3 +1,7 @@
+---
+title: "IDE configuration"
+description: "If your IDE isn't providing autocomplete suggestions or underlining errors in red, then it needs to be configured."
+---
 # IDE configuration
 :::error
 If your IDE isn't providing autocomplete suggestions or underlining errors in red, then it needs to be configured.

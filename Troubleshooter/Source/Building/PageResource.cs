@@ -222,23 +222,20 @@ public sealed partial class PageResource
 		if (MarkdownText == null)
 			ProcessMarkdown(File.ReadAllText(FullPath), site, allResources);
 
-		(string? head, string text) = Location switch
+		(string head, string text) = Location switch
 		{
 			ResourceLocation.Embed =>
 				// Embeds are not fully processed into HTML until they are built when embedded into site content.
 				// This is done because something like Abbreviations requires the abbreviation target to be processed at the same time as the source.
-				(null, MarkdownText!),
+				("", MarkdownText!),
 			ResourceLocation.Site => ToHtml(site, markdownPipeline, processors),
 			_ => throw new ArgumentOutOfRangeException(nameof(Location), Location, "Location was not handled.")
 		};
 
-		if (head != null)
-		{
-			if (HeadHtmlText == null)
-				HeadHtmlText = head;
-			else
-				HeadHtmlText += head;
-		}
+		if (string.IsNullOrEmpty(HeadHtmlText))
+			HeadHtmlText = head;
+		else
+			HeadHtmlText += head;
 
 		if (BodyHtmlText == null)
 			BodyHtmlText = text;
@@ -246,7 +243,7 @@ public sealed partial class PageResource
 			BodyHtmlText += text;
 	}
 
-	private (string? head, string body) ToHtml(
+	private (string head, string body) ToHtml(
 		Site site,
 		MarkdownPipeline pipeline,
 		IProcessorGroup processors
@@ -413,7 +410,7 @@ public sealed partial class PageResource
 		return IOUtility.CreateFileIfDifferent(
 			OutputFilePath,
 			IndexHtml.Create(
-				HeadHtmlText,
+				HeadHtmlText!,
 				BodyHtmlText!,
 				Sidebar?.BodyHtmlText
 			),
