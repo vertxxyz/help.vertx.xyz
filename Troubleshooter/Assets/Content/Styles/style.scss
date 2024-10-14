@@ -540,6 +540,7 @@ kbd {
     .header__title {
         &.header__title--small {
             display: flex;
+            margin-block-start: 0;
         }
 
         &.header__title--large {

@@ -1,3 +1,7 @@
+---
+title: "General IDE configuration"
+description: "If your IDE isn't providing autocomplete suggestions or underlining errors in red, then it needs to be configured."
+---
 # General IDE configuration
 :::error
 The only[^1] 3 IDEs you should be using are **Visual Studio**, **JetBrains Rider**, or **Visual Studio Code**.

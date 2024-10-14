@@ -1,3 +1,7 @@
+---
+title: "JetBrains Rider configuration"
+description: "If your IDE isn't providing autocomplete suggestions or underlining errors in red, then it needs to be configured."
+---
 <<Abbreviations/UPM.md>>
 # ![JetBrains Rider](/Images/jetbrains_rider.svg) JetBrains Rider configuration
 ## Steps

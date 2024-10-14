@@ -1,11 +1,15 @@
+---
+title: "Understanding FixedUpdate"
+description: "Fixed Update runs only when required. It's run multiple times a frame to catch up to the current time, and it's skipped when ahead."
+---
 # Understanding FixedUpdate
 
-Fixed Update is run when it's required, it is not run every frame, sometimes it's run multiple times a frame.  
+Fixed Update runs only when required. It's run multiple times a frame to catch up to the current time, and it's skipped when ahead.  
 
-I like to look at this way... Fixed Update is fake 😲  
+I like to look at this way: Fixed Update is fake 😲  
 
-We can simulate what happens after one second by running Fixed Update `1 / Time.fixedDeltaTime` times and it can be done in an instant; and that is practically what Fixed Update is doing. 
-It is run repeatedly until fixed time catches up with real time, and the result is displayed. This keeps the delta time a _fixed_ length (resulting in consistent simulation[^1]), at the cost of fixed time not perfectly aligning to real time.
+Advance Fixed Update `1 / Time.fixedDeltaTime` times and it's moved forward by a second. That can be done in an instant, and is practically what Fixed Update is doing.   
+Fixed Update is run repeatedly until fixed time catches up with game time, and the result is displayed. This keeps the delta time a _fixed_ length (resulting in consistent simulation[^1]), at the cost of fixed time not perfectly aligning to real time.
 
 :::info  
 You can read Unity's version of this description in the [Important Classes - Time](https://docs.unity3d.com/Manual/TimeFrameManagement.html) section of the scripting manual.  
@@ -66,7 +70,7 @@ stateDiagram-v2
     state if_fixedUpdate <<choice>>
     [*] --> if_fixedUpdate
     note left of FixedUpdate
-        FixedUpdate is run until fixedTime has reached real time.
+        FixedUpdate is run until fixedTime has reached game time.
         It may not run at all in some frames.
     end note
     if_fixedUpdate --> Update: Time.fixedTime > Time.time

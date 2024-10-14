@@ -1,3 +1,7 @@
+---
+title: "Common errors"
+description: "Resolving common compiler, runtime, build, and package manager errors."
+---
 # Common errors
 ## [Compiler errors](Compiler%20Errors.md)
 Compiler errors stop you from compiling or playing your game.

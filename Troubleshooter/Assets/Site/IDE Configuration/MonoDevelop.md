@@ -1,3 +1,7 @@
+---
+title: "MonoDevelop configuration"
+description: "MonoDevelop support has been deprecated as of Unity 2018.1."
+---
 # MonoDevelop configuration
 
 :::error

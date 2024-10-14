@@ -1,6 +1,6 @@
 ---
 title: "Random.Range"
-description: "Random.Range has an exclusive upper bound when used with integers."
+description: "Random.Range has an exclusive upper bound for integers."
 ---
 # [Random.Range](https://docs.unity3d.com/ScriptReference/Random.Range.html)
 
@@ -16,7 +16,7 @@ Random.Range(0, 1) == 0
 ### Collections
 `array.Length` and `list.Count` are both `1` greater than the bounds of their collection, so they make fantastic limits.
 
-### Example
+#### Example
 <<Code/Specific/Random/Range.rtf>>  
 
 :::
@@ -25,7 +25,7 @@ Random.Range(0, 1) == 0
 ### Custom ranges
 Provide Range with the lower bound, and an upper bound `+ 1`.
 
-### Example
+#### Example
 ```csharp
 // Returns [0..max].
 int randomValue = Random.Range(0, max + 1);

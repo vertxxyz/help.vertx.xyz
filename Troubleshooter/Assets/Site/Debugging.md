@@ -1,7 +1,12 @@
+---
+title: "Debugging"
+description: "Methods to debug code, visuals, performance, memory, and UI."
+---
 # Debugging
-- [Logging](Debugging/Logging.md)  
-- [Debugger](Debugging/Debugger.md)  
-- [Visual debugging](Debugging/Visual%20Debugging.md)  
+- Debugging code
+  - [Logging](Debugging/Logging.md)  
+  - [Debugger](Debugging/Debugger.md)  
+  - [Visual debugging](Debugging/Visual%20Debugging.md)  
 - [Performance profiling](Debugging/Performance%20Profiling.md)  
 - [Memory profiling](Debugging/Memory%20Profiling.md)  
 - [Graphics debugging](Debugging/Graphics.md)  

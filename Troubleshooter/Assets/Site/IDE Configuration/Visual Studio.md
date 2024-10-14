@@ -1,3 +1,7 @@
+---
+title: "Visual Studio configuration"
+description: "If your IDE isn't providing autocomplete suggestions or underlining errors in red, then it needs to be configured."
+---
 <<Abbreviations/UPM.md>>
 # ![Visual Studio](/Images/visualstudio.svg) Visual Studio configuration
 ## Installation and configuration

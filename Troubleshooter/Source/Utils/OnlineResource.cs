@@ -113,6 +113,8 @@ public class OnlineResources
 	{
 		Ping ping = new();
 
+		Console.WriteLine("Loading online resources...");
+
 		try
 		{
 			CDN chosenCdn = await GetFirstConnectedCDN();
@@ -134,6 +136,8 @@ public class OnlineResources
 			Console.WriteLine(e);
 			throw;
 		}
+
+		Console.WriteLine("Loaded online resources.");
 
 		return;
 

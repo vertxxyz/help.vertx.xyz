@@ -35,7 +35,7 @@ public static partial class IndexHtml
 		        {headTags}
 		            <meta name="theme-color" content="#F19020">
 		            <!--suppress HtmlUnknownTarget -->
-		            <link rel="stylesheet" href="/Styles/style.css?v=2.6.1">
+		            <link rel="stylesheet" href="/Styles/style.css?v=2.6.2">
 		            <!--suppress HtmlUnknownTarget -->
 		            <link rel="stylesheet" href="/Styles/code-highlighting.css?v=1.0.3">
 		            <link rel="preconnect" href="https://fonts.googleapis.com">

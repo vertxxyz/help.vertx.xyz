@@ -18,7 +18,7 @@ public static float Lerp(float a, float b, float t)
 
 - When `t` is `<= 0`, `Lerp` will return `a`.
 - When `t` is `>= 1`, `Lerp` will return `b`.
-- When `t` is in between `0` and `1`, `Lerp` will return a value between the two.
+- When `t` is in between `0` and `1`, `Lerp` returns a value between `a` and `b`.
 
 **"Give me an example..."**  
 <<Code/Specific/Lerp/Example.html>>  

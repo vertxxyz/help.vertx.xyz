@@ -1,6 +1,11 @@
+---
+title: "UI Toolkit debugging"
+description: "Learn the UI Toolkit debuggers, and how to resolve performance issues."
+---
 # UI Toolkit debugging
 - [UI Toolkit Debugger](#ui-toolkit-debugger)
 - [UI Toolkit Event Debugger](#ui-toolkit-event-debugger)
+- [Performance debugging](#performance-debugging)
 
 ## UI Toolkit Debugger
 You can use the [UI Toolkit Debugger](https://docs.unity3d.com/Manual/UIE-ui-debugger.html) to inspect the styles, types, names, classes, and hierarchy of your element. If you've used browser dev tools this should be familiar to you.
@@ -52,3 +57,23 @@ The UI Toolkit Events Debugger (**Window | UI Toolkit | Event Debugger**) can he
 If the menu item is not present, enable the debugger in **Edit | Project Settings | UI Toolkit | Enable Event Debugger**.
 :::
 
+## Performance debugging
+
+Use [`PanelSettings.SetPanelChangeReceiver`](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/UIElements.PanelSettings.SetPanelChangeReceiver.html) to receive every change event. Comparing the timing of events with captures from the [Profiler](../Debugging/Performance%20Profiling.md) you can get a good picture of what change is causing hitches.
+
+### Common performance pitfalls
+- Adding or removing a class on an element with many children.
+  - In this case, prefer using inline styles where possible.
+- Using nested masks.
+  - Apply [`UsageHint.MaskContainer`](https://docs.unity3d.com/ScriptReference/UIElements.UsageHints.MaskContainer.html) on the root of the mask to reset batching.
+- Moving an element frequently.
+  - Apply [`UsageHint.DynamicTransform`](https://docs.unity3d.com/ScriptReference/UIElements.UsageHints.DynamicTransform.html) so transform calculations are performed on the GPU.
+- Moving an element and its children frequently.
+  - Apply [`UsageHint.GroupTransform`](https://docs.unity3d.com/ScriptReference/UIElements.UsageHints.GroupTransform.html) and [`UsageHint.DynamicTransform`](https://docs.unity3d.com/ScriptReference/UIElements.UsageHints.DynamicTransform.html) to its children.
+- Using more than 7 unique textures in one UI area.
+  - Use a [Sprite Atlas](https://docs.unity3d.com/Manual/class-SpriteAtlas.html) to group your textures as one.
+  - Configure the [Dynamic Atlas Settings](https://docs.unity3d.com/Manual/UIE-Runtime-Panel-Settings.html) on the Panel Settings asset to better encompass your textures.
+- Abusing frequently-called events like `GeometryChangedEvent`.
+
+### See also
+- [Getting the best performance with UI Toolkit | Unite 2024](https://www.youtube.com/watch?v=bECmaYIvZJg)

@@ -1,3 +1,7 @@
+---
+title: "Common warnings"
+description: "Resolving common compiler, console, and script warnings."
+---
 # Common warnings
 ## [Compiler warnings](Common%20Warnings/Compiler%20Warnings.md)
 Compiler warnings are numbered warnings containing the `CS` prefix.

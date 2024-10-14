@@ -1,6 +1,10 @@
+---
+title: "Wrong-lerp"
+description: "Applying lerp so that it produces smooth, imperfect movement towards a target value."
+---
 # Wrong-lerp
 
-Lerp is **linear**, if `t` changes at a constant speed, so does the output.  
+[Lerp](Overview.md) is **linear**, if `t` changes at a constant speed, so does the output.  
 Wrong-lerp is an application of lerp that produces smooth, yet imperfect movement towards a target value.  
 
 ```csharp

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Markdig;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Troubleshooter.Search;
 
 namespace Troubleshooter.Middleware;
@@ -19,18 +20,21 @@ public sealed class BuildSiteController : ControllerBase
 	private readonly Site _site;
 	private readonly MarkdownPipeline _markdownPipeline;
 	private readonly IProcessorGroup _processors;
+	private readonly ILogger _logger;
 
 	public BuildSiteController(
 		Arguments arguments,
 		Site site,
 		MarkdownPipeline markdownPipeline,
-		IProcessorGroup processors
+		IProcessorGroup processors,
+		ILogger logger
 	)
 	{
 		_arguments = arguments;
 		_site = site;
 		_markdownPipeline = markdownPipeline;
 		_processors = processors;
+		_logger = logger;
 	}
 
 	[HttpPost("/tools/{id}")]
@@ -68,6 +72,7 @@ public sealed class BuildSiteController : ControllerBase
 			if (success)
 			{
 				Console.WriteLine("Search index generated.");
+				Console.WriteLine("Complete.");
 				return;
 			}
 		}

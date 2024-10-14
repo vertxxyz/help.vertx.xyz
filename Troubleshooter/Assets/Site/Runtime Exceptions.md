@@ -1,3 +1,7 @@
+---
+title: "Runtime exceptions"
+description: "Resolving common runtime exceptions and errors."
+---
 # Common exceptions
 Exceptions are a subset of runtime errors that can be cleared from the Console window.
 When an exception is thrown execution redirected to the nearest `try`-`catch` block (often in Unity's code).

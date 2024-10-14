@@ -1,3 +1,7 @@
+---
+title: "Compiler errors"
+description: "Resolving common compiler errors."
+---
 # Common compiler errors
 :::code-block--no-background
 - [CS0101](Compiler%20Errors/CS0101.md): The namespace 'Foo' already contains a definition for 'Bar'

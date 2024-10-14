@@ -1,3 +1,7 @@
+---
+title: "Coroutine troubleshooting"
+description: "Resolving common issues and errors with Coroutines."
+---
 # Coroutines
 ## Common coroutine issues
 - [A coroutine stops before completion.](Coroutines/StartCoroutine.md)

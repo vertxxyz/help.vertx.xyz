@@ -1,8 +1,12 @@
+---
+title: "Visual Studio Code configuration (obsolete)"
+description: "As of August 2023, Microsoft has released a new version of the Unity extension for VS Code."
+---
 <<Abbreviations/UPM.md>>
 # ![Visual Studio Code](/Images/vscode.svg) Old Visual Studio Code configuration
 
 :::error  
-As of August 2023 Microsoft has released a new version of the Unity extension for VS Code.  
+As of August 2023, Microsoft has released a new version of the Unity extension for VS Code.  
 See [the new configuration steps](Visual%20Studio%20Code.md) if you aren't stuck on an old version of Unity.  
 :::
 

@@ -7,7 +7,7 @@ using Markdig.Renderers.Html;
 
 namespace Troubleshooter.Renderers;
 
-public class YamlFrontMatterHtmlOverrideRenderer : HtmlObjectRenderer<YamlFrontMatterBlock>
+public sealed class YamlFrontMatterHtmlOverrideRenderer : HtmlObjectRenderer<YamlFrontMatterBlock>
 {
 	public PageResource CurrentResource { get; set; } = null!;
 	public Site Site { get; set; } = null!;
