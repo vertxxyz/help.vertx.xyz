@@ -1,6 +1,10 @@
+---
+title: "The debugger"
+description: "The debugger is a tool that halts code execution. Values can be inspected, lines of code can be stepped over, and sometimes even modified. This does not require recompiling your code, or exiting Play Mode."
+---
 # The debugger
 
-The debugger is a tool that can halt code execution. Values can be inspected, lines of code can be stepped over, and sometimes even modified.
+The debugger is a tool that halts code execution. Values can be inspected, lines of code can be stepped over, and sometimes even modified.
 This does not require recompiling your code, or exiting Play Mode.
 
 A functioning IDE is required, so first check [IDE configuration](../IDE%20Configuration.md) if you are experiencing basic issues.
@@ -56,6 +60,12 @@ Stepping through code is a way to continue execution line by line, optionally st
 | ![Step over](stepOver.svg){.inline} Step over  | Execute the line of code without entering functions. |
 | ![Step into](stepInto.svg){.inline} Step into  | Execute the line of code and enter any functions.    |
 | ![Step out](stepOut.svg){.inline} Step out     | Execute until the function is exited.                |
+
+### Manually modifying the execution pointer{.foldout}
+You can also skip to a part of code without running what's in-between by modifying the **execution pointer**.  
+Often this is done by dragging and dropping the pointer, or by running a **Skip to Cursor** command.
+
+If you step over code accidentally, or miss something important, you can just go back and look!
 
 ## ![Rider pause](pause_dark.svg) Pausing
 Execution can be manually halted similar to a breakpoint, this is very helpful when debugging freezes caused by infinite loops. Just pause execution when the freeze occurs, and the debugger should lead you to the relevant section of code.

@@ -1,6 +1,10 @@
+---
+title: "Unity null"
+description: "Comparing Unity Objects to null may not work how you expect."
+---
 <<Abbreviations/NRE.md>>
 # Unity null
-Comparing [`UnityEngine.Object`](https://docs.unity3d.com/ScriptReference/Object.html) derived types to `null` in Unity may not work how you expect.
+Comparing [`UnityEngine.Object`](https://docs.unity3d.com/ScriptReference/Object.html) derived types to `null` may not work how you expect.
 
 ## Details
 The equality operators (`==` and `!=`) for `UnityEngine.Object` types have been overridden by Unity, and don't only perform reference comparisons.
@@ -75,5 +79,5 @@ public class NullTest<T> where T : UnityEngine.Object
 ```
 
 ## Read more
-- 2014 Unity blog: ["Custom == operator, should we keep it?"](https://blog.unity.com/technology/custom-operator-should-we-keep-it)
+- 2014 Unity blog: ["Custom == operator, should we keep it?"](https://unity.com/blog/engine-platform/custom-operator-should-we-keep-it)
 - Resharper/Rider suggestion: ["Possible unintended bypass of lifetime check of underlying Unity engine object"](https://github.com/JetBrains/resharper-unity/wiki/Possible-unintended-bypass-of-lifetime-check-of-underlying-Unity-engine-object).

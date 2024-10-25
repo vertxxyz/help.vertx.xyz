@@ -1,0 +1,5 @@
+- [CS0246](CS0246.md)
+  - Assembly Issues
+    - [CS0246: Assembly Definitions](CS0246%20Assembly%20Definitions.md)
+    - [CS0246: Editor Assemblies](CS0246%20Editor%20Assemblies.md)
+  - [CS0246: Other Considerations](CS0246%20Other%20Considerations.md)

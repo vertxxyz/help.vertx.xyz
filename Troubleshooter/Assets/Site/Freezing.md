@@ -1,5 +1,9 @@
+---
+title: "Troubleshooting freezes"
+descriptions: "A list of common infinite loops that will freeze Unity."
+---
 # Freezing
-Freezes are almost always caused by some form of infinite loop. Remove or break out of the loop and the program will resume.
+Freezes are often caused by a form of infinite loop. Remove or break out of the loop and the program will resume.
 
 ## Resolution
 Common forms of undesirable loops include:
@@ -16,7 +20,7 @@ while (Input.GetMouseDown(0))
 The contents of a while loop is the only thing running until the condition is met.
 It's important understand this means **no other code is running**[^1], not even the code that updates input or renders the game.
 
-### In `Update`
+#### In `Update`
 Resolve this issue by using an `if` statement instead. As `Update` is already a loop, if the condition is inside it it will be evaluated again the next frame.
 
 ```csharp
@@ -31,7 +35,7 @@ void Update()
 }
 ```
 
-### In coroutines
+#### In coroutines
 If the loop is inside of a coroutine you must `yield` inside of the loop to cause execution to return to that point later.
 [`yield return null`](https://docs.unity3d.com/Manual/Coroutines.html) will return on the next frame. [`yield return new WaitForSeconds(1)`](https://docs.unity3d.com/ScriptReference/WaitForSeconds.html) will return after 1 second.
 
@@ -70,7 +74,7 @@ Modifying the iterator of a loop, or appending to a collection during loop itera
 
 :::note
 ### Recursive properties
-Calling a property inside of itself can cause an infinite recursive loop that will most often result in a [StackOverflowException](Runtime%20Exceptions/StackOverflowException.md), but can produce an infinite loop.
+Calling a property inside itself often throws a [StackOverflowException](Runtime%20Exceptions/StackOverflowException.md), but may cause an infinite recursive loop instead.
 ```csharp
 private float _example;
 public float Example
@@ -85,6 +89,33 @@ public float Example
     }
 }
 ```
+:::
+
+:::note
+### Recursive methods
+Calling a method inside itself often throws a [StackOverflowException](Runtime%20Exceptions/StackOverflowException.md), but may cause an infinite recursive loop instead.
+```csharp
+public void Example()
+{
+    // 🔴 This is an unprotected recursive loop.
+    Example();
+}
+
+public void Example(int depth = 0)
+{
+    // Exit early if the depth has exceeded an arbitrary limit.
+    if (depth > 100)
+    {
+        Debug.LogError("Maximum depth exceeded.")
+        return;
+    }
+    
+    // 🟢 This is a recursive loop,
+    // but by incrementing counter and checking it above we protect against infinite loops.
+    Example(depth + 1);
+}
+```
+
 :::
 
 :::note

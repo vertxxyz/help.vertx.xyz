@@ -11,7 +11,8 @@ The type or namespace name 'Foo' could not be found (are you missing a using dir
 ## Either
 ::::note
 ### You have an IDE issue
-Save, and check if there are compiler errors in Unity, if there are no errors listed, then the issue isn't a real issue and your IDE needs to be refreshed.
+Save, and check if there are compiler errors in Unity's [Console window](https://docs.unity3d.com/Manual/Console.html) (**Window | General | Console**, <kbd>Ctrl+Shift+C</kbd>).  
+**If there are no errors listed**, then the issue isn't real, and your IDE needs to be refreshed.
 1. If it's present, select **regenerate project files** in **Edit | Preferences | External Tools**.
 1. Restart your IDE.
 
@@ -25,6 +26,22 @@ If your IDE isn't showing errors, you will need to [configure your IDE](../IDE%2
 :::
 
 ::::  
+
+::::note
+### Your code is incomplete and the type was not provided
+```csharp
+// 🔴 Incorrect. A variable requires both a type and a name.
+public void Example(myVariable)
+{
+    ...
+}
+```
+
+:::info{.small}
+If your IDE isn't showing errors, you will need to [configure your IDE](../IDE%20Configuration.md).  
+:::
+
+::::
 
 ::::note
 ### You are missing the full path to the type

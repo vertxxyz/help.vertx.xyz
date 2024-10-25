@@ -1,6 +1,6 @@
 ---
 title: "Referring to members in other scripts"
-description: "Choose the best way to refer to other variables."
+description: "Choose the best way to reference other variables."
 ---
 # Referring to members in other scripts
 
