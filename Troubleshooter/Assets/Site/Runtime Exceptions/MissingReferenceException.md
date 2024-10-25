@@ -17,10 +17,18 @@ In some cases selecting the error message in the Unity Console will ping the obj
 Re-assign a value to the field mentioned (*Foo*) to all instances of the script (*Bar*) via the Inspector.
 
 <video width="750" height="200" autoplay loop muted controls><source type="video/webm" src="https://unity.huh.how/Video/inspector-references.webm"></video>
+
+[Search the scene](../Scene%20View/Searching.md) for all instances of the caller and check all results (`t:ExampleComponent` for example) if it appears assigned.
+
 ::::
 
 ::::note  
 ### ::MissingReferenceException: There is no '_Foo_' attached to the "_Bar_" game object.::{.code-block--no-background}
+
+:::info
+If you have already [serialized and assigned](../References/Serialized%20References.md) the variable in the inspector **you do not need to assign it in code.**  
+Remove the `GetComponent` and the issue will be resolved.
+:::
 
 Check that the mentioned component (*Foo*) is attached to all game object instances named (*Bar*) in the scene.
 
@@ -33,7 +41,7 @@ if (TryGetComponent(out Foo foo))
 }
 ```
 
----
+#### Invalid GetComponent usage
 
 :::warning{.small}
 This can also occur when trying to retrieve something that isn't a `Component` using the [GetComponent](https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html) functions.  

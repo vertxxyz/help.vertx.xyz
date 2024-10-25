@@ -1,6 +1,6 @@
 # SerializeReference
 
-By default variables marked with `SerializeReference` will not show unless they have already been assigned.  
+By default, variables marked with `SerializeReference` will not show unless they have already been assigned.  
 Unity provides no drawer for `null`, and does not show an object picker in this circumstance. 
 
 ## Resolution

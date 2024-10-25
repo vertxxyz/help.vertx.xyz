@@ -1,3 +1,7 @@
+---
+title: "UI Toolkit troubleshooting and resources"
+description: "How-to, debugging, and issue resolution."
+---
 # UI Toolkit
 
 ## Resources

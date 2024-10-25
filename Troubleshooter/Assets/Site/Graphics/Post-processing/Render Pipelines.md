@@ -7,7 +7,7 @@ If you have a **Post Process Layer** component on your camera, or a **Post Proce
 ### Replace the Post Processing V2 package
 1. Remove the **Post Process Layer** and **Post Process Volume** components.
 2. Remove the Post Processing package from the Package Manager (**Window | Package Manager**).
-3. Replace previous Post Process Volume components with the **Volume** component. ([URP](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@latest/index.html?subfolder=/manual/Volumes.html), [HDRP](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest/index.html?subfolder=/manual/Volumes.html))
+3. Replace previous Post Process Volume components with the **Volume** component. ([URP](https://docs.unity3d.com/Manual/urp/volumes-landing-page.html), [HDRP](https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest/index.html?subfolder=/manual/Volumes.html))
 4. Create a new profiles through the Volume component's interface.
 
 ### Enable post-processing
