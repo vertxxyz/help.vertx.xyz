@@ -1,3 +1,7 @@
+---
+title: "Prefab assets referencing in-Scene Components"
+description: "Assets can't directly refer to Objects in Scenes, but their instances can be configured with those references."
+---
 <<Abbreviations/IDE.md>>
 # Prefab assets referencing in-Scene Components
 
@@ -5,7 +9,7 @@
 Assets cannot directly refer to Objects in Scenes
 :::
 
-Prefab assets cannot refer to components in the Scene, their instances can be configured with those references. This is a form of [dependency injection](Simple%20Dependency%20Injection.md).  
+Prefab assets can't refer to components in the Scene, their instances can be configured with those references. This is a form of [dependency injection](Simple%20Dependency%20Injection.md).  
 
 If your prefab is already in the scene it is a prefab **instance** and treated like [any other object in the scene](Serializing%20Component%20References.md), it just has overrides for authoring purposes.
 

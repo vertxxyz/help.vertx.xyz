@@ -32,6 +32,7 @@
 - [Bitmasks](Bitmasks.md)
 - [Quaternions](Quaternions.md)
 - [Lerp](Lerp/Overview.md)
+- [FixedUpdate](Info/FixedUpdate.md)
 - [SerializedObject](Editor%20Extensions/Serialisation/SerializedObject%20How-to.md)
 - [Using Git with Unity](Info/Git.md)
   

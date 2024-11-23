@@ -1,3 +1,7 @@
+---
+title: "Singletons"
+description: "Overview of singletons in Unity"
+---
 # Singletons
 ## Description
 A singleton is a convenient access pattern for one-off data structures.  

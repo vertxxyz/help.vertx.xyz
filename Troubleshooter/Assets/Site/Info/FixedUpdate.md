@@ -8,17 +8,14 @@ Fixed Update runs only when required. It's run multiple times a frame to catch u
 
 I like to look at this way: Fixed Update is fake 😲  
 
-Advance Fixed Update `1 / Time.fixedDeltaTime` times and it's moved forward by a second. That can be done in an instant, and is practically what Fixed Update is doing.   
-Fixed Update is run repeatedly until fixed time catches up with game time, and the result is displayed. This keeps the delta time a _fixed_ length (resulting in consistent simulation[^1]), at the cost of fixed time not perfectly aligning to real time.
+Fixed Update is run repeatedly until fixed time catches up with game time, and the result is displayed. This keeps the delta time a _fixed_ length (resulting in consistent simulation[^1]), at the cost of fixed time not perfectly aligning to real time.  
+For example, you could advance Fixed Update `1 / Time.fixedDeltaTime` times to move it forward by a second. That can be done in an instant, ignoring real time, and that's what Fixed Update is doing.   
 
 :::info  
 You can read Unity's version of this description in the [Important Classes - Time](https://docs.unity3d.com/Manual/TimeFrameManagement.html) section of the scripting manual.  
 :::
 
-## Frame diagram
-
-Do not visualise core logic in a project using MonoBehaviours as parallel, because it is completely linear.  
-Background threads do work, including scheduling rendering, performing parallel tasks, and so on. But the execution of your `Update`/`FixedUpdate` code is linear.
+## Frame diagram example
 
 ^^^  
 ```mermaid
@@ -58,6 +55,8 @@ You can use the **timeline** view of the [Unity Profiler](https://docs.unity3d.c
 You can see an expanded version of a frame in the Unity documentation: [order of execution for event functions](https://docs.unity3d.com/Manual/ExecutionOrder.html).  
 :::
 
+Don't think about Update and FixedUpdate as executing in parallel, because it is completely linear.  
+Background threads do work, including scheduling rendering, performing parallel tasks, and so on. But the execution of your `Update`/`FixedUpdate` code is linear.
 
 ## Fixed Update diagram
 :::note{.center}  

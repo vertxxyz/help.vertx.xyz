@@ -1,3 +1,7 @@
+---
+title: "Unity Hub: Editor installation issues"
+description: "A shortlist of common issues affecting Unity Hub installation."
+---
 # Unity Hub: Editor installation issues
 ## Make space on your primary drive
 You need space on your primary (C:) drive as the Unity Hub will cache downloads there during installations.

@@ -1,7 +1,7 @@
 # Materials
 ## Common material issues
 ### Color
-- [A material is completely **pink**.](Materials/Shader%20Errors.md)
+- [A material is completely **pink**.](Shaders/Errors.md)
 - [A material is **tinted green**.](Materials/Diffusion%20Profile.md)
 - [A material is **cyan** when viewed for the first time.](Materials/Asynchronous%20Shader%20Compilation.md)
 

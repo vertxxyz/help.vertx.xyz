@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Markdig;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Troubleshooter.Search;
 
 namespace Troubleshooter.Middleware;

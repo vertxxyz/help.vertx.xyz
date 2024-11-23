@@ -1,3 +1,7 @@
+---
+title: "Mouse input and deltaTime"
+description: "Don't scale mouse input by Time.deltaTime. Learn why..."
+---
 # Mouse input and deltaTime
 
 :::error  

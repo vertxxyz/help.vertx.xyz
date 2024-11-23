@@ -121,7 +121,7 @@ public class OnlineResources
 
 			using var httpClient = new HttpClient();
 
-			httpClient.Timeout = TimeSpan.FromSeconds(10);
+			httpClient.Timeout = TimeSpan.FromSeconds(15);
 			await Task.WhenAll(
 				Graphre.RequestFileContent(httpClient, chosenCdn),
 				D3.RequestFileContent(httpClient, chosenCdn),

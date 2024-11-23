@@ -1,3 +1,7 @@
+---
+title: "Stack traces explained"
+description: "Learn what stack traces are and how to read them."
+---
 <<Abbreviations/IDE.md>>
 # Stack traces
 

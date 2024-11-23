@@ -3,6 +3,11 @@
 .mermaid {
     margin: base.$block-container-margins;
 
+    .marker.flowchart,
+    defs > marker {
+        fill: #D0D0D0;
+    }
+
     &:has(.statediagram) {
         display: flex;
         flex-grow: 1;
@@ -29,6 +34,7 @@
         text-align: center !important;
         shape-rendering: crispedges !important;
         stroke: none !important;
+        line-height: 15pt;
     }
 
     .node rect, .node circle, .node ellipse, .node polygon, .node path {

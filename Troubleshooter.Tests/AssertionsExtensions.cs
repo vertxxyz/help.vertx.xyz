@@ -20,10 +20,10 @@ internal static class AssertionExtensions
 		}
 	}
 
-	public static StringAssertionsExtensions Should(this string instance) => new(instance);
-	public static FileAssertions Should(this FileInfo instance) => new(instance);
+	public static StringAssertionsExtensions Should(this string instance) => new(instance, AssertionChain.GetOrCreate());
+	public static FileAssertions Should(this FileInfo instance) => new(instance, AssertionChain.GetOrCreate());
 
-	public static DirectoryAssertions Should(this DirectoryInfo instance) => new(instance);
+	public static DirectoryAssertions Should(this DirectoryInfo instance) => new(instance, AssertionChain.GetOrCreate());
 }
 
 internal class StringAssertionsExtensions : StringAssertions
@@ -31,7 +31,7 @@ internal class StringAssertionsExtensions : StringAssertions
 	private const int TruncationLength = 100;
 	private readonly string _truncated;
 
-	public StringAssertionsExtensions(string value) : base(value)
+	public StringAssertionsExtensions(string value, AssertionChain assertionChain) : base(value, assertionChain)
 	{
 		if (string.IsNullOrEmpty(value))
 			_truncated = value;
@@ -63,7 +63,7 @@ internal class StringAssertionsExtensions : StringAssertions
 			throw new ArgumentException("Cannot assert string containment against an empty string.", nameof(unexpected));
 		}
 
-		Execute.Assertion
+		CurrentAssertionChain
 			.ForCondition(!Contains(Subject, unexpected, comparison))
 			.BecauseOf(because, becauseArgs)
 			.FailWith("Did not expect {context:string} to contain {1}{reason}.\n{0}", _truncated, unexpected);
@@ -90,7 +90,7 @@ internal class StringAssertionsExtensions : StringAssertions
 	{
 		AssertionExtensions.ThrowIfArgumentIsNull(unexpected, nameof(unexpected), "Cannot assert string containment against <null>.");
 
-		Execute.Assertion
+		CurrentAssertionChain
 			.ForCondition(!Contains(Subject, unexpected, comparison))
 			.BecauseOf(because, becauseArgs)
 			.FailWith("Did not expect {context:string} to contain {1}{reason}.\n{0}", _truncated, unexpected);
@@ -109,7 +109,7 @@ internal class StringAssertionsExtensions : StringAssertions
 	{
 		AssertionExtensions.ThrowIfArgumentIsNull(regex, nameof(regex), "Cannot match string against <null>. Provide valid regex.");
 
-		Execute.Assertion
+		CurrentAssertionChain
 			.ForCondition(!regex.IsMatch(Subject))
 			.BecauseOf(because, becauseArgs)
 			.FailWith("Regex {1} matched {0}{reason}.", _truncated, regex);
@@ -124,7 +124,7 @@ internal class StringAssertionsExtensions : StringAssertions
 	{
 		AssertionExtensions.ThrowIfArgumentIsNull(regex, nameof(regex), "Cannot match string against <null>. Provide valid regex.");
 
-		Execute.Assertion
+		CurrentAssertionChain
 			.ForCondition(regex.IsMatch(Subject))
 			.BecauseOf(because, becauseArgs)
 			.FailWith("Regex {1} matched {0}{reason}.", _truncated, regex);
@@ -135,13 +135,13 @@ internal class StringAssertionsExtensions : StringAssertions
 
 internal class FileAssertions : FileAssertions<FileAssertions>
 {
-	public FileAssertions(FileInfo subject) : base(subject) { }
+	public FileAssertions(FileInfo subject, AssertionChain assertionChain) : base(subject, assertionChain) { }
 }
 
 internal class FileAssertions<TAssertions> : ReferenceTypeAssertions<FileInfo, TAssertions>
 	where TAssertions : FileAssertions<TAssertions>
 {
-	public FileAssertions(FileInfo subject) : base(subject) { }
+	protected FileAssertions(FileInfo subject, AssertionChain assertionChain) : base(subject, assertionChain) { }
 	protected override string Identifier => nameof(FileInfo);
 
 	/// <summary>
@@ -156,7 +156,7 @@ internal class FileAssertions<TAssertions> : ReferenceTypeAssertions<FileInfo, T
 	/// </param>
 	public AndConstraint<TAssertions> Exist(string because = "", params object[] becauseArgs)
 	{
-		Execute.Assertion
+		CurrentAssertionChain
 			.ForCondition(Subject.Exists)
 			.BecauseOf(because, becauseArgs)
 			.FailWith("Expected {0} to exist at {1}{reason}.", Subject.Name, Subject.DirectoryName);
@@ -167,13 +167,13 @@ internal class FileAssertions<TAssertions> : ReferenceTypeAssertions<FileInfo, T
 
 internal class DirectoryAssertions : DirectoryAssertions<DirectoryAssertions>
 {
-	public DirectoryAssertions(DirectoryInfo subject) : base(subject) { }
+	public DirectoryAssertions(DirectoryInfo subject, AssertionChain assertionChain) : base(subject, assertionChain) { }
 }
 
 internal class DirectoryAssertions<TAssertions> : ReferenceTypeAssertions<DirectoryInfo, TAssertions>
 	where TAssertions : DirectoryAssertions<TAssertions>
 {
-	public DirectoryAssertions(DirectoryInfo subject) : base(subject) { }
+	protected DirectoryAssertions(DirectoryInfo subject, AssertionChain assertionChain) : base(subject, assertionChain) { }
 	protected override string Identifier => nameof(DirectoryInfo);
 
 	/// <summary>
@@ -188,7 +188,7 @@ internal class DirectoryAssertions<TAssertions> : ReferenceTypeAssertions<Direct
 	/// </param>
 	public AndConstraint<TAssertions> Exist(string because = "", params object[] becauseArgs)
 	{
-		Execute.Assertion
+		CurrentAssertionChain
 			.ForCondition(Subject.Exists)
 			.BecauseOf(because, becauseArgs)
 			.FailWith("Expected {0} to exist {reason}.", Subject.Name);

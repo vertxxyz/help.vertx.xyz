@@ -18,7 +18,7 @@ public partial class LanguageTests
 	public void ValidateIncorrectLanguage(string name, string path, string text)
 	{
 		using var assertionScope = new AssertionScope(name);
-		assertionScope.AddReportable("path", path);
+		assertionScope.AppendTracing(path);
 		text.Should().NotContain("compile error", StringComparison.OrdinalIgnoreCase, "we should use \"Compiler Error\"");
 		text.Should().NotContain("world-space", StringComparison.OrdinalIgnoreCase, "we should use \"World space\"");
 		text.Should().NotContain("local-space", StringComparison.OrdinalIgnoreCase, "we should use \"Local space\"");

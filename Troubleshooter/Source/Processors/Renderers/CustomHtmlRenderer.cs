@@ -2,7 +2,6 @@ using System;
 using System.Buffers;
 using System.IO;
 using System.Text;
-using System.Web;
 using Markdig.Extensions.CustomContainers;
 using Markdig.Extensions.Yaml;
 using Markdig.Renderers;

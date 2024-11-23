@@ -1,3 +1,7 @@
+---
+title: "Incorrect assignment to UnityEvents"
+description: "Events should have an appropriate Component instance assigned to their object field."
+---
 # Incorrect assignment to UnityEvents
 
 Events should have an appropriate **Component instance** assigned to their object field.  

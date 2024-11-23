@@ -124,4 +124,12 @@ public void Example(int depth = 0)
 - Having a component immediately add itself in `Awake` will cause an infinite loop.
 :::
 
+:::note
+### Recursive callbacks
+Having a callback that fires when a value changes, and then changing the value inside of that callback will cause an infinite loop.  
+
+Use `SetValueWithoutNotify` or a similar method to avoid recursively calling the callback when setting values. 
+
+:::
+
 [^1]: Code on background threads may continue running, often until it's forced to wait for your code to complete.
