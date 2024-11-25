@@ -10,10 +10,8 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public partial class RemoveNumberedPageLinks : IMarkdownPreProcessor
 {
-	private static readonly Regex s_regex = GetNumberRegex();
-
-	public string Process(string text) => s_regex.Replace(text, "$1");
-
 	[GeneratedRegex(@"(]\(|\/)\d+%20")]
-	private static partial Regex GetNumberRegex();
+	private static partial Regex NumberRegex { get; }
+
+	public string Process(string text) => NumberRegex.Replace(text, "$1");
 }

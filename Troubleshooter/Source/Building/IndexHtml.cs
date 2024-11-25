@@ -9,10 +9,10 @@ namespace Troubleshooter;
 public static partial class IndexHtml
 {
 	[GeneratedRegex("""<meta property="og:title" content="([^"]+?)" />""")]
-	private static partial Regex GetTitleRegex();
+	private static partial Regex TitleRegex { get; }
 
 	[GeneratedRegex($"""<h\d.*?>{HeadingOverrideRenderer.HeaderTextTag}([^<]*?)<\/span>.*?<\/h\d>""")]
-	private static partial Regex GetTitleFallbackRegex();
+	private static partial Regex TitleFallbackRegex { get; }
 
 	public static string Create(
 		string headTags,
@@ -121,12 +121,12 @@ public static partial class IndexHtml
 			Match titleMatch;
 			if (!string.IsNullOrEmpty(headTags))
 			{
-				titleMatch = GetTitleRegex().Match(headTags);
+				titleMatch = TitleRegex.Match(headTags);
 				if (titleMatch.Success)
 					return titleMatch.Groups[1].Value;
 			}
 
-			titleMatch = GetTitleFallbackRegex().Match(content);
+			titleMatch = TitleFallbackRegex.Match(content);
 			return titleMatch.Success ? titleMatch.Groups[1].Value : "Unity, huh, how?";
 		}
 	}

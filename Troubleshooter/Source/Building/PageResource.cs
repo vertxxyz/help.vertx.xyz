@@ -138,7 +138,7 @@ public sealed partial class PageResource
 		SymlinkFullPath = symlinkTarget;
 		Flags = symlinkTarget != null ? ResourceFlags.Symlink : ResourceFlags.None;
 		OutputLink ??= site.ConvertFullSitePathToLinkPath(FullPath);
-		OutputLink = s_numberRegex.Replace(OutputLink, "/");
+		OutputLink = NumberRegex.Replace(OutputLink, "/");
 		OutputFilePath = Path.Combine(outputDirectory, $"{OutputLink}.html").ToWorkingPath();
 	}
 
@@ -420,8 +420,6 @@ public sealed partial class PageResource
 			: WriteStatus.Skipped;
 	}
 
-	private static readonly Regex s_numberRegex = GetNumberRegex();
-
 	[GeneratedRegex(@"/\d+-")]
-	private static partial Regex GetNumberRegex();
+	private static partial Regex NumberRegex { get; }
 }

@@ -14,8 +14,11 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public partial class MainResourceProducer : IPageResourcesPostProcessor
 {
-	private static readonly Regex s_firstLineRegex = GetFirstLineRegex();
-	private static readonly Regex s_titleRegex = GetTitleRegex();
+	[GeneratedRegex("^ *(.+)")]
+	private static partial Regex FirstLineRegex { get; }
+
+	[GeneratedRegex("(?<!#)##(?!#)")]
+	private static partial Regex TitleRegex { get; }
 
 	// Note that this processor is a bit of a hack, links on pages are hackily replaced with root links. Presume that all main pages are at the root.
 	// If this changes then the script will need to be altered.
@@ -43,11 +46,11 @@ public partial class MainResourceProducer : IPageResourcesPostProcessor
 				directory = Path.Combine(directory, destinationPath);
 
 			string allText = File.ReadAllText(main.FullPath);
-			string[] pages = s_titleRegex.Split(allText);
+			string[] pages = TitleRegex.Split(allText);
 			// Iterate over all the pages in this main page (pages are the content between the titles we used to split)
 			foreach (string page in pages.Skip(1))
 			{
-				string title = s_firstLineRegex.Match(page).Groups[1].Value.Trim();
+				string title = FirstLineRegex.Match(page).Groups[1].Value.Trim();
 				StringBuilder stringBuilder = new(page);
 				// Reduce the headers by moving them up a level
 				stringBuilder.Replace("##", "#");
@@ -82,10 +85,4 @@ public partial class MainResourceProducer : IPageResourcesPostProcessor
 			}
 		}
 	}
-
-	[GeneratedRegex("(?<!#)##(?!#)")]
-	private static partial Regex GetTitleRegex();
-
-	[GeneratedRegex("^ *(.+)")]
-	private static partial Regex GetFirstLineRegex();
 }

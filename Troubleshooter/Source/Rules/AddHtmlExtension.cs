@@ -10,9 +10,7 @@ namespace Troubleshooter;
 public partial class AddHtmlExtension(bool skipRemainingRules) : IRule
 {
 	[GeneratedRegex(@"(?!.*\.)^.*$")]
-	private static partial Regex GetRegexWithNoExtensions();
-
-	private static readonly Regex s_regexWithNoExtensions = GetRegexWithNoExtensions();
+	private static partial Regex RegexWithNoExtensions { get; }
 
 	public void ApplyRule(RewriteContext context)
 	{
@@ -21,7 +19,7 @@ public partial class AddHtmlExtension(bool skipRemainingRules) : IRule
 		if (request.Method != "GET")
 			return;
 
-		if (!s_regexWithNoExtensions.IsMatch(request.Path))
+		if (!RegexWithNoExtensions.IsMatch(request.Path))
 			return;
 
 		if (skipRemainingRules)

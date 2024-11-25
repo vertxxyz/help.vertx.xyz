@@ -60,7 +60,7 @@ Background threads do work, including scheduling rendering, performing parallel 
 
 ## Fixed Update diagram
 :::note{.center}  
-Start at the top right dot, and follow the 🔷 choices until the diagram exits.  
+Start at the top, and follow the 🔷 choices until the diagram exits.  
 :::
 
 ^^^  

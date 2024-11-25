@@ -26,10 +26,8 @@ public partial class SidebarTests
 		}
 	}
 
-	private static readonly Regex s_anchorRegex = GetAnchorRegex();
-
 	[GeneratedRegex(@"]\(#([\w /%.]+)\)")]
-	private static partial Regex GetAnchorRegex();
+	private static partial Regex AnchorRegex { get; }
 
 	/// <summary>
 	/// Parse markdown text looking for anchor links
@@ -38,7 +36,7 @@ public partial class SidebarTests
 	/// <returns></returns>
 	private static IEnumerable<string> AnchorLinksAsFullPaths(string text)
 	{
-		MatchCollection matches = s_anchorRegex.Matches(text);
+		MatchCollection matches = AnchorRegex.Matches(text);
 		for (int i = 0; i < matches.Count; i++)
 		{
 			Group group = matches[i].Groups[1];

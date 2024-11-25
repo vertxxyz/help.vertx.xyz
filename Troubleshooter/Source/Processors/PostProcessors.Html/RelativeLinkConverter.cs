@@ -13,12 +13,10 @@ public sealed partial class RelativeLinkConverter : IHtmlPostProcessor
 	[GeneratedRegex("""
 	                (?<=<a )href="([^"]+?\.md(?:#[^"]+?)?)"
 	                """)]
-	private static partial Regex GetRelativeLinkRegex();
-
-	private static readonly Regex s_relativeLinkRegex = GetRelativeLinkRegex();
+	private static partial Regex RelativeLinkRegex { get; }
 
 	public string Process(string html, string fullPath) =>
-		StringUtility.ReplaceMatch(html, s_relativeLinkRegex, (group, stringBuilder) =>
+		StringUtility.ReplaceMatch(html, RelativeLinkRegex, (group, stringBuilder) =>
 		{
 			string insert = group.Replace("&amp;", "and");
 			insert = insert.Replace("&", "and");

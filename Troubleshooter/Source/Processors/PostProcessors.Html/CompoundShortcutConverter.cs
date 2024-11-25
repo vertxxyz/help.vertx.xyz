@@ -10,13 +10,11 @@ namespace Troubleshooter;
 public sealed partial class CompoundShortcutConverter: IHtmlPostProcessor
 {
 	[GeneratedRegex(@"<kbd>([^<]+?\+[^<]+?)</kbd>")]
-	private static partial Regex GetCompoundKbdRegex();
-
-	private static readonly Regex s_compoundKbdRegex = GetCompoundKbdRegex();
+	private static partial Regex CompoundKbdRegex { get; }
 
 	public string Process(string html, string fullPath)
 	{
-		return StringUtility.ReplaceMatch(html, s_compoundKbdRegex, (match, builder) =>
+		return StringUtility.ReplaceMatch(html, CompoundKbdRegex, (match, builder) =>
 		{
 			string[] strings = match.Split("+");
 			foreach (string s in strings)

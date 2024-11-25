@@ -13,9 +13,7 @@ public sealed partial class MathReplacement : IHtmlPostProcessor
 	[GeneratedRegex("""
 	                <span class="math">\\\((.+?)\\\)</span>
 	                """)]
-	private static partial Regex GetMathRegex();
-
-	private static readonly Regex s_mathRegex = GetMathRegex();
+	private static partial Regex MathRegex { get; }
 
 	private readonly IJsEngine _engine;
 
@@ -27,10 +25,10 @@ public sealed partial class MathReplacement : IHtmlPostProcessor
 
 	public string Process(string html, string fullPath)
 	{
-		if (!s_mathRegex.IsMatch(html))
+		if (!MathRegex.IsMatch(html))
 			return html;
 
-		MatchCollection matches = s_mathRegex.Matches(html);
+		MatchCollection matches = MathRegex.Matches(html);
 		foreach (Match match in matches)
 		{
 			_engine.SetVariableValue("text", match.Groups[1].Value);

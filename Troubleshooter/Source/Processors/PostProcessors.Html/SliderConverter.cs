@@ -10,13 +10,11 @@ namespace Troubleshooter;
 public sealed partial class SliderConverter : IHtmlPostProcessor
 {
 	[GeneratedRegex("<div.* class=\".*?slider\"></div>")]
-	private static partial Regex GetSliderRegex();
-
-	private static readonly Regex s_sliderRegex = GetSliderRegex();
+	private static partial Regex SliderRegex { get; }
 
 	public string Process(string html, string fullPath)
 	{
-		return StringUtility.ReplaceMatch(html, s_sliderRegex, (group, stringBuilder) =>
+		return StringUtility.ReplaceMatch(html, SliderRegex, (group, stringBuilder) =>
 		{
 			stringBuilder.Append(group[..^6]);
 			{

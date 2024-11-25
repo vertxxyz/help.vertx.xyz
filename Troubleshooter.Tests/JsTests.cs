@@ -9,13 +9,10 @@ public partial class JsTests
 {
 	private readonly ITestOutputHelper _testOutputHelper;
 
-	private static readonly Regex s_importRegex = GetImportRegex();
+	[GeneratedRegex("^import .+? from [\"'](.+?)[\"'];\r*\n?$", RegexOptions.Multiline)]
+	private static partial Regex ImportRegex { get; }
 
-	[GeneratedRegex("^import .+? from [\"'](.+?)[\"'];\r*\n?$", RegexOptions.Multiline | RegexOptions.Compiled)]
-	private static partial Regex GetImportRegex();
-
-
-	public JsTests(ITestOutputHelper testOutputHelper) => this._testOutputHelper = testOutputHelper;
+	public JsTests(ITestOutputHelper testOutputHelper) => _testOutputHelper = testOutputHelper;
 
 	/// <summary>
 	/// Ensures that imports end in ".js". Rider automatically imports without the extension, which is a runtime failure.
@@ -25,7 +22,7 @@ public partial class JsTests
 	public void ValidateImports(string text)
 	{
 		using var assertionScope = new AssertionScope();
-		foreach (Match match in s_importRegex.Matches(text))
+		foreach (Match match in ImportRegex.Matches(text))
 		{
 			_testOutputHelper.WriteLine(match.Groups[1].Value);
 			match.Groups[1].Value.Should().EndWith(".js");

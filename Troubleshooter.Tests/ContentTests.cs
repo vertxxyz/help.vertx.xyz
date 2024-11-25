@@ -22,8 +22,11 @@ public partial class ContentTests
 		text.Should().NotBeNullOrEmpty("Pages should have content");
 	}
 
-	private static readonly Regex s_footnoteRegex = FootnoteRegex();
-	private static readonly Regex s_incorrectFootnoteRegex = IncorrectFootnoteRegex();
+	[GeneratedRegex(@"\[\^(\d+)\]")]
+	private static partial Regex FootnoteRegex { get; }
+
+	[GeneratedRegex(@"\[\d+\^\]")]
+	private static partial Regex IncorrectFootnoteRegex { get; }
 
 	[Flags]
 	private enum FootnotePair : byte
@@ -41,8 +44,8 @@ public partial class ContentTests
 	public void ValidateFootnotes(string name, string path, string text)
 	{
 		using var assertionScope = new AssertionScope(name);
-		Assert.DoesNotMatch(s_incorrectFootnoteRegex, text);
-		MatchCollection footnotes = s_footnoteRegex.Matches(text);
+		Assert.DoesNotMatch(IncorrectFootnoteRegex, text);
+		MatchCollection footnotes = FootnoteRegex.Matches(text);
 		Dictionary<string, FootnotePair> footnotePairs = new();
 		foreach (Match match in footnotes)
 		{
@@ -67,7 +70,8 @@ public partial class ContentTests
 		}
 	}
 
-	private static readonly Regex s_incorrectPackageDocLink = IncorrectPackageDocLink();
+	[GeneratedRegex(@"@[\d.]+?/(?:api|manual)/")]
+	private static partial Regex IncorrectPackageDocLink { get; }
 
 	/// <summary>
 	/// Validates links to package docs, ensuring they have @latest links.
@@ -77,15 +81,6 @@ public partial class ContentTests
 	public void ValidatePackageDocLinks(string name, string path, string text)
 	{
 		using var assertionScope = new AssertionScope(name);
-		text.Should().NotMatchRegex(s_incorrectPackageDocLink);
+		text.Should().NotMatchRegex(IncorrectPackageDocLink);
 	}
-
-    [GeneratedRegex(@"\[\^(\d+)\]")]
-    private static partial Regex FootnoteRegex();
-
-    [GeneratedRegex(@"\[\d+\^\]")]
-    private static partial Regex IncorrectFootnoteRegex();
-
-    [GeneratedRegex(@"@[\d.]+?/(?:api|manual)/")]
-    private static partial Regex IncorrectPackageDocLink();
 }

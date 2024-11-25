@@ -32,16 +32,14 @@ public partial class LinkTests
 	}
 
 	[GeneratedRegex(@"(?<!!)\[.+?\]\((.+?)\)")]
-	private static partial Regex GetMarkdownLinkRegex();
-
-	private static readonly Regex s_markdownLink = GetMarkdownLinkRegex();
+	private static partial Regex MarkdownLink { get; }
 
 	[Theory]
 	[ClassData(typeof(PageData))]
 	public void ValidateLinkContent(string name, string path, string text)
 	{
 		using var assertionScope = new AssertionScope();
-		MatchCollection matches = s_markdownLink.Matches(text);
+		MatchCollection matches = MarkdownLink.Matches(text);
 		foreach (Match match in matches)
 		{
 			match.Groups[1].Value.Should().NotContain(' ', StringComparison.Ordinal);

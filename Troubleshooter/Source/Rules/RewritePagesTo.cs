@@ -7,9 +7,7 @@ namespace Troubleshooter;
 public sealed partial class RewritePagesTo(string redirectTo, bool skipRemainingRules) : IRule
 {
 	[GeneratedRegex(@"(?!.*\.)^.*$")]
-	private static partial Regex GetRegexWithNoExtensions();
-
-	private static readonly Regex s_regexWithNoExtensions = GetRegexWithNoExtensions();
+	private static partial Regex RegexWithNoExtensions { get; }
 
 	public void ApplyRule(RewriteContext context)
 	{
@@ -18,7 +16,7 @@ public sealed partial class RewritePagesTo(string redirectTo, bool skipRemaining
 		if (request.Method != "GET")
 			return;
 
-		if (!s_regexWithNoExtensions.IsMatch(request.Path))
+		if (!RegexWithNoExtensions.IsMatch(request.Path))
 			return;
 
 		if (skipRemainingRules)

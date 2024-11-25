@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using FluentAssertions.Execution;
 using Xunit;
+
 // ReSharper disable StringLiteralTypo
 
 namespace Troubleshooter.Tests;
@@ -39,16 +40,29 @@ public partial class LanguageTests
 		text.Should().NotContain("double check", StringComparison.OrdinalIgnoreCase, "we should use \"double-check\"");
 		text.Should().NotContain("text mesh pro", StringComparison.OrdinalIgnoreCase, "we should use \"TextMesh Pro\"");
 		text.Should().NotContain("project view", StringComparison.OrdinalIgnoreCase, "we should use \"Project window\"");
-		text.Should().NotMatchRegex(s_macRegex, "we should write \"macOS\"");
+		text.Should().NotMatchRegex(MacRegex, "we should write \"macOS\"");
 	}
 
-	private static readonly Regex s_unityRegex = GetUnityRegex();
-	private static readonly Regex s_uGuiRegex = GetUGuiRegex();
-	private static readonly Regex s_gameObjectRegex = GetGameObjectRegex();
-	private static readonly Regex s_ussRegex = GetUssRegex();
-	private static readonly Regex s_macRegex = GetMacRegex();
-	private static readonly Regex s_playModeRegex = GetPlayModeRegex();
-	private static readonly Regex s_uiToolkitDebuggerRegex = GetUiToolkitDebuggerRegex();
+	[GeneratedRegex(@"\b(?<!(com\.|\*\.))unity(?!(\.com|yaml|\.huh|\.html))[\s.,]")]
+	private static partial Regex UnityRegex { get; }
+
+	[GeneratedRegex(@"\bUGUI(?!\.md)[\s.,]")]
+	private static partial Regex UGuiRegex { get; }
+
+	[GeneratedRegex(@"\bgameobjects?(?!\.html)[\s.,]")]
+	private static partial Regex GameObjectRegex { get; }
+
+	[GeneratedRegex(@"\buss[\s.,]")]
+	private static partial Regex UssRegex { get; }
+
+	[GeneratedRegex(@"\bmac[\s.,]", RegexOptions.IgnoreCase)]
+	private static partial Regex MacRegex { get; }
+
+	[GeneratedRegex(@"\bplay mode[\s.,]")]
+	private static partial Regex PlayModeRegex { get; }
+
+	[GeneratedRegex(@"\bUI Toolkit debugger[\s.,]")]
+	private static partial Regex UiToolkitDebuggerRegex { get; }
 
 	/// <summary>
 	/// Tests for common issues with capitalisation
@@ -63,7 +77,7 @@ public partial class LanguageTests
 		text.Should().NotContain("Scene View", StringComparison.Ordinal, "we should write \"Scene view\"");
 		text.Should().NotContain("Project Window", StringComparison.Ordinal, "we should write \"Project window\"");
 		text.Should().NotContain("Play mode", StringComparison.Ordinal, "we should write \"Play Mode\"");
-		text.Should().NotMatchRegex(s_playModeRegex, "we should write \"Play Mode\""); // Display mode is a thing, so regex is required.
+		text.Should().NotMatchRegex(PlayModeRegex, "we should write \"Play Mode\""); // Display mode is a thing, so regex is required.
 		text.Should().NotContain("edit mode", StringComparison.Ordinal, "we should write \"Edit Mode\"");
 		text.Should().NotContain("Debug Mode", StringComparison.Ordinal, "we should write \"Debug mode\"");
 		text.Should().NotContain("the hub", StringComparison.Ordinal, "we should write \"the Hub\"");
@@ -71,31 +85,10 @@ public partial class LanguageTests
 		text.Should().NotContain(".Net", StringComparison.Ordinal, "we should write \".NET\"");
 		text.Should().NotContain("assembly definition", StringComparison.Ordinal, "we should write \"Assembly Definition\"");
 		text.Should().NotContain("MacOS", StringComparison.Ordinal, "we should write \"macOS\"");
-		text.Should().NotMatchRegex(s_uGuiRegex, "we should write \"uGUI\"");
-		text.Should().NotMatchRegex(s_unityRegex, "we should write \"Unity\"");
-		text.Should().NotMatchRegex(s_gameObjectRegex, "we should write \"GameObject\"");
-		text.Should().NotMatchRegex(s_ussRegex, "we should write \"USS\"");
-		text.Should().NotMatchRegex(s_uiToolkitDebuggerRegex, "we should write \"UI Toolkit Debugger\"");
+		text.Should().NotMatchRegex(UGuiRegex, "we should write \"uGUI\"");
+		text.Should().NotMatchRegex(UnityRegex, "we should write \"Unity\"");
+		text.Should().NotMatchRegex(GameObjectRegex, "we should write \"GameObject\"");
+		text.Should().NotMatchRegex(UssRegex, "we should write \"USS\"");
+		text.Should().NotMatchRegex(UiToolkitDebuggerRegex, "we should write \"UI Toolkit Debugger\"");
 	}
-
-    [GeneratedRegex(@"\b(?<!(com\.|\*\.))unity(?!(\.com|yaml|\.huh|\.html))[\s.,]")]
-    private static partial Regex GetUnityRegex();
-
-    [GeneratedRegex(@"\bgameobjects?(?!\.html)[\s.,]")]
-    private static partial Regex GetGameObjectRegex();
-
-    [GeneratedRegex(@"\bUGUI(?!\.md)[\s.,]")]
-    private static partial Regex GetUGuiRegex();
-
-    [GeneratedRegex(@"\bUI Toolkit debugger[\s.,]")]
-    private static partial Regex GetUiToolkitDebuggerRegex();
-
-    [GeneratedRegex(@"\bplay mode[\s.,]")]
-    private static partial Regex GetPlayModeRegex();
-
-    [GeneratedRegex(@"\buss[\s.,]")]
-    private static partial Regex GetUssRegex();
-
-    [GeneratedRegex(@"\bmac[\s.,]", RegexOptions.IgnoreCase)]
-    private static partial Regex GetMacRegex();
 }

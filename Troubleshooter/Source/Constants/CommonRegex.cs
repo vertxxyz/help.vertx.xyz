@@ -7,32 +7,24 @@ public static partial class CommonRegex
 	/// <summary>
 	/// Regex for links: [$1]($2)
 	/// </summary>
-	public static readonly Regex InternalLinks = GetInternalLinkRegex();
+	[GeneratedRegex(@"(?<!!)\[(.+?)\]\(([\w /%.#-]+)\)")]
+	public static partial Regex InternalLinks { get; }
 
 	/// <summary>
 	/// Regex for external links: ...]($1)
 	/// </summary>
-	public static readonly Regex ExternalLink = GetExternalLinkRegex();
+	[GeneratedRegex(@"]\((https?://[\w/%#?.@_+~=&()]+)\)")]
+	public static partial Regex ExternalLink { get; }
 
 	/// <summary>
 	/// Regex for embeds: &lt;&lt;$1&gt;&gt;
 	/// </summary>
-	public static readonly Regex Embeds = GetEmbedsRegex();
+	[GeneratedRegex(@"<<([A-Za-z0-9\-/ ]+?\.[a-zA-z]+?)>>")]
+	public static partial Regex Embeds { get; }
 
 	/// <summary>
 	/// Regex for local image links: ![]($1)
 	/// </summary>
-	public static readonly Regex LocalImages = GetLocalImagesRegex();
-
-	[GeneratedRegex(@"(?<!!)\[(.+?)\]\(([\w /%.#-]+)\)")]
-	private static partial Regex GetInternalLinkRegex();
-
-	[GeneratedRegex(@"]\((https?://[\w/%#?.@_+~=&()]+)\)")]
-	private static partial Regex GetExternalLinkRegex();
-
-	[GeneratedRegex(@"<<([A-Za-z0-9\-/ ]+?\.[a-zA-z]+?)>>")]
-	private static partial Regex GetEmbedsRegex();
-
 	[GeneratedRegex("""!\[[^\]]*\]\((?!http)(.*?)\s*(".*[^"]")?\s*\)""")]
-	private static partial Regex GetLocalImagesRegex();
+	public static partial Regex LocalImages { get; }
 }

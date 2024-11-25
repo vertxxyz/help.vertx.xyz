@@ -39,7 +39,8 @@ public static partial class SearchGatherer
 		}
 	}
 
-	private static readonly Regex s_preRegex = GetPreRegex();
+	[GeneratedRegex("""<pre(?: class="\w*?")>.+?</pre>""", RegexOptions.Singleline)]
+	private static partial Regex PreRegex { get; }
 
 	public static async Task<Result> GenerateSearchResult(string rootDirectory, IEnumerable<string> files)
 	{
@@ -107,7 +108,7 @@ public static partial class SearchGatherer
 	{
 		string html = await File.ReadAllTextAsync(path);
 		// Remove code
-		html = s_preRegex.Replace(html, string.Empty);
+		html = PreRegex.Replace(html, string.Empty);
 
 		string? headerText = GetHeaderText(html, path);
 		if (headerText != null)
@@ -238,7 +239,4 @@ public static partial class SearchGatherer
 		static bool IsStartWordCharacter(char c) => char.IsLetterOrDigit(c);
 		static bool IsEndWordCharacter(char c) => char.IsLetterOrDigit(c);
 	}
-
-    [GeneratedRegex("""<pre(?: class="\w*?")>.+?</pre>""", RegexOptions.Singleline)]
-    private static partial Regex GetPreRegex();
 }

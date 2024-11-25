@@ -11,13 +11,11 @@ namespace Troubleshooter;
 public sealed partial class FigureHasDecorator : IHtmlPostProcessor
 {
 	[GeneratedRegex("""<figure>(\s*<div class="([\w-]+?)")""")]
-	private static partial Regex GetFigureHasRegex();
-
-	private static readonly Regex s_figureHasRegex = GetFigureHasRegex();
+	private static partial Regex FigureHasRegex { get; }
 
 	public string Process(string html, string fullPath)
 	{
-		html = s_figureHasRegex.Replace(html, "<figure class=\"has-$2\">$1");
+		html = FigureHasRegex.Replace(html, "<figure class=\"has-$2\">$1");
 		return html;
 	}
 }

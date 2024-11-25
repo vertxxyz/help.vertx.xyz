@@ -229,10 +229,10 @@ public static partial class SiteBuilder
 	}
 
 	[GeneratedRegex(@"\[(.+?)\]\(([\w%/-]+?)\.md\)")]
-	private static partial Regex GeneratorLinkRegex();
+	private static partial Regex GeneratorLinkRegex { get; }
 
 	[GeneratedRegex(@"//\s*bypass\s*$")]
-	private static partial Regex BypassRegex();
+	private static partial Regex BypassRegex { get; }
 
 	public static IEnumerable<(string key, PageResource value)> ProcessGenerators(string outputDirectory, Site site, PageResourcesLookup? allResources, PageResource page)
 	{
@@ -271,7 +271,7 @@ public static partial class SiteBuilder
 			// You can avoid adding the generated content to a sidebar match by adding: "// bypass"
 
 			string markdown = page.MarkdownText!;
-			MatchCollection matches = GeneratorLinkRegex().Matches(markdown);
+			MatchCollection matches = GeneratorLinkRegex.Matches(markdown);
 			string directory = Path.GetDirectoryName(page.FullPath)!;
 			for (int i = 0; i < matches.Count; i++)
 			{
@@ -279,7 +279,7 @@ public static partial class SiteBuilder
 				string relativeLink = match.Groups[2].Value;
 				string path = $"{Path.Combine(directory, relativeLink)}{Constants.SidebarSuffix}";
 
-				if (BypassRegex().IsMatch(StringUtility.LineAt(markdown, match.Index + match.Length)))
+				if (BypassRegex.IsMatch(StringUtility.LineAt(markdown, match.Index + match.Length)))
 					continue;
 
 				// Replace the link to *this* page with a bolded version

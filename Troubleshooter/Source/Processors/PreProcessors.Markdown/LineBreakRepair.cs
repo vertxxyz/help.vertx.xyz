@@ -9,11 +9,12 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public partial class LineBreakRepair : IMarkdownPreProcessor
 {
-	private static readonly Regex s_regex = GetLineBreakRegex();
+	[GeneratedRegex(@"(?<!\r\n)\r\n(---)(?:\s|$)")]
+	private static partial Regex LineBreakRegex { get; }
 
 	public string Process(string text)
 	{
-		MatchCollection matchCollection = s_regex.Matches(text);
+		MatchCollection matchCollection = LineBreakRegex.Matches(text);
 		for (int i = 0; i < matchCollection.Count; i++)
 		{
 			Match match = matchCollection[i];
@@ -23,7 +24,4 @@ public partial class LineBreakRepair : IMarkdownPreProcessor
 
 		return text;
 	}
-
-	[GeneratedRegex(@"(?<!\r\n)\r\n(---)(?:\s|$)")]
-	private static partial Regex GetLineBreakRegex();
 }

@@ -10,12 +10,10 @@ namespace Troubleshooter;
 public sealed partial class MenuPathConverter : IHtmlPostProcessor
 {
 	[GeneratedRegex(@"<strong>([^|<]+ \| [^<]+?)</strong>")]
-	private static partial Regex GetMenuPathRegex();
-
-	private static readonly Regex s_menuPathRegex = GetMenuPathRegex();
+	private static partial Regex MenuPathRegex { get; }
 
 	public string Process(string html, string fullPath) =>
-		StringUtility.ReplaceMatch(html, s_menuPathRegex, (group, stringBuilder) =>
+		StringUtility.ReplaceMatch(html, MenuPathRegex, (group, stringBuilder) =>
 		{
 			stringBuilder.Append("<span class=\"menu-path\">");
 			{

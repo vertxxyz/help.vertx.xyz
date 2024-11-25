@@ -8,11 +8,20 @@ namespace Troubleshooter;
 
 public static partial class RtfUtility
 {
-	private static readonly Regex s_fontSizeRegex = GetFontSizeRegex();
-	private static readonly Regex s_tabsRegex = GetTabsRegex();
-	private static readonly Regex s_backgroundRegex = GetBackgroundRegex();
-	private static readonly Regex s_marginsRegex = GetMarginsRegex();
-	private static readonly Regex s_colorRegex = GetColorRegex();
+	[GeneratedRegex("font-size:\\d+pt;")]
+	private static partial Regex FontSizeRegex { get; }
+
+	[GeneratedRegex("<span style=\"display:inline-block;width:(\\d+)px\"></span>")]
+	private static partial Regex TabsRegex { get; }
+
+	[GeneratedRegex("background:#\\w{6};")]
+	private static partial Regex BackgroundRegex { get; }
+
+	[GeneratedRegex("margin:\\d+;")]
+	private static partial Regex MarginsRegex { get; }
+
+	[GeneratedRegex("color:(#\\w{6});")]
+	private static partial Regex ColorRegex { get; }
 
 	public static string RtfToHtml(string rtf)
 	{
@@ -20,9 +29,9 @@ public static partial class RtfUtility
 		// Get closing index of font div
 		int closing = IndexOfClosingChar(html, 0, '<', '>');
 		html = html.Substring(closing + 1, html.Length - 6 - (closing + 1)); //6 is "</div>".Length
-		html = s_fontSizeRegex.Replace(html, string.Empty);
-		html = s_marginsRegex.Replace(html, string.Empty);
-		html = s_backgroundRegex.Replace(html, string.Empty);
+		html = FontSizeRegex.Replace(html, string.Empty);
+		html = MarginsRegex.Replace(html, string.Empty);
+		html = BackgroundRegex.Replace(html, string.Empty);
 		// Replace all paragraphs with spans
 		html = html.Replace(@"<p style=""", @"<span style=""");
 		html = html.Replace("</p>", "</span>");
@@ -38,7 +47,7 @@ public static partial class RtfUtility
 		// Replace explicit width with spaces
 		void ReplaceTabsHack()
 		{
-			html = StringUtility.ReplaceMatch(html, s_tabsRegex, (match, stringBuilder) =>
+			html = StringUtility.ReplaceMatch(html, TabsRegex, (match, stringBuilder) =>
 			{
 				stringBuilder.Append("<span>");
 				stringBuilder.Append(' ', (int)Math.Round(int.Parse(match) * 0.083f));
@@ -51,7 +60,7 @@ public static partial class RtfUtility
 		// Replace all the explicit colour styles with HTML instead
 		void ReplaceColorsHack()
 		{
-			html = StringUtility.ReplaceMatch(html, s_colorRegex, (match, stringBuilder) =>
+			html = StringUtility.ReplaceMatch(html, ColorRegex, (match, stringBuilder) =>
 			{
 				if (HtmlUtility.ColorToClassLookup.TryGetValue(match.Groups[1].Value, out string? className))
 				{
@@ -109,19 +118,4 @@ public static partial class RtfUtility
 
 		return -1;
 	}
-
-	[GeneratedRegex("font-size:\\d+pt;")]
-	private static partial Regex GetFontSizeRegex();
-
-	[GeneratedRegex("<span style=\"display:inline-block;width:(\\d+)px\"></span>")]
-	private static partial Regex GetTabsRegex();
-
-	[GeneratedRegex("background:#\\w{6};")]
-	private static partial Regex GetBackgroundRegex();
-
-	[GeneratedRegex("margin:\\d+;")]
-	private static partial Regex GetMarginsRegex();
-
-	[GeneratedRegex("color:(#\\w{6});")]
-	private static partial Regex GetColorRegex();
 }

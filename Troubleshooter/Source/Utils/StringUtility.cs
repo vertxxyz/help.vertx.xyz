@@ -41,7 +41,7 @@ public static partial class StringUtility
 		stringBuilder.Append(text[last..]);
 		return stringBuilder.ToString();
 	}
-	
+
 	public static string ReplaceMatch(string text, MatchCollection matches, Action<Match, StringBuilder> matchRemap)
 	{
 		int last = 0;
@@ -68,9 +68,9 @@ public static partial class StringUtility
 	}
 
 	[GeneratedRegex("^(.*)$", RegexOptions.Multiline)]
-	private static partial Regex FirstLine();
+	private static partial Regex FirstLine { get; }
 
-	public static ReadOnlySpan<char> LineAt(string input, int index) => FirstLine().Match(input[index..]).Groups[1].ValueSpan;
+	public static ReadOnlySpan<char> LineAt(string input, int index) => FirstLine.Match(input[index..]).Groups[1].ValueSpan;
 
 	public static int LastIndexOf(this StringBuilder stringBuilder, char character)
 		=> stringBuilder.LastIndexOf(character, stringBuilder.Length - 1);

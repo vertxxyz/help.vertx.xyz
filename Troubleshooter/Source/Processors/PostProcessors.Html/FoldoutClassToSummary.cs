@@ -8,7 +8,11 @@ namespace Troubleshooter;
 [UsedImplicitly]
 public partial class FoldoutClassToSummary : IHtmlPostProcessor
 {
-	private readonly Regex _foldoutRegex = FoldoutRegex();
+	[GeneratedRegex("""
+	                class="[^"]?\bfoldout\b[^"]?"
+	                """)]
+	private static partial Regex FoldoutRegex { get; }
+
 	private const string StartDetailsTag = "<details class=\"from-foldout\">";
 	private const string StartTags = StartDetailsTag + "<summary>";
 	private const string EndSummaryTags = "</summary>";
@@ -24,7 +28,7 @@ public partial class FoldoutClassToSummary : IHtmlPostProcessor
 
 	public string Process(string html, string fullPath)
 	{
-		MatchCollection matches = _foldoutRegex.Matches(html);
+		MatchCollection matches = FoldoutRegex.Matches(html);
 		if (matches.Count == 0)
 			return html;
 
@@ -57,9 +61,4 @@ public partial class FoldoutClassToSummary : IHtmlPostProcessor
 
 		return html;
 	}
-
-	[GeneratedRegex("""
-	                class="[^"]?\bfoldout\b[^"]?"
-	                """)]
-	private static partial Regex FoldoutRegex();
 }
