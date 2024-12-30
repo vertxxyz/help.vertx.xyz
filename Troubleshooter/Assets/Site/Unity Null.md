@@ -8,7 +8,7 @@ Comparing [`UnityEngine.Object`](https://docs.unity3d.com/ScriptReference/Object
 
 ## Details
 The equality operators (`==` and `!=`) for `UnityEngine.Object` types have been overridden by Unity, and don't only perform reference comparisons.
-A Unity `Object` is split into two parts: managed C#, and native C#. Users interact with the managed object, and the engine manages the native object.
+A Unity `Object` is split into two parts: managed (C#), and native (C++). Users interact with the managed object, and the engine manages the native object.
 When an `Object` is compared with `null` and it isn't *really* `null`, a check against the native object occurs. This makes it possible to [`Destroy`](https://docs.unity3d.com/ScriptReference/Object.Destroy.html) an `Object` somewhere, and have an entirely different reference evaluate to `null`.
 
 ### Editor-only
