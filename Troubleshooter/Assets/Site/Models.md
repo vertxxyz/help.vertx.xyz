@@ -3,6 +3,7 @@
 - [My model appears inverted or partially see-through.](Models/Inverted%20Normals.md)
 - [My model loses fidelity based on distance or scale.](Models/Floating%20Origin.md)
 - [My model renders black.](Models/Rendering%20in%20Black.md)
+- [My model isn't lit consistently.](Lighting/Normals%20and%20Lighting.md)
 - [A material **doesn't tile consistently** across surfaces.](Models/UV%20Mapping.md)
 
 ## Importing and exporting

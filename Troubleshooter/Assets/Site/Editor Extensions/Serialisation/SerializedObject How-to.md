@@ -142,7 +142,9 @@ private void OnEnable()
 
 ## Values
 
-You **cannot** retrieve the C# instance associated with a SerializedProperty that isn't the bottom of the serialization hierarchy. So, in our example, we cannot retrieve the value for `_data` from its SerializedProperty, we can only go deeper and get the value of the last descendants.  
+You generally can't retrieve the C# instance associated with a SerializedProperty that isn't the bottom of the serialization hierarchy except via [`boxedValue`](https://docs.unity3d.com/ScriptReference/SerializedProperty-boxedValue.html) API introduced in 2022, which has some limitations.
+
+So in our example (ignoring `boxedValue`), to retrieve the value for `_data` from its SerializedProperty we should go deeper and get the value of the last descendants.  
 Once at a SerializedProperty that is at the bottom there are predefined *Value* properties that can be used to access the value Unity has serialized.  
 See the [SerializedProperty](https://docs.unity3d.com/ScriptReference/SerializedProperty.html) Properties documentation to find the appropriate Value property; such as `floatValue`, `stringValue`, or `objectReferenceValue`.
 

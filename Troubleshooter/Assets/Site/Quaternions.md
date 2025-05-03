@@ -10,7 +10,7 @@ Quaternions are four dimensional, but don't be frightened—unless intending to 
 
 To use them you don't need to understand how they work, or what their components represent.
 
-Look to the resources in the sidebar to explore further and help gain a more complete understanding.
+To explore outside the scope of this document, look to the resources in the sidebar.
 
 ## What aren't they?
 **Quaternions are not [Euler angles](https://docs.unity3d.com/ScriptReference/Transform-eulerAngles.html)**.  

@@ -7,14 +7,14 @@ Coroutines are also stopped when the MonoBehaviour is destroyed or if the GameOb
 Coroutines are **not** stopped when a MonoBehaviour is disabled.  
 
 ## Resolution
-Ensure you are **not**:  
-- Calling `StopAllCoroutines` on the MonoBehaviour running your coroutine.
-- Destroying the MonoBehaviour running the coroutine, including the GameObject that contains it.  
-   This includes changing scenes and destroying the objects that way.
-- Disabling the GameObject containing the MonoBehaviour running the coroutine.
-- Using `StopCoroutine` to halt the execution.
-- Throwing any exception inside the coroutine.  
-   Exceptions will halt the execution of any method, and unless caught will entirely halt a coroutine.
+### Ensure you don't:  
+- Call `StopAllCoroutines` on the MonoBehaviour after running your coroutine.
+- Destroy the MonoBehaviour running the coroutine or the GameObject that contains it.
+- Change scenes (destroying GameObjects). Persistent scenes or DontDestroyOnLoad will still run.
+- Deactivate the GameObject the MonoBehaviour running the coroutine is added to.
+- Use `StopCoroutine` to halt the execution.
+- Throw any exception inside the coroutine.  
+   Exceptions halt the execution of any method, and unless caught will entirely halt a coroutine.
 
 ---  
 [The coroutine still stops before completion.](TimeScale.md)

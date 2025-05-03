@@ -236,6 +236,7 @@ Apply the listed syntax rules to formulate a valid property.
 - Try to reduce the amount of overrides you have. The simpler you can achieve an outcome, the easier it will be to modify it and not make a mess in the process.  
   Understand the primary and secondary axes (main and cross), and what flex and justification rules apply to them, and don't overdo it.
 - [JetBrains Rider](https://www.jetbrains.com/rider/) supports USS syntax, if you have access to it I highly recommend it.
+- [USS variables](https://docs.unity3d.com/Manual/UIE-USS-CustomProperties.html) can help solve tricky problems and avoid complex selectors.
 
 
 ## Take a peek at the C# source code

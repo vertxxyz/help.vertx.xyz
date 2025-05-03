@@ -24,4 +24,5 @@ To display gizmos in the Scene or Game view, toggles for each must be enabled.
 If your gizmo still isn't appearing, [follow these steps](../Gizmos/Enabling%20Gizmos.md).
 
 ---
-[Return to visual debugging.](Visual%20Debugging.md)
+- [Return to visual debugging.](Visual%20Debugging.md)  
+- [Return to Gizmos.](../Gizmos.md)

@@ -3,7 +3,7 @@ title: "Coroutine troubleshooting"
 description: "Resolving common issues and errors with Coroutines."
 ---
 # Coroutines
-## Common coroutine issues
+## Common issues
 - [A coroutine stops before completion.](Coroutines/StartCoroutine.md)
 - [A coroutine cannot be stopped.](Coroutines/StopCoroutine.md)
 - [A coroutine does not wait.](Coroutines/Waiting.md)

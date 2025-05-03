@@ -6,7 +6,7 @@ In the Transform section of the FBX export, use the following settings to export
 |---------------------|------------|
 | Apply Scalings      | All Local  |
 | Forward             | -Z Forward |
-| Up                  | Y Up       |
+| Up                  | Y-Up       |
 | Apply Unit          | Yes        |
 | Use Space Transform | Yes        |
 | Apply Transform     | Yes        |

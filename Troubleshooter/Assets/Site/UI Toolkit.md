@@ -6,6 +6,7 @@ description: "How-to, debugging, and issue resolution."
 
 ## Resources
 - [How to style elements.](UI%20Toolkit/Styling.md)
+- [The state of UI Toolkit.](UI%20Toolkit/Status.md)
 
 ## Issues
 :::info  
@@ -22,11 +23,13 @@ Use [UI Toolkit's debuggers](UI%20Toolkit/Debugging.md) to inspect issues with y
 ### Styling
 - [Styling members return `NaN` or `null`.](UI%20Toolkit/Resolved%20Style.md)
 - [A transition is instantaneously applied.](UI%20Toolkit/Styles/Transitions.md)
+- [A child element is visible even though a parent is hidden.](UI%20Toolkit/Visibility.md)
 
 ### Input
 - [Input issues.](UI%20Toolkit/Input%20Issues.md)
 
 ### Editor
+- [Live reload doesn't work.](UI%20Toolkit/Live%20Reload.md)
 - [Issues with PropertyDrawers.](Editor%20Extensions/Property%20Drawers/UI%20Toolkit%20PropertyDrawer.md)
 
 ### Complex

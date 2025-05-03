@@ -1,7 +1,7 @@
 # UI Toolkit: Resolved style
 
-UI Toolkit resolves styles asynchronously.  
-[`resolvedStyle`](https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-resolvedStyle.html), [`layout`](https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-layout.html), [`contentRect`](https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-contentRect.html), [`paddingRect`](https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-paddingRect.html), and others, will return invalid values before it has been initialised.  
+UI Toolkit resolves styles and layout asynchronously.  
+[`resolvedStyle`](https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-resolvedStyle.html), [`layout`](https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-layout.html), [`contentRect`](https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-contentRect.html), [`paddingRect`](https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-paddingRect.html), and others, will return invalid values (typically `NaN`) before it has been initialised.  
 
 ## Resolution
 These members are initialised after an element is created in the hierarchy.  

@@ -20,7 +20,7 @@ The new extension relies on the [C# Dev Kit](https://learn.microsoft.com/en-us/v
 1. Set the **External Script Editor** dropdown in Unity's External Tools preferences (**Edit | Preferences | External Tools**) to Visual Studio Code.
 
 ## If you are experiencing issues:
-- If you have compiler errors, if possible [comment out](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/comments) those files so Unity can compile code.
+- If you have compiler errors, resolve them or [comment out](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/comments) those files so Unity can compile code.
 - Check your C# and C# Dev Kit extensions are upgraded to the latest versions.
 - Install the [.NET SDK](https://dotnet.microsoft.com/download).
   - Logout or restart Windows.

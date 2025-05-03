@@ -83,3 +83,6 @@ Use [`StopAllCoroutines`](https://docs.unity3d.com/ScriptReference/MonoBehaviour
 `yield break` will exit a coroutine early.
 
 Coroutines will naturally stop when execution reaches the end of the function.
+
+---
+- [Return to Coroutines.](../Coroutines.md)

@@ -3,7 +3,7 @@ Rendering in game engines often involves two passes, an opaque, and a transparen
 Opaque objects are rendered to the [depth buffer](https://en.wikipedia.org/wiki/Z-buffering), which is used to accurately determine what object is on top of another as rendering progresses.  
 The transparent pass often does not have this luxury, as if they were to write to this buffer they would block out other objects that should be seen through them.  
 
-Instead, transparent objects are sorted by their object center and rendered without further sorting. This can cause some objects to appear in front of others when their actual meshes are behind each other.  
+Instead, transparent objects are sorted via a number of criteria[^1] (including their object center), and rendered without further sorting. This can cause some objects to appear in front of others when their actual meshes are behind each other.  
 
 Within a single mesh the triangles are rendered one by one, and are not sorted by depth. This can cause issues of overlapping geometry within a single object when viewed from some directions.  
 
@@ -11,9 +11,11 @@ Within a single mesh the triangles are rendered one by one, and are not sorted b
 
 You can read about sorting with 2D Renderers [here](https://docs.unity3d.com/Manual/2DSorting.html).
 
----
+### Resolving rendering issues with transparency
 
 - [My object is already an opaque material.](Opaque%20Materials.md)
 - [My object should be opaque/solid](Transparent%20To%20Opaque.md)—no transparency.
 - [My object should appear partially cutout](Transparent%20To%20Cutout.md)—with solid and see-through parts.
 - [My object should be transparent.](Transparency%20Options.md)
+
+[^1]: Transparency order is defined by sorting layer and order, render queue, sorting axis, sorting group, material, then triangle order.

@@ -40,6 +40,8 @@ Right-click a breakpoint and after adding a condition based on in-scope variable
 ![Conditional breakpoint in Rider](conditional-breakpoint-rider.png)
 ^^^A conditional breakpoint in Rider
 
+Note that conditional breakpoints halt execution to evaluate the condition, and this halting as a performance cost. In tight loops a conditional breakpoint may take too long to execute, and modifying the code to add the condition may be required. In these cases you may also prefer a tracepoint.
+
 ## ![Rider tracepoint](breakpointUnsuspendent_dark.svg) Tracepoints (logging breakpoints)
 Disable the suspend execution setting of a ![Rider breakpoint](breakpoint_dark.svg){.inline} [breakpoint](#rider-breakpoint-breakpoints) via the right-click menu so it becomes a ![Rider tracepoint](breakpointUnsuspendent_dark.svg){.inline} **tracepoint**, navigate to more settings and add logging. The logs will print to the **IDE's debug console**, not Unity[^1].  
 Tracepoints are a great substitution for [manual logging](Logging/How-to.md), avoiding unnecessary recompilation and Play Mode changes.

@@ -8,6 +8,7 @@ public void ExampleA()
     {
         actions[i] = () => Debug.Log(i);
     }
+    // ...
 }
 ```
 When the logs in `actions` are invoked after this loop there will be 10 logs of `10`.  
@@ -79,6 +80,7 @@ public void ExampleB()
         int iLocal = i;
         actions[i] = () => Debug.Log(iLocal);
     }
+    // ...
 }
 ```
 

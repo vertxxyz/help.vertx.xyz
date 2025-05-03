@@ -13,6 +13,9 @@ C#'s indices are **zero-indexed**. This means that indices begin at 0, and go up
 ### In local scopes
 Ensure that the line pointed to by the [stack trace](../Stack%20Traces.md) is accessing an index that is within the limits of the collection.
 The index needs to be 0 or above, and less than the length of the collection.  
+
+Use if statements to validate your indexer and avoid invalid access, or restructure your logic entirely.
+
 Common mistakes include:
 - Accessing an empty collection (`.Length` or `.Count` is `0`).
 - An improperly written `for` or `while` loop.

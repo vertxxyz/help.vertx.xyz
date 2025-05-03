@@ -41,7 +41,7 @@ Using a [`Plane`](https://docs.unity3d.com/ScriptReference/Plane.html) and [`Scr
 ^^^ ::You must provide your own plane. Note that the [`Plane` constructor](https://docs.unity3d.com/ScriptReference/Plane-ctor.html) is `normal, point`.::{.warning}
 
 ### Using Physics
-Using a [`Raycast`](https://docs.unity3d.com/ScriptReference/Physics.Raycast.html) and [`ScreenPointToRay`](https://docs.unity3d.com/ScriptReference/Camera.ScreenPointToRay.html) avoids having to calculate an appropriate distance from the camera. When the result is meant to be on the surface of colliders, this is the correct approach.
+If you're using 3D physics, using a [`Raycast`](https://docs.unity3d.com/ScriptReference/Physics.Raycast.html) and [`ScreenPointToRay`](https://docs.unity3d.com/ScriptReference/Camera.ScreenPointToRay.html) avoids having to calculate an appropriate distance from the camera. When the result is meant to be on the surface of colliders, this is the correct approach.
 
 ```csharp
 Ray ray = camera.ScreenPointToRay(Input.mousePosition);

@@ -2,6 +2,8 @@
 
 ## Real-time lighting
 - [Only some of the lights on a surface are visible.](Lighting/Light%20Limits/Choose%20Pipeline.md)
+- [A surface isn't lit consistently.](Lighting/Normals%20and%20Lighting.md)
+- [An object is entirely black.](Models/Rendering%20in%20Black.md)
 - [Some sides of my objects are completely black.](Lighting/Environment%20Lighting/Lighting%20Settings.md)  
 
 ## Lightmaps

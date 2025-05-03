@@ -16,9 +16,9 @@ If you are using a texture, check that your model's **UVs** are correct.
 
 ## Shaders
 If you are using a non-standard shader, and are seeing a harsh-edged deep black on the screen your material may be producing values that are not a number (`NaN`).  
-Sometimes `NaN` values are not an issue until propagated through other effects like post processing, and can be object-specific. This is often a division by 0.
+Sometimes `NaN` values are not an issue until propagated through other effects like post-processing, and can be object-specific. This is often a division by 0.
 
 There are other issues that can cause black output, but there are infinite shaders, so you will have to do your own investigations. Isolate the shader's output one by one until you find the cause.
 
 ## Lighting
-Check that your scene is lit correctly. Recreate the issue in an clean scene with a directional light and compare lighting against default primitives.
+Check that your scene is lit correctly. Recreate the issue in a clean scene with a directional light and compare lighting against default primitives.
