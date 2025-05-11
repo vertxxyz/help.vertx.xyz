@@ -1,189 +1,190 @@
 @use 'base';
 
 .inspector-root {
-  padding-left: 15px;
-  margin-block-start: 0;
-  margin-block-end: 1em;
-  margin-inline-start: 0;
-  margin-inline-end: 12px;
-  font-size: 12px;
-  font-family: 'Inter', 'Roboto', sans-serif;
+	padding-left: 15px;
+	margin-block-start: 0;
+	margin-block-end: 1em;
+	margin-inline-start: 0;
+	margin-inline-end: 12px;
+	font-size: 12px;
+	font-family: 'Inter', 'Roboto', sans-serif;
 }
 
 // The root that groups a control-label and a control-element
 .control-root {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 
-  &:focus-within {
-    > .control-label {
-      color: #81B4FF;
-    }
-  }
+	&:focus-within {
+		> .control-label {
+			color: #81B4FF;
+		}
+	}
 }
 
 .control-label {
-  display: flex;
-  flex-grow: 1;
-  max-width: 20%;
-  color: #D2D2D2;
-  text-align: left;
-  padding-top: 2px;
-  padding-right: 6px;
+	display: flex;
+	flex-grow: 1;
+	max-width: 20%;
+	color: #D2D2D2;
+	text-align: left;
+	padding-top: 2px;
+	padding-right: 6px;
 }
 
 // All elements below should also use the control-element class to look unified with other controls
 .control-element {
-  flex-grow: 1;
-  position: relative;
+	flex-grow: 1;
+	position: relative;
 }
 
 /* LayerMask dropdown */
 
 .control-dropdown {
-  &:focus-within {
-    .control-dropdown__label {
-      border-color: #3A79BB;
-    }
-  }
+	&:focus-within {
+		.control-dropdown__label {
+			border-color: #3A79BB;
+		}
+	}
 
-  ::-webkit-scrollbar-track {
-    background: none;
-    border: none;
-  }
+	::-webkit-scrollbar-track {
+		background: none;
+		border: none;
+	}
 
-  .control-dropdown__label {
-    //font-size: 14px;
-    background: #515151;
-    border: #303030 1px solid;
-    border-radius: 0.3em;
-    display: block;
-    padding: 5px 6px 4px 6px;
-    line-height: 1;
-    cursor: pointer;
-    user-select: none;
-    height: 14px;
+	.control-dropdown__label {
+		//font-size: 14px;
+		background: #515151;
+		border: #303030 1px solid;
+		border-radius: 0.3em;
+		display: block;
+		padding: 5px 6px 4px 6px;
+		line-height: 1;
+		cursor: pointer;
+		user-select: none;
+		height: 14px;
 
-    &:active {
-      border-color: #3A79BB;
-    }
+		&:active {
+			border-color: #3A79BB;
+		}
 
-    &:focus {
-      border-color: #3A79BB;
-    }
+		&:focus {
+			border-color: #3A79BB;
+		}
 
-    &:hover {
-      color: #BDBDBD;
-      background: #585858;
-    }
+		&:hover {
+			color: #BDBDBD;
+			background: #585858;
+		}
 
-    &:before {
-      font-size: 10px;
-      content: '▼';
-      float: right;
-      transform: translateY(2px);
-    }
-  }
+		&:before {
+			font-size: 10px;
+			content: '▼';
+			float: right;
+			transform: translateY(2px);
+		}
+	}
 
-  .control-dropdown__list {
-    //font-size: 12px;
-    padding: 6px;
-    background: #191919;
-    position: absolute;
-    top: 28px;
-    left: 2px;
-    //box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .15);
-    transform-origin: 50% 0;
-    transform: scale(1, 0);
-    max-height: min(66vh, 500px);
-    overflow-y: scroll;
-    z-index: 1;
-  }
+	.control-dropdown__list {
+		//font-size: 12px;
+		padding: 6px;
+		background: #191919;
+		position: absolute;
+		top: 28px;
+		left: 2px;
+		//box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .15);
+		transform-origin: 50% 0;
+		transform: scale(1, 0);
+		max-height: min(66vh, 500px);
+		overflow-y: scroll;
+		z-index: 1;
+	}
 
-  .control-dropdown__option {
-    display: block;
-    padding: 1px 12px;
-    opacity: 0;
-    cursor: pointer;
-    user-select: none;
-    background: none;
+	.control-dropdown__option {
+		display: block;
+		padding: 1px 12px;
+		opacity: 0;
+		cursor: pointer;
+		user-select: none;
+		background: none;
 
-    &:hover {
-      color: white;
-      background: #2C5D87;
-    }
+		&:hover {
+			color: white;
+			background: #2C5D87;
+		}
 
-    &:has(>[type="checkbox"]:checked) {
-      background: #3C3C3C;
-    }
-  }
+		&:has(>[type="checkbox"]:checked) {
+			background: #3C3C3C;
+		}
+	}
 
-  &.on {
-    .control-dropdown__list {
-      transform: scale(1, 1);
+	&.on {
+		.control-dropdown__list {
+			transform: scale(1, 1);
 
-      .control-dropdown__option {
-        opacity: 1;
-      }
-    }
-  }
+			.control-dropdown__option {
+				opacity: 1;
+			}
+		}
+	}
 
-  [type="checkbox"] {
-    position: relative;
-    margin-right: 4px;
-    margin-top: auto;
-    margin-bottom: auto;
-    min-width: auto;
-    background: none;
-    appearance: none;
-    border: none;
+	[type="checkbox"] {
+		position: relative;
+		margin-right: 4px;
+		margin-top: auto;
+		margin-bottom: auto;
+		min-width: auto;
+		background: none;
+		appearance: none;
+		border: none;
 
-    &:checked {
-      background: url("/Images/toggle-checkmark.svg") no-repeat center;
-    }
-  }
+		&:checked {
+			background: url("/Images/toggle-checkmark.svg") no-repeat center;
+		}
+	}
 }
 
 /* Bitmask field */
 .bitmask {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  font-size: 12pt;
-  font-family: 'JetBrains Mono', monospace;
-  margin-bottom: 2px;
-  background-color: #323232;
-  border-radius: 2px;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	font-size: 12pt;
+	font-family: 'JetBrains Mono', monospace;
+	margin-bottom: 2px;
+	background-color: #323232;
+	border-radius: 2px;
 }
 
 .bitmask__bit-container {
-  background-color: base.$dark-background-color;
-  border: 1px transparent solid;
-  border-radius: 0.3em;
-  padding: 1px 4px 1px 4px;
-  font-size: 0.85em;
-  user-select: none;
-  cursor: pointer;
-  margin-right: 1px;
+	background-color: base.$dark-background-color;
+	border: 1px transparent solid;
+	border-radius: 0.3em;
+	padding: 1px 4px 1px 4px;
+	font-size: 0.85em;
+	user-select: none;
+	cursor: pointer;
+	margin-right: 1px;
 
-  &.set {
-    background-color: #8f8;
-    color: black;
-    &:hover {
-      color: black;
-    }
-  }
+	&.set {
+		background-color: #8f8;
+		color: black;
 
-  &:hover {
-    color: white;
-    border-color: #BDBDBD;
-  }
+		&:hover {
+			color: black;
+		}
+	}
+
+	&:hover {
+		color: white;
+		border-color: #BDBDBD;
+	}
 }
 
 .control-element.code-container {
-  margin: 0 0 2px;
-  flex-grow: 1;
-  font-size: 11pt;
+	margin: 0 0 2px;
+	flex-grow: 1;
+	font-size: 11pt;
 }

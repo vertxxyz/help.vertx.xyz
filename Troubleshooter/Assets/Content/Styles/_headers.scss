@@ -1,177 +1,178 @@
 @use 'base';
 
 %largest {
-    color: base.$header-color;
-    background-color: unset;
-    font-size: 2em;
-    line-height: 1em;
-    font-weight: 700;
-    scroll-margin-top: unset;
-    margin-block-start: unset;
-    margin-block-end: unset;
+	color: base.$header-color;
+	background-color: unset;
+	font-size: 2em;
+	line-height: 1em;
+	font-weight: 700;
+	scroll-margin-top: unset;
+	margin-block-start: unset;
+	margin-block-end: unset;
 }
 
 %large {
-    color: base.$header-color;
-    background-color: base.$dark-color;
-    padding: 5px 15px 6px base.$left-padding;
-    margin-left: base.$left-padding-negative;
-    scroll-margin-top: 1em;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    font-size: 1.5em;
-    line-height: 1em;
-    font-weight: 700;
-    position: relative;
-    border-top: unset;
-    border-bottom: unset;
+	color: base.$header-color;
+	background-color: base.$dark-color;
+	padding: 5px 15px 6px base.$left-padding;
+	margin-left: base.$left-padding-negative;
+	scroll-margin-top: 1em;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	font-size: 1.5em;
+	line-height: 1em;
+	font-weight: 700;
+	position: relative;
+	border-top: unset;
+	border-bottom: unset;
 
-    &:not(:first-child) {
-        margin-block-start: 2em;
-    }
+	&:not(:first-child) {
+		margin-block-start: 2em;
+	}
 
-    img, .emoji {
-        vertical-align: middle;
-        margin: 0 6px 0 0;
-        height: 32px;
-    }
+	img, .emoji {
+		vertical-align: middle;
+		margin: 0 6px 0 0;
+		height: 32px;
+	}
 
-    .emoji {
-        width: 32px;
-    }
+	.emoji {
+		width: 32px;
+	}
 }
 
 %default {
-    font-size: 1.1em;
-    font-weight: 500;
-    color: base.$header-color;
-    background: base.$unity-colors-inspector_titlebar-background;
-    padding: 6px 8px 6px base.$left-padding;
-    margin-left: base.$left-padding-negative;
-    line-height: 1em;
-    scroll-margin-top: 2em;
-    margin-block-start: 2em;
-    margin-block-end: 1em;
-    border-top: 1px solid base.$unity-colors-inspector_titlebar-border;
-    border-bottom: 1px solid base.$unity-colors-inspector_titlebar-border_accent;
+	font-size: 1.1em;
+	font-weight: 500;
+	color: base.$header-color;
+	background: base.$unity-colors-inspector_titlebar-background;
+	padding: 6px 8px 6px base.$left-padding;
+	margin-left: base.$left-padding-negative;
+	line-height: 1em;
+	scroll-margin-top: 2em;
+	margin-block-start: 2em;
+	margin-block-end: 1em;
+	border-top: 1px solid base.$unity-colors-inspector_titlebar-border;
+	border-bottom: 1px solid base.$unity-colors-inspector_titlebar-border_accent;
 
-    img, .emoji {
-        vertical-align: middle;
-        height: 18px;
-        transform: translateY(-5px);
-        margin: 0 0 -5px;
-    }
+	img, .emoji {
+		vertical-align: middle;
+		height: 18px;
+		transform: translateY(-5px);
+		margin: 0 0 -5px;
+	}
 
-    .emoji {
-        width: 18px;
-    }
+	.emoji {
+		width: 18px;
+	}
 }
 
 %small {
-    color: base.$header-color;
-    padding: 0 8px 0 0;
-    font-size: 1.05em;
-    line-height: 1em;
-    font-weight: 500;
-    scroll-margin-top: 1.6em;
-    margin-block-start: 1.6em;
-    margin-block-end: 0.8em;
+	color: base.$header-color;
+	padding: 0 8px 0 0;
+	font-size: 1.05em;
+	line-height: 1em;
+	font-weight: 500;
+	scroll-margin-top: 1.6em;
+	margin-block-start: 1.6em;
+	margin-block-end: 0.8em;
 
-    img, .emoji {
-        height: 20px;
-        margin: 0;
-        transform: translateY(2px);
-    }
+	img, .emoji {
+		height: 20px;
+		margin: 0;
+		transform: translateY(2px);
+	}
 
-    .emoji {
-        width: 20px;
-    }
+	.emoji {
+		width: 20px;
+	}
 }
 
 %smallest {
-    color: base.$header-color;
-    font-weight: 500;
-    line-height: 1em;
-    font-size: 1em;
+	color: base.$header-color;
+	font-weight: 500;
+	line-height: 1em;
+	font-size: 1em;
 }
 
 a.header-permalink {
-    opacity: 0;
-    transition: opacity .15s;
-    margin-left: 4px;
-    color: #bbbbbb;
-    user-select: none;
+	opacity: 0;
+	transition: opacity .15s;
+	margin-left: 4px;
+	color: #bbbbbb;
+	user-select: none;
 }
 
 a.header-permalink.show {
-    opacity: 1;
+	opacity: 1;
 }
 
 h1 {
-    @extend %large;
+	@extend %large;
 }
 
 h2 {
-    @extend %default;
+	@extend %default;
 }
 
 h3 {
-    @extend %small;
+	@extend %small;
 }
 
 h4 {
-    @extend %smallest;
+	@extend %smallest;
 }
 
 h5, h6 {
-    @extend %smallest;
+	@extend %smallest;
 }
 
 h1 + h2 {
-    scroll-margin-top: 1em;
-    margin-block-start: 1em;
+	scroll-margin-top: 1em;
+	margin-block-start: 1em;
 }
 
 .note {
-    > h2 {
-        margin-left: -(base.$note-padding);
-        margin-right: -(base.$note-padding);
-    }
+	> h2 {
+		margin-left: -(base.$note-padding);
+		margin-right: -(base.$note-padding);
+	}
 
-    &:has(h2:first-child) {
-        border-color: base.$unity-colors-inspector_titlebar-border;
-    }
+	&:has(h2:first-child) {
+		border-color: base.$unity-colors-inspector_titlebar-border;
+	}
 }
 
 
 .title-page {
-    box-sizing: content-box;
-    > :first-child {
-        margin-block-start: 0;
-    }
+	box-sizing: content-box;
 
-    h1 {
-        @extend %largest;
-    }
+	> :first-child {
+		margin-block-start: 0;
+	}
 
-    h2 {
-        @extend %large;
-    }
+	h1 {
+		@extend %largest;
+	}
 
-    h2 + h3 {
-        scroll-margin-top: 1em;
-        margin-block-start: 1em;
-    }
+	h2 {
+		@extend %large;
+	}
 
-    h3 {
-        @extend %default;
-    }
+	h2 + h3 {
+		scroll-margin-top: 1em;
+		margin-block-start: 1em;
+	}
 
-    h4 {
-        @extend %small;
-    }
+	h3 {
+		@extend %default;
+	}
 
-    h5, h6 {
-        @extend %smallest;
-    }
+	h4 {
+		@extend %small;
+	}
+
+	h5, h6 {
+		@extend %smallest;
+	}
 }

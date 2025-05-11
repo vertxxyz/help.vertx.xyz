@@ -1,6 +1,6 @@
 @function between($from, $to, $fromWidth, $toWidth) {
-	$slope: ($to - $from) / ($toWidth - $fromWidth);
-	$base: $from - $slope * $fromWidth;
+    $slope: ($to - $from) / ($toWidth - $fromWidth);
+    $base: $from - $slope * $fromWidth;
 
-	@return calc(#{$base} + #{100vw * $slope});
+    @return calc(#{$base} + #{100vw * $slope});
 }

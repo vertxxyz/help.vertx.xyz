@@ -1,150 +1,160 @@
 @use 'base';
 
 table {
-  margin: 20px 20px 20px 0;
-  overflow: auto;
-  img {
-    vertical-align: middle;
-  }
-  img.inline {
-    transform: unset;
-  }
+	margin: 20px 20px 20px 0;
+	overflow: auto;
+
+	img {
+		vertical-align: middle;
+	}
+
+	img.inline {
+		transform: unset;
+	}
 }
 
 figure:has(>table) {
-  margin-top: 0;
-  margin-left: 0;
+	margin-top: 0;
+	margin-left: 0;
 }
 
 table {
-  border-collapse: collapse;
+	border-collapse: collapse;
 }
 
 th, td {
-  border: 1px solid base.$unity-colors-inspector_titlebar-border;
-  border-collapse: collapse;
+	border: 1px solid base.$unity-colors-inspector_titlebar-border;
+	border-collapse: collapse;
 }
 
 .tables--centered {
-    td {
-        min-width: 36px;
-        text-align: center;
-    }
+	td {
+		min-width: 36px;
+		text-align: center;
+	}
 }
 
 th {
-  padding: 8px 12px;
-  background-color: base.$unity-colors-default-background;
+	padding: 8px 12px;
+	background-color: base.$unity-colors-default-background;
 }
 
 td {
-  padding: 12px 12px;
-  &.tableYes,&.tableMaybe {
-    color: base.$dark-color;
-  }
+	padding: 12px 12px;
 
-  &.tableYes {
-    background-color: rgba(124, 220, 54, 0.8);
-    &.highlight {
-      background-color: rgba(124, 220, 54, 1);
-      /*cursor: crosshair;*/
-    }
-  }
-  &.tableMaybe {
-    background-color: rgba(220, 173, 54, 0.8);
-    &.highlight {
-      background-color: rgba(220, 173, 54, 1);
-      /*cursor: crosshair;*/
-    }
-  }
-  &.tableNo {
-    background: repeating-linear-gradient(-55deg, rgb(42, 42, 42), rgb(42, 42, 42) 10px, transparent 10px, transparent 20px) fixed;
-    &.highlight {
-      background: repeating-linear-gradient(-55deg, rgb(50, 50, 50), rgb(50, 50, 50) 10px, rgba(255, 255, 255, 0.05) 10px, rgba(255, 255, 255, 0.05) 20px) fixed;
-      /*cursor: crosshair;*/
-    }
-  }
+	&.tableYes, &.tableMaybe {
+		color: base.$dark-color;
+	}
+
+	&.tableYes {
+		background-color: rgba(124, 220, 54, 0.8);
+
+		&.highlight {
+			background-color: rgba(124, 220, 54, 1);
+			/*cursor: crosshair;*/
+		}
+	}
+
+	&.tableMaybe {
+		background-color: rgba(220, 173, 54, 0.8);
+
+		&.highlight {
+			background-color: rgba(220, 173, 54, 1);
+			/*cursor: crosshair;*/
+		}
+	}
+
+	&.tableNo {
+		background: repeating-linear-gradient(-55deg, rgb(42, 42, 42), rgb(42, 42, 42) 10px, transparent 10px, transparent 20px) fixed;
+
+		&.highlight {
+			background: repeating-linear-gradient(-55deg, rgb(50, 50, 50), rgb(50, 50, 50) 10px, rgba(255, 255, 255, 0.05) 10px, rgba(255, 255, 255, 0.05) 20px) fixed;
+			/*cursor: crosshair;*/
+		}
+	}
 }
 
 tr {
-  td:first-child:has(> strong:only-child) {
-      text-align: right;
-      &:not(.highlight) {
-          background-color: base.$unity-colors-default-background;
-          &>strong {
-              color:inherit;
-          }
-      }
-  }
+	td:first-child:has(> strong:only-child) {
+		text-align: right;
+
+		&:not(.highlight) {
+			background-color: base.$unity-colors-default-background;
+
+			& > strong {
+				color: inherit;
+			}
+		}
+	}
 }
 
 th.highlight,
 td.highlight {
-  background-color: rgba(255, 255, 255, 0.2);
+	background-color: rgba(255, 255, 255, 0.2);
 }
 
 .grid-container {
-  display: grid;
-  // Grid is 3 wide
-  grid-template-columns: 33.3% 33.3% 33.3%;
+	display: grid;
+	// Grid is 3 wide
+	grid-template-columns: 33.3% 33.3% 33.3%;
 
-  .grid-item__extra--even {
-    display: none; // Hide extra for even grids
-  }
+	.grid-item__extra--even {
+		display: none; // Hide extra for even grids
+	}
 }
 
 @media only all and (max-width: 750px) {
-  // Grid is 2 wide
-  .grid-container {
-    grid-template-columns: 50% 50%;
+	// Grid is 2 wide
+	.grid-container {
+		grid-template-columns: 50% 50%;
 
-    .grid-item__extra--odd {
-      display: none; // Hide extra for odd grids
-    }
+		.grid-item__extra--odd {
+			display: none; // Hide extra for odd grids
+		}
 
-    .grid-item__extra--even {
-      display: block; // Show extra for grid even grids
-    }
-  }
+		.grid-item__extra--even {
+			display: block; // Show extra for grid even grids
+		}
+	}
 }
 
 @media only all and (max-width: 510px) {
-  // Grid is 1 wide
-  .grid-container {
-    grid-template-columns: auto;
+	// Grid is 1 wide
+	.grid-container {
+		grid-template-columns: auto;
 
-    .grid-item__extra--even {
-      display: none; // Hide extra for even grids
-    }
+		.grid-item__extra--even {
+			display: none; // Hide extra for even grids
+		}
 
-    // Don't show even grids for 1 wide.
-  }
+		// Don't show even grids for 1 wide.
+	}
 }
 
 #main-page--content {
-  .grid-item {
-    > :first-child {
-      margin-block-start: 0;
-      margin-top: 0;
-    }
+	.grid-item {
+		> :first-child {
+			margin-block-start: 0;
+			margin-top: 0;
+		}
 
-    > :last-child {
-      margin-block-end: 0;
-      margin-bottom: 0;
-    }
+		> :last-child {
+			margin-block-end: 0;
+			margin-bottom: 0;
+		}
 
-    > ul {
-      padding-inline-start: 18px;
-    }
-  }
+		> ul {
+			padding-inline-start: 18px;
+		}
+	}
 
-  .grid-container {
-    grid-gap: 1em 0;
-  }
+	.grid-container {
+		grid-gap: 1em 0;
+	}
 }
 
 .table-children--expand {
-  > table {
-    min-width: 100%;
-  }
+	> table {
+		min-width: 100%;
+	}
 }

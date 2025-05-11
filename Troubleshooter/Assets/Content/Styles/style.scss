@@ -4,6 +4,7 @@
 @use 'tables';
 @use 'help-boxes';
 @use 'figures';
+@use 'details';
 @use 'sliders';
 @use 'scroll-bars';
 @use 'code';
@@ -153,6 +154,10 @@ p {
     & > img:only-child:not(.emoji) {
         display: block;
     }
+}
+
+.normal {
+    font-size: initial;
 }
 
 img {

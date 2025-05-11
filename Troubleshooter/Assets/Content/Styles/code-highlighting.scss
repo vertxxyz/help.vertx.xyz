@@ -121,7 +121,7 @@
 	&.constant,
 	&.symbol,
 	&.deleted,
-    &.inserted {
+	&.inserted {
 		color: var(--textColor);
 	}
 
@@ -213,12 +213,13 @@
 }
 
 .language-css {
-	.token.string{
+	.token.string {
 		color: var(--operatorColor);
 	}
 }
+
 .style {
-	.token.string{
+	.token.string {
 		color: var(--operatorColor);
 	}
 }

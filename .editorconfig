@@ -16,6 +16,12 @@ trim_trailing_whitespace = true
 [*.md]
 trim_trailing_whitespace = false
 
+# SCSS files
+[*.scss]
+indent_style = tab
+indent_size = 1
+tab_width = 2
+
 # C# files
 [*.cs]
 # Preferences override to tabs.

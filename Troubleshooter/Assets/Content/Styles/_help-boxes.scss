@@ -9,13 +9,14 @@ div.info-box {
 	margin: base.$block-container-margins;
 	align-items: center;
 
-	>p,>div {
+	> p, > div {
 		margin-block-start: 0.5em;
 		margin-block-end: 0.5em;
 		margin-inline-start: 8px;
 		margin-inline-end: 8px;
 	}
-	>img {
+
+	> img {
 		height: 50px;
 		width: 50px;
 		margin: 0;
@@ -34,9 +35,10 @@ p:has(+div.info-box.small) {
 
 div.info-box.small {
 	margin-block-end: 0.5em;
-	>img {
+
+	> img {
 		@extend %small;
-	}	
+	}
 }
 
 .code-context {

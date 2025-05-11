@@ -6,6 +6,9 @@ You must download and install the [Unity Hub](https://unity.com/download) to ins
 1. Select **Add Modules**.  
    ^^^
    ![Add Modules](add-modules.png)
-   ^^^ Add modules in the Unity Hub
+   ^^^ Add modules in the Unity Hub.
+   :::warning{.small}  
+   Manually installed editor versions cannot be modified via the Unity Hub.  
+   :::
 1. Tick the modules you want to install.
 1. Select **Install**.

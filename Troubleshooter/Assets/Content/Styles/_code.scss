@@ -43,11 +43,11 @@
 		display: contents;
 	}
 
-    h3.code-block--no-background {
-        font-size: 0.94em;
-        display: block;
-        padding-left: 0;
-    }
+	h3.code-block--no-background {
+		font-size: 0.94em;
+		display: block;
+		padding-left: 0;
+	}
 }
 
 pre {
@@ -111,6 +111,7 @@ pre {
 	.dropdown-content {
 		top: 20px;
 		right: -1px;
+
 		button {
 			height: 26px;
 		}
@@ -125,11 +126,13 @@ pre {
 	user-select: none;
 	width: calc(100% + 15px);
 	margin-left: -15px;
-	>svg {
+
+	> svg {
 		width: 100%;
 		stroke-linejoin: miter !important;
 		stroke-linecap: square !important;
 	}
+
 	rect {
 		rx: 5px;
 		ry: 5px;
@@ -150,6 +153,7 @@ pre {
 		height: 1em;
 		cursor: pointer;
 		user-select: none;
+
 		&:hover {
 			fill: #bdbdbd;
 		}
@@ -168,7 +172,8 @@ pre {
 	}
 
 	&.collapsable--expanded {
-		&::before { }
+		&::before {
+		}
 
 		> .collapsable__description {
 			display: none;
@@ -179,9 +184,11 @@ pre {
 		color: #787878;
 		background-color: #303030;
 		outline: solid 1px #404040;
+
 		&::after {
 			content: " {...}"
 		}
+
 		&:hover {
 			color: inherit;
 		}

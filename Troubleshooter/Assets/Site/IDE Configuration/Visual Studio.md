@@ -4,35 +4,55 @@ description: "If your IDE isn't providing autocomplete suggestions or underlinin
 ---
 <<Abbreviations/UPM.md>>
 # ![Visual Studio](/Images/visualstudio.svg) Visual Studio configuration
-## Installation and configuration
-### Visual Studio was installed with the Unity Hub
-Visual Studio will have the Unity workload installed.
-Follow the [configuration instructions](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#configure-unity-to-use-visual-studio) to configure the remaining setup.
+- [Installation](#installing-visual-studio)
+- [Configuration](#configuring-visual-studio)
+- [Troubleshooting](#if-you-are-experiencing-issues)
 
-### Visual Studio was installed manually
-Follow the [configuration instructions](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#install-unity-support-for-visual-studio), including installation of the Unity workload.
+## Installing Visual Studio
+::::note  
+### Install via the Unity Hub
+Select **Microsoft Visual Studio Community** when installing a Unity version (**Installs | Install Editor**),
+or install it as a [module](../Unity%20Hub/Module%20Installation.md) to an existing Unity install.
 
-### Installing Visual Studio for the first time
-::::note
-### Install Visual Studio via the Unity Hub
-Installing Visual Studio via the Unity Hub means it's mostly ready for use with Unity.
+Follow the [configuration instructions](#configuring-visual-studio) for remaining setup.
+::::  
+::::note  
+### Install manually
+:::info{.small}
+Prefer installing [via the Unity Hub](#install-via-the-unity-hub).
+:::
+
+1. Download and open the [Visual Studio installer](https://learn.microsoft.com/en-us/visualstudio/install/install-visual-studio).
+1. Select **Install**.
+1. Select the **Workloads** tab, then select the **Game development with Unity** workload.
+   ^^^{.foldout}
+   ![Visual Studio workloads page](visual-studio-workloads.png)
+   ^^^ Game development with Unity workload.
+1. Select **Install** to complete the installation.
+
+
+Follow the [configuration instructions](#configuring-visual-studio) for remaining setup.
+::::
+
+## Configuring Visual Studio
+
+1. If Visual Studio was installed manually, install the **Game development with Unity** workload.
+   ^^^{.foldout}
+   :::normal
+   1. Open the Visual Studio Installer.
+   1. Select the **Workloads** tab, then select the **Game development with Unity** workload.
+   1. Select **Install**.
+   :::
+   ![Visual Studio workloads page](visual-studio-workloads.png)
+   ^^^ Game development with Unity workload.
+1. Ensure the [Visual Studio Editor](https://docs.unity3d.com/Manual/com.unity.ide.visualstudio.html) package installed and updated in UPM (`com.unity.ide.visualstudio`).
+1. Set the **External Script Editor** dropdown in Unity's External Tools preferences (**Edit | Preferences | External Tools**) to Visual Studio.
 
 :::note
-### No Unity versions are installed
-Tick **Microsoft Visual Studio Community** during the installation process in the Unity Hub. (**Installs | Install Editor**)
+[Official configuration steps.](https://learn.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity)
 :::
-:::note
-### A Unity version is installed
-See [Unity Hub: Module installation](../Unity%20Hub/Module%20Installation.md) and install **Microsoft Visual Studio Community**.
-:::
-Follow the [configuration instructions](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity#configure-unity-to-use-visual-studio) to check the remaining setup.
-::::
-::::note
-### I want to install Visual Studio manually
-Follow all of the instructions listed on [this page](https://docs.microsoft.com/en-us/visualstudio/gamedev/unity/get-started/getting-started-with-visual-studio-tools-for-unity).
-::::
 
-## If you are experiencing issues:
+## If you are experiencing issues
 
 - If you have compiler errors, resolve them or [comment out](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/comments) those files so Unity can compile code.
 - Ensure the [Visual Studio Editor](https://docs.unity3d.com/Manual/com.unity.ide.visualstudio.html) package is installed and updated in UPM (`com.unity.ide.visualstudio`).

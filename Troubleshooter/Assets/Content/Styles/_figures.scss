@@ -1,120 +1,138 @@
 @use 'base';
 
 figure {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  inline-size: max-content;
-  margin: base.$block-container-margins;
-
-  :nth-last-child(2) {
-    margin-block-end: 0;
-  }
-
-  > .code-container,
-  > .mermaid {
-    align-self: normal;
-  }
-
-  & > blockquote + figcaption {
-    background: rgba(0, 0, 0, 0.1411764706);
-    border: 1px #191919 solid;
-    border-top-width: 0;
-    margin-left: 6px;
-  }
-
-  & > p {
-    & > video, & > img {
-      display: block;
-      margin: 0;
-    }
-  }
-
-  & > *:not(figcaption) {
-    display: block;
-    margin: 0 !important;
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-  }
-
-  & > table {
-    border: none;
-  }
-
-  &.has-code-container,
-  &.has-mermaid,
-  &.has-note {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    inline-size: max-content;
+    max-width: calc(100% - 32px);
     margin: base.$block-container-margins;
-    inline-size: auto;
 
-    > figcaption {
-      margin: 0;
+    :nth-last-child(2) {
+        margin-block-end: 0;
     }
-  }
+
+    > .code-container,
+    > .mermaid {
+        align-self: normal;
+    }
+
+    & > blockquote + figcaption {
+        background: rgba(0, 0, 0, 0.1411764706);
+        border: 1px #191919 solid;
+        border-top-width: 0;
+        margin-left: 6px;
+    }
+
+    & > p {
+        & > video, & > img {
+            display: block;
+            margin: 0;
+        }
+    }
+
+    & > *:not(figcaption) {
+        display: block;
+        margin: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+
+    & > table {
+        border: none;
+    }
+
+    &.has-code-container,
+    &.has-mermaid,
+    &.has-note {
+        margin: base.$block-container-margins;
+        inline-size: auto;
+
+        > figcaption {
+            margin: 0;
+        }
+    }
+
+    & > .normal {
+        padding: 5px 0 10px;
+    }
 }
 
 @supports not selector(:has(a, b)) {
-  // Fallback for browsers that don't support has.
+    // Fallback for browsers that don't support has.
 }
 
 %figcaption-help-box {
-  display: inline-block;
-  height: 20px;
-  width: 20px;
-  margin: 0 5px 0 0;
-  padding: 0;
-  vertical-align: sub;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin: 0 5px 0 0;
+    padding: 0;
+    vertical-align: sub;
 }
 
 figcaption {
-  width: 0;
-  min-width: 100%;
-  caption-side: bottom;
-  box-sizing: border-box;
-  font-size: 10pt;
-  padding: 5px 12px 5px 12px;
-  background: base.$unity-colors-app_toolbar-background;
-  border-radius: 0 0 5px 5px;
+    width: 0;
+    min-width: 100%;
+    caption-side: bottom;
+    box-sizing: border-box;
+    font-size: 10pt;
+    padding: 5px 12px 5px 12px;
+    background: base.$unity-colors-app_toolbar-background;
+    border-radius: 0 0 5px 5px;
 
-  & > img:first-child {
-    @extend %figcaption-help-box;
-  }
+    & > img:first-child {
+        @extend %figcaption-help-box;
+    }
 
-  &.info:before, & > .info::before {
-    @extend %figcaption-help-box;
-    content: url("../Images/information.svg");
-  }
+    &.info:before, & > .info::before {
+        @extend %figcaption-help-box;
+        content: url("../Images/information.svg");
+    }
 
-  &.warning::before, & > .warning::before {
-    @extend %figcaption-help-box;
-    content: url("../Images/warning.svg");
-  }
+    &.warning::before, & > .warning::before {
+        @extend %figcaption-help-box;
+        content: url("../Images/warning.svg");
+    }
 
-  &.error::before, & > .error::before {
-    @extend %figcaption-help-box;
-    content: url("../Images/error.svg");
-  }
+    &.error::before, & > .error::before {
+        @extend %figcaption-help-box;
+        content: url("../Images/error.svg");
+    }
 }
 
 figure:has(video), figure:has(image) {
-  & > figcaption {
-    & > .info, .warning, .error {
-      font-size: 16px;
+    & > figcaption {
+        & > .info, .warning, .error {
+            font-size: 16px;
 
-      &::before {
-        vertical-align: middle;
-        height: 30px;
-        width: 30px;
-      }
+            &::before {
+                vertical-align: middle;
+                height: 30px;
+                width: 30px;
+            }
+        }
     }
-  }
 }
 
 figure:has(table) {
-  & > figcaption {
-    //background: base.$unity-colors-default-background;
-    border: 1px solid base.$unity-colors-inspector_titlebar-border;
-    border-top: 0;
-  }
+    & > figcaption {
+        //background: base.$unity-colors-default-background;
+        border: 1px solid base.$unity-colors-inspector_titlebar-border;
+        border-top: 0;
+    }
+}
+
+.figure-foldout {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding: 0.5em 0 0.5em 1em;
+    font-size: 10pt;
+    background: #191919;
+    border-radius: 5px;
+}
+
+.figure-foldout > figure {
+    margin-top: 0.5em;
 }
