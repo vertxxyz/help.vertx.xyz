@@ -11,6 +11,7 @@ url: "https://unity.huh.how"
 ### Interface
 - [Scene view](Scene%20View.md)
 - [Game view](Game%20View.md)
+- [Hierarchy](Hierarchy.md)
 - [Windows](Windows.md)
 - [Gizmos](Gizmos.md)
 - [UnityEvents](Unity%20Events.md)

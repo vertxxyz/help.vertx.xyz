@@ -14,6 +14,7 @@ Use [UI Toolkit's debuggers](UI%20Toolkit/Debugging.md) to inspect issues with y
 :::
 
 ### UI Builder
+- [Elements are disabled and I cannot edit them.](UI%20Toolkit/Read-Only%20Elements.md)
 - [I cannot use Editor elements.](UI%20Toolkit/Editor%20Elements.md)
 
 ### Text

@@ -6,85 +6,19 @@ To do this, you must learn USS. USS is a query system similar to CSS that allows
 
 We choose not to use direct inline styles via C#. Inline styles override all other styling, require recompilation to adjust, and must be specified every time an element is created.
 
-::::note
-### Steps taken when styling an element
-- Learn selector rules to target classes below objects in the hierarchy.
-- Understand USS precedence.
-- Create your element so it's ready for styling.
-  + Learn how to name classes.
-- Use the UI Toolkit Debugger to inspect your element.
-  + Preview style adjustments of your elements.
-- Construct a USS rule that targets your element.
-
-### Additionally
-- Take a peek at the C# source code that actually constructed your control.
-
-::::
-
-[//]: # ([TOC]  )
-
-## Learn selector rules
-Go through the [USS selectors](https://docs.unity3d.com/Manual/UIE-USS-Selectors.html) documentation to learn how to construct USS queries against your hierarchy.  
-### Examples
-This example lists selectors commonly used for basic styling.
-
-^^^
-```css
-/* This selector (a word without a prefix) matches types directly.
-   This example will match any Button. */
-Button { ... }
-
-/* This selector "#" matches elements by name.
-   This example will match any elements with the name "example". */
-#example { ... }
-
-/* This selector "." will match elements using a USS class.
-   This example will match any elements with the "example" class. */
-.example { ... }
-
-/* This selector ">" combines two other selectors, matching the second if a direct child of the first in the hierarchy.
-   This example will match any elements with the "child" class that are directly below elements with the "example" class. */
-.example > .child { ... }
-
-/* This selector " " combines two other selectors, matching the second if it's below the first in the hierarchy.
-   This example will match any elements with the "descendant" class that are below elements with the "example" class. */
-.example .descendant { ... }
-
-/* This selector ":" matches elements in certain states. 
-   This example matches hovered buttons. See the complete list in the caption below this code block. */
-Button:hover { ... }
-
-/* Collapsable: Rarer selectors */
-/* Rarer selectors */
-/* You can combine selectors by listing them without a space. This only works when each selector is clearly distinguished with # or . separating the list.
-   This example matches any Button elements with the name and class "example" */
-Button#example.example { ... }
-
-/* You can apply the same styling rules to multiple groups of selectors by separating them with commas.
-   This example matches any Button, and anything with the "example" class, or name. */
-Button, .example, #example { ... }
-
-/* The universal selector targets everything. Generally avoid it by preferring specifics. */
-* { ... }
-
-/* End Collapsable */
-```
-^^^ See the [complete list of supported pseudo-classes](https://docs.unity3d.com/Manual/UIE-USS-Selectors-Pseudo-Classes.html).
-
-## Understand USS precedence
-There are a few levels to how styling is prioritised.  
-1. Understand [selector precedence](https://docs.unity3d.com/Manual/UIE-uss-selector-precedence.html).  
-2. If you are using [Theme Style Sheet](https://docs.unity3d.com/Manual/UIE-tss.html), note that style sheets lower in the list are applied over those above.
-
 ## Create your element
-We actually need to see an element to see how to style it. Create an element using the UI Builder or via code.  
+We actually need to see an element to see how to style it. Create an element using the UI Builder, UXML, or via code.
 
-Elements should generally not be styled directly via C#'s inline styles. Inline styles override all other styling, require recompilation to adjust, and must be specified every time an element is created.
+### Avoid inline styles
+Style overrides in the UI Builder or UXML's style property should be avoided.
+
+Inline styles override all other styling and must be specified every time an element is created.
+These styles are generally only appropriate when setting dynamic behaviour in code.
 
 ### Use BEM when choosing class names
 [Block Element Modifier](https://getbem.com) (BEM) is a naming convention that is also used by UI Toolkit[^1]. You can remain consistent with the built-in controls, and keep consistency with others by using it too.
 
-::::note  
+::::note
 ### Example
 For our styling example we will be styling a Slider. The example will use one from the UI Toolkit Samples **Window | UI Toolkit | Samples**.
 
@@ -92,49 +26,19 @@ For our styling example we will be styling a Slider. The example will use one fr
 
 ::::
 
-## Use the UI Toolkit Debugger to inspect your element
+::::note
+### Steps taken when styling an element
+- [Learn USS selectors.](Selectors.md)
+  - Learn selector rules to target classes on elements across the hierarchy.
+  - Understand USS precedence.
+- [Learn to use the UI Toolkit Debugger.](Debugger.md)
+  + Preview style adjustments of your elements.
+- Construct a USS rule that targets your element.
 
-Use the [UI Toolkit Debugger](https://docs.unity3d.com/Manual/UIE-ui-debugger.html) to inspect the styles, types, names, classes, and hierarchy of your element. If you've used browser dev tools this should be familiar to you.
+### Additionally
+- Take a peek at the C# source code that actually constructed your control.
 
-You can find the debugger at **Window | UI Toolkit | Debugger** or **Window | Analysis | UIElements Debugger** depending on Unity version; right-click on an inspector tab and select it, or press <kbd>Ctrl+F5</kbd>.
-
-### Inspecting your element
-Select the correct window from the top left of the debugger, and select **Pick Element**. Hover your element until the portion you wish to work with is highlighted, and select it.  
-
-:::error
-Don't inspect elements directly in the [UI Builder](https://docs.unity3d.com/Manual/UIBuilder.html) for styling.  
-The UI Builder adds extra elements for resizing and highlighting that will not be present in the final UI.
-:::
-
-^^^
-<video width="750" height="325" loop muted controls><source type="video/webm" src="/HTML/ui/ui-toolkit/ui-toolkit-debugger-picking.webm"></video>
-^^^ Picking the background sliding bar of the Slider.
-
-### The hierarchy
-![UI Toolkit Debugger - Hierarchy](ui-toolkit-debugger-hierarchy.png){.padded}
-
-Now the element has been selected (or something close to it), you can see a hierarchy of all the elements it's made of, their names, and their classes. The text in the hierarchy follows the [selector rules](#learn-selector-rules) we learned earlier.
-
-You can hover over the elements, which will be highlighted in the window you are inspecting.
-
-### The inspector
-![UI Toolkit Debugger - Inspector](ui-toolkit-debugger-inspector.png){.padded}
-
-Here you can see the layout, stylesheets and the order they are applied, matched selectors and their precedence, state, applied classes, styles and how they are matched, and a dump of the UXML.
-
-
-### Preview style adjustments of your elements
-In the **Styles** foldout you can override any style temporarily for the element (reload the window or reset its content to reset it).
-
-^^^  
-![UI Toolkit Debugger - Styles](ui-toolkit-debugger-styles.png)  
-^^^ Directly adjusting the height of the example slider.
-
-Adjust the styles of your element, and surrounding elements under the control until you are happy with the outcome.
-
-:::warning
-These adjustments are temporary, note down what adjustments you have made, or perform the next step in parallel.
-:::
+::::
 
 ## Construct a USS rule
 ### Use selectors to target your element
@@ -240,7 +144,7 @@ Apply the listed syntax rules to formulate a valid property.
 
 
 ## Take a peek at the C# source code
-It's generally good practice to take a look at the [Unity C# reference source code](https://github.com/Unity-Technologies/UnityCsReference/) to see how something works. I keep a copy downloaded to my computer so I can browse it as I work.
+It's generally good practice to take a look at the [Unity C# reference source code](https://github.com/Unity-Technologies/UnityCsReference/) to see how something works. I keep a local copy to browse as I work.
 
 In my example, I've been working with a Slider, searching for it in the `UIElements` namespace you can find [the file](https://github.com/Unity-Technologies/UnityCsReference/blob/67d5d85abbea076e469a1642e04f3ab50a326bea/Modules/UIElements/Core/Controls/Slider.cs) **Modules | UIElements | Core | Controls | Slider.cs**.  
 

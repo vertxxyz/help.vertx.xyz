@@ -42,9 +42,4 @@
         <None Remove="Source\plot.js" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Assets\Site Redirects\Materials\" />
-      <Folder Include="Assets\Site\UI\" />
-    </ItemGroup>
-
 </Project>

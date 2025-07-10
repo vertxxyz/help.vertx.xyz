@@ -28,7 +28,7 @@ An *orientation* is a rotational placement, similar to position. [`transform.rot
 
 A *rotation* is a manipulation of another orientation or rotation, similar to a movement vector.
 
-Sadly, *rotation* is a general term and is often used to describe both orientations and rotations.
+Sadly, *rotation* is a general term and is often used to describe both orientations and rotations. In some contexts there's no reason to distinguish one from another, but you may find this helpful.
 
 ## The API
 ### Rotation construction
