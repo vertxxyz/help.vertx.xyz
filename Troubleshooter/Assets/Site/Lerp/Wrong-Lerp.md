@@ -46,7 +46,7 @@ Using a more complex `t` can solve frame rate dependency problems.
 ^^^
 ```csharp
 static float ExponentialDecay(float value, float target, float decay, float deltaTime)
-    => Mathf.Lerp(value, target, Mathf.Exp(-decay * deltaTime));
+    => Mathf.Lerp(value, target, 1 - Mathf.Exp(-decay * deltaTime));
 ```
 ^^^ Where `decay` is `0->∞`. `0` is constant, and larger values approach the target faster.
 
