@@ -102,6 +102,7 @@ public class MainContentToGrid : IHtmlPostProcessor
 		}
 
 		InsertGrid();
+		return;
 
 		void InsertGrid()
 		{

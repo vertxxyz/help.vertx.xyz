@@ -12,4 +12,4 @@ Using the tools mentioned above you can fix most rotation issues with the Scene 
 
 ---
 [I still have issues with the Scene view.](../Windows/Resetting%20Windows.md)  
-[I can't find the Scene gizmo](Enabling%20Overlays.md)  
+[I can't find the Scene gizmo.](Enabling%20Overlays.md)  

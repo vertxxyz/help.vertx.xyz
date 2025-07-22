@@ -1,5 +1,11 @@
 # Class and file names
 
+:::note  
+In Unity 6 and above this restriction has been lifted.  
+It remains good practice and convention to file and script names.  
+See [script file names](https://docs.unity3d.com/Manual/naming-scripts.html) for more information.  
+:::
+
 The name of your class must be **identical** to its file name.  
 
 You can find the name of your class where your code looks like:  
@@ -8,7 +14,7 @@ You can find the name of your class where your code looks like:
 In this example if your script isn't named ::![Script Icon](script-icon.svg){.inline} `ClassName`::{.note}, you must rename it to be identical.  
 
 :::warning{.small}
-This includes **capitalisation** and **spaces**.  
+This includes **capitalisation** and **spaces**.
 :::  
 
 ## Notes

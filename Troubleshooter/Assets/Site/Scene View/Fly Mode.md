@@ -24,7 +24,7 @@ Click the center of the [Scene gizmo](https://docs.unity3d.com/Manual/SceneViewN
 ![Scene gizmo](scene-view-trumpets.png)
 
 ---
-[I can't find the Scene gizmo](Enabling%20Overlays.md)  
+[I can't find the Scene gizmo.](Enabling%20Overlays.md)  
 :::
 
 :::note

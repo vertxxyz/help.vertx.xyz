@@ -8,7 +8,8 @@ Make sure you understand this, or instead, use the static method [`Physics2D.Ray
 ## Issues with colliders
 - Raycasting requires [2D colliders](https://docs.unity3d.com/Manual/Collider2D.html) to work. 3D colliders will not by hit by `Physics2D` queries.  
   You cannot query against raw meshes or sprites using `Physics2D` functions.
-- Edge colliders are single-sided. Check that you are casting against the front face.
+- Edge Colliders are single-sided. Check that you are casting against the front face.
+- When using a Tile Map Collider the tile itself needs a Collision Type set.
 
 ## Correct use of ContactFilter2D
 A newly constructed [`ContactFilter2D`](https://docs.unity3d.com/ScriptReference/ContactFilter2D.html) will not be correctly configured. Check that you understand how to use the API using the example below.

@@ -1,17 +1,19 @@
 # The state of UI Toolkit
 This page functions as an overview of lacking features encountered while working with UI Toolkit in Unity 6.  
 
-Last edited 2025/05/18.
+Last edited 2025/07/22.
 
 ## Styling
-- No custom shader support.
-  - Hack in your own custom shader, but note that this will break batching.
-  - Use render textures (e.g. CustomRenderTexture), though note more than 6 unique (un-atlased) textures in a hierarchy breaks batching.
-- No repeating 9-slice support.
-  - Make your own using nested elements or mesh generation.
-- No glow/drop shadow support.
-  - Hack in your own with an extra element or binding and mesh generation.
-  - Use custom textures and nested elements.
+### Custom shaders
+Custom shaders are available through [USS filters](https://docs.unity3d.com/6000.3/Documentation/Manual/ui-systems/uss-filter.html) as of 6.3.
+
+Alternatively you can hack in your own custom shader, but note that this will break batching.
+Or, use render textures (e.g. CustomRenderTexture), though note more than 6 unique (un-atlased) textures in a hierarchy breaks batching.
+
+### No glow/drop shadow support.
+[USS filters](https://docs.unity3d.com/6000.3/Documentation/Manual/ui-systems/uss-filter.html) are available as of 6.3.
+
+Alternatively, use custom textures and nested elements, or hack in your own with an extra element or binding and mesh generation.
 
 ## Text
 - Rich text tags (e.g. `<color>` and `<link>`) can't be targeted by USS, and therefore can't respond to dynamic styling.

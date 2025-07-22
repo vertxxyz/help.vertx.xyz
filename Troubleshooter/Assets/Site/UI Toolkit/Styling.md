@@ -2,9 +2,22 @@
 
 This guide describes how to create USS selectors to style complex elements.  
 
-To do this, you must learn USS. USS is a query system similar to CSS that allows you to construct rules to constrain styling to specific elements.  
+USS is a query system similar to CSS that allows you to construct rules to constrain styling to specific elements.  
 
-We choose not to use direct inline styles via C#. Inline styles override all other styling, require recompilation to adjust, and must be specified every time an element is created.
+::::note
+### Steps taken when styling an element
+- [Create your element](#create-your-element)
+- [Learn USS selectors.](Selectors.md)
+    - Learn selector rules to target classes on elements across the hierarchy.
+    - Understand USS precedence.
+- [Learn to use the UI Toolkit Debugger.](Debugger.md)
+    + Preview style adjustments of your elements.
+- [Construct a USS rule that targets your element.](#construct-a-uss-rule)
+
+### Additionally
+- [Take a peek at the C# source code that actually constructed your control.](#take-a-peek-at-the-c-source-code)
+
+::::
 
 ## Create your element
 We actually need to see an element to see how to style it. Create an element using the UI Builder, UXML, or via code.
@@ -26,19 +39,11 @@ For our styling example we will be styling a Slider. The example will use one fr
 
 ::::
 
-::::note
-### Steps taken when styling an element
-- [Learn USS selectors.](Selectors.md)
-  - Learn selector rules to target classes on elements across the hierarchy.
-  - Understand USS precedence.
-- [Learn to use the UI Toolkit Debugger.](Debugger.md)
-  + Preview style adjustments of your elements.
-- Construct a USS rule that targets your element.
+## Learn USS selectors.
+See [USS selectors.](Selectors.md)
 
-### Additionally
-- Take a peek at the C# source code that actually constructed your control.
-
-::::
+## Learn to use the UI Toolkit Debugger.
+See [UI Toolkit Debugger](Debugger.md)
 
 ## Construct a USS rule
 ### Use selectors to target your element
