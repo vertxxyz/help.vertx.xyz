@@ -12,4 +12,4 @@
 :::
 
 ---
-[Input System](Input%20System.md)
+See also: [Input System](Input%20System.md).
