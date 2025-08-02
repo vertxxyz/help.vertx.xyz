@@ -53,7 +53,6 @@ Follow the [configuration instructions](#configuring-visual-studio) for remainin
 :::
 
 ## If you are experiencing issues
-
 - If you have compiler errors, resolve them or [comment out](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/comments) those files so Unity can compile code.
 - Ensure the [Visual Studio Editor](https://docs.unity3d.com/Manual/com.unity.ide.visualstudio.html) package is installed and updated in UPM (`com.unity.ide.visualstudio`).
 - Regenerate project files via Unity.
@@ -62,6 +61,7 @@ Follow the [configuration instructions](#configuring-visual-studio) for remainin
   1. Reopen VS via **Assets | Open C# Project**.
 - Regenerate project files via VS.
   - If an assembly in the Solution Explorer is marked as **(incompatible)**, right-click it and select **reload with dependencies**.
+  - If an assembly in the Solution Explorer is marked as **(unloaded)**, right-click it and select **reload project**.
 - Restart your computer.
 
 ---
