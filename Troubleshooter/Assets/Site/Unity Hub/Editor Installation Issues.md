@@ -38,8 +38,8 @@ Don't launch the Hub with Administrator privileges as it may prompt you to avoid
 1. When the Hub next opens, install any updates it may have.
 
 
-## Ask about it on the forums
-**Check the pinned messages** 📌, and search the [Unity Hub forums](https://forum.unity.com/forums/unity-hub.142/) for your issue, and then make a post there if you cannot find a resolution.
+## Ask about it on Unity Discussions
+**Check the pinned messages** 📌, and search [Unity Hub on Unity Discussions](https://discussions.unity.com/tag/unity-hub) for your issue, and then make a post there if you cannot find a resolution.
 
 ---
 If you find an unlisted resolution please <<report-issue.html>> so this page can be improved.  

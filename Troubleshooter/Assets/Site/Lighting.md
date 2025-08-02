@@ -7,7 +7,7 @@
 - [Some sides of my objects are completely black.](Lighting/Environment%20Lighting/Lighting%20Settings.md)  
 
 ## Lightmaps
-- [Official lightmapping troubleshooting guide.](https://forum.unity.com/threads/lightmapping-troubleshooting-guide.1340936/)
+- [Official lightmapping troubleshooting guide.](https://discussions.unity.com/t/lightmapping-troubleshooting-guide/895352)
 - [Steps to bake lighting.](Lightmapping.md)
 
 ## Shadows - Realtime

@@ -13,8 +13,3 @@
 - [Samples](https://github.com/Unity-Technologies/EntityComponentSystemSamples)
 - [Website](https://unity.com/dots)
 - [Roadmap](https://unity.com/roadmap/unity-platform/dots)
-## Forums
-- [DOTS](https://forum.unity.com/forums/data-oriented-technology-stack.147/)
-  - [Physics](https://forum.unity.com/forums/dots-physics.422/)
-  - [Netcode](https://forum.unity.com/forums/dots-netcode.425/)
-  - [Graphics](https://forum.unity.com/forums/dots-graphics.641/)

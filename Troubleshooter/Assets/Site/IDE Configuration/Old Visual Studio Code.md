@@ -37,7 +37,7 @@ See [the new configuration steps](Visual%20Studio%20Code.md) if you aren't stuck
 
 ## ⚠️ Warning
 
-VS Code support is [limited](https://forum.unity.com/threads/update-on-the-visual-studio-code-package.1302621/).
+VS Code support is [limited](https://discussions.unity.com/t/update-on-the-visual-studio-code-package/886480).
 - It's [debugger extension](https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug) has been marked as deprecated.
 - New versions of Unity will not have the Visual Studio Code Editor (`com.unity.ide.vscode`) package installed by default.
 
